@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 var is_building: bool 
 
@@ -7,10 +7,6 @@ signal build_mode(is_building)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	is_building = false
-	
-	# build_mode.connect(_on_build_mode)
-	# build_mode.emit(is_building)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
