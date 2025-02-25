@@ -2,26 +2,33 @@ extends Node
 
 @export var blueprint: Building
 @export var grid_size: int = 32
-@onready var building_layer: TileMapLayer = $"../BuildingLayer"
-var factory = preload("res://building.tscn")
+
+@onready var world_layer: TileMapLayer = $"../WorldLayer"
+@onready var game_manager = $"../GameManager"
+
+var factory: Resource = preload("res://factory.tscn")
+
+var buildings: Dictionary = {
+	"factory": factory,
+}
 
 var buildings_placed: Array[Building]
 
 var in_build_mode: bool = false
 
 func _ready() -> void:
-	$"..".build_mode.connect(_on_build_mode)
+	game_manager.build_mode.connect(_on_build_mode)
 
 func _process(delta):
 	if in_build_mode:
-		var tile_pos = building_layer.local_to_map(get_parent().get_local_mouse_position())
-		var world_pos = building_layer.map_to_local(tile_pos)
+		var tile_pos = world_layer.local_to_map(get_parent().get_local_mouse_position())
+		var world_pos = world_layer.map_to_local(tile_pos)
 		
 		blueprint.position = world_pos 
 
 func _input(event):
-	var tile_pos = building_layer.local_to_map(get_parent().get_local_mouse_position())
-	var world_pos = building_layer.map_to_local(tile_pos)
+	var tile_pos = world_layer.local_to_map(get_parent().get_local_mouse_position())
+	var world_pos = world_layer.map_to_local(tile_pos)
 		
 	if in_build_mode and event.is_action_pressed("place"):
 		place_building()
@@ -32,14 +39,13 @@ func snap_to_grid(pos, grid_size):
 func place_building():
 	in_build_mode = false
 	
-	var new_building: Building = factory.instantiate()
-	
+	var new_building: Building = buildings.get("factory").instantiate()
 	new_building.position = blueprint.position
-	
 	buildings_placed.append(new_building)
-	$"..".add_child(new_building)
-	$"..".build_mode.emit(in_build_mode)
-	print(buildings_placed.size())
+	
+	game_manager.add_child(new_building)
+	game_manager.build_mode.emit(in_build_mode)
+	# print(buildings_placed.size())
 	
 func _on_build_mode(is_building) -> void:
 	in_build_mode = is_building
