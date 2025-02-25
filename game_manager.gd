@@ -13,6 +13,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event):
-	if event.is_action_pressed("build") or (is_building and event.is_action_pressed("place")):
+	if event.is_action_pressed("build"): #or (is_building and event.is_action_pressed("place")):
 		is_building = !is_building
 		build_mode.emit(is_building)

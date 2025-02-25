@@ -1,3 +1,5 @@
+# TODO: Add building collision, invalid placment,
+# build mode coloring/highlighthing
 extends Node
 
 @export var blueprint: Building
@@ -18,7 +20,7 @@ var in_build_mode: bool = false
 
 func _ready() -> void:
 	game_manager.build_mode.connect(_on_build_mode)
-
+# TODO: Add grid based and free placement?
 func _process(delta):
 	if in_build_mode:
 		var tile_pos = world_layer.local_to_map(get_parent().get_local_mouse_position())
@@ -33,18 +35,15 @@ func _input(event):
 	if in_build_mode and event.is_action_pressed("place"):
 		place_building()
 
-func snap_to_grid(pos, grid_size):
-	return Vector2(round(pos.x / grid_size) * grid_size, round(pos.y / grid_size) * grid_size)
-
 func place_building():
-	in_build_mode = false
+	#in_build_mode = false
 	
 	var new_building: Building = buildings.get("factory").instantiate()
 	new_building.position = blueprint.position
 	buildings_placed.append(new_building)
 	
 	game_manager.add_child(new_building)
-	game_manager.build_mode.emit(in_build_mode)
+	#game_manager.build_mode.emit(in_build_mode)
 	# print(buildings_placed.size())
 	
 func _on_build_mode(is_building) -> void:
