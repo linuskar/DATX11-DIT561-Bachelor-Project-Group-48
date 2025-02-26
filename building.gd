@@ -1,8 +1,6 @@
 class_name Building
-extends Area2D
+extends StaticBody2D
 
-@export var building_type: Enums.BuildingType:
-	get:
-		return building_type
+@export var building_type: Enums.BuildingType
 
 @onready var building_sprite: Sprite2D = $Sprite2D
