@@ -14,7 +14,7 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_wghod")
 
-[node name="TestPlaceableLevel" type="Node2D"]
+[node name="main" type="Node2D"]
 
 [node name="WorldLayer" type="TileMapLayer" parent="."]
 position = Vector2(-1, 1)

@@ -24,7 +24,7 @@ signal placed_building()
 func _ready() -> void:
 	GameManager.build_mode.connect(_on_build_mode)
 	
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	match GameManager.state:
 		GameManager.State.PLACE_BUILDING:
 			var mouse_pos: Vector2 = get_parent().get_local_mouse_position()
@@ -47,14 +47,13 @@ func _process(delta) -> void:
 			pass
 		
 		
-func _on_build_mode(is_building) -> void:
+func _on_build_mode() -> void:
 	match GameManager.state:
 		GameManager.State.IDLE:
 			blueprint.hide()  
 			blueprint.modulate = default_color
 			
 		GameManager.State.PLACE_BUILDING:
-			print("bajs")
 			blueprint.show()
 			blueprint.modulate = valid_placement_color
 		
@@ -63,5 +62,5 @@ func place_building() -> void:
 	var new_building: Building = buildings.get("factory").instantiate()
 	new_building.position = blueprint.position
 	buildings_placed.append(new_building)
-	GameManager.add_child(new_building)
+	get_parent().add_child(new_building)
 	placed_building.emit(new_building)
