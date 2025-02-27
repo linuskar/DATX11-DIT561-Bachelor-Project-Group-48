@@ -8,3 +8,4 @@
 [node name="CameraMovement" parent="." instance=ExtResource("1_ux6r8")]
 
 [node name="Map" parent="." instance=ExtResource("2_t2rdk")]
+script = null
