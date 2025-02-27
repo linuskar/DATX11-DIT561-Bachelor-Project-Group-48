@@ -5,7 +5,6 @@ var is_building: bool
 var occupied_tiles: Dictionary = {}
 
 @onready var build_manager: BuildManager = $"../BuildManager"
-
 signal build_mode(is_building)
 
 # Called when the node enters the scene tree for the first time.
