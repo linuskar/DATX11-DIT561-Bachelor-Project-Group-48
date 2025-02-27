@@ -6,6 +6,8 @@ extends Node
 
 @onready var world_layer: TileMapLayer = $"../WorldLayer"
 
+var occupied_tiles: Dictionary = {}
+
 var valid_placement_color: Color = Color(0.5, 0.5, 1, 0.8) 
 var invalid_placement_color: Color = Color(1, 0.5, 0.5, 0.8)
 var default_color: Color = Color(1, 1, 1, 1)
@@ -19,7 +21,7 @@ var buildings_placed: Array[Building]
 var in_build_mode: bool = false
 var valid_placement: bool = false
 
-signal placed_building()
+signal placed_building
 
 func _ready() -> void:
 	GameManager.build_mode.connect(_on_build_mode)
@@ -33,14 +35,16 @@ func _process(_delta) -> void:
 			
 			blueprint.position = world_pos 
 			
-			if GameManager.is_tile_occupied(world_pos):
+			if is_tile_occupied(world_pos):
+				print("occupied")
 				blueprint.modulate = invalid_placement_color
 				valid_placement = false
 			else:
+				print("fine")
 				blueprint.modulate = valid_placement_color	
 				valid_placement = true
 				
-			if Input.is_action_just_pressed("place") and valid_placement:
+			if Input.is_action_pressed("place") and valid_placement:
 				place_building()
 				
 		GameManager.State.IDLE:
@@ -63,4 +67,11 @@ func place_building() -> void:
 	new_building.position = blueprint.position
 	buildings_placed.append(new_building)
 	get_parent().add_child(new_building)
-	placed_building.emit(new_building)
+	_on_placed_building(new_building)
+	
+func is_tile_occupied(position: Vector2) -> bool:
+	return occupied_tiles.has(position)
+
+func _on_placed_building(building: Building) -> void:
+	occupied_tiles[building.position] = building
+	#print(occupied_tiles.size())
