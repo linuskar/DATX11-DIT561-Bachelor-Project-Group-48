@@ -12,9 +12,8 @@ var invalid_placement_color: Color = Color(1, 0.5, 0.5, 0.8)
 var default_color: Color = Color(1, 1, 1, 1)
 
 var buildings: Dictionary = {
-	"factory": preload("res://factory.tscn"),
+	"factory": preload("res://scenes/factory.tscn"),
 }
-
 var buildings_placed: Array[Building]
 
 var in_build_mode: bool = false
