@@ -2,18 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://ciu6t5aw8fvon"
-
-path="res://.godot/imported/background.png-1fdba8b6a966ce2c2ffc607f7c096e95.ctex"
+uid="uid://cxvch03bmwn28"
+path="res://.godot/imported/temo-factories..png-7528f05a563718dc39fa541b38f624b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background.png"
-dest_files=["res://.godot/imported/background.png-1fdba8b6a966ce2c2ffc607f7c096e95.ctex"]
+source_file="res://assets/temo-factories..png"
+dest_files=["res://.godot/imported/temo-factories..png-7528f05a563718dc39fa541b38f624b2.ctex"]
 
 [params]
 
