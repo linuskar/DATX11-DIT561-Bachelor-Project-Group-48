@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ct86lpfbpsiyg"]
 
-[ext_resource type="Script" path="res://scripts/control.gd" id="1_gy1sp"]
+[ext_resource type="Script" uid="uid://k8yy4tfuwju1" path="res://scripts/control.gd" id="1_gy1sp"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://pngs/factory.png" id="2_odmu6"]
 
 [node name="Control" type="Control"]
@@ -25,9 +25,11 @@ offset_right = 204.0
 offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
-item_count = 1
+item_count = 3
 icon_scale = 4.0
 item_0/text = "Factory"
 item_0/icon = ExtResource("2_odmu6")
+item_1/icon = ExtResource("2_odmu6")
+item_2/icon = ExtResource("2_odmu6")
 
 [connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

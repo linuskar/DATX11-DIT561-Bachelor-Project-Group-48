@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://b0tpsuqne5vkc"]
+[gd_scene load_steps=8 format=4 uid="uid://dal7dna0dxbuv"]
 
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://pngs/grass_tile.png" id="1_0o4hd"]
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_j4qm3"]
-[ext_resource type="Script" path="res://scripts/build_manager.gd" id="4_e2eq7"]
-[ext_resource type="PackedScene" path="res://scenes/control.tscn" id="5_4um30"]
-[ext_resource type="PackedScene" path="res://scenes/factory.tscn" id="5_eqd2l"]
+[ext_resource type="Script" uid="uid://45sr8qvoeure" path="res://scripts/main.gd" id="1_j4qm3"]
+[ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/build_manager.gd" id="4_e2eq7"]
+[ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/control.tscn" id="5_4um30"]
+[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/factory.tscn" id="5_eqd2l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wghod"]
 texture = ExtResource("1_0o4hd")
