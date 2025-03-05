@@ -25,7 +25,7 @@ var default_color: Color = Color(1, 1, 1, 1)
 
 ## The buildnigs in the game that you can place.
 var buildings: Dictionary = {
-	"factory": preload("res://scenes/factory.tscn"),
+	"factory": preload("res://scenes/buildings/factory.tscn"),
 }
 
 ## The builings in the game that are currently place.
