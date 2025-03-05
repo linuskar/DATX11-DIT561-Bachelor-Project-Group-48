@@ -1,21 +1,24 @@
 extends Camera2D
 
+##Decide how fast the zoom will be, bigger nr is faster
 @export var zoomSpeed :float = 10;
  
 var zoomTarget :Vector2
 
-#Decide how fast wasd pan speed is, higher nr is faster
+##Decide how fast wasd pan speed is, higher nr is faster
 @export var simplePanSpeed = 4
 
-#Decide max and min zoom
-#Bigger nr = more zoomed in
+##Decide max zoom. 
+##Bigger nr = more zoomed in
 @export var maxZoom = 3.6
+##Decide min zoom. 
+##Lower nr = less zoomed in
 @export var minZoom = 0.7
 
 var maxZoomLength = Vector2(maxZoom, maxZoom).length()
 var minZoomLength = Vector2(minZoom, minZoom).length()
 
-#Decide how sensitive the zoom is, bigger number is more sensitiv
+##Decide how sensitive the zoom is, bigger number is more sensitiv
 @export var zoomSensitivity = 0.1
 
 var dragStartMousePos = Vector2.ZERO
@@ -38,7 +41,6 @@ func Zoom(delta):
 			zoomTarget *= 1 + zoomSensitivity
 		else:
 			zoomTarget = Vector2(maxZoom, maxZoom)
-		print(zoomTarget)
 	
 	if Input.is_action_just_pressed("camera_zoom_out"):
 		if (zoomTarget * (1 - zoomSensitivity)).length() > minZoomLength:
