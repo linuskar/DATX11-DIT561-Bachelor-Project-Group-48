@@ -5,7 +5,7 @@ extends Node
 ##
 
 ## The control node for the building selection
-@onready var building_selector_control: Control = $Control
+@onready var building_selector_control: Control = $"../Control"
 
 func _input(event) -> void:
 	if event.is_action_pressed("build"):

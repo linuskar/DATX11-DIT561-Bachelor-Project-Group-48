@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://ct86lpfbpsiyg"]
 
-[ext_resource type="Script" uid="uid://k8yy4tfuwju1" path="res://scripts/building_selector.gd" id="1_gy1sp"]
+[ext_resource type="Script" uid="uid://k8yy4tfuwju1" path="res://scripts/buildings/building_selector.gd" id="1_gy1sp"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/factory.png" id="2_odmu6"]
 
-[node name="Control" type="Control"]
+[node name="BuildingSelector" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://dal7dna0dxbuv"]
+
+[ext_resource type="PackedScene" uid="uid://yyssuhsvr2c2" path="res://scenes/levels/world_layer.tscn" id="1_2ucrv"]
+[ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="2_77ifl"]
+[ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="3_7xp37"]
+[ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="4_21qaf"]
+[ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="5_ossie"]
+
+[node name="test_placeable_level" type="Node2D"]
+
+[node name="WorldLayer" parent="." instance=ExtResource("1_2ucrv")]
+
+[node name="BuildManager" parent="." instance=ExtResource("2_77ifl")]
+
+[node name="GameManager" parent="." instance=ExtResource("3_7xp37")]
+
+[node name="BuildingSelector" parent="." instance=ExtResource("4_21qaf")]
+visible = false
+
+[node name="CameraMovement" parent="." instance=ExtResource("5_ossie")]

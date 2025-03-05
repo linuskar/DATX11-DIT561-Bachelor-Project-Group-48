@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs67hiut6aq7j"]
+
+[ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="1_aenhx"]
+[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="2_tstln"]
+
+[node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
+script = ExtResource("1_aenhx")
+blueprint = NodePath("BuildingBlueprint")
+
+[node name="BuildingBlueprint" parent="." instance=ExtResource("2_tstln")]
+visible = false

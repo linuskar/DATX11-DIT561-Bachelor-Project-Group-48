@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dehcfw6lnpthr"]
 
-[ext_resource type="Texture2D" uid="uid://ciu6t5aw8fvon" path="res://assets/background.png" id="1_tc7w6"]
+[ext_resource type="Texture2D" uid="uid://ciu6t5aw8fvon" path="res://assets/background.png" id="1_1j1lv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epwmd"]
-texture = ExtResource("1_tc7w6")
+texture = ExtResource("1_1j1lv")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
