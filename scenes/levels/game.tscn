@@ -23,5 +23,5 @@ visible = false
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("5_uk881")
 
-[node name="Control" parent="." instance=ExtResource("6_r0gsk")]
+[node name="BuildingSelector" parent="." instance=ExtResource("6_r0gsk")]
 visible = false
