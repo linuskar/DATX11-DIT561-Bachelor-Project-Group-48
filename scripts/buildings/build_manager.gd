@@ -13,10 +13,8 @@ extends Node
 @export var grid_size: int = 32
 
 ## The layer the building is placed/locked on to get a grid based placement.
-@onready var map_layer: Node2D = $"../MapLayer"
+@onready var map_layer: MapLayer = $"../MapLayer"
 
-var resource_layer: TileMapLayer
- 
 ## The currently occupied tiles, for example a building, tree, etc.
 var occupied_tiles: Dictionary = {}
 
@@ -41,7 +39,6 @@ var valid_placement: bool = false
 signal placed_building(building: Building)
 
 func _ready() -> void:
-	resource_layer = map_layer.get_child(4)
 	StateManager.build_mode.connect(_on_build_mode)
 	
 func _process(_delta) -> void:
@@ -52,7 +49,7 @@ func _process(_delta) -> void:
 			#var mouse_pos: Vector2 = get_parent().get_local_mouse_position()
 			#var tile_pos: Vector2 = map_layer.get_child(1).local_to_map(mouse_pos) 
 			#var world_pos: Vector2 = map_layer.get_child(1).map_to_local(tile_pos)
-			var ground = map_layer.get_child(1)
+			var ground = map_layer.dirt_layer
 			var mouse_pos = get_parent().get_global_mouse_position()  # Get world position of mouse
 			var local_mouse_pos = ground.to_local(mouse_pos)  # Convert to local TileMap coordinates
 			var tile_pos = ground.local_to_map(local_mouse_pos)  # Get tile coordinates
@@ -65,7 +62,7 @@ func _process(_delta) -> void:
 				valid_placement = false
 			else:
 				blueprint.modulate = valid_placement_color	
-				valid_placement = true				
+				valid_placement = true	
 			if Input.is_action_pressed("place") and valid_placement:
 				place_building()
 				

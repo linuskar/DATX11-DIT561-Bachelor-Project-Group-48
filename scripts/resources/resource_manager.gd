@@ -1,12 +1,12 @@
 extends Node
 # add types dict
-@onready var map_layer: Node2D = $"../MapLayer"
+@onready var map_layer: MapLayer = $"../MapLayer"
 @onready var build_manager: BuildManager = $"../BuildManager"
 
 var buildings_gathering: Array[Building]
 
-var resource_layer: TileMapLayer
-var resource_tiles: Dictionary = {}
+var resources_layer: TileMapLayer
+var resource_tiles: Dictionary[Vector2, GatherableResource] = {}
 
 func _ready() -> void:
 	build_manager.placed_building.connect(init_building_gathering)
@@ -17,9 +17,9 @@ func _process(delta: float) -> void:
 	
 func init_resources():
 	await get_tree().process_frame
-	resource_layer = map_layer.get_child(4)
+	resources_layer = map_layer.resources_layer
 	
-	for tile in resource_layer.get_children():
+	for tile in resources_layer.get_children():
 		resource_tiles[tile.position] = tile
 
 func init_building_gathering(building: Building):
