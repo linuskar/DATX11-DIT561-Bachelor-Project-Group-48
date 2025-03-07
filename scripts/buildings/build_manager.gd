@@ -45,20 +45,23 @@ func _process(_delta) -> void:
 		## In build mode snap the blueprint to the mouse in the world
 		# TODO: add placeable layers
 		StateManager.State.PLACE_BUILDING:
-			var mouse_pos: Vector2 = get_parent().get_local_mouse_position()
-			var tile_pos: Vector2 = map_layer.get_child(1).local_to_map(mouse_pos)
-			var world_pos: Vector2 = map_layer.get_child(1).map_to_local(tile_pos)
-			
-			blueprint.position = world_pos 
+			#var mouse_pos: Vector2 = get_parent().get_local_mouse_position()
+			#var tile_pos: Vector2 = map_layer.get_child(1).local_to_map(mouse_pos) 
+			#var world_pos: Vector2 = map_layer.get_child(1).map_to_local(tile_pos)
+			var ground = map_layer.get_child(1)
+			var mouse_pos = get_parent().get_global_mouse_position()  # Get world position of mouse
+			var local_mouse_pos = ground.to_local(mouse_pos)  # Convert to local TileMap coordinates
+			var tile_pos = ground.local_to_map(local_mouse_pos)  # Get tile coordinates
+			var snapped_pos = ground.map_to_local(tile_pos)  # Convert back to local space
+			blueprint.position = ground.to_global(snapped_pos)
 			
 			## Checking for valid placement
-			if is_tile_occupied(world_pos):
+			if is_tile_occupied(ground.to_global(snapped_pos)):
 				blueprint.modulate = invalid_placement_color
 				valid_placement = false
 			else:
 				blueprint.modulate = valid_placement_color	
-				valid_placement = true
-				
+				valid_placement = true				
 			if Input.is_action_pressed("place") and valid_placement:
 				place_building()
 				

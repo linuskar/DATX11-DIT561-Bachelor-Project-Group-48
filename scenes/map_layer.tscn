@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://c7ded0ull7r3b"]
+[gd_scene load_steps=19 format=4 uid="uid://c7ded0ull7r3b"]
 
 [ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="1_7ny2r"]
 [ext_resource type="Texture2D" uid="uid://d2eu27qu6lkff" path="res://assets/Tilesets/Floors_Tiles.png" id="2_xm11k"]
 [ext_resource type="Texture2D" uid="uid://tivkwjs5ujbw" path="res://assets/Tilesets/Grass_Tiles.png" id="3_eds5r"]
+[ext_resource type="Texture2D" uid="uid://lv8wna42s8tm" path="res://assets/ores.png" id="4_q2m4d"]
+[ext_resource type="PackedScene" uid="uid://1g535ircrcnf" path="res://scenes/resources/coal_ore.tscn" id="5_v8mp5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23fv6"]
 texture = ExtResource("1_7ny2r")
@@ -548,6 +550,7 @@ sources/0 = SubResource("TileSetAtlasSource_7wght")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r0ojp"]
 texture = ExtResource("2_xm11k")
+use_texture_padding = false
 1:0/0 = 0
 2:0/next_alternative_id = 2
 2:0/0 = 0
@@ -967,8 +970,20 @@ sources/0 = SubResource("TileSetAtlasSource_r0ojp")
 sources/1 = SubResource("TileSetAtlasSource_1lgdq")
 sources/2 = SubResource("TileSetAtlasSource_10sci")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v8mp5"]
+texture = ExtResource("4_q2m4d")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_psaw3"]
+resource_name = "resources"
+scenes/1/scene = ExtResource("5_v8mp5")
+
 [sub_resource type="TileSet" id="TileSet_7wght"]
 tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_v8mp5")
+sources/2 = SubResource("TileSetScenesCollectionSource_psaw3")
 
 [node name="MapLayer" type="Node2D"]
 
@@ -993,4 +1008,5 @@ tile_map_data = PackedByteArray("AAD8/wIAAAADAAMAAAD+/wEAAAADAAMAAAD//wAAAAADAAM
 tile_set = SubResource("TileSet_odnb6")
 
 [node name="Resources" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAjAO7/AgAAAAAAAQAkAO7/AgAAAAAAAQAlAO7/AgAAAAAAAQAmAO7/AgAAAAAAAQAmAO//AgAAAAAAAQAnAO7/AgAAAAAAAQAnAO3/AgAAAAAAAQAmAO3/AgAAAAAAAQAlAO3/AgAAAAAAAQAkAO//AgAAAAAAAQAlAO//AgAAAAAAAQAnAO//AgAAAAAAAQAoAO//AgAAAAAAAQAoAO7/AgAAAAAAAQAkAO3/AgAAAAAAAQAoAO3/AgAAAAAAAQAjAO3/AgAAAAAAAQAjAO//AgAAAAAAAQAlAOz/AgAAAAAAAQAkAOz/AgAAAAAAAQAkAPD/AgAAAAAAAQAlAPD/AgAAAAAAAQAmAPD/AgAAAAAAAQAnAPD/AgAAAAAAAQAmAOz/AgAAAAAAAQAnAOz/AgAAAAAAAQA=")
 tile_set = SubResource("TileSet_7wght")
