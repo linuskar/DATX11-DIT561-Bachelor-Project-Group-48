@@ -13,7 +13,7 @@ extends Node
 @export var grid_size: int = 32
 
 ## The layer the building is placed/locked on to get a grid based placement.
-@onready var world_layer: TileMapLayer = $"../WorldLayer"
+@onready var map_layer: Node2D = $"../MapLayer"
 
 ## The currently occupied tiles, for example a building, tree, etc.
 var occupied_tiles: Dictionary = {}
@@ -43,10 +43,11 @@ func _ready() -> void:
 func _process(_delta) -> void:
 	match StateManager.state:
 		## In build mode snap the blueprint to the mouse in the world
+		# TODO: add placeable layers
 		StateManager.State.PLACE_BUILDING:
 			var mouse_pos: Vector2 = get_parent().get_local_mouse_position()
-			var tile_pos: Vector2 = world_layer.local_to_map(mouse_pos)
-			var world_pos: Vector2 = world_layer.map_to_local(tile_pos)
+			var tile_pos: Vector2 = map_layer.get_child(1).local_to_map(mouse_pos)
+			var world_pos: Vector2 = map_layer.get_child(1).map_to_local(tile_pos)
 			
 			blueprint.position = world_pos 
 			

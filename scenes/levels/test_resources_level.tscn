@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://r8ulitalwacj"]
+
+[ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_5i7si"]
+[ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_v7uii"]
+[ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="3_kwpsw"]
+[ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="4_fk5ej"]
+[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="5_owwh8"]
+[ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="6_ya06r"]
+
+[node name="Game" type="Node2D"]
+
+[node name="CameraMovement" parent="." instance=ExtResource("1_5i7si")]
+
+[node name="MapLayer" parent="." instance=ExtResource("2_v7uii")]
+
+[node name="BuildManager" parent="." instance=ExtResource("3_kwpsw")]
+
+[node name="GameManager" parent="." instance=ExtResource("4_fk5ej")]
+
+[node name="BuildingBlueprint" parent="GameManager" instance=ExtResource("5_owwh8")]
+visible = false
+
+[node name="BuildingSelector" parent="." instance=ExtResource("6_ya06r")]
+visible = false
