@@ -15,6 +15,8 @@ extends Node
 ## The layer the building is placed/locked on to get a grid based placement.
 @onready var map_layer: Node2D = $"../MapLayer"
 
+var resource_layer: TileMapLayer
+ 
 ## The currently occupied tiles, for example a building, tree, etc.
 var occupied_tiles: Dictionary = {}
 
@@ -30,14 +32,16 @@ var buildings: Dictionary = {
 
 ## The builings in the game that are currently place.
 var buildings_placed: Array[Building]
+var buildings_gathering_resources: Array[Building]
 
 ## Boolean for checking valid placement.
 var valid_placement: bool = false
 
 ## A signal for when a building is placed.
-signal placed_building
+signal placed_building(building: Building)
 
 func _ready() -> void:
+	resource_layer = map_layer.get_child(4)
 	StateManager.build_mode.connect(_on_build_mode)
 	
 func _process(_delta) -> void:
@@ -85,7 +89,6 @@ func place_building() -> void:
 	## Instantiate the building and add it to the game and world
 	var new_building: Building = buildings.get("factory").instantiate()
 	new_building.position = blueprint.position
-	buildings_placed.append(new_building)
 	get_parent().add_child(new_building)
 	_on_placed_building(new_building)
 
@@ -96,3 +99,4 @@ func is_tile_occupied(position: Vector2) -> bool:
 ## Function marking a tile as occupied for placing down a buiiling
 func _on_placed_building(building: Building) -> void:
 	occupied_tiles[building.position] = building
+	placed_building.emit(building)

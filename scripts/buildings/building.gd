@@ -11,3 +11,5 @@ extends StaticBody2D
 
 ## The sprite of the building
 @onready var building_sprite: Sprite2D = $Sprite2D
+
+#func start_gathering

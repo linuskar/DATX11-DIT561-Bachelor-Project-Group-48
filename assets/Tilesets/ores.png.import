@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lv8wna42s8tm"
-path="res://.godot/imported/ores.png-fb1ed63b852a61d4baba1da867c4438f.ctex"
+path="res://.godot/imported/ores.png-c7fd9800647c4f4148cd26c726c18051.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ores.png"
-dest_files=["res://.godot/imported/ores.png-fb1ed63b852a61d4baba1da867c4438f.ctex"]
+source_file="res://assets/Tilesets/ores.png"
+dest_files=["res://.godot/imported/ores.png-c7fd9800647c4f4148cd26c726c18051.ctex"]
 
 [params]
 

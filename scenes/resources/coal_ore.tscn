@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://1g535ircrcnf"]
 
-[ext_resource type="Texture2D" uid="uid://lv8wna42s8tm" path="res://assets/ores.png" id="1_6opeg"]
-[ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/utility/resource.gd" id="1_laj1l"]
+[ext_resource type="Texture2D" uid="uid://lv8wna42s8tm" path="res://assets/Tilesets/ores.png" id="1_6opeg"]
+[ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/resources/gatherable_resource.gd" id="1_laj1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laj1l"]
 size = Vector2(32, 32)
