@@ -3,7 +3,7 @@ extends StaticBody2D
 ##The max amount of resources the building can keep
 @export var maxStorageWood = 20
 
-##How much iron is generated each cycle, cyclespeed is timer wait time
+##How much wood is generated each cycle, cyclespeed is timer wait time
 @export var woodGenerated = 5
 
 ##How much co2 emits per cycle, not saved in the building
@@ -18,7 +18,6 @@ func _ready():
 #Activated at the end of each cycle
 func _on_timer_timeout() -> void:
 	add_resources()
-	print(currentStorageWood)
 
 #Add the resources to the storage and emit what have been created
 func add_resources():
