@@ -3,6 +3,9 @@ class_name SelectableBuilding extends Control
 ## Path pointing to the icon representing the building
 @export_file() var icon_path
 
+## The building to be placed when clicking the selectable
+@export var building: Node2D
+
 ## The cost of the building
 @export var cost: int
 
