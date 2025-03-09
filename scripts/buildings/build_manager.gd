@@ -26,6 +26,7 @@ var default_color: Color = Color(1, 1, 1, 1)
 ## The buildnigs in the game that you can place.
 var buildings: Dictionary = {
 	"factory": preload("res://scenes/buildings/factory.tscn"),
+	"test_gathering_building": preload("res://scenes/buildings/test_gathering_building.tscn"),
 }
 
 ## The builings in the game that are currently place.
@@ -44,12 +45,9 @@ func _ready() -> void:
 func _process(_delta) -> void:
 	match StateManager.state:
 		## In build mode snap the blueprint to the mouse in the world
-		# TODO: add placeable layers
 		StateManager.State.PLACE_BUILDING:
-			#var mouse_pos: Vector2 = get_parent().get_local_mouse_position()
-			#var tile_pos: Vector2 = map_layer.get_child(1).local_to_map(mouse_pos) 
-			#var world_pos: Vector2 = map_layer.get_child(1).map_to_local(tile_pos)
 			var ground = map_layer.dirt_layer
+			## TODO: Make this code for mouse position nicer
 			var mouse_pos = get_parent().get_global_mouse_position()  # Get world position of mouse
 			var local_mouse_pos = ground.to_local(mouse_pos)  # Convert to local TileMap coordinates
 			var tile_pos = ground.local_to_map(local_mouse_pos)  # Get tile coordinates
@@ -84,7 +82,8 @@ func _on_build_mode() -> void:
 ## Function for placing down a building
 func place_building() -> void:
 	## Instantiate the building and add it to the game and world
-	var new_building: Building = buildings.get("factory").instantiate()
+	var new_building: Building = buildings.get("test_gathering_building").instantiate()
+
 	new_building.position = blueprint.position
 	get_parent().add_child(new_building)
 	_on_placed_building(new_building)

@@ -1,11 +1,16 @@
+class_name ResourceManager
 extends Node
-# add types dict
+## A class that manages the resources of the game
+##
+## A class that manages the resources of the game and any 
+##
 @onready var map_layer: MapLayer = $"../MapLayer"
 @onready var build_manager: BuildManager = $"../BuildManager"
 
+## The buildings that are currently gathering resources
 var buildings_gathering: Array[Building]
 
-var resources_layer: TileMapLayer
+## A dictionary containing the tiles with gatherable resoruces on the map
 var resource_tiles: Dictionary[Vector2, GatherableResource] = {}
 
 func _ready() -> void:
@@ -13,23 +18,33 @@ func _ready() -> void:
 	init_resources()
 
 func _process(delta: float) -> void:
+	## Use this function to test if resources are gathered by printing in 
+	## the console, the resource gathered
 	gather_resources()
-	
-func init_resources():
+
+## Function for initaliazing the variables for the resources
+func init_resources() -> void:
+	## Don't know if this is the best. But await is done to make sure the map 
+	## is loaded and the resources are referenced correctly, to not get null
 	await get_tree().process_frame
-	resources_layer = map_layer.resources_layer
+	var resources_layer: TileMapLayer = map_layer.resources_layer
 	
+	## Every child of the resource layer is a tile, a resource scene 
+	## that has been painted
 	for tile in resources_layer.get_children():
 		resource_tiles[tile.position] = tile
-
+		
+## Function for initaliazing a building that is gathering a resource
 func init_building_gathering(building: Building):
-	if building.position in resource_tiles:
+	## Checking if the building is on a resource tile
+	if building.position in resource_tiles and building.can_gather:
 		buildings_gathering.append(building)
+		## Possible way with timer for gathering resource
 		# Start timer for gathering of resource
 		# var resource_tile: GatherableResource = resource_tiles[building.position]
 		# var resource_quantity: int = resource_tile.gather_resource()
 		
-# TEMP FUNCTION
+# Temporary function for gathering resources
 func gather_resources():
 	for building in buildings_gathering:
 		var resource_tile: GatherableResource = resource_tiles[building.position]
