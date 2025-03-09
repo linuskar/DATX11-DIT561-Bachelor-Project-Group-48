@@ -6,6 +6,14 @@ class_name SelectableBuilding extends Control
 ## The building to be placed when clicking the selectable
 @export var building: Node2D
 
+## Variable to keep track of whether the mouse is 
+## hovering over the selectable
+var hovering: bool = false
+
+## Variable to keep track of whether the main panel
+## is showing or not
+var main_panel_visible: bool = true
+
 ## The cost of the building
 @export var cost: int
 
@@ -25,7 +33,6 @@ func _ready() -> void:
 	
 	## Set the hover panel invisible while also making it not catch user inputs
 	self.get_child(0).visible = false
-	self.get_child(0).mouse_filter = MOUSE_FILTER_IGNORE
 	
 	## Set the image of the factory to the path 
 	self.get_child(1).get_child(0).set_texture(load(icon_path))
@@ -33,15 +40,20 @@ func _ready() -> void:
 	## Set the text of the main panel according to the template
 	set_panel_text()
 
-func _on_main_panel_mouse_entered() -> void:
-	self.get_child(0).visible = true
-	self.get_child(0).mouse_filter = MOUSE_FILTER_STOP
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
+		if hovering:
+			show_info_panel(main_panel_visible)
+			main_panel_visible = not main_panel_visible
 
+func show_info_panel(status: bool) -> void:
+	if status:
+		self.get_child(0).visible = true
+		self.get_child(1).visible = false
+	else:
+		self.get_child(0).visible = false
+		self.get_child(1).visible = true
 
-func _on_main_panel_mouse_exited() -> void:
-	self.get_child(0).visible = false
-	self.get_child(0).mouse_filter = MOUSE_FILTER_IGNORE
-	
 func set_panel_text() -> void:
 	self.get_child(0).get_child(0).clear()
 	
@@ -63,3 +75,10 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 			text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'
 	return text
+
+
+func _on_mouse_entered() -> void:
+	hovering = true
+
+func _on_mouse_exited() -> void:
+	hovering = false
