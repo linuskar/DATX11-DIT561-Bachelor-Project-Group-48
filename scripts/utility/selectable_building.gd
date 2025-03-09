@@ -40,13 +40,16 @@ func _ready() -> void:
 	## Set the text of the main panel according to the template
 	set_panel_text()
 
+## Input handling for pressing the right mouse button
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
 		if hovering:
-			show_info_panel(main_panel_visible)
+			switch_panel(main_panel_visible)
 			main_panel_visible = not main_panel_visible
 
-func show_info_panel(status: bool) -> void:
+## Switches between the main panel and info panel
+## True means main panel and false means info panel
+func switch_panel(status: bool) -> void:
 	if status:
 		self.get_child(0).visible = true
 		self.get_child(1).visible = false
@@ -54,6 +57,7 @@ func show_info_panel(status: bool) -> void:
 		self.get_child(0).visible = false
 		self.get_child(1).visible = true
 
+## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
 	self.get_child(0).get_child(0).clear()
 	
@@ -76,9 +80,10 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 		text += '\n'
 	return text
 
-
+## Signal handling for when mouse hovers over this node
 func _on_mouse_entered() -> void:
 	hovering = true
 
+## Signal handling for when mouse stops hovering over this node
 func _on_mouse_exited() -> void:
 	hovering = false
