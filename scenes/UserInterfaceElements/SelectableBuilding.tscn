@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddwmp6n5prn23"]
+
+[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="1_v46n7"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/utility/selectable_building.gd" id="1_xjepk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v46n7"]
+font_size = 12
+
+[node name="SelectableBuilding" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xjepk")
+
+[node name="BuildingInfo(Hover)" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -240.0
+offset_top = -80.0
+offset_right = -80.0
+offset_bottom = 100.0
+
+[node name="InfoText" type="RichTextLabel" parent="BuildingInfo(Hover)"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 180.0
+bbcode_enabled = true
+text = "[font_size={10}]<Building Name>
+<Production Type1>: nmr
+<Production Type2>: nmr
+...
+<Cost>: nmr
+<Input1>: nmr
+<Input2>: nmr
+...
+<Contributable Resource1> nmr
+<Contributable Resource2> nmr
+<Required Resource> nmr
+[/font_size]"
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 100.0
+
+[node name="BuildingIcon" type="TextureRect" parent="MainPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 150.0
+texture = ExtResource("1_v46n7")
+
+[node name="BuildingNameCost" type="Label" parent="MainPanel"]
+layout_mode = 0
+offset_top = 155.0
+offset_right = 160.0
+offset_bottom = 180.0
+text = "<Building Name> Cost"
+label_settings = SubResource("LabelSettings_v46n7")
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="MainPanel" to="." method="_on_main_panel_mouse_entered"]
+[connection signal="mouse_exited" from="MainPanel" to="." method="_on_main_panel_mouse_exited"]
