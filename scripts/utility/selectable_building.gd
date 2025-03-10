@@ -3,19 +3,16 @@ class_name SelectableBuilding extends Control
 ## Path pointing to the icon representing the building
 @export_file() var icon_path
 
-## The building to be placed when clicking the selectable
-@export var building: Node2D
+## Path to the scene of the building to be placed when clicking the selectable
+@export_file() var building_path
 
-## Variable to keep track of whether the mouse is 
-## hovering over the selectable
-var hovering: bool = false
-
-## Variable to keep track of whether the main panel
-## is showing or not
-var main_panel_visible: bool = true
+var building_scene
 
 ## The cost of the building
 @export var cost: int
+
+## Variable for checking whether the mouse is hovering over the buy button
+var hovering_buy: bool = false
 
 ## The name of the building
 @export var building_name: String
@@ -30,44 +27,33 @@ var main_panel_visible: bool = true
 @export var required: Dictionary[String, int]
 
 func _ready() -> void:
-	
-	## Set the hover panel invisible while also making it not catch user inputs
-	self.get_child(0).visible = false
+	## Load the building from the building path to the variable
+	building_scene = load(building_path)
 	
 	## Set the image of the factory to the path 
-	self.get_child(1).get_child(0).set_texture(load(icon_path))
+	self.find_child("BuildingIcon").set_texture(load(icon_path))
 	
 	## Set the text of the main panel according to the template
 	set_panel_text()
 
-## Input handling for pressing the right mouse button
+## Handling signal for pressing the left mouse button
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
-		if hovering:
-			switch_panel(main_panel_visible)
-			main_panel_visible = not main_panel_visible
-
-## Switches between the main panel and info panel
-## True means main panel and false means info panel
-func switch_panel(status: bool) -> void:
-	if status:
-		self.get_child(0).visible = true
-		self.get_child(1).visible = false
-	else:
-		self.get_child(0).visible = false
-		self.get_child(1).visible = true
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if hovering_buy:
+			var instance = building_scene.instantiate()
+			add_child(instance)
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
-	self.get_child(0).get_child(0).clear()
+	self.find_child("InfoText").clear()
 	
 	## Begin with the name of the building
-	var panel_text: String = "[font_size={10}]" + building_name + '\n'
+	var panel_text: String = "[font_size={10}][color=black]" + building_name + '\n'
 	panel_text += add_dict_to_panel(inputs, "Inputs")
 	panel_text += add_dict_to_panel(contributables, "Contributables")
 	panel_text += add_dict_to_panel(required, "Required")
-	panel_text += "[/font_size]"
-	self.get_child(0).get_child(0).append_text(panel_text)
+	panel_text += "[/color][/font_size]"
+	self.find_child("InfoText").append_text(panel_text)
 
 ## Function for taking keys from a dictionary and returning 
 ## a formatted string containing those keys and their values
@@ -80,10 +66,10 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 		text += '\n'
 	return text
 
-## Signal handling for when mouse hovers over this node
-func _on_mouse_entered() -> void:
-	hovering = true
 
-## Signal handling for when mouse stops hovering over this node
-func _on_mouse_exited() -> void:
-	hovering = false
+func _on_buy_mouse_entered() -> void:
+	hovering_buy = true
+
+
+func _on_buy_mouse_exited() -> void:
+	hovering_buy = false

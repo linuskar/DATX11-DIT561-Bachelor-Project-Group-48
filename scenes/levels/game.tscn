@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckhmmqhppd8my"]
+[gd_scene load_steps=7 format=3 uid="uid://ckhmmqhppd8my"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_limtx"]
 [ext_resource type="PackedScene" uid="uid://yyssuhsvr2c2" path="res://scenes/levels/world_layer.tscn" id="2_7rg7d"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="4_cx7qy"]
 [ext_resource type="Script" uid="uid://45sr8qvoeure" path="res://scripts/utility/game_manager.gd" id="5_uk881"]
 [ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="6_r0gsk"]
-[ext_resource type="PackedScene" uid="uid://ddwmp6n5prn23" path="res://scenes/UserInterfaceElements/SelectableBuilding.tscn" id="7_7rg7d"]
 
 [node name="Game" type="Node2D"]
 
@@ -26,11 +25,3 @@ script = ExtResource("5_uk881")
 
 [node name="BuildingSelector" parent="." instance=ExtResource("6_r0gsk")]
 visible = false
-
-[node name="SelectableBuilding" parent="." instance=ExtResource("7_7rg7d")]
-offset_left = -223.0
-offset_top = -115.0
-offset_right = -223.0
-offset_bottom = -115.0
-cost = 100
-building_name = "Factory"
