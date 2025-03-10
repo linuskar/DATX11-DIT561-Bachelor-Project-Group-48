@@ -28,6 +28,7 @@ blueprint = NodePath("BuildingBlueprint")
 
 [node name="BuildingBlueprint" parent="BuildManager" instance=ExtResource("5_owwh8")]
 visible = false
+building_type = 1
 
 [node name="BuildingSelector" parent="." instance=ExtResource("6_ya06r")]
 visible = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxrvnkhcakmpr"]
 
-[ext_resource type="Script" uid="uid://dsw66e8grfp4r" path="res://scripts/buildings/building.gd" id="1_fr802"]
+[ext_resource type="Script" uid="uid://b8whagj3qsqhq" path="res://scripts/buildings/gathering_building.gd" id="1_fr802"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/factory.png" id="2_tu45n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
@@ -8,7 +8,8 @@ size = Vector2(32, 32)
 
 [node name="TestGatheringBuilding" type="StaticBody2D"]
 script = ExtResource("1_fr802")
-can_gather = true
+can_gather_resource_type = 1
+building_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qb2p1")

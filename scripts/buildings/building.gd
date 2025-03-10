@@ -8,11 +8,6 @@ extends StaticBody2D
 
 ## The building type
 @export var building_type: Enums.BuildingType
-
-## If the building can gather resources
-@export var can_gather: bool
-
+	
 ## The sprite of the building
 @onready var building_sprite: Sprite2D = $Sprite2D
-
-#func start_gathering
