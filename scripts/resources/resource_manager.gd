@@ -40,20 +40,25 @@ func init_building_gathering(building: Building) -> void:
 	
 	if building.position in resource_tiles:
 		resource_tile = resource_tiles[building.position]
-	
+		
+	var building_type_string: String = Enums.buiilding_type_to_string(building.building_type)
+
 	## Checking if the building is on a resource tile and can gather that resource
 	if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
 		resource_tiles.get(building.position)
 		buildings_gathering.append(building)
 		
-		print("The building is gathering " + Enums.ResourceType.keys()[resource_tile.resource_type] + " on " + str(building.position))
+		var resource_type_string: String = Enums.resource_type_to_string(resource_tile.resource_type)
+		
+		print(building_type_string + " is gathering " + resource_type_string + " on " + str(building.position))
+		
 		# print(Enums.ResourceType.keys()[building.can_gather_resource_type])
 		## Possible way with timer for gathering resource
 		# Start timer for gathering of resource
 		# var resource_tile: GatherableResource = resource_tiles[building.position]
 		# var resource_quantity: int = resource_tile.gather_resource()
 	else:
-		print("The building is not gathering on " + str(building.position))
+		print(building_type_string + " is not gathering on " + str(building.position))
 	
 ## Temporary function for gathering resources
 func gather_resources() -> void:
