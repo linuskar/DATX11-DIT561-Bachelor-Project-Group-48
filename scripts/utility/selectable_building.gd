@@ -6,6 +6,8 @@ class_name SelectableBuilding extends Control
 ## Path to the scene of the building to be placed when clicking the selectable
 @export_file() var building_path
 
+## Variable to contain the scene described by the building path
+## Loaded on start
 var building_scene
 
 ## The cost of the building
@@ -32,6 +34,9 @@ func _ready() -> void:
 	
 	## Set the image of the factory to the path 
 	self.find_child("BuildingIcon").set_texture(load(icon_path))
+	
+	## Set the name and cost of the building
+	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(cost))
 	
 	## Set the text of the main panel according to the template
 	set_panel_text()
@@ -66,10 +71,10 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 		text += '\n'
 	return text
 
-
+## When the mouse hovers over the buy label set hovering_buy to true
 func _on_buy_mouse_entered() -> void:
 	hovering_buy = true
 
-
+## When the mouse stops hovering over the buy label set hovering_buy to false
 func _on_buy_mouse_exited() -> void:
 	hovering_buy = false
