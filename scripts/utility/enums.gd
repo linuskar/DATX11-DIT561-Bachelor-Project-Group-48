@@ -12,6 +12,7 @@ enum BuildingType {FACTORY, GATHERING_BUILDING}
 ## The different types of resources in the game
 enum ResourceType {IRON_ORE, COAL, WOOD, NONE}
 
+## Function for retuning the string equivalent of a resource type
 static func resource_type_to_string(resource_type: ResourceType) -> String:
 	var resource_names = {
 		ResourceType.IRON_ORE: "IRON ORE",
@@ -21,7 +22,8 @@ static func resource_type_to_string(resource_type: ResourceType) -> String:
 	}
 	## Default to "UNKNOWN" if not found
 	return resource_names.get(resource_type, "UNKNOWN")  
-
+	
+## Function for retuning the string equivalent of a building type
 static func buiilding_type_to_string(building_type: BuildingType) -> String:
 	var building_names = {
 		BuildingType.FACTORY: "FACTORY",
