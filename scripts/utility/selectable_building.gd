@@ -41,6 +41,13 @@ func _ready() -> void:
 	## Set the text of the main panel according to the template
 	set_panel_text()
 
+## Handling signal for pressing the left mouse button
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if hovering_buy:
+			var instance = building_scene.instantiate()
+			add_child(instance)
+
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
 	self.find_child("InfoText").clear()
@@ -63,3 +70,11 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 			text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'
 	return text
+
+## When the mouse hovers over the buy label set hovering_buy to true
+func _on_buy_mouse_entered() -> void:
+	hovering_buy = true
+
+## When the mouse stops hovering over the buy label set hovering_buy to false
+func _on_buy_mouse_exited() -> void:
+	hovering_buy = false

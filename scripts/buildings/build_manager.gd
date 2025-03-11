@@ -56,14 +56,13 @@ func _process(_delta) -> void:
 				valid_placement = false
 			else:
 				blueprint.modulate = valid_placement_color	
-				valid_placement = true			
+				valid_placement = true
+				
+			if Input.is_action_pressed("place") and valid_placement:
+				place_building()
 				
 		StateManager.State.IDLE:
 			pass		
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		place_building()
 
 ## Function that is called when build mode signal is emitted
 func _on_build_mode() -> void:
