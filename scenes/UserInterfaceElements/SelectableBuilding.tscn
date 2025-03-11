@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://ddwmp6n5prn23"]
+[gd_scene load_steps=16 format=4 uid="uid://ddwmp6n5prn23"]
 
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="1_v46n7"]
 [ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/utility/selectable_building.gd" id="1_xjepk"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="3_p1sj4"]
 [ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="3_vg823"]
+[ext_resource type="Script" uid="uid://doh7xe6p2jk1v" path="res://scripts/utility/label.gd" id="4_fylbn"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="4_qb25d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vg823"]
@@ -2034,14 +2035,15 @@ tile_map_data = PackedByteArray("AAAGABEAAAAAAAoAAAAGABIAAAAAAAsAAAAGABMAAAAAAAs
 tile_set = SubResource("TileSet_vtjy4")
 
 [node name="Label" type="Label" parent="BuyButton"]
-offset_left = 55.0231
-offset_top = 136.724
-offset_right = 108.023
-offset_bottom = 163.724
-mouse_filter = 1
+offset_left = 52.0
+offset_top = 140.0
+offset_right = 108.0
+offset_bottom = 164.0
+mouse_filter = 0
 text = "Buy"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_fylbn")
 
 [node name="InfoText" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -2083,5 +2085,5 @@ text = "Name Cost"
 label_settings = SubResource("LabelSettings_v46n7")
 horizontal_alignment = 1
 
-[connection signal="mouse_entered" from="BuyButton/Label" to="." method="_on_buy_mouse_entered"]
-[connection signal="mouse_exited" from="BuyButton/Label" to="." method="_on_buy_mouse_exited"]
+[connection signal="mouse_entered" from="BuyButton/Label" to="BuyButton/Label" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BuyButton/Label" to="BuyButton/Label" method="_on_mouse_exited"]
