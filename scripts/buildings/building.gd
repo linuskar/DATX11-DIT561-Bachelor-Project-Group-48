@@ -8,6 +8,6 @@ extends StaticBody2D
 
 ## The building type
 @export var building_type: Enums.BuildingType
-
+	
 ## The sprite of the building
 @onready var building_sprite: Sprite2D = $Sprite2D

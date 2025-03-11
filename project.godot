@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="DATX11/DIT561 Bachelor Project Group 48"
-run/main_scene="res://scenes/levels/game.tscn"
+run/main_scene="uid://b4ie8fujdth75"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
 [autoload]
 
 StateManager="*res://scripts/utility/state_manager.gd"
+ResourceSignals="*res://scripts/utility/resource_signals.gd"
 
 [input]
 

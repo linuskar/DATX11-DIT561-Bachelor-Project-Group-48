@@ -13,7 +13,7 @@ extends Node
 @export var grid_size: int = 32
 
 ## The layer the building is placed/locked on to get a grid based placement.
-@onready var world_layer: TileMapLayer = $"../WorldLayer"
+@onready var map_layer: MapLayer = $"../MapLayer"
 
 ## The currently occupied tiles, for example a building, tree, etc.
 var occupied_tiles: Dictionary = {}
@@ -23,19 +23,23 @@ var valid_placement_color: Color = Color(0.5, 0.5, 1, 0.8)
 var invalid_placement_color: Color = Color(1, 0.5, 0.5, 0.8)
 var default_color: Color = Color(1, 1, 1, 1)
 
-## The buildnigs in the game that you can place.
+## The buildnings in the game that you can place.
 var buildings: Dictionary = {
-	"factory": preload("res://scenes/buildings/factory.tscn"),
+	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
+	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/test_gathering_building.tscn"),
+	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/test_gathering_building.tscn"),
+	Enums.BuildingType.WOOD_CUTTER: preload("res://scenes/buildings/test_gathering_building.tscn"),
 }
 
 ## The builings in the game that are currently place.
 var buildings_placed: Array[Building]
+var buildings_gathering_resources: Array[Building]
 
 ## Boolean for checking valid placement.
 var valid_placement: bool = false
 
 ## A signal for when a building is placed.
-signal placed_building
+signal placed_building(building: Building)
 
 func _ready() -> void:
 	StateManager.build_mode.connect(_on_build_mode)
@@ -44,25 +48,40 @@ func _process(_delta) -> void:
 	match StateManager.state:
 		## In build mode snap the blueprint to the mouse in the world
 		StateManager.State.PLACE_BUILDING:
-			var mouse_pos: Vector2 = get_parent().get_local_mouse_position()
-			var tile_pos: Vector2 = world_layer.local_to_map(mouse_pos)
-			var world_pos: Vector2 = world_layer.map_to_local(tile_pos)
-			
-			blueprint.position = world_pos 
-			
+			var grid_pos: Vector2 = get_snapped_world_position()
+			blueprint.position = grid_pos
+
 			## Checking for valid placement
-			if is_tile_occupied(world_pos):
+			if is_tile_occupied(grid_pos):
 				blueprint.modulate = invalid_placement_color
 				valid_placement = false
 			else:
 				blueprint.modulate = valid_placement_color	
-				valid_placement = true
-				
+				valid_placement = true	
 			if Input.is_action_pressed("place") and valid_placement:
 				place_building()
 				
 		StateManager.State.IDLE:
-			pass		
+			pass	
+				
+## Returns the world position of the mouse snapped to the nearest tile on the grid.
+## This function converts the mouse position from world space to tile coordinates
+## and then back to a snapped world position using a tilemap layer
+func get_snapped_world_position() -> Vector2:
+	## Don't know if this is the best. But one of TileMapLayers just gets picked
+	## to get access to get the related functions to call
+	var dirt_layer: TileMapLayer = map_layer.dirt_layer
+	## Mouse position in world coordinates
+	var world_mouse_pos: Vector2 = get_parent().get_global_mouse_position()  
+	## Convert to local TileMap coordinates
+	var local_mouse_pos: Vector2 = dirt_layer.to_local(world_mouse_pos)  
+	## Get tile coordinates
+	var tile_pos: Vector2 = dirt_layer.local_to_map(local_mouse_pos)  
+	## Convert back to local position
+	var snapped_local_pos: Vector2 = dirt_layer.map_to_local(tile_pos)  
+	
+	## Return the world coordinates
+	return dirt_layer.to_global(snapped_local_pos)
 
 ## Function that is called when build mode signal is emitted
 func _on_build_mode() -> void:
@@ -79,9 +98,8 @@ func _on_build_mode() -> void:
 ## Function for placing down a building
 func place_building() -> void:
 	## Instantiate the building and add it to the game and world
-	var new_building: Building = buildings.get("factory").instantiate()
+	var new_building: Building = buildings.get(blueprint.building_type).instantiate()
 	new_building.position = blueprint.position
-	buildings_placed.append(new_building)
 	get_parent().add_child(new_building)
 	_on_placed_building(new_building)
 
@@ -92,3 +110,4 @@ func is_tile_occupied(position: Vector2) -> bool:
 ## Function marking a tile as occupied for placing down a buiiling
 func _on_placed_building(building: Building) -> void:
 	occupied_tiles[building.position] = building
+	placed_building.emit(building)

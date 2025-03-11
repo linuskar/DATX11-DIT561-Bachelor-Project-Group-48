@@ -1,10 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckhmmqhppd8my"]
+[gd_scene load_steps=8 format=3 uid="uid://b4ie8fujdth75"]
 
-[ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/camera_movement.tscn" id="1_ux6r8"]
-[ext_resource type="PackedScene" uid="uid://dje7fgji57cdm" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
+[ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="3_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="4_gee14"]
+[ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="5_0tnpc"]
+[ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="6_vtaks"]
+[ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="7_kvpfn"]
 
 [node name="Game" type="Node2D"]
 
 [node name="CameraMovement" parent="." instance=ExtResource("1_ux6r8")]
 
 [node name="MapLayer" parent="." instance=ExtResource("2_yqjtg")]
+
+[node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]
+
+[node name="BuildingBlueprint" parent="GameManager" instance=ExtResource("4_gee14")]
+visible = false
+
+[node name="ResourceManager" type="Node" parent="."]
+script = ExtResource("5_0tnpc")
+
+[node name="BuildManager" type="Node" parent="." node_paths=PackedStringArray("blueprint")]
+script = ExtResource("6_vtaks")
+blueprint = NodePath("BuildingBlueprint")
+
+[node name="BuildingBlueprint" parent="BuildManager" instance=ExtResource("4_gee14")]
+visible = false
+building_type = 1
+
+[node name="BuildingSelector" parent="." instance=ExtResource("7_kvpfn")]
+visible = false
