@@ -1,15 +1,18 @@
-extends StaticBody2D
+extends Building
 
 ##The max amount of resources the building can keep
-@export var maxStorageCoal = 20
+@export var  maxStorageCoal: int = 20
 
 ##How much coal is generated each cycle, cyclespeed is timer wait time
-@export var coalGenerated = 5
+@export var coalGenerated: int = 5
 
 ##How much co2 emits per cycle, not saved in the building
-@export var co2Emission = 5
+@export var co2Emission: int = 5
 
-var currentStorageCoal = 0
+## The resource the building can gather
+@export var can_gather_resource_type: Enums.ResourceType
+
+var currentStorageCoal: int = 0
 
 func _ready():
 	#Connect the signal that can take resources from this building
