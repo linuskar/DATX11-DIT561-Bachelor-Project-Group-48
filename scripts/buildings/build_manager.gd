@@ -26,7 +26,9 @@ var default_color: Color = Color(1, 1, 1, 1)
 ## The buildnings in the game that you can place.
 var buildings: Dictionary = {
 	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
-	Enums.BuildingType.GATHERING_BUILDING: preload("res://scenes/buildings/test_gathering_building.tscn"),
+	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/test_gathering_building.tscn"),
+	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/test_gathering_building.tscn"),
+	Enums.BuildingType.WOOD_CUTTER: preload("res://scenes/buildings/test_gathering_building.tscn"),
 }
 
 ## The builings in the game that are currently place.

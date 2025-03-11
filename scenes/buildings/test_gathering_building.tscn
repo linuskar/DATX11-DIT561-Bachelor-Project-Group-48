@@ -8,7 +8,6 @@ size = Vector2(32, 32)
 
 [node name="TestGatheringBuilding" type="StaticBody2D"]
 script = ExtResource("1_fr802")
-can_gather_resource_type = 1
 building_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
