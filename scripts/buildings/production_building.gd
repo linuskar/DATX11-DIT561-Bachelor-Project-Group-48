@@ -91,7 +91,7 @@ func check_if_can_produce() -> bool:
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
 func check_for_output_overflow() -> bool:
-	var output_overflow: bool = true
+	var output_overflow: bool = false
 	
 	for produced_good in produced_goods:
 		var produced_good_generated: int = output_generation.get(produced_good)
@@ -104,13 +104,14 @@ func check_for_output_overflow() -> bool:
 		print("Max storage: " + str(produced_good_max_storage))
 		
 		## When at possible overflow of resources for output
-		if produced_good_stored + produced_good_generated <= produced_good_max_storage:
-			output_overflow = false
+		if produced_good_stored + produced_good_generated > produced_good_max_storage:
+			output_overflow = true
 			break
 			
 	return output_overflow
 		
-## Function to check if the production building is missing resources for input.
+## Function to check if the production building is missing resources for input
+## to produce.
 func check_for_missing_input() -> bool:
 	var missing_input: bool = false
 	
