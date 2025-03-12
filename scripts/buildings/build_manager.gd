@@ -23,7 +23,7 @@ var valid_placement_color: Color = Color(0.5, 0.5, 1, 0.8)
 var invalid_placement_color: Color = Color(1, 0.5, 0.5, 0.8)
 var default_color: Color = Color(1, 1, 1, 1)
 
-## The buildnings in the game that you can place.
+## The buildings in the game that you can place.
 var buildings: Dictionary = {
 	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
 	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/iron_miner.tscn"),

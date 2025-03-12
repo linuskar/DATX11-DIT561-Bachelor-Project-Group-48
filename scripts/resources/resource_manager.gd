@@ -53,10 +53,8 @@ func init_building_gathering(building: Building) -> void:
 		
 		print(building_type_string + " is gathering " + resource_type_string + " on " + str(building.position))
 		
-		# print(Enums.ResourceType.keys()[building.can_gather_resource_type])
-		## Possible way with timer for gathering resource
-		#building.production_cycle.start() 
 		building.near_resource = true
+		## Possible way with timer for gathering resource
 		# Start timer for gathering of resource
 		# var resource_tile: GatherableResource = resource_tiles[building.position]
 		# var resource_quantity: int = resource_tile.gather_resource()

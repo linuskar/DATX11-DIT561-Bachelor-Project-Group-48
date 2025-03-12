@@ -3,9 +3,6 @@ class_name SelectableBuilding extends Control
 ## Path pointing to the icon representing the building
 @export_file() var icon_path: String
 
-## Path to the scene of the building to be placed when clicking the selectable
-# @export_file() var building_path: String
-
 ## The metadata for building that is selected
 @export var building_data: BuildingData
 
@@ -49,7 +46,7 @@ func _ready() -> void:
 	## Set the text of the main panel according to the template
 	set_panel_text()
 	
-## Initialize the metadata for resources related to a building
+## Initialize the variables for resource metadata related to a building
 ## and convert them into strings 
 func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[Enums.ResourceType, int]) -> void:
 	for resource in data.keys():

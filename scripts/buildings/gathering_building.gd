@@ -1,21 +1,22 @@
 class_name GatheringBuilding
 extends ProductionBuilding
-## A class that is for aspects of a building that can gather resources
+## A class that is for aspects of a building that can gather resources.
 ##
-## A class that is for aspects of a building that can gather resources
-## This class extends the ProductionBuilding class
+## A class that is for aspects of a building that can gather resources.
+## This class extends the ProductionBuilding class.
 ##
 
-## The type of resource the building can gather
+## The type of resource the building can gather.
 var can_gather_resource_type: Enums.ResourceType
 
-##
+## A boolean to check if the gathering building is near a resource.
 var near_resource: bool
 
 func _ready() -> void:
 	super()
 	can_gather_resource_type = building_data.can_gather_resource_type
-
+	
+## Function to check if the gathering building can produce.
 func check_if_can_produce() -> bool:
 	var missing_input: bool = check_for_missing_input()
 	var can_be_output_overflow: bool = check_for_output_overflow()
