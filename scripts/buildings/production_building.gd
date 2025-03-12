@@ -33,8 +33,8 @@ func _ready() -> void:
 			emissions.append(output)
 		elif Enums.is_produced_good(output) == true:
 			produced_goods.append(output)
-				
-	# Connect the signal that can take resources from this building		
+
+	# Connect the signal that can take resources from this building
 	ResourceSignals.get_resource.connect(_send_resources)
 
 func check_if_can_produce() -> bool:
