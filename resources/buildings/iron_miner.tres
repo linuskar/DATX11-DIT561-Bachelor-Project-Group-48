@@ -1,8 +1,21 @@
-[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3 uid="uid://diqlbkga3u00b"]
+[gd_resource type="Resource" script_class="GatheringBuildingData" load_steps=2 format=3 uid="uid://diqlbkga3u00b"]
 
-[ext_resource type="Script" uid="uid://c2asdvge65j4d" path="res://scripts/buildings/building_data/building_data.gd" id="1_p1i0q"]
+[ext_resource type="Script" uid="uid://cbekrj4vplgw" path="res://scripts/buildings/building_data/gathering_building_data.gd" id="1_s14pb"]
 
 [resource]
-script = ExtResource("1_p1i0q")
+script = ExtResource("1_s14pb")
+can_gather_resource_type = 0
+max_storage = Dictionary[int, int]({
+0: 20
+})
+input_storage = Dictionary[int, int]({})
+input_use_rates = Dictionary[int, int]({})
+output_storage = Dictionary[int, int]({
+0: 0
+})
+output_generation = Dictionary[int, int]({
+0: 5,
+3: 5
+})
 building_type = 1
 metadata/_custom_type_script = "uid://c2asdvge65j4d"

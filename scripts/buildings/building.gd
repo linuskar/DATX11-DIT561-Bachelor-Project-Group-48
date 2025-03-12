@@ -12,3 +12,9 @@ extends StaticBody2D
 
 ## The sprite of the building
 @onready var building_sprite: Sprite2D = $Sprite2D
+
+## The building type
+var building_type: Enums.BuildingType
+	
+func _ready() -> void:
+	building_type = building_data.building_type

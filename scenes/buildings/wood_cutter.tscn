@@ -5,7 +5,6 @@
 
 [node name="wood_cutter" type="StaticBody2D"]
 script = ExtResource("1_4m5a3")
-can_gather_resource_type = 2
 building_data = ExtResource("2_hjr1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
