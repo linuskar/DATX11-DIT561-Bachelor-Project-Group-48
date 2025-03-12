@@ -36,7 +36,7 @@ var outputs: Dictionary[String, int]
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
 	
-	init_resource_data(max_storage,building_data.max_storage)
+	init_resource_data(max_storage, building_data.max_storage)
 	init_resource_data(outputs, building_data.output_generation)
 	init_resource_data(inputs, building_data.input_use_rates)
 	

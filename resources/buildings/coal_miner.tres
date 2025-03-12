@@ -8,11 +8,9 @@ can_gather_resource_type = 1
 max_storage = Dictionary[int, int]({
 1: 20
 })
-input_storage = Dictionary[int, int]({})
+input_storage = Array[int]([])
 input_use_rates = Dictionary[int, int]({})
-output_storage = Dictionary[int, int]({
-1: 0
-})
+output_type = Array[int]([1, 3])
 output_generation = Dictionary[int, int]({
 1: 5,
 3: 5
