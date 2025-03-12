@@ -24,15 +24,15 @@ func _on_timer_timeout() -> void:
 
 #Add the resources to the storage and emit what have been created
 func add_resources():
-	ResourceSignals.add_resource.emit("co2", co2Emission)
+	ResourceSignals.add_resource.emit(Enums.ResourceType.CO2, co2Emission)
 	if currentStorageCoal + coalGenerated <= maxStorageCoal:
 		currentStorageCoal += coalGenerated
-		ResourceSignals.add_resource.emit("Coal", coalGenerated)
+		ResourceSignals.add_resource.emit(Enums.ResourceType.COAL, coalGenerated)
 	else:
 		$Timer.stop()
 
 #Take resources from this buildings storage
 func _send_resources(resource_type, amount):
-	if resource_type == "Coal":
+	if resource_type == Enums.ResourceType.COAL:
 		currentStorageCoal -= amount
 		$Timer.autostart()

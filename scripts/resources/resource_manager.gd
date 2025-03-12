@@ -40,8 +40,9 @@ func init_building_gathering(building: Building) -> void:
 	
 	if building.position in resource_tiles:
 		resource_tile = resource_tiles[building.position]
-		
-	var building_type_string: String = Enums.buiilding_type_to_string(building.building_type)
+
+	var building_type: Enums.BuildingType = building.building_data.building_type
+	var building_type_string: String = Enums.buiilding_type_to_string(building_type)
 
 	## Checking if the building is on a resource tile and can gather that resource
 	if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
