@@ -17,7 +17,8 @@ static func is_emission(resource_type: ResourceType) -> bool:
 	return resource_type in emissions
 
 static func is_produced_good(resource_type: ResourceType) -> bool:
-	var emissions: Array[ResourceType] = [ResourceType.IRON_ORE, ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
+	var emissions: Array[ResourceType] = [ResourceType.IRON_ORE, 
+	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
 	return resource_type in emissions
 
 ## Function for retuning the string equivalent of a resource type
@@ -26,6 +27,7 @@ static func resource_type_to_string(resource_type: ResourceType) -> String:
 		ResourceType.IRON_ORE: "IRON ORE",
 		ResourceType.COAL: "COAL",
 		ResourceType.WOOD: "WOOD",
+		ResourceType.CO2: "CO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
 		ResourceType.NONE: "NONE",
 	}
@@ -33,7 +35,7 @@ static func resource_type_to_string(resource_type: ResourceType) -> String:
 	return resource_names.get(resource_type, "UNKNOWN")  
 	
 ## Function for retuning the string equivalent of a building type
-static func buiilding_type_to_string(building_type: BuildingType) -> String:
+static func building_type_to_string(building_type: BuildingType) -> String:
 	var building_names = {
 		BuildingType.FACTORY: "FACTORY",
 		BuildingType.IRON_MINE: "IRON MINE",
