@@ -1,5 +1,5 @@
 class_name GatheringBuilding
-extends Building
+extends ProductionBuilding
 ## A class that is for aspects of a building that can gather resources
 ##
 ## A class that is for aspects of a building that can gather resources containing

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn540r3y3gtaw"]
+
+[ext_resource type="Script" uid="uid://d1rtbhcf3jhw3" path="res://scripts/buildings/wood_cutter.gd" id="1_cg1t0"]
+[ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="2_t3gn1"]
+
+[node name="wood_cutter" type="StaticBody2D"]
+script = ExtResource("1_cg1t0")
+can_gather_resource_type = 2
+building_data = ExtResource("2_t3gn1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

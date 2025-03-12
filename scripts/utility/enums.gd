@@ -12,6 +12,14 @@ enum BuildingType {FACTORY, IRON_MINE, COAL_MINE, WOOD_CUTTER}
 ## The different types of resources in the game
 enum ResourceType {IRON_ORE, COAL, WOOD, CO2, NONE}
 
+static func is_emission(resource_type: ResourceType) -> bool:
+	var emissions: Array[ResourceType] = [ResourceType.CO2]
+	return resource_type in emissions
+
+static func is_produced_good(resource_type: ResourceType) -> bool:
+	var emissions: Array[ResourceType] = [ResourceType.IRON_ORE, ResourceType.COAL, ResourceType.WOOD]
+	return resource_type in emissions
+
 ## Function for retuning the string equivalent of a resource type
 static func resource_type_to_string(resource_type: ResourceType) -> String:
 	var resource_names = {
