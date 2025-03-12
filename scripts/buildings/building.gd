@@ -6,7 +6,7 @@ extends StaticBody2D
 ## and its sprite for visual representation. 
 ##
 
-## The metadat for the building
+## The metadata for the building
 # @export var building_type: Enums.BuildingType
 @export var building_data: BuildingData  # Reference to metadata
 
