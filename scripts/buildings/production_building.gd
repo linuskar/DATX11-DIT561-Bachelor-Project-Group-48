@@ -63,9 +63,7 @@ func _on_timer_timeout() -> void:
 	
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
-	can_produce = check_if_can_produce()
-	
-	if can_produce == false:
+	if !check_if_can_produce():
 		print("Can't produce")
 		production_cycle.stop()
 	else:
@@ -104,7 +102,6 @@ func check_for_output_overflow() -> bool:
 		## When at possible overflow of resources for output
 		if produced_good_stored + produced_good_generated > produced_good_max_storage:
 			return true
-			
 	return false
 		
 ## Function to check if the production building is missing resources for input
@@ -116,7 +113,6 @@ func check_for_missing_input() -> bool:
 		
 		if input_quantity < input_use_rate:
 			return true
-			
 	return false
 	
 ## Function to produce the goods the building can output.
