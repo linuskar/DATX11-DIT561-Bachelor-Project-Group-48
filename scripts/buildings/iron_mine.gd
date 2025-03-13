@@ -1,4 +1,4 @@
-class_name IronMiner
+class_name IronMine
 extends GatheringBuilding
 ## A class that is for the aspects of an iron mine.
 ##

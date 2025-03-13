@@ -1,4 +1,4 @@
-class_name CoalMiner
+class_name CoalMine
 extends GatheringBuilding
 ## A class that is for the aspects of a coal mine.
 ##

@@ -26,9 +26,17 @@ var default_color: Color = Color(1, 1, 1, 1)
 ## The buildings in the game that you can place.
 var buildings: Dictionary[Enums.BuildingType, Resource] = {
 	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
-	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/iron_miner.tscn"),
-	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/coal_miner.tscn"),
+	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/iron_mine.tscn"),
+	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/coal_mine.tscn"),
 	Enums.BuildingType.WOOD_CUTTER: preload("res://scenes/buildings/wood_cutter.tscn"),
+}
+
+## The blueprints for the buildings that you can place.
+var building_blueprints: Dictionary[Enums.BuildingType, Resource] = {
+	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
+	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn"),
+	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/building_blueprints/coal_mine_blueprint.tscn"),
+	Enums.BuildingType.WOOD_CUTTER: preload("res://scenes/buildings/building_blueprints/wood_cutter_blueprint.tscn"),
 }
 
 ## The builings in the game that are currently place.
@@ -44,9 +52,16 @@ signal placed_building(building: Building)
 func _ready() -> void:
 	StateManager.build_mode.connect(_on_build_mode)
 	StateManager.selected_building.connect(_show_blueprint_of_selected_building)
-
-func _show_blueprint_of_selected_building(building_data):
-	blueprint.building_data = building_data
+	
+## Function to show the newly selected blueprint of a building
+func _show_blueprint_of_selected_building(building_data: BuildingData) -> void:
+	## Delete the current blueprint
+	blueprint.queue_free()
+	
+	var new_blueprint: Building = building_blueprints.get(building_data.building_type).instantiate()
+	add_child(new_blueprint)
+	
+	blueprint = new_blueprint
 	blueprint.show()
 
 func _process(_delta) -> void:
@@ -65,7 +80,6 @@ func _process(_delta) -> void:
 			
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
-		print("pressed place")
 		StateManager.set_state(StateManager.State.PLACE_BUILDING)
 	
 	if event.is_action_released("place") and StateManager.state == StateManager.State.PLACE_BUILDING:

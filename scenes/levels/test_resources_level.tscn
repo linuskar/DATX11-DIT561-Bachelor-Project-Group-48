@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1383k6lwcqs6"]
+[gd_scene load_steps=9 format=3 uid="uid://d1383k6lwcqs6"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_5i7si"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_v7uii"]
 [ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="4_fk5ej"]
-[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="5_owwh8"]
 [ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="6_fk5ej"]
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="6_owwh8"]
+[ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn" id="6_ya06r"]
 [ext_resource type="PackedScene" uid="uid://ddwmp6n5prn23" path="res://scenes/UserInterfaceElements/SelectableBuilding.tscn" id="8_owwh8"]
 [ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="9_exs0f"]
-[ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_miner.tres" id="9_ya06r"]
 
 [node name="Game" type="Node2D"]
 
@@ -18,19 +17,15 @@
 
 [node name="GameManager" parent="." instance=ExtResource("4_fk5ej")]
 
-[node name="BuildingBlueprint" parent="GameManager" instance=ExtResource("5_owwh8")]
-visible = false
-
 [node name="ResourceManager" type="Node" parent="."]
 script = ExtResource("6_fk5ej")
 
 [node name="BuildManager" type="Node" parent="." node_paths=PackedStringArray("blueprint")]
 script = ExtResource("6_owwh8")
-blueprint = NodePath("BuildingBlueprint")
+blueprint = NodePath("IronMineBlueprint")
 
-[node name="BuildingBlueprint" parent="BuildManager" instance=ExtResource("5_owwh8")]
+[node name="IronMineBlueprint" parent="BuildManager" instance=ExtResource("6_ya06r")]
 visible = false
-building_data = ExtResource("9_ya06r")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
