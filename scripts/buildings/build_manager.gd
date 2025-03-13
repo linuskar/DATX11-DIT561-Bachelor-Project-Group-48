@@ -24,23 +24,14 @@ var invalid_placement_color: Color = Color(1, 0.5, 0.5, 0.8)
 var default_color: Color = Color(1, 1, 1, 1)
 
 ## The buildings in the game that you can place.
-var buildings: Dictionary[Enums.BuildingType, Resource] = {
-	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
-	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/iron_mine.tscn"),
-	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/coal_mine.tscn"),
-	Enums.BuildingType.WOOD_CUTTER: preload("res://scenes/buildings/wood_cutter.tscn"),
-}
-
+@export var buildings: Dictionary[Enums.BuildingType, Resource]
 ## The blueprints for the buildings that you can place.
-var building_blueprints: Dictionary[Enums.BuildingType, Resource] = {
-	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
-	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn"),
-	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/building_blueprints/coal_mine_blueprint.tscn"),
-	Enums.BuildingType.WOOD_CUTTER: preload("res://scenes/buildings/building_blueprints/wood_cutter_blueprint.tscn"),
-}
+@export var building_blueprints: Dictionary[Enums.BuildingType, Resource]
 
-## The builings in the game that are currently place.
+## The buildings in the game that are currently placed.
 var buildings_placed: Array[Building]
+
+## The buildings in the game that are currently placed and gathering resources.
 var buildings_gathering_resources: Array[Building]
 
 ## Boolean for checking valid placement.

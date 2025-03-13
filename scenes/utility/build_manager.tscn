@@ -1,11 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs67hiut6aq7j"]
+[gd_scene load_steps=9 format=3 uid="uid://cs67hiut6aq7j"]
 
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="1_aenhx"]
-[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/building_blueprints/building_blueprint.tscn" id="2_tstln"]
+[ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn" id="2_ofppe"]
+[ext_resource type="PackedScene" uid="uid://isbsjsm2mmil" path="res://scenes/buildings/iron_mine.tscn" id="2_w7lpy"]
+[ext_resource type="PackedScene" uid="uid://djt4gpmfrp805" path="res://scenes/buildings/coal_mine.tscn" id="3_dr161"]
+[ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/coal_mine_blueprint.tscn" id="3_rqr45"]
+[ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/wood_cutter.tscn" id="4_vw4yu"]
+[ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/wood_cutter_blueprint.tscn" id="4_y1ev4"]
+[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="5_rqr45"]
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
 script = ExtResource("1_aenhx")
-blueprint = NodePath("BuildingBlueprint")
+blueprint = NodePath("IronMineBlueprint")
+buildings = Dictionary[int, Resource]({
+1: ExtResource("2_w7lpy"),
+2: ExtResource("3_dr161"),
+3: ExtResource("4_vw4yu")
+})
+building_blueprints = Dictionary[int, Resource]({
+0: ExtResource("5_rqr45"),
+1: ExtResource("2_ofppe"),
+2: ExtResource("3_rqr45"),
+3: ExtResource("4_y1ev4")
+})
 
-[node name="BuildingBlueprint" parent="." instance=ExtResource("2_tstln")]
+[node name="IronMineBlueprint" parent="." instance=ExtResource("2_ofppe")]
 visible = false
