@@ -91,8 +91,6 @@ func check_if_can_produce() -> bool:
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
 func check_for_output_overflow() -> bool:
-	var output_overflow: bool = false
-	
 	for produced_good in produced_goods:
 		var produced_good_generated: int = output_generation.get(produced_good)
 		var produced_good_stored: int = output_storage.get(produced_good)
@@ -105,24 +103,21 @@ func check_for_output_overflow() -> bool:
 		
 		## When at possible overflow of resources for output
 		if produced_good_stored + produced_good_generated > produced_good_max_storage:
-			output_overflow = true
-			break
+			return true
 			
-	return output_overflow
+	return false
 		
 ## Function to check if the production building is missing resources for input
 ## to produce.
 func check_for_missing_input() -> bool:
-	var missing_input: bool = false
-	
 	for input in input_storage:
 		var input_quantity: int = input_storage.get(input)
 		var input_use_rate: int = input_use_rates.get(input)
 		
 		if input_quantity < input_use_rate:
-			missing_input = true
+			return true
 			
-	return missing_input
+	return false
 	
 ## Function to produce the goods the building can output.
 func _produce_goods() -> void:
@@ -156,7 +151,7 @@ func _generate_waste_and_emissions() -> void:
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	var resource_quantity: int = output_storage.get(resource_type)
-	output_storage.set(resource_type, resource_quantity - 1)
+	output_storage.set(resource_type, resource_quantity - amount)
 	
 	if can_produce:
 		production_cycle.autostart = true
