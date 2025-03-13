@@ -26,6 +26,6 @@ func _input(event) -> void:
 				StateManager.set_state(StateManager.State.IDLE)
 				
 		StateManager.build_mode.emit()
-	
+
 	if event.is_action_pressed("select_building"):
 		building_selector_control.visible = !building_selector_control.visible
