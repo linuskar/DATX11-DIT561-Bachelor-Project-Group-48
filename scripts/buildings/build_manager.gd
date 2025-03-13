@@ -24,7 +24,7 @@ var invalid_placement_color: Color = Color(1, 0.5, 0.5, 0.8)
 var default_color: Color = Color(1, 1, 1, 1)
 
 ## The buildings in the game that you can place.
-var buildings: Dictionary = {
+var buildings: Dictionary[Enums.BuildingType, Resource] = {
 	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
 	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/iron_miner.tscn"),
 	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/coal_miner.tscn"),
@@ -52,24 +52,35 @@ func _show_blueprint_of_selected_building(building_data):
 func _process(_delta) -> void:		
 	match StateManager.state:
 		StateManager.State.SELECTED_BUILDING:
-			var grid_pos: Vector2 = get_snapped_world_position()
-			blueprint.position = grid_pos
-			## Checking for valid placement
-			if is_tile_occupied(grid_pos):
-				blueprint.modulate = invalid_placement_color
-				valid_placement = false
-			else:
-				blueprint.modulate = valid_placement_color	
-				valid_placement = true	
+			_update_blueprint_positon()
 		## In build mode snap the blueprint to the mouse in the world
 		StateManager.State.PLACE_BUILDING:
-			place_building()
+			_update_blueprint_positon()
+			
+			var grid_pos: Vector2 = get_snapped_world_position()
+			if !is_tile_occupied(grid_pos):
+				place_building()
 		StateManager.State.IDLE:
 			pass	
 			
 func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
+	if event.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
+		print("pressed place")
 		StateManager.set_state(StateManager.State.PLACE_BUILDING)
+	
+	if event.is_action_released("place") and StateManager.state == StateManager.State.PLACE_BUILDING:
+		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
+
+func _update_blueprint_positon():
+	var grid_pos: Vector2 = get_snapped_world_position()
+	blueprint.position = grid_pos
+	## Checking for valid placement
+	if is_tile_occupied(grid_pos):
+		blueprint.modulate = invalid_placement_color
+		valid_placement = false
+	else:
+		blueprint.modulate = valid_placement_color	
+		valid_placement = true	
 				
 ## Returns the world position of the mouse snapped to the nearest tile on the grid.
 ## This function converts the mouse position from world space to tile coordinates
@@ -110,7 +121,7 @@ func place_building() -> void:
 	new_building.position = blueprint.position
 	get_parent().add_child(new_building)
 	_on_placed_building(new_building)
-
+	
 ## Function checking if a tile is occupied by another object
 func is_tile_occupied(position: Vector2) -> bool:
 	return occupied_tiles.has(position)
@@ -119,4 +130,3 @@ func is_tile_occupied(position: Vector2) -> bool:
 func _on_placed_building(building: Building) -> void:
 	occupied_tiles[building.position] = building
 	placed_building.emit(building)
-	StateManager.set_state(StateManager.State.SELECTED_BUILDING)

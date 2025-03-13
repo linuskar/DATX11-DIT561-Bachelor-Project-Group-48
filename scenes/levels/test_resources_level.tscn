@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="5_owwh8"]
 [ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="6_fk5ej"]
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="6_owwh8"]
-[ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="6_ya06r"]
 [ext_resource type="PackedScene" uid="uid://ddwmp6n5prn23" path="res://scenes/UserInterfaceElements/SelectableBuilding.tscn" id="8_owwh8"]
+[ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="9_exs0f"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_miner.tres" id="9_ya06r"]
 
 [node name="Game" type="Node2D"]
@@ -33,15 +33,8 @@ visible = false
 building_data = ExtResource("9_ya06r")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="BuildingSelector" parent="CanvasLayer" instance=ExtResource("6_ya06r")]
-visible = false
 
 [node name="SelectableBuilding" parent="CanvasLayer" instance=ExtResource("8_owwh8")]
-offset_left = -651.0
-offset_top = -568.0
-offset_right = -651.0
-offset_bottom = -568.0
-scale = Vector2(2, 2)
-building_data = ExtResource("9_ya06r")
+scale = Vector2(1, 1)
+building_data = ExtResource("9_exs0f")
+metadata/_edit_use_anchors_ = true

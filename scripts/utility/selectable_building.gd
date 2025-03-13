@@ -60,8 +60,11 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 ## Handling signal for pressing the left mouse button
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		#accept_event()
 		if hovering_buy:
+			accept_event()
 			selected_building.emit(building_data)
+			
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
