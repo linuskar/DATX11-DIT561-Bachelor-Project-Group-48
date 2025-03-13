@@ -26,9 +26,9 @@ var default_color: Color = Color(1, 1, 1, 1)
 ## The buildnings in the game that you can place.
 var buildings: Dictionary = {
 	Enums.BuildingType.FACTORY: preload("res://scenes/buildings/factory.tscn"),
-	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/test_gathering_building.tscn"),
-	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/test_gathering_building.tscn"),
-	Enums.BuildingType.WOOD_CUTTER: preload("res://scenes/buildings/test_gathering_building.tscn"),
+	Enums.BuildingType.IRON_MINE: preload("res://scenes/buildings/iron_miner.tscn"),
+	Enums.BuildingType.COAL_MINE: preload("res://scenes/buildings/coal_miner.tscn"),
+	Enums.BuildingType.WOOD_CUTTER: preload("res://scenes/buildings/wood_cutter.tscn"),
 }
 
 ## The builings in the game that are currently place.
@@ -98,7 +98,8 @@ func _on_build_mode() -> void:
 ## Function for placing down a building
 func place_building() -> void:
 	## Instantiate the building and add it to the game and world
-	var new_building: Building = buildings.get(blueprint.building_type).instantiate()
+	var building_type: Enums.BuildingType = blueprint.building_data.building_type
+	var new_building: Building = buildings.get(building_type).instantiate()
 	new_building.position = blueprint.position
 	get_parent().add_child(new_building)
 	_on_placed_building(new_building)

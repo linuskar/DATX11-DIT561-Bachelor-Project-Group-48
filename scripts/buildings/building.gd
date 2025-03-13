@@ -6,8 +6,9 @@ extends StaticBody2D
 ## and its sprite for visual representation. 
 ##
 
-## The building type
-@export var building_type: Enums.BuildingType
-	
+## The metadata for the building
+# @export var building_type: Enums.BuildingType
+@export var building_data: BuildingData  # Reference to metadata
+
 ## The sprite of the building
 @onready var building_sprite: Sprite2D = $Sprite2D

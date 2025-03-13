@@ -1,14 +1,13 @@
 class_name SelectableBuilding extends Control
 
 ## Path pointing to the icon representing the building
-@export_file() var icon_path
+@export_file() var icon_path: String
 
 ## Path to the scene of the building to be placed when clicking the selectable
-@export_file() var building_path
+# @export_file() var building_path: String
 
-## Variable to contain the scene described by the building path
-## Loaded on start
-var building_scene
+## The metadata for building that is selected
+@export var building_data: BuildingData
 
 ## The cost of the building
 @export var cost: int
@@ -29,12 +28,12 @@ var hovering_buy: bool = false
 @export var required: Dictionary[String, int]
 
 func _ready() -> void:
-	## Load the building from the building path to the variable
-	building_scene = load(building_path)
-	
+	## Getting the string equivalent for the building type
+	building_name = Enums.buiilding_type_to_string(building_data.building_type)
+
 	## Set the image of the factory to the path 
 	self.find_child("BuildingIcon").set_texture(load(icon_path))
-	
+		
 	## Set the name and cost of the building
 	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(cost))
 	
@@ -45,8 +44,11 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if hovering_buy:
-			var instance = building_scene.instantiate()
-			add_child(instance)
+			pass
+			## TODO: fix with placing building when selecting in GUI
+			# var instance = building_scene.instantiate()
+			# var
+			# add_child(instance)
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:

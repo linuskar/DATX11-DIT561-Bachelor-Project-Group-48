@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwfw57d10a85j"]
+[gd_scene load_steps=3 format=3 uid="uid://dwfw57d10a85j"]
 
 [ext_resource type="Script" uid="uid://d1rtbhcf3jhw3" path="res://scripts/buildings/wood_cutter.gd" id="1_4m5a3"]
+[ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="2_hjr1d"]
 
 [node name="wood_cutter" type="StaticBody2D"]
 script = ExtResource("1_4m5a3")
-building_type = 3
+can_gather_resource_type = 2
+building_data = ExtResource("2_hjr1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

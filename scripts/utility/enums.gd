@@ -10,7 +10,7 @@ class_name Enums
 enum BuildingType {FACTORY, IRON_MINE, COAL_MINE, WOOD_CUTTER}
 
 ## The different types of resources in the game
-enum ResourceType {IRON_ORE, COAL, WOOD, NONE}
+enum ResourceType {IRON_ORE, COAL, WOOD, CO2, NONE}
 
 ## Function for retuning the string equivalent of a resource type
 static func resource_type_to_string(resource_type: ResourceType) -> String:

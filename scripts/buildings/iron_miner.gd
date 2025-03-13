@@ -18,21 +18,21 @@ func _ready():
 	#Connect the signal that can take resources from this building
 	ResourceSignals.get_resource.connect(_send_resources)
 
-#Activated at the end of each cycle
+## Activated at the end of each cycle
 func _on_timer_timeout() -> void:
 	add_resources()
 
-#Add the resources to the storage and emit what have been created
-func add_resources():
-	ResourceSignals.add_resource.emit("co2", co2Emission)
+## Add the resources to the storage and emit what have been created
+func add_resources() -> void:
+	ResourceSignals.add_resource.emit(Enums.ResourceType.CO2, co2Emission)
 	if currentStorageIron + ironGenerated <= maxStorageIron:
 		currentStorageIron += ironGenerated
-		ResourceSignals.add_resource.emit("Iron", ironGenerated)
+		ResourceSignals.add_resource.emit(Enums.ResourceType.IRON_ORE, ironGenerated)
 	else:
 		$Timer.stop()
 
-#Take resources from this buildings storage
-func _send_resources(resource_type, amount):
-	if resource_type == "Iron":
+## Take resources from this buildings storage
+func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
+	if resource_type == Enums.ResourceType.IRON_ORE:
 		currentStorageIron -= amount
 		$Timer.autostart()
