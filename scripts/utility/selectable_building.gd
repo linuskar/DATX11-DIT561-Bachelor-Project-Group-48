@@ -59,18 +59,9 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 		
 ## Handling signal for pressing the left mouse button
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if hovering_buy:
-			#selected_building.emit(building_data)
-			
-			#StateManager.set_state(StateManager.State.SELECTED_BUILDING)
-					
 			selected_building.emit(building_data)
-			# pass
-			## TODO: fix with placing building when selecting in GUI
-			# var instance = building_scene.instantiate()
-			# var
-			# add_child(instance)
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:

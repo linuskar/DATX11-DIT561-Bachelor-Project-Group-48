@@ -49,7 +49,7 @@ func _show_blueprint_of_selected_building(building_data):
 	blueprint.building_data = building_data
 	blueprint.show()
 
-func _process(_delta) -> void:
+func _process(_delta) -> void:		
 	match StateManager.state:
 		StateManager.State.SELECTED_BUILDING:
 			var grid_pos: Vector2 = get_snapped_world_position()
@@ -61,16 +61,15 @@ func _process(_delta) -> void:
 			else:
 				blueprint.modulate = valid_placement_color	
 				valid_placement = true	
-				
-			if Input.is_action_pressed("place") and valid_placement:
-				StateManager.set_state(StateManager.State.PLACE_BUILDING)
-				#place_building()
 		## In build mode snap the blueprint to the mouse in the world
 		StateManager.State.PLACE_BUILDING:
 			place_building()
-			print("placed")
 		StateManager.State.IDLE:
 			pass	
+			
+func _input(event: InputEvent) -> void:
+	if Input.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
+		StateManager.set_state(StateManager.State.PLACE_BUILDING)
 				
 ## Returns the world position of the mouse snapped to the nearest tile on the grid.
 ## This function converts the mouse position from world space to tile coordinates
