@@ -2011,13 +2011,18 @@ font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [node name="SelectableBuilding" type="Control"]
+custom_minimum_size = Vector2(160, 92)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -832.0
+offset_bottom = -464.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.599748, 0.599748)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_xjepk")
 icon_path = "uid://t2kml7pea27i"
 
@@ -2082,6 +2087,13 @@ mouse_filter = 1
 text = "Name Cost"
 label_settings = SubResource("LabelSettings_v46n7")
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 135.0
+offset_bottom = 120.0
 
 [connection signal="mouse_entered" from="BuyButton/Label" to="." method="_on_buy_mouse_entered"]
 [connection signal="mouse_exited" from="BuyButton/Label" to="." method="_on_buy_mouse_exited"]
