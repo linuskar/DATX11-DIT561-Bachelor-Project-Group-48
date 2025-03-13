@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=8 format=4 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_ps4gq"]
-[ext_resource type="PackedScene" uid="uid://ddwmp6n5prn23" path="res://scenes/UserInterfaceElements/SelectableBuilding.tscn" id="1_vo28d"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_qxi1g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxi1g"]
@@ -2307,6 +2306,7 @@ tile_map_data = PackedByteArray("AAAFAAEAAQAUABQAAAAFAAIAAQASABUAAAAFAAMAAQASABU
 tile_set = SubResource("TileSet_ps4gq")
 
 [node name="BannerLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 58.0
 offset_top = 30.0
 offset_right = 310.0
@@ -2327,7 +2327,3 @@ offset_left = 9.0
 offset_top = 80.0
 offset_right = -16.672
 offset_bottom = -213.32
-
-[node name="SelectableBuilding" parent="VBoxContainer" instance=ExtResource("1_vo28d")]
-custom_minimum_size = Vector2(0, 92)
-layout_mode = 2
