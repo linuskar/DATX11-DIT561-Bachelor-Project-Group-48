@@ -5,10 +5,12 @@ extends Node
 ##
 
 signal build_mode
+signal selected_building(building_data)
 
 enum State {
 	IDLE,
-	PLACE_BUILDING
+	SELECTED_BUILDING,
+	PLACE_BUILDING,
 }
 
 func set_state(new_state: State):

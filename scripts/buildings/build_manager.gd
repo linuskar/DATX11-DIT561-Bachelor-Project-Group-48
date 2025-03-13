@@ -43,14 +43,17 @@ signal placed_building(building: Building)
 
 func _ready() -> void:
 	StateManager.build_mode.connect(_on_build_mode)
-	
+	StateManager.selected_building.connect(_show_blueprint_of_selected_building)
+
+func _show_blueprint_of_selected_building(building_data):
+	blueprint.building_data = building_data
+	blueprint.show()
+
 func _process(_delta) -> void:
 	match StateManager.state:
-		## In build mode snap the blueprint to the mouse in the world
-		StateManager.State.PLACE_BUILDING:
+		StateManager.SELECTED_BUILDING:
 			var grid_pos: Vector2 = get_snapped_world_position()
 			blueprint.position = grid_pos
-
 			## Checking for valid placement
 			if is_tile_occupied(grid_pos):
 				blueprint.modulate = invalid_placement_color
@@ -58,9 +61,13 @@ func _process(_delta) -> void:
 			else:
 				blueprint.modulate = valid_placement_color	
 				valid_placement = true	
-			if Input.is_action_pressed("place") and valid_placement:
-				place_building()
 				
+			if Input.is_action_pressed("place") and valid_placement:
+				StateManager.set_state(StateManager.State.PLACE_BUILDING)
+		## In build mode snap the blueprint to the mouse in the world
+		StateManager.State.PLACE_BUILDING:
+			# if Input.is_action_pressed("place") and valid_placement:
+			place_building()		
 		StateManager.State.IDLE:
 			pass	
 				

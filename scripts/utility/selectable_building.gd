@@ -1,4 +1,5 @@
-class_name SelectableBuilding extends Control
+class_name SelectableBuilding 
+extends Control
 
 ## Path pointing to the icon representing the building
 @export_file() var icon_path: String
@@ -27,6 +28,8 @@ var hovering_buy: bool = false
 ## The list of resources that are required to place the building
 @export var required: Dictionary[String, int]
 
+signal selected_building(building_data)
+
 func _ready() -> void:
 	## Getting the string equivalent for the building type
 	building_name = Enums.buiilding_type_to_string(building_data.building_type)
@@ -44,7 +47,12 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if hovering_buy:
-			pass
+			#selected_building.emit(building_data)
+			
+			#StateManager.set_state(StateManager.State.SELECTED_BUILDING)
+					
+			selected_building.emit(building_data)
+			# pass
 			## TODO: fix with placing building when selecting in GUI
 			# var instance = building_scene.instantiate()
 			# var
