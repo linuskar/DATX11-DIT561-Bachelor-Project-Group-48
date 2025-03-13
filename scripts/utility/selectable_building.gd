@@ -31,9 +31,8 @@ var outputs: Dictionary[String, int]
 ## The list of resources that are required to place the building
 @export var required: Dictionary[String, int]
 
-signal selected_building(building_data)
-
 func _ready() -> void:
+	#StateManager.selected_building.connect()
 	building_name = Enums.building_type_to_string(building_data.building_type)
 	
 	init_resource_data(max_storage, building_data.max_storage)
@@ -60,11 +59,9 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 ## Handling signal for pressing the left mouse button
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		#accept_event()
 		if hovering_buy:
 			accept_event()
-			selected_building.emit(building_data)
-			
+			StateManager.selected_building.emit(building_data)
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:

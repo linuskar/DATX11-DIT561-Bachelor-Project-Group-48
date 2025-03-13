@@ -49,14 +49,14 @@ func _show_blueprint_of_selected_building(building_data):
 	blueprint.building_data = building_data
 	blueprint.show()
 
-func _process(_delta) -> void:		
+func _process(_delta) -> void:
+	## In build mode snap the blueprint to the mouse in the world
 	match StateManager.state:
 		StateManager.State.SELECTED_BUILDING:
 			_update_blueprint_positon()
-		## In build mode snap the blueprint to the mouse in the world
 		StateManager.State.PLACE_BUILDING:
 			_update_blueprint_positon()
-			
+				
 			var grid_pos: Vector2 = get_snapped_world_position()
 			if !is_tile_occupied(grid_pos):
 				place_building()
