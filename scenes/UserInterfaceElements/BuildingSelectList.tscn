@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=11 format=4 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_ps4gq"]
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_qxi1g"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_qxi1g"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="4_uixaa"]
+[ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UserInterfaceElements/CoalMineSelectable.tscn" id="5_uixaa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxi1g"]
 texture = ExtResource("1_ps4gq")
@@ -2293,6 +2295,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -48.0
+offset_right = -4.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qxi1g")
@@ -2319,13 +2325,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Buildings" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.013
-anchor_top = 0.027
-anchor_right = 0.304
-anchor_bottom = 0.965
-offset_left = 9.0
-offset_top = 80.0
-offset_right = -16.672
-offset_bottom = -213.32
+clip_contents = true
+layout_direction = 2
+layout_mode = 0
+offset_left = 24.0
+offset_top = 138.0
+offset_right = 344.0
+offset_bottom = 618.0
+script = ExtResource("4_uixaa")
+
+[node name="CoalMineSelectable" parent="Buildings" instance=ExtResource("5_uixaa")]
+layout_mode = 2
+
+[node name="CoalMineSelectable2" parent="Buildings" instance=ExtResource("5_uixaa")]
+layout_mode = 2

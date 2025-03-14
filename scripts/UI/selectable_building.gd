@@ -33,6 +33,9 @@ var outputs: Dictionary[String, int]
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
 	
+	# Set the 'selected' version of the main box invisible
+	self.find_child("MainBoxSelected").visible = false
+	
 	init_resource_data(max_storage, building_data.max_storage)
 	init_resource_data(outputs, building_data.output_generation)
 	init_resource_data(inputs, building_data.input_use_rates)
@@ -96,3 +99,8 @@ func _on_buy_mouse_entered() -> void:
 ## When the mouse stops hovering over the buy label set hovering_buy to false
 func _on_buy_mouse_exited() -> void:
 	hovering_buy = false
+
+
+func _on_selected() -> void:
+	self.find_child("MainBoxRegular").visible = false
+	self.find_child("MainBoxSelected").visible = true
