@@ -42,41 +42,36 @@ signal placed_building(building: Building)
 
 func _ready() -> void:
 	StateManager.build_mode.connect(_on_build_mode)
-	StateManager.selected_building.connect(_show_blueprint_of_selected_building)
+	StateManager.selected_building.connect(_on_selected_building)
 	
-## Function to show the newly selected blueprint of a building
-func _show_blueprint_of_selected_building(building_data: BuildingData) -> void:
+## Function that gets called when a building is selected to build
+func _on_selected_building(building_data) ->  void:
+	StateManager.set_state(StateManager.State.SELECTED_BUILDING)
+
 	## Delete the current blueprint
 	blueprint.queue_free()
 	
+	## Add the new blueprint to the game of the currently selected building
 	var new_blueprint: Building = building_blueprints.get(building_data.building_type).instantiate()
 	add_child(new_blueprint)
-	
 	blueprint = new_blueprint
 	blueprint.show()
-
+		
 func _process(_delta) -> void:
 	## In build mode snap the blueprint to the mouse in the world
 	match StateManager.state:
 		StateManager.State.SELECTED_BUILDING:
-			_update_blueprint_positon()
+			_update_blueprint()
 		StateManager.State.PLACE_BUILDING:
-			_update_blueprint_positon()
+			_update_blueprint()
 				
-			var grid_pos: Vector2 = get_snapped_world_position()
-			if !is_tile_occupied(grid_pos):
+			if valid_placement:
 				place_building()
 		StateManager.State.IDLE:
 			pass	
-			
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
-		StateManager.set_state(StateManager.State.PLACE_BUILDING)
-	
-	if event.is_action_released("place") and StateManager.state == StateManager.State.PLACE_BUILDING:
-		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
 
-func _update_blueprint_positon():
+## Function for updating the placement of the building blueprint
+func _update_blueprint():
 	var grid_pos: Vector2 = get_snapped_world_position()
 	blueprint.position = grid_pos
 	## Checking for valid placement
@@ -86,7 +81,16 @@ func _update_blueprint_positon():
 	else:
 		blueprint.modulate = valid_placement_color	
 		valid_placement = true	
-				
+	
+func _input(event: InputEvent) -> void:
+	## When trying to place a building that is selected
+	if event.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
+		StateManager.set_state(StateManager.State.PLACE_BUILDING)
+		
+	## The case where the action for placing buildings is released
+	if event.is_action_released("place") and StateManager.state == StateManager.State.PLACE_BUILDING:
+		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
+
 ## Returns the world position of the mouse snapped to the nearest tile on the grid.
 ## This function converts the mouse position from world space to tile coordinates
 ## and then back to a snapped world position using a tilemap layer

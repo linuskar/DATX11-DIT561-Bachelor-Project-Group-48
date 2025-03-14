@@ -7,12 +7,6 @@ extends Node
 ## The control node for the building selection
 @onready var building_selector: Control = $"../BuildingSelector"
 
-func _ready() -> void:
-	StateManager.selected_building.connect(_change_in_selected_building)
-
-func _change_in_selected_building(building_data) ->  void:
-	StateManager.set_state(StateManager.State.SELECTED_BUILDING)
-
 func _input(event) -> void:
 	if event.is_action_pressed("build"):
 		match StateManager.state:

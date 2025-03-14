@@ -4,7 +4,9 @@ extends Node
 ## A class that manages the different states of the game.
 ##
 
+## Signal for when entering build mode
 signal build_mode
+## Signal for when having selected a building to build
 signal selected_building(building_data)
 
 enum State {

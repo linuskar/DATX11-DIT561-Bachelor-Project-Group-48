@@ -32,7 +32,6 @@ var outputs: Dictionary[String, int]
 @export var required: Dictionary[String, int]
 
 func _ready() -> void:
-	#StateManager.selected_building.connect()
 	building_name = Enums.building_type_to_string(building_data.building_type)
 	
 	init_resource_data(max_storage, building_data.max_storage)
@@ -56,8 +55,9 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 		var input_needed: int = data.get(resource)
 		string_data.set(resource_string, input_needed)
 		
-## Handling signal for pressing the left mouse button
 func _input(event: InputEvent) -> void:
+	## Handling press of left mouse button for selecting a building to buy
+	## and then place after
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if hovering_buy:
 			accept_event()
