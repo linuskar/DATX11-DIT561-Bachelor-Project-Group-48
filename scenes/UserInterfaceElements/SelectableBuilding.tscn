@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=4 uid="uid://ddwmp6n5prn23"]
 
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="1_v46n7"]
-[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/utility/selectable_building.gd" id="1_xjepk"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_xjepk"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="3_p1sj4"]
 [ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="3_vg823"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="4_qb25d"]
@@ -2094,6 +2094,11 @@ offset_left = 24.0
 offset_top = 8.0
 offset_right = 135.0
 offset_bottom = 120.0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 184.0
 
 [connection signal="mouse_entered" from="BuyButton/Label" to="." method="_on_buy_mouse_entered"]
 [connection signal="mouse_exited" from="BuyButton/Label" to="." method="_on_buy_mouse_exited"]
