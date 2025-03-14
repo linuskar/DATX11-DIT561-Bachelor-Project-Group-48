@@ -18,7 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 StateManager="*res://scripts/utility/state_manager.gd"
-ResourceSignals="*res://scripts/utility/resource_signals.gd"
+ResourceSignals="*res://scripts/resources/resource_signals.gd"
 
 [input]
 

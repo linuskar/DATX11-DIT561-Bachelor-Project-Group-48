@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ogg000btq0ld"]
+[gd_scene load_steps=5 format=3 uid="uid://ogg000btq0ld"]
 
 [ext_resource type="Script" uid="uid://dsw66e8grfp4r" path="res://scripts/buildings/building.gd" id="1_28ys6"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/factory.png" id="2_8tkco"]
+[ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_miner.tres" id="2_mv8pv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
 size = Vector2(32, 32)
 
 [node name="Factory" type="StaticBody2D"]
 script = ExtResource("1_28ys6")
+building_data = ExtResource("2_mv8pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qb2p1")
