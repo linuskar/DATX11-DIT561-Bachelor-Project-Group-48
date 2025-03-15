@@ -1,14 +1,18 @@
 extends Node
-## A class that manages the different states of the game
+## A class that manages the different states of the game.
 ##
-## A class that manages the different states of the game
+## A class that manages the different states of the game.
 ##
 
+## Signal for when entering build mode
 signal build_mode
+## Signal for when having selected a building to build
+signal selected_building(building_data)
 
 enum State {
 	IDLE,
-	PLACE_BUILDING
+	SELECTED_BUILDING,
+	PLACE_BUILDING,
 }
 
 func set_state(new_state: State):
@@ -18,6 +22,5 @@ func set_state(new_state: State):
 var state: State
 var previous_state: State
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_state(State.IDLE)
