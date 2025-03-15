@@ -6,6 +6,10 @@ class_name SelectableBuilding extends Control
 ## The metadata for building that is selected
 @export var building_data: BuildingData
 
+## Signal to be emitted when this building is selected. 
+## Emitted together with the building itself.
+signal selected(building: SelectableBuilding)
+
 ## The cost of the building
 @export var cost: int
 
@@ -102,5 +106,6 @@ func _on_buy_mouse_exited() -> void:
 
 
 func _on_selected() -> void:
+	emit_signal("selected", self)
 	self.find_child("MainBoxRegular").visible = false
 	self.find_child("MainBoxSelected").visible = true
