@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=13 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dxmp87dbqrere" path="res://scripts/UI/resource_ui.gd" id="9_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://b6oypu8yvcr4e" path="res://assets/UI/Resource UI/coal.tres" id="11_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://b8dmip3wmfd3n" path="res://assets/UI/Resource UI/iron.tres" id="12_dinhu"]
 
 [node name="Game" type="Node2D"]
 
@@ -42,7 +43,7 @@ script = ExtResource("8_gee14")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
-offset_right = 76.0
+offset_right = 112.0
 offset_bottom = 67.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -76,6 +77,18 @@ layout_mode = 2
 texture = ExtResource("11_kvpfn")
 
 [node name="Label" type="Label" parent="UI/MarginContainer/ResourceUI/HBoxContainer/Coal"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Iron_Ore" type="VBoxContainer" parent="UI/MarginContainer/ResourceUI/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/ResourceUI/HBoxContainer/Iron_Ore"]
+layout_mode = 2
+texture = ExtResource("12_dinhu")
+
+[node name="Label" type="Label" parent="UI/MarginContainer/ResourceUI/HBoxContainer/Iron_Ore"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1

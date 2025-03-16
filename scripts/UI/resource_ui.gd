@@ -6,6 +6,7 @@ func _ready():
 	# Setup references to each resource label
 	resource_labels[Enums.ResourceType.WOOD] = $HBoxContainer/Wood/Label
 	resource_labels[Enums.ResourceType.COAL] = $HBoxContainer/Coal/Label
+	resource_labels[Enums.ResourceType.IRON_ORE] = $HBoxContainer/Iron_Ore/Label
 
 	# Connect to the global signal
 	ResourceSignals.update_UI.connect(_on_update_UI)
