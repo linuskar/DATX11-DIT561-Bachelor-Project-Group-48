@@ -3439,3 +3439,7 @@ building_data = ExtResource("6_0e8ga")
 layout_mode = 2
 icon_path = "uid://t2kml7pea27i"
 building_data = ExtResource("6_0e8ga")
+
+[connection signal="selected" from="ScrollContainer/Buildings/CoalMineSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="ScrollContainer/Buildings/CoalMineSelectable2" to="." method="_on_building_selected"]
+[connection signal="selected" from="ScrollContainer/Buildings/CoalMineSelectable3" to="." method="_on_building_selected"]

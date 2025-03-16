@@ -106,6 +106,10 @@ func _on_buy_mouse_exited() -> void:
 
 
 func _on_selected() -> void:
-	emit_signal("selected", self)
 	self.find_child("MainBoxRegular").visible = false
 	self.find_child("MainBoxSelected").visible = true
+	emit_signal("selected", self)
+
+func unselected() -> void:
+	self.find_child("MainBoxRegular").visible = true
+	self.find_child("MainBoxSelected").visible = false
