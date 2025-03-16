@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=11 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="7_kvpfn"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="8_gee14"]
 [ext_resource type="Script" uid="uid://dxmp87dbqrere" path="res://scripts/UI/resource_ui.gd" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="10_vtaks"]
 
 [node name="Game" type="Node2D"]
 
@@ -41,5 +42,22 @@ script = ExtResource("8_gee14")
 
 [node name="ResourceUI" type="Panel" parent="UI"]
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 64.0
 script = ExtResource("9_0tnpc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ResourceUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Wood" type="VBoxContainer" parent="UI/ResourceUI/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/ResourceUI/HBoxContainer/Wood"]
+layout_mode = 2
+texture = ExtResource("10_vtaks")
+
+[node name="Label" type="Label" parent="UI/ResourceUI/HBoxContainer/Wood"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
