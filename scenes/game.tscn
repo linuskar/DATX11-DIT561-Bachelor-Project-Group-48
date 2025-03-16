@@ -41,41 +41,41 @@ script = ExtResource("8_gee14")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="ResourceUI" type="Panel" parent="UI"]
-offset_right = 64.0
-offset_bottom = 64.0
-script = ExtResource("9_0tnpc")
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/ResourceUI"]
-layout_mode = 1
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
 offset_right = 76.0
 offset_bottom = 67.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/ResourceUI/MarginContainer"]
+[node name="ResourceUI" type="Panel" parent="UI/MarginContainer"]
+layout_mode = 2
+script = ExtResource("9_0tnpc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/ResourceUI"]
+layout_mode = 2
+offset_right = 68.0
+offset_bottom = 59.0
+
+[node name="Wood" type="VBoxContainer" parent="UI/MarginContainer/ResourceUI/HBoxContainer"]
 layout_mode = 2
 
-[node name="Wood" type="VBoxContainer" parent="UI/ResourceUI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/ResourceUI/MarginContainer/HBoxContainer/Wood"]
+[node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/ResourceUI/HBoxContainer/Wood"]
 layout_mode = 2
 texture = ExtResource("10_vtaks")
 
-[node name="Label" type="Label" parent="UI/ResourceUI/MarginContainer/HBoxContainer/Wood"]
+[node name="Label" type="Label" parent="UI/MarginContainer/ResourceUI/HBoxContainer/Wood"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="Coal" type="VBoxContainer" parent="UI/ResourceUI/MarginContainer/HBoxContainer"]
+[node name="Coal" type="VBoxContainer" parent="UI/MarginContainer/ResourceUI/HBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/ResourceUI/MarginContainer/HBoxContainer/Coal"]
+[node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/ResourceUI/HBoxContainer/Coal"]
 layout_mode = 2
 texture = ExtResource("11_kvpfn")
 
-[node name="Label" type="Label" parent="UI/ResourceUI/MarginContainer/HBoxContainer/Coal"]
+[node name="Label" type="Label" parent="UI/MarginContainer/ResourceUI/HBoxContainer/Coal"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
