@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn" id="10_ir15t"]
 [ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/coal_mine_blueprint.tscn" id="11_ca42v"]
 [ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/wood_cutter_blueprint.tscn" id="12_rysoc"]
+[ext_resource type="PackedScene" uid="uid://b4g337wewhst2" path="res://scenes/UI/resource_ui.tscn" id="9_0tnpc"]
 
 [node name="Game" type="Node2D"]
 
@@ -51,3 +52,7 @@ visible = false
 
 [node name="PlayerResources" type="Node" parent="."]
 script = ExtResource("8_gee14")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ResourceUI" parent="UI" instance=ExtResource("9_0tnpc")]

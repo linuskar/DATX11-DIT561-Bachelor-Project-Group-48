@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4g337wewhst2"]
+
+[ext_resource type="Script" uid="uid://dxmp87dbqrere" path="res://scripts/UI/resource_ui.gd" id="1_w6giv"]
+[ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="2_84p0k"]
+[ext_resource type="Texture2D" uid="uid://b6oypu8yvcr4e" path="res://assets/UI/Resource UI/coal.tres" id="3_wg5fy"]
+[ext_resource type="Texture2D" uid="uid://b8dmip3wmfd3n" path="res://assets/UI/Resource UI/iron.tres" id="4_31mwh"]
+
+[node name="ResourceUI" type="PanelContainer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_w6giv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Wood" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Wood"]
+layout_mode = 2
+texture = ExtResource("2_84p0k")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Wood"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Coal" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Coal"]
+layout_mode = 2
+texture = ExtResource("3_wg5fy")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Coal"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Iron_Ore" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Iron_Ore"]
+layout_mode = 2
+texture = ExtResource("4_31mwh")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Iron_Ore"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
