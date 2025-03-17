@@ -112,3 +112,7 @@ func _on_selected() -> void:
 func unselected() -> void:
 	self.find_child("MainBoxRegular").visible = true
 	self.find_child("MainBoxSelected").visible = false
+	
+
+func get_building_data() -> BuildingData:
+	return self.building_data

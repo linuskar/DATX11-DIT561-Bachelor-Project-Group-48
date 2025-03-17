@@ -45,9 +45,9 @@ func _ready() -> void:
 	StateManager.selected_building.connect(_on_selected_building)
 	
 ## Function that gets called when a building is selected to build
-func _on_selected_building(building_data) ->  void:
+func _on_selected_building(building_data: BuildingData) ->  void:
 	StateManager.set_state(StateManager.State.SELECTED_BUILDING)
-
+	print(building_data.building_type)
 	## Delete the current blueprint
 	blueprint.queue_free()
 	
@@ -139,3 +139,11 @@ func is_tile_occupied(position: Vector2) -> bool:
 func _on_placed_building(building: Building) -> void:
 	occupied_tiles[building.position] = building
 	placed_building.emit(building)
+
+
+func _on_building_select_list_building_wanted(building: BuildingData) -> void:
+	print("Point 1 reached")
+	if not building == null:
+		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
+		_on_selected_building(building)
+		_on_build_mode()
