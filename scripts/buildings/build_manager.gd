@@ -142,7 +142,6 @@ func _on_placed_building(building: Building) -> void:
 
 
 func _on_building_select_list_building_wanted(building: BuildingData) -> void:
-	print("Point 1 reached")
 	if not building == null:
 		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
 		_on_selected_building(building)

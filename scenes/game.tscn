@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=17 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn" id="10_ir15t"]
 [ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/coal_mine_blueprint.tscn" id="11_ca42v"]
 [ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/wood_cutter_blueprint.tscn" id="12_rysoc"]
+[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UserInterfaceElements/BuildingSelectList.tscn" id="16_ca42v"]
 
 [node name="Game" type="Node2D"]
 
@@ -56,3 +57,13 @@ script = ExtResource("8_gee14")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ResourceUI" parent="UI" instance=ExtResource("9_0tnpc")]
+
+[node name="BuildingSelectList" parent="UI" instance=ExtResource("16_ca42v")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -416.0
+offset_right = 0.0
+grow_horizontal = 0
+
+[connection signal="building_wanted" from="UI/BuildingSelectList" to="BuildManager" method="_on_building_select_list_building_wanted"]

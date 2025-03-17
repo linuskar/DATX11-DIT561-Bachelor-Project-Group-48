@@ -75,7 +75,7 @@ func set_panel_text() -> void:
 	self.find_child("InfoText").clear()
 	
 	## Begin with the name of the building
-	var panel_text: String = "[font_size={10}][color=black]" + building_name + '\n'
+	var panel_text: String = "[font_size={12}][color=black]" + building_name + '\n'
 	panel_text += add_dict_to_panel(inputs, "Inputs")
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
