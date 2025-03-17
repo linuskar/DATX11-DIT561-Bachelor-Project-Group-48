@@ -5,7 +5,7 @@ var resource_nodes = {}
 var first_resource = false
 
 func _ready():
-	# Setup references to each resource node and its label
+	# References to each resource node and its label
 	resource_nodes[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood
 	resource_labels[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood/Label
 
@@ -15,7 +15,7 @@ func _ready():
 	resource_nodes[Enums.ResourceType.IRON_ORE] = $MarginContainer/HBoxContainer/Iron_Ore
 	resource_labels[Enums.ResourceType.IRON_ORE] = $MarginContainer/HBoxContainer/Iron_Ore/Label
 
-	# Hide all resource UIs at start
+	#Entire UI, and all of the children are hidden in the begining when no resources have been collected
 	visible = false
 	for node in resource_nodes.values():
 		node.visible = false
@@ -25,6 +25,7 @@ func _ready():
 
 func _on_update_UI(resource_type: Enums.ResourceType, amount: int) -> void:
 	if resource_type in resource_labels:
+		#First time collecting a resource, make UI visable
 		if not first_resource and amount > 0:
 			visible = true
 			first_resource = true
@@ -37,5 +38,6 @@ func _on_update_UI(resource_type: Enums.ResourceType, amount: int) -> void:
 		resource_labels[resource_type].text = str(amount)
 
 func _unhandled_input(event: InputEvent) -> void:
+	#Toggle UI, only possible after the first resource has been collected.
 	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB and first_resource:
 		visible = not visible
