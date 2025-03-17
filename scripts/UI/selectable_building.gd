@@ -1,4 +1,5 @@
-class_name SelectableBuilding extends Control
+class_name SelectableBuilding 
+extends Control
 
 ## Path pointing to the icon representing the building
 @export_file() var icon_path: String
@@ -61,15 +62,13 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 		var input_needed: int = data.get(resource)
 		string_data.set(resource_string, input_needed)
 		
-## Handling signal for pressing the left mouse button
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	## Handling press of left mouse button for selecting a building to buy
+	## and then place after
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if hovering_buy:
-			pass
-			## TODO: fix with placing building when selecting in GUI
-			# var instance = building_scene.instantiate()
-			# var
-			# add_child(instance)
+			accept_event()
+			StateManager.selected_building.emit(building_data)
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
