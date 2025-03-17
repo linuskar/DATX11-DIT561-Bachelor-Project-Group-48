@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_40wm7"]
 [ext_resource type="Script" uid="uid://bkqiboubd2jx3" path="res://scripts/UI/coal_mine_selectable.gd" id="1_x184f"]
-[ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_miner.tres" id="2_iq7g2"]
+[ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_iq7g2"]
 [ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="2_x184f"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="3_iq7g2"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_noyyr"]
