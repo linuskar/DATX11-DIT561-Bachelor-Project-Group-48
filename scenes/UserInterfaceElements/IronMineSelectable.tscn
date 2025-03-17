@@ -2607,6 +2607,7 @@ offset_right = -832.0
 offset_bottom = -456.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_op2ex")
 icon_path = "uid://d1566usymavrh"
 
@@ -2664,5 +2665,6 @@ horizontal_alignment = 1
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 184.0
+mouse_filter = 1
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_selected"]

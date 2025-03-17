@@ -146,3 +146,8 @@ func _on_building_select_list_building_wanted(building: BuildingData) -> void:
 		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
 		_on_selected_building(building)
 		_on_build_mode()
+
+
+func _on_building_select_list_build_list_entered() -> void:
+	StateManager.set_state(StateManager.State.IDLE)
+	_on_build_mode()

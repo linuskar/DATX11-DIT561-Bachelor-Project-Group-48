@@ -3433,6 +3433,7 @@ layout_mode = 2
 [node name="IronMineSelectable" parent="ScrollContainer/Buildings" instance=ExtResource("6_0e8ga")]
 layout_mode = 2
 
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="selected" from="ScrollContainer/Buildings/CoalMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="ScrollContainer/Buildings/IronMineSelectable" to="." method="_on_building_selected"]
