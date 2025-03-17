@@ -95,20 +95,13 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 		text += '\n'
 	return text
 
-## When the mouse hovers over the buy label set hovering_buy to true
-func _on_buy_mouse_entered() -> void:
-	hovering_buy = true
-
-## When the mouse stops hovering over the buy label set hovering_buy to false
-func _on_buy_mouse_exited() -> void:
-	hovering_buy = false
-
-
+## Sets this building into its 'selected' styling
 func _on_selected() -> void:
 	self.find_child("MainBoxRegular").visible = false
 	self.find_child("MainBoxSelected").visible = true
 	emit_signal("selected", self)
 
+## Sets this building to its 'unselected' styling
 func unselected() -> void:
 	self.find_child("MainBoxRegular").visible = true
 	self.find_child("MainBoxSelected").visible = false
