@@ -59,11 +59,14 @@ script = ExtResource("8_gee14")
 [node name="ResourceUI" parent="UI" instance=ExtResource("9_0tnpc")]
 
 [node name="BuildingSelectList" parent="UI" instance=ExtResource("16_ca42v")]
+layout_direction = 2
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -416.0
 offset_right = 0.0
 grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(416, 0)
 
 [connection signal="building_wanted" from="UI/BuildingSelectList" to="BuildManager" method="_on_building_select_list_building_wanted"]
