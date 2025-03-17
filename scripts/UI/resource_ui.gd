@@ -1,20 +1,41 @@
 extends PanelContainer
 
 var resource_labels = {}
+var resource_nodes = {}
+var first_resource = false
 
 func _ready():
-	# Setup references to each resource label
+	# Setup references to each resource node and its label
+	resource_nodes[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood
 	resource_labels[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood/Label
+
+	resource_nodes[Enums.ResourceType.COAL] = $MarginContainer/HBoxContainer/Coal
 	resource_labels[Enums.ResourceType.COAL] = $MarginContainer/HBoxContainer/Coal/Label
+
+	resource_nodes[Enums.ResourceType.IRON_ORE] = $MarginContainer/HBoxContainer/Iron_Ore
 	resource_labels[Enums.ResourceType.IRON_ORE] = $MarginContainer/HBoxContainer/Iron_Ore/Label
 
-	# Connect to the global signal
+	# Hide all resource UIs at start
+	visible = false
+	for node in resource_nodes.values():
+		node.visible = false
+	
+	# Connect to global signal
 	ResourceSignals.update_UI.connect(_on_update_UI)
 
 func _on_update_UI(resource_type: Enums.ResourceType, amount: int) -> void:
 	if resource_type in resource_labels:
+		if not first_resource and amount > 0:
+			visible = true
+			first_resource = true
+		
+		# Reveal resource UI if hidden and first time gathered
+		if not resource_nodes[resource_type].visible and amount > 0:
+			resource_nodes[resource_type].visible = true
+
+		# Update resource amount
 		resource_labels[resource_type].text = str(amount)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB and first_resource:
 		visible = not visible

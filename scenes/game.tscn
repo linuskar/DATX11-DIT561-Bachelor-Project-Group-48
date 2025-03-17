@@ -43,6 +43,7 @@ script = ExtResource("8_gee14")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ResourceUI" type="PanelContainer" parent="UI"]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("9_0tnpc")
