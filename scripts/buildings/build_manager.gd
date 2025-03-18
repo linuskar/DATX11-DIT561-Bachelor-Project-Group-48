@@ -45,9 +45,9 @@ func _ready() -> void:
 	StateManager.selected_building.connect(_on_selected_building)
 	
 ## Function that gets called when a building is selected to build
-func _on_selected_building(building_data) ->  void:
+func _on_selected_building(building_data: BuildingData) ->  void:
 	StateManager.set_state(StateManager.State.SELECTED_BUILDING)
-
+	print(building_data.building_type)
 	## Delete the current blueprint
 	blueprint.queue_free()
 	
@@ -139,3 +139,17 @@ func is_tile_occupied(position: Vector2) -> bool:
 func _on_placed_building(building: Building) -> void:
 	occupied_tiles[building.position] = building
 	placed_building.emit(building)
+
+## When the mouse has exited the building list with a selected building:
+## Set the currently selected building and show its blueprint
+func _on_building_select_list_building_wanted(building: BuildingData) -> void:
+	if not building == null:
+		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
+		_on_selected_building(building)
+		_on_build_mode()
+
+## When the mouse has entered the building list:
+## Disable the state of placing a building and hide the blueprint
+func _on_building_select_list_build_list_entered() -> void:
+	StateManager.set_state(StateManager.State.IDLE)
+	_on_build_mode()

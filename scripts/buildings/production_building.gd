@@ -124,7 +124,7 @@ func _produce_goods() -> void:
 		
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
-		ResourceSignals.add_resource.emit(produced_good, produced_good_stored)
+		ResourceSignals.add_resource.emit(produced_good, produced_good_generated)
 		
 ## Function to use the resources from input in a production building.
 func _use_input_recipe() -> void:

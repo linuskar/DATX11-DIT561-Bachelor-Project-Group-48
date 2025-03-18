@@ -7,6 +7,10 @@ extends Control
 ## The metadata for building that is selected
 @export var building_data: BuildingData
 
+## Signal to be emitted when this building is selected. 
+## Emitted together with the building itself.
+signal selected(building: SelectableBuilding)
+
 ## The cost of the building
 @export var cost: int
 
@@ -33,6 +37,9 @@ var outputs: Dictionary[String, int]
 
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
+	
+	# Set the 'selected' version of the main box invisible
+	self.find_child("MainBoxSelected").visible = false
 	
 	init_resource_data(max_storage, building_data.max_storage)
 	init_resource_data(outputs, building_data.output_generation)
@@ -68,7 +75,7 @@ func set_panel_text() -> void:
 	self.find_child("InfoText").clear()
 	
 	## Begin with the name of the building
-	var panel_text: String = "[font_size={10}][color=black]" + building_name + '\n'
+	var panel_text: String = "[font_size={12}][color=black]" + building_name + '\n'
 	panel_text += add_dict_to_panel(inputs, "Inputs")
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
@@ -88,10 +95,17 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 		text += '\n'
 	return text
 
-## When the mouse hovers over the buy label set hovering_buy to true
-func _on_buy_mouse_entered() -> void:
-	hovering_buy = true
+## Sets this building into its 'selected' styling
+func _on_selected() -> void:
+	self.find_child("MainBoxRegular").visible = false
+	self.find_child("MainBoxSelected").visible = true
+	emit_signal("selected", self)
 
-## When the mouse stops hovering over the buy label set hovering_buy to false
-func _on_buy_mouse_exited() -> void:
-	hovering_buy = false
+## Sets this building to its 'unselected' styling
+func unselected() -> void:
+	self.find_child("MainBoxRegular").visible = true
+	self.find_child("MainBoxSelected").visible = false
+	
+
+func get_building_data() -> BuildingData:
+	return self.building_data

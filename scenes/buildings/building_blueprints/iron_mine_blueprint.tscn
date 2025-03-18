@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dsw66e8grfp4r" path="res://scripts/buildings/building.gd" id="1_8jiqa"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_383lo"]
-[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/factory.png" id="3_8ialb"]
+[ext_resource type="Texture2D" uid="uid://d1566usymavrh" path="res://assets/pixilart-drawing.png" id="3_8jiqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
 size = Vector2(32, 32)
@@ -15,4 +15,5 @@ building_data = ExtResource("2_383lo")
 shape = SubResource("RectangleShape2D_qb2p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_8ialb")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_8jiqa")
