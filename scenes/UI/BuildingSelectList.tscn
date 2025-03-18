@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_qxi1g"]
 [ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="2_0e8ga"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_qxi1g"]
-[ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UserInterfaceElements/CoalMineSelectable.tscn" id="5_uixaa"]
-[ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UserInterfaceElements/IronMineSelectable.tscn" id="6_0e8ga"]
+[ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/CoalMineSelectable.tscn" id="5_uixaa"]
+[ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/IronMineSelectable.tscn" id="6_0e8ga"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxi1g"]
 texture = ExtResource("1_ps4gq")

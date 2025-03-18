@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn" id="10_ir15t"]
 [ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/coal_mine_blueprint.tscn" id="11_ca42v"]
 [ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/wood_cutter_blueprint.tscn" id="12_rysoc"]
-[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UserInterfaceElements/BuildingSelectList.tscn" id="16_ca42v"]
+[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/BuildingSelectList.tscn" id="16_ca42v"]
 
 [node name="Game" type="Node2D"]
 
