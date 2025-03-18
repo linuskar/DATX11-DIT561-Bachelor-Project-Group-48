@@ -8,6 +8,7 @@
 script = ExtResource("1_vr1b1")
 
 [node name="ResourceUI" parent="." instance=ExtResource("1_4ucgc")]
+visible = true
 
 [node name="BuildingSelectList" parent="." instance=ExtResource("2_yl4mc")]
 

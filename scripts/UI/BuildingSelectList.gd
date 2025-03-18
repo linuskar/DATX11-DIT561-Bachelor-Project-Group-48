@@ -33,3 +33,7 @@ func _on_mouse_exited() -> void:
 func _on_mouse_entered() -> void:
 	if not selected == null:
 		build_list_entered.emit()
+
+
+func _on_open_build_list() -> void:
+	self.find_child("List").visible = not self.find_child("List").visible
