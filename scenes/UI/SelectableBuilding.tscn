@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=4 uid="uid://ddwmp6n5prn23"]
 
-[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="1_v46n7"]
-[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_xjepk"]
-[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="3_fylbn"]
-[ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="3_p1sj4"]
-[ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="3_vg823"]
-[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="4_qb25d"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_52oqs"]
+[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="2_d0swc"]
+[ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="3_cdj34"]
+[ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="4_kabxr"]
+[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="5_lf3y8"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_d2u0l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fylbn"]
-texture = ExtResource("3_fylbn")
+texture = ExtResource("2_d0swc")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 1:0/0 = 0
@@ -1148,7 +1148,7 @@ tile_size = Vector2i(8, 8)
 sources/1 = SubResource("TileSetAtlasSource_fylbn")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtjy4"]
-texture = ExtResource("3_vg823")
+texture = ExtResource("3_cdj34")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 1:0/0 = 0
@@ -1584,7 +1584,7 @@ tile_size = Vector2i(8, 8)
 sources/3 = SubResource("TileSetAtlasSource_vtjy4")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wn0kh"]
-texture = ExtResource("3_vg823")
+texture = ExtResource("3_cdj34")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 1:0/0 = 0
@@ -1976,7 +1976,7 @@ texture_region_size = Vector2i(8, 8)
 29:10/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k1d1a"]
-texture = ExtResource("3_p1sj4")
+texture = ExtResource("4_kabxr")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 1:0/0 = 0
@@ -2593,7 +2593,7 @@ sources/0 = SubResource("TileSetAtlasSource_wn0kh")
 sources/1 = SubResource("TileSetAtlasSource_k1d1a")
 
 [sub_resource type="LabelSettings" id="LabelSettings_v46n7"]
-font = ExtResource("4_qb25d")
+font = ExtResource("6_d2u0l")
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
@@ -2610,7 +2610,7 @@ grow_vertical = 2
 scale = Vector2(0.599748, 0.599748)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_xjepk")
+script = ExtResource("1_52oqs")
 icon_path = "uid://t2kml7pea27i"
 
 [node name="MainBoxSelected" type="TileMapLayer" parent="."]
@@ -2653,7 +2653,7 @@ offset_left = 32.0
 offset_top = 32.0
 offset_right = 128.0
 offset_bottom = 128.0
-texture = ExtResource("1_v46n7")
+texture = ExtResource("5_lf3y8")
 
 [node name="BuildingNameCost" type="Label" parent="."]
 layout_mode = 0

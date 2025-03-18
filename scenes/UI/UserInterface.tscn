@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://0ua1sicv06wq"]
+
+[ext_resource type="PackedScene" uid="uid://b4g337wewhst2" path="res://scenes/UI/resource_ui.tscn" id="1_4ucgc"]
+[ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
+[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/BuildingSelectList.tscn" id="2_yl4mc"]
+
+[node name="UserInterface" type="CanvasLayer"]
+script = ExtResource("1_vr1b1")
+
+[node name="ResourceUI" parent="." instance=ExtResource("1_4ucgc")]
+
+[node name="BuildingSelectList" parent="." instance=ExtResource("2_yl4mc")]
+
+[connection signal="build_list_entered" from="BuildingSelectList" to="." method="_on_building_select_list_build_list_entered"]
+[connection signal="building_wanted" from="BuildingSelectList" to="." method="_on_building_select_list_building_wanted"]
