@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwfw57d10a85j"]
 
-[ext_resource type="Script" uid="uid://d1rtbhcf3jhw3" path="res://scripts/buildings/wood_cutter.gd" id="1_4m5a3"]
+[ext_resource type="Script" uid="uid://d1rtbhcf3jhw3" path="res://scripts/buildings/gathering_buildings/wood_cutter.gd" id="1_4m5a3"]
 [ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="2_hjr1d"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/factory.png" id="3_6l22e"]
 

@@ -14,7 +14,10 @@ func _ready():
 
 	resource_nodes[Enums.ResourceType.IRON_ORE] = $MarginContainer/HBoxContainer/Iron_Ore
 	resource_labels[Enums.ResourceType.IRON_ORE] = $MarginContainer/HBoxContainer/Iron_Ore/Label
-
+	
+	resource_nodes[Enums.ResourceType.ELECTRICITY] = $MarginContainer/HBoxContainer/Electricity
+	resource_labels[Enums.ResourceType.ELECTRICITY] = $MarginContainer/HBoxContainer/Electricity/Label
+	
 	#Entire UI, and all of the children are hidden in the begining when no resources have been collected
 	visible = false
 	for node in resource_nodes.values():

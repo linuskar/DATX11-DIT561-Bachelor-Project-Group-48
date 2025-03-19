@@ -12,6 +12,7 @@ enum BuildingType {
 	IRON_MINE, ## The building type for an iron mine
 	COAL_MINE, ## The building type for a coal mine
 	WOOD_CUTTER, ## The building type for a wood cutter
+	COAL_POWER_PLANT, ## The building type for a coal power plant
 }
 
 ## The different types of resources in the game
@@ -55,5 +56,6 @@ static func building_type_to_string(building_type: BuildingType) -> String:
 		BuildingType.IRON_MINE: "IRON MINE",
 		BuildingType.COAL_MINE: "COAL MINE",
 		BuildingType.WOOD_CUTTER: "WOOD CUTTER",
+		BuildingType.COAL_POWER_PLANT: "COAL POWER PLANT"
 	}
 	return building_names.get(building_type, "UNKNOWN") 

@@ -6,15 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="4_gee14"]
 [ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="5_0tnpc"]
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="6_vtaks"]
-[ext_resource type="PackedScene" uid="uid://isbsjsm2mmil" path="res://scenes/buildings/iron_mine.tscn" id="7_ir15t"]
+[ext_resource type="PackedScene" uid="uid://isbsjsm2mmil" path="res://scenes/buildings/gathering_buildings/iron_mine.tscn" id="7_ir15t"]
 [ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="7_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://djt4gpmfrp805" path="res://scenes/buildings/coal_mine.tscn" id="8_ca42v"]
+[ext_resource type="PackedScene" uid="uid://djt4gpmfrp805" path="res://scenes/buildings/gathering_buildings/coal_mine.tscn" id="8_ca42v"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://b4g337wewhst2" path="res://scenes/UI/resource_ui.tscn" id="9_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/wood_cutter.tscn" id="9_rysoc"]
-[ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn" id="10_ir15t"]
-[ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/coal_mine_blueprint.tscn" id="11_ca42v"]
-[ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/wood_cutter_blueprint.tscn" id="12_rysoc"]
+[ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/gathering_buildings/wood_cutter.tscn" id="9_rysoc"]
+[ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="10_ir15t"]
+[ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/gathering_buildings/coal_mine_blueprint.tscn" id="11_ca42v"]
+[ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/gathering_buildings/wood_cutter_blueprint.tscn" id="12_rysoc"]
 [ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UserInterfaceElements/BuildingSelectList.tscn" id="16_ca42v"]
 
 [node name="Game" type="Node2D"]
@@ -24,9 +24,6 @@
 [node name="MapLayer" parent="." instance=ExtResource("2_yqjtg")]
 
 [node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]
-
-[node name="BuildingBlueprint" parent="GameManager" instance=ExtResource("4_gee14")]
-visible = false
 
 [node name="ResourceManager" type="Node" parent="."]
 script = ExtResource("5_0tnpc")

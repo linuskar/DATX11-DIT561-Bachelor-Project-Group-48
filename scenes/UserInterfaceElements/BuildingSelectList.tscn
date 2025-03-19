@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=15 format=4 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_ps4gq"]
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_qxi1g"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_qxi1g"]
 [ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UserInterfaceElements/CoalMineSelectable.tscn" id="5_uixaa"]
 [ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UserInterfaceElements/IronMineSelectable.tscn" id="6_0e8ga"]
+[ext_resource type="PackedScene" uid="uid://bcpxbii6e6t0h" path="res://scenes/UserInterfaceElements/CoalPowerPlantSelectable.tscn" id="7_75y8c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxi1g"]
 texture = ExtResource("1_ps4gq")
@@ -3433,7 +3434,11 @@ layout_mode = 2
 [node name="IronMineSelectable" parent="ScrollContainer/Buildings" instance=ExtResource("6_0e8ga")]
 layout_mode = 2
 
+[node name="CoalPowerPlantSelectable" parent="ScrollContainer/Buildings" instance=ExtResource("7_75y8c")]
+layout_mode = 2
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="selected" from="ScrollContainer/Buildings/CoalMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="ScrollContainer/Buildings/IronMineSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="ScrollContainer/Buildings/CoalPowerPlantSelectable" to="." method="_on_building_selected"]
