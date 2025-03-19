@@ -1,15 +1,16 @@
-[gd_scene load_steps=18 format=4 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=19 format=4 uid="uid://boeiac6bfcce2"]
 
-[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_ps4gq"]
-[ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_qxi1g"]
-[ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="2_0e8ga"]
-[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_qxi1g"]
-[ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/CoalMineSelectable.tscn" id="5_uixaa"]
-[ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/IronMineSelectable.tscn" id="6_0e8ga"]
-[ext_resource type="Script" uid="uid://pd7rkytnysg2" path="res://scripts/UI/build_list_button.gd" id="6_cxopj"]
+[ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_dphbc"]
+[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="2_de1jr"]
+[ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="3_13qxb"]
+[ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/Selectables/CoalMineSelectable.tscn" id="4_2uf64"]
+[ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/Selectables/IronMineSelectable.tscn" id="5_2mva2"]
+[ext_resource type="PackedScene" uid="uid://bhrcu48dc2f50" path="res://scenes/UI/Selectables/WoodCutterSelectable.tscn" id="6_de1jr"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_epysl"]
+[ext_resource type="Script" uid="uid://pd7rkytnysg2" path="res://scripts/UI/build_list_button.gd" id="7_djsgt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxi1g"]
-texture = ExtResource("1_ps4gq")
+texture = ExtResource("2_de1jr")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 1:0/0 = 0
@@ -1149,7 +1150,7 @@ tile_size = Vector2i(8, 8)
 sources/1 = SubResource("TileSetAtlasSource_qxi1g")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_75y8c"]
-texture = ExtResource("2_0e8ga")
+texture = ExtResource("3_13qxb")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 1:0/0 = 0
@@ -2241,7 +2242,7 @@ tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_75y8c")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8h57h"]
-texture = ExtResource("2_0e8ga")
+texture = ExtResource("3_13qxb")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 1:0/0 = 0
@@ -3333,7 +3334,7 @@ tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_8h57h")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y12is"]
-texture = ExtResource("1_ps4gq")
+texture = ExtResource("2_de1jr")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 1:0/0 = 0
@@ -4473,11 +4474,11 @@ tile_size = Vector2i(8, 8)
 sources/1 = SubResource("TileSetAtlasSource_y12is")
 
 [sub_resource type="LabelSettings" id="LabelSettings_oip2v"]
-font = ExtResource("2_qxi1g")
+font = ExtResource("6_epysl")
 font_size = 36
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxopj"]
-atlas = ExtResource("1_ps4gq")
+atlas = ExtResource("2_de1jr")
 region = Rect2(4.9201, 5.20201, 21.5651, 21.6314)
 
 [node name="BuildingSelectList" type="Control"]
@@ -4490,7 +4491,7 @@ offset_bottom = 640.0
 grow_horizontal = 0
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(400, 0)
-script = ExtResource("1_qxi1g")
+script = ExtResource("1_dphbc")
 
 [node name="List" type="Control" parent="."]
 visible = false
@@ -4520,10 +4521,13 @@ clip_contents = true
 layout_direction = 2
 layout_mode = 2
 
-[node name="CoalMineSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("5_uixaa")]
+[node name="CoalMineSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("4_2uf64")]
 layout_mode = 2
 
-[node name="IronMineSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("6_0e8ga")]
+[node name="IronMineSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("5_2mva2")]
+layout_mode = 2
+
+[node name="WoodCutterSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("6_de1jr")]
 layout_mode = 2
 
 [node name="OpenListButton" type="Control" parent="."]
@@ -4570,12 +4574,13 @@ pivot_offset = Vector2(48, 0)
 mouse_filter = 1
 texture_normal = SubResource("AtlasTexture_cxopj")
 stretch_mode = 0
-script = ExtResource("6_cxopj")
+script = ExtResource("7_djsgt")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="selected" from="List/ScrollContainer/Buildings/CoalMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/ScrollContainer/Buildings/IronMineSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/ScrollContainer/Buildings/WoodCutterSelectable" to="." method="_on_building_selected"]
 [connection signal="button_down" from="OpenListButton/Button" to="." method="_on_open_build_list"]
 [connection signal="mouse_entered" from="OpenListButton/Button" to="OpenListButton/Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="OpenListButton/Button" to="OpenListButton/Button" method="_on_mouse_exited"]

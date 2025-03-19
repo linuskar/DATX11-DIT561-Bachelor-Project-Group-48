@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b4g337wewhst2" path="res://scenes/UI/resource_ui.tscn" id="1_4ucgc"]
 [ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
-[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/BuildingSelectList.tscn" id="2_yl4mc"]
+[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/Selectables/BuildingSelectList.tscn" id="2_yl4mc"]
 
 [node name="UserInterface" type="CanvasLayer"]
 script = ExtResource("1_vr1b1")
