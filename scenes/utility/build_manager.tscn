@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cs67hiut6aq7j"]
+[gd_scene load_steps=11 format=3 uid="uid://cs67hiut6aq7j"]
 
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="1_aenhx"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="2_ofppe"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/gathering_buildings/wood_cutter_blueprint.tscn" id="4_y1ev4"]
 [ext_resource type="PackedScene" uid="uid://cbk8oqqcmsa30" path="res://scenes/buildings/power_generators/coal_power_plant.tscn" id="5_dr161"]
 [ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="5_rqr45"]
+[ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/gathering_buildings/coal_mine_blueprint.tscn" id="8_vw4yu"]
 [ext_resource type="PackedScene" uid="uid://bn5arwp4ceymc" path="res://scenes/buildings/building_blueprints/power_generators/coal_power_plant_blueprint.tscn" id="10_xcllt"]
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
@@ -22,7 +23,7 @@ buildings = Dictionary[int, Resource]({
 building_blueprints = Dictionary[int, Resource]({
 0: ExtResource("5_rqr45"),
 1: ExtResource("2_ofppe"),
-2: ExtResource("10_xcllt"),
+2: ExtResource("8_vw4yu"),
 3: ExtResource("4_y1ev4"),
 4: ExtResource("10_xcllt")
 })

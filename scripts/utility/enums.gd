@@ -14,6 +14,14 @@ enum BuildingType {
 	WOOD_CUTTER, ## The building type for a wood cutter
 	COAL_POWER_PLANT, ## The building type for a coal power plant
 }
+## Function for checking if the BuildingType is a gathering building
+static func is_gathering_building(building_type: BuildingType) -> bool:
+	var gathering_buildings: Array[BuildingType] = [BuildingType.IRON_MINE, BuildingType.COAL_MINE, BuildingType.WOOD_CUTTER]
+	return building_type in gathering_buildings
+
+static func is_power_generator(building_type: BuildingType) -> bool:
+	var power_generators: Array[BuildingType] = [BuildingType.COAL_POWER_PLANT]
+	return building_type in power_generators
 
 ## The different types of resources in the game
 enum ResourceType {

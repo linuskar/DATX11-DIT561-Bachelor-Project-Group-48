@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="2_84p0k"]
 [ext_resource type="Texture2D" uid="uid://b6oypu8yvcr4e" path="res://assets/UI/Resource UI/coal.tres" id="3_wg5fy"]
 [ext_resource type="Texture2D" uid="uid://b8dmip3wmfd3n" path="res://assets/UI/Resource UI/iron.tres" id="4_31mwh"]
-[ext_resource type="Texture2D" uid="uid://bsdm0p4ulsicu" path="res://assets/UI/Resource UI/electricity.png" id="5_84p0k"]
+[ext_resource type="Texture2D" uid="uid://bphavxn6qmicm" path="res://assets/UI/Resource UI/electricity.png" id="5_84p0k"]
 
 [node name="ResourceUI" type="PanelContainer"]
 visible = false

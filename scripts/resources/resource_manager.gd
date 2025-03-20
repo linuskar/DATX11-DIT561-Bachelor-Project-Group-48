@@ -36,7 +36,7 @@ func init_resources() -> void:
 		
 ## Function for initaliazing a building that is gathering a resource
 func init_building_gathering(building: Building) -> void:
-	if building.building_type != Enums.BuildingType.COAL_POWER_PLANT:
+	if Enums.is_gathering_building(building.building_type):
 		var resource_tile: GatherableResource = null
 		
 		if building.position in resource_tiles:
@@ -55,10 +55,6 @@ func init_building_gathering(building: Building) -> void:
 			print(building_type_string + " is gathering " + resource_type_string + " on " + str(building.position))
 			
 			building.near_resource = true
-			## Possible way with timer for gathering resource
-			# Start timer for gathering of resource
-			# var resource_tile: GatherableResource = resource_tiles[building.position]
-			# var resource_quantity: int = resource_tile.gather_resource()
 		else:
 			building.near_resource = false
 			print(building_type_string + " is not gathering on " + str(building.position))
@@ -68,4 +64,3 @@ func gather_resources() -> void:
 	for building in buildings_gathering:
 		var resource_tile: GatherableResource = resource_tiles[building.position]
 		var resource_quantity: int = resource_tile.gather_resource()
-		# print("Gathered " + str(resource_quantity) + " " + Enums.ResourceType.keys()[resource_tile.resource_type])
