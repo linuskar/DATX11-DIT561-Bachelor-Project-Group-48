@@ -32,7 +32,7 @@ func can_place_building(building: Building) -> bool:
 		# print("not in map")
 		return false
 	
-	var valid_tiles_to_place: Array[Enums.TileType] = building.building_data.valid_placeable_tiles
+	var valid_tiles_to_place: Array[Enums.TileType] = building.building_data.valid_tile_types_to_place_on
 	var source_id = null
 	
 	## Check if any valid cells exists at the 
