@@ -24,12 +24,13 @@ enum ResourceType {
 	NONE, ## The resource type for nothing
 }
 
+## The different types of tiles in the game
 enum TileType {
-	WATER,
-	DIRT,
-	STONE,
-	GRASS,
-	RESOURCE,
+	WATER, ## The tile type for water
+	DIRT, ## The tile type for dirt
+	STONE, ## The tile type for stone
+	GRASS, ## The tile type for grass
+	RESOURCE, ## The tile type for a resource
 }
 
 ## Function for checking if the ResourceType is an emission
@@ -65,3 +66,14 @@ static func building_type_to_string(building_type: BuildingType) -> String:
 		BuildingType.WOOD_CUTTER: "WOOD CUTTER",
 	}
 	return building_names.get(building_type, "UNKNOWN") 
+
+## Function for returning the string equivalent of a TileType
+static func tile_type_to_string(tile_type: TileType) -> String:
+	var tile_names: Dictionary[TileType, String] = {
+		TileType.WATER: "WATER",
+		TileType.DIRT: "DIRT",
+		TileType.STONE: "STONE",
+		TileType.GRASS: "GRASS",
+		TileType.RESOURCE: "RESOURCE",
+	}
+	return tile_names.get(tile_type, "UNKNOWN") 
