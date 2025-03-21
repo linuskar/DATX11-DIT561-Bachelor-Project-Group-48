@@ -15,3 +15,39 @@ extends Node2D
 @onready var grass_layer: TileMapLayer = $Grass
 ## The resources layer of the TileMap
 @onready var resources_layer: TileMapLayer = $Resources
+
+func can_place_building(building: Building) -> bool:
+	var valid_tiles_to_place: Array[Enums.TileType] = building.building_data.valid_placeable_tiles
+	var source_id = null
+	
+	for tile_type in valid_tiles_to_place:
+		## Mouse position in world coordinates
+		var world_mouse_pos: Vector2 = get_parent().get_global_mouse_position()  
+		## Convert to local TileMap coordinates
+		var local_mouse_pos: Vector2 = dirt_layer.to_local(world_mouse_pos)  
+		var tile_pos: Vector2 
+		
+		## Check if any valid cells exists at the 
+		## position that the building is placed
+		match tile_type:
+			Enums.TileType.WATER:
+				## See if the cell exists at the position
+				tile_pos = water_layer.local_to_map(local_mouse_pos) 
+				source_id = water_layer.get_cell_source_id(tile_pos)
+			Enums.TileType.DIRT:
+				tile_pos = dirt_layer.local_to_map(local_mouse_pos) 
+				source_id = dirt_layer.get_cell_source_id(tile_pos)
+			Enums.TileType.STONE:
+				tile_pos = stone_layer.local_to_map(local_mouse_pos) 
+				source_id = stone_layer.get_cell_source_id(tile_pos)
+			Enums.TileType.GRASS:
+				tile_pos = grass_layer.local_to_map(local_mouse_pos) 
+				source_id = grass_layer.get_cell_source_id(tile_pos)
+			Enums.TileType.RESOURCE:
+				tile_pos = resources_layer.local_to_map(local_mouse_pos) 
+				source_id = resources_layer.get_cell_source_id(tile_pos)
+		## If cell does not exist
+		if source_id != -1:
+			return true
+			
+	return false

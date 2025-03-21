@@ -24,6 +24,14 @@ enum ResourceType {
 	NONE, ## The resource type for nothing
 }
 
+enum TileType {
+	WATER,
+	DIRT,
+	STONE,
+	GRASS,
+	RESOURCE,
+}
+
 ## Function for checking if the ResourceType is an emission
 static func is_emission(resource_type: ResourceType) -> bool:
 	var emissions: Array[ResourceType] = [ResourceType.CO2]
