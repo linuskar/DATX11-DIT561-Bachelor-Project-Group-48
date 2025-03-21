@@ -4529,6 +4529,7 @@ layout_mode = 2
 
 [node name="WoodCutterSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("6_de1jr")]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="OpenListButton" type="Control" parent="."]
 layout_mode = 1

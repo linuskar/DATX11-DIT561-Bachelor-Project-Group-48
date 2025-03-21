@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 
 var resource_labels = {}
 var resource_nodes = {}
