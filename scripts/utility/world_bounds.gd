@@ -17,6 +17,6 @@ func _ready():
 func _on_mouse_entered():
 	mouse_in_map.emit(true)
 	
-## Function for when the mouse enters the map bounds
+## Function for when the mouse exits the map bounds
 func _on_mouse_exited():
 	mouse_in_map.emit(false)
