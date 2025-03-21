@@ -19,8 +19,8 @@ var output_storage: Dictionary[Enums.ResourceType, int]
 ## The rates/quantity of resources the production building outputs each cycle.
 var output_generation: Dictionary[Enums.ResourceType, int] 
 
-## The emissions the production building outputs.
-var emissions: Array[Enums.ResourceType]
+## The byproducts the production building outputs.
+var byproducts: Array[Enums.ResourceType]
 ## The produced goods the production building outputs.
 var produced_goods: Array[Enums.ResourceType]
 
@@ -49,8 +49,8 @@ func init_production_building() -> void:
 	output_generation = building_data.output_generation
 
 	for output in output_generation.keys():
-		if Enums.is_emission(output) == true:
-			emissions.append(output)
+		if Enums.is_byproduct(output) == true:
+			byproducts.append(output)
 		elif Enums.is_produced_good(output) == true:
 			produced_goods.append(output)
 			
@@ -71,7 +71,7 @@ func _output_resources() -> void:
 		print(building_type_string + " is producing")
 		_produce_goods()
 		_use_input_recipe()
-		_generate_waste_and_emissions()
+		_generate_byproducts()
 
 ## Function to check if the production building can produce.
 func check_if_can_produce() -> bool:
@@ -138,11 +138,11 @@ func _use_input_recipe() -> void:
 			
 		input_storage.set(input, input_left)
 		
-## Function to generate waste and emissions from a production building.
-func _generate_waste_and_emissions() -> void:
-	for emission in emissions:
-		var emission_generated: int = output_generation.get(emission)
-		ResourceSignals.add_resource.emit(emission, emission_generated)
+## Function to generate byproducts from a production building.
+func _generate_byproducts() -> void:
+	for byproduct in byproducts:
+		var byproduct_generated: int = output_generation.get(byproduct)
+		ResourceSignals.add_resource.emit(byproduct, byproduct_generated)
 	
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:

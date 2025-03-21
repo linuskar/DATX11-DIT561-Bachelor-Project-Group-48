@@ -9,4 +9,3 @@ extends ProductionBuilding
 func _ready():
 	super()
 	input_storage.set(Enums.ResourceType.COAL, 100)
-	
