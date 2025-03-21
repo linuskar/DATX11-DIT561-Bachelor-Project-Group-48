@@ -16,9 +16,22 @@ extends Node2D
 ## The resources layer of the TileMap
 @onready var resources_layer: TileMapLayer = $Resources
 
+## The bounds of the map, i.e. the playable area
+@onready var map_bounds: MapBounds = $MapBounds
+
+## Variable for if the mouse in the map bounds
+var mouse_in_map: bool
+
+func _ready() -> void:
+	map_bounds.mouse_in_map.connect(set_in_map)
+	
 ## Function checking if there is valid types of cells for the
 ## building to placed on, based on the position of the mouse
 func can_place_building(building: Building) -> bool:
+	if mouse_in_map == false:
+		# print("not in map")
+		return false
+	
 	var valid_tiles_to_place: Array[Enums.TileType] = building.building_data.valid_placeable_tiles
 	var source_id = null
 	
@@ -48,9 +61,13 @@ func can_place_building(building: Building) -> bool:
 			Enums.TileType.RESOURCE:
 				tile_pos = resources_layer.local_to_map(local_mouse_pos) 
 				source_id = resources_layer.get_cell_source_id(tile_pos)
-				
 		## If the cell does exist
 		if source_id != -1:
+			# print(Enums.tile_type_to_string(tile_type))
 			return true
 			
 	return false
+
+## Function to set the variable for if the mouse in the map bounds
+func set_in_map(is_in_map):
+	mouse_in_map = is_in_map
