@@ -2612,7 +2612,7 @@ scale = Vector2(0.599748, 0.599748)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_afr5s")
-icon_path = "uid://6lfnbx8m2wyt"
+icon_path = "uid://cyb5gnrnuag2x"
 building_data = ExtResource("2_afr5s")
 
 [node name="MainBoxSelected" type="TileMapLayer" parent="."]
