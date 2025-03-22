@@ -72,8 +72,16 @@ func _process(_delta) -> void:
 ## Function for updating the placement of the building blueprint
 func _update_blueprint():
 	var grid_pos: Vector2 = get_snapped_world_position()
-	blueprint.position = grid_pos
-
+	var blueprint_size: Vector2 = blueprint.building_data.building_size
+	
+	## To represent a top-left aligning placement along the grid
+	if blueprint_size.x == 2 and blueprint_size.y == 2:
+		grid_pos += Vector2(grid_size / 2, grid_size / 2)
+	elif blueprint_size.x == 3 and blueprint_size.y == 3:
+		grid_pos += Vector2(grid_size, grid_size)
+		
+	blueprint.position = grid_pos 
+	
 	## Checking for valid placement
 	if is_tile_occupied(grid_pos) or map_layer.can_place_building(blueprint) == false:
 		blueprint.modulate = invalid_placement_color
@@ -105,8 +113,8 @@ func get_snapped_world_position() -> Vector2:
 	## Get tile coordinates
 	var tile_pos: Vector2 = dirt_layer.local_to_map(local_mouse_pos)  
 	## Convert back to local position
-	var snapped_local_pos: Vector2 = dirt_layer.map_to_local(tile_pos)  
-	
+	var snapped_local_pos = dirt_layer.map_to_local(tile_pos)  
+
 	## Return the world coordinates
 	return dirt_layer.to_global(snapped_local_pos)
 
@@ -133,11 +141,34 @@ func place_building() -> void:
 	
 ## Function checking if a tile is occupied by another object
 func is_tile_occupied(position: Vector2) -> bool:
-	return occupied_tiles.has(position)
+	var blueprint_size: Vector2 = blueprint.building_data.building_size
+	var adjusted_pos: Vector2 = blueprint.position 
+
+	if blueprint_size.x == 2 and blueprint_size.y == 2:
+		adjusted_pos -= Vector2(grid_size / 2, grid_size / 2)	
+	elif blueprint_size.x == 3 and blueprint_size.y == 3:
+		adjusted_pos -= Vector2(grid_size,grid_size) 
+		
+	for x in range(blueprint_size.x):
+		for y in range(blueprint_size.y):
+			if occupied_tiles.has(adjusted_pos + Vector2(x *  grid_size, y * grid_size)):
+				return true
+	return false
 	
-## Function marking a tile as occupied for placing down a buiiling
+## Function marking tiles as occupied for placing down a buiiling
 func _on_placed_building(building: Building) -> void:
-	occupied_tiles[building.position] = building
+	var building_tile_size: Vector2 = building.building_data.building_size
+	var adjusted_pos: Vector2 = building.position 
+
+	if building_tile_size.x == 2 and building_tile_size.y == 2:
+		adjusted_pos -= Vector2(grid_size / 2,grid_size / 2)
+	elif building_tile_size.x == 3 and building_tile_size.y == 3:
+		adjusted_pos -= Vector2(grid_size, grid_size)
+
+	for x in range(building_tile_size.x):
+		for y in range(building_tile_size.y):
+			occupied_tiles[adjusted_pos + Vector2(x * 32, y * 32)] = building
+
 	placed_building.emit(building)
 
 ## When the mouse has exited the building list with a selected building:
