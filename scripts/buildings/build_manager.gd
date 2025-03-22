@@ -47,13 +47,11 @@ func _ready() -> void:
 ## Function that gets called when a building is selected to build
 func _on_selected_building(building_data: BuildingData) ->  void:
 	StateManager.set_state(StateManager.State.SELECTED_BUILDING)
-	print(building_data.building_type)
 	## Delete the current blueprint
 	blueprint.queue_free()
 	
 	## Add the new blueprint to the game of the currently selected building
 	var new_blueprint: Building = building_blueprints.get(building_data.building_type).instantiate()
-	print(Enums.building_type_to_string(building_data.building_type))
 	add_child(new_blueprint)
 	blueprint = new_blueprint
 	blueprint.show()

@@ -8,4 +8,3 @@ extends GatheringBuilding
 
 func _ready():
 	super()
-	print("placed iron mine")
