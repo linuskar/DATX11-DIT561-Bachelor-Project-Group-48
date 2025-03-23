@@ -8,3 +8,5 @@ extends Resource
 
 ## What type of building it is.
 @export var building_type: Enums.BuildingType
+## What types of tiles the building can be placed on 
+@export var valid_tile_types_to_place_on: Array[Enums.TileType]
