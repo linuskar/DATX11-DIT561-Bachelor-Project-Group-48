@@ -3436,13 +3436,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CoalPowerPlantSelectable" parent="ScrollContainer/Buildings" instance=ExtResource("7_75y8c")]
-custom_minimum_size = Vector2(320, 92)
 layout_mode = 2
-size_flags_vertical = 1
 
 [node name="BiomassPowerPlantSelectable" parent="ScrollContainer/Buildings" instance=ExtResource("8_xoyf1")]
 layout_mode = 2
-size_flags_vertical = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
