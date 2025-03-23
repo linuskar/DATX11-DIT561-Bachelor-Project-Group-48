@@ -72,18 +72,10 @@ func _process(_delta) -> void:
 ## Function for updating the placement of the building blueprint
 func _update_blueprint():
 	var grid_pos: Vector2 = get_snapped_world_position()
-	var blueprint_size: Vector2 = blueprint.building_data.building_size
-	
-	## To represent a top-left aligning placement along the grid
-	if blueprint_size.x == 2 and blueprint_size.y == 2:
-		grid_pos += Vector2(grid_size / 2, grid_size / 2)
-	elif blueprint_size.x == 3 and blueprint_size.y == 3:
-		grid_pos += Vector2(grid_size, grid_size)
-		
 	blueprint.position = grid_pos 
 	
 	## Checking for valid placement
-	if is_tile_occupied(grid_pos) or map_layer.can_place_building(blueprint) == false:
+	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false:
 		blueprint.modulate = invalid_placement_color
 		valid_placement = false
 	else:
@@ -111,12 +103,21 @@ func get_snapped_world_position() -> Vector2:
 	## Convert to local TileMap coordinates
 	var local_mouse_pos: Vector2 = dirt_layer.to_local(world_mouse_pos)  
 	## Get tile coordinates
-	var tile_pos: Vector2 = dirt_layer.local_to_map(local_mouse_pos)  
-	## Convert back to local position
-	var snapped_local_pos = dirt_layer.map_to_local(tile_pos)  
-
+	var tile_pos: Vector2i = dirt_layer.local_to_map(local_mouse_pos)  
+	
+	## Convert back to local position.
+	var snapped_local_pos: Vector2 = dirt_layer.map_to_local(tile_pos)  
+	var grid_pos: Vector2 = dirt_layer.to_global(snapped_local_pos)
+	var blueprint_size: Vector2 = blueprint.building_data.building_size
+	
+	## To represent a top-left aligning placement along the grid.
+	if blueprint_size.x == 2 and blueprint_size.y == 2:
+		grid_pos += Vector2(grid_size / 2, grid_size / 2)
+	elif blueprint_size.x == 3 and blueprint_size.y == 3:
+		grid_pos += Vector2(grid_size, grid_size)
+		
 	## Return the world coordinates
-	return dirt_layer.to_global(snapped_local_pos)
+	return grid_pos
 
 ## Function that is called when build mode signal is emitted
 func _on_build_mode() -> void:
@@ -130,7 +131,7 @@ func _on_build_mode() -> void:
 			blueprint.show()
 			blueprint.modulate = valid_placement_color
 			
-## Function for placing down a building
+## Function for placing down a building.
 func place_building() -> void:
 	## Instantiate the building and add it to the game and world
 	var building_type: Enums.BuildingType = blueprint.building_data.building_type
@@ -139,35 +140,40 @@ func place_building() -> void:
 	get_parent().add_child(new_building)
 	_on_placed_building(new_building)
 	
-## Function checking if a tile is occupied by another object
-func is_tile_occupied(position: Vector2) -> bool:
+## Function checking if the tiles where the blueprint
+## is are occupied by another object.
+func are_tiles_occupied() -> bool:
 	var blueprint_size: Vector2 = blueprint.building_data.building_size
 	var adjusted_pos: Vector2 = blueprint.position 
-
+	
+	## Adjust the position to start in a top-left manner
 	if blueprint_size.x == 2 and blueprint_size.y == 2:
 		adjusted_pos -= Vector2(grid_size / 2, grid_size / 2)	
 	elif blueprint_size.x == 3 and blueprint_size.y == 3:
-		adjusted_pos -= Vector2(grid_size,grid_size) 
+		adjusted_pos -= Vector2(grid_size, grid_size) 
 		
+	## See if there are occupied tiles based on the blueprint size
 	for x in range(blueprint_size.x):
 		for y in range(blueprint_size.y):
 			if occupied_tiles.has(adjusted_pos + Vector2(x *  grid_size, y * grid_size)):
 				return true
 	return false
 	
-## Function marking tiles as occupied for placing down a buiiling
+## Function marking tiles as occupied for placing down a building
 func _on_placed_building(building: Building) -> void:
 	var building_tile_size: Vector2 = building.building_data.building_size
 	var adjusted_pos: Vector2 = building.position 
-
+	
+	## Adjust the position to start in a top-left manner
 	if building_tile_size.x == 2 and building_tile_size.y == 2:
 		adjusted_pos -= Vector2(grid_size / 2,grid_size / 2)
 	elif building_tile_size.x == 3 and building_tile_size.y == 3:
 		adjusted_pos -= Vector2(grid_size, grid_size)
-
+	
+	## Mark occupied tiles based on the building size
 	for x in range(building_tile_size.x):
 		for y in range(building_tile_size.y):
-			occupied_tiles[adjusted_pos + Vector2(x * 32, y * 32)] = building
+			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
 
 	placed_building.emit(building)
 
