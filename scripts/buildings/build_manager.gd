@@ -8,7 +8,7 @@ extends Node
 ##
 
 ## The blueprint previews the building you are about to place.
-@export var blueprint: Building
+@export var blueprint: BuildingBlueprint
 ## The grid size of the map.
 @export var grid_size: int = 32
 
@@ -51,7 +51,7 @@ func _on_selected_building(building_data: BuildingData) ->  void:
 	blueprint.queue_free()
 	
 	## Add the new blueprint to the game of the currently selected building
-	var new_blueprint: Building = building_blueprints.get(building_data.building_type).instantiate()
+	var new_blueprint: BuildingBlueprint = building_blueprints.get(building_data.building_type).instantiate()
 	add_child(new_blueprint)
 	blueprint = new_blueprint
 	blueprint.show()
@@ -174,7 +174,6 @@ func _on_placed_building(building: Building) -> void:
 	for x in range(building_tile_size.x):
 		for y in range(building_tile_size.y):
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
-
 	placed_building.emit(building)
 
 ## When the mouse has exited the building list with a selected building:

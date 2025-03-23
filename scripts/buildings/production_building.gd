@@ -7,6 +7,7 @@ extends Building
 ## other potential resources as input.
 ## This class extends from the Building class.
 ##
+##
 
 ## The max storage of the resources the production building interacts with.
 var max_storage: Dictionary[Enums.ResourceType, int]

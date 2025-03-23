@@ -16,25 +16,29 @@ extends Node2D
 ## The resources layer of the TileMap
 @onready var resources_layer: TileMapLayer = $Resources
 
-## The bounds of the map, i.e. the playable area
-@onready var map_bounds: MapBounds = $MapBounds
+## The areas/bounds of the map, 
+## i.e. the playable area and the outer areas/bounds
+@onready var map_areas: MapAreas = $MapAreas
 
-## Variable for if the mouse in the map bounds
+## Variable for if the mouse in the playable area
 var mouse_in_map: bool
+## Variable for if the blueprint is in or outside the playable area
+var blueprint_in_map: bool
 
 func _ready() -> void:
-	map_bounds.mouse_in_map.connect(set_in_map)
+	map_areas.mouse_in_map.connect(set_mouse_in_map)
+	map_areas.blueprint_in_map.connect(set_blueprint_in_map)
+	blueprint_in_map = true
 	
 ## Function checking if there is valid types of cells for the
 ## building to placed on, based on the position of the mouse
-func can_place_building(building: Building) -> bool:
-	if mouse_in_map == false:
-		# print("not in map")
+func can_place_building(blueprint: BuildingBlueprint) -> bool:
+	if blueprint_in_map == false:
 		return false
 	
-	var valid_tile_types_to_place: Array[Enums.TileType] = building.building_data.valid_tile_types_to_place_on
+	var valid_tile_types_to_place: Array[Enums.TileType] = blueprint.building_data.valid_tile_types_to_place_on
 	var source_id = null
-	var building_size: Vector2 = building.building_data.building_size
+	var building_size: Vector2 = blueprint.building_data.building_size
 
 	## TODO: Its a little bit inconsisent, may need to rework a lot though,
 	## so good enough? Problem is that the land tiles near the water are considered water tiles.
@@ -67,5 +71,9 @@ func get_snapped_local_position(building_size: Vector2) -> Vector2:
 	return tile_pos
 	
 ## Function to set the variable for if the mouse in the map bounds
-func set_in_map(is_in_map):
-	mouse_in_map = is_in_map
+func set_mouse_in_map(mouse_is_in_map: bool) -> void:
+	mouse_in_map = mouse_is_in_map
+	
+## Function to set the variable for if the mouse in the map bounds
+func set_blueprint_in_map(blueprint_is_in_map: bool) -> void:
+	blueprint_in_map = blueprint_is_in_map
