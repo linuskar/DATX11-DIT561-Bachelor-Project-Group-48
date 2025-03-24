@@ -74,8 +74,9 @@ func _process(_delta) -> void:
 func _update_blueprint():
 	var grid_pos: Vector2 = get_snapped_world_position()
 	blueprint.position = grid_pos
+
 	## Checking for valid placement
-	if is_tile_occupied(grid_pos):
+	if is_tile_occupied(grid_pos) or map_layer.can_place_building(blueprint) == false:
 		blueprint.modulate = invalid_placement_color
 		valid_placement = false
 	else:

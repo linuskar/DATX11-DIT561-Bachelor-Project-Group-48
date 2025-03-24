@@ -16,4 +16,5 @@ output_generation = Dictionary[int, int]({
 3: 5
 })
 building_type = 3
+valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 metadata/_custom_type_script = "uid://c2asdvge65j4d"
