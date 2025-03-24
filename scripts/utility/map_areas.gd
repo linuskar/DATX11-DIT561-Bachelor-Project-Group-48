@@ -6,6 +6,7 @@ extends Node
 ## area of the game is and the outer map areas/bounds. 
 ## This class extends nodes.
 ##
+##
 
 ## Signal for when the mouse is in or not in the map
 signal mouse_in_map(is_in_map)

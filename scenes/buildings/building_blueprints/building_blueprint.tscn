@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ogg000btq0ld"]
 
-[ext_resource type="Script" path="res://scripts/buildings/building_blueprint.gd" id="1_ildch"]
+[ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/building_blueprint.gd" id="1_ildch"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_btu5y"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings/factory.png" id="2_sg3gi"]
 

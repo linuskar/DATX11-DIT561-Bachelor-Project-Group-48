@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="5_enf4e"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="6_i44nf"]
 [ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="7_g2rpu"]
-[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/building_blueprints/building_blueprint.tscn" id="8_i44nf"]
+[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="8_i44nf"]
 [ext_resource type="PackedScene" uid="uid://b4g337wewhst2" path="res://scenes/UI/resource_ui.tscn" id="8_l0522"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="9_i44nf"]
 [ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UserInterfaceElements/BuildingSelectList.tscn" id="9_x1e4n"]

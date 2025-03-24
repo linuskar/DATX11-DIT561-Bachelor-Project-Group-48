@@ -1,8 +1,9 @@
 class_name MapLayer
 extends Node2D
-## A class that representing the layers of the game map
+## A class that representing the layers of the game map.
 ##
-## A class that representing the differemt TileMapLayers of the game map
+## A class that representing the differemt TileMapLayers of the game map.
+##
 ##
 
 ## The water layer of the TileMap
@@ -33,12 +34,29 @@ func _ready() -> void:
 ## Function checking if there is valid types of cells for the
 ## building to placed on, based on the position of the mouse
 func can_place_building(blueprint: BuildingBlueprint) -> bool:
-	if blueprint_in_map == false:
+	var building_size: Vector2 = blueprint.building_data.building_size	
+	## TODO: restrict and clamp for building size bigger than 1x1 
+
+	var min_x = map_areas.left_bound.position.x
+	var max_x = map_areas.right_bound.position.x
+
+	var min_y = map_areas.upper_bound.position.y
+	var max_y = map_areas.lower_bound.position.y
+	
+	var grid_size: int = 32
+	## TODO: maybe test for 2x2 ?
+	if building_size.x == 3 and building_size.y == 3:
+		blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size, max_x - grid_size)
+		blueprint.position.y = clampf(blueprint.position.y, min_y + grid_size, max_y - grid_size)
+	else:
+		blueprint.position.x = clampf(blueprint.position.x, min_x, max_x)
+		blueprint.position.y = clampf(blueprint.position.y, min_y, max_y)
+	
+	if blueprint_in_map == false or mouse_in_map == false:
 		return false
 	
 	var valid_tile_types_to_place: Array[Enums.TileType] = blueprint.building_data.valid_tile_types_to_place_on
 	var source_id = null
-	var building_size: Vector2 = blueprint.building_data.building_size
 
 	## TODO: Its a little bit inconsisent, may need to rework a lot though,
 	## so good enough? Problem is that the land tiles near the water are considered water tiles.

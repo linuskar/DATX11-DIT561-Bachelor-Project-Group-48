@@ -987,7 +987,7 @@ sources/2 = SubResource("TileSetScenesCollectionSource_psaw3")
 size = Vector2(3328, 2592)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qds2b"]
-distance = 3.0
+distance = -10.0
 
 [node name="MapLayer" type="Node2D"]
 script = ExtResource("1_qds2b")
@@ -1041,10 +1041,10 @@ position = Vector2(320, 22)
 shape = SubResource("WorldBoundaryShape2D_qds2b")
 
 [node name="UpperBound" type="Area2D" parent="MapAreas"]
-position = Vector2(84, -1403)
+position = Vector2(85, -1360)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapAreas/UpperBound"]
-position = Vector2(320, 22)
+position = Vector2(0, -8)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_qds2b")
 

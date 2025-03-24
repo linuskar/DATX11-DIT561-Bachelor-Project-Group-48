@@ -57,13 +57,14 @@ func _on_selected_building(building_data: BuildingData) ->  void:
 	blueprint.show()
 		
 func _process(_delta) -> void:
+	_update_blueprint()
 	## In build mode snap the blueprint to the mouse in the world
 	match StateManager.state:
 		StateManager.State.SELECTED_BUILDING:
 			_update_blueprint()
 		StateManager.State.PLACE_BUILDING:
 			_update_blueprint()
-				
+
 			if valid_placement:
 				place_building()
 		StateManager.State.IDLE:
@@ -148,7 +149,7 @@ func are_tiles_occupied() -> bool:
 	
 	## Adjust the position to start in a top-left manner
 	if blueprint_size.x == 2 and blueprint_size.y == 2:
-		adjusted_pos -= Vector2(grid_size / 2, grid_size / 2)	
+		adjusted_pos -= Vector2(grid_size / 2, grid_size / 2)
 	elif blueprint_size.x == 3 and blueprint_size.y == 3:
 		adjusted_pos -= Vector2(grid_size, grid_size) 
 		
