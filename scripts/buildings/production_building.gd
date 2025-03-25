@@ -71,7 +71,6 @@ func _output_resources() -> void:
 		production_cycle.stop()
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
-		print(building_type_string + " is producing")
 		_produce_goods()
 		_use_input_recipe()
 		_generate_byproducts()
@@ -137,7 +136,6 @@ func _use_input_recipe() -> void:
 		var input_use_rate: int = input_use_rates.get(input)
 		var input_left: int = input_quantity - input_use_rate
 		
-		## TODO: incorrect?, negative
 		if input_left <= 0:
 			input_left = 0
 			

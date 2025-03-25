@@ -12,6 +12,8 @@ var can_gather_resource_type: Enums.ResourceType
 
 ## A boolean to check if the gathering building is near a resource.
 var near_resource: bool
+## The resource tiles the gathering building is on 
+var resoures_tiles_to_gather: Array[GatherableResource] = []
 
 func _ready() -> void:
 	super()
@@ -33,18 +35,24 @@ func check_if_can_produce() -> bool:
 	
 	return true
 
-## Activated at the end of each cycle.
-func _on_timer_timeout() -> void:
-	_output_resources()
-	
-## Function to begin outputting resources from the production building.
-func _output_resources() -> void:
-	if !check_if_can_produce():
-		print("Can't produce")
-		production_cycle.stop()
-	else:
-		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
-		print(building_type_string + " is producing")
-		_produce_goods()
-		_use_input_recipe()
-		_generate_byproducts()
+## Function to produce the goods the gathering building can output.
+func _produce_goods() -> void:
+	for produced_good in produced_goods:
+		var gather_rate_per_tile: int = output_generation.get(produced_good)
+		var produced_good_stored: int = output_storage.get(produced_good)
+		var produced_good_max_storage: int = max_storage.get(produced_good)
+		var produced_good_generated: int = 0
+		
+		for resource_tile in resoures_tiles_to_gather:
+			produced_good_generated += resource_tile.gather_resource(gather_rate_per_tile)
+			
+			if resource_tile.quantity <= 0:
+				resoures_tiles_to_gather.erase(resource_tile)
+				
+		produced_good_stored += produced_good_generated
+		output_storage.set(produced_good, produced_good_stored)
+		ResourceSignals.add_resource.emit(produced_good, produced_good_generated)
+		produced.emit(self)
+		
+		if resoures_tiles_to_gather.size() == 0:
+			near_resource = false

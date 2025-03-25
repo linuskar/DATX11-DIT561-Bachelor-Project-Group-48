@@ -19,11 +19,6 @@ func _ready() -> void:
 	build_manager.placed_building.connect(init_building_gathering)
 	init_resources()
 
-# func _process(delta: float) -> void:
-	## Use this function to test if resources are gathered by printing in 
-	## the console, the resource gathered
-	# gather_resources()
-
 ## Function for initaliazing the variables for the resources
 func init_resources() -> void:
 	## Don't know if this is the best. But await is done to make sure the map 
@@ -46,31 +41,17 @@ func init_building_gathering(building: Building) -> void:
 
 		var building_type: Enums.BuildingType = building.building_data.building_type
 		var building_type_string: String = Enums.building_type_to_string(building_type)
-
+		## TODO: Add gathering for more tiles if building is different size
+		## or for example if the wood cutter has an area around it can chop wood
 		## Checking if the building is on a resource tile and can gather that resource
 		if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
-			resource_tiles.get(building.position)
 			buildings_gathering.append(building)
 			
 			var resource_type_string: String = Enums.resource_type_to_string(resource_tile.resource_type)
 			
-			print(building_type_string + " is gathering " + resource_type_string + " on " + str(building.position))
-			building.produced.connect(gather_resources)
+			# print(building_type_string + " is gathering " + resource_type_string + " on " + str(building.position))
+			building.resoures_tiles_to_gather.append(resource_tile)
 			building.near_resource = true
 		else:
 			building.near_resource = false
-			print(building_type_string + " is not gathering on " + str(building.position))
-	
-## Temporary function for gathering resources
-func gather_resources(building) -> void:
-	var resource_tile: GatherableResource = resource_tiles[building.position]
-	var gather_amount: int = building.building_data.output_generation[resource_tile.resource_type]
-	var resource_quantity: int = resource_tile.gather_resource(gather_amount)
-	
-	## disconnect from signal?
-	if resource_tile.quantity <= 0:
-		resource_tiles.erase(building.position)
-		print("Resource depleted")
-		building.near_resource = false
-		
-	print("Resource: " + str(resource_tile.quantity))
+			# print(building_type_string + " is not gathering on " + str(building.position))

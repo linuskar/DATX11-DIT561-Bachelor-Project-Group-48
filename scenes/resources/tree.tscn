@@ -8,7 +8,7 @@ size = Vector2(32, 32)
 
 [node name="Tree" type="Area2D"]
 script = ExtResource("1_xs38c")
-quantity = 10
+quantity = 19
 resource_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
