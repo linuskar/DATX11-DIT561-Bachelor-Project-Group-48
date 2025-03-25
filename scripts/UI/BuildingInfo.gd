@@ -5,10 +5,11 @@ extends Control
 @onready var info = $ScrollContainer/Information/BuildingInfo
 
 func _ready() -> void:
-	BuildingSignals.building_clicked.connect(populate_info_label)
+	BuildingSignals.building_clicked.connect(set_active)
+	set_inactive()
+	
 
 func populate_info_label(building: Building) -> void:
-	print("Got here!")
 	image.set_texture(building.building_sprite.texture)
 	building_name.set_text(Enums.building_type_to_string(building.building_data.building_type))
 	info.set_text(get_text(building.building_data))
@@ -19,3 +20,10 @@ func get_text(building_data: ProductionBuildingData) -> String:
 	for key in building_data.output_generation:
 		text += str(key) + '\n'
 	return text
+
+func set_inactive() -> void:
+	self.position = Vector2(0.0, 0.0) - self.size
+
+func set_active(building: Building) -> void:
+	self.position = Vector2(0.0, 0.0)
+	populate_info_label(building)
