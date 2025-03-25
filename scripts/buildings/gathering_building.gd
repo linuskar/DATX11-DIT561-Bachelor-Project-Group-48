@@ -32,3 +32,19 @@ func check_if_can_produce() -> bool:
 		return false
 	
 	return true
+
+## Activated at the end of each cycle.
+func _on_timer_timeout() -> void:
+	_output_resources()
+	
+## Function to begin outputting resources from the production building.
+func _output_resources() -> void:
+	if !check_if_can_produce():
+		print("Can't produce")
+		production_cycle.stop()
+	else:
+		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
+		print(building_type_string + " is producing")
+		_produce_goods()
+		_use_input_recipe()
+		_generate_byproducts()

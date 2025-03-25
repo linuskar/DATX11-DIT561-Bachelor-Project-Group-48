@@ -30,6 +30,8 @@ var can_produce: bool
 
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
+## Signal for when goods were produced
+signal produced(building)
 
 func _ready() -> void:
 	super()
@@ -126,6 +128,7 @@ func _produce_goods() -> void:
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
 		ResourceSignals.add_resource.emit(produced_good, produced_good_generated)
+		produced.emit(self)
 		
 ## Function to use the resources from input in a production building.
 func _use_input_recipe() -> void:
@@ -134,6 +137,7 @@ func _use_input_recipe() -> void:
 		var input_use_rate: int = input_use_rates.get(input)
 		var input_left: int = input_quantity - input_use_rate
 		
+		## TODO: incorrect?, negative
 		if input_left <= 0:
 			input_left = 0
 			
@@ -150,5 +154,5 @@ func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	var resource_quantity: int = output_storage.get(resource_type)
 	output_storage.set(resource_type, resource_quantity - amount)
 	
-	if can_produce:
+	if check_if_can_produce():
 		production_cycle.autostart = true
