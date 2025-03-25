@@ -47,7 +47,6 @@ func _ready() -> void:
 ## Function that gets called when a building is selected to build
 func _on_selected_building(building_data: BuildingData) ->  void:
 	StateManager.set_state(StateManager.State.SELECTED_BUILDING)
-	print(building_data.building_type)
 	## Delete the current blueprint
 	blueprint.queue_free()
 	
