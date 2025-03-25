@@ -23,8 +23,8 @@ func _ready():
 	
 	#Entire UI, and all of the children are hidden in the begining when no resources have been collected
 	visible = false
-	for node in resource_nodes.values():
-		node.visible = false
+	#for node in resource_nodes.values():
+	#	node.visible = false
 	
 	# Connect to global signal
 	ResourceSignals.update_UI.connect(_on_update_UI)

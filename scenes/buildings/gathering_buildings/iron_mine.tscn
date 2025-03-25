@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://isbsjsm2mmil"]
+[gd_scene load_steps=6 format=3 uid="uid://isbsjsm2mmil"]
 
 [ext_resource type="Script" uid="uid://dkys5yq1u7s2q" path="res://scripts/buildings/gathering_buildings/iron_mine.gd" id="1_l5hob"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_jwvew"]
 [ext_resource type="Texture2D" uid="uid://d1566usymavrh" path="res://assets/buildings/pixilart-drawing.png" id="3_dbmr5"]
+[ext_resource type="PackedScene" uid="uid://bkqqe6bdw740k" path="res://scenes/buildings/smoke/smoke_v2.tscn" id="4_6f8g6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwrwc"]
 size = Vector2(32, 32)
 
-[node name="IronMine" type="StaticBody2D"]
+[node name="IronMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_l5hob")
+smokes = [NodePath("Smoke"), NodePath("Smoke2"), NodePath("Smoke3")]
 building_data = ExtResource("2_jwvew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,5 +22,17 @@ texture = ExtResource("3_dbmr5")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Smoke" parent="." instance=ExtResource("4_6f8g6")]
+position = Vector2(3.249, -14.6846)
+amount = 250
+
+[node name="Smoke2" parent="." instance=ExtResource("4_6f8g6")]
+position = Vector2(7.75534, -14.6932)
+amount = 250
+
+[node name="Smoke3" parent="." instance=ExtResource("4_6f8g6")]
+position = Vector2(12.254, -14.6766)
+amount = 250
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
