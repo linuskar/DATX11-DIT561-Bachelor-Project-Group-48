@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t2kml7pea27i"
-path="res://.godot/imported/factory.png-9772b16d8f6036fa0ccbd2dbecae07d2.ctex"
+uid="uid://d1566usymavrh"
+path="res://.godot/imported/pixilart-drawing.png-2936260cfdd0bd1490e1d466499559fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/factory.png"
-dest_files=["res://.godot/imported/factory.png-9772b16d8f6036fa0ccbd2dbecae07d2.ctex"]
+source_file="res://assets/buildings/pixilart-drawing.png"
+dest_files=["res://.godot/imported/pixilart-drawing.png-2936260cfdd0bd1490e1d466499559fb.ctex"]
 
 [params]
 

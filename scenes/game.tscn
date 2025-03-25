@@ -1,20 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=10 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="3_u5sy4"]
-[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="4_gee14"]
 [ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="5_0tnpc"]
-[ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="6_vtaks"]
-[ext_resource type="PackedScene" uid="uid://isbsjsm2mmil" path="res://scenes/buildings/iron_mine.tscn" id="7_ir15t"]
+[ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="7_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://djt4gpmfrp805" path="res://scenes/buildings/coal_mine.tscn" id="8_ca42v"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="8_gee14"]
-[ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/wood_cutter.tscn" id="9_rysoc"]
-[ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/iron_mine_blueprint.tscn" id="10_ir15t"]
-[ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/coal_mine_blueprint.tscn" id="11_ca42v"]
-[ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/wood_cutter_blueprint.tscn" id="12_rysoc"]
-[ext_resource type="PackedScene" uid="uid://0ua1sicv06wq" path="res://scenes/UI/UserInterface.tscn" id="15_rysoc"]
+[ext_resource type="PackedScene" uid="uid://b4g337wewhst2" path="res://scenes/UI/resource_ui.tscn" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UserInterfaceElements/BuildingSelectList.tscn" id="16_ca42v"]
 
 [node name="Game" type="Node2D"]
 
@@ -24,28 +18,8 @@
 
 [node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]
 
-[node name="BuildingBlueprint" parent="GameManager" instance=ExtResource("4_gee14")]
-visible = false
-
 [node name="ResourceManager" type="Node" parent="."]
 script = ExtResource("5_0tnpc")
-
-[node name="BuildManager" type="Node" parent="." node_paths=PackedStringArray("blueprint")]
-script = ExtResource("6_vtaks")
-blueprint = NodePath("BuildingBlueprint")
-buildings = Dictionary[int, Resource]({
-1: ExtResource("7_ir15t"),
-2: ExtResource("8_ca42v"),
-3: ExtResource("9_rysoc")
-})
-building_blueprints = Dictionary[int, Resource]({
-1: ExtResource("10_ir15t"),
-2: ExtResource("11_ca42v"),
-3: ExtResource("12_rysoc")
-})
-
-[node name="BuildingBlueprint" parent="BuildManager" instance=ExtResource("4_gee14")]
-visible = false
 
 [node name="BuildingSelector" parent="." instance=ExtResource("7_kvpfn")]
 visible = false
@@ -53,7 +27,22 @@ visible = false
 [node name="PlayerResources" type="Node" parent="."]
 script = ExtResource("8_gee14")
 
-[node name="UserInterface" parent="." instance=ExtResource("15_rysoc")]
+[node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
 
-[connection signal="build_list_entered" from="UserInterface" to="BuildManager" method="_on_user_interface_build_list_entered"]
-[connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ResourceUI" parent="UI" instance=ExtResource("9_0tnpc")]
+
+[node name="BuildingSelectList" parent="UI" instance=ExtResource("16_ca42v")]
+layout_direction = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -416.0
+offset_right = 0.0
+grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(416, 0)
+
+[connection signal="build_list_entered" from="UI/BuildingSelectList" to="BuildManager" method="_on_building_select_list_build_list_entered"]
+[connection signal="building_wanted" from="UI/BuildingSelectList" to="BuildManager" method="_on_building_select_list_building_wanted"]

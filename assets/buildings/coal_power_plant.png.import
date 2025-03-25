@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1566usymavrh"
-path="res://.godot/imported/pixilart-drawing.png-0c626ff6b37c9c0255c4b8d75d3447d7.ctex"
+uid="uid://c6m6vftsynwql"
+path="res://.godot/imported/coal_power_plant.png-e51ebb2000d85b5565ab0d782c083d63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pixilart-drawing.png"
-dest_files=["res://.godot/imported/pixilart-drawing.png-0c626ff6b37c9c0255c4b8d75d3447d7.ctex"]
+source_file="res://assets/buildings/coal_power_plant.png"
+dest_files=["res://.godot/imported/coal_power_plant.png-e51ebb2000d85b5565ab0d782c083d63.ctex"]
 
 [params]
 

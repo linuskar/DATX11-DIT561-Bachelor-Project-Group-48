@@ -12,7 +12,18 @@ enum BuildingType {
 	IRON_MINE, ## The building type for an iron mine
 	COAL_MINE, ## The building type for a coal mine
 	WOOD_CUTTER, ## The building type for a wood cutter
+	COAL_POWER_PLANT, ## The building type for a coal power plant
+	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
 }
+## Function for checking if the BuildingType is a gathering building
+static func is_gathering_building(building_type: BuildingType) -> bool:
+	var gathering_buildings: Array[BuildingType] = [BuildingType.IRON_MINE, BuildingType.COAL_MINE, BuildingType.WOOD_CUTTER]
+	return building_type in gathering_buildings
+	
+## Function for checking if the BuildingType is a power generator
+static func is_power_generator(building_type: BuildingType) -> bool:
+	var power_generators: Array[BuildingType] = [BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
+	return building_type in power_generators
 
 ## The different types of resources in the game
 enum ResourceType {
@@ -21,8 +32,10 @@ enum ResourceType {
 	WOOD, ## The resource type for wood
 	CO2, ## The resource type for carbon dioxide
 	ELECTRICITY, ## The resource type for electricity
+	BIOMASS, ## The resource type for biomass
 	NONE, ## The resource type for nothing
 }
+
 
 ## The different types of tiles in the game
 enum TileType {
@@ -32,6 +45,11 @@ enum TileType {
 	GRASS, ## The tile type for grass
 	RESOURCE, ## The tile type for a resource
 }
+
+## Function for checking if the ResourceType is a byproduct
+static func is_byproduct(resource_type: ResourceType) -> bool:
+	var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS]
+	return resource_type in byproducts
 
 ## Function for checking if the ResourceType is an emission
 static func is_emission(resource_type: ResourceType) -> bool:
@@ -52,6 +70,7 @@ static func resource_type_to_string(resource_type: ResourceType) -> String:
 		ResourceType.WOOD: "WOOD",
 		ResourceType.CO2: "CO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
+		ResourceType.BIOMASS: "BIOMASS",
 		ResourceType.NONE: "NONE",
 	}
 	## Default to "UNKNOWN" if not found
@@ -64,6 +83,8 @@ static func building_type_to_string(building_type: BuildingType) -> String:
 		BuildingType.IRON_MINE: "IRON MINE",
 		BuildingType.COAL_MINE: "COAL MINE",
 		BuildingType.WOOD_CUTTER: "WOOD CUTTER",
+		BuildingType.COAL_POWER_PLANT: "COAL POWER PLANT",
+		BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
 	}
 	return building_names.get(building_type, "UNKNOWN") 
 
