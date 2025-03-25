@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyb5gnrnuag2x"
-path="res://.godot/imported/biomass_power_plant.png-b6a4f1ae213566be191d22cd6b850383.ctex"
+uid="uid://bx5qrg1nmnpld"
+path="res://.godot/imported/Coalmine_building.png-d926a52fcd5337e30dc4ab806c795013.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/biomass_power_plant.png"
-dest_files=["res://.godot/imported/biomass_power_plant.png-b6a4f1ae213566be191d22cd6b850383.ctex"]
+source_file="res://assets/Buildings/Coalmine_building.png"
+dest_files=["res://.godot/imported/Coalmine_building.png-d926a52fcd5337e30dc4ab806c795013.ctex"]
 
 [params]
 
