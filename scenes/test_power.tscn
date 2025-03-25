@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxmney4gls7r8"]
+[gd_scene load_steps=9 format=3 uid="uid://bxmney4gls7r8"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_v0ad5"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_vg4rv"]
@@ -7,8 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="5_enf4e"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="6_i44nf"]
 [ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="7_g2rpu"]
-[ext_resource type="PackedScene" uid="uid://b4g337wewhst2" path="res://scenes/UI/resource_ui.tscn" id="8_l0522"]
-[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UserInterfaceElements/BuildingSelectList.tscn" id="9_x1e4n"]
+[ext_resource type="PackedScene" uid="uid://djil6gjtsgbdu" path="res://scenes/UI/UserInterface.tscn" id="8_dgdt0"]
 
 [node name="Game" type="Node2D"]
 
@@ -29,20 +28,4 @@ script = ExtResource("6_i44nf")
 
 [node name="BuildManager" parent="." instance=ExtResource("7_g2rpu")]
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="ResourceUI" parent="UI" instance=ExtResource("8_l0522")]
-
-[node name="BuildingSelectList" parent="UI" instance=ExtResource("9_x1e4n")]
-layout_direction = 2
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -416.0
-offset_right = 0.0
-grow_horizontal = 0
-scale = Vector2(0.9, 0.9)
-pivot_offset = Vector2(416, 0)
-
-[connection signal="build_list_entered" from="UI/BuildingSelectList" to="BuildManager" method="_on_building_select_list_build_list_entered"]
-[connection signal="building_wanted" from="UI/BuildingSelectList" to="BuildManager" method="_on_building_select_list_building_wanted"]
+[node name="UserInterface" parent="." instance=ExtResource("8_dgdt0")]

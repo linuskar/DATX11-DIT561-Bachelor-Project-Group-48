@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://djt4gpmfrp805"]
+[gd_scene load_steps=6 format=3 uid="uid://djt4gpmfrp805"]
 
 [ext_resource type="Script" uid="uid://o0k4pecox0g" path="res://scripts/buildings/gathering_buildings/coal_mine.gd" id="1_5wtww"]
 [ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_f8yp3"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings/factory.png" id="3_klpcp"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scenes/buildings/clickable.gd" id="4_f8yp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
@@ -20,4 +21,18 @@ texture = ExtResource("3_klpcp")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="Clickable" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_f8yp3")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
