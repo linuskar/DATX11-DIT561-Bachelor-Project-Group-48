@@ -1026,18 +1026,18 @@ position = Vector2(320, -80)
 shape = SubResource("RectangleShape2D_s53hl")
 
 [node name="LowerBound" type="Area2D" parent="MapAreas"]
-position = Vector2(-1, 1199)
+position = Vector2(-1, 1200)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapAreas/LowerBound"]
-position = Vector2(320, 22)
+position = Vector2(321, 8)
 shape = SubResource("WorldBoundaryShape2D_qds2b")
 
 [node name="RightBound" type="Area2D" parent="MapAreas"]
-position = Vector2(1967, -131)
+position = Vector2(1968, -131)
 rotation = -1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapAreas/RightBound"]
-position = Vector2(320, 22)
+position = Vector2(317, 8.00109)
 shape = SubResource("WorldBoundaryShape2D_qds2b")
 
 [node name="UpperBound" type="Area2D" parent="MapAreas"]
@@ -1049,9 +1049,9 @@ rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_qds2b")
 
 [node name="LeftBound" type="Area2D" parent="MapAreas"]
-position = Vector2(-1327, 598)
+position = Vector2(-1328, 598)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapAreas/LeftBound"]
-position = Vector2(320, 22)
+position = Vector2(322, 7.99889)
 shape = SubResource("WorldBoundaryShape2D_qds2b")

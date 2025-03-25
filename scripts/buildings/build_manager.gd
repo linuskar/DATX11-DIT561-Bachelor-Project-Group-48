@@ -16,7 +16,7 @@ extends Node
 @onready var map_layer: MapLayer = $"../MapLayer"
 
 ## The currently occupied tiles, for example a building, tree, etc.
-var occupied_tiles: Dictionary = {}
+var occupied_tiles: Dictionary[Vector2, Building] = {}
 
 ## The colors highlighthing the placment of builings.
 var valid_placement_color: Color = Color(0.5, 0.5, 1, 0.8) 
