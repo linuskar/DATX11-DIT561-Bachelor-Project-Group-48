@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://u0w1syotmn42"]
+[gd_scene load_steps=12 format=4 uid="uid://u0w1syotmn42"]
 
 [ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="1_hkwtl"]
 [ext_resource type="Script" uid="uid://dbn3nge5xhrd6" path="res://scripts/UI/BuildingInfo.gd" id="1_y4byq"]
@@ -1104,6 +1104,11 @@ font = ExtResource("3_86cwq")
 font_size = 28
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_6mxs2"]
+font = ExtResource("3_86cwq")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_itten"]
 atlas = ExtResource("5_6mxs2")
 region = Rect2(33, 33, 14, 14)
@@ -1175,6 +1180,7 @@ anchor_left = 0.1
 anchor_top = 0.6
 anchor_right = 0.9
 anchor_bottom = 1.0
+label_settings = SubResource("LabelSettings_6mxs2")
 
 [node name="CloseButton" type="TextureButton" parent="ScrollContainer/Information"]
 layout_mode = 0

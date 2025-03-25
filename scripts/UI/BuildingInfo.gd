@@ -12,13 +12,13 @@ func _ready() -> void:
 func populate_info_label(building: Building) -> void:
 	image.set_texture(building.building_sprite.texture)
 	building_name.set_text(Enums.building_type_to_string(building.building_data.building_type))
-	info.set_text(get_text(building.building_data))
+	info.text = get_text(building.building_data)
 
 
 func get_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
 	for key in building_data.output_generation:
-		text += str(key) + '\n'
+		text += Enums.resource_type_to_string(key) + '\n'
 	return text
 
 func set_inactive() -> void:
