@@ -1142,10 +1142,15 @@ offset_right = 396.0
 offset_bottom = 636.0
 
 [node name="Information" type="Control" parent="ScrollContainer"]
-custom_minimum_size = Vector2(384, 624)
+clip_contents = true
+custom_minimum_size = Vector2(384, 800)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
 
 [node name="FactoryImage" type="TextureRect" parent="ScrollContainer/Information"]
+custom_minimum_size = Vector2(224, 240)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -1158,31 +1163,28 @@ grow_horizontal = 2
 texture = ExtResource("2_oocw6")
 
 [node name="BuildingName" type="Label" parent="ScrollContainer/Information"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.475
-anchor_right = 0.9
-anchor_bottom = 0.575
-offset_left = -0.400002
-offset_top = 10.6
-offset_right = -0.599976
-offset_bottom = 13.2
+custom_minimum_size = Vector2(307, 65)
+layout_mode = 0
+offset_top = 304.0
+offset_right = 384.0
+offset_bottom = 369.0
 text = "Factory"
 label_settings = SubResource("LabelSettings_oocw6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BuildingInfo" type="Label" parent="ScrollContainer/Information"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.6
-anchor_right = 0.9
-anchor_bottom = 1.0
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 0
+offset_left = 48.0
+offset_top = 384.0
+offset_right = 348.0
+offset_bottom = 784.0
 label_settings = SubResource("LabelSettings_6mxs2")
+autowrap_mode = 3
 
 [node name="CloseButton" type="TextureButton" parent="ScrollContainer/Information"]
+custom_minimum_size = Vector2(14, 14)
 layout_mode = 0
 offset_left = 365.0
 offset_top = 5.0
@@ -1190,6 +1192,7 @@ offset_right = 379.0
 offset_bottom = 19.0
 scale = Vector2(5, 5)
 pivot_offset = Vector2(14, 0)
+mouse_filter = 1
 texture_normal = SubResource("AtlasTexture_itten")
 texture_pressed = SubResource("AtlasTexture_6mxs2")
 
