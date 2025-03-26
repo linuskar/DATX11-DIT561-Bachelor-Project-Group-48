@@ -12,6 +12,7 @@ size = Vector2(64, 64)
 [node name="BiomassPowerPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_pu6ix")
 smokes = [NodePath("Smoke_v3"), NodePath("Smoke_v4")]
+pollution_radius = 16
 building_data = ExtResource("2_n2s4e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,8 +26,10 @@ autostart = true
 
 [node name="Smoke_v3" parent="." instance=ExtResource("4_m34gt")]
 position = Vector2(-15.5534, -40.5851)
+emitting = false
 
 [node name="Smoke_v4" parent="." instance=ExtResource("5_m34gt")]
 position = Vector2(25.017, -13.5643)
+emitting = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://tivkwjs5ujbw" path="res://assets/Tilesets/Grass_Tiles.png" id="3_eds5r"]
 [ext_resource type="PackedScene" uid="uid://1g535ircrcnf" path="res://scenes/resources/coal_ore.tscn" id="5_v8mp5"]
 [ext_resource type="PackedScene" uid="uid://csdjsjq4n5751" path="res://scenes/resources/iron_ore.tscn" id="6_psaw3"]
-[ext_resource type="PackedScene" uid="uid://dvyx2m24n7cfc" path="res://scenes/resources/tree.tscn" id="7_s53hl"]
+[ext_resource type="PackedScene" uid="uid://dvyx2m24n7cfc" path="res://scenes/resources/gatherable_tree.tscn" id="7_s53hl"]
 [ext_resource type="Script" uid="uid://fu2v2evaq3i4" path="res://scripts/utility/world_bounds.gd" id="8_qds2b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23fv6"]

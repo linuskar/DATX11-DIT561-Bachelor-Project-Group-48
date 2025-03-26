@@ -6,6 +6,7 @@ extends Node
 ##
 @onready var map_layer: MapLayer = $"../MapLayer"
 @onready var build_manager: BuildManager = $"../BuildManager"
+@onready var pollution_manager: PollutionManager = $"../PollutionManager"
 
 ## The buildings that are currently gathering resources
 var buildings_gathering: Array[Building]
@@ -15,6 +16,7 @@ var resource_tiles: Dictionary[Vector2, GatherableResource] = {}
 
 func _ready() -> void:
 	build_manager.placed_building.connect(init_building_gathering)
+	pollution_manager.co2_emitted.connect(apply_co2)
 	init_resources()
 
 func _process(delta: float) -> void:
@@ -64,3 +66,22 @@ func gather_resources() -> void:
 	for building in buildings_gathering:
 		var resource_tile: GatherableResource = resource_tiles[building.position]
 		var resource_quantity: int = resource_tile.gather_resource()
+
+func apply_co2(co2_dict: Dictionary[Vector2, int]) -> void:
+	for pos in co2_dict.keys():
+		print("loop")
+		#print(pos)
+		if resource_tiles.has(pos) and is_instance_valid(resource_tiles.get(pos)):
+			var gatherable_resource: GatherableResource = resource_tiles.get(pos)
+			var amount_to_apply: int = co2_dict.get(pos)
+			print("has loop")
+			if gatherable_resource.resource_type == Enums.ResourceType.WOOD:
+				gatherable_resource.absorb_emission(Enums.ResourceType.CO2, amount_to_apply)
+				
+				if gatherable_resource.check_if_at_emission_limit():
+					resource_tiles.erase(gatherable_resource)
+					print("erased")
+		else:
+			print("no pos")
+				
+	print("co2 applied in resource manager")

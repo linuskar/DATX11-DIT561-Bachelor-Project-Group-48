@@ -27,8 +27,18 @@ var produced_goods: Array[Enums.ResourceType]
 ## Boolean to check if the production building can produce.
 var can_produce: bool
 
+## the radius in which the emissions gets emitted to
+var emissions_radius: int
+
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
+
+@onready var pollution_zone: Area2D = $PollutionZone
+## The radius for the amount of tiles that get affected by pollution
+@export var pollution_radius: int
+
+## Signal for when emissions are emitted
+signal emitted_emissions(building: Building, emission_type: Enums.ResourceType, amount: int)
 
 func _ready() -> void:
 	super()
@@ -64,11 +74,11 @@ func _on_timer_timeout() -> void:
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
 	if !check_if_can_produce():
-		print("Can't produce")
+		# print("Can't produce")
 		production_cycle.stop()
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
-		print(building_type_string + " is producing")
+		# print(building_type_string + " is producing")
 		_produce_goods()
 		_use_input_recipe()
 		_generate_byproducts()
@@ -95,9 +105,9 @@ func check_for_output_overflow() -> bool:
 		var produced_good_max_storage: int = max_storage.get(produced_good)
 		var produced_good_string = Enums.resource_type_to_string(produced_good)
 		
-		print(produced_good_string + " to be generated: " + str(produced_good_generated))
-		print("Current " + produced_good_string + " stored: " + str(produced_good_stored))
-		print("Max storage: " + str(produced_good_max_storage))
+		# print(produced_good_string + " to be generated: " + str(produced_good_generated))
+		# print("Current " + produced_good_string + " stored: " + str(produced_good_stored))
+		# print("Max storage: " + str(produced_good_max_storage))
 		
 		## When at possible overflow of resources for output
 		if produced_good_stored + produced_good_generated > produced_good_max_storage:
@@ -143,6 +153,9 @@ func _generate_byproducts() -> void:
 	for byproduct in byproducts:
 		var byproduct_generated: int = output_generation.get(byproduct)
 		ResourceSignals.add_resource.emit(byproduct, byproduct_generated)
+		
+		if Enums.is_emission(byproduct):
+			emitted_emissions.emit(self, byproduct, byproduct_generated)
 	
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:

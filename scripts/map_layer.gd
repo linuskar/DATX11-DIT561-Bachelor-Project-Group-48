@@ -19,11 +19,14 @@ extends Node2D
 ## The bounds of the map, i.e. the playable area
 @onready var map_bounds: MapBounds = $MapBounds
 
+@onready var pollution_manager: PollutionManager = $"../PollutionManager"
+
 ## Variable for if the mouse in the map bounds
 var mouse_in_map: bool
 
 func _ready() -> void:
 	map_bounds.mouse_in_map.connect(set_in_map)
+	pollution_manager.co2_emitted.connect(apply_co2)
 	
 ## Function checking if there is valid types of cells for the
 ## building to placed on, based on the position of the mouse
@@ -67,7 +70,10 @@ func can_place_building(building: Building) -> bool:
 			return true
 			
 	return false
-
+	
+func apply_co2(co2_dict) -> void:
+	print("co2 applied")
+	
 ## Function to set the variable for if the mouse in the map bounds
 func set_in_map(is_in_map):
 	mouse_in_map = is_in_map

@@ -25,14 +25,17 @@ autostart = true
 
 [node name="Smoke" parent="." instance=ExtResource("4_6f8g6")]
 position = Vector2(3.249, -14.6846)
+emitting = false
 amount = 250
 
 [node name="Smoke2" parent="." instance=ExtResource("4_6f8g6")]
 position = Vector2(7.75534, -14.6932)
+emitting = false
 amount = 250
 
 [node name="Smoke3" parent="." instance=ExtResource("4_6f8g6")]
 position = Vector2(12.254, -14.6766)
+emitting = false
 amount = 250
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

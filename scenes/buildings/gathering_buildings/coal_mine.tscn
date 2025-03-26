@@ -24,6 +24,7 @@ autostart = true
 
 [node name="Smoke" parent="." instance=ExtResource("4_f8yp3")]
 position = Vector2(10.4659, -12.1031)
+emitting = false
 amount = 600
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

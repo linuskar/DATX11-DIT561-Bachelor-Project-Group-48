@@ -46,6 +46,10 @@ enum TileType {
 	RESOURCE, ## The tile type for a resource
 }
 
+static func is_a_polluting_building(building_type: BuildingType) -> bool:
+	var polluting_buildings: Array[BuildingType] = [BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
+	return building_type in polluting_buildings
+
 ## Function for checking if the ResourceType is a byproduct
 static func is_byproduct(resource_type: ResourceType) -> bool:
 	var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS]
