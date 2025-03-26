@@ -44,5 +44,6 @@ grow_horizontal = 0
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(416, 0)
 
+[connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
 [connection signal="build_list_entered" from="UI/BuildingSelectList" to="BuildManager" method="_on_building_select_list_build_list_entered"]
 [connection signal="building_wanted" from="UI/BuildingSelectList" to="BuildManager" method="_on_building_select_list_building_wanted"]
