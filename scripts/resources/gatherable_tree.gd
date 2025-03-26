@@ -16,11 +16,11 @@ func check_if_at_emission_limit() -> bool:
 		if emission_stored >= emission_limit:
 			queue_free()
 			return true
-			print("tree destroyed")
-	print("tree not destroyed")
+			#print("tree destroyed")
+	#print("tree not destroyed")
 	return false
 	
 func absorb_emission(emission_type: Enums.ResourceType, amount: int):
-	print("absorbed emission")
+	#print("absorbed emission")
 	var current_emission_stored: int = emission_storage.get(emission_type)
 	emission_storage.set(emission_type, amount + current_emission_stored)

@@ -72,7 +72,8 @@ func can_place_building(building: Building) -> bool:
 	return false
 	
 func apply_co2(co2_dict) -> void:
-	print("co2 applied")
+	#print("co2 applied")
+	pass
 	
 ## Function to set the variable for if the mouse in the map bounds
 func set_in_map(is_in_map):

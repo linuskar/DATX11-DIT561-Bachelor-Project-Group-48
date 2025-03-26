@@ -12,7 +12,7 @@ emission_storage = Dictionary[int, int]({
 3: 0
 })
 emission_max_capacity = Dictionary[int, int]({
-3: 20
+3: 100000
 })
 resource_type = 2
 
