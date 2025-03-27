@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dsw66e8grfp4r" path="res://scripts/buildings/building.gd" id="1_fgdma"]
 [ext_resource type="Resource" uid="uid://okbenuas7tpt" path="res://resources/buildings/biomass_power_plant.tres" id="2_fgdma"]
-[ext_resource type="Texture2D" uid="uid://cyb5gnrnuag2x" path="res://assets/buildings/biomass_power_plant.png" id="3_fgdma"]
+[ext_resource type="Texture2D" uid="uid://cyb5gnrnuag2x" path="res://assets/buildings_iso/biomass_power_plant.png" id="3_fgdma"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
