@@ -25,9 +25,6 @@ var byproducts: Array[Enums.ResourceType]
 ## The produced goods the production building outputs.
 var produced_goods: Array[Enums.ResourceType]
 
-## Boolean to check if the production building can produce.
-var can_produce: bool
-
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
 
