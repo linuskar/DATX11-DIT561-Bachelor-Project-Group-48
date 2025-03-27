@@ -144,11 +144,12 @@ func are_tiles_occupied() -> bool:
 	var adjusted_pos: Vector2 = blueprint.position 
 	
 	## Adjust the position to start in a top-left manner
-	if blueprint_size.x == 2 and blueprint_size.y == 2:
-		adjusted_pos -= Vector2(grid_size / 2, grid_size / 2)
-	elif blueprint_size.x == 3 and blueprint_size.y == 3:
-		adjusted_pos -= Vector2(grid_size, grid_size) 
-		
+	# if blueprint_size.x == 2 and blueprint_size.y == 2:
+	#	adjusted_pos -= Vector2(grid_size / 2, grid_size / 2)
+	# elif blueprint_size.x == 3 and blueprint_size.y == 3:
+	#	adjusted_pos -= Vector2(grid_size, grid_size) 
+	adjusted_pos -= Vector2(grid_size * (blueprint_size.x - 1) / 2, 0)
+	adjusted_pos -= Vector2(0, grid_size * (blueprint_size.y -  1) / 2)
 	## See if there are occupied tiles based on the blueprint size
 	for x in range(blueprint_size.x):
 		for y in range(blueprint_size.y):
@@ -162,11 +163,12 @@ func _on_placed_building(building: Building) -> void:
 	var adjusted_pos: Vector2 = building.position 
 	
 	## Adjust the position to start in a top-left manner
-	if building_tile_size.x == 2 and building_tile_size.y == 2:
-		adjusted_pos -= Vector2(grid_size / 2,grid_size / 2)
-	elif building_tile_size.x == 3 and building_tile_size.y == 3:
-		adjusted_pos -= Vector2(grid_size, grid_size)
-	
+	# if building_tile_size.x == 2 and building_tile_size.y == 2:
+	#	adjusted_pos -= Vector2(grid_size / 2,grid_size / 2)
+	#elif building_tile_size.x == 3 and building_tile_size.y == 3:
+	#	adjusted_pos -= Vector2(grid_size, grid_size)
+	adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
+	adjusted_pos -= Vector2(0, grid_size * (building_tile_size.y -  1) / 2)
 	## Mark occupied tiles based on the building size
 	for x in range(building_tile_size.x):
 		for y in range(building_tile_size.y):
