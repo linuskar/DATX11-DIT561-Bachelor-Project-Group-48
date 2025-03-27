@@ -111,11 +111,8 @@ func get_snapped_world_position() -> Vector2:
 	var blueprint_size: Vector2 = blueprint.building_data.building_size
 	
 	## To represent a top-left aligning placement along the grid.
-	if blueprint_size.x == 2 and blueprint_size.y == 2:
-		grid_pos += Vector2(grid_size / 2, grid_size / 2)
-	elif blueprint_size.x == 3 and blueprint_size.y == 3:
-		grid_pos += Vector2(grid_size, grid_size)
-		
+	grid_pos += Vector2(grid_size * (blueprint_size.x - 1) / 2, 0)
+	grid_pos += Vector2(0, grid_size * (blueprint_size.y -  1) / 2)
 	## Return the world coordinates
 	return grid_pos
 
