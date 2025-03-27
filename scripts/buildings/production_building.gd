@@ -7,6 +7,7 @@ extends Building
 ## other potential resources as input.
 ## This class extends from the Building class.
 ##
+##
 
 ## The max storage of the resources the production building interacts with.
 var max_storage: Dictionary[Enums.ResourceType, int]
@@ -23,9 +24,6 @@ var output_generation: Dictionary[Enums.ResourceType, int]
 var byproducts: Array[Enums.ResourceType]
 ## The produced goods the production building outputs.
 var produced_goods: Array[Enums.ResourceType]
-
-## Boolean to check if the production building can produce.
-var can_produce: bool
 
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
@@ -149,5 +147,5 @@ func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	var resource_quantity: int = output_storage.get(resource_type)
 	output_storage.set(resource_type, resource_quantity - amount)
 	
-	if can_produce:
+	if check_if_can_produce():
 		production_cycle.autostart = true

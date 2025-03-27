@@ -36,7 +36,6 @@ enum ResourceType {
 	NONE, ## The resource type for nothing
 }
 
-
 ## The different types of tiles in the game
 enum TileType {
 	WATER, ## The tile type for water

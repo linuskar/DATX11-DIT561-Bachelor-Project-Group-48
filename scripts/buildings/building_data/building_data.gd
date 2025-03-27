@@ -10,3 +10,5 @@ extends Resource
 @export var building_type: Enums.BuildingType
 ## What types of tiles the building can be placed on 
 @export var valid_tile_types_to_place_on: Array[Enums.TileType]
+## What the size of the building is in terms of amount of tiles it takes
+@export var building_size: Vector2
