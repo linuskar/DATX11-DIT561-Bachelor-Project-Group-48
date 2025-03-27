@@ -45,16 +45,9 @@ func can_place_building(blueprint: BuildingBlueprint) -> bool:
 	var grid_size: int = 32
 	## Note: Haven't tested for 2x2
 	## Clamp the blueprint position to make it not go out the playable area
-	if blueprint_size.x == 3 and blueprint_size.y == 3:
-		blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size, max_x - grid_size)
-		blueprint.position.y = clampf(blueprint.position.y, min_y + grid_size, max_y - grid_size)
-	elif blueprint_size.x == 2 and blueprint_size.y == 2:
-		blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size / 2, max_x - grid_size / 2)
-		blueprint.position.y = clampf(blueprint.position.y, min_y + grid_size / 2, max_y - grid_size / 2)
-	else:
-		blueprint.position.x = clampf(blueprint.position.x, min_x, max_x)
-		blueprint.position.y = clampf(blueprint.position.y, min_y, max_y)
-	
+	blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size * (blueprint_size.x - 1) / 2, max_x - grid_size * (blueprint_size.x - 1) / 2)
+	blueprint.position.y = clampf(blueprint.position.y, min_y +  grid_size * (blueprint_size.y -  1) / 2, max_y -  grid_size * (blueprint_size.y -  1) / 2)
+
 	if blueprint_in_map == false or mouse_in_map == false:
 		return false
 	
