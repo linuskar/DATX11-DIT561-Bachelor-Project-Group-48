@@ -57,7 +57,6 @@ func _on_selected_building(building_data: BuildingData) ->  void:
 	blueprint.show()
 		
 func _process(_delta) -> void:
-	_update_blueprint()
 	## In build mode snap the blueprint to the mouse in the world
 	match StateManager.state:
 		StateManager.State.SELECTED_BUILDING:
