@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxrvnkhcakmpr"]
 
 [ext_resource type="Script" uid="uid://b8whagj3qsqhq" path="res://scripts/buildings/gathering_building.gd" id="1_fr802"]
-[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings/factory.png" id="2_tu45n"]
+[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="2_tu45n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
 size = Vector2(32, 32)

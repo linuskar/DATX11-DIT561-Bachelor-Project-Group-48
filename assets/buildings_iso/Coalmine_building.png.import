@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t2kml7pea27i"
-path="res://.godot/imported/factory.png-245d14a607b22e08c0ba06b81f2ec643.ctex"
+uid="uid://bx5qrg1nmnpld"
+path="res://.godot/imported/Coalmine_building.png-587667001410caadaa5ec2d50c2a45db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/factory.png"
-dest_files=["res://.godot/imported/factory.png-245d14a607b22e08c0ba06b81f2ec643.ctex"]
+source_file="res://assets/buildings_iso/Coalmine_building.png"
+dest_files=["res://.godot/imported/Coalmine_building.png-587667001410caadaa5ec2d50c2a45db.ctex"]
 
 [params]
 

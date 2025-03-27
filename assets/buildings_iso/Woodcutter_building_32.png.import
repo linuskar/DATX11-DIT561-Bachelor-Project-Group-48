@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx5qrg1nmnpld"
-path="res://.godot/imported/Coalmine_building.png-d926a52fcd5337e30dc4ab806c795013.ctex"
+uid="uid://cpjj1kkavl7yv"
+path="res://.godot/imported/Woodcutter_building_32.png-ecc95f5c9811ece91c63f2da5b0ebb3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/Coalmine_building.png"
-dest_files=["res://.godot/imported/Coalmine_building.png-d926a52fcd5337e30dc4ab806c795013.ctex"]
+source_file="res://assets/buildings_iso/Woodcutter_building_32.png"
+dest_files=["res://.godot/imported/Woodcutter_building_32.png-ecc95f5c9811ece91c63f2da5b0ebb3d.ctex"]
 
 [params]
 

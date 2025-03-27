@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgyn65jypc72u"
-path="res://.godot/imported/Steel_building2.png-0edf3525b8829a11c42f1f0cddfdc396.ctex"
+uid="uid://cyb5gnrnuag2x"
+path="res://.godot/imported/biomass_power_plant.png-34efaab8f4d1f8a337ab6bf05ad9a4f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/Steel_building2.png"
-dest_files=["res://.godot/imported/Steel_building2.png-0edf3525b8829a11c42f1f0cddfdc396.ctex"]
+source_file="res://assets/buildings_iso/biomass_power_plant.png"
+dest_files=["res://.godot/imported/biomass_power_plant.png-34efaab8f4d1f8a337ab6bf05ad9a4f6.ctex"]
 
 [params]
 

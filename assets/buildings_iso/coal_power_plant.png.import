@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmi4rw6s1obxs"
-path="res://.godot/imported/Research_building.png-a04fddd7034e551bc0a92b545c5edb87.ctex"
+uid="uid://c6m6vftsynwql"
+path="res://.godot/imported/coal_power_plant.png-017d50aa587e0cd3237a08c792af4f97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/Research_building.png"
-dest_files=["res://.godot/imported/Research_building.png-a04fddd7034e551bc0a92b545c5edb87.ctex"]
+source_file="res://assets/buildings_iso/coal_power_plant.png"
+dest_files=["res://.godot/imported/coal_power_plant.png-017d50aa587e0cd3237a08c792af4f97.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqugr640sxpqq"
-path="res://.godot/imported/Ironmine_building1.png-de794da4264479eb01da24ad12d600f7.ctex"
+uid="uid://bgyn65jypc72u"
+path="res://.godot/imported/Steel_building2.png-e9d4cc21ad40d75c0a5b2862fd1bb19e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/Ironmine_building1.png"
-dest_files=["res://.godot/imported/Ironmine_building1.png-de794da4264479eb01da24ad12d600f7.ctex"]
+source_file="res://assets/buildings_iso/Steel_building2.png"
+dest_files=["res://.godot/imported/Steel_building2.png-e9d4cc21ad40d75c0a5b2862fd1bb19e.ctex"]
 
 [params]
 

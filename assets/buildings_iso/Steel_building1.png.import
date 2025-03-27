@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnbb8mhi8ddv7"
-path="res://.godot/imported/Furnace_building2.png-49640487b5b3d7e774c5f6915e9afe33.ctex"
+uid="uid://gcqdh2w48sqp"
+path="res://.godot/imported/Steel_building1.png-f5a7048557fc7ebc2982a8db8905b234.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/Furnace_building2.png"
-dest_files=["res://.godot/imported/Furnace_building2.png-49640487b5b3d7e774c5f6915e9afe33.ctex"]
+source_file="res://assets/buildings_iso/Steel_building1.png"
+dest_files=["res://.godot/imported/Steel_building1.png-f5a7048557fc7ebc2982a8db8905b234.ctex"]
 
 [params]
 

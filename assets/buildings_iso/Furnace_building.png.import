@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6m6vftsynwql"
-path="res://.godot/imported/coal_power_plant.png-d2bba8d6e1a577d5744273582d57ed18.ctex"
+uid="uid://bvcgqmb650fgd"
+path="res://.godot/imported/Furnace_building.png-6c8a2ee90fd175b952d872a71bb831c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/coal_power_plant.png"
-dest_files=["res://.godot/imported/coal_power_plant.png-d2bba8d6e1a577d5744273582d57ed18.ctex"]
+source_file="res://assets/buildings_iso/Furnace_building.png"
+dest_files=["res://.godot/imported/Furnace_building.png-6c8a2ee90fd175b952d872a71bb831c9.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gcqdh2w48sqp"
-path="res://.godot/imported/Steel_building1.png-9838466e741e73da35b1330de077477e.ctex"
+uid="uid://b8gregq5f0pdm"
+path="res://.godot/imported/Woodcutter_building_64.png-01ceaeeee3f993415630c791172cf160.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/Steel_building1.png"
-dest_files=["res://.godot/imported/Steel_building1.png-9838466e741e73da35b1330de077477e.ctex"]
+source_file="res://assets/buildings_iso/Woodcutter_building_64.png"
+dest_files=["res://.godot/imported/Woodcutter_building_64.png-01ceaeeee3f993415630c791172cf160.ctex"]
 
 [params]
 
