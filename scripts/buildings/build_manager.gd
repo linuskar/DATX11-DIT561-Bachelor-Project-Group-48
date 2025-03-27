@@ -163,10 +163,6 @@ func _on_placed_building(building: Building) -> void:
 	var adjusted_pos: Vector2 = building.position 
 	
 	## Adjust the position to start in a top-left manner
-	# if building_tile_size.x == 2 and building_tile_size.y == 2:
-	#	adjusted_pos -= Vector2(grid_size / 2,grid_size / 2)
-	#elif building_tile_size.x == 3 and building_tile_size.y == 3:
-	#	adjusted_pos -= Vector2(grid_size, grid_size)
 	adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
 	adjusted_pos -= Vector2(0, grid_size * (building_tile_size.y -  1) / 2)
 	## Mark occupied tiles based on the building size
