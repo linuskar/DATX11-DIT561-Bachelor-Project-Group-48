@@ -1145,8 +1145,8 @@ offset_bottom = 636.0
 clip_contents = true
 custom_minimum_size = Vector2(384, 800)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 2
+size_flags_vertical = 2
 mouse_filter = 1
 
 [node name="FactoryImage" type="TextureRect" parent="ScrollContainer/Information"]
