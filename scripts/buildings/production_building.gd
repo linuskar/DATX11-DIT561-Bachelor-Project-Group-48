@@ -65,7 +65,7 @@ func _on_timer_timeout() -> void:
 func _output_resources() -> void:
 	if !check_if_can_produce():
 		print("Can't produce")
-		production_cycle.stop()
+		production_cycle.autostart = false
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
 		print(building_type_string + " is producing")
@@ -148,6 +148,7 @@ func _generate_byproducts() -> void:
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	var resource_quantity: int = output_storage.get(resource_type)
 	output_storage.set(resource_type, resource_quantity - amount)
+	production_cycle.autostart = true
 	
 	if can_produce:
 		production_cycle.autostart = true
@@ -159,5 +160,5 @@ func get_produced_resources() -> Array[Enums.ResourceType]:
 func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
 	var current = input_storage.get(input_type)
 	input_storage.set(input_type, current + input_amount)
-	production_cycle.start()
+	production_cycle.autostart = true
 	ResourceSignals.use_resource.emit(input_type, input_amount)
