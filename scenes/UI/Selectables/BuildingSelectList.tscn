@@ -3442,11 +3442,13 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 1
 
-[node name="BiomassPowerPlantSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("7_2uf64")]
-layout_mode = 2
-
 [node name="CoalPowerPlantSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("8_2mva2")]
 layout_mode = 2
+mouse_filter = 1
+
+[node name="BiomassPowerPlantSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("7_2uf64")]
+layout_mode = 2
+mouse_filter = 1
 
 [node name="OpenListButton" type="Control" parent="."]
 layout_mode = 1
@@ -3495,8 +3497,8 @@ script = ExtResource("7_djsgt")
 [connection signal="selected" from="List/ScrollContainer/Buildings/CoalMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/ScrollContainer/Buildings/IronMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/ScrollContainer/Buildings/WoodCutterSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/ScrollContainer/Buildings/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/ScrollContainer/Buildings/CoalPowerPlantSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/ScrollContainer/Buildings/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="button_down" from="OpenListButton/Button" to="." method="_on_open_build_list"]
 [connection signal="mouse_entered" from="OpenListButton/Button" to="OpenListButton/Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="OpenListButton/Button" to="OpenListButton/Button" method="_on_mouse_exited"]

@@ -5,6 +5,7 @@ extends StaticBody2D
 ## A class that is for basic aspects of a building, containing it's basic 
 ## metadata and its sprite for visual representation. 
 ##
+##
 
 ## The metadata for the building
 @export var building_data: BuildingData  

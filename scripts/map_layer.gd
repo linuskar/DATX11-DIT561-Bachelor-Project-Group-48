@@ -1,8 +1,9 @@
 class_name MapLayer
 extends Node2D
-## A class that representing the layers of the game map
+## A class that representing the layers of the game map.
 ##
-## A class that representing the differemt TileMapLayers of the game map
+## A class that representing the differemt TileMapLayers of the game map.
+##
 ##
 
 ## The water layer of the TileMap
@@ -16,65 +17,83 @@ extends Node2D
 ## The resources layer of the TileMap
 @onready var resources_layer: TileMapLayer = $Resources
 
-## The bounds of the map, i.e. the playable area
-@onready var map_bounds: MapBounds = $MapBounds
+## The areas/bounds of the map, 
+## i.e. the playable area and the outer areas/bounds
+@onready var map_areas: MapAreas = $MapAreas
 
 @onready var pollution_manager: PollutionManager = $"../PollutionManager"
 
-## Variable for if the mouse in the map bounds
+## Variable for if the mouse in the playable area
 var mouse_in_map: bool
+## Variable for if the blueprint is in or outside the playable area
+var blueprint_in_map: bool
 
 func _ready() -> void:
-	map_bounds.mouse_in_map.connect(set_in_map)
 	pollution_manager.co2_emitted.connect(apply_co2)
+	map_areas.mouse_in_map.connect(set_mouse_in_map)
+	map_areas.blueprint_in_map.connect(set_blueprint_in_map)
+	blueprint_in_map = true
 	
 ## Function checking if there is valid types of cells for the
 ## building to placed on, based on the position of the mouse
-func can_place_building(building: Building) -> bool:
-	if mouse_in_map == false:
-		# print("not in map")
+func can_place_building(blueprint: BuildingBlueprint) -> bool:
+	var blueprint_size: Vector2 = blueprint.building_data.building_size	
+	
+	var min_x: float = map_areas.left_bound.position.x
+	var max_x: float = map_areas.right_bound.position.x
+
+	var min_y: float = map_areas.upper_bound.position.y
+	var max_y: float = map_areas.lower_bound.position.y
+	
+	var grid_size: int = 32
+	## Note: Haven't tested for 2x2
+	## Clamp the blueprint position to make it not go out the playable area
+	blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size * (blueprint_size.x - 1) / 2, max_x - grid_size * (blueprint_size.x - 1) / 2)
+	blueprint.position.y = clampf(blueprint.position.y, min_y +  grid_size * (blueprint_size.y -  1) / 2, max_y -  grid_size * (blueprint_size.y -  1) / 2)
+
+	if blueprint_in_map == false or mouse_in_map == false:
 		return false
 	
-	var valid_tiles_to_place: Array[Enums.TileType] = building.building_data.valid_tile_types_to_place_on
+	var valid_tile_types_to_place: Array[Enums.TileType] = blueprint.building_data.valid_tile_types_to_place_on
 	var source_id = null
-	
-	## Check if any valid cells exists at the 
-	## position that the building is placed
-	for tile_type in valid_tiles_to_place:
-		## Mouse position in world coordinates
-		var world_mouse_pos: Vector2 = get_parent().get_global_mouse_position()  
-		## Convert to local TileMap coordinates
-		var local_mouse_pos: Vector2 = dirt_layer.to_local(world_mouse_pos)  
-		var tile_pos: Vector2 
-		
-		match tile_type:
-			Enums.TileType.WATER:
-				## See if the cell exists at the position
-				tile_pos = water_layer.local_to_map(local_mouse_pos) 
-				source_id = water_layer.get_cell_source_id(tile_pos)
-			Enums.TileType.DIRT:
-				tile_pos = dirt_layer.local_to_map(local_mouse_pos) 
-				source_id = dirt_layer.get_cell_source_id(tile_pos)
-			Enums.TileType.STONE:
-				tile_pos = stone_layer.local_to_map(local_mouse_pos) 
-				source_id = stone_layer.get_cell_source_id(tile_pos)
-			Enums.TileType.GRASS:
-				tile_pos = grass_layer.local_to_map(local_mouse_pos) 
-				source_id = grass_layer.get_cell_source_id(tile_pos)
-			Enums.TileType.RESOURCE:
-				tile_pos = resources_layer.local_to_map(local_mouse_pos) 
-				source_id = resources_layer.get_cell_source_id(tile_pos)
-		## If the cell does exist
-		if source_id != -1:
-			# print(Enums.tile_type_to_string(tile_type))
-			return true
-			
-	return false
+
+	## Note: Its a little bit inconsisent, may need to rework a lot though,
+	## so good enough? Problem is that the land tiles near the water are considered water tiles.
+	for x in range(blueprint_size.x):
+		for y in range(blueprint_size.y):
+			for tile_type in Enums.TileType.values():
+				match tile_type:
+					Enums.TileType.WATER:
+						source_id = water_layer.get_cell_source_id(get_snapped_local_position(blueprint_size) + Vector2(x, y))
+					Enums.TileType.DIRT:
+						source_id = dirt_layer.get_cell_source_id(get_snapped_local_position(blueprint_size) + Vector2(x, y))
+					Enums.TileType.STONE:
+						source_id = stone_layer.get_cell_source_id(get_snapped_local_position(blueprint_size) + Vector2(x, y))
+					Enums.TileType.GRASS:
+						source_id = grass_layer.get_cell_source_id(get_snapped_local_position(blueprint_size) + Vector2(x, y))
+					Enums.TileType.RESOURCE:
+						source_id = water_layer.get_cell_source_id(get_snapped_local_position(blueprint_size) + Vector2(x, y))
+				## If the invalid cell type does exist
+				if source_id >= 0 and tile_type not in valid_tile_types_to_place:
+					# print(Enums.tile_type_to_string(tile_type))
+					return false
+	return true
 	
 func apply_co2(co2_dict) -> void:
 	#print("co2 applied")
 	pass
+
+## Function to get the position snapped to the nearest tile on tile map, grid based
+func get_snapped_local_position(building_size: Vector2) -> Vector2:
+	var world_mouse_pos = get_parent().get_global_mouse_position()
+	var local_mouse_pos = dirt_layer.to_local(world_mouse_pos)
+	var tile_pos = dirt_layer.local_to_map(local_mouse_pos)
+	return tile_pos
 	
 ## Function to set the variable for if the mouse in the map bounds
-func set_in_map(is_in_map):
-	mouse_in_map = is_in_map
+func set_mouse_in_map(mouse_is_in_map: bool) -> void:
+	mouse_in_map = mouse_is_in_map
+	
+## Function to set the variable for if the mouse in the map bounds
+func set_blueprint_in_map(blueprint_is_in_map: bool) -> void:
+	blueprint_in_map = blueprint_is_in_map

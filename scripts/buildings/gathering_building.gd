@@ -5,6 +5,7 @@ extends ProductionBuilding
 ## A class that is for aspects of a building that can gather resources.
 ## This class extends the ProductionBuilding class.
 ##
+##
 
 ## The type of resource the building can gather.
 var can_gather_resource_type: Enums.ResourceType
