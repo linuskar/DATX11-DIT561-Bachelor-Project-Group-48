@@ -1,8 +1,8 @@
 class_name GatherableTree
 extends GatherableResource
 
-@export var emission_storage: Dictionary[Enums.ResourceType, int]
-@export var emission_max_capacity: Dictionary[Enums.ResourceType, int]
+@export var emission_storage: Dictionary[Enums.ResourceType, float]
+@export var emission_max_capacity: Dictionary[Enums.ResourceType, float]
 
 func _ready() -> void:
 	pass
@@ -10,7 +10,7 @@ func _ready() -> void:
 func check_if_at_emission_limit() -> bool:
 	for emission_type in emission_storage.keys():
 		
-		var emission_stored: int = emission_storage.get(emission_type)
+		var emission_stored: float = emission_storage.get(emission_type)
 		var emission_limit = emission_max_capacity.get(emission_type)
 		
 		if emission_stored >= emission_limit:
@@ -20,7 +20,7 @@ func check_if_at_emission_limit() -> bool:
 	#print("tree not destroyed")
 	return false
 	
-func absorb_emission(emission_type: Enums.ResourceType, amount: int):
+func absorb_emission(emission_type: Enums.ResourceType, amount: float):
 	#print("absorbed emission")
-	var current_emission_stored: int = emission_storage.get(emission_type)
+	var current_emission_stored: float = emission_storage.get(emission_type)
 	emission_storage.set(emission_type, amount + current_emission_stored)

@@ -15,7 +15,7 @@ input_use_rates = Dictionary[int, int]({
 output_types = Array[int]([5, 3, 4])
 output_generation = Dictionary[int, int]({
 3: 30,
-4: 30,
+4: 10,
 5: 20
 })
 building_type = 4

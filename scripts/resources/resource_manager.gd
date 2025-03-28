@@ -70,23 +70,22 @@ func gather_resources() -> void:
 		var resource_tile: GatherableResource = resource_tiles[building.position]
 		var resource_quantity: int = resource_tile.gather_resource()
 
-func apply_co2(co2_dict: Dictionary[Vector2, int]) -> void:
-	# print("applied c02")
+func apply_co2(co2_dict: Dictionary[Vector2, float]) -> void:
 	for pos in co2_dict.keys():
 		if resource_tiles.has(pos) and is_instance_valid(resource_tiles.get(pos)):
 			var gatherable_resource: GatherableResource = resource_tiles.get(pos)
-			var amount_to_apply: int = co2_dict.get(pos)
+			var amount_to_apply: float = co2_dict.get(pos)
 			if gatherable_resource.resource_type == Enums.ResourceType.WOOD:
 				gatherable_resource.absorb_emission(Enums.ResourceType.CO2, amount_to_apply)
 				
 				if gatherable_resource.check_if_at_emission_limit():
 					resource_tiles.erase(gatherable_resource)
 					
-func apply_s02(so2_dict: Dictionary[Vector2, int]) -> void:
+func apply_s02(so2_dict: Dictionary[Vector2, float]) -> void:
 	for pos in so2_dict.keys():
 		if resource_tiles.has(pos) and is_instance_valid(resource_tiles.get(pos)):
 			var gatherable_resource: GatherableResource = resource_tiles.get(pos)
-			var amount_to_apply: int = so2_dict.get(pos)
+			var amount_to_apply: float = so2_dict.get(pos)
 			if gatherable_resource.resource_type == Enums.ResourceType.WOOD:
 				gatherable_resource.absorb_emission(Enums.ResourceType.S02, amount_to_apply)
 				

@@ -1,23 +1,20 @@
 class_name PollutionManager
 extends Node
 
-
 @onready var map_layer: MapLayer = $"../MapLayer"
 @onready var build_manager: BuildManager = $"../BuildManager"
 
 var buildings_polluting: Dictionary[Building, Vector2]
 
-signal co2_emitted(co2_dict: Dictionary[Vector2, int])
-signal s02_emitted(so2_dict: Dictionary[Vector2, int])
+signal co2_emitted(co2_dict: Dictionary[Vector2, float])
+signal s02_emitted(so2_dict: Dictionary[Vector2, float])
 
 func _ready() -> void:
 	build_manager.placed_building.connect(_init_building_polluting)
 
 func _init_building_polluting(building: Building) -> void:
 	if Enums.is_a_polluting_building(building.building_type):
-		# print(Enums.building_type_to_string(building.building_type))
 		buildings_polluting.set(building, building.position)
-		# print(building.position)
 		building.emitted_emissions.connect(apply_emissions)
 
 func apply_emissions(building, emission_type, amount) -> void:
@@ -25,8 +22,8 @@ func apply_emissions(building, emission_type, amount) -> void:
 	var pollution_radius: int = building.pollution_radius
 	
 	## Dictionary to store levels of co2 for tiles
-	var co2_dict: Dictionary[Vector2, int] = {}  
-	var so2_dict: Dictionary[Vector2, int] = {}
+	var co2_dict: Dictionary[Vector2, float] = {}  
+	var so2_dict: Dictionary[Vector2, float] = {}
 
 	# Tile-based pollution
 	match emission_type:
@@ -51,10 +48,10 @@ func pollution_falloff(amount, pollution_dict, pollution_radius, building_pos):
 			
 			# decrease with distance
 			# linear falloff
-			var amount_to_set: int = amount * (1.0 - float(distance_from_building) / pollution_radius)
+			#var amount_to_set: int = amount * (1.0 - float(distance_from_building) / pollution_radius)
 			
 			# exponential falloff
-			#var amount_to_set: int = int(amount * exp(float(-distance_from_building) / pollution_radius))
+			var amount_to_set: float = amount * exp(float(-distance_from_building) / pollution_radius)
 			
 			# no negative
 			amount_to_set = max(amount_to_set, 0)
