@@ -3444,11 +3444,9 @@ mouse_filter = 1
 
 [node name="CoalPowerPlantSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("8_2mva2")]
 layout_mode = 2
-mouse_filter = 1
 
 [node name="BiomassPowerPlantSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("7_2uf64")]
 layout_mode = 2
-mouse_filter = 1
 
 [node name="OpenListButton" type="Control" parent="."]
 layout_mode = 1

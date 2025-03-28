@@ -31,6 +31,7 @@ enum ResourceType {
 	COAL, ## The resource type for coal
 	WOOD, ## The resource type for wood
 	CO2, ## The resource type for carbon dioxide
+	S02, ## The resource type for sulfur dioxide
 	ELECTRICITY, ## The resource type for electricity
 	BIOMASS, ## The resource type for biomass
 	NONE, ## The resource type for nothing
@@ -51,12 +52,12 @@ static func is_a_polluting_building(building_type: BuildingType) -> bool:
 
 ## Function for checking if the ResourceType is a byproduct
 static func is_byproduct(resource_type: ResourceType) -> bool:
-	var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS]
+	var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02]
 	return resource_type in byproducts
 
 ## Function for checking if the ResourceType is an emission
 static func is_emission(resource_type: ResourceType) -> bool:
-	var emissions: Array[ResourceType] = [ResourceType.CO2]
+	var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
 	return resource_type in emissions
 	
 ## Function for checking if the ResourceType is a produced good
@@ -72,6 +73,7 @@ static func resource_type_to_string(resource_type: ResourceType) -> String:
 		ResourceType.COAL: "COAL",
 		ResourceType.WOOD: "WOOD",
 		ResourceType.CO2: "CO2",
+		ResourceType.S02: "SO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
 		ResourceType.BIOMASS: "BIOMASS",
 		ResourceType.NONE: "NONE",
