@@ -1,8 +1,8 @@
 extends Control
 
-@onready var image = $ScrollContainer/Information/FactoryImage
-@onready var building_name = $ScrollContainer/Information/BuildingName
-@onready var info = $ScrollContainer/Information/BuildingInfo
+@onready var image = $ScrollContainer/VBoxContainer/MarginContainer3/FactoryImage
+@onready var building_name = $ScrollContainer/VBoxContainer/BuildingName
+@onready var info = $ScrollContainer/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 
 var show_emissions = false
 
