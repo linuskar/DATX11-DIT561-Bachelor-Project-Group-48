@@ -25,13 +25,12 @@ var byproducts: Array[Enums.ResourceType]
 ## The produced goods the production building outputs.
 var produced_goods: Array[Enums.ResourceType]
 
-## the radius in which the emissions gets emitted to
+## The radius in which the emissions gets emitted to, in a square area
 var emissions_radius: int
 
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
 
-@onready var pollution_zone: Area2D = $PollutionZone
 ## The radius for the amount of tiles that get affected by pollution
 @export var pollution_radius: int
 

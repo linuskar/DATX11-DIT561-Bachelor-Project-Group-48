@@ -31,11 +31,13 @@ func _ready():
 	playable_area.connect("area_entered", _on_playable_area_entered)
 	playable_area.connect("area_exited", _on_playable_area_exited)
 
-func _on_playable_area_entered() -> void:
-	blueprint_in_map.emit(true)
+func _on_playable_area_entered(area: Area2D) -> void:
+	if area is BuildingBlueprint:
+		blueprint_in_map.emit(true)
 
-func _on_playable_area_exited() -> void:
-	blueprint_in_map.emit(false)
+func _on_playable_area_exited(area: Area2D) -> void:
+	if area is BuildingBlueprint:
+		blueprint_in_map.emit(false)
 
 ## Function for when the mouse enters the map bounds
 func _on_mouse_entered() -> void:

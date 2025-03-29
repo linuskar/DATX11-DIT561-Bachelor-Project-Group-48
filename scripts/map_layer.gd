@@ -21,15 +21,12 @@ extends Node2D
 ## i.e. the playable area and the outer areas/bounds
 @onready var map_areas: MapAreas = $MapAreas
 
-@onready var pollution_manager: PollutionManager = $"../PollutionManager"
-
 ## Variable for if the mouse in the playable area
 var mouse_in_map: bool
 ## Variable for if the blueprint is in or outside the playable area
 var blueprint_in_map: bool
 
 func _ready() -> void:
-	pollution_manager.co2_emitted.connect(apply_co2)
 	map_areas.mouse_in_map.connect(set_mouse_in_map)
 	map_areas.blueprint_in_map.connect(set_blueprint_in_map)
 	blueprint_in_map = true
@@ -78,10 +75,6 @@ func can_place_building(blueprint: BuildingBlueprint) -> bool:
 					# print(Enums.tile_type_to_string(tile_type))
 					return false
 	return true
-	
-func apply_co2(co2_dict) -> void:
-	#print("co2 applied")
-	pass
 
 ## Function to get the position snapped to the nearest tile on tile map, grid based
 func get_snapped_local_position(building_size: Vector2) -> Vector2:
