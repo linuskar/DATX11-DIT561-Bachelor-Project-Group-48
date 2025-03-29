@@ -45,8 +45,8 @@ func get_text(building_data: ProductionBuildingData) -> String:
 	return text
 
 func set_inactive() -> void:
-	self.position = Vector2(0.0, 0.0) - self.size
+	self.hide()
 
 func set_active(building: Building) -> void:
-	self.position = Vector2(0.0, 0.0)
+	self.show()
 	populate_info_label(building)
