@@ -1,13 +1,14 @@
-[gd_scene load_steps=22 format=4 uid="uid://c7ded0ull7r3b"]
+[gd_scene load_steps=24 format=4 uid="uid://c7ded0ull7r3b"]
 
 [ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="1_7ny2r"]
 [ext_resource type="Script" uid="uid://dvsnvlsyog0u7" path="res://scripts/map_layer.gd" id="1_qds2b"]
 [ext_resource type="Texture2D" uid="uid://d2eu27qu6lkff" path="res://assets/Tilesets/Floors_Tiles.png" id="2_xm11k"]
 [ext_resource type="Texture2D" uid="uid://tivkwjs5ujbw" path="res://assets/Tilesets/Grass_Tiles.png" id="3_eds5r"]
 [ext_resource type="PackedScene" uid="uid://1g535ircrcnf" path="res://scenes/resources/coal_ore.tscn" id="5_v8mp5"]
+[ext_resource type="Texture2D" uid="uid://drgtovwfbc34p" path="res://assets/Tilesets/road_tilemap-Sheet.png" id="5_ysx3f"]
 [ext_resource type="PackedScene" uid="uid://csdjsjq4n5751" path="res://scenes/resources/iron_ore.tscn" id="6_psaw3"]
 [ext_resource type="PackedScene" uid="uid://dvyx2m24n7cfc" path="res://scenes/resources/tree.tscn" id="7_s53hl"]
-[ext_resource type="Script" uid="uid://fu2v2evaq3i4" path="res://scripts/utility/world_bounds.gd" id="8_qds2b"]
+[ext_resource type="Script" path="res://scripts/utility/world_bounds.gd" id="8_qds2b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23fv6"]
 texture = ExtResource("1_7ny2r")
@@ -973,6 +974,21 @@ sources/0 = SubResource("TileSetAtlasSource_r0ojp")
 sources/1 = SubResource("TileSetAtlasSource_1lgdq")
 sources/2 = SubResource("TileSetAtlasSource_10sci")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n1fju"]
+texture = ExtResource("5_ysx3f")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_psaw3"]
 resource_name = "resources"
 scenes/1/scene = ExtResource("5_v8mp5")
@@ -982,6 +998,7 @@ scenes/3/scene = ExtResource("7_s53hl")
 [sub_resource type="TileSet" id="TileSet_7wght"]
 tile_size = Vector2i(32, 32)
 sources/2 = SubResource("TileSetScenesCollectionSource_psaw3")
+sources/0 = SubResource("TileSetAtlasSource_n1fju")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s53hl"]
 size = Vector2(3328, 2592)

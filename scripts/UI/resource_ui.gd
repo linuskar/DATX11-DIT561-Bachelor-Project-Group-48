@@ -5,6 +5,7 @@ var resource_nodes = {}
 var first_resource = false
 
 func _ready():
+	#
 	# References to each resource node and its label
 	resource_nodes[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood
 	resource_labels[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood/Label
@@ -23,8 +24,9 @@ func _ready():
 	
 	#Entire UI, and all of the children are hidden in the begining when no resources have been collected
 	visible = false
-	for node in resource_nodes.values():
-		node.visible = false
+	#kraschar ifall jag har detta?
+	#for node in resource_nodes.values():
+		#node.visible = false
 	
 	# Connect to global signal
 	ResourceSignals.update_UI.connect(_on_update_UI)
