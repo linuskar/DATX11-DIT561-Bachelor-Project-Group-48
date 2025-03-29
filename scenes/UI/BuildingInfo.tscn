@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://u0w1syotmn42"]
 
 [ext_resource type="Script" uid="uid://dbn3nge5xhrd6" path="res://scripts/UI/BuildingInfo.gd" id="1_y4byq"]
-[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings/factory.png" id="2_oocw6"]
+[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="2_oocw6"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="3_86cwq"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="5_6mxs2"]
 [ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="6_itten"]
