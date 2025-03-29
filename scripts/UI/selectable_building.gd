@@ -69,17 +69,16 @@ func _input(event: InputEvent) -> void:
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
-	self.find_child("InfoText").clear()
+	self.find_child("TextContainer").find_child("InfoText").text = ''
 	
 	## Begin with the name of the building
-	var panel_text: String = "[font_size={12}][color=black]" + building_name + '\n'
+	var panel_text: String = building_name + '\n'
 	panel_text += add_dict_to_panel(inputs, "Inputs")
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
 	panel_text += add_dict_to_panel(contributables, "Contributables")
 	panel_text += add_dict_to_panel(required, "Required")
-	panel_text += "[/color][/font_size]"
-	self.find_child("InfoText").append_text(panel_text)
+	self.find_child("TextContainer").find_child("InfoText").text = panel_text
 
 ## Function for taking keys from a dictionary and returning 
 ## a formatted string containing those keys and their values

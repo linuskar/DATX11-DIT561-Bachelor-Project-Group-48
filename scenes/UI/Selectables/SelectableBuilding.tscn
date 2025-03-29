@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddwmp6n5prn23"]
+[gd_scene load_steps=8 format=3 uid="uid://ddwmp6n5prn23"]
 
 [ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_7shli"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_rvi21"]
@@ -6,9 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="5_h608y"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_spl8e"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_v46n7"]
+[sub_resource type="LabelSettings" id="LabelSettings_rvi21"]
 font = ExtResource("6_spl8e")
 font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7shli"]
+font = ExtResource("6_spl8e")
 font_color = Color(0, 0, 0, 1)
 
 [node name="SelectableBuilding" type="Control"]
@@ -51,9 +55,9 @@ theme_override_styles/panel = ExtResource("3_7shli")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.075
-anchor_top = 0.125
+anchor_top = 0.075
 anchor_right = 0.425
-anchor_bottom = 0.7
+anchor_bottom = 0.65
 offset_right = -2.0
 offset_bottom = -0.399994
 theme_override_styles/panel = ExtResource("2_rvi21")
@@ -69,43 +73,42 @@ theme_override_constants/margin_bottom = 0
 layout_mode = 2
 texture = ExtResource("5_h608y")
 
-[node name="InfoText" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 10.0
-offset_right = 310.0
-offset_bottom = 172.0
-mouse_filter = 1
-bbcode_enabled = true
-text = "[font_size={10}][color=black]<Building Name>
-<Production Type1>: nmr
-<Production Type2>: nmr
-...
-<Cost>: nmr
-<Input1>: nmr
-<Input2>: nmr
-...
-<Contributable Resource1> nmr
-<Contributable Resource2> nmr
-<Required Resource> nmr
-[/color]
-[/font_size]"
-
 [node name="BuildingNameCost" type="Label" parent="."]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 150.0
-offset_right = 136.0
-offset_bottom = 175.0
+offset_top = 127.0
+offset_right = 134.0
+offset_bottom = 181.0
 mouse_filter = 1
 text = "Name Cost"
-label_settings = SubResource("LabelSettings_v46n7")
+label_settings = SubResource("LabelSettings_rvi21")
 horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TextContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(160, 162)
+layout_mode = 0
+offset_left = 145.0
+offset_top = 15.0
+offset_right = 305.0
+offset_bottom = 177.0
+
+[node name="InfoText" type="Label" parent="TextContainer"]
+custom_minimum_size = Vector2(160, 162)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+label_settings = SubResource("LabelSettings_7shli")
+autowrap_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 184.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_selected"]
