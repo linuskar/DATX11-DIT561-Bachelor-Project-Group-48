@@ -20,7 +20,7 @@ building_data = ExtResource("2_7qqa8")
 texture = ExtResource("3_b44sr")
 hframes = 4
 vframes = 3
-frame = 3
+frame = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_67t7r")
