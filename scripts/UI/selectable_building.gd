@@ -38,15 +38,12 @@ var outputs: Dictionary[String, int]
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
 	
-	# Set the 'selected' version of the main box invisible
-	self.find_child("MainBoxSelected").visible = false
-	
 	init_resource_data(max_storage, building_data.max_storage)
 	init_resource_data(outputs, building_data.output_generation)
 	init_resource_data(inputs, building_data.input_use_rates)
 	
 	## Set the image of the factory to the path 
-	self.find_child("BuildingIcon").set_texture(load(icon_path))
+	self.find_child("Containers").find_child("MarginContainer").find_child("BuildingIcon").set_texture(load(icon_path))
 		
 	## Set the name and cost of the building
 	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(cost))
@@ -97,14 +94,14 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 
 ## Sets this building into its 'selected' styling
 func _on_selected() -> void:
-	self.find_child("MainBoxRegular").visible = false
-	self.find_child("MainBoxSelected").visible = true
+	self.find_child("MainBox").visible = false
+	self.find_child("Selected").visible = true
 	emit_signal("selected", self)
 
 ## Sets this building to its 'unselected' styling
 func unselected() -> void:
-	self.find_child("MainBoxRegular").visible = true
-	self.find_child("MainBoxSelected").visible = false
+	self.find_child("MainBox").visible = true
+	self.find_child("Selected").visible = false
 	
 
 func get_building_data() -> BuildingData:
