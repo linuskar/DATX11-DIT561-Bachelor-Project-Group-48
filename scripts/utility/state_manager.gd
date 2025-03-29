@@ -3,6 +3,7 @@ extends Node
 ##
 ## A class that manages the different states of the game.
 ##
+##
 
 ## Signal for when entering build mode
 signal build_mode

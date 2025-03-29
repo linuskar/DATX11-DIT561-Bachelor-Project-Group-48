@@ -2609,6 +2609,7 @@ offset_bottom = -456.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.599748, 0.599748)
+mouse_filter = 1
 script = ExtResource("1_afr5s")
 icon_path = "uid://cyb5gnrnuag2x"
 building_data = ExtResource("2_afr5s")

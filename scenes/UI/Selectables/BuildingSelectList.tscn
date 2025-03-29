@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=19 format=4 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="2_de1jr"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/Selectables/IronMineSelectable.tscn" id="5_2mva2"]
 [ext_resource type="PackedScene" uid="uid://bhrcu48dc2f50" path="res://scenes/UI/Selectables/WoodCutterSelectable.tscn" id="6_de1jr"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_epysl"]
-[ext_resource type="Script" path="res://scripts/UI/build_list_button.gd" id="7_djsgt"]
+[ext_resource type="PackedScene" uid="uid://bvbhybq0wqtk8" path="res://scenes/UI/Selectables/BiomassPowerPlantSelectable.tscn" id="7_2uf64"]
+[ext_resource type="Script" uid="uid://pd7rkytnysg2" path="res://scripts/UI/build_list_button.gd" id="7_djsgt"]
+[ext_resource type="PackedScene" uid="uid://bcpxbii6e6t0h" path="res://scenes/UI/Selectables/CoalPowerPlantSelectable.tscn" id="8_2mva2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxi1g"]
 texture = ExtResource("2_de1jr")
@@ -3440,6 +3442,14 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 1
 
+[node name="CoalPowerPlantSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("8_2mva2")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="BiomassPowerPlantSelectable" parent="List/ScrollContainer/Buildings" instance=ExtResource("7_2uf64")]
+layout_mode = 2
+mouse_filter = 1
+
 [node name="OpenListButton" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -3487,6 +3497,8 @@ script = ExtResource("7_djsgt")
 [connection signal="selected" from="List/ScrollContainer/Buildings/CoalMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/ScrollContainer/Buildings/IronMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/ScrollContainer/Buildings/WoodCutterSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/ScrollContainer/Buildings/CoalPowerPlantSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/ScrollContainer/Buildings/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="button_down" from="OpenListButton/Button" to="." method="_on_open_build_list"]
 [connection signal="mouse_entered" from="OpenListButton/Button" to="OpenListButton/Button" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="OpenListButton/Button" to="OpenListButton/Button" method="_on_mouse_exited"]

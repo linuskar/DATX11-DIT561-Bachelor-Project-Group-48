@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://duuowy6imteh8" path="res://scripts/buildings/power_generators/coal_power_plant.gd" id="1_2asmk"]
 [ext_resource type="Resource" uid="uid://dxv8ly1srx0hh" path="res://resources/buildings/coal_power_plant.tres" id="2_lqwfw"]
-[ext_resource type="Texture2D" uid="uid://c6m6vftsynwql" path="res://assets/buildings/coal_power_plant.png" id="3_2asmk"]
+[ext_resource type="Texture2D" uid="uid://c6m6vftsynwql" path="res://assets/buildings_iso/coal_power_plant.png" id="3_2asmk"]
 [ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_lqwfw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]

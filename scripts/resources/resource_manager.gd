@@ -4,6 +4,8 @@ extends Node
 ##
 ## A class that manages the resources of the game and any 
 ##
+##
+
 @onready var map_layer: MapLayer = $"../MapLayer"
 @onready var build_manager: BuildManager = $"../BuildManager"
 

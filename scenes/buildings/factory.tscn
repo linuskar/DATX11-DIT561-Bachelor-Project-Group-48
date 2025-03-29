@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ogg000btq0ld"]
 
 [ext_resource type="Script" uid="uid://dsw66e8grfp4r" path="res://scripts/buildings/building.gd" id="1_28ys6"]
-[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings/factory.png" id="2_8tkco"]
+[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="2_8tkco"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_mv8pv"]
 [ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_mv8pv"]
 
