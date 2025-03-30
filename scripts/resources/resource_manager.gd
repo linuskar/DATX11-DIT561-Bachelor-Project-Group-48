@@ -52,8 +52,7 @@ func init_building_gathering(building: Building) -> void:
 func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos: Vector2, building: Building) -> void:
 	var gather_area_dict: Dictionary[Vector2, GatherableResource] = {}  
 	
-	## Iterate around the 2D area centered on the building,
-	## where the area is determined by the gather_radius radius
+	## Iterate around the area centered to be gathered on
 	for x in range(min_x, max_x):
 		for y in range(min_y, max_y):
 			var tile_pos = start_pos + Vector2(x * grid_size, y * grid_size)

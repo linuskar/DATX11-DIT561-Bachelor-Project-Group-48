@@ -14,8 +14,9 @@ func _ready():
 func check_for_output_overflow() -> bool:
 	## NOTE: right now it checks for overflow when the total sum 
 	## of the next production cycle overflows, i.e. for the total area of resources.
-	## Maybe for future adjust so that if that were the case then adjust the
-	## resources to be gather within the gathering area to a few resources.
+	## Maybe for future, adjust so that if that were the case then the
+	## resources to be gathered within the gathering area are selected to a few.
+	## Still allowing to get closer to max storage, without overflow
 	for produced_good in produced_goods:
 		var gather_rate_per_tile: int = output_generation.get(produced_good)
 		var gather_dict: Dictionary[Vector2, int] = _gather_area(gather_rate_per_tile)
