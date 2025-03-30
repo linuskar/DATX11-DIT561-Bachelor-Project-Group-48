@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ProductionBuildingData" load_steps=2 format=3 uid="uid://okbenuas7tpt"]
 
-[ext_resource type="Script" path="res://scripts/buildings/building_data/production_building_data.gd" id="1_0o4qy"]
+[ext_resource type="Script" uid="uid://bdhmlhlah8dvo" path="res://scripts/buildings/building_data/production_building_data.gd" id="1_0o4qy"]
 
 [resource]
 script = ExtResource("1_0o4qy")
@@ -17,6 +17,7 @@ output_generation = Dictionary[int, int]({
 3: 20,
 5: 20
 })
+emissions_radius = 16
 building_type = 5
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(3, 3)

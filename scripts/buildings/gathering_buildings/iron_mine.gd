@@ -6,6 +6,7 @@ extends GatheringBuilding
 ## the GatheringBuilding class.
 ##
 
+## The nodes emitting smoke.
 @export var smokes: Array[GPUParticles2D]
 
 func _ready():

@@ -6,6 +6,7 @@ extends GatheringBuilding
 ## the GatheringBuilding class.
 ##
 
+## The nodes emitting smoke.
 @export var smokes: Array[GPUParticles2D]
 
 func _ready():
@@ -17,7 +18,7 @@ func _on_timer_timeout() -> void:
 	_output_resources()
 	emit_smoke()
 			
-## Function for emitting smoke when possible
+## Function for emitting smoke when possible.
 func emit_smoke():
 	if check_if_can_produce() == false:
 		for smoke in smokes:

@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="7_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://0ua1sicv06wq" path="res://scenes/UI/UserInterface.tscn" id="8_0tnpc"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="8_gee14"]
-[ext_resource type="Script" uid="uid://b8h8eu10uysh0" path="res://scripts/utility/pollution_manager.gd" id="8_vtaks"]
+[ext_resource type="PackedScene" uid="uid://bmfjen7u3vjeh" path="res://scenes/utility/pollution_manager.tscn" id="8_vtaks"]
 
 [node name="Game" type="Node2D"]
 
@@ -29,8 +29,7 @@ script = ExtResource("8_gee14")
 
 [node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
 
-[node name="PollutionManager" type="Node" parent="."]
-script = ExtResource("8_vtaks")
+[node name="PollutionManager" parent="." instance=ExtResource("8_vtaks")]
 
 [node name="UserInterface" parent="." instance=ExtResource("8_0tnpc")]
 
