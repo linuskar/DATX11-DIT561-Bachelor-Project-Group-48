@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://dxv8ly1srx0hh" path="res://resources/buildings/coal_power_plant.tres" id="2_lqwfw"]
 [ext_resource type="Texture2D" uid="uid://c6m6vftsynwql" path="res://assets/buildings_iso/coal_power_plant.png" id="3_2asmk"]
 [ext_resource type="PackedScene" uid="uid://crmaq0u0wgneb" path="res://scenes/buildings/smoke/smoke_v3.tscn" id="4_hmb1g"]
-[ext_resource type="Script" path="res://scripts/UI/clickable.gd" id="4_lqwfw"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_lqwfw"]
 [ext_resource type="PackedScene" uid="uid://d0ydf6r25ra05" path="res://scenes/buildings/smoke/smoke_v4.tscn" id="5_f2q00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]

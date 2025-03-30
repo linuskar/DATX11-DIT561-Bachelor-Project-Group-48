@@ -87,7 +87,12 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 	if not dict.is_empty():
 		text += dict_name + '\n'
 		for key in dict.keys():
-			text += key + ": " + str(dict.get(key)) + '\n'
+			## Want to hide the number of emissions outputted,
+			## maybe note the level like low, medium, high, to get an estimate
+			if dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(Enums.string_to_resource_type(key)):
+				text += key + ": In an area." + '\n'
+			else:
+				text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'
 	return text
 

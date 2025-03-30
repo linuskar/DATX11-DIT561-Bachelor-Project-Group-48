@@ -16,13 +16,16 @@ func populate_info_label(building: Building) -> void:
 
 ## Formating building data into a string that is then displayed in the
 ## building info panel.
-func get_text(building_data: ProductionBuildingData) -> String:
+func get_text(building_data: BuildingData) -> String:
 	var text: String = ""
 	
 	## Adds all the different outputs of the building
 	text += "\nOutputs\n"
 	for key in building_data.output_generation.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
+		if Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(key):
+			text += Enums.resource_type_to_string(key) + ": In an area." + '\n'
+		else:
+			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
 
 	## Adds all the different inputs of the building
 	text += "\nInputs\n"
