@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ogg000btq0ld"]
+[gd_scene load_steps=6 format=3 uid="uid://ogg000btq0ld"]
 
 [ext_resource type="Script" uid="uid://dsw66e8grfp4r" path="res://scripts/buildings/building.gd" id="1_28ys6"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="2_8tkco"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_mv8pv"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_mv8pv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
 size = Vector2(32, 32)
@@ -16,3 +17,18 @@ shape = SubResource("RectangleShape2D_qb2p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8tkco")
+
+[node name="Clickable" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_mv8pv")
+
+[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
