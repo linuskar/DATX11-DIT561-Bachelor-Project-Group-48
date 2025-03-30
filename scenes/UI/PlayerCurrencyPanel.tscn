@@ -2,12 +2,11 @@
 
 [ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="1_4rihh"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_m5yyy"]
+[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="3_7d627"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7d627"]
 font = ExtResource("2_m5yyy")
 font_size = 28
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m5yyy"]
 
 [node name="PlayerCurrencyPanel" type="Control"]
 layout_mode = 3
@@ -28,16 +27,17 @@ theme_override_styles/panel = ExtResource("1_4rihh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Styling"]
 layout_mode = 2
-alignment = 1
+alignment = 2
 
 [node name="CurrencyAmount" type="Label" parent="Styling/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Hello"
+text = "100"
 label_settings = SubResource("LabelSettings_7d627")
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="Styling/HBoxContainer"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_m5yyy")
+texture = ExtResource("3_7d627")
+stretch_mode = 4
