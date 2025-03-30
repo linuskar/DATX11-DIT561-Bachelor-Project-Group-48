@@ -38,15 +38,12 @@ var outputs: Dictionary[String, int]
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
 	
-	# Set the 'selected' version of the main box invisible
-	self.find_child("MainBoxSelected").visible = false
-	
 	init_resource_data(max_storage, building_data.max_storage)
 	init_resource_data(outputs, building_data.output_generation)
 	init_resource_data(inputs, building_data.input_use_rates)
 	
 	## Set the image of the factory to the path 
-	self.find_child("BuildingIcon").set_texture(load(icon_path))
+	self.find_child("Containers").find_child("MarginContainer").find_child("BuildingIcon").set_texture(load(icon_path))
 		
 	## Set the name and cost of the building
 	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(cost))
@@ -72,17 +69,16 @@ func _input(event: InputEvent) -> void:
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
-	self.find_child("InfoText").clear()
+	self.find_child("TextContainer").find_child("InfoText").text = ''
 	
 	## Begin with the name of the building
-	var panel_text: String = "[font_size={12}][color=black]" + building_name + '\n'
+	var panel_text: String = building_name + '\n'
 	panel_text += add_dict_to_panel(inputs, "Inputs")
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
 	panel_text += add_dict_to_panel(contributables, "Contributables")
 	panel_text += add_dict_to_panel(required, "Required")
-	panel_text += "[/color][/font_size]"
-	self.find_child("InfoText").append_text(panel_text)
+	self.find_child("TextContainer").find_child("InfoText").text = panel_text
 
 ## Function for taking keys from a dictionary and returning 
 ## a formatted string containing those keys and their values
@@ -97,14 +93,14 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 
 ## Sets this building into its 'selected' styling
 func _on_selected() -> void:
-	self.find_child("MainBoxRegular").visible = false
-	self.find_child("MainBoxSelected").visible = true
+	self.find_child("MainBox").visible = false
+	self.find_child("Selected").visible = true
 	emit_signal("selected", self)
 
 ## Sets this building to its 'unselected' styling
 func unselected() -> void:
-	self.find_child("MainBoxRegular").visible = true
-	self.find_child("MainBoxSelected").visible = false
+	self.find_child("MainBox").visible = true
+	self.find_child("Selected").visible = false
 	
 
 func get_building_data() -> BuildingData:
