@@ -12,7 +12,7 @@ extends ProductionBuilding
 func _ready():
 	super()
 	## Test if power generates
-	input_storage.set(Enums.ResourceType.COAL, 100)
+	# input_storage.set(Enums.ResourceType.COAL, 100)
 	emit_smoke()
 
 ## Activated at the end of each cycle.
