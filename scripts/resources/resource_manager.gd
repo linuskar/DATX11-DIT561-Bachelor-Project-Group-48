@@ -33,7 +33,9 @@ func init_resources() -> void:
 		
 ## Function for initaliazing a building that is gathering a resource
 func init_building_gathering(building: Building) -> void:
-	if Enums.is_gathering_building(building.building_type):
+	if building is WoodCutter:
+		_init_gather_area(building)
+	elif Enums.is_gathering_building(building.building_type):
 		var resource_tile: GatherableResource = null
 		
 		if building.position in resource_tiles:
@@ -41,9 +43,6 @@ func init_building_gathering(building: Building) -> void:
 
 		var building_type: Enums.BuildingType = building.building_data.building_type
 		var building_type_string: String = Enums.building_type_to_string(building_type)
-		## TODO: Add gathering for more tiles if building is different size
-		## or for example if the wood cutter has an area around it can chop wood
-		## Checking if the building is on a resource tile and can gather that resource
 		if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
 			buildings_gathering.append(building)
 			
@@ -51,7 +50,30 @@ func init_building_gathering(building: Building) -> void:
 			
 			# print(building_type_string + " is gathering " + resource_type_string + " on " + str(building.position))
 			building.resoures_tiles_to_gather.append(resource_tile)
+			# resoures_tiles_to_gather.set(,resource_tile)
 			building.near_resource = true
 		else:
 			building.near_resource = false
 			# print(building_type_string + " is not gathering on " + str(building.position))
+			
+## Function to get the tiles in the area around the building to gather
+func _init_gather_area(building: Building) -> void:
+	var gather_dict: Dictionary[Vector2, GatherableResource] = {}  
+	var grid_size: int = 32
+	var gather_radius: int = 1
+	
+	if Enums.is_gathering_building(building.building_type):
+		## Iterate around the 2D area centered on the building,
+		## where the area is determined by the gather_radius radius
+		for x in range(-gather_radius, gather_radius + 1):
+			for y in range(-gather_radius, gather_radius + 1):
+				var tile_pos = building.position + Vector2(x * grid_size, y * grid_size)
+				if is_instance_valid(resource_tiles.get(tile_pos)):
+					var resource_tile: GatherableResource = resource_tiles.get(tile_pos)
+					
+					if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
+						gather_dict.set(tile_pos, resource_tile)
+						building.near_resource = true
+						
+	building.gather_area_dict = gather_dict
+			

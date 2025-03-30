@@ -18,6 +18,7 @@ var resoures_tiles_to_gather: Array[GatherableResource] = []
 func _ready() -> void:
 	super()
 	can_gather_resource_type = building_data.can_gather_resource_type
+	near_resource = false
 	
 ## Function to check if the gathering building can produce.
 func check_if_can_produce() -> bool:
@@ -42,7 +43,7 @@ func _produce_goods() -> void:
 		var produced_good_stored: int = output_storage.get(produced_good)
 		var produced_good_max_storage: int = max_storage.get(produced_good)
 		var produced_good_generated: int = 0
-		
+
 		for resource_tile in resoures_tiles_to_gather:
 			produced_good_generated += resource_tile.gather_resource(gather_rate_per_tile)
 			
@@ -52,7 +53,6 @@ func _produce_goods() -> void:
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
 		ResourceSignals.add_resource.emit(produced_good, produced_good_generated)
-		produced.emit(self)
 		
 		if resoures_tiles_to_gather.size() == 0:
 			near_resource = false

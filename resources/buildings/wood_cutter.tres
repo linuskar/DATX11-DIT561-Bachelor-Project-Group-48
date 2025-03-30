@@ -6,7 +6,7 @@
 script = ExtResource("1_aa0xx")
 can_gather_resource_type = 2
 max_storage = Dictionary[int, int]({
-2: 20
+2: 100
 })
 input_types = Array[int]([])
 input_use_rates = Dictionary[int, int]({})
