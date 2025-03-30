@@ -6,8 +6,6 @@ extends GatheringBuilding
 ## the GatheringBuilding class.
 ##
 
-var gather_area_dict: Dictionary[Vector2, GatherableResource]
-
 func _ready():
 	super()
 	
@@ -49,40 +47,39 @@ func _produce_goods() -> void:
 		
 		var gather_dict: Dictionary[Vector2, int] = _gather_area(gather_rate_per_tile)
 		
-		for resource_pos in gather_area_dict.keys():
-			if is_instance_valid(gather_area_dict.get(resource_pos)):
+		for resource_pos in resource_tiles_to_gather.keys():
+			if is_instance_valid(resource_tiles_to_gather.get(resource_pos)):
 				var amount_to_gather: int = gather_dict.get(resource_pos)
-				var resource: GatherableResource = gather_area_dict.get(resource_pos)
+				var resource: GatherableResource = resource_tiles_to_gather.get(resource_pos)
 				produced_good_generated += resource.gather_resource(amount_to_gather)
 			
 				if resource.quantity <= 0:
-					gather_area_dict.erase(resource_pos)
+					resource_tiles_to_gather.erase(resource_pos)
 				
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
 		ResourceSignals.add_resource.emit(produced_good, produced_good_generated)
 		
-		if gather_area_dict.size() == 0:
+		if resource_tiles_to_gather.size() == 0:
 			near_resource = false
 			
 ## Function to calculate the gather amount in the area around the building
 func _gather_area(amount: int) -> Dictionary[Vector2, int]:
 	var gather_dict: Dictionary[Vector2, int] = {}  
 	var grid_size: int = 32
-	var gather_radius: int = 2
-	## Iterate around the 2D area centered on the building,
-	## where the area is determined by the pollution radius
+	var gather_radius: int = building_data.gather_radius
+	## Iterate around the 2D area (square area) centered on the building,
+	## where the area is determined by the gather radius
 	for x in range(-gather_radius, gather_radius + 1):
 		for y in range(-gather_radius, gather_radius + 1):
 			var tile_pos = position + Vector2(x * grid_size, y * grid_size)
 			## Manhattan distance, grid based
 			var distance_from_building: int = abs(x) + abs(y)
 			
-			## A linear gather rate
+			## A linear falloff gather rate 
 			var amount_to_set: int = amount * (1 - distance_from_building / gather_radius)
 			
-			## No zero or negative
+			## Non zero and no negative values
 			amount_to_set = max(amount_to_set, 1)
 			gather_dict.set(tile_pos, amount_to_set)
-
 	return gather_dict

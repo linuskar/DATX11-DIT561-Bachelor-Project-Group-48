@@ -13,6 +13,8 @@ extends Area2D
 
 ## Function for gathering resource
 func gather_resource(amount_to_gather: int) -> int: 
+	## Get the amount of resources, 
+	## the min is for the case when the resource quantity <= 0
 	var gathered_amount: int = min(amount_to_gather, quantity)
 	quantity -= amount_to_gather
 	
