@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://8hwvsiww32an"]
 
-[ext_resource type="Script" uid="uid://cmrpg6sslwag4" path="res://scripts/UI/iron_mine_selectable.gd" id="1_op2ex"]
+[ext_resource type="Script" uid="uid://cmrpg6sslwag4" path="res://scripts/UI/selectables/iron_mine_selectable.gd" id="1_op2ex"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_pjbyy"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_g177c"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_fku1p"]
@@ -71,6 +71,7 @@ layout_mode = 2
 texture = ExtResource("4_fku1p")
 
 [node name="BuildingNameCost" type="Label" parent="."]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 127.0
 offset_right = 134.0
@@ -83,6 +84,7 @@ autowrap_mode = 2
 
 [node name="TextContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(160, 162)
+layout_mode = 0
 offset_left = 145.0
 offset_top = 15.0
 offset_right = 305.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddwmp6n5prn23"]
 
-[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_7shli"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_7shli"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_rvi21"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_7shli"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="5_h608y"]

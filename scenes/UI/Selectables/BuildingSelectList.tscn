@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://boeiac6bfcce2"]
 
-[ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_dphbc"]
+[ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
 [ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="3_epysl"]
 [ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/Selectables/CoalMineSelectable.tscn" id="4_2uf64"]

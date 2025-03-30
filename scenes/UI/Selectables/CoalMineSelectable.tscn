@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c7tg4gvbnd0i0"]
 
-[ext_resource type="Script" uid="uid://bkqiboubd2jx3" path="res://scripts/UI/coal_mine_selectable.gd" id="1_32o48"]
+[ext_resource type="Script" uid="uid://bkqiboubd2jx3" path="res://scripts/UI/selectables/coal_mine_selectable.gd" id="1_32o48"]
 [ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_53tyr"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="3_opi3k"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="4_32o48"]
@@ -70,6 +70,7 @@ layout_mode = 2
 texture = ExtResource("6_nypja")
 
 [node name="BuildingNameCost" type="Label" parent="."]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 127.0
 offset_right = 134.0
@@ -82,6 +83,7 @@ autowrap_mode = 2
 
 [node name="TextContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(160, 162)
+layout_mode = 0
 offset_left = 145.0
 offset_top = 15.0
 offset_right = 305.0

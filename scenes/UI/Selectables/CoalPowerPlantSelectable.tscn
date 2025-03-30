@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bcpxbii6e6t0h"]
 
-[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_vp1x3"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_vp1x3"]
 [ext_resource type="Resource" uid="uid://dxv8ly1srx0hh" path="res://resources/buildings/coal_power_plant.tres" id="2_3stuo"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="3_5nnbb"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="4_06tou"]
@@ -74,6 +74,7 @@ layout_mode = 2
 texture = ExtResource("5_6e1eu")
 
 [node name="BuildingNameCost" type="Label" parent="."]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 127.0
 offset_right = 134.0
@@ -86,6 +87,7 @@ autowrap_mode = 2
 
 [node name="TextContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(160, 162)
+layout_mode = 0
 offset_left = 145.0
 offset_top = 15.0
 offset_right = 305.0
