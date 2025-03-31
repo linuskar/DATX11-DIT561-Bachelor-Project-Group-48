@@ -6,13 +6,14 @@
 [ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_6f8g6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwrwc"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [node name="IronMine" type="StaticBody2D"]
 script = ExtResource("1_l5hob")
 building_data = ExtResource("2_jwvew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_cwrwc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -66,7 +66,6 @@ func _output_resources() -> void:
 		production_cycle.stop()
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
-		print(building_type_string + " is producing")
 		_produce_goods()
 		_use_input_recipe()
 		_generate_byproducts()

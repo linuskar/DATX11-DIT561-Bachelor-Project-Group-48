@@ -16,13 +16,25 @@ func populate_info_label(building: Building) -> void:
 
 ## Formating building data into a string that is then displayed in the
 ## building info panel.
-func get_text(building_data: ProductionBuildingData) -> String:
+func get_text(building_data: BuildingData) -> String:
 	var text: String = ""
 	
 	## Adds all the different outputs of the building
 	text += "\nOutputs\n"
 	for key in building_data.output_generation.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
+		var resource_type: String = Enums.resource_type_to_string(key)
+		var output_amount: String = str(building_data.output_generation.get(key))
+		
+		if building_data is AreaGatheringBuildingData and !Enums.is_emission(key):
+			var gather_radius: int = building_data.gather_radius
+			var size_x: int = building_data.building_size.x
+			var size_y: int = building_data.building_size.y
+			var area: String = str(size_x + 2 * gather_radius) +"x" + str(size_y + 2 * gather_radius)
+			text += resource_type + ": " + area + " area. Base gather rate of " + output_amount  + " at the center, decreasing with further tiles." + '\n'
+		elif Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(key):
+			text += resource_type + ': ' + output_amount + " per tile" + '\n'
+		else:
+			text += resource_type + ': ' + output_amount + '\n'
 
 	## Adds all the different inputs of the building
 	text += "\nInputs\n"

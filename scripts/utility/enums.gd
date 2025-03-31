@@ -73,8 +73,21 @@ static func resource_type_to_string(resource_type: ResourceType) -> String:
 		ResourceType.NONE: "NONE",
 	}
 	## Default to "UNKNOWN" if not found
-	return resource_names.get(resource_type, "UNKNOWN")  
+	return resource_names.get(resource_type, -1)  
 	
+## Function for returning the ResourceType equivalent of a string	
+static func string_to_resource_type(string: String) -> ResourceType:
+	var resource_names: Dictionary[String, ResourceType] = {
+		"IRON ORE": ResourceType.IRON_ORE,
+		"COAL": ResourceType.COAL,
+		"WOOD": ResourceType.WOOD,
+		"CO2": ResourceType.CO2,
+		"ELECTRICITY": ResourceType.ELECTRICITY,
+		"BIOMASS": ResourceType.BIOMASS,
+		"NONE": ResourceType.NONE,
+	}
+	return resource_names.get(string, "UNKNOWN")  
+
 ## Function for returning the string equivalent of a BuildingType
 static func building_type_to_string(building_type: BuildingType) -> String:
 	var building_names: Dictionary[BuildingType, String] = {
