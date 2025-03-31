@@ -31,7 +31,7 @@ func check_if_can_produce() -> bool:
 	if can_be_output_overflow:
 		return false
 	
-	if near_resource == false:
+	if !near_resource:
 		return false
 	
 	return true
