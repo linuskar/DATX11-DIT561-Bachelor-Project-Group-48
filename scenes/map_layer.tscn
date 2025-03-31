@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://c7ded0ull7r3b"]
+[gd_scene load_steps=23 format=4 uid="uid://c7ded0ull7r3b"]
 
 [ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="1_7ny2r"]
 [ext_resource type="Script" uid="uid://dvsnvlsyog0u7" path="res://scripts/map_layer.gd" id="1_qds2b"]
@@ -6,8 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://tivkwjs5ujbw" path="res://assets/Tilesets/Grass_Tiles.png" id="3_eds5r"]
 [ext_resource type="PackedScene" uid="uid://1g535ircrcnf" path="res://scenes/resources/coal_ore.tscn" id="5_v8mp5"]
 [ext_resource type="PackedScene" uid="uid://csdjsjq4n5751" path="res://scenes/resources/iron_ore.tscn" id="6_psaw3"]
-[ext_resource type="Script" uid="uid://cmc4up8ckeogx" path="res://scripts/resources/gatherable_tree.gd" id="7_ysx3f"]
-[ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="8_n1fju"]
+[ext_resource type="PackedScene" uid="uid://dvyx2m24n7cfc" path="res://scenes/resources/tree.tscn" id="7_qds2b"]
 [ext_resource type="Script" uid="uid://ci1r0ft37y25" path="res://scripts/utility/map_areas.gd" id="8_ysx3f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23fv6"]
@@ -974,30 +973,11 @@ sources/0 = SubResource("TileSetAtlasSource_r0ojp")
 sources/1 = SubResource("TileSetAtlasSource_1lgdq")
 sources/2 = SubResource("TileSetAtlasSource_10sci")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_laj1l"]
-size = Vector2(32, 32)
-
-[sub_resource type="PackedScene" id="PackedScene_hrbfy"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("GatherableTree", "Area2D", "script", "emission_max_capacity", "resource_type", "Sprite2D", "Sprite2D", "texture", "region_enabled", "region_rect", "CollisionShape2D", "CollisionShape2D", "visible", "shape"),
-"node_count": 3,
-"node_paths": [NodePath("."), NodePath(".")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 1073741824, 0, 6, 5, -1, 3, 7, 3, 8, 4, 9, 5, 0, 1073741825, 0, 11, 10, -1, 2, 12, 6, 13, 7, 0),
-"variants": [ExtResource("7_ysx3f"), Dictionary[int, float]({
-3: -1.0,
-4: 1000.0
-}), 2, ExtResource("8_n1fju"), true, Rect2(0, 32, 32, 32), false, SubResource("RectangleShape2D_laj1l")],
-"version": 3
-}
-
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_psaw3"]
 resource_name = "resources"
 scenes/1/scene = ExtResource("5_v8mp5")
 scenes/2/scene = ExtResource("6_psaw3")
-scenes/3/scene = SubResource("PackedScene_hrbfy")
+scenes/3/scene = ExtResource("7_qds2b")
 
 [sub_resource type="TileSet" id="TileSet_7wght"]
 tile_size = Vector2i(32, 32)

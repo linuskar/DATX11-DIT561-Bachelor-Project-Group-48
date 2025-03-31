@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bkqqe6bdw740k" path="res://scenes/buildings/smoke/smoke_v2.tscn" id="5_oc4lm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwrwc"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [node name="IronMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_l5hob")
@@ -15,6 +15,7 @@ smokes = [NodePath("Smoke_v2"), NodePath("Smoke_v2_2"), NodePath("Smoke_v2_3")]
 building_data = ExtResource("2_jwvew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_cwrwc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

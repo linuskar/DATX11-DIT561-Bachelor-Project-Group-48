@@ -81,7 +81,7 @@ static func resource_type_to_string(resource_type: ResourceType) -> String:
 		ResourceType.NONE: "NONE",
 	}
 	## Default to "UNKNOWN" if not found
-	return resource_names.get(resource_type, "UNKNOWN")  
+	return resource_names.get(resource_type, -1)  
 	
 ## Function for returning the ResourceType equivalent of a string	
 static func string_to_resource_type(string: String) -> ResourceType:

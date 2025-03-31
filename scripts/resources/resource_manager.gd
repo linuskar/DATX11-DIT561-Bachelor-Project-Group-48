@@ -15,16 +15,12 @@ var buildings_gathering: Array[Building]
 
 ## A dictionary containing the tiles with gatherable resoruces on the map
 var resource_tiles: Dictionary[Vector2, GatherableResource] = {}
+var grid_size: int = 32
 
 func _ready() -> void:
 	build_manager.placed_building.connect(init_building_gathering)
 	pollution_manager.emissions_to_apply.connect(apply_emissions)
 	init_resources()
-
-func _process(delta: float) -> void:
-	## Use this function to test if resources are gathered by printing in 
-	## the console, the resource gathered
-	gather_resources()
 
 ## Function for initaliazing the variables for the resources
 func init_resources() -> void:
@@ -41,34 +37,34 @@ func init_resources() -> void:
 ## Function for initaliazing a building that is gathering a resource
 func init_building_gathering(building: Building) -> void:
 	if Enums.is_gathering_building(building.building_type):
-		var resource_tile: GatherableResource = null
-		
-		if building.position in resource_tiles:
-			resource_tile = resource_tiles[building.position]
-
-		var building_type: Enums.BuildingType = building.building_data.building_type
-		var building_type_string: String = Enums.building_type_to_string(building_type)
-
-		## Checking if the building is on a resource tile and can gather that resource
-		if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
-			resource_tiles.get(building.position)
-			buildings_gathering.append(building)
-			
-			var resource_type_string: String = Enums.resource_type_to_string(resource_tile.resource_type)
-			
-			print(building_type_string + " is gathering " + resource_type_string + " on " + str(building.position))
-			
-			building.near_resource = true
+		if building is WoodCutter:
+			## For gathering in an area around the building
+			var gather_radius: int = building.building_data.gather_radius
+			_init_gather_area(-gather_radius, gather_radius+1, -gather_radius, gather_radius+1, building.position, building)
 		else:
-			building.near_resource = false
-			print(building_type_string + " is not gathering on " + str(building.position))
-	
-## Temporary function for gathering resources
-func gather_resources() -> void:
-	for building in buildings_gathering:
-		var resource_tile: GatherableResource = resource_tiles[building.position]
-		var resource_quantity: int = resource_tile.gather_resource()
+			## For gathering on the tiles the building is on
+			var adjusted_pos: Vector2 = building.position 
+			var building_tile_size: Vector2 = building.building_data.building_size
+			adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
+			adjusted_pos -= Vector2(0, grid_size * (building_tile_size.y -  1) / 2)
+			
+			_init_gather_area(0, building_tile_size.x, 0, building_tile_size.y, adjusted_pos, building)
 
+## Function to get the tiles in the area around the building to gather
+func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos: Vector2, building: Building) -> void:
+	var gather_area_dict: Dictionary[Vector2, GatherableResource] = {}  
+	## Iterate around the area centered to be gathered on
+	for x in range(min_x, max_x):
+		for y in range(min_y, max_y):
+			var tile_pos = start_pos + Vector2(x * grid_size, y * grid_size)
+			if is_instance_valid(resource_tiles.get(tile_pos)):
+				var resource_tile: GatherableResource = resource_tiles.get(tile_pos)
+				
+				if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
+					gather_area_dict.set(tile_pos, resource_tile)
+					building.near_resource = true
+	building.resource_tiles_to_gather = gather_area_dict
+	
 ## Function to apply emissions on resource tiles
 func apply_emissions(emissions_dict: Dictionary[Vector2, float], emission_type: Enums.ResourceType) -> void:
 	for pos in emissions_dict.keys():
