@@ -1,8 +1,11 @@
 class_name ResourceTransport
 extends Node
 
+#All buildings in the network
 var buildings: Array[ProductionBuilding] = []
+#All buildings having more than 0 of a specific resource
 var buildings_output: Dictionary[Enums.ResourceType, Array] = {}
+#All buildings looking for a specific resource
 var buildings_input: Dictionary[Enums.ResourceType, Array] = {}
 
 func _init() -> void:
@@ -10,10 +13,12 @@ func _init() -> void:
 		buildings_output.get_or_add(x, [])
 		buildings_input.get_or_add(x, [])
 		
+#Add building to buildings
 func new_building(building: ProductionBuilding) -> void:
 	buildings.append(building)
 	new_building_to_input(building)
 	
+#Add building to output every time the building produce resource when it had 0 before
 func new_building_to_output(building: ProductionBuilding) -> void:
 	if !buildings.has(building):
 		return
@@ -24,6 +29,7 @@ func new_building_to_output(building: ProductionBuilding) -> void:
 			all_output_buildings.append(building)
 			buildings_output.set(output_type, all_output_buildings)
 
+#As long as a building input storage isn't 0
 func new_building_to_input(building: ProductionBuilding) -> void:
 	var all_inputs = building.building_data.input_types
 	for input_type in all_inputs:
@@ -32,6 +38,7 @@ func new_building_to_input(building: ProductionBuilding) -> void:
 			all_input_buildings.append(building)
 			buildings_input.set(input_type, all_input_buildings)
 
+#Flyttar resources från byggnader i output_buildings till byggnader i input_buildings
 func transport_resources(type: Enums.ResourceType) -> void:
 	if !buildings_input.get(type).is_empty() && !buildings_output.get(type).is_empty():
 		var next_building: ProductionBuilding = buildings_input.get(type).pop_front()
@@ -56,6 +63,8 @@ func transport_resources(type: Enums.ResourceType) -> void:
 			
 			transport_resources(type)
 		return
+
+#Doesn't work atm
 func add_another_network(new_network: ResourceTransport):
 	buildings.append_array(new_network.buildings)
 	buildings_input.merge(new_network.buildings_input)
