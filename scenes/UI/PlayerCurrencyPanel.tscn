@@ -1,12 +1,63 @@
-[gd_scene load_steps=5 format=3 uid="uid://cht3r13bjg58r"]
+[gd_scene load_steps=12 format=3 uid="uid://cht3r13bjg58r"]
 
 [ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="1_4rihh"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_m5yyy"]
-[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="3_7d627"]
+[ext_resource type="Texture2D" uid="uid://dn7p2wh12yf6v" path="res://assets/coins-chests-etc-2-0.png" id="3_7d627"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7d627"]
 font = ExtResource("2_m5yyy")
 font_size = 28
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7d627"]
+atlas = ExtResource("3_7d627")
+region = Rect2(65, 18, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh3is"]
+atlas = ExtResource("3_7d627")
+region = Rect2(81, 18, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okk18"]
+atlas = ExtResource("3_7d627")
+region = Rect2(97, 18, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt8i3"]
+atlas = ExtResource("3_7d627")
+region = Rect2(113, 18, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7kty"]
+atlas = ExtResource("3_7d627")
+region = Rect2(129, 18, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp0yb"]
+atlas = ExtResource("3_7d627")
+region = Rect2(145, 18, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5yyy"]
+resource_name = "Coin"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7d627")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh3is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okk18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt8i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7kty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp0yb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="PlayerCurrencyPanel" type="Control"]
 layout_mode = 3
@@ -37,7 +88,13 @@ label_settings = SubResource("LabelSettings_7d627")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Icon" type="TextureRect" parent="Styling/HBoxContainer"]
+[node name="Control" type="Control" parent="Styling/HBoxContainer"]
+custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
-texture = ExtResource("3_7d627")
-stretch_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Styling/HBoxContainer/Control"]
+position = Vector2(34.8, 27.8)
+scale = Vector2(3.35, 3.35)
+sprite_frames = SubResource("SpriteFrames_m5yyy")
+autoplay = "default"
+frame_progress = 0.831781
