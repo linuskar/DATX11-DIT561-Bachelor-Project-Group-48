@@ -1,29 +1,18 @@
 class_name ProductionBuilding
-extends Building
+extends StorageBuilding
 ## A class that is for aspects of a production building
 ##
 ## A class that is for aspects of a production building, containing it's
 ## metadata. The main functionallity is about producing a resource with
 ## other potential resources as input.
-## This class extends from the Building class.
+## This class extends from the StorageBuilding class.
 ##
 ##
 
-## The max storage of the resources the production building interacts with.
-var max_storage: Dictionary[Enums.ResourceType, int]
-## The input and its storage of the resources the production building uses.
-var input_storage: Dictionary[Enums.ResourceType, int]
 ## The rates/quantity of input resources the production building uses each cycle.
 var input_use_rates: Dictionary[Enums.ResourceType, int]
-## The storage of the resources the production building outputs.
-var output_storage: Dictionary[Enums.ResourceType, int] 
 ## The rates/quantity of resources the production building outputs each cycle.
 var output_generation: Dictionary[Enums.ResourceType, int] 
-
-## The byproducts the production building outputs.
-var byproducts: Array[Enums.ResourceType]
-## The produced goods the production building outputs.
-var produced_goods: Array[Enums.ResourceType]
 
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
@@ -37,26 +26,9 @@ func _ready() -> void:
 	
 ## Function to initialize the production building.
 func init_production_building() -> void:
-	max_storage = building_data.max_storage
-	
-	for resource in building_data.input_types:
-		input_storage.set(resource, 0)
-		
 	input_use_rates = building_data.input_use_rates
-	
-	for resource in building_data.output_types:
-		output_storage.set(resource, 0)
 		
 	output_generation = building_data.output_generation
-
-	for output in output_generation.keys():
-		if Enums.is_byproduct(output) == true:
-			byproducts.append(output)
-		elif Enums.is_produced_good(output) == true:
-			produced_goods.append(output)
-			
-	# Connect the signal that can take resources from this building
-	ResourceSignals.get_resource.connect(_send_resources)
 	
 ## Activated at the end of each cycle.
 func _on_timer_timeout() -> void:
@@ -155,3 +127,8 @@ func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	
 	if check_if_can_produce():
 		production_cycle.autostart = true
+	
+## Function to add resources to the storage building.
+func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
+	var current: int = input_storage.get(input_type)
+	input_storage.set(input_type, current + input_amount)
