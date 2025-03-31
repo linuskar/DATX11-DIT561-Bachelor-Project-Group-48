@@ -1,22 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvbhybq0wqtk8"]
+[gd_scene load_steps=9 format=3 uid="uid://br2gryi0lgaf4"]
 
-[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_afr5s"]
-[ext_resource type="Resource" uid="uid://okbenuas7tpt" path="res://resources/buildings/biomass_power_plant.tres" id="2_afr5s"]
-[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="3_sl3v8"]
-[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="4_037f6"]
-[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="6_glkla"]
-[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="7_yfpp0"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_qd4xx"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_wwvka"]
+[ext_resource type="Resource" uid="uid://dpfrfu5x7p6yh" path="res://resources/buildings/biomass_landfill.tres" id="2_y6nl7"]
+[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_y6nl7"]
+[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_u3dyx"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_mxi4i"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_db55i"]
-font = ExtResource("7_yfpp0")
+[sub_resource type="LabelSettings" id="LabelSettings_rvi21"]
+font = ExtResource("5_mxi4i")
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_qg6m5"]
-font = ExtResource("7_yfpp0")
+[sub_resource type="LabelSettings" id="LabelSettings_7shli"]
+font = ExtResource("5_mxi4i")
 font_color = Color(0, 0, 0, 1)
 
-[node name="BiomassPowerPlantSelectable" type="Control"]
+[node name="BiomassLandfillSelectable" type="Control"]
 custom_minimum_size = Vector2(320, 192)
 layout_mode = 3
 anchors_preset = 15
@@ -27,10 +27,12 @@ offset_bottom = -456.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.599748, 0.599748)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 1
-script = ExtResource("1_afr5s")
-icon_path = "uid://cyb5gnrnuag2x"
-building_data = ExtResource("2_afr5s")
+script = ExtResource("1_qd4xx")
+icon_path = "uid://b6kg1pkyvmwu"
+building_data = ExtResource("2_y6nl7")
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
@@ -39,8 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("3_sl3v8")
+theme_override_styles/panel = ExtResource("2_wwvka")
 
 [node name="Selected" type="Panel" parent="."]
 visible = false
@@ -50,8 +51,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("4_037f6")
+theme_override_styles/panel = ExtResource("3_y6nl7")
 
 [node name="Containers" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -62,8 +62,7 @@ anchor_right = 0.425
 anchor_bottom = 0.65
 offset_right = -2.0
 offset_bottom = -0.399994
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("3_sl3v8")
+theme_override_styles/panel = ExtResource("2_wwvka")
 
 [node name="MarginContainer" type="MarginContainer" parent="Containers"]
 layout_mode = 2
@@ -74,7 +73,7 @@ theme_override_constants/margin_bottom = 0
 
 [node name="BuildingIcon" type="TextureRect" parent="Containers/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("6_glkla")
+texture = ExtResource("4_u3dyx")
 
 [node name="BuildingNameCost" type="Label" parent="."]
 layout_mode = 0
@@ -84,7 +83,7 @@ offset_right = 134.0
 offset_bottom = 181.0
 mouse_filter = 1
 text = "Name Cost"
-label_settings = SubResource("LabelSettings_db55i")
+label_settings = SubResource("LabelSettings_rvi21")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -102,7 +101,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-label_settings = SubResource("LabelSettings_qg6m5")
+label_settings = SubResource("LabelSettings_7shli")
 autowrap_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="."]
