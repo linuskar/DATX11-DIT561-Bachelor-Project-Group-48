@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bhrcu48dc2f50"]
 
-[ext_resource type="Script" path="res://scripts/UI/wood_cutter_selectable.gd" id="1_0tnap"]
+[ext_resource type="Script" uid="uid://wwq4panv8fif" path="res://scripts/UI/wood_cutter_selectable.gd" id="1_0tnap"]
 [ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="2_gr07p"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="3_0tnap"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="4_8vqoe"]

@@ -74,6 +74,7 @@ layout_mode = 2
 texture = ExtResource("5_6e1eu")
 
 [node name="BuildingNameCost" type="Label" parent="."]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 127.0
 offset_right = 134.0
@@ -86,6 +87,7 @@ autowrap_mode = 2
 
 [node name="TextContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(160, 162)
+layout_mode = 0
 offset_left = 145.0
 offset_top = 15.0
 offset_right = 305.0
