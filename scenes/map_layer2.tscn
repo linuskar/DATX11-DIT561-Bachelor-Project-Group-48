@@ -1,17 +1,16 @@
-[gd_scene load_steps=26 format=4 uid="uid://c7ded0ull7r3b"]
+[gd_scene load_steps=23 format=4 uid="uid://dh3milqqd435b"]
 
-[ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="1_7ny2r"]
-[ext_resource type="Script" uid="uid://dvsnvlsyog0u7" path="res://scripts/map_layer.gd" id="1_qds2b"]
-[ext_resource type="Texture2D" uid="uid://d2eu27qu6lkff" path="res://assets/Tilesets/Floors_Tiles.png" id="2_xm11k"]
-[ext_resource type="Texture2D" uid="uid://tivkwjs5ujbw" path="res://assets/Tilesets/Grass_Tiles.png" id="3_eds5r"]
-[ext_resource type="PackedScene" uid="uid://1g535ircrcnf" path="res://scenes/resources/coal_ore.tscn" id="5_v8mp5"]
-[ext_resource type="PackedScene" uid="uid://csdjsjq4n5751" path="res://scenes/resources/iron_ore.tscn" id="6_psaw3"]
-[ext_resource type="Script" uid="uid://cmc4up8ckeogx" path="res://scripts/resources/gatherable_tree.gd" id="7_ysx3f"]
-[ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="8_n1fju"]
-[ext_resource type="Script" uid="uid://ci1r0ft37y25" path="res://scripts/utility/map_areas.gd" id="8_ysx3f"]
+[ext_resource type="Script" uid="uid://dvsnvlsyog0u7" path="res://scripts/map_layer.gd" id="1_bchcn"]
+[ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="2_yeyqk"]
+[ext_resource type="Texture2D" uid="uid://d2eu27qu6lkff" path="res://assets/Tilesets/Floors_Tiles.png" id="3_ueptt"]
+[ext_resource type="Texture2D" uid="uid://tivkwjs5ujbw" path="res://assets/Tilesets/Grass_Tiles.png" id="4_sr0f6"]
+[ext_resource type="PackedScene" uid="uid://1g535ircrcnf" path="res://scenes/resources/coal_ore.tscn" id="5_61k7d"]
+[ext_resource type="PackedScene" uid="uid://csdjsjq4n5751" path="res://scenes/resources/iron_ore.tscn" id="6_77c24"]
+[ext_resource type="PackedScene" uid="uid://dvyx2m24n7cfc" path="res://scenes/resources/gatherable_tree.tscn" id="7_vueje"]
+[ext_resource type="Script" uid="uid://ci1r0ft37y25" path="res://scripts/utility/map_areas.gd" id="8_as3p8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23fv6"]
-texture = ExtResource("1_7ny2r")
+texture = ExtResource("2_yeyqk")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -221,7 +220,7 @@ texture = ExtResource("1_7ny2r")
 sources/0 = SubResource("TileSetAtlasSource_23fv6")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lq2n8"]
-texture = ExtResource("2_xm11k")
+texture = ExtResource("3_ueptt")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -382,7 +381,7 @@ texture = ExtResource("2_xm11k")
 sources/0 = SubResource("TileSetAtlasSource_lq2n8")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7wght"]
-texture = ExtResource("2_xm11k")
+texture = ExtResource("3_ueptt")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -553,7 +552,7 @@ texture = ExtResource("2_xm11k")
 sources/0 = SubResource("TileSetAtlasSource_7wght")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r0ojp"]
-texture = ExtResource("2_xm11k")
+texture = ExtResource("3_ueptt")
 use_texture_padding = false
 1:0/0 = 0
 2:0/next_alternative_id = 2
@@ -710,7 +709,7 @@ use_texture_padding = false
 1:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1lgdq"]
-texture = ExtResource("1_7ny2r")
+texture = ExtResource("2_yeyqk")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -917,7 +916,7 @@ texture = ExtResource("1_7ny2r")
 8:14/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_10sci"]
-texture = ExtResource("3_eds5r")
+texture = ExtResource("4_sr0f6")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -974,30 +973,11 @@ sources/0 = SubResource("TileSetAtlasSource_r0ojp")
 sources/1 = SubResource("TileSetAtlasSource_1lgdq")
 sources/2 = SubResource("TileSetAtlasSource_10sci")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_laj1l"]
-size = Vector2(32, 32)
-
-[sub_resource type="PackedScene" id="PackedScene_hrbfy"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("GatherableTree", "Area2D", "script", "emission_max_capacity", "resource_type", "Sprite2D", "Sprite2D", "texture", "region_enabled", "region_rect", "CollisionShape2D", "CollisionShape2D", "visible", "shape"),
-"node_count": 3,
-"node_paths": [NodePath("."), NodePath(".")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 1073741824, 0, 6, 5, -1, 3, 7, 3, 8, 4, 9, 5, 0, 1073741825, 0, 11, 10, -1, 2, 12, 6, 13, 7, 0),
-"variants": [ExtResource("7_ysx3f"), Dictionary[int, float]({
-3: -1.0,
-4: 1000.0
-}), 2, ExtResource("8_n1fju"), true, Rect2(0, 32, 32, 32), false, SubResource("RectangleShape2D_laj1l")],
-"version": 3
-}
-
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_psaw3"]
 resource_name = "resources"
-scenes/1/scene = ExtResource("5_v8mp5")
-scenes/2/scene = ExtResource("6_psaw3")
-scenes/3/scene = SubResource("PackedScene_hrbfy")
+scenes/1/scene = ExtResource("5_61k7d")
+scenes/2/scene = ExtResource("6_77c24")
+scenes/3/scene = ExtResource("7_vueje")
 
 [sub_resource type="TileSet" id="TileSet_7wght"]
 tile_size = Vector2i(32, 32)
@@ -1010,7 +990,7 @@ size = Vector2(3328, 2592)
 distance = -10.0
 
 [node name="MapLayer" type="Node2D"]
-script = ExtResource("1_qds2b")
+script = ExtResource("1_bchcn")
 
 [node name="Water" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)
@@ -1037,7 +1017,7 @@ tile_map_data = PackedByteArray("AAAjAO7/AgAAAAAAAQAkAO7/AgAAAAAAAQAlAO7/AgAAAAA
 tile_set = SubResource("TileSet_7wght")
 
 [node name="MapAreas" type="Node" parent="."]
-script = ExtResource("8_ysx3f")
+script = ExtResource("8_as3p8")
 
 [node name="PlayableArea" type="Area2D" parent="MapAreas"]
 

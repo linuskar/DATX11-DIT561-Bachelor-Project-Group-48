@@ -1,0 +1,37 @@
+[gd_scene load_steps=10 format=3 uid="uid://is5lff81m8br"]
+
+[ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_5dhap"]
+[ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_s427y"]
+[ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="3_yblbm"]
+[ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="4_qyh6i"]
+[ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="5_8brng"]
+[ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="6_w330p"]
+[ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="7_erv2c"]
+[ext_resource type="PackedScene" uid="uid://bmfjen7u3vjeh" path="res://scenes/utility/pollution_manager.tscn" id="8_5kdtj"]
+[ext_resource type="PackedScene" uid="uid://djil6gjtsgbdu" path="res://scenes/UI/UserInterface.tscn" id="9_okhi1"]
+
+[node name="Game" type="Node2D"]
+
+[node name="CameraMovement" parent="." instance=ExtResource("1_5dhap")]
+
+[node name="MapLayer" parent="." instance=ExtResource("2_s427y")]
+
+[node name="GameManager" parent="." instance=ExtResource("3_yblbm")]
+
+[node name="ResourceManager" type="Node" parent="."]
+script = ExtResource("4_qyh6i")
+
+[node name="BuildingSelector" parent="." instance=ExtResource("5_8brng")]
+visible = false
+
+[node name="PlayerResources" type="Node" parent="."]
+script = ExtResource("6_w330p")
+
+[node name="BuildManager" parent="." instance=ExtResource("7_erv2c")]
+
+[node name="PollutionManager" parent="." instance=ExtResource("8_5kdtj")]
+
+[node name="UserInterface" parent="." instance=ExtResource("9_okhi1")]
+
+[connection signal="build_list_entered" from="UserInterface" to="BuildManager" method="_on_user_interface_build_list_entered"]
+[connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
