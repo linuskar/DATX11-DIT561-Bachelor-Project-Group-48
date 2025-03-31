@@ -56,3 +56,7 @@ func transport_resources(type: Enums.ResourceType) -> void:
 			
 			transport_resources(type)
 		return
+func add_another_network(new_network: ResourceTransport):
+	buildings.append_array(new_network.buildings)
+	buildings_input.merge(new_network.buildings_input)
+	buildings_input.merge(new_network.buildings_output)

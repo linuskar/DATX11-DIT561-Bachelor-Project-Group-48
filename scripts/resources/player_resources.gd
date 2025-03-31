@@ -32,40 +32,18 @@ func _on_build_manager_placed_building(building: Building) -> void:
 	#Temporary solution
 	if building is ProductionBuilding:
 		networks.get(0).new_building(building)
-	
-	##Old solution
-	#if building is ProductionBuilding:
-		#buildings.append(building)
-		##new_building_to_output(building)
-		#new_building_to_input(building)
 
 func new_building_to_output(building: ProductionBuilding) -> void:
 	##TODO Logic to send new_building_to_output to the correct instance
 	
 	##Temp solution
 	networks.get(0).new_building_to_output(building)
-	
-	##Old solution
-	#var all_outputs = building.get_produced_resources()
-	#for output_type in all_outputs:
-		#var all_output_buildings = buildings_output.get(output_type)
-		#if !all_output_buildings.has(building):
-			#all_output_buildings.append(building)
-			#buildings_output.set(output_type, all_output_buildings)
 
 func new_building_to_input(building: ProductionBuilding) -> void:
 	##TODO Logic to send new_building_to_input to the correct instance
 	
 	##Temp solution
 	networks.get(0).new_building_to_input(building)
-	
-	#Old solution
-	#var all_inputs = building.building_data.input_types
-	#for input_type in all_inputs:
-		#var all_input_buildings = buildings_input.get(input_type)
-		#if !all_input_buildings.has(building):
-			#all_input_buildings.append(building)
-			#buildings_input.set(input_type, all_input_buildings)
 
 func temp(type) -> void:
 	for current_network in networks:
@@ -75,3 +53,7 @@ func temp(type) -> void:
 func _on_timer_timeout() -> void:
 	for key in resources.keys():
 		temp(key)
+
+func join_two_networks():
+	var new_network: ResourceTransport = preload("res://scripts/resources/resource_transport.gd").new()
+	pass
