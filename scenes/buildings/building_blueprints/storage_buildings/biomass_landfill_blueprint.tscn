@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_4j5i1"]
 [ext_resource type="Resource" uid="uid://dpfrfu5x7p6yh" path="res://resources/buildings/biomass_landfill.tres" id="2_ks704"]
-[ext_resource type="Texture2D" uid="uid://b6kg1pkyvmwu" path="res://assets/UI/Resource UI/biomass.png" id="3_1wkii"]
+[ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="3_1d6r3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
@@ -15,4 +15,4 @@ building_data = ExtResource("2_ks704")
 shape = SubResource("RectangleShape2D_0igec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_1wkii")
+texture = ExtResource("3_1d6r3")

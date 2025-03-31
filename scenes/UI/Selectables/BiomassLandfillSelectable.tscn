@@ -31,7 +31,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_qd4xx")
-icon_path = "uid://b6kg1pkyvmwu"
+icon_path = "uid://bqeautb4vgenl"
 building_data = ExtResource("2_y6nl7")
 
 [node name="MainBox" type="Panel" parent="."]
