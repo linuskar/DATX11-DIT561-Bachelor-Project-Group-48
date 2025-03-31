@@ -95,6 +95,10 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 				text += key + ": " + area + " area. Base gather rate of " + str(dict.get(key)) + " at the center, decreasing with further tiles." + '\n'
 			elif dict_name == "Outputs" and Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(Enums.string_to_resource_type(key)):
 				text += key + ": " + str(dict.get(key)) + " per tile" + '\n'
+			## Want to hide the number of emissions outputted,
+			## maybe note the level like low, medium, high, to get an estimate
+			elif dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(Enums.string_to_resource_type(key)):
+				text += key + ": In an area." + '\n'
 			else:
 				text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'

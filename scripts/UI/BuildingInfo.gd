@@ -33,6 +33,8 @@ func get_text(building_data: BuildingData) -> String:
 			text += resource_type + ": " + area + " area. Base gather rate of " + output_amount  + " at the center, decreasing with further tiles." + '\n'
 		elif Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(key):
 			text += resource_type + ': ' + output_amount + " per tile" + '\n'
+		elif Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(key):
+			text += Enums.resource_type_to_string(key) + ": In an area." + '\n'
 		else:
 			text += resource_type + ': ' + output_amount + '\n'
 

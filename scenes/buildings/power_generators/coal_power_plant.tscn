@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbk8oqqcmsa30"]
+[gd_scene load_steps=8 format=3 uid="uid://cbk8oqqcmsa30"]
 
 [ext_resource type="Script" uid="uid://duuowy6imteh8" path="res://scripts/buildings/power_generators/coal_power_plant.gd" id="1_2asmk"]
 [ext_resource type="Resource" uid="uid://dxv8ly1srx0hh" path="res://resources/buildings/coal_power_plant.tres" id="2_lqwfw"]
 [ext_resource type="Texture2D" uid="uid://c6m6vftsynwql" path="res://assets/buildings_iso/coal_power_plant.png" id="3_2asmk"]
+[ext_resource type="PackedScene" uid="uid://crmaq0u0wgneb" path="res://scenes/buildings/smoke/smoke_v3.tscn" id="4_hmb1g"]
 [ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_lqwfw"]
+[ext_resource type="PackedScene" uid="uid://d0ydf6r25ra05" path="res://scenes/buildings/smoke/smoke_v4.tscn" id="5_f2q00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
-size = Vector2(64, 64)
+size = Vector2(96, 96)
 
-[node name="CoalPowerPlant" type="StaticBody2D"]
+[node name="CoalPowerPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_2asmk")
+smokes = [NodePath("Smoke_v3"), NodePath("Smoke_v4")]
 building_data = ExtResource("2_lqwfw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,6 +23,14 @@ texture = ExtResource("3_2asmk")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Smoke_v3" parent="." instance=ExtResource("4_hmb1g")]
+position = Vector2(-15.5534, -40.5851)
+emitting = false
+
+[node name="Smoke_v4" parent="." instance=ExtResource("5_f2q00")]
+position = Vector2(25.017, -13.5643)
+emitting = false
 
 [node name="Clickable" type="TextureButton" parent="."]
 anchors_preset = 15

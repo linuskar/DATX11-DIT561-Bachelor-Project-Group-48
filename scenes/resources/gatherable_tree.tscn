@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvyx2m24n7cfc"]
 
-[ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/resources/gatherable_resource.gd" id="1_xs38c"]
-[ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="2_xs38c"]
+[ext_resource type="Script" uid="uid://cmc4up8ckeogx" path="res://scripts/resources/gatherable_tree.gd" id="1_q50ek"]
+[ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="2_ljr1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laj1l"]
 size = Vector2(32, 32)
@@ -12,7 +12,7 @@ quantity = 19
 resource_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_xs38c")
+texture = ExtResource("2_ljr1m")
 region_enabled = true
 region_rect = Rect2(0, 32, 32, 32)
 

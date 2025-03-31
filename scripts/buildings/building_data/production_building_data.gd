@@ -17,3 +17,5 @@ extends BuildingData
 @export var output_types: Array[Enums.ResourceType] 
 ## The rates/quantity of resources the production building outputs each cycle.
 @export var output_generation: Dictionary[Enums.ResourceType, int] 
+## The radius in which the emissions gets emitted to, in a square area
+@export var emissions_radius: int
