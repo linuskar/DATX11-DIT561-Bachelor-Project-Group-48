@@ -1,39 +1,52 @@
 extends Sprite2D
 
-# Total frames in the sprite sheet (64 for 360 degrees)
 var total_frames = 64
-# Rotation speed in radians per second (adjust as needed)
-var rotation_speed = 5
-# Current rotation angle
-var current_angle = 0.0
-# Movement speed in pixels per second
 var movement_speed = 100.0 * 10
+static var astargrid2d = ResourceSignals.astargrid2d
+
+var path = []
+var path_index = 0
+
+func _ready() -> void:
+	ResourceSignals.update_truck_path.connect(move_to_position)
 
 func _process(delta):
-	# Handle rotation input
-	if Input.is_action_pressed("camera_move_right"):
-		current_angle += rotation_speed * delta
-	elif Input.is_action_pressed("camera_move_left"):
-		current_angle -= rotation_speed * delta
+	move_along_path(delta)
+
+func move_to_position(next_pos: Vector2):
+	var start_grid = world_to_grid(position)
+	var end_grid = world_to_grid(next_pos)
 	
-	# Wrap the angle to stay within 0–2π (0–360 degrees)
-	current_angle = wrapf(current_angle, 0, 2 * PI)
+	if not astargrid2d.is_in_boundsv(start_grid) or not astargrid2d.is_in_boundsv(end_grid):
+		print("Error: Start or end position is out of bounds!")
+		return
 	
-	# Map the angle to the correct frame (0–63)
-	var frame = int((current_angle / (2 * PI)) * total_frames) % total_frames
-	# Ensure the frame is within bounds
-	frame = clamp(frame, 0, total_frames - 1)
+	if not is_road_tile(end_grid):
+		print("Error: Target position is not a road!")
+		return
 	
-	# Set the current frame
-	self.frame = frame
+	path = astargrid2d.get_point_path(start_grid, end_grid)
+	path_index = 0
+
+func is_road_tile(grid_pos: Vector2i) -> bool:
+	var world_pos = grid_pos * astargrid2d.cell_size
+	return ResourceSignals.road_positions.has(world_pos)
+
+func world_to_grid(world_pos: Vector2) -> Vector2i:
+	return ((world_pos - astargrid2d.region.position) / astargrid2d.cell_size).floor()
 	
-	# Calculate the direction vector with an offset of 90 degrees (PI/2 radians)
-	var offset_angle = current_angle + PI / 2
-	var direction = Vector2.ZERO
-	if Input.is_action_pressed("camera_move_up"):  # W key for forward
-		direction = Vector2(cos(offset_angle), sin(offset_angle))
-	elif Input.is_action_pressed("camera_move_down"):  # S key for backward
-		direction = Vector2(-cos(offset_angle), -sin(offset_angle))
-	
-	# Move the truck
-	position += direction * movement_speed * delta
+func move_along_path(delta):
+	if path_index < path.size():
+		var target_pos = path[path_index]
+		var direction = (target_pos - position).normalized()
+		position += direction * movement_speed * delta
+
+		var angle = direction.angle() + PI / 2
+		var frame = int((angle / (2 * PI)) * total_frames) % total_frames
+		self.frame = clamp(frame, 0, total_frames - 1)
+
+		if position.distance_to(target_pos) < 5:
+			path_index += 1
+
+	if path_index >= path.size():
+		path = []

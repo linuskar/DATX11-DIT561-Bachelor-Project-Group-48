@@ -139,13 +139,16 @@ func is_tile_occupied(position: Vector2) -> bool:
 func _on_placed_building(building: Building) -> void:
 	occupied_tiles[building.position] = building
 	placed_building.emit(building)
+	if building.building_data.building_type == Enums.BuildingType.ROAD:
+		StateManager.update_road.emit()
+		ResourceSignals.update_truck_path.emit(building.position)
 
 ## When the mouse has entered the building list:
 ## Disable the state of placing a building and hide the blueprint
 func _on_user_interface_build_list_entered() -> void:
 	StateManager.set_state(StateManager.State.IDLE)
 	_on_build_mode()
-
+	
 ## When the mouse has exited the building list with a selected building:
 ## Set the currently selected building and show its blueprint
 func _on_user_interface_building_wanted(building: BuildingData) -> void:

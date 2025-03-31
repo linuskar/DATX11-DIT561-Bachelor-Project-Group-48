@@ -1,23 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ff7cg4gpgkij"]
+[gd_scene load_steps=3 format=3 uid="uid://ff7cg4gpgkij"]
 
-[ext_resource type="Texture2D" uid="uid://c2av8ypa4lm1m" path="res://assets/icon.svg" id="1_7cpyc"]
 [ext_resource type="Texture2D" uid="uid://bdunse426ljvv" path="res://assets/truck/spritesheet_pixel.png" id="2_nnjt1"]
 [ext_resource type="Script" uid="uid://crlngufju0gua" path="res://scripts/truck/truck.gd" id="3_fddfh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vuo26"]
-
 [node name="truck" type="Node2D"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-scale = Vector2(6.545, 6.545)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-scale = Vector2(15, 15)
-shape = SubResource("RectangleShape2D_vuo26")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(2.365, 2.365)
-texture = ExtResource("1_7cpyc")
+scale = Vector2(0.05, 0.05)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)

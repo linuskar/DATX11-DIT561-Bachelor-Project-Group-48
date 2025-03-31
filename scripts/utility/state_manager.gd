@@ -6,6 +6,7 @@ extends Node
 
 ## Signal for when entering build mode
 signal build_mode
+signal update_road
 ## Signal for when having selected a building to build
 signal selected_building(building_data)
 
