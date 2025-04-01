@@ -150,7 +150,11 @@ func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 		production_cycle.autostart = true
 
 func get_produced_resources() -> Array[Enums.ResourceType]:
-	var all_resource_output = byproducts + produced_goods
+	var arr: Array[Enums.ResourceType] =[]
+	for product in byproducts:
+		if !Enums.is_emission(product):
+			arr.append(product)
+	var all_resource_output = arr + produced_goods
 	return all_resource_output
 
 func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
