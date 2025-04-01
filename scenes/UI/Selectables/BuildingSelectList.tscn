@@ -1,0 +1,120 @@
+[gd_scene load_steps=14 format=3 uid="uid://boeiac6bfcce2"]
+
+[ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_dphbc"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
+[ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="3_epysl"]
+[ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/Selectables/CoalMineSelectable.tscn" id="4_2uf64"]
+[ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/Selectables/IronMineSelectable.tscn" id="5_2mva2"]
+[ext_resource type="PackedScene" uid="uid://bhrcu48dc2f50" path="res://scenes/UI/Selectables/WoodCutterSelectable.tscn" id="6_de1jr"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_epysl"]
+[ext_resource type="PackedScene" uid="uid://bvbhybq0wqtk8" path="res://scenes/UI/Selectables/BiomassPowerPlantSelectable.tscn" id="7_2uf64"]
+[ext_resource type="PackedScene" uid="uid://bcpxbii6e6t0h" path="res://scenes/UI/Selectables/CoalPowerPlantSelectable.tscn" id="8_2mva2"]
+[ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="9_epysl"]
+[ext_resource type="StyleBox" uid="uid://bfttb8f017gk2" path="res://resources/style_boxes/metal_red_outline_darker.tres" id="11_epysl"]
+[ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="12_djsgt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mva2"]
+
+[node name="BuildingSelectList" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -402.0
+offset_right = -2.0
+offset_bottom = 80.0
+grow_horizontal = 0
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(400, 0)
+script = ExtResource("1_dphbc")
+
+[node name="List" type="Control" parent="."]
+visible = false
+clip_contents = true
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 592.0
+pivot_offset = Vector2(400, 0)
+mouse_filter = 1
+
+[node name="ListPanel" type="Panel" parent="List"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 296.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_2mva2")
+
+[node name="PanelContainer" type="PanelContainer" parent="List"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.7
+offset_top = 118.4
+offset_bottom = 158.4
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("3_epysl")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="List/PanelContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+vertical_scroll_mode = 3
+
+[node name="Buildings" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer"]
+clip_contents = true
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="CoalMineSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("4_2uf64")]
+layout_mode = 2
+
+[node name="IronMineSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("5_2mva2")]
+layout_mode = 2
+
+[node name="WoodCutterSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("6_de1jr")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CoalPowerPlantSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("8_2mva2")]
+layout_mode = 2
+
+[node name="BiomassPowerPlantSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("7_2uf64")]
+layout_mode = 2
+
+[node name="OpenListButton" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.9
+grow_horizontal = 0
+pivot_offset = Vector2(224, 0)
+mouse_filter = 1
+
+[node name="Button" type="Button" parent="OpenListButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_epysl")
+theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2mva2")
+theme_override_styles/hover_pressed = ExtResource("11_epysl")
+theme_override_styles/hover = ExtResource("12_djsgt")
+theme_override_styles/pressed = ExtResource("11_epysl")
+theme_override_styles/normal = ExtResource("9_epysl")
+text = "Buildings"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/CoalMineSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/IronMineSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/WoodCutterSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/CoalPowerPlantSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
+[connection signal="button_down" from="OpenListButton/Button" to="." method="_on_open_build_list"]

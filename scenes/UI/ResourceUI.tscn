@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj1v7y2dejr2w"]
+
+[ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="1_erkbk"]
+[ext_resource type="Script" uid="uid://dxmp87dbqrere" path="res://scripts/UI/resource_ui.gd" id="1_jxiwp"]
+[ext_resource type="Texture2D" uid="uid://b6oypu8yvcr4e" path="res://assets/UI/Resource UI/coal.tres" id="2_jxiwp"]
+[ext_resource type="Texture2D" uid="uid://b8dmip3wmfd3n" path="res://assets/UI/Resource UI/iron.tres" id="3_i4uxt"]
+
+[node name="ResourceUi" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 75.0
+script = ExtResource("1_jxiwp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Wood" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Wood"]
+layout_mode = 2
+texture = ExtResource("1_erkbk")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Wood"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Coal" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Coal"]
+layout_mode = 2
+texture = ExtResource("2_jxiwp")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Coal"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Iron_Ore" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Iron_Ore"]
+layout_mode = 2
+texture = ExtResource("3_i4uxt")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Iron_Ore"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1

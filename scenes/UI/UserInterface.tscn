@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://djil6gjtsgbdu"]
+
+[ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
+[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/Selectables/BuildingSelectList.tscn" id="2_yl4mc"]
+[ext_resource type="PackedScene" uid="uid://bj1v7y2dejr2w" path="res://scenes/UI/ResourceUI.tscn" id="3_vr1b1"]
+[ext_resource type="PackedScene" uid="uid://u0w1syotmn42" path="res://scenes/UI/BuildingInfo.tscn" id="5_3wpr7"]
+[ext_resource type="StyleBox" uid="uid://kymp5o3e18e" path="res://resources/style_boxes/ui_panel_metallic_light.tres" id="6_57uoi"]
+
+[node name="UserInterface" type="CanvasLayer"]
+script = ExtResource("1_vr1b1")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.125
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("6_57uoi")
+
+[node name="BuildingSelectList" parent="." instance=ExtResource("2_yl4mc")]
+offset_left = -400.0
+offset_right = 0.0
+
+[node name="ResourceUi" parent="." instance=ExtResource("3_vr1b1")]
+
+[node name="BuildingInfo" parent="." instance=ExtResource("5_3wpr7")]
+
+[connection signal="build_list_entered" from="BuildingSelectList" to="." method="_on_building_select_list_build_list_entered"]
+[connection signal="building_wanted" from="BuildingSelectList" to="." method="_on_building_select_list_building_wanted"]

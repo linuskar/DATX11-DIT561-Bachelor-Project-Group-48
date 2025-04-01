@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="4_fk5ej"]
 [ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="6_fk5ej"]
 [ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="7_fk5ej"]
-[ext_resource type="PackedScene" uid="uid://ddwmp6n5prn23" path="res://scenes/UserInterfaceElements/SelectableBuilding.tscn" id="8_owwh8"]
+[ext_resource type="PackedScene" uid="uid://ddwmp6n5prn23" path="res://scenes/UI/Selectables/SelectableBuilding.tscn" id="8_owwh8"]
 [ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="9_exs0f"]
 
 [node name="Game" type="Node2D"]

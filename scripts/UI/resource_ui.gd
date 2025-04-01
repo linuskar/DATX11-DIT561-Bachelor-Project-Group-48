@@ -1,8 +1,8 @@
-extends PanelContainer
+extends Control
 
-var resource_labels = {}
-var resource_nodes = {}
-var first_resource = false
+var resource_labels: Dictionary[Enums.ResourceType, Label] = {}
+var resource_nodes: Dictionary[Enums.ResourceType, VBoxContainer] = {}
+var first_resource: bool = false
 
 func _ready():
 	# References to each resource node and its label
@@ -23,8 +23,9 @@ func _ready():
 	
 	#Entire UI, and all of the children are hidden in the begining when no resources have been collected
 	visible = false
-	for node in resource_nodes.values():
-		node.visible = false
+	# Note: Gets null instance, the visibility is set in the scene editor
+	# for node in resource_nodes.values():
+		# node.visible = false
 	
 	# Connect to global signal
 	ResourceSignals.update_UI.connect(_on_update_UI)

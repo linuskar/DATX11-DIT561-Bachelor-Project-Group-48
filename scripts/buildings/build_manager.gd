@@ -8,7 +8,7 @@ extends Node
 ##
 
 ## The blueprint previews the building you are about to place.
-@export var blueprint: Building
+@export var blueprint: BuildingBlueprint
 ## The grid size of the map.
 @export var grid_size: int = 32
 
@@ -16,7 +16,7 @@ extends Node
 @onready var map_layer: MapLayer = $"../MapLayer"
 
 ## The currently occupied tiles, for example a building, tree, etc.
-var occupied_tiles: Dictionary = {}
+var occupied_tiles: Dictionary[Vector2, Building] = {}
 
 ## The colors highlighthing the placment of builings.
 var valid_placement_color: Color = Color(0.5, 0.5, 1, 0.8) 
@@ -51,7 +51,7 @@ func _on_selected_building(building_data: BuildingData) ->  void:
 	blueprint.queue_free()
 	
 	## Add the new blueprint to the game of the currently selected building
-	var new_blueprint: Building = building_blueprints.get(building_data.building_type).instantiate()
+	var new_blueprint: BuildingBlueprint = building_blueprints.get(building_data.building_type).instantiate()
 	add_child(new_blueprint)
 	blueprint = new_blueprint
 	blueprint.show()
@@ -63,7 +63,7 @@ func _process(_delta) -> void:
 			_update_blueprint()
 		StateManager.State.PLACE_BUILDING:
 			_update_blueprint()
-				
+
 			if valid_placement:
 				place_building()
 		StateManager.State.IDLE:
@@ -72,10 +72,10 @@ func _process(_delta) -> void:
 ## Function for updating the placement of the building blueprint
 func _update_blueprint():
 	var grid_pos: Vector2 = get_snapped_world_position()
-	blueprint.position = grid_pos
-
+	blueprint.position = grid_pos 
+	
 	## Checking for valid placement
-	if is_tile_occupied(grid_pos) or map_layer.can_place_building(blueprint) == false:
+	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false:
 		blueprint.modulate = invalid_placement_color
 		valid_placement = false
 	else:
@@ -103,12 +103,18 @@ func get_snapped_world_position() -> Vector2:
 	## Convert to local TileMap coordinates
 	var local_mouse_pos: Vector2 = dirt_layer.to_local(world_mouse_pos)  
 	## Get tile coordinates
-	var tile_pos: Vector2 = dirt_layer.local_to_map(local_mouse_pos)  
-	## Convert back to local position
-	var snapped_local_pos: Vector2 = dirt_layer.map_to_local(tile_pos)  
+	var tile_pos: Vector2i = dirt_layer.local_to_map(local_mouse_pos)  
 	
+	## Convert back to local position.
+	var snapped_local_pos: Vector2 = dirt_layer.map_to_local(tile_pos)  
+	var grid_pos: Vector2 = dirt_layer.to_global(snapped_local_pos)
+	var blueprint_size: Vector2 = blueprint.building_data.building_size
+	
+	## To represent a top-left aligning placement along the grid.
+	grid_pos += Vector2(grid_size * (blueprint_size.x - 1) / 2, 0)
+	grid_pos += Vector2(0, grid_size * (blueprint_size.y -  1) / 2)
 	## Return the world coordinates
-	return dirt_layer.to_global(snapped_local_pos)
+	return grid_pos
 
 ## Function that is called when build mode signal is emitted
 func _on_build_mode() -> void:
@@ -122,7 +128,7 @@ func _on_build_mode() -> void:
 			blueprint.show()
 			blueprint.modulate = valid_placement_color
 			
-## Function for placing down a building
+## Function for placing down a building.
 func place_building() -> void:
 	## Instantiate the building and add it to the game and world
 	var building_type: Enums.BuildingType = blueprint.building_data.building_type
@@ -131,25 +137,46 @@ func place_building() -> void:
 	get_parent().add_child(new_building)
 	_on_placed_building(new_building)
 	
-## Function checking if a tile is occupied by another object
-func is_tile_occupied(position: Vector2) -> bool:
-	return occupied_tiles.has(position)
+## Function checking if the tiles where the blueprint
+## is are occupied by another object.
+func are_tiles_occupied() -> bool:
+	var blueprint_size: Vector2 = blueprint.building_data.building_size
+	var adjusted_pos: Vector2 = blueprint.position 
 	
-## Function marking a tile as occupied for placing down a buiiling
+	## Adjust the position to start in a top-left manner
+	adjusted_pos -= Vector2(grid_size * (blueprint_size.x - 1) / 2, 0)
+	adjusted_pos -= Vector2(0, grid_size * (blueprint_size.y -  1) / 2)
+	## See if there are occupied tiles based on the blueprint size
+	for x in range(blueprint_size.x):
+		for y in range(blueprint_size.y):
+			if occupied_tiles.has(adjusted_pos + Vector2(x *  grid_size, y * grid_size)):
+				return true
+	return false
+	
+## Function marking tiles as occupied for placing down a building
 func _on_placed_building(building: Building) -> void:
-	occupied_tiles[building.position] = building
+	var building_tile_size: Vector2 = building.building_data.building_size
+	var adjusted_pos: Vector2 = building.position 
+	
+	## Adjust the position to start in a top-left manner
+	adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
+	adjusted_pos -= Vector2(0, grid_size * (building_tile_size.y -  1) / 2)
+	## Mark occupied tiles based on the building size
+	for x in range(building_tile_size.x):
+		for y in range(building_tile_size.y):
+			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
 	placed_building.emit(building)
+
+## When the mouse has entered the building list:
+## Disable the state of placing a building and hide the blueprint
+func _on_user_interface_build_list_entered() -> void:
+	StateManager.set_state(StateManager.State.IDLE)
+	_on_build_mode()
 
 ## When the mouse has exited the building list with a selected building:
 ## Set the currently selected building and show its blueprint
-func _on_building_select_list_building_wanted(building: BuildingData) -> void:
+func _on_user_interface_building_wanted(building: BuildingData) -> void:
 	if not building == null:
 		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
 		_on_selected_building(building)
 		_on_build_mode()
-
-## When the mouse has entered the building list:
-## Disable the state of placing a building and hide the blueprint
-func _on_building_select_list_build_list_entered() -> void:
-	StateManager.set_state(StateManager.State.IDLE)
-	_on_build_mode()
