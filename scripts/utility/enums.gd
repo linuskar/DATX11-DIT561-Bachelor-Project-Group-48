@@ -15,6 +15,7 @@ enum BuildingType {
 	COAL_POWER_PLANT, ## The building type for a coal power plant
 	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
 	BIOMASS_LANDFILL, ## The building type for a biomass landfill
+	WAREHOUSE, ## The building type for a warehouse
 }
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:
@@ -107,6 +108,7 @@ static func building_type_to_string(building_type: BuildingType) -> String:
 		BuildingType.COAL_POWER_PLANT: "COAL POWER PLANT",
 		BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
 		BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
+		BuildingType.WAREHOUSE: "WAREHOUSE",
 	}
 	return building_names.get(building_type, "UNKNOWN") 
 
