@@ -145,7 +145,6 @@ func _generate_byproducts() -> void:
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	var resource_quantity: int = output_storage.get(resource_type)
 	output_storage.set(resource_type, resource_quantity - amount)
-	production_cycle.autostart = true
 	
 	if check_if_can_produce():
 		production_cycle.autostart = true
