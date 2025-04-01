@@ -55,5 +55,5 @@ func _on_timer_timeout() -> void:
 		temp(key)
 
 func join_two_networks():
-	var new_network: ResourceTransport = preload("res://scripts/resources/resource_transport.gd").new()
+	##TODO join two different networks into one, call add_another_network() in resource_transport.gd
 	pass
