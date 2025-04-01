@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_h5gh0")
 building_type = 6
-valid_tile_types_to_place_on = Array[int]([])
+valid_tile_types_to_place_on = Array[int]([1, 2, 3])
 building_size = Vector2(2, 2)
 metadata/_custom_type_script = "uid://c2asdvge65j4d"

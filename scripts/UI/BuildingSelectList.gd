@@ -49,3 +49,11 @@ func set_state(state: bool) -> void:
 		print("Hiding list")
 		self.find_child("List").position = Vector2(0.0, 0.0) + self.find_child("List").size
 		self.find_child("List").visible = false
+
+
+func _on_research_lab_selectable_selected(building: SelectableBuilding) -> void:
+	pass # Replace with function body.
+
+
+func on_building_selected(building: SelectableBuilding) -> void:
+	pass # Replace with function body.

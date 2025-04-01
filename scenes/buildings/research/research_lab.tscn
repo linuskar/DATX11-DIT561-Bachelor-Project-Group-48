@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://4wqorptqpmal"]
+[gd_scene load_steps=5 format=3 uid="uid://4wqorptqpmal"]
 
 [ext_resource type="Script" uid="uid://c3l642fbplbie" path="res://scripts/buildings/research_lab.gd" id="1_g0hqv"]
+[ext_resource type="Texture2D" uid="uid://djykqgxalajcf" path="res://assets/buildings_iso/research_lab.png" id="2_k0miy"]
+[ext_resource type="Resource" uid="uid://cwiawiaiit30p" path="res://resources/buildings/research_lab.tres" id="2_t6nnc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0miy"]
 
 [node name="ResearchLab" type="StaticBody2D"]
 script = ExtResource("1_g0hqv")
+building_data = ExtResource("2_t6nnc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_k0miy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k0miy")
