@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cht3r13bjg58r"]
+[gd_scene load_steps=13 format=3 uid="uid://cht3r13bjg58r"]
 
 [ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="1_4rihh"]
+[ext_resource type="Script" uid="uid://dgkx854vljyes" path="res://scripts/UI/player_currency_panel.gd" id="1_hh3is"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_m5yyy"]
 [ext_resource type="Texture2D" uid="uid://dn7p2wh12yf6v" path="res://assets/coins-chests-etc-2-0.png" id="3_7d627"]
 
@@ -66,14 +67,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_hh3is")
 
 [node name="Styling" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.35
-anchor_top = 0.025
+anchor_top = 0.01
 anchor_right = 0.65
-anchor_bottom = 0.125
+anchor_bottom = 0.11
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_4rihh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Styling"]
@@ -91,6 +95,7 @@ vertical_alignment = 1
 [node name="Control" type="Control" parent="Styling/HBoxContainer"]
 custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Styling/HBoxContainer/Control"]
 position = Vector2(34.8, 27.8)

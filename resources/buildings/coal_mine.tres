@@ -18,4 +18,5 @@ output_generation = Dictionary[int, int]({
 building_type = 2
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(1, 1)
+building_cost = 50
 metadata/_custom_type_script = "uid://c2asdvge65j4d"

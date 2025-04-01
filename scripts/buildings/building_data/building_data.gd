@@ -12,3 +12,5 @@ extends Resource
 @export var valid_tile_types_to_place_on: Array[Enums.TileType]
 ## What the size of the building is in terms of amount of tiles it takes
 @export var building_size: Vector2
+## The amount of currency it costs to build the building
+@export var building_cost: int

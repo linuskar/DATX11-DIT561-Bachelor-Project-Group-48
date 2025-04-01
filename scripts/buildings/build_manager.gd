@@ -75,13 +75,14 @@ func _update_blueprint():
 	blueprint.position = grid_pos 
 	
 	## Checking for valid placement
-	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false:
-		blueprint.modulate = invalid_placement_color
-		valid_placement = false
-	else:
-		blueprint.modulate = valid_placement_color	
-		valid_placement = true	
-	
+	if player_can_afford(blueprint):	
+		if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false:
+			blueprint.modulate = invalid_placement_color
+			valid_placement = false
+		else:
+			blueprint.modulate = valid_placement_color	
+			valid_placement = true
+				
 func _input(event: InputEvent) -> void:
 	## When trying to place a building that is selected
 	if event.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
@@ -90,6 +91,12 @@ func _input(event: InputEvent) -> void:
 	## The case where the action for placing buildings is released
 	if event.is_action_released("place") and StateManager.state == StateManager.State.PLACE_BUILDING:
 		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
+
+## Function checking whether the player can afford the building.
+## Returns false if the player cannot afford the building.
+func player_can_afford(blueprint: BuildingBlueprint) -> bool:
+	var cost: int = blueprint.building_data.building_cost
+	return PlayerCurrency.player_held_currency >= cost
 
 ## Returns the world position of the mouse snapped to the nearest tile on the grid.
 ## This function converts the mouse position from world space to tile coordinates
