@@ -21,6 +21,7 @@ StateManager="*res://scripts/utility/state_manager.gd"
 ResourceSignals="*res://scripts/resources/resource_signals.gd"
 BuildingSignals="*res://scripts/utility/BuildingSignals.gd"
 PlayerCurrency="*res://scripts/utility/PlayerCurrency.gd"
+ZoomHandler="*res://scripts/utility/zoom_handler.gd"
 
 [display]
 

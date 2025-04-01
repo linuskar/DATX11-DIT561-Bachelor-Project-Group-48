@@ -1,82 +1,72 @@
-[gd_scene load_steps=13 format=3 uid="uid://cht3r13bjg58r"]
+[gd_scene load_steps=14 format=3 uid="uid://cht3r13bjg58r"]
 
 [ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="1_4rihh"]
 [ext_resource type="Script" uid="uid://dgkx854vljyes" path="res://scripts/UI/player_currency_panel.gd" id="1_hh3is"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_m5yyy"]
-[ext_resource type="Texture2D" uid="uid://dn7p2wh12yf6v" path="res://assets/coins-chests-etc-2-0.png" id="3_7d627"]
+[ext_resource type="Texture2D" uid="uid://csyqwe6c5gqlf" path="res://assets/ezgif-split/tile000.png" id="4_okk18"]
+[ext_resource type="Texture2D" uid="uid://ejr5ulbb2euk" path="res://assets/ezgif-split/tile001.png" id="5_tt8i3"]
+[ext_resource type="Texture2D" uid="uid://uipfmpvbec0y" path="res://assets/ezgif-split/tile002.png" id="6_tt8i3"]
+[ext_resource type="Texture2D" uid="uid://b4kmqydingrtj" path="res://assets/ezgif-split/tile003.png" id="7_kw0d5"]
+[ext_resource type="Texture2D" uid="uid://pjifopeh60pu" path="res://assets/ezgif-split/tile004.png" id="8_0kfnv"]
+[ext_resource type="Texture2D" uid="uid://wtxpa5ue517i" path="res://assets/ezgif-split/tile005.png" id="9_xbfaq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7d627"]
 font = ExtResource("2_m5yyy")
-font_size = 28
+font_size = 32
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7d627"]
-atlas = ExtResource("3_7d627")
-region = Rect2(65, 18, 14, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hh3is"]
-atlas = ExtResource("3_7d627")
-region = Rect2(81, 18, 14, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_okk18"]
-atlas = ExtResource("3_7d627")
-region = Rect2(97, 18, 14, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tt8i3"]
-atlas = ExtResource("3_7d627")
-region = Rect2(113, 18, 14, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h7kty"]
-atlas = ExtResource("3_7d627")
-region = Rect2(129, 18, 14, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sp0yb"]
-atlas = ExtResource("3_7d627")
-region = Rect2(145, 18, 14, 14)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_m5yyy"]
+[sub_resource type="Animation" id="Animation_h7kty"]
 resource_name = "Coin"
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7d627")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hh3is")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_okk18")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tt8i3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h7kty")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sp0yb")
-}],
-"loop": true,
-"name": &"default",
-"speed": 6.0
-}]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_okk18"), ExtResource("5_tt8i3"), ExtResource("6_tt8i3"), ExtResource("7_kw0d5"), ExtResource("8_0kfnv"), ExtResource("9_xbfaq")]
+}
+
+[sub_resource type="Animation" id="Animation_sp0yb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kw0d5"]
+_data = {
+&"Coin": SubResource("Animation_h7kty"),
+&"RESET": SubResource("Animation_sp0yb")
+}
 
 [node name="PlayerCurrencyPanel" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.35
+anchor_top = 0.01
+anchor_right = 0.65
+anchor_bottom = 0.11
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_force_pass_scroll_events = false
 script = ExtResource("1_hh3is")
 
 [node name="Styling" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.35
-anchor_top = 0.01
-anchor_right = 0.65
-anchor_bottom = 0.11
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_4rihh")
 
@@ -84,22 +74,29 @@ theme_override_styles/panel = ExtResource("1_4rihh")
 layout_mode = 2
 alignment = 2
 
-[node name="CurrencyAmount" type="Label" parent="Styling/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Styling/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 3
+
+[node name="CurrencyAmount" type="Label" parent="Styling/HBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
 text = "100"
 label_settings = SubResource("LabelSettings_7d627")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="Styling/HBoxContainer"]
-custom_minimum_size = Vector2(60, 40)
+[node name="TextureRect" type="TextureRect" parent="Styling/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-mouse_filter = 1
+size_flags_vertical = 4
+stretch_mode = 4
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Styling/HBoxContainer/Control"]
-position = Vector2(34.8, 27.8)
-scale = Vector2(3.35, 3.35)
-sprite_frames = SubResource("SpriteFrames_m5yyy")
-autoplay = "default"
-frame_progress = 0.831781
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Styling/HBoxContainer/TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_kw0d5")
+}
+autoplay = "Coin"

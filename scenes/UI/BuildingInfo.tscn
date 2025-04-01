@@ -44,6 +44,7 @@ offset_right = -744.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+mouse_force_pass_scroll_events = false
 script = ExtResource("1_y4byq")
 
 [node name="Panel" type="Panel" parent="."]

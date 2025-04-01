@@ -17,3 +17,6 @@ extends BuildingData
 @export var output_types: Array[Enums.ResourceType] 
 ## The rates/quantity of resources the production building outputs each cycle.
 @export var output_generation: Dictionary[Enums.ResourceType, int] 
+
+func accept(handler: BuildingInfo) -> String:
+	return handler.handle_prod_building(self)

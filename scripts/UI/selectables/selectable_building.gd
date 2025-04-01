@@ -11,9 +11,6 @@ extends Control
 ## Emitted together with the building itself.
 signal selected(building: SelectableBuilding)
 
-## The cost of the building
-@export var cost: int
-
 ## Variable for checking whether the mouse is hovering over the buy button
 var hovering_buy: bool = false
 
@@ -46,7 +43,7 @@ func _ready() -> void:
 	self.find_child("Containers").find_child("MarginContainer").find_child("BuildingIcon").set_texture(load(icon_path))
 		
 	## Set the name and cost of the building
-	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(cost))
+	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(building_data.building_cost))
 	
 	## Set the text of the main panel according to the template
 	set_panel_text()

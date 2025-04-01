@@ -1,4 +1,4 @@
-extends Control
+class_name BuildingInfo extends Control
 
 @onready var image = $ScrollContainer/VBoxContainer/MarginContainer3/FactoryImage
 @onready var building_name = $ScrollContainer/VBoxContainer/BuildingName
@@ -18,34 +18,48 @@ func populate_info_label(building: Building) -> void:
 
 ## Formating building data into a string that is then displayed in the
 ## building info panel.
-func get_text(building_data: ProductionBuildingData) -> String:
+func get_text(building_data: BuildingData) -> String:
+	return building_data.accept(self)
+
+func set_inactive() -> void:
+	self.hide()
+
+func handle_building(building: BuildingData) -> String:
+	var text: String = ""
+	
+	## Adds valid placement tiles to the text
+	text += "\nPlacement\n"
+	for tile in building.valid_tile_types_to_place_on:
+		text += Enums.tile_type_to_string(tile) + '\n'
+	
+	return text
+	
+func handle_prod_building(building: ProductionBuildingData) -> String:
 	var text: String = ""
 	
 	## Adds all the different outputs of the building
 	text += "\nOutputs\n"
-	for key in building_data.output_generation.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
+	for key in building.output_generation.keys():
+		text += Enums.resource_type_to_string(key) + ': ' + str(building.output_generation.get(key)) + '\n'
 
 	## Adds all the different inputs of the building
 	text += "\nInputs\n"
-	for key in building_data.input_use_rates.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.input_use_rates.get(key)) + '\n'
+	for key in building.input_use_rates.keys():
+		text += Enums.resource_type_to_string(key) + ': ' + str(building.input_use_rates.get(key)) + '\n'
 	
 	## Adds valid placement tiles to the text
 	text += "\nPlacement\n"
-	for tile in building_data.valid_tile_types_to_place_on:
+	for tile in building.valid_tile_types_to_place_on:
 		text += Enums.tile_type_to_string(tile) + '\n'
 	
 	## Adds storage capacity to the text
 	text += "\nStorage\n"
-	for key in building_data.max_storage.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.max_storage.get(key)) + '\n'
-	
-	
+	for key in building.max_storage.keys():
+		text += Enums.resource_type_to_string(key) + ': ' + str(building.max_storage.get(key)) + '\n'
 	return text
 
-func set_inactive() -> void:
-	self.hide()
+func handle_gath_building(building: GatheringBuildingData) -> String:
+	return "Hej"
 
 func set_active(building: Building) -> void:
 	self.show()

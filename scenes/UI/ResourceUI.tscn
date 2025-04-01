@@ -11,6 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 120.0
 offset_bottom = 75.0
+mouse_force_pass_scroll_events = false
 script = ExtResource("1_jxiwp")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

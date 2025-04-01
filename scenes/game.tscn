@@ -22,6 +22,7 @@ script = ExtResource("5_0tnpc")
 
 [node name="BuildingSelector" parent="." instance=ExtResource("7_kvpfn")]
 visible = false
+mouse_force_pass_scroll_events = false
 
 [node name="PlayerResources" type="Node" parent="."]
 script = ExtResource("8_gee14")
