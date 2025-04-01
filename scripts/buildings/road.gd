@@ -4,6 +4,7 @@ extends ProductionBuilding
 static var road_positions: Array[Vector2] = []
 
 var occupied_tiles = BuildManagerGlobal.occupied_tiles
+var road_to_building: Dictionary[Vector2, Building]
 
 var left: bool = false
 var right: bool = false
@@ -18,11 +19,20 @@ func _ready():
 func _process(delta: float) -> void:
 	pass
 
+#Pos is a position to the left, right up and down (+-)32 pixels.
 func check_if_building(pos: Vector2):
-	return BuildManagerGlobal.occupied_tiles.has(position + pos)
-
-func check_if_connection():
-	pass
+	if BuildManagerGlobal.occupied_tiles.has(position + pos):
+		check_if_connection(pos)
+		return true
+	else: return false
+	
+#Check if the building that is next to the road is not a road than it should save that to a list.
+func check_if_connection(pos: Vector2):
+	if BuildManagerGlobal.occupied_tiles[position + pos].building_type != Enums.BuildingType.ROAD:
+		road_to_building[position] = BuildManagerGlobal.occupied_tiles[position + pos]
+		print("Connection!: " + str(road_to_building[position]) + " at position!: " + str(position))
+		
+#Check if there is something that the road should visually connect to
 func update_connections():
 	left = check_if_building(Vector2(-32, 0))
 	right = check_if_building(Vector2(32, 0))
@@ -57,5 +67,4 @@ func update_connections():
 		$Sprite2D.frame = 4  # Default horizontal
 	elif up or down:
 		$Sprite2D.frame = 3  # Default vertical
-		
 		

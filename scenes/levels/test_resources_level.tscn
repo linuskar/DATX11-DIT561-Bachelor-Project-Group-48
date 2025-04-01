@@ -20,6 +20,7 @@
 script = ExtResource("6_fk5ej")
 
 [node name="BuildManager" parent="." instance=ExtResource("7_fk5ej")]
+grid_size = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

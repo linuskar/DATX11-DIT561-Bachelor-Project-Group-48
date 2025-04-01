@@ -12,11 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://c2opqml4lhdk5" path="res://scenes/buildings/road.tscn" id="7_y0lq7"]
 [ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/gathering_buildings/coal_mine_blueprint.tscn" id="8_vw4yu"]
 [ext_resource type="PackedScene" uid="uid://bn5arwp4ceymc" path="res://scenes/buildings/building_blueprints/power_generators/coal_power_plant_blueprint.tscn" id="10_xcllt"]
-[ext_resource type="PackedScene" path="res://scenes/buildings/building_blueprints/power_generators/biomass_power_plant_blueprint.tscn" id="11_xcllt"]
+[ext_resource type="PackedScene" uid="uid://b0ef776hgtpta" path="res://scenes/buildings/building_blueprints/power_generators/biomass_power_plant_blueprint.tscn" id="11_xcllt"]
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
 script = ExtResource("1_aenhx")
-blueprint = NodePath("IronMineBlueprint")
 buildings = Dictionary[int, Resource]({
 1: ExtResource("2_w7lpy"),
 2: ExtResource("3_dr161"),
@@ -34,6 +33,7 @@ building_blueprints = Dictionary[int, Resource]({
 5: ExtResource("11_xcllt"),
 6: ExtResource("7_y0lq7")
 })
+blueprint = NodePath("IronMineBlueprint")
 
 [node name="IronMineBlueprint" parent="." instance=ExtResource("2_ofppe")]
 visible = false
