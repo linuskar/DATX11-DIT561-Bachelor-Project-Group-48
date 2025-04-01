@@ -75,14 +75,13 @@ func _update_blueprint():
 	blueprint.position = grid_pos 
 	
 	## Checking for valid placement
-	if player_can_afford(blueprint):	
-		if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false:
-			blueprint.modulate = invalid_placement_color
-			valid_placement = false
-		else:
-			blueprint.modulate = valid_placement_color	
-			valid_placement = true
-				
+	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false or not player_can_afford(blueprint):
+		blueprint.modulate = invalid_placement_color
+		valid_placement = false
+	else:
+		blueprint.modulate = valid_placement_color	
+		valid_placement = true
+			
 func _input(event: InputEvent) -> void:
 	## When trying to place a building that is selected
 	if event.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
@@ -142,6 +141,9 @@ func place_building() -> void:
 	var new_building: Building = buildings.get(building_type).instantiate()
 	new_building.position = blueprint.position
 	get_parent().add_child(new_building)
+	
+	## Additionally decrease the players held currency equal to the cost of the building
+	PlayerCurrency.remove_currency(blueprint.building_data.building_cost)
 	_on_placed_building(new_building)
 	
 ## Function checking if the tiles where the blueprint
