@@ -16,7 +16,7 @@ extends Node
 @onready var map_layer: MapLayer = $"../MapLayer"
 
 ## The currently occupied tiles, for example a building, tree, etc.
-var occupied_tiles: Dictionary = {}
+var occupied_tiles: Dictionary = BuildManagerGlobal.occupied_tiles
 
 ## The colors highlighthing the placment of builings.
 var valid_placement_color: Color = Color(0.5, 0.5, 1, 0.8) 
@@ -139,9 +139,7 @@ func is_tile_occupied(position: Vector2) -> bool:
 func _on_placed_building(building: Building) -> void:
 	occupied_tiles[building.position] = building
 	placed_building.emit(building)
-	if building.building_data.building_type == Enums.BuildingType.ROAD:
-		StateManager.update_road.emit()
-		ResourceSignals.update_truck_path.emit(building.position)
+	BuildManagerGlobal.update_roads.emit()
 
 ## When the mouse has entered the building list:
 ## Disable the state of placing a building and hide the blueprint

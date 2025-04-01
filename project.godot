@@ -17,8 +17,9 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-StateManager="*res://scripts/utility/state_manager.gd"
-ResourceSignals="*res://scripts/resources/resource_signals.gd"
+StateManager="*res://scripts/global/state_manager.gd"
+ResourceSignals="*res://scripts/global/resource_signals.gd"
+BuildManagerGlobal="*res://scripts/global/build_manager_global.gd"
 
 [input]
 

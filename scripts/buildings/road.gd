@@ -3,81 +3,59 @@ extends ProductionBuilding
 
 static var road_positions: Array[Vector2] = []
 
-const TRUCK = preload("res://scenes/test_truck/truck.tscn")
+var occupied_tiles = BuildManagerGlobal.occupied_tiles
 
 var left: bool = false
 var right: bool = false
 var up: bool = false
 var down: bool = false
 
-var astargrid2d = ResourceSignals.astargrid2d
-
 func _ready():
-	StateManager.update_road.connect(update_roads)
-	astargrid2d.cell_size = Vector2i(32, 32)
-	astargrid2d.region = Rect2i(0, 0, 1000, 1000)
-	astargrid2d.default_compute_heuristic = AStarGrid2D.HEURISTIC_EUCLIDEAN
-	astargrid2d.default_estimate_heuristic = AStarGrid2D.HEURISTIC_EUCLIDEAN
-	astargrid2d.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astargrid2d.update()
-	
-	for x in range(astargrid2d.size.x):
-		for y in range(astargrid2d.size.y):
-			if is_road_tile(Vector2i(x, y)):
-				astargrid2d.set_point_solid(Vector2i(x, y), false)
-			else:
-				astargrid2d.set_point_solid(Vector2i(x, y), true)
-			update_connections()
-	
-	var truck_instance = TRUCK.instantiate()
-	truck_instance.position = position
-	get_parent().add_child(truck_instance)
-	
+	BuildManagerGlobal.update_roads.connect(update_connections)
 	road_positions.append(position)
 	super()
 
 func _process(delta: float) -> void:
-	update_connections()
+	pass
+
+func check_if_building(pos: Vector2):
+	return BuildManagerGlobal.occupied_tiles.has(position + pos)
+
+func check_if_connection():
+	pass
+func update_connections():
+	left = check_if_building(Vector2(-32, 0))
+	right = check_if_building(Vector2(32, 0))
+	up = check_if_building(Vector2(0, -32))
+	down = check_if_building(Vector2(0, 32))
+
+	# Check if there is a building next to a road
 	
 	if up and down and left and right:
-		$Sprite2D.frame = 2
+		$Sprite2D.frame = 2  # Fully connected crossroad
 	elif up and left and down:
-		$Sprite2D.frame = 1
+		$Sprite2D.frame = 1  # T-junction (right open)
 	elif up and right and down:
-		$Sprite2D.frame = 7
+		$Sprite2D.frame = 7  # T-junction (left open)
 	elif left and right and down:
-		$Sprite2D.frame = 10
+		$Sprite2D.frame = 10  # T-junction (top open)
 	elif left and right and up:
-		$Sprite2D.frame = 11
+		$Sprite2D.frame = 11  # T-junction (bottom open)
 	elif left and right:
-		$Sprite2D.frame = 4
+		$Sprite2D.frame = 4  # Horizontal road
 	elif up and down:
-		$Sprite2D.frame = 3
+		$Sprite2D.frame = 3  # Vertical road
 	elif right and down:
-		$Sprite2D.frame = 5
+		$Sprite2D.frame = 5  # Top-left corner
 	elif left and down:
-		$Sprite2D.frame = 6
+		$Sprite2D.frame = 6  # Top-right corner
 	elif right and up:
-		$Sprite2D.frame = 8
+		$Sprite2D.frame = 8  # Bottom-left corner
 	elif left and up:
-		$Sprite2D.frame = 9
+		$Sprite2D.frame = 9  # Bottom-right corner
 	elif left or right:
-		$Sprite2D.frame = 4
+		$Sprite2D.frame = 4  # Default horizontal
 	elif up or down:
-		$Sprite2D.frame = 3
-
-func update_roads():
-	astargrid2d.update()
-
-func is_road_tile(world_pos: Vector2) -> bool:
-	for id in astargrid2d.get_points():
-		var grid_pos = astargrid2d.get_point_position(id)
-		if grid_pos == world_pos:
-			return id in road_positions
-	return false
-
-func update_connections():
-	left = road_positions.has(position + Vector2(-32, 0))
-	right = road_positions.has(position + Vector2(32, 0))
-	up = road_positions.has(position + Vector2(0, -32))
-	down = road_positions.has(position + Vector2(0, 32))
+		$Sprite2D.frame = 3  # Default vertical
+		
+		
