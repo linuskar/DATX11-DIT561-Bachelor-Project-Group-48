@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://chfljd8f6ww5l"]
+
+[ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_d2c06"]
+[ext_resource type="Resource" uid="uid://cx83ygjtitwf4" path="res://resources/buildings/road.tres" id="2_5iiw7"]
+[ext_resource type="Texture2D" uid="uid://bu4l4t3arvjxv" path="res://assets/road/road_tilemap-Sheet.png" id="2_acg36"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67t7r"]
+size = Vector2(32, 32)
+
+[node name="Road" type="Area2D"]
+script = ExtResource("1_d2c06")
+building_data = ExtResource("2_5iiw7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_acg36")
+hframes = 4
+vframes = 3
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_67t7r")
