@@ -11,8 +11,6 @@ extends ProductionBuilding
 
 func _ready():
 	super()
-	## Test if power generates
-	# input_storage.set(Enums.ResourceType.BIOMASS, 100)
 	emit_smoke()
 	
 ## Activated at the end of each cycle.

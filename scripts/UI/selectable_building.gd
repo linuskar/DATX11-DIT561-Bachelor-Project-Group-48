@@ -88,6 +88,8 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 	if not dict.is_empty():
 		text += dict_name + '\n'
 		for key in dict.keys():
+			## Want to hide the number of emissions outputted,
+			## maybe note the level like low, medium, high, to get an estimate
 			var resource_type: Enums.ResourceType = Enums.string_to_resource_type(key)
 			if dict_name == "Outputs" and building_data is AreaGatheringBuildingData and !Enums.is_emission(resource_type):
 				var gather_radius: int = building_data.gather_radius

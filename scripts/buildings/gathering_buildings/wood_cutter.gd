@@ -66,7 +66,7 @@ func _produce_goods() -> void:
 			
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
-		ResourceSignals.add_resource.emit(produced_good, produced_good_generated)
+		ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
 		
 		if resource_tiles_to_gather.size() == 0:
 			near_resource = false

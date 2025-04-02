@@ -39,7 +39,7 @@ func _init_building_polluting(building: Building) -> void:
 ## Function to apply emissions emitted by a building
 func apply_emissions(building: Building, emission_type: Enums.ResourceType, amount: float) -> void:
 	var building_pos: Vector2 = buildings_polluting.get(building)
-	var emissions_radius: int = building.building_data.emissions_radius
+	var emissions_radius: int = building.building_data.emissions_radius.get(emission_type)
 	emissions_to_apply.emit(emissions_falloff(amount, emissions_radius, building_pos, emission_type), emission_type)
 	
 ## Function to calculate the emissions emitted in the area around the building
@@ -50,14 +50,15 @@ func emissions_falloff(amount: float, emissions_radius: int, building_pos: Vecto
 	## where the area is determined by the emissions radius
 	for x in range(-emissions_radius, emissions_radius + 1):
 		for y in range(-emissions_radius, emissions_radius + 1):
-			var tile_pos = building_pos + Vector2(x * grid_size, y * grid_size)
 			## Manhattan distance, grid based
 			var distance_from_building: int = abs(x) + abs(y)
 			
 			## If outside the emissions radius
 			if distance_from_building > emissions_radius:
 				continue
-			
+				
+			var tile_pos = building_pos + Vector2(x * grid_size, y * grid_size)
+
 			## An exponential emission falloff
 			var amount_to_set: float = amount * exp(float(-distance_from_building) / emissions_radius)
 			

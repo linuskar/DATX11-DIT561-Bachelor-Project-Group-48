@@ -53,7 +53,6 @@ func init_building_gathering(building: Building) -> void:
 ## Function to get the tiles in the area around the building to gather
 func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos: Vector2, building: Building) -> void:
 	var gather_area_dict: Dictionary[Vector2, GatherableResource] = {}  
-	
 	## Iterate around the area centered to be gathered on
 	for x in range(min_x, max_x):
 		for y in range(min_y, max_y):
@@ -65,7 +64,7 @@ func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos
 					gather_area_dict.set(tile_pos, resource_tile)
 					building.near_resource = true
 	building.resource_tiles_to_gather = gather_area_dict
-
+	
 ## Function to apply emissions on resource tiles
 func apply_emissions(emissions_dict: Dictionary[Vector2, float], emission_type: Enums.ResourceType) -> void:
 	for pos in emissions_dict.keys():

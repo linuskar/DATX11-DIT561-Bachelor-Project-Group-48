@@ -5,6 +5,56 @@ class_name Enums
 ## the enums globally accross scripts.
 ##
 
+static var polluting_buildings: Array[BuildingType] = [
+		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
+		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
+		
+static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02]
+
+static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
+
+static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
+	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
+	
+static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
+		ResourceType.IRON_ORE: "IRON ORE",
+		ResourceType.COAL: "COAL",
+		ResourceType.WOOD: "WOOD",
+		ResourceType.CO2: "CO2",
+		ResourceType.S02: "SO2",
+		ResourceType.ELECTRICITY: "ELECTRICITY",
+		ResourceType.BIOMASS: "BIOMASS",
+		ResourceType.NONE: "NONE",
+	}	
+	
+static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
+		"IRON ORE": ResourceType.IRON_ORE,
+		"COAL": ResourceType.COAL,
+		"WOOD": ResourceType.WOOD,
+		"CO2": ResourceType.CO2,
+		"SO2": ResourceType.S02,
+		"ELECTRICITY": ResourceType.ELECTRICITY,
+		"BIOMASS": ResourceType.BIOMASS,
+		"NONE": ResourceType.NONE,
+	}
+
+static var building_names: Dictionary[BuildingType, String] = {
+		BuildingType.FACTORY: "FACTORY",
+		BuildingType.IRON_MINE: "IRON MINE",
+		BuildingType.COAL_MINE: "COAL MINE",
+		BuildingType.WOOD_CUTTER: "WOOD CUTTER",
+		BuildingType.COAL_POWER_PLANT: "COAL POWER PLANT",
+		BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
+		BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
+		BuildingType.WAREHOUSE: "WAREHOUSE",
+	}
+static var tile_names: Dictionary[TileType, String] = {
+		TileType.WATER: "WATER",
+		TileType.DIRT: "DIRT",
+		TileType.STONE: "STONE",
+		TileType.GRASS: "GRASS",
+		TileType.RESOURCE: "RESOURCE",
+	}	
 ## The different types of buildings in the game
 # Factory and gathering building are just temporary names?
 enum BuildingType {
@@ -49,77 +99,33 @@ enum TileType {
 }
 
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
-	var polluting_buildings: Array[BuildingType] = [
-		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
-		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
 	return building_type in polluting_buildings
 
 ## Function for checking if the ResourceType is a byproduct
 static func is_byproduct(resource_type: ResourceType) -> bool:
-	var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02]
 	return resource_type in byproducts
 
 ## Function for checking if the ResourceType is an emission
 static func is_emission(resource_type: ResourceType) -> bool:
-	var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
 	return resource_type in emissions
 	
 ## Function for checking if the ResourceType is a produced good
 static func is_produced_good(resource_type: ResourceType) -> bool:
-	var emissions: Array[ResourceType] = [ResourceType.IRON_ORE, 
-	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
-	return resource_type in emissions
+	return resource_type in produced_good
 
 ## Function for returning the string equivalent of a ResourceType
 static func resource_type_to_string(resource_type: ResourceType) -> String:
-	var resource_names: Dictionary[ResourceType, String] = {
-		ResourceType.IRON_ORE: "IRON ORE",
-		ResourceType.COAL: "COAL",
-		ResourceType.WOOD: "WOOD",
-		ResourceType.CO2: "CO2",
-		ResourceType.S02: "S02",
-		ResourceType.ELECTRICITY: "ELECTRICITY",
-		ResourceType.BIOMASS: "BIOMASS",
-		ResourceType.NONE: "NONE",
-	}
 	## Default to "UNKNOWN" if not found
-	return resource_names.get(resource_type, -1)  
+	return resource_names_type_to_string.get(resource_type, -1)  
 	
 ## Function for returning the ResourceType equivalent of a string	
 static func string_to_resource_type(string: String) -> ResourceType:
-	var resource_names: Dictionary[String, ResourceType] = {
-		"IRON ORE": ResourceType.IRON_ORE,
-		"COAL": ResourceType.COAL,
-		"WOOD": ResourceType.WOOD,
-		"CO2": ResourceType.CO2,
-		"S02": ResourceType.S02,
-		"ELECTRICITY": ResourceType.ELECTRICITY,
-		"BIOMASS": ResourceType.BIOMASS,
-		"NONE": ResourceType.NONE,
-	}
-	return resource_names.get(string, -1)  
+	return resource_names_string_to_type.get(string, -1)  
 	
 ## Function for returning the string equivalent of a BuildingType
 static func building_type_to_string(building_type: BuildingType) -> String:
-	var building_names: Dictionary[BuildingType, String] = {
-		BuildingType.FACTORY: "FACTORY",
-		BuildingType.IRON_MINE: "IRON MINE",
-		BuildingType.COAL_MINE: "COAL MINE",
-		BuildingType.WOOD_CUTTER: "WOOD CUTTER",
-		BuildingType.COAL_POWER_PLANT: "COAL POWER PLANT",
-		BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
-		BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
-		BuildingType.WAREHOUSE: "WAREHOUSE",
-	}
 	return building_names.get(building_type, "UNKNOWN") 
 
 ## Function for returning the string equivalent of a TileType
 static func tile_type_to_string(tile_type: TileType) -> String:
-	var tile_names: Dictionary[TileType, String] = {
-		TileType.WATER: "WATER",
-		TileType.DIRT: "DIRT",
-		TileType.STONE: "STONE",
-		TileType.GRASS: "GRASS",
-		TileType.RESOURCE: "RESOURCE",
-	}
 	return tile_names.get(tile_type, "UNKNOWN") 
