@@ -63,7 +63,7 @@ func _on_timer_timeout() -> void:
 func _output_resources() -> void:
 	if !check_if_can_produce():
 		print("Can't produce")
-		production_cycle.stop()
+		production_cycle.paused = true
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
 		_produce_goods()
@@ -121,7 +121,7 @@ func _produce_goods() -> void:
 		
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
-		ResourceSignals.add_resource.emit(produced_good, produced_good_generated)
+		ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
 		
 ## Function to use the resources from input in a production building.
 func _use_input_recipe() -> void:
@@ -139,7 +139,7 @@ func _use_input_recipe() -> void:
 func _generate_byproducts() -> void:
 	for byproduct in byproducts:
 		var byproduct_generated: int = output_generation.get(byproduct)
-		ResourceSignals.add_resource.emit(byproduct, byproduct_generated)
+		ResourceSignals.add_resource.emit(byproduct, byproduct_generated, self)
 	
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
@@ -147,4 +147,18 @@ func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	output_storage.set(resource_type, resource_quantity - amount)
 	
 	if check_if_can_produce():
-		production_cycle.autostart = true
+		production_cycle.paused = false
+
+func get_produced_resources() -> Array[Enums.ResourceType]:
+	var arr: Array[Enums.ResourceType] =[]
+	for product in byproducts:
+		if !Enums.is_emission(product):
+			arr.append(product)
+	var all_resource_output = arr + produced_goods
+	return all_resource_output
+
+func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
+	var current = input_storage.get(input_type)
+	input_storage.set(input_type, current + input_amount)
+	production_cycle.paused = false
+	ResourceSignals.use_resource.emit(input_type, input_amount)
