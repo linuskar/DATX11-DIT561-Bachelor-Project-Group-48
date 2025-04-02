@@ -2,6 +2,7 @@ extends  Node2D
 
 static var astar = AStarGrid2D.new()
 
+var connected_buildings: Dictionary[Vector2, Building]
 
 func create_path():
 	var road_path: Path2D = Path2D.new()

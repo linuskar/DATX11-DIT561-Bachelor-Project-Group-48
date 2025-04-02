@@ -6,8 +6,8 @@ var resources: Dictionary[int, int] = {}
 func _ready() -> void:
 	ResourceSignals.add_resource.connect(_new_Resources)
 	ResourceSignals.use_resource.connect(_use_Resources)
-	for x in Enums.ResourceType.values():
-		resources.get_or_add(x, 0)
+	for resource in Enums.ResourceType.values():
+		resources.get_or_add(resource, 0)
 
 #Add new amounts for already existing resources
 func _new_Resources(type: Enums.ResourceType, amount: int) -> void:

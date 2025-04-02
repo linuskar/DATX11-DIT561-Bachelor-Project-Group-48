@@ -42,9 +42,6 @@ signal placed_building(building: Building)
 
 func _ready() -> void:
 	
-	astar = BuildManagerGlobal.create_astar_grid()
-	$astar_visualizer.visualize(astar)
-	
 	StateManager.build_mode.connect(_on_build_mode)
 	StateManager.selected_building.connect(_on_selected_building)
 	
@@ -141,9 +138,10 @@ func is_tile_occupied(position: Vector2) -> bool:
 	
 ## Function marking a tile as occupied for placing down a buiiling
 func _on_placed_building(building: Building) -> void:
-	occupied_tiles[building.position] = building
-	placed_building.emit(building)
-	BuildManagerGlobal.update_roads.emit()
+	if not occupied_tiles.has(building.position):
+		occupied_tiles[building.position] = building
+		placed_building.emit(building)
+		BuildManagerGlobal.update_roads.emit()
 
 ## When the mouse has entered the building list:
 ## Disable the state of placing a building and hide the blueprint

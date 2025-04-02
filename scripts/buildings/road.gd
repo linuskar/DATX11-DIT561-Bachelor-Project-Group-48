@@ -4,7 +4,6 @@ extends ProductionBuilding
 static var road_positions: Array[Vector2] = []
 
 var occupied_tiles = BuildManagerGlobal.occupied_tiles
-var road_to_building: Dictionary[Vector2, Building]
 
 var left: bool = false
 var right: bool = false
@@ -34,15 +33,13 @@ func check_solids():
 #Check if the building that is next to the road is not a road than it should save that to a list.
 func check_if_connection(pos: Vector2):
 	if BuildManagerGlobal.occupied_tiles[position + pos].building_type != Enums.BuildingType.ROAD:
-		road_to_building[position] = BuildManagerGlobal.occupied_tiles[position + pos]
+		BuildManagerGlobal.connected_buildings[position] = BuildManagerGlobal.occupied_tiles[position + pos]
 		modulate = Color(0, 1, 0, 1)
-		print("Connection!: " + str(road_to_building[position]) + " at position!: " + str(position))
-		if road_to_building.size() > 2:
-			pass
+		print("Connection!: " + str(BuildManagerGlobal.connected_buildings[position]) + " at position!: " + str(position))
 		
 #Check if there is something that the road should visually connect to
 func update_connections():
-	road_path.curve.add_point(position)
+	#road_path.curve.add_point(position)
 	left = check_if_building(Vector2(-32, 0))
 	right = check_if_building(Vector2(32, 0))
 	up = check_if_building(Vector2(0, -32))
