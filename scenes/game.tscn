@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=8 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://djil6gjtsgbdu" path="res://scenes/UI/UserInterface.tscn" id="8_0tnpc"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="8_gee14"]
+
+[sub_resource type="Curve2D" id="Curve2D_p57ef"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 1
 
 [node name="Game" type="Node2D"]
 
@@ -20,6 +26,9 @@ script = ExtResource("5_0tnpc")
 script = ExtResource("8_gee14")
 
 [node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
+
+[node name="roadpath" type="Path2D" parent="BuildManager"]
+curve = SubResource("Curve2D_p57ef")
 
 [node name="UserInterface" parent="." instance=ExtResource("8_0tnpc")]
 

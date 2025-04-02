@@ -6,7 +6,7 @@ extends Node
 ## via input to place out buildings in a grid based manner, checking 
 ## for valid placements. The buildings are preloaded in a dictionary.
 ##
-
+static var astar
 ## The blueprint previews the building you are about to place.
 @export var blueprint: Building
 ## The grid size of the map.
@@ -41,6 +41,10 @@ var valid_placement: bool = false
 signal placed_building(building: Building)
 
 func _ready() -> void:
+	
+	astar = BuildManagerGlobal.create_astar_grid()
+	$astar_visualizer.visualize(astar)
+	
 	StateManager.build_mode.connect(_on_build_mode)
 	StateManager.selected_building.connect(_on_selected_building)
 	

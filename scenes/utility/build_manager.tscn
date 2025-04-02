@@ -16,6 +16,7 @@
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
 script = ExtResource("1_aenhx")
+blueprint = NodePath("IronMineBlueprint")
 buildings = Dictionary[int, Resource]({
 1: ExtResource("2_w7lpy"),
 2: ExtResource("3_dr161"),
@@ -33,7 +34,6 @@ building_blueprints = Dictionary[int, Resource]({
 5: ExtResource("11_xcllt"),
 6: ExtResource("7_y0lq7")
 })
-blueprint = NodePath("IronMineBlueprint")
 
 [node name="IronMineBlueprint" parent="." instance=ExtResource("2_ofppe")]
 visible = false

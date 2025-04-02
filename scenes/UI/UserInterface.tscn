@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://0ua1sicv06wq"]
+[gd_scene load_steps=7 format=4 uid="uid://djil6gjtsgbdu"]
 
-[ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
+[ext_resource type="Script" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
 [ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/Selectables/BuildingSelectList.tscn" id="2_yl4mc"]
 [ext_resource type="PackedScene" uid="uid://bj1v7y2dejr2w" path="res://scenes/UI/ResourceUI.tscn" id="3_vr1b1"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="4_lgjxu"]

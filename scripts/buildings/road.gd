@@ -11,6 +11,8 @@ var right: bool = false
 var up: bool = false
 var down: bool = false
 
+var road_path: Path2D = BuildManagerGlobal.create_path()
+
 func _ready():
 	BuildManagerGlobal.update_roads.connect(update_connections)
 	road_positions.append(position)
@@ -25,15 +27,22 @@ func check_if_building(pos: Vector2):
 		check_if_connection(pos)
 		return true
 	else: return false
-	
+
+func check_solids():
+	pass
+
 #Check if the building that is next to the road is not a road than it should save that to a list.
 func check_if_connection(pos: Vector2):
 	if BuildManagerGlobal.occupied_tiles[position + pos].building_type != Enums.BuildingType.ROAD:
 		road_to_building[position] = BuildManagerGlobal.occupied_tiles[position + pos]
+		modulate = Color(0, 1, 0, 1)
 		print("Connection!: " + str(road_to_building[position]) + " at position!: " + str(position))
+		if road_to_building.size() > 2:
+			pass
 		
 #Check if there is something that the road should visually connect to
 func update_connections():
+	road_path.curve.add_point(position)
 	left = check_if_building(Vector2(-32, 0))
 	right = check_if_building(Vector2(32, 0))
 	up = check_if_building(Vector2(0, -32))
