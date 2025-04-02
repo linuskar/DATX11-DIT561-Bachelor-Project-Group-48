@@ -95,10 +95,6 @@ func check_for_output_overflow() -> bool:
 		var produced_good_max_storage: int = max_storage.get(produced_good)
 		var produced_good_string = Enums.resource_type_to_string(produced_good)
 		
-		# print(produced_good_string + " to be generated: " + str(produced_good_generated))
-		# print("Current " + produced_good_string + " stored: " + str(produced_good_stored))
-		# print("Max storage: " + str(produced_good_max_storage))
-		
 		## When at possible overflow of resources for output
 		if produced_good_stored + produced_good_generated > produced_good_max_storage:
 			return true

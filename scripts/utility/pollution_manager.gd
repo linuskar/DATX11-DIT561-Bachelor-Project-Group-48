@@ -50,14 +50,15 @@ func emissions_falloff(amount: float, emissions_radius: int, building_pos: Vecto
 	## where the area is determined by the emissions radius
 	for x in range(-emissions_radius, emissions_radius + 1):
 		for y in range(-emissions_radius, emissions_radius + 1):
-			var tile_pos = building_pos + Vector2(x * grid_size, y * grid_size)
 			## Manhattan distance, grid based
 			var distance_from_building: int = abs(x) + abs(y)
 			
 			## If outside the emissions radius
 			if distance_from_building > emissions_radius:
 				continue
-			
+				
+			var tile_pos = building_pos + Vector2(x * grid_size, y * grid_size)
+
 			## An exponential emission falloff
 			var amount_to_set: float = amount * exp(float(-distance_from_building) / emissions_radius)
 			
