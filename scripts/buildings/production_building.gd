@@ -28,6 +28,9 @@ var produced_goods: Array[Enums.ResourceType]
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
 
+## Signal for when emissions are emitted
+signal emitted_emissions(building: Building, emission_type: Enums.ResourceType, amount: int)
+
 func _ready() -> void:
 	super()
 	init_production_building()
@@ -92,10 +95,6 @@ func check_for_output_overflow() -> bool:
 		var produced_good_max_storage: int = max_storage.get(produced_good)
 		var produced_good_string = Enums.resource_type_to_string(produced_good)
 		
-		print(produced_good_string + " to be generated: " + str(produced_good_generated))
-		print("Current " + produced_good_string + " stored: " + str(produced_good_stored))
-		print("Max storage: " + str(produced_good_max_storage))
-		
 		## When at possible overflow of resources for output
 		if produced_good_stored + produced_good_generated > produced_good_max_storage:
 			return true
@@ -140,6 +139,9 @@ func _generate_byproducts() -> void:
 	for byproduct in byproducts:
 		var byproduct_generated: int = output_generation.get(byproduct)
 		ResourceSignals.add_resource.emit(byproduct, byproduct_generated, self)
+		
+		if Enums.is_emission(byproduct):
+			emitted_emissions.emit(self, byproduct, byproduct_generated)
 	
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
@@ -160,5 +162,8 @@ func get_produced_resources() -> Array[Enums.ResourceType]:
 func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
 	var current = input_storage.get(input_type)
 	input_storage.set(input_type, current + input_amount)
-	production_cycle.paused = false
+	
+	if check_if_can_produce():
+		production_cycle.paused = false
+		
 	ResourceSignals.use_resource.emit(input_type, input_amount)

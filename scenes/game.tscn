@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=10 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="7_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://djil6gjtsgbdu" path="res://scenes/UI/UserInterface.tscn" id="8_0tnpc"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://bmfjen7u3vjeh" path="res://scenes/utility/pollution_manager.tscn" id="8_vtaks"]
 
 [node name="Game" type="Node2D"]
 
@@ -30,6 +31,8 @@ script = ExtResource("8_gee14")
 autostart = true
 
 [node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
+
+[node name="PollutionManager" parent="." instance=ExtResource("8_vtaks")]
 
 [node name="UserInterface" parent="." instance=ExtResource("8_0tnpc")]
 

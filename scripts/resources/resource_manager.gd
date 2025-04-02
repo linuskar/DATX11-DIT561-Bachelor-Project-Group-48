@@ -8,6 +8,7 @@ extends Node
 
 @onready var map_layer: MapLayer = $"../MapLayer"
 @onready var build_manager: BuildManager = $"../BuildManager"
+@onready var pollution_manager: PollutionManager = $"../PollutionManager"
 
 ## The buildings that are currently gathering resources
 var buildings_gathering: Array[Building]
@@ -18,6 +19,7 @@ var grid_size: int = 32
 
 func _ready() -> void:
 	build_manager.placed_building.connect(init_building_gathering)
+	pollution_manager.emissions_to_apply.connect(apply_emissions)
 	init_resources()
 
 ## Function for initaliazing the variables for the resources
@@ -51,7 +53,6 @@ func init_building_gathering(building: Building) -> void:
 ## Function to get the tiles in the area around the building to gather
 func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos: Vector2, building: Building) -> void:
 	var gather_area_dict: Dictionary[Vector2, GatherableResource] = {}  
-	
 	## Iterate around the area centered to be gathered on
 	for x in range(min_x, max_x):
 		for y in range(min_y, max_y):
@@ -63,3 +64,16 @@ func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos
 					gather_area_dict.set(tile_pos, resource_tile)
 					building.near_resource = true
 	building.resource_tiles_to_gather = gather_area_dict
+	
+## Function to apply emissions on resource tiles
+func apply_emissions(emissions_dict: Dictionary[Vector2, float], emission_type: Enums.ResourceType) -> void:
+	for pos in emissions_dict.keys():
+		var amount_to_apply: float = emissions_dict.get(pos)
+		## Avoiding resources that have been deleted from memory
+		if resource_tiles.has(pos) and is_instance_valid(resource_tiles.get(pos)):
+			var gatherable_resource: GatherableResource = resource_tiles.get(pos)
+			
+			if gatherable_resource is GatherableTree:
+				gatherable_resource.absorb_emission(emission_type, amount_to_apply)
+				gatherable_resource.check_if_at_emission_limit()
+				pollution_manager.set_emissions_absorbed(emission_type, amount_to_apply)
