@@ -19,10 +19,6 @@ func populate_info_label(building: Building) -> void:
 func get_text(building_data: BuildingData) -> String:
 	return building_data.accept(self)
 
-## Hide the info panel
-func set_inactive() -> void:
-	self.hide()
-
 func handle_building(building: BuildingData) -> String:
 	var text: String = ""
 	text += get_valid_tiles_text(building)
@@ -30,19 +26,22 @@ func handle_building(building: BuildingData) -> String:
 	
 func handle_prod_building(building: ProductionBuildingData) -> String:
 	var text: String = ""
+	text += handle_building(building)
 	text += get_ouputs_text(building)
 	text += get_inputs_text(building)
-	text += get_valid_tiles_text(building)
 	text += get_storage_text(building)
 	return text
 
 func handle_gath_building(building: GatheringBuildingData) -> String:
 	var text: String = ""
-	text += get_ouputs_text(building)
-	text += get_inputs_text(building)
-	text += get_valid_tiles_text(building)
-	text += get_storage_text(building)
+	text += handle_prod_building(building)
 	text += get_resource_node_text(building)
+	return text
+
+func handle_areagath_building(building: AreaGatheringBuildingData) -> String:
+	var text: String = ""
+	text += handle_gath_building(building)
+	text += get_gathering_text(building)
 	return text
 
 ## Adds all the different outputs of the building, if it has any
@@ -82,6 +81,27 @@ func get_storage_text(building_data: ProductionBuildingData) -> String:
 ## Specific for gathering buildings, add the resource node it has to be placed on for operation
 func get_resource_node_text(building_data: GatheringBuildingData) -> String:
 	return "\nGathers on resource node: " + Enums.resource_type_to_string(building_data.can_gather_resource_type) + '\n'
+
+## Gets text representing a building pollution outputs, if it has any
+func get_pollution_text(building_data: ProductionBuildingData) -> String:
+	if Enums.is_a_polluting_building(building_data.building_type):
+		var text: String = "\nPollution\n"
+		for output in building_data.output_generation.keys():
+			if Enums.is_emission(output):
+				text += building_data.output_generation.get(output) + ": In an area.\n"
+		return text
+	return ""
+	
+func get_gathering_text(building_data: AreaGatheringBuildingData) -> String:
+	var text: String = "\nGathering\n"
+	var resource: String = Enums.resource_type_to_string(building_data.can_gather_resource_type)
+	var range_x: String = str(int(building_data.building_size.x) + (2 * building_data.gather_radius))
+	var range_y: String = str(int(building_data.building_size.y) + (2 * building_data.gather_radius))
+	return text + resource + ": " + range_x + 'x' + range_y + '\n'
+
+## Hide the info panel
+func set_inactive() -> void:
+	self.hide()
 
 ## Show the info panel and update its information
 func set_active(building: Building) -> void:
