@@ -160,6 +160,5 @@ func get_produced_resources() -> Array[Enums.ResourceType]:
 func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
 	var current = input_storage.get(input_type)
 	input_storage.set(input_type, current + input_amount)
-	print("This shouldn't run 2")
 	production_cycle.paused = false
 	ResourceSignals.use_resource.emit(input_type, input_amount)
