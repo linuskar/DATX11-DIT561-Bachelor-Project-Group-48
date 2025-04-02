@@ -39,7 +39,7 @@ func _init_building_polluting(building: Building) -> void:
 ## Function to apply emissions emitted by a building
 func apply_emissions(building: Building, emission_type: Enums.ResourceType, amount: float) -> void:
 	var building_pos: Vector2 = buildings_polluting.get(building)
-	var emissions_radius: int = building.building_data.emissions_radius
+	var emissions_radius: int = building.building_data.emissions_radius.get(emission_type)
 	emissions_to_apply.emit(emissions_falloff(amount, emissions_radius, building_pos, emission_type), emission_type)
 	
 ## Function to calculate the emissions emitted in the area around the building
