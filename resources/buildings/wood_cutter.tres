@@ -13,7 +13,8 @@ output_generation = Dictionary[int, int]({
 })
 emissions_radius = Dictionary[int, int]({})
 max_storage = Dictionary[int, int]({
-2: 100
+2: 100,
+6: 20
 })
 input_types = Array[int]([])
 output_types = Array[int]([2, 6])

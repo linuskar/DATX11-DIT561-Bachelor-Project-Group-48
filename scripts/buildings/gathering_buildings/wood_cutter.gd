@@ -78,8 +78,7 @@ func _generate_byproducts() -> void:
 		var byproduct_stored: int = output_storage.get(byproduct)
 		var byproduct_generated: int = produced_wood / byproduct_generated_rate
 				
-		ResourceSignals.add_resource.emit(byproduct, byproduct_generated)
-
+		ResourceSignals.add_resource.emit(byproduct, byproduct_generated, self)
 		if Enums.is_emission(byproduct):
 			emitted_emissions.emit(self, byproduct, byproduct_generated)
 		else:

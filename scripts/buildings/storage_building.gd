@@ -51,14 +51,20 @@ func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	
 	input_storage.set(resource_type, resource_quantity - amount)
 	
-func get_output_resource_types() -> Array[Enums.ResourceType]:
-	var all_resource_output = byproducts + produced_goods
+func get_produced_resources() -> Array[Enums.ResourceType]:
+	var arr: Array[Enums.ResourceType] = []
+	for product in byproducts:
+		if !Enums.is_emission(product):
+			arr.append(product)
+	var all_resource_output = arr + produced_goods
 	return all_resource_output
 	
 ## Function to add resources to the storage building.
 func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
 	var current: int = input_storage.get(input_type)
 	input_storage.set(input_type, current + input_amount)
-	
+	print("added to " + Enums.building_type_to_string(building_type))
 	output_storage.set(input_type, current + input_amount)
-	
+	print("Amount stored: " + str(output_storage.get(input_type)))
+	ResourceSignals.use_resource.emit(input_type, input_amount)
+	ResourceSignals.add_resource.emit(input_type, input_amount, self)
