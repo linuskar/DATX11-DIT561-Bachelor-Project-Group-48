@@ -53,8 +53,8 @@ func _ready() -> void:
 func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[Enums.ResourceType, int]) -> void:
 	for resource in data.keys():
 		var resource_string: String = Enums.resource_type_to_string(resource)
-		var input_needed: int = data.get(resource)
-		string_data.set(resource_string, input_needed)
+		var resource_needed: int = data.get(resource)
+		string_data.set(resource_string, resource_needed)
 		
 func _input(event: InputEvent) -> void:
 	## Handling press of left mouse button for selecting a building to buy
@@ -84,7 +84,20 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 	if not dict.is_empty():
 		text += dict_name + '\n'
 		for key in dict.keys():
-			text += key + ": " + str(dict.get(key)) + '\n'
+			## Want to hide the number of emissions outputted,
+			## maybe note the level like low, medium, high, to get an estimate
+			if dict_name == "Outputs" and building_data is AreaGatheringBuildingData and !Enums.is_emission(Enums.string_to_resource_type(key)):
+				var gather_radius: int = building_data.gather_radius
+				var size_x: int = building_data.building_size.x
+				var size_y: int = building_data.building_size.y
+				var area: String = str(size_x + 2 * gather_radius) +"x" + str(size_y + 2 * gather_radius)
+				text += key + ": " + area + " area. Base gather rate of " + str(dict.get(key)) + " at the center, decreasing with further tiles." + '\n'
+			elif dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(Enums.string_to_resource_type(key)):
+				text += key + ": In an area." + '\n'
+			elif dict_name == "Outputs" and Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(Enums.string_to_resource_type(key)):
+				text += key + ": " + str(dict.get(key)) + " per tile" + '\n'
+			else:
+				text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'
 	return text
 

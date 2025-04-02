@@ -4,13 +4,11 @@ class_name BuildingInfo extends Control
 @onready var building_name = $ScrollContainer/VBoxContainer/BuildingName
 @onready var info = $ScrollContainer/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 
-var show_emissions = false
-
 func _ready() -> void:
 	BuildingSignals.building_clicked.connect(set_active)
 	set_inactive()
 	
-
+## Fills the info label with text dependant on the building it recieved
 func populate_info_label(building: Building) -> void:
 	image.set_texture(building.building_sprite.texture)
 	building_name.set_text(Enums.building_type_to_string(building.building_data.building_type))
@@ -21,6 +19,7 @@ func populate_info_label(building: Building) -> void:
 func get_text(building_data: BuildingData) -> String:
 	return building_data.accept(self)
 
+## Hide the info panel
 func set_inactive() -> void:
 	self.hide()
 
@@ -84,6 +83,7 @@ func get_storage_text(building_data: ProductionBuildingData) -> String:
 func get_resource_node_text(building_data: GatheringBuildingData) -> String:
 	return "\nGathers on resource node: " + Enums.resource_type_to_string(building_data.can_gather_resource_type) + '\n'
 
+## Show the info panel and update its information
 func set_active(building: Building) -> void:
 	self.show()
 	populate_info_label(building)

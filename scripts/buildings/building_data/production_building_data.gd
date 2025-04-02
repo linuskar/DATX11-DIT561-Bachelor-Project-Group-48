@@ -20,3 +20,5 @@ extends BuildingData
 
 func accept(handler: BuildingInfo) -> String:
 	return handler.handle_prod_building(self)
+## The radius in which the emissions gets emitted to, in a square area
+@export var emissions_radius: Dictionary[Enums.ResourceType, int] 
