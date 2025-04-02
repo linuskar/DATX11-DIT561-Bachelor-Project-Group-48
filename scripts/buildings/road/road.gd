@@ -1,52 +1,115 @@
 extends ProductionBuilding
 
-static var road_positions: Array[Vector2] = []
+static var road_positions: Array[Vector2] = BuildManagerGlobal.road_positions
 
 var occupied_tiles = BuildManagerGlobal.occupied_tiles
-
 var left: bool = false
 var right: bool = false
 var up: bool = false
 var down: bool = false
 
-var road_path: Path2D = BuildManagerGlobal.create_path()
+# Cache sibling references
+var sibling_left = null
+var sibling_right = null
+var sibling_down = null
+var sibling_up = null
 
 func _ready():
 	BuildManagerGlobal.update_roads.connect(update_connections)
 	road_positions.append(position)
 	super()
 
-func _process(delta: float) -> void:
-	pass
+func _exit_tree():
+	road_positions.erase(position)
+	BuildManagerGlobal.update_roads.emit()
 
-#Pos is a position to the left, right up and down (+-)32 pixels.
+func get_sibling(pos: Vector2):
+	var target_pos = position + pos
+	if BuildManagerGlobal.occupied_tiles.has(target_pos):
+		return BuildManagerGlobal.occupied_tiles[target_pos]
+	return null
+
+func check_if_road_or_building(pos: Vector2):
+	var target_pos = position + pos
+	return BuildManagerGlobal.occupied_tiles.has(target_pos)
+
+
+
 func check_if_building(pos: Vector2):
-	if BuildManagerGlobal.occupied_tiles.has(position + pos):
-		print("bajs")
-		check_if_connection(pos)
-		return true
-	else: return false
+	var target_pos = position + pos
+	if BuildManagerGlobal.occupied_tiles.has(target_pos):
+		var building = BuildManagerGlobal.occupied_tiles[target_pos]
+		if building.building_type != Enums.BuildingType.ROAD:
+			register_building_connection(building)
+			return true
+	return false
 
-func check_solids():
-	pass
+func register_building_connection(building):
+	BuildManagerGlobal.connected_buildings[position] = building
+	modulate = Color(0, 1, 0, 1)
+	print("Connected to building: ", building, " at position: ", position)
+
+func find_connected_buildings(parent = null, visited = {}):
+	var buildings = []
 	
-#Check if the building that is next to the road is not a road than it should save that to a list.
-func check_if_connection(pos: Vector2):
-	if BuildManagerGlobal.occupied_tiles[position + pos].building_type != Enums.BuildingType.ROAD:
-		BuildManagerGlobal.connected_buildings[position] = BuildManagerGlobal.occupied_tiles[position + pos]
-		print("bajs")
-		modulate = Color(0, 1, 0, 1)
-		print("Connection!: " + str(BuildManagerGlobal.connected_buildings[position]) + " at position!: " + str(position))
+	# Mark current road as visited to prevent infinite loops
+	visited[position] = true
+	
+	# Check all four directions
+	for dir in [Vector2.LEFT * 32, Vector2.RIGHT * 32, Vector2.UP * 32, Vector2.DOWN * 32]:
+		var sibling = get_sibling(dir)
 		
-#Check if there is something that the road should visually connect to
-func update_connections():
-	#road_path.curve.add_point(position)
-	left = check_if_building(Vector2(-32, 0))
-	right = check_if_building(Vector2(32, 0))
-	up = check_if_building(Vector2(0, -32))
-	down = check_if_building(Vector2(0, 32))
+		if sibling and sibling != parent and not visited.get(sibling.position, false):
+			if sibling.building_type != Enums.BuildingType.ROAD:
+				buildings.append(sibling)
+			else:
+				# Recursively search through connected roads
+				buildings += sibling.find_connected_buildings(self, visited)
+	
+	return buildings
 
-	# Check if there is a building next to a road
+var road_networks = []
+func check_network_connections():
+	var connected_buildings = find_connected_buildings()
+	if connected_buildings.size() > 0:
+		modulate = Color(0, 1, 0, 1)  # Green if connected to buildings
+		print("Road at ", position, " is connected to buildings: ", connected_buildings)
+		
+	else:
+		modulate = Color(1, 1, 1, 1)  # White if not connected
+		
+	return connected_buildings
+
+func get_network_buildings():
+	if BuildManagerGlobal.road_to_network.has(position):
+		var network_id = BuildManagerGlobal.road_to_network[position]
+		return BuildManagerGlobal.road_networks.get(network_id, [])
+	return []
+
+func update_connections():
+	# Update directional connections
+	left = check_if_road_or_building(Vector2(-32, 0))
+	right = check_if_road_or_building(Vector2(32, 0))
+	up = check_if_road_or_building(Vector2(0, -32))
+	down = check_if_road_or_building(Vector2(0, 32))
+
+	# Update sibling references
+	sibling_left = get_sibling(Vector2(-32, 0))
+	sibling_right = get_sibling(Vector2(32, 0))
+	sibling_up = get_sibling(Vector2(0, -32))
+	sibling_down = get_sibling(Vector2(0, 32))
+
+	# Update visual connections
+	update_road_sprite()
+	
+	# Check network connections
+	check_network_connections()
+	
+	BuildManagerGlobal.update_networks()
+	var my_buildings = get_network_buildings()
+	print("Road at ", position, " connects to buildings: ", my_buildings)
+
+func update_road_sprite():
 	
 	if up and down and left and right:
 		$Sprite2D.frame = 2  # Fully connected crossroad
