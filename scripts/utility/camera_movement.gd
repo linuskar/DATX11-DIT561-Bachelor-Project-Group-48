@@ -83,5 +83,4 @@ func ClickAndDrag():
 		position = dragStartCameraPos - moveVector * 1/zoom.x
 
 func set_can_zoom(zoom_allowed: bool) -> void:
-	print(zoom_allowed)
 	self.can_zoom = zoom_allowed

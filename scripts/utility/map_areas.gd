@@ -41,12 +41,10 @@ func _on_playable_area_exited(area: Area2D) -> void:
 
 ## Function for when the mouse enters the map bounds
 func _on_mouse_entered() -> void:
-	print("Entered")
 	mouse_in_map.emit(true)
 	ZoomHandler.allow_zoom.emit(true)
 	
 ## Function for when the mouse exits the map bounds
 func _on_mouse_exited() -> void:
-	print("Exited")
 	mouse_in_map.emit(false)
 	ZoomHandler.allow_zoom.emit(false)
