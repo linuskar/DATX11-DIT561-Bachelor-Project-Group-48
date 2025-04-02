@@ -11,7 +11,7 @@ output_generation = Dictionary[int, int]({
 2: 5,
 6: 4
 })
-emissions_radius = 0
+emissions_radius = Dictionary[int, int]({})
 max_storage = Dictionary[int, int]({
 2: 100
 })

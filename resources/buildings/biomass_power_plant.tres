@@ -11,16 +11,16 @@ output_generation = Dictionary[int, int]({
 3: 20,
 5: 20
 })
+emissions_radius = Dictionary[int, int]({
+3: 16,
+4: 16
+})
 max_storage = Dictionary[int, int]({
 1: 100,
 5: 200
 })
 input_types = Array[int]([6])
 output_types = Array[int]([5, 3])
-emissions_radius = Dictionary[int, int]({
-3: 16,
-4: 16
-})
 building_type = 5
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(3, 3)
