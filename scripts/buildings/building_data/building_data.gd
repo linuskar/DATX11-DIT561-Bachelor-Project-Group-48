@@ -14,6 +14,8 @@ extends Resource
 @export var building_size: Vector2
 ## The amount of currency it costs to build the building
 @export var building_cost: int
+## The upkeep cost of the building
+@export var building_upkeep: int
 
 func accept(handler: BuildingInfo) -> String:
 	return handler.handle_building(self)
