@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://brqqoldcvlp7h"]
+
+[node name="ResearchUi" type="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
