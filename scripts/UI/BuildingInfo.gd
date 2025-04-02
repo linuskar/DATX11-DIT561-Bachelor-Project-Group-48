@@ -26,40 +26,63 @@ func set_inactive() -> void:
 
 func handle_building(building: BuildingData) -> String:
 	var text: String = ""
-	
-	## Adds valid placement tiles to the text
-	text += "\nPlacement\n"
-	for tile in building.valid_tile_types_to_place_on:
-		text += Enums.tile_type_to_string(tile) + '\n'
-	
+	text += get_valid_tiles_text(building)
 	return text
 	
 func handle_prod_building(building: ProductionBuildingData) -> String:
 	var text: String = ""
-	
-	## Adds all the different outputs of the building
-	text += "\nOutputs\n"
-	for key in building.output_generation.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building.output_generation.get(key)) + '\n'
-
-	## Adds all the different inputs of the building
-	text += "\nInputs\n"
-	for key in building.input_use_rates.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building.input_use_rates.get(key)) + '\n'
-	
-	## Adds valid placement tiles to the text
-	text += "\nPlacement\n"
-	for tile in building.valid_tile_types_to_place_on:
-		text += Enums.tile_type_to_string(tile) + '\n'
-	
-	## Adds storage capacity to the text
-	text += "\nStorage\n"
-	for key in building.max_storage.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building.max_storage.get(key)) + '\n'
+	text += get_ouputs_text(building)
+	text += get_inputs_text(building)
+	text += get_valid_tiles_text(building)
+	text += get_storage_text(building)
 	return text
 
 func handle_gath_building(building: GatheringBuildingData) -> String:
-	return "Hej"
+	var text: String = ""
+	text += get_ouputs_text(building)
+	text += get_inputs_text(building)
+	text += get_valid_tiles_text(building)
+	text += get_storage_text(building)
+	text += get_resource_node_text(building)
+	return text
+
+## Adds all the different outputs of the building, if it has any
+func get_ouputs_text(building_data: ProductionBuildingData) -> String:
+	var text: String = ""
+	if building_data.output_generation.keys():
+		text += "\nOutputs\n"
+		for key in building_data.output_generation.keys():
+			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
+	return text
+
+## Adds all the different inputs of the building, if it has any
+func get_inputs_text(building_data: ProductionBuildingData) -> String:
+	var text: String = ""
+	if building_data.input_use_rates.keys():
+		text += "\nInputs\n"
+		for key in building_data.input_use_rates.keys():
+			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.input_use_rates.get(key)) + '\n'
+	return text
+	
+## Adds all the tiles considered valid for placement
+func get_valid_tiles_text(building_data: BuildingData) -> String:
+	var text: String = ""
+	text += "\nPlacement\n"
+	for tile in building_data.valid_tile_types_to_place_on:
+		text += Enums.tile_type_to_string(tile) + '\n'
+	return text
+
+## Adds storage capacity to the text
+func get_storage_text(building_data: ProductionBuildingData) -> String:
+	var text: String = ""
+	text += "\nStorage\n"
+	for key in building_data.max_storage.keys():
+		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.max_storage.get(key)) + '\n'
+	return text
+
+## Specific for gathering buildings, add the resource node it has to be placed on for operation
+func get_resource_node_text(building_data: GatheringBuildingData) -> String:
+	return "\nGathers on resource node: " + Enums.resource_type_to_string(building_data.can_gather_resource_type) + '\n'
 
 func set_active(building: Building) -> void:
 	self.show()
