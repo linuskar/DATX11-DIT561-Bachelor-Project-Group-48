@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2opqml4lhdk5"]
+
+[ext_resource type="Script" path="res://scenes/buildings/building_blueprints/road.gd" id="1_ahlc7"]
+[ext_resource type="Resource" path="res://resources/buildings/road.tres" id="2_7qqa8"]
+[ext_resource type="Texture2D" uid="uid://bu4l4t3arvjxv" path="res://assets/road/road_tilemap-Sheet.png" id="3_b44sr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67t7r"]
+size = Vector2(32, 32)
+
+[node name="Road" type="StaticBody2D"]
+script = ExtResource("1_ahlc7")
+building_data = ExtResource("2_7qqa8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_b44sr")
+hframes = 4
+vframes = 3
+frame = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_67t7r")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
