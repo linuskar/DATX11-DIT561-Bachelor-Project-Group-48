@@ -93,7 +93,6 @@ func _produce_goods() -> void:
 	for produced_good in produced_goods:
 		var produced_good_generated: int = output_generation.get(produced_good)
 		var produced_good_stored: int = output_storage.get(produced_good)
-		var produced_good_max_storage: int = max_storage.get(produced_good)
 		
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
@@ -115,10 +114,16 @@ func _use_input_recipe() -> void:
 func _generate_byproducts() -> void:
 	for byproduct in byproducts:
 		var byproduct_generated: int = output_generation.get(byproduct)
+		var byproduct_stored: int = output_storage.get(byproduct)
+
 		ResourceSignals.add_resource.emit(byproduct, byproduct_generated)
 		
 		if Enums.is_emission(byproduct):
 			emitted_emissions.emit(self, byproduct, byproduct_generated)
+		else:
+			byproduct_stored += byproduct_generated
+			output_storage.set(byproduct, byproduct_stored)
+
 	
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:

@@ -41,7 +41,6 @@ func _produce_goods() -> void:
 	for produced_good in produced_goods:
 		var gather_rate_per_tile: int = output_generation.get(produced_good)
 		var produced_good_stored: int = output_storage.get(produced_good)
-		var produced_good_max_storage: int = max_storage.get(produced_good)
 		var produced_good_generated: int = 0
 		
 		## Gathering on the tiles the building is on
