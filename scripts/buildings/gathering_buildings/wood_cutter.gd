@@ -53,10 +53,11 @@ func _produce_goods() -> void:
 				var amount_to_gather: int = gather_dict.get(resource_pos)
 				var resource: GatherableResource = resource_tiles_to_gather.get(resource_pos)
 				produced_good_generated += resource.gather_resource(amount_to_gather)
-			
+				
 				if resource.quantity <= 0:
 					resource_tiles_to_gather.erase(resource_pos)
-				
+			else:
+				resource_tiles_to_gather.erase(resource_pos)
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
 		ResourceSignals.add_resource.emit(produced_good, produced_good_generated)
