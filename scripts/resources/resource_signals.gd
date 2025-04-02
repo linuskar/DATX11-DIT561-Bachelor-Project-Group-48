@@ -1,7 +1,7 @@
 extends Node
 
 #Send the resource type and the amount to add
-signal add_resource(resource_type: Enums.ResourceType, amount: int)
+signal add_resource(resource_type: Enums.ResourceType, amount: int, building: Building)
 
 #Send the resource type and the amount to add
 signal get_resource(resource_type: Enums.ResourceType, amount: int)

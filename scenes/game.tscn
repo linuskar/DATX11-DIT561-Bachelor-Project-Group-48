@@ -27,11 +27,16 @@ visible = false
 [node name="PlayerResources" type="Node" parent="."]
 script = ExtResource("8_gee14")
 
+[node name="Timer" type="Timer" parent="PlayerResources"]
+autostart = true
+
 [node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
 
 [node name="PollutionManager" parent="." instance=ExtResource("8_vtaks")]
 
 [node name="UserInterface" parent="." instance=ExtResource("8_0tnpc")]
 
+[connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
+[connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
 [connection signal="build_list_entered" from="UserInterface" to="BuildManager" method="_on_user_interface_build_list_entered"]
 [connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
