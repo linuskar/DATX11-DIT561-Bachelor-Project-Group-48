@@ -47,7 +47,6 @@ func check_if_building(pos: Vector2):
 func register_building_connection(building):
 	BuildManagerGlobal.connected_buildings[position] = building
 	modulate = Color(0, 1, 0, 1)
-	print("Connected to building: ", building, " at position: ", position)
 
 func find_connected_buildings(parent = null, visited = {}):
 	var buildings = []
@@ -73,7 +72,6 @@ func check_network_connections():
 	var connected_buildings = find_connected_buildings()
 	if connected_buildings.size() > 0:
 		modulate = Color(0, 1, 0, 1)  # Green if connected to buildings
-		print("Road at ", position, " is connected to buildings: ", connected_buildings)
 		
 	else:
 		modulate = Color(1, 1, 1, 1)  # White if not connected
@@ -107,7 +105,6 @@ func update_connections():
 	
 	BuildManagerGlobal.update_networks()
 	var my_buildings = get_network_buildings()
-	print("Road at ", position, " connects to buildings: ", my_buildings)
 
 func update_road_sprite():
 	
