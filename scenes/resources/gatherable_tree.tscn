@@ -12,7 +12,7 @@ emission_max_capacity = Dictionary[int, float]({
 3: -1.0,
 4: 500.0
 })
-quantity = 50
+quantity = 40
 resource_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
