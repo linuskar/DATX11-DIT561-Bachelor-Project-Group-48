@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://u0w1syotmn42"]
+[gd_scene load_steps=19 format=3 uid="uid://u0w1syotmn42"]
 
 [ext_resource type="Script" uid="uid://dbn3nge5xhrd6" path="res://scripts/UI/BuildingInfo.gd" id="1_y4byq"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="2_oocw6"]
@@ -10,31 +10,11 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjg1s"]
 texture = ExtResource("6_xxyib")
-region_rect = Rect2(36, 4, 24, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_itten"]
-atlas = ExtResource("5_6mxs2")
-region = Rect2(33, 33, 14, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6mxs2"]
-atlas = ExtResource("5_6mxs2")
-region = Rect2(1, 33, 14, 14)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxyib"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83uro"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-texture = ExtResource("6_xxyib")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-region_rect = Rect2(32, 0, 32, 32)
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_oocw6"]
 line_spacing = 1.0
@@ -62,6 +42,36 @@ font = ExtResource("3_86cwq")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxyib"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjg1s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83uro"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("6_xxyib")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83uro"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itten"]
+atlas = ExtResource("5_6mxs2")
+region = Rect2(38, 38, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mxs2"]
+atlas = ExtResource("5_6mxs2")
+region = Rect2(38, 22, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxyib"]
+atlas = ExtResource("5_6mxs2")
+region = Rect2(38, 22, 4, 4)
+
 [node name="BuildingInfo" type="Control"]
 custom_minimum_size = Vector2(408, 648)
 layout_mode = 3
@@ -83,62 +93,35 @@ offset_bottom = 162.0
 scale = Vector2(4, 4)
 theme_override_styles/panel = ExtResource("7_xxyib")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = 105.0
+[node name="ExitButtonPanel" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 314.0
+offset_right = 338.0
+offset_bottom = 24.0
+scale = Vector2(4, 4)
 theme_override_styles/panel = SubResource("StyleBoxTexture_xjg1s")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_bottom = 15
-
-[node name="CloseButton" type="TextureButton" parent="PanelContainer/MarginContainer"]
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-size_flags_horizontal = 8
-mouse_filter = 1
-texture_normal = SubResource("AtlasTexture_itten")
-texture_pressed = SubResource("AtlasTexture_6mxs2")
-stretch_mode = 4
-
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = 69.0
+offset_top = 20.0
 offset_right = -20.0
 offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_selected_color = Color(0.212305, 0.212305, 0.212305, 1)
-theme_override_constants/side_margin = 0
-theme_override_fonts/font = ExtResource("3_86cwq")
-theme_override_styles/panel = SubResource("StyleBoxEmpty_xxyib")
-theme_override_styles/tab_selected = ExtResource("7_xxyib")
-theme_override_styles/tab_hovered = SubResource("StyleBoxTexture_83uro")
-theme_override_styles/tab_unselected = ExtResource("6_itten")
-current_tab = 0
 
-[node name="General" type="ScrollContainer" parent="TabContainer"]
+[node name="General" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
-metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/General"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/General"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Padding" type="MarginContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="Padding" type="MarginContainer" parent="MarginContainer/General/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -146,18 +129,18 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MarginContainer3" type="MarginContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/General/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FactoryImage" type="TextureRect" parent="TabContainer/General/VBoxContainer/MarginContainer3"]
+[node name="FactoryImage" type="TextureRect" parent="MarginContainer/General/VBoxContainer/MarginContainer3"]
 custom_minimum_size = Vector2(224, 224)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("2_oocw6")
 stretch_mode = 4
 
-[node name="BuildingName" type="Label" parent="TabContainer/General/VBoxContainer"]
+[node name="BuildingName" type="Label" parent="MarginContainer/General/VBoxContainer"]
 custom_minimum_size = Vector2(307, 65)
 layout_mode = 2
 text = "Factory"
@@ -165,7 +148,7 @@ label_settings = SubResource("LabelSettings_oocw6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="TabContainer/General/VBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/General/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 10
@@ -173,26 +156,69 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="TabContainer/General/VBoxContainer/MarginContainer4"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer4"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_xxyib")
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/General/VBoxContainer/MarginContainer4/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer"]
 layout_mode = 2
 
-[node name="BuildingInfo" type="Label" parent="TabContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer"]
+[node name="BuildingInfo" type="Label" parent="MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(280, 160)
 layout_mode = 2
 size_flags_horizontal = 4
 label_settings = SubResource("LabelSettings_6mxs2")
 autowrap_mode = 3
 
-[node name="Storage" type="ScrollContainer" parent="TabContainer"]
+[node name="Storage" type="ScrollContainer" parent="MarginContainer"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Storage"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Storage"]
 layout_mode = 2
 
-[connection signal="button_down" from="PanelContainer/MarginContainer/CloseButton" to="." method="set_inactive"]
+[node name="Selling" type="ScrollContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Selling"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = 314.0
+offset_bottom = 63.0
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_86cwq")
+theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_xxyib")
+theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_xjg1s")
+theme_override_styles/tab_unselected = ExtResource("7_xxyib")
+theme_override_styles/tab_hovered = ExtResource("6_itten")
+theme_override_styles/tab_selected = SubResource("StyleBoxTexture_83uro")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_83uro")
+current_tab = 0
+tab_count = 3
+tab_0/title = "General"
+tab_0/tooltip = "General info"
+tab_1/title = "Storage"
+tab_1/tooltip = "Max and current storage"
+tab_2/title = "Selling"
+tab_2/tooltip = "Selling your storage"
+
+[node name="CloseButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 338.0
+offset_top = 24.0
+offset_right = 350.0
+offset_bottom = 36.0
+scale = Vector2(4, 4)
+mouse_filter = 1
+texture_normal = SubResource("AtlasTexture_itten")
+texture_pressed = SubResource("AtlasTexture_6mxs2")
+texture_hover = SubResource("AtlasTexture_xxyib")
+stretch_mode = 4
+
+[connection signal="tab_clicked" from="TabBar" to="." method="_set_tab_visible"]
+[connection signal="button_down" from="CloseButton" to="." method="set_inactive"]

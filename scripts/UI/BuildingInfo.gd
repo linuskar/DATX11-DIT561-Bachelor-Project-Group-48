@@ -1,8 +1,9 @@
 class_name BuildingInfo extends Control
 
-@onready var image = $TabContainer/General/VBoxContainer/MarginContainer3/FactoryImage
-@onready var building_name = $TabContainer/General/VBoxContainer/BuildingName
-@onready var info = $TabContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
+@onready var image = $MarginContainer/General/VBoxContainer/MarginContainer3/FactoryImage
+@onready var building_name = $MarginContainer/General/VBoxContainer/BuildingName
+@onready var info = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
+@onready var main_container: MarginContainer = $MarginContainer
 
 func _ready() -> void:
 	BuildingSignals.building_clicked.connect(set_active)
@@ -98,6 +99,11 @@ func get_gathering_text(building_data: AreaGatheringBuildingData) -> String:
 	var range_x: String = str(int(building_data.building_size.x) + (2 * building_data.gather_radius))
 	var range_y: String = str(int(building_data.building_size.y) + (2 * building_data.gather_radius))
 	return text + resource + ": " + range_x + 'x' + range_y + '\n'
+
+func _set_tab_visible(tab_num: int) -> void:
+	for child in main_container.get_children():
+		child.hide()
+	main_container.get_child(tab_num).show()
 
 ## Hide the info panel
 func set_inactive() -> void:
