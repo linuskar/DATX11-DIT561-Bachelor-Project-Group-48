@@ -1,8 +1,8 @@
 class_name BuildingInfo extends Control
 
-@onready var image = $ScrollContainer/VBoxContainer/MarginContainer3/FactoryImage
-@onready var building_name = $ScrollContainer/VBoxContainer/BuildingName
-@onready var info = $ScrollContainer/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
+@onready var image = $TabContainer/General/VBoxContainer/MarginContainer3/FactoryImage
+@onready var building_name = $TabContainer/General/VBoxContainer/BuildingName
+@onready var info = $TabContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 
 func _ready() -> void:
 	BuildingSignals.building_clicked.connect(set_active)
