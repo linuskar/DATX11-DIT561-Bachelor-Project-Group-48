@@ -11,11 +11,11 @@ max_storage = Dictionary[int, int]({
 })
 input_types = Array[int]([])
 input_use_rates = Dictionary[int, int]({})
-output_types = Array[int]([2, 3])
+output_types = Array[int]([2])
 output_generation = Dictionary[int, int]({
-2: 5,
-3: 5
+2: 5
 })
+emissions_radius = 0
 building_type = 3
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(1, 1)

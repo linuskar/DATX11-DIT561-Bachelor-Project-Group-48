@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://djt4gpmfrp805"]
+[gd_scene load_steps=7 format=3 uid="uid://djt4gpmfrp805"]
 
 [ext_resource type="Script" uid="uid://o0k4pecox0g" path="res://scripts/buildings/gathering_buildings/coal_mine.gd" id="1_5wtww"]
 [ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_f8yp3"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="3_klpcp"]
-[ext_resource type="Script" path="res://scripts/UI/clickable.gd" id="4_f8yp3"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_f8yp3"]
+[ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="5_klpcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
 
-[node name="CoalMine" type="StaticBody2D"]
+[node name="CoalMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5wtww")
+smokes = [NodePath("Smoke_v1")]
 building_data = ExtResource("2_f8yp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -33,6 +35,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_f8yp3")
+
+[node name="Smoke_v1" parent="." instance=ExtResource("5_klpcp")]
+position = Vector2(10.5626, -11.5803)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]

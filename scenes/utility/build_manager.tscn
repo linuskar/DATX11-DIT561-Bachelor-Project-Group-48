@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/gathering_buildings/wood_cutter.tscn" id="4_vw4yu"]
 [ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/gathering_buildings/wood_cutter_blueprint.tscn" id="4_y1ev4"]
 [ext_resource type="PackedScene" uid="uid://cbk8oqqcmsa30" path="res://scenes/buildings/power_generators/coal_power_plant.tscn" id="5_dr161"]
-[ext_resource type="PackedScene" uid="uid://ogg000btq0ld" path="res://scenes/buildings/factory.tscn" id="5_rqr45"]
 [ext_resource type="PackedScene" uid="uid://0tdfrbqq2650" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="6_6xou4"]
 [ext_resource type="PackedScene" uid="uid://c2opqml4lhdk5" path="res://scenes/buildings/road.tscn" id="7_gtan0"]
 [ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/gathering_buildings/coal_mine_blueprint.tscn" id="8_vw4yu"]
@@ -27,7 +26,6 @@ buildings = Dictionary[int, Resource]({
 6: ExtResource("7_gtan0")
 })
 building_blueprints = Dictionary[int, Resource]({
-0: ExtResource("5_rqr45"),
 1: ExtResource("2_ofppe"),
 2: ExtResource("8_vw4yu"),
 3: ExtResource("4_y1ev4"),
