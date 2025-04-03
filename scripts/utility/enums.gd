@@ -39,21 +39,27 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 	}
 
 static var building_names: Dictionary[BuildingType, String] = {
-		BuildingType.FACTORY: "FACTORY",
-		BuildingType.IRON_MINE: "IRON MINE",
-		BuildingType.COAL_MINE: "COAL MINE",
-		BuildingType.WOOD_CUTTER: "WOOD CUTTER",
-		BuildingType.COAL_POWER_PLANT: "COAL POWER PLANT",
-		BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
-		BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
-		BuildingType.WAREHOUSE: "WAREHOUSE",
+	BuildingType.FACTORY: "FACTORY",
+	BuildingType.IRON_MINE: "IRON MINE",
+	BuildingType.COAL_MINE: "COAL MINE",
+	BuildingType.WOOD_CUTTER: "WOOD CUTTER",
+	BuildingType.COAL_POWER_PLANT: "COAL POWER PLANT",
+	BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
+	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
+	BuildingType.WAREHOUSE: "WAREHOUSE",
 	}
+	
+static var warehouses: Dictionary[BuildingType, String] = {
+	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
+	BuildingType.WAREHOUSE: "WAREHOUSE",
+	}
+
 static var tile_names: Dictionary[TileType, String] = {
-		TileType.WATER: "WATER",
-		TileType.DIRT: "DIRT",
-		TileType.STONE: "STONE",
-		TileType.GRASS: "GRASS",
-		TileType.RESOURCE: "RESOURCE",
+	TileType.WATER: "WATER",
+	TileType.DIRT: "DIRT",
+	TileType.STONE: "STONE",
+	TileType.GRASS: "GRASS",
+	TileType.RESOURCE: "RESOURCE",
 	}	
 ## The different types of buildings in the game
 # Factory and gathering building are just temporary names?
@@ -100,6 +106,9 @@ enum TileType {
 
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
 	return building_type in polluting_buildings
+	
+static func is_warehouse(building_type: Enums.BuildingType) -> bool:
+	return building_type in warehouses
 
 ## Function for checking if the ResourceType is a byproduct
 static func is_byproduct(resource_type: ResourceType) -> bool:

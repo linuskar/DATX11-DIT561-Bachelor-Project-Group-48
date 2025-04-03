@@ -48,7 +48,7 @@ func transport_resources(type: Enums.ResourceType) -> void:
 		## does not transport resources to one another or else there will be infinite recursion
 		## So storage building doesn't transport to itself.
 		## Also due to the use of pop, it will take a while to transport to the building that needs it other than the "StorageBuilding"
-		if next_building == output_building or (next_building is Warehouse and output_building is Warehouse) or (next_building is BiomassLandfill and output_building is BiomassLandfill):
+		if next_building == output_building or (Enums.is_warehouse(next_building.building_type) and Enums.is_warehouse(output_building.building_type)):
 			buildings_input.get(type).push_back(next_building)
 			buildings_output.get(type).push_back(output_building)
 			return

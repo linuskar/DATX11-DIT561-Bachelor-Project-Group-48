@@ -63,8 +63,6 @@ func get_produced_resources() -> Array[Enums.ResourceType]:
 func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
 	var current: int = input_storage.get(input_type)
 	input_storage.set(input_type, current + input_amount)
-	print("added to " + Enums.building_type_to_string(building_type))
 	output_storage.set(input_type, current + input_amount)
-	print("Amount stored: " + str(output_storage.get(input_type)))
 	ResourceSignals.use_resource.emit(input_type, input_amount)
 	ResourceSignals.add_resource.emit(input_type, input_amount, self)
