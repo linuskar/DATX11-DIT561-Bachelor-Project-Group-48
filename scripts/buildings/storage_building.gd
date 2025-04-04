@@ -15,9 +15,9 @@ var input_storage: Dictionary[Enums.ResourceType, int]
 ## The storage of the resources the building sends.
 var output_storage: Dictionary[Enums.ResourceType, int] 
 
-## The byproducts the storage building outputs.
+## The byproducts the storage building takes in and outputs.
 var byproducts: Array[Enums.ResourceType]
-## The produced goods the storage building outputs.
+## The produced goods the storage building takes in and outputs.
 var produced_goods: Array[Enums.ResourceType]
 
 func _ready() -> void:

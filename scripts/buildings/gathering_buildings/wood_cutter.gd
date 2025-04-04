@@ -7,10 +7,11 @@ extends GatheringBuilding
 ##
 
 var produced_wood: int = 0
+var wood_nearby: int = 0
 
 func _ready():
 	super()
-	
+
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
 func check_for_output_overflow() -> bool:
@@ -72,13 +73,13 @@ func _produce_goods() -> void:
 			near_resource = false
 			
 ## Function to generate byproducts for a wood cutter based on wood produced.
-func _generate_byproducts() -> void:	
+func _generate_byproducts() -> void:
+	wood_nearby = resource_tiles_to_gather.size()
 	for byproduct in byproducts:
 		var byproduct_generated_rate: int = output_generation.get(byproduct)
 		var byproduct_stored: int = output_storage.get(byproduct)
 		var byproduct_generated: int = produced_wood / byproduct_generated_rate
-		## TODO: 
-		byproduct_generated = max(byproduct_generated, 1)
+		byproduct_generated = max(byproduct_generated, 1*wood_nearby)
 		
 		ResourceSignals.add_resource.emit(byproduct, byproduct_generated, self)
 		
@@ -89,6 +90,8 @@ func _generate_byproducts() -> void:
 			output_storage.set(byproduct, byproduct_stored)	
 						
 ## Function to calculate the gather amount in the area around the building
+## TODO: probably rework how wood cutter gathers, by starting in the center 
+## and then going outwards
 func _gather_area(amount: int) -> Dictionary[Vector2, int]:
 	var gather_dict: Dictionary[Vector2, int] = {}  
 	var grid_size: int = 32
