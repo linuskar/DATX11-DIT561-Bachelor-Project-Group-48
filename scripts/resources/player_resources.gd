@@ -30,18 +30,17 @@ func _on_build_manager_placed_building(building: Building) -> void:
 	##TODO Logic whether to add building to existing resource_transport instance or create a new
 	
 	#Temporary solution
-	if building is ProductionBuilding:
+	if building is StorageBuilding:
 		networks.get(0).new_building(building)
 
-func new_building_to_output(building: ProductionBuilding) -> void:
+func new_building_to_output(building: StorageBuilding) -> void:
 	##TODO Logic to send new_building_to_output to the correct instance
 	
 	##Temp solution
 	networks.get(0).new_building_to_output(building)
 
-func new_building_to_input(building: ProductionBuilding) -> void:
+func new_building_to_input(building: StorageBuilding) -> void:
 	##TODO Logic to send new_building_to_input to the correct instance
-	
 	##Temp solution
 	networks.get(0).new_building_to_input(building)
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6ddmakepot3r"]
+
+[ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_akl83"]
+[ext_resource type="Resource" uid="uid://ix3necejb3ix" path="res://resources/buildings/warehouse.tres" id="2_akl83"]
+[ext_resource type="Texture2D" uid="uid://bk0cwfm4rdk2w" path="res://assets/buildings_iso/warehouse.png" id="3_akl83"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
+size = Vector2(32, 32)
+
+[node name="WarehouseBlueprint" type="Area2D"]
+script = ExtResource("1_akl83")
+building_data = ExtResource("2_akl83")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0igec")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_akl83")
