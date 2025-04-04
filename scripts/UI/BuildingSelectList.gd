@@ -34,7 +34,6 @@ func _on_mouse_entered() -> void:
 	if not selected == null:
 		build_list_entered.emit()
 
-
 func _on_open_build_list() -> void:
 	set_state(not self.find_child("List").visible)
 
@@ -42,10 +41,8 @@ func _on_open_build_list() -> void:
 ## true means it is active and false means it is inactive.
 func set_state(state: bool) -> void:
 	if state:
-		# print("Showing list")
 		self.find_child("List").position = Vector2(0.0, 0.0)
 		self.find_child("List").visible = true
 	if not state:
-		# print("Hiding list")
 		self.find_child("List").position = Vector2(0.0, 0.0) + self.find_child("List").size
 		self.find_child("List").visible = false
