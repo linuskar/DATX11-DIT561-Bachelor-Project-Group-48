@@ -60,7 +60,19 @@ static var tile_names: Dictionary[TileType, String] = {
 	TileType.STONE: "STONE",
 	TileType.GRASS: "GRASS",
 	TileType.RESOURCE: "RESOURCE",
-	}	
+	}
+# List of the value of every resource when sold
+static var resource_costs: Dictionary[ResourceType, int] = {
+	ResourceType.IRON_ORE: 2,
+	ResourceType.COAL: 3,
+	ResourceType.WOOD: 5,
+	ResourceType.ELECTRICITY: 10
+}
+
+## Function that returns the value of a resource when sold
+static func get_value_of_resource(resource: ResourceType) -> int:
+	return resource_costs.get(resource)
+	
 ## The different types of buildings in the game
 # Factory and gathering building are just temporary names?
 enum BuildingType {
