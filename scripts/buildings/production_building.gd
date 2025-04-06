@@ -1,29 +1,18 @@
 class_name ProductionBuilding
-extends Building
+extends StorageBuilding
 ## A class that is for aspects of a production building
 ##
 ## A class that is for aspects of a production building, containing it's
 ## metadata. The main functionallity is about producing a resource with
 ## other potential resources as input.
-## This class extends from the Building class.
+## This class extends from the StorageBuilding class.
 ##
 ##
 
-## The max storage of the resources the production building interacts with.
-var max_storage: Dictionary[Enums.ResourceType, int]
-## The input and its storage of the resources the production building uses.
-var input_storage: Dictionary[Enums.ResourceType, int]
 ## The rates/quantity of input resources the production building uses each cycle.
 var input_use_rates: Dictionary[Enums.ResourceType, int]
-## The storage of the resources the production building outputs.
-var output_storage: Dictionary[Enums.ResourceType, int] 
 ## The rates/quantity of resources the production building outputs each cycle.
 var output_generation: Dictionary[Enums.ResourceType, int] 
-
-## The byproducts the production building outputs.
-var byproducts: Array[Enums.ResourceType]
-## The produced goods the production building outputs.
-var produced_goods: Array[Enums.ResourceType]
 
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
@@ -37,26 +26,9 @@ func _ready() -> void:
 	
 ## Function to initialize the production building.
 func init_production_building() -> void:
-	max_storage = building_data.max_storage
-	
-	for resource in building_data.input_types:
-		input_storage.set(resource, 0)
-		
 	input_use_rates = building_data.input_use_rates
-	
-	for resource in building_data.output_types:
-		output_storage.set(resource, 0)
 		
 	output_generation = building_data.output_generation
-
-	for output in output_generation.keys():
-		if Enums.is_byproduct(output) == true:
-			byproducts.append(output)
-		elif Enums.is_produced_good(output) == true:
-			produced_goods.append(output)
-			
-	# Connect the signal that can take resources from this building
-	ResourceSignals.get_resource.connect(_send_resources)
 	
 ## Activated at the end of each cycle.
 func _on_timer_timeout() -> void:
@@ -65,7 +37,6 @@ func _on_timer_timeout() -> void:
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
 	if !check_if_can_produce():
-		print("Can't produce")
 		production_cycle.paused = true
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
@@ -116,7 +87,6 @@ func _produce_goods() -> void:
 	for produced_good in produced_goods:
 		var produced_good_generated: int = output_generation.get(produced_good)
 		var produced_good_stored: int = output_storage.get(produced_good)
-		var produced_good_max_storage: int = max_storage.get(produced_good)
 		
 		produced_good_stored += produced_good_generated
 		output_storage.set(produced_good, produced_good_stored)
@@ -138,10 +108,16 @@ func _use_input_recipe() -> void:
 func _generate_byproducts() -> void:
 	for byproduct in byproducts:
 		var byproduct_generated: int = output_generation.get(byproduct)
+		var byproduct_stored: int = output_storage.get(byproduct)
+
 		ResourceSignals.add_resource.emit(byproduct, byproduct_generated, self)
 		
 		if Enums.is_emission(byproduct):
 			emitted_emissions.emit(self, byproduct, byproduct_generated)
+		else:
+			byproduct_stored += byproduct_generated
+			output_storage.set(byproduct, byproduct_stored)
+
 	
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
@@ -150,14 +126,6 @@ func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	
 	if check_if_can_produce():
 		production_cycle.paused = false
-
-func get_produced_resources() -> Array[Enums.ResourceType]:
-	var arr: Array[Enums.ResourceType] =[]
-	for product in byproducts:
-		if !Enums.is_emission(product):
-			arr.append(product)
-	var all_resource_output = arr + produced_goods
-	return all_resource_output
 
 func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> void:
 	var current = input_storage.get(input_type)

@@ -36,8 +36,9 @@ func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
 	
 	init_resource_data(max_storage, building_data.max_storage)
-	init_resource_data(outputs, building_data.output_generation)
-	init_resource_data(inputs, building_data.input_use_rates)
+	if building_data is ProductionBuildingData:
+		init_resource_data(outputs, building_data.output_generation)
+		init_resource_data(inputs, building_data.input_use_rates)
 	
 	## Set the image of the factory to the path 
 	self.find_child("Containers").find_child("MarginContainer").find_child("BuildingIcon").set_texture(load(icon_path))
@@ -86,16 +87,23 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 		for key in dict.keys():
 			## Want to hide the number of emissions outputted,
 			## maybe note the level like low, medium, high, to get an estimate
-			if dict_name == "Outputs" and building_data is AreaGatheringBuildingData and !Enums.is_emission(Enums.string_to_resource_type(key)):
+			var resource_type: Enums.ResourceType = Enums.string_to_resource_type(key)
+			if dict_name == "Outputs" and building_data is AreaGatheringBuildingData and !Enums.is_emission(resource_type):
 				var gather_radius: int = building_data.gather_radius
 				var size_x: int = building_data.building_size.x
 				var size_y: int = building_data.building_size.y
 				var area: String = str(size_x + 2 * gather_radius) +"x" + str(size_y + 2 * gather_radius)
-				text += key + ": " + area + " area. Base gather rate of " + str(dict.get(key)) + " at the center, decreasing with further tiles." + '\n'
-			elif dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(Enums.string_to_resource_type(key)):
-				text += key + ": In an area." + '\n'
-			elif dict_name == "Outputs" and Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(Enums.string_to_resource_type(key)):
+				if Enums.is_byproduct(resource_type) and building_data.building_type == Enums.BuildingType.WOOD_CUTTER:
+					var byproduct_from_wood: String = str(float(1.0 / building_data.output_generation.get(resource_type)))
+					text += key + ": " + byproduct_from_wood + " of produced wood" + "will be " + key + '\n'
+				else:	
+					text += key + ": " + area + " area. Base gather rate of " + str(dict.get(key)) + " at the center, decreasing with further tiles." + '\n'
+			elif dict_name == "Outputs" and Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(resource_type):
 				text += key + ": " + str(dict.get(key)) + " per tile" + '\n'
+			## Want to hide the number of emissions outputted,
+			## maybe note the level like low, medium, high, to get an estimate
+			elif dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(resource_type):
+				text += key + ": In an area." + '\n'
 			else:
 				text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'
