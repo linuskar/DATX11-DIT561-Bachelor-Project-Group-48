@@ -52,10 +52,13 @@ func _produce_goods() -> void:
 				if gatherable_resource.quantity <= 0:
 					resource_tiles_to_gather.erase(resource_pos)
 			else:
-				resource_tiles_to_gather.erase(resource_pos)	
-		produced_good_stored += produced_good_generated
-		output_storage.set(produced_good, produced_good_stored)
-		ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
+				resource_tiles_to_gather.erase(resource_pos)
+		if not currently_selling:
+			produced_good_stored += produced_good_generated
+			output_storage.set(produced_good, produced_good_stored)
+			ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
+		else:
+			PlayerCurrency.add_currency(Enums.get_value_of_resource(produced_good)*produced_good_generated)
 		
 		if resource_tiles_to_gather.size() == 0:
 			near_resource = false

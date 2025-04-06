@@ -17,6 +17,9 @@ var output_generation: Dictionary[Enums.ResourceType, int]
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
 
+## Variable for checking whether the building is currently selling its outputs
+var currently_selling: bool = false
+
 ## Signal for when emissions are emitted
 signal emitted_emissions(building: Building, emission_type: Enums.ResourceType, amount: int)
 
@@ -86,11 +89,14 @@ func check_for_missing_input() -> bool:
 func _produce_goods() -> void:
 	for produced_good in produced_goods:
 		var produced_good_generated: int = output_generation.get(produced_good)
-		var produced_good_stored: int = output_storage.get(produced_good)
-		
-		produced_good_stored += produced_good_generated
-		output_storage.set(produced_good, produced_good_stored)
-		ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
+		if not currently_selling:
+			var produced_good_stored: int = output_storage.get(produced_good)
+			
+			produced_good_stored += produced_good_generated
+			output_storage.set(produced_good, produced_good_stored)
+			ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
+		else:
+			PlayerCurrency.add_currency(Enums.get_value_of_resource(produced_good)*produced_good_generated)
 		
 ## Function to use the resources from input in a production building.
 func _use_input_recipe() -> void:

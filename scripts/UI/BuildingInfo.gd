@@ -5,6 +5,9 @@ class_name BuildingInfo extends Control
 @onready var info = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 @onready var main_container: MarginContainer = $MarginContainer
 
+## The currently held building
+var current_building
+
 func _ready() -> void:
 	BuildingSignals.building_clicked.connect(set_active)
 	set_inactive()
@@ -23,6 +26,7 @@ func get_text(building_data: BuildingData) -> String:
 func handle_building(building: BuildingData) -> String:
 	var text: String = ""
 	text += get_valid_tiles_text(building)
+	disable_sell_tab(true)
 	return text
 	
 func handle_prod_building(building: ProductionBuildingData) -> String:
@@ -31,6 +35,7 @@ func handle_prod_building(building: ProductionBuildingData) -> String:
 	text += get_ouputs_text(building)
 	text += get_inputs_text(building)
 	text += get_storage_text(building)
+	disable_sell_tab(false)
 	return text
 
 func handle_gath_building(building: GatheringBuildingData) -> String:
@@ -111,5 +116,14 @@ func set_inactive() -> void:
 
 ## Show the info panel and update its information
 func set_active(building: Building) -> void:
+	current_building = building
 	self.show()
 	populate_info_label(building)
+
+## Function that disables or enables the selling tab
+## Disables on true, enables on false
+func disable_sell_tab(disable_sell_tab: bool) -> void:
+	self.find_child("TabBar").set_tab_disabled(2, disable_sell_tab)
+	
+func set_building_selling() -> void:
+	current_building.currently_selling = true
