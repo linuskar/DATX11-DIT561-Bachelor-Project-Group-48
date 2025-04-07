@@ -29,12 +29,17 @@ func handle_building(building: BuildingData) -> String:
 	disable_sell_tab(true)
 	return text
 	
-func handle_prod_building(building: ProductionBuildingData) -> String:
+func handle_storage_building(building: StorageBuildingData) -> String:
 	var text: String = ""
 	text += handle_building(building)
+	text += get_storage_text(building)
+	return text
+	
+func handle_prod_building(building: ProductionBuildingData) -> String:
+	var text: String = ""
+	text += handle_storage_building(building)
 	text += get_ouputs_text(building)
 	text += get_inputs_text(building)
-	text += get_storage_text(building)
 	disable_sell_tab(false)
 	return text
 
@@ -77,7 +82,7 @@ func get_valid_tiles_text(building_data: BuildingData) -> String:
 	return text
 
 ## Adds storage capacity to the text
-func get_storage_text(building_data: ProductionBuildingData) -> String:
+func get_storage_text(building_data: StorageBuildingData) -> String:
 	var text: String = ""
 	text += "\nStorage\n"
 	for key in building_data.max_storage.keys():
@@ -127,3 +132,6 @@ func disable_sell_tab(disable_sell_tab: bool) -> void:
 	
 func set_building_selling() -> void:
 	current_building.currently_selling = true
+	
+func set_building_storing() -> void:
+	current_building.currently_selling = false

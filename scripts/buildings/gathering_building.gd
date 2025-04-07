@@ -37,10 +37,10 @@ func check_if_can_produce() -> bool:
 	return true
 
 ## Function to produce the goods the gathering building can output.
-func _produce_goods() -> void:
+func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
+	var resources_produced: Dictionary[Enums.ResourceType, int]
 	for produced_good in produced_goods:
 		var gather_rate_per_tile: int = output_generation.get(produced_good)
-		var produced_good_stored: int = output_storage.get(produced_good)
 		var produced_good_generated: int = 0
 		
 		## Gathering on the tiles the building is on
@@ -53,12 +53,8 @@ func _produce_goods() -> void:
 					resource_tiles_to_gather.erase(resource_pos)
 			else:
 				resource_tiles_to_gather.erase(resource_pos)
-		if not currently_selling:
-			produced_good_stored += produced_good_generated
-			output_storage.set(produced_good, produced_good_stored)
-			ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
-		else:
-			PlayerCurrency.add_currency(Enums.get_value_of_resource(produced_good)*produced_good_generated)
+		resources_produced.set(produced_good, produced_good_generated)
 		
 		if resource_tiles_to_gather.size() == 0:
 			near_resource = false
+	return resources_produced

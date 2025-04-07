@@ -43,9 +43,18 @@ func _output_resources() -> void:
 		production_cycle.paused = true
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
-		_produce_goods()
+		_handle_produced_goods()
 		_use_input_recipe()
 		_generate_byproducts()
+
+func _handle_produced_goods() -> void:
+	var produced_resources: Dictionary[Enums.ResourceType, int] = _produce_goods()
+	for resource in produced_resources.keys():
+		if not currently_selling:
+			output_storage.set(resource, output_storage.get(resource)+produced_resources.get(resource))
+			ResourceSignals.add_resource.emit(resource, produced_resources.get(resource), self)
+		else:
+			PlayerCurrency.add_currency(Enums.get_value_of_resource(resource)*produced_resources.get(resource))
 
 ## Function to check if the production building can produce.
 func check_if_can_produce() -> bool:
@@ -85,19 +94,14 @@ func check_for_missing_input() -> bool:
 			return true
 	return false
 	
-## Function to produce the goods the building can output.
-func _produce_goods() -> void:
+## Function to produce the goods the building can output. Returns a dictionary
+## containing every produced good and the amount that was produced
+func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
+	var resources_produced: Dictionary[Enums.ResourceType, int]
 	for produced_good in produced_goods:
-		var produced_good_generated: int = output_generation.get(produced_good)
-		if not currently_selling:
-			var produced_good_stored: int = output_storage.get(produced_good)
-			
-			produced_good_stored += produced_good_generated
-			output_storage.set(produced_good, produced_good_stored)
-			ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
-		else:
-			PlayerCurrency.add_currency(Enums.get_value_of_resource(produced_good)*produced_good_generated)
-		
+		resources_produced.set(produced_good, output_generation.get(produced_good))
+	return resources_produced
+
 ## Function to use the resources from input in a production building.
 func _use_input_recipe() -> void:
 	for input in input_storage:

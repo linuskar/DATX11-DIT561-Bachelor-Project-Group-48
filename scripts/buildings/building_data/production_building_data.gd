@@ -12,7 +12,8 @@ extends StorageBuildingData
 ## The rates/quantity of resources the production building outputs each cycle.
 @export var output_generation: Dictionary[Enums.ResourceType, int] 
 
+## The radius in which the emissions gets emitted to, in a square area
+@export var emissions_radius: Dictionary[Enums.ResourceType, int]
+
 func accept(handler: BuildingInfo) -> String:
 	return handler.handle_prod_building(self)
-## The radius in which the emissions gets emitted to, in a square area
-@export var emissions_radius: Dictionary[Enums.ResourceType, int] 

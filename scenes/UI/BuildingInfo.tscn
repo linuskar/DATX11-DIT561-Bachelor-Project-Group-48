@@ -186,14 +186,21 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 80
+theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 80
+theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 200
 
-[node name="Button" type="Button" parent="MarginContainer/Selling/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Selling/MarginContainer"]
+layout_mode = 2
+
+[node name="Sell" type="Button" parent="MarginContainer/Selling/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Set sell production"
+
+[node name="Store" type="Button" parent="MarginContainer/Selling/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Set store production"
 
 [node name="TabBar" type="TabBar" parent="."]
 layout_mode = 0
@@ -231,6 +238,7 @@ texture_pressed = SubResource("AtlasTexture_6mxs2")
 texture_hover = SubResource("AtlasTexture_xxyib")
 stretch_mode = 4
 
-[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/Button" to="." method="set_building_selling"]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling"]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_storing"]
 [connection signal="tab_clicked" from="TabBar" to="." method="_set_tab_visible"]
 [connection signal="button_down" from="CloseButton" to="." method="set_inactive"]

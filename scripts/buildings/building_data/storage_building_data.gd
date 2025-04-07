@@ -14,3 +14,6 @@ extends BuildingData
 @export var input_types: Array[Enums.ResourceType] 
 ## The types of resources the storage building outputs.
 @export var output_types: Array[Enums.ResourceType] 
+
+func accept(handler: BuildingInfo) -> String:
+	return handler.handle_storage_building(self)
