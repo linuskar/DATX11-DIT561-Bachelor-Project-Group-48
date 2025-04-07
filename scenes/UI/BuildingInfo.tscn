@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://u0w1syotmn42"]
+[gd_scene load_steps=23 format=3 uid="uid://u0w1syotmn42"]
 
 [ext_resource type="Script" uid="uid://dbn3nge5xhrd6" path="res://scripts/UI/BuildingInfo.gd" id="1_y4byq"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="2_oocw6"]
@@ -42,6 +42,34 @@ font = ExtResource("3_86cwq")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qlyug"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qlyug"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("6_xxyib")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.74558, 0.74558, 0.74558, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m21pg"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("6_xxyib")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.525101, 0.525101, 0.525101, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxyib"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjg1s"]
@@ -57,6 +85,15 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n50wj"]
+texture = ExtResource("6_xxyib")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(96, 0, 32, 32)
+modulate_color = Color(0.683, 0.683, 0.683, 0.469)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83uro"]
 
@@ -196,11 +233,33 @@ layout_mode = 2
 
 [node name="Sell" type="Button" parent="MarginContainer/Selling/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_86cwq")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qlyug")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qlyug")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m21pg")
+theme_override_styles/normal = ExtResource("7_xxyib")
 text = "Set sell production"
+autowrap_mode = 2
 
 [node name="Store" type="Button" parent="MarginContainer/Selling/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_86cwq")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qlyug")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qlyug")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m21pg")
+theme_override_styles/normal = ExtResource("7_xxyib")
 text = "Set store production"
+autowrap_mode = 2
 
 [node name="TabBar" type="TabBar" parent="."]
 layout_mode = 0
@@ -215,6 +274,7 @@ theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_xjg1s")
 theme_override_styles/tab_unselected = ExtResource("7_xxyib")
 theme_override_styles/tab_hovered = ExtResource("6_itten")
 theme_override_styles/tab_selected = SubResource("StyleBoxTexture_83uro")
+theme_override_styles/tab_disabled = SubResource("StyleBoxTexture_n50wj")
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_83uro")
 current_tab = 0
 tab_count = 3
