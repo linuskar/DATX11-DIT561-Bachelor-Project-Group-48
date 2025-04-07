@@ -39,7 +39,7 @@ func _on_timer_timeout() -> void:
 	
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
-	if !check_if_can_produce():
+	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
 		production_cycle.paused = true
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
@@ -55,6 +55,7 @@ func _handle_produced_goods() -> void:
 			ResourceSignals.add_resource.emit(resource, produced_resources.get(resource), self)
 		else:
 			PlayerCurrency.add_currency(Enums.get_value_of_resource(resource)*produced_resources.get(resource))
+	PlayerCurrency.remove_currency(self.building_data.building_upkeep)
 
 ## Function to check if the production building can produce.
 func check_if_can_produce() -> bool:

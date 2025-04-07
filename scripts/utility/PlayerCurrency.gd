@@ -1,6 +1,6 @@
 extends Node
 
-var player_held_currency: int = 100
+var player_held_currency: int = 300
 
 var player_currency_gain: int = 0
 
