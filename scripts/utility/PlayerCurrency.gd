@@ -1,14 +1,12 @@
 extends Node
 
+## The amount of currency the player currently holds
 var player_held_currency: int = 300
 
-var player_currency_gain: int = 0
-
+## Adds an amount of currency to the players held total
 func add_currency(amount: int) -> void:
 	player_held_currency += amount
-	
-func generate_currency() -> void:
-	player_held_currency += player_currency_gain
 
+## Removes an amount of currency from the players held total
 func remove_currency(amount: int) -> void:
 	player_held_currency -= amount
