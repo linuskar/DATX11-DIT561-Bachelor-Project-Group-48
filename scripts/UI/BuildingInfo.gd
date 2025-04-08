@@ -21,27 +21,33 @@ func get_text(building_data: BuildingData) -> String:
 	
 	## Adds all the different outputs of the building
 	text += "\nOutputs\n"
-	for key in building_data.output_generation.keys():
-		var resource_type: String = Enums.resource_type_to_string(key)
-		var output_amount: String = str(building_data.output_generation.get(key))
-		
-		if building_data is AreaGatheringBuildingData and !Enums.is_emission(key):
-			var gather_radius: int = building_data.gather_radius
-			var size_x: int = building_data.building_size.x
-			var size_y: int = building_data.building_size.y
-			var area: String = str(size_x + 2 * gather_radius) +"x" + str(size_y + 2 * gather_radius)
-			text += resource_type + ": " + area + " area. Base gather rate of " + output_amount  + " at the center, decreasing with further tiles." + '\n'
-		elif Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(key):
-			text += resource_type + ": In an area." + '\n'
-		elif Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(key):
-			text += resource_type + ': ' + output_amount + " per tile" + '\n'
-		else:
-			text += resource_type + ': ' + output_amount + '\n'
+	if building_data is ProductionBuildingData:
+		for key in building_data.output_generation.keys():
+			var resource_type: String = Enums.resource_type_to_string(key)
+			var output_amount: String = str(building_data.output_generation.get(key))
+
+			if building_data is AreaGatheringBuildingData and !Enums.is_emission(key):
+				var gather_radius: int = building_data.gather_radius
+				var size_x: int = building_data.building_size.x
+				var size_y: int = building_data.building_size.y
+				var area: String = str(size_x + 2 * gather_radius) + "x" + str(size_y + 2 * gather_radius)
+				if Enums.is_byproduct(key) and building_data.building_type == Enums.BuildingType.WOOD_CUTTER:
+					var byproduct_from_wood: String = str(float(1.0 / building_data.output_generation.get(key)))
+					text += resource_type + ": " + byproduct_from_wood + " of produced WOOD" + " will be " + resource_type + '\n'
+				else:	
+					text += resource_type + ": " + area + " area. Base gather rate of " + output_amount  + " at the center, decreasing with further tiles." + '\n'
+			elif Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(key):
+				text += resource_type + ': ' + output_amount + " per tile" + '\n'
+			elif Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(key):
+				text += resource_type + ": In an area." + '\n'
+			else:
+				text += resource_type + ': ' + output_amount + '\n'
 
 	## Adds all the different inputs of the building
 	text += "\nInputs\n"
-	for key in building_data.input_use_rates.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.input_use_rates.get(key)) + '\n'
+	if building_data is ProductionBuildingData:
+		for key in building_data.input_use_rates.keys():
+			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.input_use_rates.get(key)) + '\n'
 	
 	## Adds valid placement tiles to the text
 	text += "\nPlacement\n"

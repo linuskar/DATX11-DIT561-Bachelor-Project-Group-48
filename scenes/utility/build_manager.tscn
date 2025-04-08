@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs67hiut6aq7j"]
+[gd_scene load_steps=16 format=3 uid="uid://cs67hiut6aq7j"]
 
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="1_aenhx"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="2_ofppe"]
@@ -8,11 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/gathering_buildings/wood_cutter_blueprint.tscn" id="4_y1ev4"]
 [ext_resource type="PackedScene" uid="uid://cbk8oqqcmsa30" path="res://scenes/buildings/power_generators/coal_power_plant.tscn" id="5_dr161"]
 [ext_resource type="PackedScene" uid="uid://0tdfrbqq2650" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="6_6xou4"]
-[ext_resource type="PackedScene" uid="uid://c2opqml4lhdk5" path="res://scenes/buildings/road.tscn" id="7_gtan0"]
+[ext_resource type="PackedScene" uid="uid://jok1xl2oywc3" path="res://scenes/buildings/storage_buildings/biomass_landfill.tscn" id="7_y0lq7"]
+[ext_resource type="PackedScene" uid="uid://dxdbme3urfb2i" path="res://scenes/buildings/storage_buildings/warehouse.tscn" id="8_gtan0"]
 [ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/gathering_buildings/coal_mine_blueprint.tscn" id="8_vw4yu"]
 [ext_resource type="PackedScene" uid="uid://bn5arwp4ceymc" path="res://scenes/buildings/building_blueprints/power_generators/coal_power_plant_blueprint.tscn" id="10_xcllt"]
 [ext_resource type="PackedScene" uid="uid://b0ef776hgtpta" path="res://scenes/buildings/building_blueprints/power_generators/biomass_power_plant_blueprint.tscn" id="11_xcllt"]
-[ext_resource type="PackedScene" uid="uid://chfljd8f6ww5l" path="res://scenes/buildings/building_blueprints/road_blueprint.tscn" id="14_6yhi0"]
+[ext_resource type="PackedScene" uid="uid://d0n2xkqggqdmg" path="res://scenes/buildings/building_blueprints/storage_buildings/biomass_landfill_blueprint.tscn" id="13_gtan0"]
+[ext_resource type="PackedScene" uid="uid://b6ddmakepot3r" path="res://scenes/buildings/building_blueprints/storage_buildings/warehouse_blueprint.tscn" id="15_6yhi0"]
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
 script = ExtResource("1_aenhx")
@@ -23,7 +25,8 @@ buildings = Dictionary[int, Resource]({
 3: ExtResource("4_vw4yu"),
 4: ExtResource("5_dr161"),
 5: ExtResource("6_6xou4"),
-6: ExtResource("7_gtan0")
+6: ExtResource("7_y0lq7"),
+7: ExtResource("8_gtan0")
 })
 building_blueprints = Dictionary[int, Resource]({
 1: ExtResource("2_ofppe"),
@@ -31,7 +34,8 @@ building_blueprints = Dictionary[int, Resource]({
 3: ExtResource("4_y1ev4"),
 4: ExtResource("10_xcllt"),
 5: ExtResource("11_xcllt"),
-6: ExtResource("14_6yhi0")
+6: ExtResource("13_gtan0"),
+7: ExtResource("15_6yhi0")
 })
 
 [node name="IronMineBlueprint" parent="." instance=ExtResource("2_ofppe")]
