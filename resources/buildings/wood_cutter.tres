@@ -6,16 +6,18 @@
 script = ExtResource("1_aa0xx")
 gather_radius = 1
 can_gather_resource_type = 2
+input_use_rates = Dictionary[int, int]({})
+output_generation = Dictionary[int, int]({
+2: 5,
+6: 4
+})
+emissions_radius = Dictionary[int, int]({})
 max_storage = Dictionary[int, int]({
-2: 200
+2: 100,
+6: 20
 })
 input_types = Array[int]([])
-input_use_rates = Dictionary[int, int]({})
-output_types = Array[int]([2])
-output_generation = Dictionary[int, int]({
-2: 5
-})
-emissions_radius = 0
+output_types = Array[int]([2, 6])
 building_type = 3
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(1, 1)

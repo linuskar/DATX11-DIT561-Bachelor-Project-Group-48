@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvyx2m24n7cfc"]
+[gd_scene load_steps=4 format=3 uid="uid://bj5xuffyaonsb"]
 
 [ext_resource type="Script" uid="uid://cmc4up8ckeogx" path="res://scripts/resources/gatherable_tree.gd" id="1_q50ek"]
 [ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="2_ljr1m"]
@@ -10,9 +10,9 @@ size = Vector2(32, 32)
 script = ExtResource("1_q50ek")
 emission_max_capacity = Dictionary[int, float]({
 3: -1.0,
-4: 2000.0
+4: 500.0
 })
-quantity = 19
+quantity = 40
 resource_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

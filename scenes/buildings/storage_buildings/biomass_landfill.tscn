@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://jok1xl2oywc3"]
+
+[ext_resource type="Script" uid="uid://bu10hl3va8ff1" path="res://scripts/buildings/storage_buildings/biomass_landfill.gd" id="1_o3w30"]
+[ext_resource type="Resource" uid="uid://dpfrfu5x7p6yh" path="res://resources/buildings/biomass_landfill.tres" id="2_d1p3v"]
+[ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="3_d1p3v"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="6_ygndr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
+size = Vector2(32, 32)
+
+[node name="BiomassLandfill" type="StaticBody2D"]
+script = ExtResource("1_o3w30")
+building_data = ExtResource("2_d1p3v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0igec")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_d1p3v")
+
+[node name="Clickable" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("6_ygndr")
+
+[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
