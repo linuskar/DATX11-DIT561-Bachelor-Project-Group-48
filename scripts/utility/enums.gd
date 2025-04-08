@@ -15,7 +15,14 @@ static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
-	
+
+static var resource_image_paths: Dictionary[ResourceType, String] = {
+	ResourceType.IRON_ORE: "res://assets/UI/Resource UI/iron.tres",
+	ResourceType.COAL: "res://assets/UI/Resource UI/coal.tres",
+	ResourceType.WOOD: "res://assets/UI/Resource UI/wood.tres",
+	ResourceType.ELECTRICITY: "res://assets/UI/Resource UI/electricity.png",
+}
+
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.IRON_ORE: "IRON ORE",
 		ResourceType.COAL: "COAL",

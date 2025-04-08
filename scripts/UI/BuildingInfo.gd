@@ -4,19 +4,44 @@ class_name BuildingInfo extends Control
 @onready var building_name = $MarginContainer/General/VBoxContainer/BuildingName
 @onready var info = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 @onready var main_container: MarginContainer = $MarginContainer
+@onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/StoredResources
 
 ## The currently held building
 var current_building
 
+## A dict containing references from a resourcetype to the corresponding
+## stored resource panel
+var storage_connections: Dictionary[Enums.ResourceType, StoredResourcePanel] = {}
+
 func _ready() -> void:
 	BuildingSignals.building_clicked.connect(set_active)
 	set_inactive()
-	
+
+## Updates the storage panel
+func update_storage() -> void:
+	if current_building is StorageBuilding:
+		for resource in current_building.output_storage.keys():
+			storage_connections.get(resource).resource_held = current_building.output_storage.get(resource)
+		
+
 ## Fills the info label with text dependant on the building it recieved
 func populate_info_label(building: Building) -> void:
 	image.set_texture(building.building_sprite.texture)
 	building_name.set_text(Enums.building_type_to_string(building.building_data.building_type))
 	info.text = get_text(building.building_data)
+
+## Fills the storage panel with stored resources. Also adds the panels
+## to the storage connections
+func populate_storage_panel(building: StorageBuilding) -> void:
+	## First clear all children from the storage list and storage connections dict
+	storage_connections.clear()
+	for child in storage_list.get_children():
+		child.queue_free()
+	for resource in building.output_storage.keys():
+		var stored_amount: int = building.output_storage.get(resource)
+		var new: StoredResourcePanel = StoredResourcePanel.create_instance(resource, stored_amount)
+		storage_connections.set(resource, new)
+		storage_list.add_child(new)
 
 ## Formating building data into a string that is then displayed in the
 ## building info panel.
@@ -124,6 +149,8 @@ func set_active(building: Building) -> void:
 	current_building = building
 	self.show()
 	populate_info_label(building)
+	if current_building is StorageBuilding:
+		populate_storage_panel(current_building)
 
 ## Function that disables or enables the selling tab
 ## Disables on true, enables on false
