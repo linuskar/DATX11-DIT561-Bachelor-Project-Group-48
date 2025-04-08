@@ -1,16 +1,10 @@
-[gd_resource type="Resource" script_class="ProductionBuildingData" load_steps=2 format=3 uid="uid://cx83ygjtitwf4"]
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3 uid="uid://dr8i1lynkasf7"]
 
-[ext_resource type="Script" uid="uid://bdhmlhlah8dvo" path="res://scripts/buildings/building_data/production_building_data.gd" id="1_ob7tx"]
+[ext_resource type="Script" uid="uid://c2asdvge65j4d" path="res://scripts/buildings/building_data/building_data.gd" id="1_ob7tx"]
 
 [resource]
 script = ExtResource("1_ob7tx")
-input_use_rates = Dictionary[int, int]({})
-output_generation = Dictionary[int, int]({})
-emissions_radius = Dictionary[int, int]({})
-max_storage = Dictionary[int, int]({})
-input_types = Array[int]([0])
-output_types = Array[int]([0])
 building_type = 8
 valid_tile_types_to_place_on = Array[int]([1, 2, 3])
 building_size = Vector2(1, 1)
-metadata/_custom_type_script = "uid://bdhmlhlah8dvo"
+metadata/_custom_type_script = "uid://c2asdvge65j4d"

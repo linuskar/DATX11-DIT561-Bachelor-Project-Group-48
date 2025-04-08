@@ -1,73 +1,72 @@
-extends ProductionBuilding
+extends Building
 
 static var road_positions: Array[Vector2] = BuildManagerGlobal.road_positions
 
-var occupied_tiles = BuildManagerGlobal.occupied_tiles
+var occupied_tiles: Dictionary[Vector2, Building] = BuildManagerGlobal.occupied_tiles
 var left: bool = false
 var right: bool = false
 var up: bool = false
 var down: bool = false
 
 # Cache sibling references
-var sibling_left = null
-var sibling_right = null
-var sibling_down = null
-var sibling_up = null
+var sibling_left: Building = null
+var sibling_right: Building = null
+var sibling_down: Building = null
+var sibling_up: Building = null
 
 func _ready():
 	BuildManagerGlobal.update_roads.connect(update_connections)
 	road_positions.append(position)
 	super()
-
+	
+#Remove position when deleted.
 func _exit_tree():
 	road_positions.erase(position)
 	BuildManagerGlobal.update_roads.emit()
+	
+#Gets the sibling/neighboring tile.
+func get_sibling(pos: Vector2) -> Building: #Returns building or null.
+	var target_pos: Vector2 = position + pos
+	return BuildManagerGlobal.occupied_tiles.get(target_pos, null)
 
-func get_sibling(pos: Vector2):
-	var target_pos = position + pos
+#Checks if neighbor is building.
+func check_if_building(pos: Vector2) -> bool:
+	var target_pos: Vector2 = position + pos
 	if BuildManagerGlobal.occupied_tiles.has(target_pos):
-		return BuildManagerGlobal.occupied_tiles[target_pos]
-	return null
-
-func check_if_road_or_building(pos: Vector2):
-	var target_pos = position + pos
-	return BuildManagerGlobal.occupied_tiles.has(target_pos)
-
-func check_if_building(pos: Vector2):
-	var target_pos = position + pos
-	if BuildManagerGlobal.occupied_tiles.has(target_pos):
-		var building = BuildManagerGlobal.occupied_tiles[target_pos]
+		var building: Building = BuildManagerGlobal.occupied_tiles[target_pos]
 		if building.building_type != Enums.BuildingType.ROAD:
 			register_building_connection(building)
 			return true
 	return false
 
-func register_building_connection(building):
+#Adds the buldings that are connected to a road to a list.
+func register_building_connection(building: Building) -> void:
 	BuildManagerGlobal.connected_buildings[position] = building
-	modulate = Color(0, 1, 0, 1)
 
-func find_connected_buildings(parent = null, visited = {}):
-	var buildings = []
+#Recursively goes through all roads and checks if they have siblings and see if they are buildings or roads and returns them.
+func find_connected_buildings(parent: Building = null, visited: Dictionary[Vector2, bool] = {}) -> Array[Building]:
+	var buildings: Array[Building] = []
 	
-	# Mark current road as visited to prevent infinite loops
+	# Mark current road as visited to prevent infinite loops.
 	visited[position] = true
 	
-	# Check all four directions
+	# Check all four directions.
 	for dir in [Vector2.LEFT * 32, Vector2.RIGHT * 32, Vector2.UP * 32, Vector2.DOWN * 32]:
-		var sibling = get_sibling(dir)
+		var sibling: Building = get_sibling(dir)
 		
+		#Check to see that the sibling doesn't go backwards and the path is not visited already.
 		if sibling and sibling != parent and not visited.get(sibling.position, false):
 			if sibling.building_type != Enums.BuildingType.ROAD:
 				buildings.append(sibling)
 			else:
-				# Recursively search through connected roads
+				# Recursively search through connected roads.
 				buildings += sibling.find_connected_buildings(self, visited)
 	
 	return buildings
 
-var road_networks = []
-func check_network_connections():
-	var connected_buildings = find_connected_buildings()
+#Use the function find_connected_buildings and adds them to a list.
+func check_network_connections() -> Array[Building]: #returning list of type Building or null.
+	var connected_buildings: Array[Building] = find_connected_buildings()
 	if connected_buildings.size() > 0:
 		modulate = Color(0, 1, 0, 1)  # Green if connected to buildings
 		
@@ -76,35 +75,38 @@ func check_network_connections():
 		
 	return connected_buildings
 
-func get_network_buildings():
-	if BuildManagerGlobal.road_to_network.has(position):
-		var network_id = BuildManagerGlobal.road_to_network[position]
-		return BuildManagerGlobal.road_networks.get(network_id, [])
-	return []
+#Returns the roads connected to the network_id in a list
+func get_network_buildings() -> Array[Vector2]:
+	#if BuildManagerGlobal.road_to_network.has(position):
+	var network_id: int = BuildManagerGlobal.road_to_network[position]
+	return BuildManagerGlobal.road_networks.get(network_id, [])
+	
+#Updates booleans sprites and siblings.
+func update_connections() -> void:
+	# Update directional connections.
 
-func update_connections():
-	# Update directional connections
-	left = check_if_road_or_building(Vector2(-32, 0))
-	right = check_if_road_or_building(Vector2(32, 0))
-	up = check_if_road_or_building(Vector2(0, -32))
-	down = check_if_road_or_building(Vector2(0, 32))
-
-	# Update sibling references
+	# Update sibling references.
 	sibling_left = get_sibling(Vector2(-32, 0))
 	sibling_right = get_sibling(Vector2(32, 0))
 	sibling_up = get_sibling(Vector2(0, -32))
 	sibling_down = get_sibling(Vector2(0, 32))
 
-	# Update visual connections
+	left = sibling_left != null
+	right = sibling_right != null
+	up = sibling_up != null
+	down = sibling_down != null
+	
+	# Update visual connections.
 	update_road_sprite()
 	
-	# Check network connections
+	# Check network connections.
 	check_network_connections()
 	
 	BuildManagerGlobal.update_networks()
-	var my_buildings = get_network_buildings()
+	var my_buildings: Array[Vector2] = get_network_buildings()
 
-func update_road_sprite():
+#Updates road sprites.
+func update_road_sprite() -> void:
 	
 	if up and down and left and right:
 		$Sprite2D.frame = 2  # Fully connected crossroad
