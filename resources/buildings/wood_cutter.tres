@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AreaGatheringBuildingData" load_steps=2 format=3 uid="uid://jhy8bfinrkd0"]
 
-[ext_resource type="Script" path="res://scripts/buildings/building_data/area_gathering_building_data.gd" id="1_aa0xx"]
+[ext_resource type="Script" uid="uid://daaqhbc5j508p" path="res://scripts/buildings/building_data/area_gathering_building_data.gd" id="1_aa0xx"]
 
 [resource]
 script = ExtResource("1_aa0xx")

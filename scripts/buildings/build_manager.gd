@@ -51,6 +51,9 @@ func _on_selected_building(building_data: BuildingData) ->  void:
 	blueprint.queue_free()
 	
 	## Add the new blueprint to the game of the currently selected building
+	print(Enums.building_type_to_string(building_data.building_type))
+	#if building_blueprints == null:
+	print(building_blueprints)
 	var new_blueprint: BuildingBlueprint = building_blueprints.get(building_data.building_type).instantiate()
 	add_child(new_blueprint)
 	blueprint = new_blueprint
