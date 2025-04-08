@@ -14,6 +14,9 @@ var resource_held: int = 0
 ## chosen to sell
 var resource_to_sell: int = 0
 
+## Path to the image associated with this resource
+var image_path: String
+
 ## Reference to the image
 @onready var texture_rect: TextureRect = $PanelContainer/MarginContainer/HBoxContainer/ResourceInfo/ResourcePicture
 
@@ -21,19 +24,12 @@ var resource_to_sell: int = 0
 @onready var sell_amount_text: Label = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Label
 
 func _process(delta: float) -> void:
-	if resource_held > int(sell_amount_text.text):
-		sell_amount_text.text = str(resource_held)
+	update_text()
 
-func _ready() -> void:
-	var path: String = Enums.resource_image_paths.get(resource)
-	var image = load(path)
-	self.texture_rect.set_texture(image)
-
-static func create_instance(new_resource: Enums.ResourceType, stored_amount: int) -> StoredResourcePanel:
-	var new_stored_resource: StoredResourcePanel = scene.instantiate()
-	new_stored_resource.resource = new_resource
-	new_stored_resource.resource_held = stored_amount
-	return new_stored_resource
+func ready_instance(new_resource: Enums.ResourceType, stored_amount: int) -> void:
+	self.resource = new_resource
+	self.resource_held = stored_amount
+	self.texture_rect.set_texture(load(Enums.resource_image_paths.get(new_resource)))
 
 ## Triggered when pressing the Increase button, increases 
 ## selling resources by 1
@@ -66,3 +62,7 @@ func decrease_more() -> void:
 		resource_to_sell = 0
 	else:
 		resource_to_sell -= 5
+
+## Updates the text of the label to match the resources to sell count
+func update_text() -> void:
+	sell_amount_text.text = str(resource_to_sell)

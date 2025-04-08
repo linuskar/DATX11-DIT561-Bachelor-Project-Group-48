@@ -197,7 +197,12 @@ anchor_right = 0.8
 anchor_bottom = 0.975
 grow_horizontal = 2
 theme_override_styles/normal = ExtResource("5_7kvcf")
-text = "100"
+text = "0"
 label_settings = SubResource("LabelSettings_g6d0v")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="button_down" from="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/DecreaseMore" to="." method="decrease_more"]
+[connection signal="button_down" from="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Decrease" to="." method="decrease"]
+[connection signal="button_down" from="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/IncreaseMore" to="." method="increase_more"]
+[connection signal="button_down" from="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Increase" to="." method="increase"]

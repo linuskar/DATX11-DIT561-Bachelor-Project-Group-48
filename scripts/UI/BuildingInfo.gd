@@ -9,6 +9,9 @@ class_name BuildingInfo extends Control
 ## The currently held building
 var current_building
 
+## Template scene for a stored resource panel
+var stored_resource_panel: PackedScene = preload("res://scenes/UI/stored_resource.tscn")
+
 ## A dict containing references from a resourcetype to the corresponding
 ## stored resource panel
 var storage_connections: Dictionary[Enums.ResourceType, StoredResourcePanel] = {}
@@ -17,11 +20,15 @@ func _ready() -> void:
 	BuildingSignals.building_clicked.connect(set_active)
 	set_inactive()
 
+func _process(delta: float) -> void:
+	update_storage()
+
 ## Updates the storage panel
 func update_storage() -> void:
 	if current_building is StorageBuilding:
-		for resource in current_building.output_storage.keys():
-			storage_connections.get(resource).resource_held = current_building.output_storage.get(resource)
+		for resource in storage_connections.keys():
+			var stored_resources: int = current_building.output_storage.get(resource)
+			storage_connections.get(resource).resource_held = stored_resources
 		
 
 ## Fills the info label with text dependant on the building it recieved
@@ -38,10 +45,12 @@ func populate_storage_panel(building: StorageBuilding) -> void:
 	for child in storage_list.get_children():
 		child.queue_free()
 	for resource in building.output_storage.keys():
-		var stored_amount: int = building.output_storage.get(resource)
-		var new: StoredResourcePanel = StoredResourcePanel.create_instance(resource, stored_amount)
-		storage_connections.set(resource, new)
-		storage_list.add_child(new)
+		if !Enums.is_byproduct(resource) and !Enums.is_emission(resource):
+			var stored_amount: int = building.output_storage.get(resource)
+			var instance: StoredResourcePanel = stored_resource_panel.instantiate()
+			storage_list.add_child(instance)
+			instance.ready_instance(resource, stored_amount)
+			storage_connections.set(resource, instance)
 
 ## Formating building data into a string that is then displayed in the
 ## building info panel.
