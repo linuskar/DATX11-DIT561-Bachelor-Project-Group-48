@@ -43,6 +43,8 @@ func transport_resources(type: Enums.ResourceType) -> void:
 	if !buildings_input.get(type).is_empty() && !buildings_output.get(type).is_empty():
 		var next_building: ProductionBuilding = buildings_input.get(type).pop_front()
 		var output_building: ProductionBuilding = buildings_output.get(type).pop_front()
+		if next_building.building_type == Enums.BuildingType.ROAD or output_building.building_type == Enums.BuildingType.ROAD:
+			return
 		var max_get = output_building.output_storage.get(type)
 		var max_input = next_building.max_storage.get(type) - next_building.input_storage.get(type)
 		

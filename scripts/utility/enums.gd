@@ -45,7 +45,7 @@ static var building_names: Dictionary[BuildingType, String] = {
 		BuildingType.WOOD_CUTTER: "WOOD CUTTER",
 		BuildingType.COAL_POWER_PLANT: "COAL POWER PLANT",
 		BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
-    BuildingType.ROAD: "ROAD"
+	BuildingType.ROAD: "ROAD"
 	}
 static var tile_names: Dictionary[TileType, String] = {
 		TileType.WATER: "WATER",

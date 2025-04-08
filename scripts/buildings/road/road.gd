@@ -33,8 +33,6 @@ func check_if_road_or_building(pos: Vector2):
 	var target_pos = position + pos
 	return BuildManagerGlobal.occupied_tiles.has(target_pos)
 
-
-
 func check_if_building(pos: Vector2):
 	var target_pos = position + pos
 	if BuildManagerGlobal.occupied_tiles.has(target_pos):
