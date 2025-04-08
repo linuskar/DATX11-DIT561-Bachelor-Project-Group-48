@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=18 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
@@ -7,12 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/Selectables/IronMineSelectable.tscn" id="5_2mva2"]
 [ext_resource type="PackedScene" uid="uid://bhrcu48dc2f50" path="res://scenes/UI/Selectables/WoodCutterSelectable.tscn" id="6_de1jr"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_epysl"]
+[ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="6_qf7o5"]
 [ext_resource type="PackedScene" uid="uid://bvbhybq0wqtk8" path="res://scenes/UI/Selectables/BiomassPowerPlantSelectable.tscn" id="7_2uf64"]
 [ext_resource type="PackedScene" uid="uid://bcpxbii6e6t0h" path="res://scenes/UI/Selectables/CoalPowerPlantSelectable.tscn" id="8_2mva2"]
-[ext_resource type="PackedScene" uid="uid://br2gryi0lgaf4" path="res://scenes/UI/Selectables/BiomassLandfillSelectable.tscn" id="9_djsgt"]
+[ext_resource type="PackedScene" uid="uid://ctkvuv2f8407w" path="res://scenes/UI/Selectables/RoadSelectable.tscn" id="9_djsgt"]
 [ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="9_epysl"]
 [ext_resource type="PackedScene" uid="uid://eho7susuq8fj" path="res://scenes/UI/Selectables/WarehouseSelectable.tscn" id="10_nt76t"]
 [ext_resource type="StyleBox" uid="uid://bfttb8f017gk2" path="res://resources/style_boxes/metal_red_outline_darker.tres" id="11_epysl"]
+[ext_resource type="PackedScene" uid="uid://br2gryi0lgaf4" path="res://scenes/UI/Selectables/BiomassLandfillSelectable.tscn" id="11_yhkbe"]
 [ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="12_djsgt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mva2"]
@@ -75,6 +77,7 @@ layout_mode = 2
 
 [node name="IronMineSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("5_2mva2")]
 layout_mode = 2
+building_data = ExtResource("6_qf7o5")
 
 [node name="WoodCutterSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("6_de1jr")]
 layout_mode = 2
@@ -87,6 +90,12 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="WarehouseSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("10_nt76t")]
+layout_mode = 2
+
+[node name="BiomassLandfillSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("11_yhkbe")]
+layout_mode = 2
+
+[node name="RoadSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("9_djsgt")]
 layout_mode = 2
 
 [node name="OpenListButton" type="Control" parent="."]
@@ -122,6 +131,7 @@ text = "Buildings"
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/WoodCutterSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/CoalPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/BiomassLandfillSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/WarehouseSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/BiomassLandfillSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/RoadSelectable" to="." method="_on_building_selected"]
 [connection signal="button_down" from="OpenListButton/Button" to="." method="_on_open_build_list"]
