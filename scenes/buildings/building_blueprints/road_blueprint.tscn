@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_d2c06"]
 [ext_resource type="Script" uid="uid://c2asdvge65j4d" path="res://scripts/buildings/building_data/building_data.gd" id="2_5iiw7"]
-[ext_resource type="Texture2D" uid="uid://bu4l4t3arvjxv" path="res://assets/road/road_tilemap-Sheet.png" id="2_acg36"]
 
 [sub_resource type="Resource" id="Resource_21g5n"]
 script = ExtResource("2_5iiw7")
@@ -10,6 +9,9 @@ building_type = 8
 valid_tile_types_to_place_on = Array[int]([1, 2, 3])
 building_size = Vector2(1, 1)
 metadata/_custom_type_script = "uid://c2asdvge65j4d"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ahlc7"]
+load_path = "res://.godot/imported/road_tilemap-Sheet.png-64c168fa835354dc6d0211c2fe157e65.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67t7r"]
 size = Vector2(32, 32)
@@ -19,7 +21,7 @@ script = ExtResource("1_d2c06")
 building_data = SubResource("Resource_21g5n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_acg36")
+texture = SubResource("CompressedTexture2D_ahlc7")
 hframes = 4
 vframes = 3
 frame = 3
