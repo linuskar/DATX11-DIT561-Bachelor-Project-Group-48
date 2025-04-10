@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn4m2dsa1xi1m"]
+[gd_scene load_steps=11 format=3 uid="uid://bn4m2dsa1xi1m"]
 
+[ext_resource type="Script" uid="uid://jw3k7gchg50y" path="res://scripts/UI/research_ui.gd" id="1_l02gs"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_id0mj"]
 [ext_resource type="PackedScene" uid="uid://505ijduj0bi7" path="res://scenes/UI/ResearchUI/Research_Entry.tscn" id="3_5c7gb"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_l02gs"]
@@ -24,6 +25,7 @@ atlas = ExtResource("7_c2yi1")
 region = Rect2(1, 33, 14, 14)
 
 [node name="ResearchUI" type="Control"]
+visible = false
 custom_minimum_size = Vector2(408, 648)
 layout_mode = 3
 anchor_left = 0.5
@@ -37,6 +39,7 @@ offset_bottom = 388.6
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+script = ExtResource("1_l02gs")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(102, 162)
@@ -72,11 +75,6 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_styles/pressed = ExtResource("3_l02gs")
 
-[node name="ResearchEntry2" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_5c7gb")]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-theme_override_styles/pressed = ExtResource("3_l02gs")
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -96,4 +94,4 @@ texture_normal = SubResource("AtlasTexture_itten")
 texture_pressed = SubResource("AtlasTexture_6mxs2")
 stretch_mode = 4
 
-[connection signal="button_down" from="PanelContainer/CloseButton" to="." method="set_inactive"]
+[connection signal="pressed" from="PanelContainer/CloseButton" to="." method="close"]

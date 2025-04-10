@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://cgm6sg3jw06lu"]
+
+[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/research_data.gd" id="1_w1yc1"]
+
+[resource]
+script = ExtResource("1_w1yc1")
+research_id = "WC1"
+research_name = "More Wood!"
+description = "More efficient woodcutters!"
+metadata/_custom_type_script = "uid://cxt2f6o7mobww"
