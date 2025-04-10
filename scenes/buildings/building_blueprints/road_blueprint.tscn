@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://c2asdvge65j4d"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67t7r"]
 size = Vector2(32, 32)
 
-[node name="Road" type="Area2D"]
+[node name="Road2" type="Area2D"]
 script = ExtResource("1_d2c06")
 building_data = SubResource("Resource_21g5n")
 

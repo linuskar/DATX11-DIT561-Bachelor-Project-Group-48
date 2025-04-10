@@ -13,10 +13,11 @@ var road_networks: Dictionary[int, Array] = {}  # { network_id: Set of building(
 var road_to_network: Dictionary[Vector2, int] = {}  # { road_position: network_id }
 var current_network_id: int = 0
 
+func _ready() -> void:
+	update_roads.connect(update_networks)
 #Updates road_networks with a network_id key to a list of the buildings positions.
-func update_networks() -> void:
-	#Clears the old networks to begin creating new ones.
-	var visited: Dictionary[Vector2, bool] = {}
+func update_networks():
+	var visited = {}
 	road_networks.clear()
 	road_to_network.clear()
 	current_network_id = 0
@@ -57,11 +58,3 @@ func _flood_fill_network(pos, visited, buildings) -> void:
 				buildings.get_or_add(neighbor_pos, neighbor)
 			else:
 				_flood_fill_network(neighbor_pos, visited, buildings)
-	
-	# Flood fill to connected roads
-	#for dir in [Vector2.LEFT*32, Vector2.RIGHT*32, Vector2.UP*32, Vector2.DOWN*32]:
-		#var neighbor_pos: Vector2 = pos + dir
-		#if occupied_tiles.has(neighbor_pos):
-			#var neighbor: Building = occupied_tiles[neighbor_pos]
-			#if neighbor.building_type == Enums.BuildingType.ROAD:
-				

@@ -16,6 +16,7 @@ var sibling_up: Building = null
 
 func _ready():
 	BuildManagerGlobal.update_roads.connect(update_connections)
+	
 	road_positions.append(position)
 	super()
 	
@@ -29,11 +30,14 @@ func get_sibling(pos: Vector2) -> Building: #Returns building or null.
 	var target_pos: Vector2 = position + pos
 	return BuildManagerGlobal.occupied_tiles.get(target_pos, null)
 
-#Checks if neighbor is building.
-func check_if_building(pos: Vector2) -> bool:
-	var target_pos: Vector2 = position + pos
-	if BuildManagerGlobal.occupied_tiles.has(target_pos):
-		var building: Building = BuildManagerGlobal.occupied_tiles[target_pos]
+func check_if_road_or_building(pos: Vector2):
+	var target_pos = position + pos
+	return occupied_tiles.has(target_pos)
+
+func check_if_building(pos: Vector2):
+	var target_pos = position + pos
+	if occupied_tiles.has(target_pos):
+		var building = occupied_tiles[target_pos]
 		if building.building_type != Enums.BuildingType.ROAD:
 			register_building_connection(building)
 			return true
@@ -98,12 +102,8 @@ func update_connections() -> void:
 	
 	# Update visual connections.
 	update_road_sprite()
-	
-	# Check network connections.
+	# Check network connections
 	check_network_connections()
-	
-	BuildManagerGlobal.update_networks()
-	var my_buildings: Array[Vector2] = get_network_buildings()
 
 #Updates road sprites.
 func update_road_sprite() -> void:
