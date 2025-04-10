@@ -4,7 +4,7 @@ class_name BuildingInfo extends Control
 @onready var building_name = $MarginContainer/General/VBoxContainer/BuildingName
 @onready var info = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 @onready var main_container: MarginContainer = $MarginContainer
-@onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/StoredResources
+@onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/VBoxContainer/StoredResources
 
 ## The currently held building
 var current_building
