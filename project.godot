@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 StateManager="*res://scripts/utility/state_manager.gd"
 ResourceSignals="*res://scripts/resources/resource_signals.gd"
 BuildingSignals="*res://scripts/utility/BuildingSignals.gd"
+BuildManagerGlobal="*res://scripts/global/buildmanagerglobal.gd"
 
 [display]
 
