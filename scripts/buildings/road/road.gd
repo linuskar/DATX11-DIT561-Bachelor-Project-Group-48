@@ -15,10 +15,10 @@ var sibling_down: Building = null
 var sibling_up: Building = null
 
 func _ready():
+	super()
 	BuildManagerGlobal.update_roads.connect(update_connections)
 	
 	road_positions.append(position)
-	super()
 	
 #Remove position when deleted.
 func _exit_tree():

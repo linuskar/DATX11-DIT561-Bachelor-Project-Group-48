@@ -50,15 +50,15 @@ func populate_storage_panel(building: StorageBuilding) -> void:
 	for child in storage_list.get_children():
 		child.queue_free()
 	for resource in building.output_storage.keys():
-		if Enums.is_byproduct(resource):
+		if Enums.is_emission(resource):
+			pass ## We dont want to display emissions as part of storage
+		elif Enums.is_byproduct(resource):
 			var stored_amount: int = building.output_storage.get(resource)
 			var instance: StoredResourcePanel = stored_resource_panel.instantiate()
 			storage_list.add_child(instance)
 			instance.ready_instance(resource, stored_amount)
 			storage_connections.set(resource, instance)
 			instance.disable_selling()
-		elif Enums.is_emission(resource):
-			pass ## We dont want to display emissions as part of storage
 		else:
 			var stored_amount: int = building.output_storage.get(resource)
 			var instance: StoredResourcePanel = stored_resource_panel.instantiate()

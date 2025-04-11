@@ -209,7 +209,6 @@ offset_right = -20.0
 offset_bottom = -20.0
 
 [node name="General" type="ScrollContainer" parent="MarginContainer"]
-visible = false
 layout_mode = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
@@ -336,6 +335,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Selling" type="ScrollContainer" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Selling"]
