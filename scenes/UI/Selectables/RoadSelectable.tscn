@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctkvuv2f8407w"]
+
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_suc50"]
+[ext_resource type="Resource" uid="uid://dr8i1lynkasf7" path="res://resources/buildings/road.tres" id="2_21g5n"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="3_go2c5"]
+[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="4_8q2kt"]
+[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="5_jliqu"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_8yv83"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rvi21"]
+font = ExtResource("6_8yv83")
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7shli"]
+font = ExtResource("6_8yv83")
+font_color = Color(0, 0, 0, 1)
+
+[node name="RoadSelectable" type="Control"]
+custom_minimum_size = Vector2(320, 192)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -832.0
+offset_bottom = -456.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.599748, 0.599748)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("1_suc50")
+icon_path = "uid://d3m2c4vf27eh"
+building_data = ExtResource("2_21g5n")
+
+[node name="MainBox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("3_go2c5")
+
+[node name="Selected" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_8q2kt")
+
+[node name="Containers" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.075
+anchor_right = 0.425
+anchor_bottom = 0.65
+offset_right = -2.0
+offset_bottom = -0.399994
+theme_override_styles/panel = ExtResource("3_go2c5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Containers"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="BuildingIcon" type="TextureRect" parent="Containers/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_jliqu")
+
+[node name="BuildingNameCost" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 127.0
+offset_right = 134.0
+offset_bottom = 181.0
+mouse_filter = 1
+text = "Name Cost"
+label_settings = SubResource("LabelSettings_rvi21")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TextContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(160, 162)
+layout_mode = 0
+offset_left = 145.0
+offset_top = 15.0
+offset_right = 305.0
+offset_bottom = 177.0
+
+[node name="InfoText" type="Label" parent="TextContainer"]
+custom_minimum_size = Vector2(160, 162)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+label_settings = SubResource("LabelSettings_7shli")
+autowrap_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_selected"]

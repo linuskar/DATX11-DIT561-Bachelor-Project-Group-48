@@ -1,14 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=19 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="5_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://cs67hiut6aq7j" path="res://scenes/utility/build_manager.tscn" id="6_0tnpc"]
-[ext_resource type="PackedScene" uid="uid://ct86lpfbpsiyg" path="res://scenes/buildings/building_selector.tscn" id="7_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://mjtf8gsptloy" path="res://scenes/utility/build_manager.tscn" id="6_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://djil6gjtsgbdu" path="res://scenes/UI/UserInterface.tscn" id="8_0tnpc"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://bmfjen7u3vjeh" path="res://scenes/utility/pollution_manager.tscn" id="8_vtaks"]
+[ext_resource type="PackedScene" uid="uid://d0n2xkqggqdmg" path="res://scenes/buildings/building_blueprints/storage_buildings/biomass_landfill_blueprint.tscn" id="12_ca42v"]
+[ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="13_bhx41"]
+[ext_resource type="PackedScene" uid="uid://b6ddmakepot3r" path="res://scenes/buildings/building_blueprints/storage_buildings/warehouse_blueprint.tscn" id="13_ca42v"]
+[ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/gathering_buildings/coal_mine_blueprint.tscn" id="14_qnb83"]
+[ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/gathering_buildings/wood_cutter_blueprint.tscn" id="15_sww3w"]
+[ext_resource type="PackedScene" uid="uid://bn5arwp4ceymc" path="res://scenes/buildings/building_blueprints/power_generators/coal_power_plant_blueprint.tscn" id="16_suyxu"]
+[ext_resource type="Script" uid="uid://bdhmlhlah8dvo" path="res://scripts/buildings/building_data/production_building_data.gd" id="17_rysoc"]
+[ext_resource type="PackedScene" uid="uid://b0ef776hgtpta" path="res://scenes/buildings/building_blueprints/power_generators/biomass_power_plant_blueprint.tscn" id="17_sgl2t"]
+[ext_resource type="PackedScene" uid="uid://chfljd8f6ww5l" path="res://scenes/buildings/building_blueprints/road_blueprint.tscn" id="18_qouja"]
+
+[sub_resource type="Resource" id="Resource_3m8jq"]
+script = ExtResource("17_rysoc")
+input_use_rates = Dictionary[int, int]({})
+output_generation = Dictionary[int, int]({})
+emissions_radius = Dictionary[int, int]({})
+max_storage = Dictionary[int, int]({})
+input_types = Array[int]([0])
+output_types = Array[int]([0])
+building_type = 8
+valid_tile_types_to_place_on = Array[int]([1, 2, 3])
+building_size = Vector2(1, 1)
+metadata/_custom_type_script = "uid://bdhmlhlah8dvo"
 
 [node name="Game" type="Node2D"]
 
@@ -21,10 +42,6 @@
 [node name="ResourceManager" type="Node" parent="."]
 script = ExtResource("5_0tnpc")
 
-[node name="BuildingSelector" parent="." instance=ExtResource("7_kvpfn")]
-visible = false
-mouse_force_pass_scroll_events = false
-
 [node name="PlayerResources" type="Node" parent="."]
 script = ExtResource("8_gee14")
 
@@ -32,13 +49,30 @@ script = ExtResource("8_gee14")
 autostart = true
 
 [node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
+building_blueprints = Dictionary[int, Resource]({
+1: ExtResource("13_bhx41"),
+2: ExtResource("14_qnb83"),
+3: ExtResource("15_sww3w"),
+4: ExtResource("16_suyxu"),
+5: ExtResource("17_sgl2t"),
+6: ExtResource("12_ca42v"),
+7: ExtResource("13_ca42v"),
+8: ExtResource("18_qouja")
+})
 
 [node name="PollutionManager" parent="." instance=ExtResource("8_vtaks")]
 
 [node name="UserInterface" parent="." instance=ExtResource("8_0tnpc")]
+
+[node name="RoadSelectable" parent="UserInterface/BuildingSelectList/List/PanelContainer/ScrollContainer/Buildings" index="7"]
+building_data = SubResource("Resource_3m8jq")
 
 [connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
 [connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
 [connection signal="build_list_entered" from="UserInterface" to="BuildManager" method="_on_user_interface_build_list_entered"]
 [connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
 [connection signal="ui_status" from="UserInterface" to="BuildManager" method="set_ui_status"]
+
+[editable path="UserInterface"]
+[editable path="UserInterface/BuildingSelectList"]
+[editable path="UserInterface/ResourceUi"]
