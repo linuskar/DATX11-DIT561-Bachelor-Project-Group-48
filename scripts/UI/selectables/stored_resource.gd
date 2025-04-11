@@ -9,6 +9,14 @@ static var scene: PackedScene  = load("res://scenes/UI/stored_resource.tscn")
 ## currently labeled as selling. 
 signal resource_held_changed(resource: Enums.ResourceType, selling_amount: int)
 
+@onready var one_less_button: Button = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Decrease
+@onready var five_less_button: Button = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/DecreaseMore
+@onready var one_more_button: Button = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Increase
+@onready var five_more_button: Button = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/IncreaseMore
+@onready var minus_label: Label = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/PanelContainer/HBoxContainer/Minus
+@onready var selling_panel: Label = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/PanelContainer/HBoxContainer/Selling
+
+
 ## The type of the resource
 var resource: Enums.ResourceType
 
@@ -70,7 +78,6 @@ func decrease() -> void:
 ## selling resources by 5
 func decrease_more() -> void:
 	if resource_to_sell - 5 <= 0:
-		
 		resource_to_sell = 0
 	else:
 		resource_to_sell -= 5
@@ -83,9 +90,9 @@ func update_text() -> void:
 
 ## Hides the parts of the stored resource related to selling that resource
 func disable_selling() -> void:
-	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Decrease.hide()
-	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/DecreaseMore.hide()
-	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Increase.hide()
-	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/IncreaseMore.hide()
-	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/PanelContainer/HBoxContainer/Minus.hide()
-	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/PanelContainer/HBoxContainer/Selling.hide()
+	one_more_button.hide()
+	five_more_button.hide()
+	one_less_button.hide()
+	five_more_button.hide()
+	minus_label.hide()
+	selling_panel.hide()
