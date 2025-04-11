@@ -31,6 +31,7 @@ func update_storage() -> void:
 		for resource in storage_connections.keys():
 			var stored_resources: int = current_building.output_storage.get(resource)
 			storage_connections.get(resource).resource_held = stored_resources
+			update_sell_amount(resource, storage_connections.get(resource).resource_to_sell)
 		
 
 ## Fills the info label with text dependant on the building it recieved
@@ -53,7 +54,6 @@ func populate_storage_panel(building: StorageBuilding) -> void:
 			storage_list.add_child(instance)
 			instance.ready_instance(resource, stored_amount)
 			storage_connections.set(resource, instance)
-			instance.resource_held_changed.connect(_on_update_sell_amount)
 
 ## Formating building data into a string that is then displayed in the
 ## building info panel.
@@ -189,6 +189,6 @@ func _sell_chosen_resources() -> void:
 		ResourceSignals.use_resource.emit(resource_type, sold_amount)
 	sell_value_label.text = "0"
 		
-func _on_update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
+func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
 	var value: int = Enums.get_value_of_resources(resource, amount)
 	sell_value_label.set_text(str(value))
