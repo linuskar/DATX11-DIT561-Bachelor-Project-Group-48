@@ -93,6 +93,6 @@ func disable_selling() -> void:
 	one_more_button.hide()
 	five_more_button.hide()
 	one_less_button.hide()
-	five_more_button.hide()
+	five_less_button.hide()
 	minus_label.hide()
 	selling_panel.hide()
