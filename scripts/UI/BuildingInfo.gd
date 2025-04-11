@@ -179,8 +179,9 @@ func set_active(building: Building) -> void:
 	self.show()
 	populate_info_label(building)
 	if current_building is StorageBuilding:
-		set_building_selling(current_building.currently_selling)
 		populate_storage_panel(current_building)
+	if current_building is ProductionBuilding:
+		set_building_selling(current_building.currently_selling)
 
 ## Function that disables or enables the selling tab
 ## Disables on true, enables on false
