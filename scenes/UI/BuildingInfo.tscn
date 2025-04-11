@@ -63,7 +63,6 @@ region_rect = Rect2(256, 32, 32, 32)
 [sub_resource type="LabelSettings" id="LabelSettings_xxyib"]
 font = ExtResource("3_86cwq")
 font_size = 32
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m21pg"]
 
@@ -205,6 +204,7 @@ offset_right = -20.0
 offset_bottom = -20.0
 
 [node name="General" type="ScrollContainer" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
@@ -266,7 +266,6 @@ label_settings = SubResource("LabelSettings_6mxs2")
 autowrap_mode = 3
 
 [node name="Storage" type="ScrollContainer" parent="MarginContainer"]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Storage"]
@@ -296,7 +295,7 @@ anchor_bottom = 1.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_lonap")
 
-[node name="Label" type="Label" parent="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control"]
+[node name="SellValue" type="Label" parent="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -419,6 +418,7 @@ texture_pressed = SubResource("AtlasTexture_6mxs2")
 texture_hover = SubResource("AtlasTexture_xxyib")
 stretch_mode = 4
 
+[connection signal="button_down" from="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/Button" to="." method="_sell_chosen_resources"]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling"]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_storing"]
 [connection signal="tab_clicked" from="TabBar" to="." method="_set_tab_visible"]

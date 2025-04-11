@@ -1,10 +1,13 @@
-[gd_resource type="StyleBoxTexture" format=3 uid="uid://bfttb8f017gk2"]
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bfttb8f017gk2"]
+
+[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_kfchm"]
 
 [resource]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
+texture = ExtResource("1_kfchm")
 texture_margin_left = 9.0
 texture_margin_top = 9.0
 texture_margin_right = 9.0

@@ -5,9 +5,10 @@ class_name BuildingInfo extends UIElement
 @onready var info = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 @onready var main_container: MarginContainer = $MarginContainer
 @onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/VBoxContainer/StoredResources
+@onready var sell_value_label: Label = $MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/SellValue
 
 ## The currently held building
-var current_building
+var current_building: Building
 
 ## Template scene for a stored resource panel
 var stored_resource_panel: PackedScene = preload("res://scenes/UI/stored_resource.tscn")
@@ -52,6 +53,7 @@ func populate_storage_panel(building: StorageBuilding) -> void:
 			storage_list.add_child(instance)
 			instance.ready_instance(resource, stored_amount)
 			storage_connections.set(resource, instance)
+			instance.resource_held_changed.connect(_on_update_sell_amount)
 
 ## Formating building data into a string that is then displayed in the
 ## building info panel.
@@ -172,3 +174,21 @@ func set_building_selling() -> void:
 	
 func set_building_storing() -> void:
 	current_building.currently_selling = false
+
+## Executed when pressing the sell button in the storage tab
+## Collects the amount to sell for every resource and sells them
+func _sell_chosen_resources() -> void:
+	for resource_type in storage_connections.keys():
+		var stored_resource_panel: StoredResourcePanel = storage_connections.get(resource_type)
+		var sold_amount: int = stored_resource_panel.resource_to_sell
+		var currency_gain: int = Enums.get_value_of_resource(resource_type)*sold_amount
+		var stored_amount: int = current_building.output_storage.get(resource_type)
+		current_building.output_storage.set(resource_type, stored_amount-sold_amount)
+		PlayerCurrency.add_currency(currency_gain)
+		stored_resource_panel.resource_to_sell = 0
+		ResourceSignals.use_resource.emit(resource_type, sold_amount)
+	sell_value_label.text = "0"
+		
+func _on_update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
+	var value: int = Enums.get_value_of_resources(resource, amount)
+	sell_value_label.set_text(str(value))

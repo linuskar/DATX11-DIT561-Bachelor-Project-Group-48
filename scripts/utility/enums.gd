@@ -80,6 +80,9 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 static func get_value_of_resource(resource: ResourceType) -> int:
 	return resource_costs.get(resource)
 	
+static func get_value_of_resources(resource: ResourceType, amount: int) -> int:
+	return resource_costs.get(resource)*amount
+	
 ## The different types of buildings in the game
 # Factory and gathering building are just temporary names?
 enum BuildingType {

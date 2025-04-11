@@ -23,6 +23,9 @@ var currently_selling: bool = false
 ## Signal for when emissions are emitted
 signal emitted_emissions(building: Building, emission_type: Enums.ResourceType, amount: int)
 
+func _process(delta: float) -> void:
+	production_cycle.paused = not check_if_can_produce()
+
 func _ready() -> void:
 	super()
 	init_production_building()
