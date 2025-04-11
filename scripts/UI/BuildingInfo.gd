@@ -6,6 +6,7 @@ class_name BuildingInfo extends UIElement
 @onready var main_container: MarginContainer = $MarginContainer
 @onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/VBoxContainer/StoredResources
 @onready var sell_value_label: Label = $MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/SellValue
+@onready var sell_store_status_label: Label = $MarginContainer/Selling/MarginContainer/VBoxContainer/MarginContainer/CurrentlySelling
 
 ## The currently held building
 var current_building: Building
@@ -171,9 +172,11 @@ func disable_sell_tab(disable_sell_tab: bool) -> void:
 	
 func set_building_selling() -> void:
 	current_building.currently_selling = true
+	sell_store_status_label.text = "Selling"
 	
 func set_building_storing() -> void:
 	current_building.currently_selling = false
+	sell_store_status_label.text = "Storing"
 
 ## Executed when pressing the sell button in the storage tab
 ## Collects the amount to sell for every resource and sells them

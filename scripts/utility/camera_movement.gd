@@ -42,7 +42,6 @@ func Zoom(delta):
 				zoomTarget *= 1 + zoomSensitivity
 			else:
 				zoomTarget = Vector2(maxZoom, maxZoom)
-			print(zoomTarget)
 		
 		if Input.is_action_just_pressed("camera_zoom_out"):
 			if (zoomTarget * (1 - zoomSensitivity)).length() > minZoomLength:
