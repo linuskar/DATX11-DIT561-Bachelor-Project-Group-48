@@ -80,3 +80,12 @@ func decrease_more() -> void:
 func update_text() -> void:
 	sell_amount_text.text = str(resource_to_sell)
 	held_amount_text.text = str(resource_held-resource_to_sell)
+
+## Hides the parts of the stored resource related to selling that resource
+func disable_selling() -> void:
+	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Decrease.hide()
+	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/DecreaseMore.hide()
+	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Increase.hide()
+	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/IncreaseMore.hide()
+	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/PanelContainer/HBoxContainer/Minus.hide()
+	$PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/PanelContainer/HBoxContainer/Selling.hide()

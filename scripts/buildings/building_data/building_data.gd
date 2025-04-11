@@ -17,5 +17,9 @@ extends Resource
 ## The upkeep cost of the building
 @export var building_upkeep: int
 
+## Takes in a handler entity and calls the handlers
+## function which is connected to this specific instance.
+## The handler will have one function for each case it needs
+## to handle. Examples: handle_building, handle_prod_building.
 func accept(handler: BuildingInfo) -> String:
 	return handler.handle_building(self)

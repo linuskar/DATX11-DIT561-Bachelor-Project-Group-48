@@ -32,7 +32,8 @@ func update_storage() -> void:
 		for resource in storage_connections.keys():
 			var stored_resources: int = current_building.output_storage.get(resource)
 			storage_connections.get(resource).resource_held = stored_resources
-			update_sell_amount(resource, storage_connections.get(resource).resource_to_sell)
+			if not Enums.is_byproduct(resource):
+				update_sell_amount(resource, storage_connections.get(resource).resource_to_sell)
 		
 
 ## Fills the info label with text dependant on the building it recieved
@@ -49,7 +50,16 @@ func populate_storage_panel(building: StorageBuilding) -> void:
 	for child in storage_list.get_children():
 		child.queue_free()
 	for resource in building.output_storage.keys():
-		if !Enums.is_byproduct(resource) and !Enums.is_emission(resource):
+		if Enums.is_byproduct(resource):
+			var stored_amount: int = building.output_storage.get(resource)
+			var instance: StoredResourcePanel = stored_resource_panel.instantiate()
+			storage_list.add_child(instance)
+			instance.ready_instance(resource, stored_amount)
+			storage_connections.set(resource, instance)
+			instance.disable_selling()
+		elif Enums.is_emission(resource):
+			pass ## We dont want to display emissions as part of storage
+		else:
 			var stored_amount: int = building.output_storage.get(resource)
 			var instance: StoredResourcePanel = stored_resource_panel.instantiate()
 			storage_list.add_child(instance)
@@ -182,14 +192,15 @@ func set_building_storing() -> void:
 ## Collects the amount to sell for every resource and sells them
 func _sell_chosen_resources() -> void:
 	for resource_type in storage_connections.keys():
-		var stored_resource_panel: StoredResourcePanel = storage_connections.get(resource_type)
-		var sold_amount: int = stored_resource_panel.resource_to_sell
-		var currency_gain: int = Enums.get_value_of_resource(resource_type)*sold_amount
-		var stored_amount: int = current_building.output_storage.get(resource_type)
-		current_building.output_storage.set(resource_type, stored_amount-sold_amount)
-		PlayerCurrency.add_currency(currency_gain)
-		stored_resource_panel.resource_to_sell = 0
-		ResourceSignals.use_resource.emit(resource_type, sold_amount)
+		if not Enums.is_byproduct(resource_type):
+			var stored_resource_panel: StoredResourcePanel = storage_connections.get(resource_type)
+			var sold_amount: int = stored_resource_panel.resource_to_sell
+			var currency_gain: int = Enums.get_value_of_resource(resource_type)*sold_amount
+			var stored_amount: int = current_building.output_storage.get(resource_type)
+			current_building.output_storage.set(resource_type, stored_amount-sold_amount)
+			PlayerCurrency.add_currency(currency_gain)
+			stored_resource_panel.resource_to_sell = 0
+			ResourceSignals.use_resource.emit(resource_type, sold_amount)
 	sell_value_label.text = "0"
 		
 func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:

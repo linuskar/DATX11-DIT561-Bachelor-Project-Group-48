@@ -21,6 +21,7 @@ static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.COAL: "res://assets/UI/Resource UI/coal.tres",
 	ResourceType.WOOD: "res://assets/UI/Resource UI/wood.tres",
 	ResourceType.ELECTRICITY: "res://assets/UI/Resource UI/electricity.png",
+	ResourceType.BIOMASS: "res://assets/UI/Resource UI/biomass.png"
 }
 
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
