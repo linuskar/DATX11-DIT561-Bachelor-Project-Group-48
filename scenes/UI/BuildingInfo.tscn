@@ -8,14 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="6_xxyib"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="7_xxyib"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjg1s"]
-texture = ExtResource("6_xxyib")
-texture_margin_left = 5.0
-texture_margin_top = 5.0
-texture_margin_right = 5.0
-texture_margin_bottom = 5.0
-region_rect = Rect2(0, 0, 32, 32)
-
 [sub_resource type="LabelSettings" id="LabelSettings_oocw6"]
 line_spacing = 1.0
 font = ExtResource("3_86cwq")
@@ -39,7 +31,7 @@ modulate_color = Color(0.847474, 0.847474, 0.847474, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6mxs2"]
 font = ExtResource("3_86cwq")
-font_size = 24
+font_size = 26
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lonap"]
@@ -129,6 +121,14 @@ texture_margin_bottom = 5.0
 region_rect = Rect2(0, 0, 32, 32)
 modulate_color = Color(0.525101, 0.525101, 0.525101, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjg1s"]
+texture = ExtResource("6_xxyib")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxyib"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjg1s"]
@@ -188,15 +188,6 @@ offset_bottom = 162.0
 scale = Vector2(4, 4)
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("7_xxyib")
-
-[node name="ExitButtonPanel" type="Panel" parent="."]
-layout_mode = 2
-offset_left = 314.0
-offset_right = 338.0
-offset_bottom = 24.0
-scale = Vector2(4, 4)
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxTexture_xjg1s")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -395,6 +386,15 @@ theme_override_styles/normal = ExtResource("7_xxyib")
 text = "Set store production"
 autowrap_mode = 2
 
+[node name="ExitButtonPanel" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 314.0
+offset_right = 338.0
+offset_bottom = 24.0
+scale = Vector2(4, 4)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_xjg1s")
+
 [node name="TabBar" type="TabBar" parent="."]
 layout_mode = 0
 offset_left = 19.0
@@ -434,7 +434,7 @@ texture_hover = SubResource("AtlasTexture_xxyib")
 stretch_mode = 4
 
 [connection signal="button_down" from="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/Button" to="." method="_sell_chosen_resources"]
-[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling"]
-[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_storing"]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling" binds= [true]]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_selling" binds= [false]]
 [connection signal="tab_clicked" from="TabBar" to="." method="_set_tab_visible"]
 [connection signal="button_down" from="CloseButton" to="." method="set_inactive"]

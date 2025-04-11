@@ -1,8 +1,8 @@
 class_name BuildingInfo extends UIElement
 
-@onready var image = $MarginContainer/General/VBoxContainer/MarginContainer3/FactoryImage
-@onready var building_name = $MarginContainer/General/VBoxContainer/BuildingName
-@onready var info = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
+@onready var image: TextureRect = $MarginContainer/General/VBoxContainer/MarginContainer3/FactoryImage
+@onready var building_name: Label = $MarginContainer/General/VBoxContainer/BuildingName
+@onready var info: Label = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 @onready var main_container: MarginContainer = $MarginContainer
 @onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/VBoxContainer/StoredResources
 @onready var sell_value_label: Label = $MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/SellValue
@@ -74,6 +74,7 @@ func get_text(building_data: BuildingData) -> String:
 func handle_building(building: BuildingData) -> String:
 	var text: String = ""
 	text += get_valid_tiles_text(building)
+	text += get_upkeep_text(building)
 	disable_sell_tab(true)
 	return text
 	
@@ -102,7 +103,12 @@ func handle_areagath_building(building: AreaGatheringBuildingData) -> String:
 	text += handle_gath_building(building)
 	text += get_gathering_text(building)
 	return text
-
+	
+func get_upkeep_text(building: BuildingData) -> String:
+	var text: String = "\nUpkeep\n"
+	text += str(building.building_upkeep) + "\n"
+	return text
+	
 ## Adds all the different outputs of the building, if it has any
 func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
@@ -173,6 +179,7 @@ func set_active(building: Building) -> void:
 	self.show()
 	populate_info_label(building)
 	if current_building is StorageBuilding:
+		set_building_selling(current_building.currently_selling)
 		populate_storage_panel(current_building)
 
 ## Function that disables or enables the selling tab
@@ -180,14 +187,13 @@ func set_active(building: Building) -> void:
 func disable_sell_tab(disable_sell_tab: bool) -> void:
 	self.find_child("TabBar").set_tab_disabled(2, disable_sell_tab)
 	
-func set_building_selling() -> void:
-	current_building.currently_selling = true
-	sell_store_status_label.text = "Selling"
-	
-func set_building_storing() -> void:
-	current_building.currently_selling = false
-	sell_store_status_label.text = "Storing"
-
+func set_building_selling(selling: bool) -> void:
+	current_building.currently_selling = selling
+	if selling:
+		sell_store_status_label.text = "Selling"
+	else:
+		sell_store_status_label.text = "Storing"
+		
 ## Executed when pressing the sell button in the storage tab
 ## Collects the amount to sell for every resource and sells them
 func _sell_chosen_resources() -> void:

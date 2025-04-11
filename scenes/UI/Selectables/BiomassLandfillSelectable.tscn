@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://br2gryi0lgaf4"]
 
-[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_qd4xx"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_qd4xx"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_wwvka"]
 [ext_resource type="Resource" uid="uid://dpfrfu5x7p6yh" path="res://resources/buildings/biomass_landfill.tres" id="2_y6nl7"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_y6nl7"]
@@ -12,7 +12,7 @@ font = ExtResource("5_mxi4i")
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_7shli"]
+[sub_resource type="LabelSettings" id="LabelSettings_wwvka"]
 font = ExtResource("5_mxi4i")
 font_color = Color(0, 0, 0, 1)
 
@@ -89,19 +89,21 @@ autowrap_mode = 2
 
 [node name="TextContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(160, 162)
-layout_mode = 0
 offset_left = 145.0
 offset_top = 15.0
 offset_right = 305.0
 offset_bottom = 177.0
 
-[node name="InfoText" type="Label" parent="TextContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TextContainer"]
+layout_mode = 2
+
+[node name="InfoText" type="Label" parent="TextContainer/MarginContainer"]
 custom_minimum_size = Vector2(160, 162)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-label_settings = SubResource("LabelSettings_7shli")
+label_settings = SubResource("LabelSettings_wwvka")
 autowrap_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="."]

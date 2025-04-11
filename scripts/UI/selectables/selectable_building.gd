@@ -32,6 +32,10 @@ var outputs: Dictionary[String, int]
 ## The list of resources that are required to place the building
 @export var required: Dictionary[String, int]
 
+## The text label to be filled with information pertaining to the 
+## building
+@onready var info_label: Label = $TextContainer/MarginContainer/InfoText
+
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
 	if building_data is StorageBuildingData:
@@ -67,16 +71,17 @@ func _input(event: InputEvent) -> void:
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
-	self.find_child("TextContainer").find_child("InfoText").text = ''
+	info_label.text = ''
 	
 	## Begin with the name of the building
 	var panel_text: String = building_name + '\n'
 	panel_text += add_dict_to_panel(inputs, "Inputs")
+	panel_text += "\nUpkeep\n" + str(building_data.building_upkeep) + "\n"
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
 	panel_text += add_dict_to_panel(contributables, "Contributables")
 	panel_text += add_dict_to_panel(required, "Required")
-	self.find_child("TextContainer").find_child("InfoText").text = panel_text
+	info_label.text = panel_text
 
 ## Function for taking keys from a dictionary and returning 
 ## a formatted string containing those keys and their values

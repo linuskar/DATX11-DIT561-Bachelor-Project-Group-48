@@ -87,13 +87,15 @@ autowrap_mode = 2
 
 [node name="TextContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(160, 162)
-layout_mode = 0
 offset_left = 145.0
 offset_top = 15.0
 offset_right = 305.0
 offset_bottom = 177.0
 
-[node name="InfoText" type="Label" parent="TextContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TextContainer"]
+layout_mode = 2
+
+[node name="InfoText" type="Label" parent="TextContainer/MarginContainer"]
 custom_minimum_size = Vector2(160, 162)
 layout_mode = 2
 size_flags_horizontal = 3
