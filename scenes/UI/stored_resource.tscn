@@ -91,6 +91,7 @@ anchors_preset = 0
 offset_right = 280.0
 offset_bottom = 100.0
 size_flags_horizontal = 3
+mouse_filter = 1
 script = ExtResource("1_hxcr2")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -100,6 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_i82qv")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -124,6 +126,7 @@ size_flags_horizontal = 3
 
 [node name="SellingStorage" type="Control" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="DecreaseMore" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage"]
 layout_mode = 1
@@ -132,6 +135,7 @@ anchor_top = 0.1
 anchor_right = 0.1
 anchor_bottom = 0.9
 offset_right = 1.0
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_f1xfy")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gvsck")
 theme_override_styles/hover = SubResource("StyleBoxTexture_tsana")
@@ -148,6 +152,7 @@ anchor_top = 0.025
 anchor_right = 0.2
 anchor_bottom = 0.975
 offset_right = 1.0
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_f1xfy")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g7s0o")
 theme_override_styles/hover = SubResource("StyleBoxTexture_s8ok0")
@@ -164,6 +169,7 @@ anchor_top = 0.1
 anchor_right = 1.0
 anchor_bottom = 0.9
 offset_left = -1.0
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_f1xfy")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s8ok0")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sd6ve")
@@ -180,6 +186,7 @@ anchor_top = 0.025
 anchor_right = 0.9
 anchor_bottom = 0.975
 offset_left = -1.0
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_f1xfy")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_hxcr2")
 theme_override_styles/hover = SubResource("StyleBoxTexture_hxcr2")

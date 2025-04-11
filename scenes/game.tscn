@@ -41,3 +41,4 @@ autostart = true
 [connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
 [connection signal="build_list_entered" from="UserInterface" to="BuildManager" method="_on_user_interface_build_list_entered"]
 [connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
+[connection signal="ui_status" from="UserInterface" to="BuildManager" method="set_ui_status"]

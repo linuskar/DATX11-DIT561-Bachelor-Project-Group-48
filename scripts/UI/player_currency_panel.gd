@@ -1,4 +1,4 @@
-extends Control
+extends UIElement
 
 @onready var player_currency = $Styling/HBoxContainer/MarginContainer/CurrencyAmount
 

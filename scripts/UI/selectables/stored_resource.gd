@@ -1,4 +1,4 @@
-class_name StoredResourcePanel extends Control
+class_name StoredResourcePanel extends UIElement
 
 ## Reference to this scene, used for correctness
 ## in create instance function

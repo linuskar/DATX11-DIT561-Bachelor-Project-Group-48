@@ -182,6 +182,13 @@ func _on_user_interface_build_list_entered() -> void:
 	StateManager.set_state(StateManager.State.IDLE)
 	_on_build_mode()
 
+## Receiver for ui_status signal in UserInterface
+## Disables building ability if the mouse is in any ui element
+func set_ui_status(status: bool) -> void:
+	if status:
+		StateManager.set_state(StateManager.State.IDLE)
+		_on_build_mode()
+
 ## When the mouse has exited the building list with a selected building:
 ## Set the currently selected building and show its blueprint
 func _on_user_interface_building_wanted(building: BuildingData) -> void:

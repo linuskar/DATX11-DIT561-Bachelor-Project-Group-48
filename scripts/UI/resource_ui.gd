@@ -1,10 +1,12 @@
-extends Control
+extends UIElement
 
 var resource_labels: Dictionary[Enums.ResourceType, Label] = {}
 var resource_nodes: Dictionary[Enums.ResourceType, VBoxContainer] = {}
 var first_resource: bool = false
 
 func _ready():
+	super._ready()
+	
 	# References to each resource node and its label
 	resource_nodes[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood
 	resource_labels[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood/Label

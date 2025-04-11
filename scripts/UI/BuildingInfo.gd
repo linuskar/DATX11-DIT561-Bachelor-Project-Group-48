@@ -1,4 +1,4 @@
-class_name BuildingInfo extends Control
+class_name BuildingInfo extends UIElement
 
 @onready var image = $MarginContainer/General/VBoxContainer/MarginContainer3/FactoryImage
 @onready var building_name = $MarginContainer/General/VBoxContainer/BuildingName
@@ -17,6 +17,7 @@ var stored_resource_panel: PackedScene = preload("res://scenes/UI/stored_resourc
 var storage_connections: Dictionary[Enums.ResourceType, StoredResourcePanel] = {}
 
 func _ready() -> void:
+	super._ready()
 	BuildingSignals.building_clicked.connect(set_active)
 	set_inactive()
 

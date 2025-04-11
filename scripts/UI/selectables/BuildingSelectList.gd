@@ -1,4 +1,4 @@
-extends Node
+extends UIElement
 
 ## The currently selected building
 var selected: SelectableBuilding = null

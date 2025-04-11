@@ -174,7 +174,6 @@ offset_right = -744.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-mouse_force_pass_scroll_events = false
 script = ExtResource("1_y4byq")
 
 [node name="Panel" type="Panel" parent="."]
@@ -183,6 +182,7 @@ layout_mode = 0
 offset_right = 102.0
 offset_bottom = 162.0
 scale = Vector2(4, 4)
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("7_xxyib")
 
 [node name="ExitButtonPanel" type="Panel" parent="."]
@@ -191,6 +191,7 @@ offset_left = 314.0
 offset_right = 338.0
 offset_bottom = 24.0
 scale = Vector2(4, 4)
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_xjg1s")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -235,6 +236,7 @@ stretch_mode = 4
 [node name="BuildingName" type="Label" parent="MarginContainer/General/VBoxContainer"]
 custom_minimum_size = Vector2(307, 65)
 layout_mode = 2
+mouse_filter = 1
 text = "Factory"
 label_settings = SubResource("LabelSettings_oocw6")
 horizontal_alignment = 1
@@ -250,6 +252,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer4"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_xxyib")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer"]
@@ -283,12 +286,14 @@ layout_mode = 2
 [node name="Control" type="Control" parent="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Panel" type="Panel" parent="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_lonap")
 
 [node name="Label" type="Label" parent="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control"]
@@ -311,6 +316,7 @@ anchor_left = 0.6
 anchor_top = 0.2
 anchor_right = 0.9
 anchor_bottom = 0.8
+mouse_filter = 1
 theme_override_fonts/font = ExtResource("3_86cwq")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m21pg")
@@ -343,6 +349,7 @@ layout_mode = 2
 
 [node name="Sell" type="Button" parent="MarginContainer/Selling/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -359,6 +366,7 @@ autowrap_mode = 2
 
 [node name="Store" type="Button" parent="MarginContainer/Selling/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -379,6 +387,7 @@ offset_left = 19.0
 offset_top = 19.0
 offset_right = 314.0
 offset_bottom = 63.0
+mouse_filter = 1
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_86cwq")
 theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_xxyib")
