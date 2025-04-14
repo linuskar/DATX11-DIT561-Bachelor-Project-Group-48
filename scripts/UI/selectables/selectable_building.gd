@@ -34,7 +34,10 @@ var outputs: Dictionary[String, int]
 
 ## The text label to be filled with information pertaining to the 
 ## building
-@onready var info_label: Label = $TextContainer/MarginContainer/InfoText
+@onready var info_label: Label = $TextContainer/VBoxContainer/InfoText
+
+## Button that causes this selectable to be labeled a selected
+@onready var select_button: Button = $SelectButton
 
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
@@ -128,3 +131,10 @@ func unselected() -> void:
 
 func get_building_data() -> BuildingData:
 	return self.building_data
+
+
+func _set_button_text(toggled_on: bool) -> void:
+	if toggled_on:
+		self.select_button.text = "Unselect"
+	else:
+		self.select_button.text = "Select"
