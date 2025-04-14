@@ -9,3 +9,6 @@ extends ProductionBuildingData
 
 ## The resources the building can gather.
 @export var can_gather_resource_type: Enums.ResourceType
+
+func accept(handler: BuildingInfo) -> String:
+	return handler.handle_gath_building(self)

@@ -1,4 +1,4 @@
-extends Node
+extends UIElement
 
 ## The currently selected building
 var selected: SelectableBuilding = null
@@ -41,8 +41,6 @@ func _on_open_build_list() -> void:
 ## true means it is active and false means it is inactive.
 func set_state(state: bool) -> void:
 	if state:
-		self.find_child("List").position = Vector2(0.0, 0.0)
 		self.find_child("List").visible = true
 	if not state:
-		self.find_child("List").position = Vector2(0.0, 0.0) + self.find_child("List").size
 		self.find_child("List").visible = false

@@ -11,9 +11,6 @@ extends Control
 ## Emitted together with the building itself.
 signal selected(building: SelectableBuilding)
 
-## The cost of the building
-@export var cost: int
-
 ## Variable for checking whether the mouse is hovering over the buy button
 var hovering_buy: bool = false
 
@@ -35,10 +32,17 @@ var outputs: Dictionary[String, int]
 ## The list of resources that are required to place the building
 @export var required: Dictionary[String, int]
 
+## The text label to be filled with information pertaining to the 
+## building
+@onready var info_label: Label = $TextContainer/VBoxContainer/InfoText
+
+## Button that causes this selectable to be labeled a selected
+@onready var select_button: Button = $SelectButton
+
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
-	
-	init_resource_data(max_storage, building_data.max_storage)
+	if building_data is StorageBuildingData:
+		init_resource_data(max_storage, building_data.max_storage)
 	if building_data is ProductionBuildingData:
 		init_resource_data(outputs, building_data.output_generation)
 		init_resource_data(inputs, building_data.input_use_rates)
@@ -47,7 +51,7 @@ func _ready() -> void:
 	self.find_child("Containers").find_child("MarginContainer").find_child("BuildingIcon").set_texture(load(icon_path))
 		
 	## Set the name and cost of the building
-	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(cost))
+	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(building_data.building_cost))
 	
 	## Set the text of the main panel according to the template
 	set_panel_text()
@@ -70,16 +74,17 @@ func _input(event: InputEvent) -> void:
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
-	self.find_child("TextContainer").find_child("InfoText").text = ''
+	info_label.text = ''
 	
 	## Begin with the name of the building
 	var panel_text: String = building_name + '\n'
 	panel_text += add_dict_to_panel(inputs, "Inputs")
+	panel_text += "\nUpkeep\n" + str(building_data.building_upkeep) + "\n"
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
 	panel_text += add_dict_to_panel(contributables, "Contributables")
 	panel_text += add_dict_to_panel(required, "Required")
-	self.find_child("TextContainer").find_child("InfoText").text = panel_text
+	info_label.text = panel_text
 
 ## Function for taking keys from a dictionary and returning 
 ## a formatted string containing those keys and their values
@@ -126,3 +131,10 @@ func unselected() -> void:
 
 func get_building_data() -> BuildingData:
 	return self.building_data
+
+
+func _set_button_text(toggled_on: bool) -> void:
+	if toggled_on:
+		self.select_button.text = "Unselect"
+	else:
+		self.select_button.text = "Select"
