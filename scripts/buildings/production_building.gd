@@ -23,13 +23,11 @@ var currently_selling: bool = false
 ## Signal for when emissions are emitted
 signal emitted_emissions(building: Building, emission_type: Enums.ResourceType, amount: int)
 
-func _process(delta: float) -> void:
-	production_cycle.paused = not check_if_can_produce()
-
 func _ready() -> void:
 	super()
+	PlayerCurrency.currency_changed.connect(restart_operation)
 	init_production_building()
-	
+
 ## Function to initialize the production building.
 func init_production_building() -> void:
 	input_use_rates = building_data.input_use_rates
@@ -149,3 +147,13 @@ func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> vo
 		production_cycle.paused = false
 		
 	ResourceSignals.use_resource.emit(input_type, input_amount)
+	ResourceSignals.add_resource.emit(input_type, input_amount, self)
+
+## Function that checks whether there is enough currency to restart operation
+func restart_operation() -> void:
+	if not PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
+		production_cycle.paused = false
+
+## Function executing what happens when a building ceases operation
+func shut_down() -> void:
+	production_cycle.paused = true

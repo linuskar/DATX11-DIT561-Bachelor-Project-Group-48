@@ -7,6 +7,12 @@ class_name BuildingInfo extends UIElement
 @onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/VBoxContainer/StoredResources
 @onready var sell_value_label: Label = $MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/SellValue
 @onready var sell_store_status_label: Label = $MarginContainer/Selling/MarginContainer/VBoxContainer/MarginContainer/CurrentlySelling
+@onready var general_tab: ScrollContainer = $MarginContainer/General
+@onready var storage_tab: ScrollContainer = $MarginContainer/Storage
+@onready var mode_tab: ScrollContainer = $MarginContainer/Selling
+@onready var tab_bar: TabBar = $TabBar
+
+
 
 ## The currently held building
 var current_building: Building
@@ -178,6 +184,7 @@ func set_inactive() -> void:
 ## Show the info panel and update its information
 func set_active(building: Building) -> void:
 	current_building = building
+	reset_tabs()
 	self.show()
 	populate_info_label(building)
 	if current_building is StorageBuilding:
@@ -197,21 +204,34 @@ func set_building_selling(selling: bool) -> void:
 	else:
 		sell_store_status_label.text = "Storing"
 		
+## Resets the tabs and panels to basic state
+## Shows the general tab and panel by default
+func reset_tabs() -> void:
+	general_tab.show()
+	storage_tab.hide()
+	mode_tab.hide()
+	tab_bar.current_tab = 0
+
 ## Executed when pressing the sell button in the storage tab
 ## Collects the amount to sell for every resource and sells them
 func _sell_chosen_resources() -> void:
 	for resource_type in storage_connections.keys():
 		if not Enums.is_byproduct(resource_type):
+			
 			var stored_resource_panel: StoredResourcePanel = storage_connections.get(resource_type)
 			var sold_amount: int = stored_resource_panel.resource_to_sell
 			var currency_gain: int = Enums.get_value_of_resource(resource_type)*sold_amount
 			var stored_amount: int = current_building.output_storage.get(resource_type)
-			current_building.output_storage.set(resource_type, stored_amount-sold_amount)
+			
+			current_building._send_resources(resource_type, sold_amount)
 			PlayerCurrency.add_currency(currency_gain)
 			stored_resource_panel.resource_to_sell = 0
 			ResourceSignals.use_resource.emit(resource_type, sold_amount)
+			
 	sell_value_label.text = "0"
-		
+	if current_building is ProductionBuilding:
+		current_building.building_should_operate()
+	
 func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
 	var value: int = Enums.get_value_of_resources(resource, amount)
 	sell_value_label.set_text(str(int(sell_value_label.text)+value))
