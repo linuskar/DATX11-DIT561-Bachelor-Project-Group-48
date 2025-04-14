@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://505ijduj0bi7"]
+[gd_scene load_steps=11 format=3 uid="uid://505ijduj0bi7"]
 
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="1_5qm04"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="1_f8fog"]
+[ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="1_x6kkh"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_3pahr"]
 [ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="2_q8ipl"]
+[ext_resource type="Script" uid="uid://b3cvxigs8bu2a" path="res://scripts/UI/Research/research_entry.gd" id="4_q8ipl"]
+[ext_resource type="Resource" uid="uid://cgm6sg3jw06lu" path="res://resources/research_data/WoodCutterUpgrade1.tres" id="5_3f7ss"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5qm04"]
 font = ExtResource("2_3pahr")
@@ -22,9 +25,12 @@ font_color = Color(0, 0, 0, 1)
 [node name="ResearchEntry" type="Button"]
 custom_minimum_size = Vector2(550, 200)
 size_flags_horizontal = 3
+theme_override_styles/disabled = ExtResource("1_x6kkh")
 theme_override_styles/hover_pressed_mirrored = ExtResource("1_5qm04")
 theme_override_styles/hover = ExtResource("2_q8ipl")
 theme_override_styles/normal = ExtResource("1_f8fog")
+script = ExtResource("4_q8ipl")
+research_data = ExtResource("5_3f7ss")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 40)
