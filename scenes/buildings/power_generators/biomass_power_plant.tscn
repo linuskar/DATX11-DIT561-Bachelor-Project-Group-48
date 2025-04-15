@@ -1,14 +1,86 @@
-[gd_scene load_steps=8 format=3 uid="uid://0tdfrbqq2650"]
+[gd_scene load_steps=16 format=3 uid="uid://0tdfrbqq2650"]
 
 [ext_resource type="Script" uid="uid://cjthdvxj7p6kc" path="res://scripts/buildings/power_generators/biomass_power_plant.gd" id="1_pu6ix"]
 [ext_resource type="Resource" uid="uid://okbenuas7tpt" path="res://resources/buildings/biomass_power_plant.tres" id="2_n2s4e"]
 [ext_resource type="Texture2D" uid="uid://cyb5gnrnuag2x" path="res://assets/buildings_iso/biomass_power_plant.png" id="3_n2s4e"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_j2gvm"]
+[ext_resource type="Script" path="res://scripts/UI/clickable.gd" id="4_j2gvm"]
 [ext_resource type="PackedScene" uid="uid://crmaq0u0wgneb" path="res://scenes/buildings/smoke/smoke_v3.tscn" id="4_m34gt"]
 [ext_resource type="PackedScene" uid="uid://d0ydf6r25ra05" path="res://scenes/buildings/smoke/smoke_v4.tscn" id="5_m34gt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(96, 96)
+
+[sub_resource type="Animation" id="Animation_fnoo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5ylux"]
+resource_name = "place"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86t2d"]
+_data = {
+&"RESET": SubResource("Animation_fnoo6"),
+&"place": SubResource("Animation_5ylux")
+}
+
+[sub_resource type="Gradient" id="Gradient_0bwr0"]
+offsets = PackedFloat32Array(0.190909, 0.981818)
+colors = PackedColorArray(0.28, 0.204027, 0.0728, 1, 0.530625, 0.345795, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2iayc"]
+gradient = SubResource("Gradient_0bwr0")
+
+[sub_resource type="Curve" id="Curve_q2yos"]
+_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_d1lr6"]
+curve = SubResource("Curve_q2yos")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rjbir"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(64, 64, 64)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+radial_velocity_min = 9.99998
+radial_velocity_max = 75.0
+radial_velocity_curve = SubResource("CurveTexture_d1lr6")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_2iayc")
 
 [node name="BiomassPowerPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_pu6ix")
@@ -45,5 +117,19 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_j2gvm")
 
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rjbir")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
+[connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]

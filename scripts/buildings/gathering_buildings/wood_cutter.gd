@@ -11,7 +11,7 @@ var wood_nearby: int = 0
 
 func _ready():
 	super()
-
+	$place_animation.play("place")
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
 func check_for_output_overflow() -> bool:
@@ -111,3 +111,7 @@ func _gather_area(amount: int) -> Dictionary[Vector2, int]:
 			amount_to_set = max(amount_to_set, 2)
 			gather_dict.set(tile_pos, amount_to_set)
 	return gather_dict
+
+
+func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+	$place_particle.emitting = true

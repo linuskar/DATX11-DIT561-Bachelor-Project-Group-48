@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxdbme3urfb2i"]
+[gd_scene load_steps=14 format=3 uid="uid://dxdbme3urfb2i"]
 
 [ext_resource type="Script" uid="uid://1nqmw0tgxr05" path="res://scripts/buildings/storage_buildings/warehouse.gd" id="1_5pk0i"]
 [ext_resource type="Resource" uid="uid://ix3necejb3ix" path="res://resources/buildings/warehouse.tres" id="2_4c0dy"]
@@ -7,6 +7,78 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_fnoo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5ylux"]
+resource_name = "place"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86t2d"]
+_data = {
+&"RESET": SubResource("Animation_fnoo6"),
+&"place": SubResource("Animation_5ylux")
+}
+
+[sub_resource type="Gradient" id="Gradient_4c0dy"]
+offsets = PackedFloat32Array(0.190909, 0.981818)
+colors = PackedColorArray(0.28, 0.204027, 0.0728, 1, 0.530625, 0.345795, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0mb1i"]
+gradient = SubResource("Gradient_4c0dy")
+
+[sub_resource type="Curve" id="Curve_5kflm"]
+_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ctsfu"]
+curve = SubResource("Curve_5kflm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0t364"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(48, 48, 48)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+radial_velocity_min = 9.99998
+radial_velocity_max = 75.0
+radial_velocity_curve = SubResource("CurveTexture_ctsfu")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_0mb1i")
 
 [node name="Warehouse" type="StaticBody2D"]
 script = ExtResource("1_5pk0i")
@@ -31,4 +103,18 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_ctsfu")
 
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0t364")
+
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
+[connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]
