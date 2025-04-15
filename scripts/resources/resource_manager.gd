@@ -64,7 +64,8 @@ func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos
 					gather_area_dict.set(tile_pos, resource_tile)
 					building.near_resource = true
 	building.resource_tiles_to_gather = gather_area_dict
-	building.sort_resource_tiles()
+	if building is WoodCutter:
+		building.sort_resource_tiles_to_gather()
 	
 ## Function to apply emissions on resource tiles
 func apply_emissions(emissions_dict: Dictionary[Vector2, float], emission_type: Enums.ResourceType) -> void:
