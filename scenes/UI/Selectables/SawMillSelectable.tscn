@@ -1,33 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://8hwvsiww32an"]
+[gd_scene load_steps=9 format=3 uid="uid://b6oblrviibys1"]
 
-[ext_resource type="Script" uid="uid://cmrpg6sslwag4" path="res://scripts/UI/iron_mine_selectable.gd" id="1_op2ex"]
-[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_pjbyy"]
-[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_g177c"]
-[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_fku1p"]
-[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_s36hy"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectable_building.gd" id="1_ka0ux"]
+[ext_resource type="Resource" uid="uid://1tptrw7m37b" path="res://resources/buildings/saw_mill.tres" id="2_feteh"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_kiv37"]
+[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_feteh"]
+[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_lt1rx"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_hgtfd"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_pjbyy"]
-font = ExtResource("5_s36hy")
+[sub_resource type="LabelSettings" id="LabelSettings_b1wv1"]
+font = ExtResource("5_hgtfd")
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_g177c"]
-font = ExtResource("5_s36hy")
+[sub_resource type="LabelSettings" id="LabelSettings_h70tt"]
+font = ExtResource("5_hgtfd")
 font_color = Color(0, 0, 0, 1)
 
-[node name="IronMineSelectable" type="Control"]
-custom_minimum_size = Vector2(320, 192)
+[node name="SawMillSelectable" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -832.0
-offset_bottom = -456.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("1_op2ex")
-icon_path = "uid://d1566usymavrh"
+script = ExtResource("1_ka0ux")
+icon_path = "uid://dhrbh478p212n"
+building_data = ExtResource("2_feteh")
+cost = 100
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
@@ -36,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("2_pjbyy")
+theme_override_styles/panel = ExtResource("2_kiv37")
 
 [node name="Selected" type="Panel" parent="."]
 visible = false
@@ -46,7 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("3_g177c")
+theme_override_styles/panel = ExtResource("3_feteh")
 
 [node name="Containers" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -57,7 +56,7 @@ anchor_right = 0.425
 anchor_bottom = 0.65
 offset_right = -2.0
 offset_bottom = -0.399994
-theme_override_styles/panel = ExtResource("2_pjbyy")
+theme_override_styles/panel = ExtResource("2_kiv37")
 
 [node name="MarginContainer" type="MarginContainer" parent="Containers"]
 layout_mode = 2
@@ -68,7 +67,7 @@ theme_override_constants/margin_bottom = 0
 
 [node name="BuildingIcon" type="TextureRect" parent="Containers/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("4_fku1p")
+texture = ExtResource("4_lt1rx")
 
 [node name="BuildingNameCost" type="Label" parent="."]
 layout_mode = 0
@@ -78,7 +77,7 @@ offset_right = 134.0
 offset_bottom = 181.0
 mouse_filter = 1
 text = "Name Cost"
-label_settings = SubResource("LabelSettings_pjbyy")
+label_settings = SubResource("LabelSettings_b1wv1")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -96,7 +95,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-label_settings = SubResource("LabelSettings_g177c")
+label_settings = SubResource("LabelSettings_h70tt")
 autowrap_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="."]

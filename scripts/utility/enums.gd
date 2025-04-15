@@ -14,12 +14,15 @@ static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIO
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
-	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
+	ResourceType.COAL, ResourceType.PLANKS, ResourceType.ELECTRICITY, ResourceType.WOOD]
 	
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.IRON_ORE: "IRON ORE",
 		ResourceType.COAL: "COAL",
 		ResourceType.WOOD: "WOOD",
+		ResourceType.PLANKS: "PLANKS",
+		ResourceType.STEEL: "STEEL",
+		ResourceType.GEARS: "GEARS",
 		ResourceType.CO2: "CO2",
 		ResourceType.S02: "SO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
@@ -31,6 +34,9 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"IRON ORE": ResourceType.IRON_ORE,
 		"COAL": ResourceType.COAL,
 		"WOOD": ResourceType.WOOD,
+		"PLANKS": ResourceType.PLANKS,
+		"STEEL": ResourceType.STEEL,
+		"GEARS": ResourceType.GEARS,
 		"CO2": ResourceType.CO2,
 		"SO2": ResourceType.S02,
 		"ELECTRICITY": ResourceType.ELECTRICITY,
@@ -47,6 +53,9 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
 	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
 	BuildingType.WAREHOUSE: "WAREHOUSE",
+	BuildingType.SAW_MILL: "SAW MILL",
+	BuildingType.STEEL_MILL: "STEEL MILL",
+	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
@@ -72,6 +81,9 @@ enum BuildingType {
 	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
 	BIOMASS_LANDFILL, ## The building type for a biomass landfill
 	WAREHOUSE, ## The building type for a warehouse
+	SAW_MILL, ## The building type for a saw mill 
+	STEEL_MILL, ## The building type for a steel mill 
+	GEAR_FACTORY, ## The building type for a gear factory
 }
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:
@@ -88,6 +100,9 @@ enum ResourceType {
 	IRON_ORE, ## The resource type for iron ore
 	COAL, ## The resource type for coal
 	WOOD, ## The resource type for wood
+	PLANKS, ## The resource type for planks
+	STEEL, ## The resource type for steel
+	GEARS, ## The resource type for gears
 	CO2, ## The resource type for carbon dioxide
 	S02, ## The resource type for sulfur dioxide
 	ELECTRICITY, ## The resource type for electricity

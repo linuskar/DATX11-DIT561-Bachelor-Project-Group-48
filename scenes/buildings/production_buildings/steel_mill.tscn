@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0obknopqb3j6"]
+
+[ext_resource type="Script" uid="uid://4hqwpqg5pt2" path="res://scripts/buildings/produktion_buildings/steel_mill.gd" id="1_vousk"]
+[ext_resource type="Resource" uid="uid://brpfklrac16fv" path="res://resources/buildings/steel_mill.tres" id="2_b64yw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_haa26"]
+
+[node name="SteelMill" type="StaticBody2D"]
+script = ExtResource("1_vousk")
+building_data = ExtResource("2_b64yw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_haa26")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=19 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
@@ -13,7 +13,10 @@
 [ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="9_epysl"]
 [ext_resource type="PackedScene" uid="uid://eho7susuq8fj" path="res://scenes/UI/Selectables/WarehouseSelectable.tscn" id="10_nt76t"]
 [ext_resource type="StyleBox" uid="uid://bfttb8f017gk2" path="res://resources/style_boxes/metal_red_outline_darker.tres" id="11_epysl"]
+[ext_resource type="PackedScene" uid="uid://b6oblrviibys1" path="res://scenes/UI/Selectables/SawMillSelectable.tscn" id="11_qf7o5"]
 [ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="12_djsgt"]
+[ext_resource type="PackedScene" uid="uid://djywoeivhsn2e" path="res://scenes/UI/Selectables/SteelMillSelectable.tscn" id="12_qf7o5"]
+[ext_resource type="PackedScene" uid="uid://icjceasvdf1n" path="res://scenes/UI/Selectables/GearFactorySelectable.tscn" id="13_bh0ot"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mva2"]
 
@@ -31,7 +34,6 @@ pivot_offset = Vector2(400, 0)
 script = ExtResource("1_dphbc")
 
 [node name="List" type="Control" parent="."]
-visible = false
 clip_contents = true
 anchors_preset = 0
 offset_right = 400.0
@@ -92,6 +94,16 @@ layout_mode = 2
 [node name="WarehouseSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("10_nt76t")]
 layout_mode = 2
 
+[node name="SawMillSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("11_qf7o5")]
+custom_minimum_size = Vector2(320, 192)
+layout_mode = 2
+
+[node name="SteelMillSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("12_qf7o5")]
+layout_mode = 2
+
+[node name="GearFactorySelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("13_bh0ot")]
+layout_mode = 2
+
 [node name="OpenListButton" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.2
@@ -127,4 +139,7 @@ text = "Buildings"
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/BiomassLandfillSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/WarehouseSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/SawMillSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/SteelMillSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/GearFactorySelectable" to="." method="_on_building_selected"]
 [connection signal="button_down" from="OpenListButton/Button" to="." method="_on_open_build_list"]
