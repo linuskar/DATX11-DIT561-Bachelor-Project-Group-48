@@ -434,5 +434,7 @@ texture_hover = SubResource("AtlasTexture_xxyib")
 stretch_mode = 4
 
 [connection signal="button_down" from="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/Button" to="." method="_sell_chosen_resources"]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling" binds= [true]]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_selling" binds= [false]]
 [connection signal="tab_clicked" from="TabBar" to="." method="_set_tab_visible"]
 [connection signal="button_down" from="CloseButton" to="." method="set_inactive"]
