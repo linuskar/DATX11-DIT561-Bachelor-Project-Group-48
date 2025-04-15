@@ -37,7 +37,7 @@ func init_production_building() -> void:
 ## Activated at the end of each cycle.
 func _on_timer_timeout() -> void:
 	_output_resources()
-	
+
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
 	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:

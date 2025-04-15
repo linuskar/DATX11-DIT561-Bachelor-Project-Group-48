@@ -227,10 +227,8 @@ func _sell_chosen_resources() -> void:
 			PlayerCurrency.add_currency(currency_gain)
 			stored_resource_panel.resource_to_sell = 0
 			ResourceSignals.use_resource.emit(resource_type, sold_amount)
-			
+	ResourceSignals.add_input_building.emit(current_building)
 	sell_value_label.text = "0"
-	if current_building is ProductionBuilding:
-		current_building.building_should_operate()
 	
 func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
 	var value: int = Enums.get_value_of_resources(resource, amount)

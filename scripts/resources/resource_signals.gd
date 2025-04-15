@@ -11,3 +11,6 @@ signal use_resource(resource_type: Enums.ResourceType, amount: int)
 
 #Send the resource type and the new amount to show
 signal update_UI(resource_type: Enums.ResourceType, amount: int)
+
+#Add a new building to inputs
+signal add_input_building(building: StorageBuilding)
