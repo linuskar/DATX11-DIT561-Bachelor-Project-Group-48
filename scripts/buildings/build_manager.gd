@@ -185,18 +185,6 @@ func _on_placed_building(building: Building) -> void:
 	
 # TODO: need to check for valid placement
 func landfill_expand(landfill: BiomassLandfill, position_to_expand) -> void:
-	var new_sprite: Sprite2D = landfill.building_sprite.duplicate()
-	new_sprite.position += position_to_expand
-	landfill.add_child(new_sprite)
-	landfill.connected_landfill_sprites.append(new_sprite)
-	
-	var new_collision_shape: CollisionShape2D = null
-	
-	var building_info_button: TextureButton = landfill.clickable.duplicate()
-	building_info_button.position += Vector2(position_to_expand)
-	landfill.add_child(building_info_button)
-	landfill.connected_landfill_clickables.append(building_info_button)
-	
 	var building_tile_size: Vector2 = landfill.building_data.building_size
 	var adjusted_pos: Vector2 = landfill.position + position_to_expand
 
@@ -208,7 +196,8 @@ func landfill_expand(landfill: BiomassLandfill, position_to_expand) -> void:
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = landfill
 	placed_building.emit(landfill)
 
-func landfill_shrink(landfill: BiomassLandfill, position_to_deoccupy: Vector2) -> void:
+## Remove the tile that was occupied by the landfill
+func landfill_shrink(position_to_deoccupy: Vector2) -> void:
 	occupied_tiles.erase(position_to_deoccupy)
 
 ## When the mouse has entered the building list:

@@ -34,7 +34,6 @@ func new_building_to_input(building: StorageBuilding) -> void:
 	var all_inputs = building.building_data.input_types
 	for input_type in all_inputs:
 		var all_input_buildings = buildings_input.get(input_type)
-		print(all_input_buildings.size())
 		if !all_input_buildings.has(building):
 			all_input_buildings.append(building)
 			buildings_input.set(input_type, all_input_buildings)
