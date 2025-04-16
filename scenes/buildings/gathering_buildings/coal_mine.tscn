@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://djt4gpmfrp805"]
+[gd_scene load_steps=19 format=3 uid="uid://djt4gpmfrp805"]
 
 [ext_resource type="Script" uid="uid://o0k4pecox0g" path="res://scripts/buildings/gathering_buildings/coal_mine.gd" id="1_5wtww"]
 [ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_f8yp3"]
@@ -46,40 +46,55 @@ _data = {
 &"place": SubResource("Animation_5ylux")
 }
 
-[sub_resource type="Gradient" id="Gradient_klpcp"]
+[sub_resource type="Curve" id="Curve_klpcp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b44sr"]
+curve = SubResource("Curve_klpcp")
+
+[sub_resource type="Gradient" id="Gradient_02jrp"]
 offsets = PackedFloat32Array(0.190909, 0.981818)
-colors = PackedColorArray(0.28, 0.204027, 0.0728, 1, 0.530625, 0.345795, 0, 1)
+colors = PackedColorArray(0.84, 0.84, 0.84, 1, 0.82, 0.81426, 0.8036, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7qqa8"]
-gradient = SubResource("Gradient_klpcp")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ahlc7"]
+gradient = SubResource("Gradient_02jrp")
 
-[sub_resource type="Curve" id="Curve_02jrp"]
+[sub_resource type="Curve" id="Curve_8f8fg"]
 _data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_7qqa8"]
-curve = SubResource("Curve_02jrp")
+curve = SubResource("Curve_8f8fg")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8f8fg"]
+[sub_resource type="Curve" id="Curve_qrqbt"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3m8jq"]
+curve = SubResource("Curve_qrqbt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rn1kv"]
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(16, 16, 16)
 emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_axis = Vector3(0, 0, 0)
 emission_ring_height = 1.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
-angle_min = 1.07288e-05
-angle_max = 360.0
 angular_velocity_min = -1.60933e-05
 angular_velocity_max = 360.0
 radial_velocity_min = 9.99998
-radial_velocity_max = 75.0
+radial_velocity_max = 30.0
 radial_velocity_curve = SubResource("CurveTexture_7qqa8")
 gravity = Vector3(0, 0, 0)
-scale_min = 0.2
-scale_max = 3.0
-color_ramp = SubResource("GradientTexture1D_7qqa8")
+scale_min = 0.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_3m8jq")
+color_ramp = SubResource("GradientTexture1D_ahlc7")
+alpha_curve = SubResource("CurveTexture_b44sr")
 
 [node name="CoalMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5wtww")
@@ -118,11 +133,11 @@ libraries = {
 
 [node name="place_particle" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 30
+amount = 60
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_8f8fg")
+process_material = SubResource("ParticleProcessMaterial_rn1kv")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
