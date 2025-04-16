@@ -29,12 +29,12 @@ func expand_landfill() -> void:
 	var current_max_biomass: int = max_storage.get(Enums.ResourceType.BIOMASS)
 	if current_biomass >= current_max_biomass:
 		next_position_to_expand_to(connected_landfill_sprites.size() - 1)
-		
+
 		## TODO: Why is there a problem here? It will otherwise not expand at all
 		## even if there is space
 		## If no possible positon that the landfill can expand to
-		#if position_to_expand_to.x == 0 and position_to_expand_to.y == 0 and connected_landfill_sprites.size() > 0:
-			#return
+		if position_to_expand_to.x == 0 and position_to_expand_to.y == 0 and connected_landfill_sprites.size() > 0:
+			return
 		
 		amount_of_expansions += 1
 		
@@ -60,25 +60,23 @@ func next_position_to_expand_to(index: int) -> void:
 		var prev_landfill_pos: Vector2 = Vector2(0,0)
 		
 		## Go through all tiles the landfill occupies and eventually stop
-		if index > 0:
+		if index >= 0:
 			prev_landfill_pos = connected_landfill_sprites[index].position
-		else:
-			#position_to_expand_to = Vector2(0, 0)
-			return
+
 		position_to_expand_to = look_at_tiles_around(prev_landfill_pos)
 
 		## if no direction was possible
 		if position_to_expand_to.x == 0 and position_to_expand_to.y == 0:
 			next_position_to_expand_to(index - 1)
-		else:
-			#position_to_expand_to = Vector2(0, 0)
-			return
-		
+	
 func look_at_tiles_around(current_tile: Vector2) -> Vector2:
 	var occupied_tiles: Array[Vector2] = BuildManagerGlobal.occupied_tiles.keys()
 	var pos: Vector2 = Vector2(0,0)
 	var directions = Enums.Direction.values()
 	directions.shuffle()
+	
+	var valid_tile_types_to_place: Array[Enums.TileType] = building_data.valid_tile_types_to_place_on
+	var source_id: int = -1
 	
 	## Have to check for occupied tiles
 	## TODO: Check for tile type that the landfill can be placed on
@@ -92,7 +90,9 @@ func look_at_tiles_around(current_tile: Vector2) -> Vector2:
 				pos = Vector2(-grid_size, 0) + current_tile
 			Enums.Direction.RIGHT:
 				pos = Vector2(grid_size, 0) + current_tile
-		if !(pos + self.position in occupied_tiles):
+		var position_to_check: Vector2 = pos + self.position
+		## TODO: check valid tile here
+		if !(position_to_check in occupied_tiles):
 			return pos
 		pos = Vector2(0,0)
 	return pos
