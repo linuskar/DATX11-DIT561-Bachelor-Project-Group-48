@@ -27,7 +27,7 @@ func _ready() -> void:
 ## Function to initialize the storage building.
 ## Note: Input and output are the same for a building who only stores resources
 func init_storage_building() -> void:
-	max_storage = building_data.max_storage
+	max_storage = building_data.max_storage.duplicate()
 	
 	for resource in building_data.input_types:
 		input_storage.set(resource, 0)

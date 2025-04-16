@@ -12,8 +12,6 @@ class_name BuildingInfo extends UIElement
 @onready var mode_tab: ScrollContainer = $MarginContainer/Selling
 @onready var tab_bar: TabBar = $TabBar
 
-
-
 ## The currently held building
 var current_building: Building
 
@@ -89,7 +87,7 @@ func handle_building(building: BuildingData) -> String:
 func handle_storage_building(building: StorageBuildingData) -> String:
 	var text: String = ""
 	text += handle_building(building)
-	text += get_storage_text(building)
+	text += get_storage_text()
 	return text
 	
 func handle_prod_building(building: ProductionBuildingData) -> String:
@@ -144,11 +142,11 @@ func get_valid_tiles_text(building_data: BuildingData) -> String:
 	return text
 
 ## Adds storage capacity to the text
-func get_storage_text(building_data: StorageBuildingData) -> String:
+func get_storage_text() -> String:
 	var text: String = ""
 	text += "\nStorage\n"
-	for key in building_data.max_storage.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.max_storage.get(key)) + '\n'
+	for key in current_building.max_storage.keys():
+		text += Enums.resource_type_to_string(key) + ': ' + str(current_building.max_storage.get(key)) + '\n'
 	return text
 
 ## Specific for gathering buildings, add the resource node it has to be placed on for operation
