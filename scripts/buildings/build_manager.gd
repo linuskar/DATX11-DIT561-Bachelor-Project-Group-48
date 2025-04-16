@@ -175,8 +175,41 @@ func _on_placed_building(building: Building) -> void:
 		for y in range(building_tile_size.y):
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
 	placed_building.emit(building)
+	
+	if building is BiomassLandfill:
+		building.landfill_expanded.connect(landfill_expand)
+		building.landfill_shrinked.connect(landfill_shrink)
+		
 	BuildManagerGlobal.update_roads.emit()
 	BuildManagerGlobal.print_networks()
+	
+# TODO: need to check for valid placement
+func landfill_expand(landfill: BiomassLandfill, position_to_expand) -> void:
+	var new_sprite: Sprite2D = landfill.building_sprite.duplicate()
+	new_sprite.position += position_to_expand
+	landfill.add_child(new_sprite)
+	landfill.connected_landfill_sprites.append(new_sprite)
+	
+	var new_collision_shape: CollisionShape2D = null
+	
+	var building_info_button: TextureButton = landfill.clickable.duplicate()
+	building_info_button.position += Vector2(position_to_expand)
+	landfill.add_child(building_info_button)
+	landfill.connected_landfill_clickables.append(building_info_button)
+	
+	var building_tile_size: Vector2 = landfill.building_data.building_size
+	var adjusted_pos: Vector2 = landfill.position + position_to_expand
+
+	## Adjust the position to start in a top-left manner
+	adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
+	adjusted_pos -= Vector2(0, grid_size * (building_tile_size.y -  1) / 2)
+	for x in range(building_tile_size.x):
+		for y in range(building_tile_size.y):
+			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = landfill
+	placed_building.emit(landfill)
+
+func landfill_shrink(landfill: BiomassLandfill, position_to_deoccupy: Vector2) -> void:
+	occupied_tiles.erase(position_to_deoccupy)
 
 ## When the mouse has entered the building list:
 ## Disable the state of placing a building and hide the blueprint

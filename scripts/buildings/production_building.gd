@@ -147,7 +147,7 @@ func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> vo
 		production_cycle.paused = false
 		
 	ResourceSignals.use_resource.emit(input_type, input_amount)
-	ResourceSignals.add_resource.emit(input_type, input_amount, self)
+	## ResourceSignals.add_resource.emit(input_type, input_amount, self)
 
 ## Function that checks whether there is enough currency to restart operation
 func restart_operation() -> void:
