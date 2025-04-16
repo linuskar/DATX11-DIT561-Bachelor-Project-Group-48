@@ -179,7 +179,8 @@ func _on_placed_building(building: Building) -> void:
 	if building is BiomassLandfill:
 		building.landfill_expanded.connect(landfill_expand)
 		building.landfill_shrinked.connect(landfill_shrink)
-		
+		building.occupied_tiles_by_landfill.append(adjusted_pos)
+
 	BuildManagerGlobal.update_roads.emit()
 	BuildManagerGlobal.print_networks()
 	
@@ -195,10 +196,12 @@ func landfill_expand(landfill: BiomassLandfill, position_to_expand) -> void:
 		for y in range(building_tile_size.y):
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = landfill
 	placed_building.emit(landfill)
-
+	landfill.occupied_tiles_by_landfill.append(adjusted_pos)
+	
 ## Remove the tile that was occupied by the landfill
-func landfill_shrink(position_to_deoccupy: Vector2) -> void:
+func landfill_shrink(landfill: BiomassLandfill, position_to_deoccupy: Vector2) -> void:
 	occupied_tiles.erase(position_to_deoccupy)
+	landfill.occupied_tiles_by_landfill.erase(position_to_deoccupy)
 
 ## When the mouse has entered the building list:
 ## Disable the state of placing a building and hide the blueprint

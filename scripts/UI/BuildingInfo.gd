@@ -144,7 +144,7 @@ func get_valid_tiles_text(building_data: BuildingData) -> String:
 ## Adds storage capacity to the text
 func get_storage_text() -> String:
 	var text: String = ""
-	text += "\nStorage\n"
+	text += "\nMax Storage\n"
 	for key in current_building.max_storage.keys():
 		text += Enums.resource_type_to_string(key) + ': ' + str(current_building.max_storage.get(key)) + '\n'
 	return text
