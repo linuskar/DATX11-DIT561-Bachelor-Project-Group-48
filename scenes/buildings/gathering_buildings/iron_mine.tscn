@@ -38,13 +38,13 @@ mouse_filter = 1
 script = ExtResource("4_6f8g6")
 
 [node name="Smoke_v2" parent="." instance=ExtResource("5_oc4lm")]
-position = Vector2(3.253, -14.6064)
+position = Vector2(-9, -24)
 
 [node name="Smoke_v2_2" parent="." instance=ExtResource("5_oc4lm")]
-position = Vector2(7.76016, -14.6252)
+position = Vector2(0, -28)
 
 [node name="Smoke_v2_3" parent="." instance=ExtResource("5_oc4lm")]
-position = Vector2(12.258, -14.6627)
+position = Vector2(19, -27)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]

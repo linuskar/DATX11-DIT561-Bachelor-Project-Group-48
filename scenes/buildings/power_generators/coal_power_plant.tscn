@@ -24,14 +24,6 @@ texture = ExtResource("3_f2q00")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Smoke_v3" parent="." instance=ExtResource("4_hmb1g")]
-position = Vector2(-15.5534, -40.5851)
-emitting = false
-
-[node name="Smoke_v4" parent="." instance=ExtResource("5_f2q00")]
-position = Vector2(25.017, -13.5643)
-emitting = false
-
 [node name="Clickable" type="TextureButton" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,6 +36,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_lqwfw")
+
+[node name="Smoke_v3" parent="." instance=ExtResource("4_hmb1g")]
+position = Vector2(-8, -40)
+emitting = false
+
+[node name="Smoke_v4" parent="." instance=ExtResource("5_f2q00")]
+position = Vector2(8, -24)
+emitting = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
