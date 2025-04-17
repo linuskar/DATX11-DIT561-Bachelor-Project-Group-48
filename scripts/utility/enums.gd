@@ -14,8 +14,16 @@ static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIO
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
-	ResourceType.COAL, ResourceType.PLANKS, ResourceType.ELECTRICITY, ResourceType.WOOD]
-	
+	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
+
+static var resource_image_paths: Dictionary[ResourceType, String] = {
+	ResourceType.IRON_ORE: "res://assets/UI/Resource UI/iron.tres",
+	ResourceType.COAL: "res://assets/UI/Resource UI/coal.tres",
+	ResourceType.WOOD: "res://assets/UI/Resource UI/wood.tres",
+	ResourceType.ELECTRICITY: "res://assets/UI/Resource UI/electricity.png",
+	ResourceType.BIOMASS: "res://assets/UI/Resource UI/biomass.png"
+}
+
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.IRON_ORE: "IRON ORE",
 		ResourceType.COAL: "COAL",
@@ -45,6 +53,7 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 	}
 
 static var building_names: Dictionary[BuildingType, String] = {
+
 	BuildingType.FACTORY: "FACTORY",
 	BuildingType.IRON_MINE: "IRON MINE",
 	BuildingType.COAL_MINE: "COAL MINE",
@@ -56,6 +65,7 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.SAW_MILL: "SAW MILL",
 	BuildingType.STEEL_MILL: "STEEL MILL",
 	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
+	BuildingType.ROAD: "ROAD"
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
@@ -69,7 +79,22 @@ static var tile_names: Dictionary[TileType, String] = {
 	TileType.STONE: "STONE",
 	TileType.GRASS: "GRASS",
 	TileType.RESOURCE: "RESOURCE",
-	}	
+	}
+# List of the value of every resource when sold
+static var resource_costs: Dictionary[ResourceType, int] = {
+	ResourceType.IRON_ORE: 2,
+	ResourceType.COAL: 3,
+	ResourceType.WOOD: 5,
+	ResourceType.ELECTRICITY: 10
+}
+
+## Function that returns the value of a resource when sold
+static func get_value_of_resource(resource: ResourceType) -> int:
+	return resource_costs.get(resource)
+	
+static func get_value_of_resources(resource: ResourceType, amount: int) -> int:
+	return resource_costs.get(resource)*amount
+	
 ## The different types of buildings in the game
 # Factory and gathering building are just temporary names?
 enum BuildingType {
@@ -84,6 +109,7 @@ enum BuildingType {
 	SAW_MILL, ## The building type for a saw mill 
 	STEEL_MILL, ## The building type for a steel mill 
 	GEAR_FACTORY, ## The building type for a gear factory
+	ROAD
 }
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:

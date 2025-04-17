@@ -42,6 +42,7 @@ func new_building_to_input(building: StorageBuilding) -> void:
 func transport_resources(type: Enums.ResourceType) -> void:
 	## TODO: Allow for a part of resources a building stores to be transported
 	## for the case when max_input >= max_get
+	
 	if !buildings_input.get(type).is_empty() && !buildings_output.get(type).is_empty():
 		var next_building: StorageBuilding = buildings_input.get(type).pop_front()
 		var output_building: StorageBuilding = buildings_output.get(type).pop_front()
@@ -50,6 +51,7 @@ func transport_resources(type: Enums.ResourceType) -> void:
 		## does not transport resources to one another or else there will be infinite recursion
 		## So storage building doesn't transport to itself.
 		## Also due to the use of pop, it will take a while to transport to the building that needs it other than the "StorageBuilding"
+			
 		if next_building == output_building or (Enums.is_warehouse(next_building.building_type) and Enums.is_warehouse(output_building.building_type)):
 			buildings_input.get(type).push_back(next_building)
 			buildings_output.get(type).push_back(output_building)

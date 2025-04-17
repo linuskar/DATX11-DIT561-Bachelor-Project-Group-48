@@ -10,3 +10,6 @@ extends GatheringBuildingData
 
 ## The radius in tiles for which the gathering building can gather in (a square area).
 @export var gather_radius: int
+
+func accept(handler: BuildingInfo) -> String:
+	return handler.handle_areagath_building(self)

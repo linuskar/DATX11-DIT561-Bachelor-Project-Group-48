@@ -16,7 +16,7 @@ extends Node
 @onready var map_layer: MapLayer = $"../MapLayer"
 
 ## The currently occupied tiles, for example a building, tree, etc.
-var occupied_tiles: Dictionary[Vector2, Building] = {}
+var occupied_tiles: Dictionary[Vector2, Building] = BuildManagerGlobal.occupied_tiles
 
 ## The colors highlighthing the placment of builings.
 var valid_placement_color: Color = Color(0.5, 0.5, 1, 0.8) 
@@ -74,14 +74,25 @@ func _update_blueprint():
 	var grid_pos: Vector2 = get_snapped_world_position()
 	blueprint.position = grid_pos 
 	
+	var min_x: float = map_layer.map_areas.left_bound.position.x
+	var max_x: float = map_layer.map_areas.right_bound.position.x
+
+	var min_y: float = map_layer.map_areas.upper_bound.position.y
+	var max_y: float = map_layer.map_areas.lower_bound.position.y
+	var blueprint_size: Vector2 = blueprint.building_data.building_size
+
+	## Clamp the blueprint position to make it not go out the playable area
+	blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size * (blueprint_size.x - 1) / 2, max_x - grid_size * (blueprint_size.x - 1) / 2)
+	blueprint.position.y = clampf(blueprint.position.y, min_y +  grid_size * (blueprint_size.y -  1) / 2, max_y -  grid_size * (blueprint_size.y -  1) / 2)
+	
 	## Checking for valid placement
-	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false:
+	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false or not player_can_afford(blueprint):
 		blueprint.modulate = invalid_placement_color
 		valid_placement = false
 	else:
 		blueprint.modulate = valid_placement_color	
-		valid_placement = true	
-	
+		valid_placement = true
+			
 func _input(event: InputEvent) -> void:
 	## When trying to place a building that is selected
 	if event.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
@@ -90,6 +101,12 @@ func _input(event: InputEvent) -> void:
 	## The case where the action for placing buildings is released
 	if event.is_action_released("place") and StateManager.state == StateManager.State.PLACE_BUILDING:
 		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
+
+## Function checking whether the player can afford the building.
+## Returns false if the player cannot afford the building.
+func player_can_afford(blueprint: BuildingBlueprint) -> bool:
+	var cost: int = blueprint.building_data.building_cost
+	return PlayerCurrency.player_held_currency >= cost
 
 ## Returns the world position of the mouse snapped to the nearest tile on the grid.
 ## This function converts the mouse position from world space to tile coordinates
@@ -135,6 +152,9 @@ func place_building() -> void:
 	var new_building: Building = buildings.get(building_type).instantiate()
 	new_building.position = blueprint.position
 	get_parent().add_child(new_building)
+	
+	## Additionally decrease the players held currency equal to the cost of the building
+	PlayerCurrency.remove_currency(blueprint.building_data.building_cost)
 	_on_placed_building(new_building)
 	
 ## Function checking if the tiles where the blueprint
@@ -166,12 +186,21 @@ func _on_placed_building(building: Building) -> void:
 		for y in range(building_tile_size.y):
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
 	placed_building.emit(building)
+	BuildManagerGlobal.update_roads.emit()
+	BuildManagerGlobal.print_networks()
 
 ## When the mouse has entered the building list:
 ## Disable the state of placing a building and hide the blueprint
 func _on_user_interface_build_list_entered() -> void:
 	StateManager.set_state(StateManager.State.IDLE)
 	_on_build_mode()
+
+## Receiver for ui_status signal in UserInterface
+## Disables building ability if the mouse is in any ui element
+func set_ui_status(status: bool) -> void:
+	if status:
+		StateManager.set_state(StateManager.State.IDLE)
+		_on_build_mode()
 
 ## When the mouse has exited the building list with a selected building:
 ## Set the currently selected building and show its blueprint

@@ -43,11 +43,11 @@ func check_for_output_overflow() -> bool:
 			
 ## Function to produce the goods the gathering building can output.
 ## TODO: probably make it so wood is gathered in the center
-func _produce_goods() -> void:
+func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
+	var resources_produced: Dictionary[Enums.ResourceType, int]
 	for produced_good in produced_goods:
 		var gather_rate_per_tile: int = output_generation.get(produced_good)
 		var gather_dict: Dictionary[Vector2, int] = _gather_area(gather_rate_per_tile)
-		var produced_good_stored: int = output_storage.get(produced_good)
 		var produced_good_generated: int = 0
 
 		for resource_pos in resource_tiles_to_gather.keys():
@@ -61,16 +61,15 @@ func _produce_goods() -> void:
 			else:
 				resource_tiles_to_gather.erase(resource_pos)
 				
-		## Set the amount of wood produced	
+		## Set the amount of wood produced
 		if produced_good == Enums.ResourceType.WOOD:
 			produced_wood = produced_good_generated
-			
-		produced_good_stored += produced_good_generated
-		output_storage.set(produced_good, produced_good_stored)
-		ResourceSignals.add_resource.emit(produced_good, produced_good_generated, self)
+		
+		resources_produced.set(produced_good, produced_good_generated)
 		
 		if resource_tiles_to_gather.size() == 0:
 			near_resource = false
+	return resources_produced
 			
 ## Function to generate byproducts for a wood cutter based on wood produced.
 func _generate_byproducts() -> void:

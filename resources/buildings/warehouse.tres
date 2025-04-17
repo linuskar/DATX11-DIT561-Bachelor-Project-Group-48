@@ -15,4 +15,6 @@ output_types = Array[int]([0, 1, 2, 6])
 building_type = 7
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(2, 2)
+building_cost = 100
+building_upkeep = 0
 metadata/_custom_type_script = "uid://biaknkwuc2qk8"
