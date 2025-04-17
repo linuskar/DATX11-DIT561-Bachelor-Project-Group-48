@@ -24,7 +24,7 @@ func _output_resources() -> void:
 		_handle_produced_goods()
 		_use_input_recipe()
 		_generate_byproducts()
-    
+	
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
 func check_for_output_overflow() -> bool:
@@ -105,7 +105,7 @@ func _generate_byproducts() -> void:
 		if Enums.is_emission(byproduct):
 			emitted_emissions.emit(self, byproduct, byproduct_generated_rate)
 		else:
-			byproduct_stored += byproduct_generated
+			byproduct_stored += byproduct_generated_rate
 			output_storage.set(byproduct, byproduct_stored)	
 
 func _on_place_animation_animation_finished(anim_name: StringName) -> void:

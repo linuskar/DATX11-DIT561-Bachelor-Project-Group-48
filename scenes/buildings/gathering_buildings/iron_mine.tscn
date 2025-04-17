@@ -129,9 +129,8 @@ scale_max = 1.5
 color_ramp = SubResource("GradientTexture1D_6w4bc")
 alpha_curve = SubResource("CurveTexture_oc4lm")
 
-[node name="IronMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
+[node name="IronMine" type="StaticBody2D"]
 script = ExtResource("1_l5hob")
-smokes = [NodePath("Smoke_v2"), NodePath("Smoke_v2_2"), NodePath("Smoke_v2_3")]
 building_data = ExtResource("2_jwvew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
