@@ -6,6 +6,7 @@ extends StorageBuilding
 ## the StorageBuilding class.
 ##
 func _ready() -> void:
+	super()
 	$place_animation.play("place")
 
 
