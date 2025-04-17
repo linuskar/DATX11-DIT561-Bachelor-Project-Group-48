@@ -19,3 +19,5 @@ output_types = Array[int]([])
 building_type = 10
 valid_tile_types_to_place_on = Array[int]([1, 2, 3])
 building_size = Vector2(2, 2)
+building_cost = 0
+building_upkeep = 0
