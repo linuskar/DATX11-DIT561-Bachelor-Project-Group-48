@@ -58,9 +58,6 @@ func transport_resources(type: Enums.ResourceType) -> void:
 			return
 			
 			
-		print(next_building.max_storage, "max")
-		print(next_building.input_storage, "input")
-		
 		var max_get = output_building.output_storage.get(type)
 		var max_input = next_building.max_storage.get(type) - next_building.input_storage.get(type)
 			
