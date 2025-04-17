@@ -217,17 +217,14 @@ func reset_tabs() -> void:
 func _sell_chosen_resources() -> void:
 	for resource_type in storage_connections.keys():
 		if not Enums.is_byproduct(resource_type):
-			
 			var stored_resource_panel: StoredResourcePanel = storage_connections.get(resource_type)
 			var sold_amount: int = stored_resource_panel.resource_to_sell
 			var currency_gain: int = Enums.get_value_of_resource(resource_type)*sold_amount
 			var stored_amount: int = current_building.output_storage.get(resource_type)
-			
 			current_building._send_resources(resource_type, sold_amount)
 			PlayerCurrency.add_currency(currency_gain)
 			stored_resource_panel.resource_to_sell = 0
 			ResourceSignals.use_resource.emit(resource_type, sold_amount)
-	ResourceSignals.add_input_building.emit(current_building)
 	sell_value_label.text = "0"
 	
 func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:

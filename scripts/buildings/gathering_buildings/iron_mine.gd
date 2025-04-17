@@ -14,11 +14,10 @@ func _ready():
 	super()
 	emit_smoke()
 	
-## Activated at the end of each cycle.
-func _on_timer_timeout() -> void:
-	_output_resources()
-	emit_smoke()
-	$mining_particle.emitting = true
+func _output_resources() -> void:
+	emit_smoke() 
+  $mining_particle.emitting = true
+	super()
 			
 ## Function for emitting smoke when possible
 func emit_smoke() -> void:

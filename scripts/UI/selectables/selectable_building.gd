@@ -100,14 +100,14 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 				var gather_radius: int = building_data.gather_radius
 				var size_x: int = building_data.building_size.x
 				var size_y: int = building_data.building_size.y
-				var area: String = str(size_x + 2 * gather_radius) +"x" + str(size_y + 2 * gather_radius)
+				var area: String = str(size_x + 2 * gather_radius) + "x" + str(size_y + 2 * gather_radius)
 				if Enums.is_byproduct(resource_type) and building_data.building_type == Enums.BuildingType.WOOD_CUTTER:
-					var byproduct_from_wood: String = str(float(1.0 / building_data.output_generation.get(resource_type)))
-					text += key + ": " + byproduct_from_wood + " of produced wood" + "will be " + key + '\n'
+					var byproduct_from_wood: String = str(building_data.output_generation.get(resource_type))
+					text += key + ": " + byproduct_from_wood + " per tile." + '\n'
 				else:	
-					text += key + ": " + area + " area. Base gather rate of " + str(dict.get(key)) + " at the center, decreasing with further tiles." + '\n'
+					text += key + ": " + area + " area. " + str(dict.get(key)) + " per tile." + '\n'
 			elif dict_name == "Outputs" and Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(resource_type):
-				text += key + ": " + str(dict.get(key)) + " per tile" + '\n'
+				text += key + ": " + str(dict.get(key)) + " per tile." + '\n'
 			## Want to hide the number of emissions outputted,
 			## maybe note the level like low, medium, high, to get an estimate
 			elif dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(resource_type):

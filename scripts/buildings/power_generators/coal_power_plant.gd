@@ -13,12 +13,11 @@ func _ready():
 	$place_animation.play("place")
 	super()
 	emit_smoke()
+	
+func _output_resources() -> void:
+	emit_smoke() 
+	super()
 
-## Activated at the end of each cycle.
-func _on_timer_timeout() -> void:
-	_output_resources()
-	emit_smoke()
-			
 ## Function for emitting smoke when possible
 func emit_smoke() -> void:
 	if check_if_can_produce() == false or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
