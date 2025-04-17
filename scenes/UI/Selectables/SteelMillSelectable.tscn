@@ -33,7 +33,7 @@ mouse_filter = 1
 script = ExtResource("1_5qdeb")
 icon_path = "uid://bgyn65jypc72u"
 building_data = ExtResource("2_t2hd5")
-cost = 200
+cost = 100
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1

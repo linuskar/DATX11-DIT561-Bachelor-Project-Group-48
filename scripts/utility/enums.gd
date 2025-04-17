@@ -100,13 +100,13 @@ enum ResourceType {
 	IRON_ORE, ## The resource type for iron ore
 	COAL, ## The resource type for coal
 	WOOD, ## The resource type for wood
-	PLANKS, ## The resource type for planks
-	STEEL, ## The resource type for steel
-	GEARS, ## The resource type for gears
 	CO2, ## The resource type for carbon dioxide
 	S02, ## The resource type for sulfur dioxide
 	ELECTRICITY, ## The resource type for electricity
 	BIOMASS, ## The resource type for biomass
+	PLANKS, ## The resource type for planks
+	STEEL, ## The resource type for steel
+	GEARS, ## The resource type for gears
 	NONE, ## The resource type for nothing
 }
 

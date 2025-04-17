@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_op2ex")
-icon_path = "uid://d1566usymavrh"
+icon_path = "uid://bqugr640sxpqq"
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
