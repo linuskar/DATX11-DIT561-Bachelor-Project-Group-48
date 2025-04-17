@@ -27,6 +27,7 @@ func emit_smoke() -> void:
 	else:
 		for smoke in smokes:
 			smoke.emitting = true
+			$mining_particle.emitting = true
 
 
 func _on_place_animation_animation_finished(anim_name: StringName) -> void:

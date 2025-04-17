@@ -18,6 +18,7 @@ func _ready():
 func _on_timer_timeout() -> void:
 	_output_resources()
 	emit_smoke()
+	$mining_particle.emitting = true
 			
 ## Function for emitting smoke when possible
 func emit_smoke() -> void:
