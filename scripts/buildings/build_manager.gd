@@ -217,7 +217,7 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	## Increase the max storage of the landfill.
 	var current_biomass: int = landfill.output_storage.get(Enums.ResourceType.BIOMASS)
 	var current_max_biomass: int = landfill.max_storage.get(Enums.ResourceType.BIOMASS)
-	landfill.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass + landfill.auto_expand_capacity_amount)
+	landfill.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass + landfill.auto_expand_max_capacity_amount)
 	## Re-add landfill to request for input.
 	ResourceSignals.add_input_building.emit(landfill)
 	
@@ -298,7 +298,7 @@ func shrink_landfill(landfill: BiomassLandfill) -> void:
 	## Decrease the max storage of the landfill
 	var current_biomass: int = landfill.output_storage.get(Enums.ResourceType.BIOMASS)
 	var current_max_biomass: int = landfill.max_storage.get(Enums.ResourceType.BIOMASS)
-	landfill.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass - landfill.auto_expand_capacity_amount)
+	landfill.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass - landfill.auto_expand_max_capacity_amount)
 
 	## Deoccupy the tile that the landfill previously occupied
 	## Remove corresponding sprite and clickable button
