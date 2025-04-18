@@ -116,6 +116,10 @@ func _use_input_recipe() -> void:
 			
 		input_storage.set(input, input_left)
 		
+	## Request input after using recipe
+	if input_storage.size() != 0:
+		ResourceSignals.add_input_building.emit(self)
+		
 ## Function to generate byproducts from a production building.
 func _generate_byproducts() -> void:
 	for byproduct in byproducts:
@@ -147,7 +151,6 @@ func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> vo
 		production_cycle.paused = false
 		
 	ResourceSignals.use_resource.emit(input_type, input_amount)
-	## ResourceSignals.add_resource.emit(input_type, input_amount, self)
 
 ## Function that checks whether there is enough currency to restart operation
 func restart_operation() -> void:

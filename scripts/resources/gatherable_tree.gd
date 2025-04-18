@@ -14,6 +14,9 @@ extends GatherableResource
 ## The current storage of emissions.
 var emission_storage: Dictionary[Enums.ResourceType, float] = {}
 
+## Sprite that gets shown when resource is gathered
+@onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
+
 func _ready() -> void:
 	emission_storage.set(Enums.ResourceType.CO2, 0)
 	emission_storage.set(Enums.ResourceType.S02, 0)

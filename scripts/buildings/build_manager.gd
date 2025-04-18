@@ -74,6 +74,17 @@ func _update_blueprint():
 	var grid_pos: Vector2 = get_snapped_world_position()
 	blueprint.position = grid_pos 
 	
+	var min_x: float = map_layer.map_areas.left_bound.position.x
+	var max_x: float = map_layer.map_areas.right_bound.position.x
+
+	var min_y: float = map_layer.map_areas.upper_bound.position.y
+	var max_y: float = map_layer.map_areas.lower_bound.position.y
+	var blueprint_size: Vector2 = blueprint.building_data.building_size
+
+	## Clamp the blueprint position to make it not go out the playable area
+	blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size * (blueprint_size.x - 1) / 2, max_x - grid_size * (blueprint_size.x - 1) / 2)
+	blueprint.position.y = clampf(blueprint.position.y, min_y +  grid_size * (blueprint_size.y -  1) / 2, max_y -  grid_size * (blueprint_size.y -  1) / 2)
+	
 	## Checking for valid placement
 	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false or not player_can_afford(blueprint):
 		blueprint.modulate = invalid_placement_color

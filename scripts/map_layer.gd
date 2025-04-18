@@ -36,18 +36,6 @@ func _ready() -> void:
 func can_place_building(blueprint: BuildingBlueprint) -> bool:
 	var blueprint_size: Vector2 = blueprint.building_data.building_size	
 	
-	var min_x: float = map_areas.left_bound.position.x
-	var max_x: float = map_areas.right_bound.position.x
-
-	var min_y: float = map_areas.upper_bound.position.y
-	var max_y: float = map_areas.lower_bound.position.y
-	
-	var grid_size: int = 32
-	## Note: Haven't tested for 2x2
-	## Clamp the blueprint position to make it not go out the playable area
-	blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size * (blueprint_size.x - 1) / 2, max_x - grid_size * (blueprint_size.x - 1) / 2)
-	blueprint.position.y = clampf(blueprint.position.y, min_y +  grid_size * (blueprint_size.y -  1) / 2, max_y -  grid_size * (blueprint_size.y -  1) / 2)
-
 	if blueprint_in_map == false or mouse_in_map == false:
 		return false
 	
