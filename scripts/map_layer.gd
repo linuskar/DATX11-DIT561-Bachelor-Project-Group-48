@@ -91,19 +91,6 @@ func get_snapped_local_position() -> Vector2:
 	var tile_pos = dirt_layer.local_to_map(local_mouse_pos)
 	return tile_pos
 	
-func get_snapped_world_position() -> Vector2:
-	var tile_pos = get_snapped_local_position()
-	
-	## Convert back to local position.
-	var snapped_local_pos: Vector2 = dirt_layer.map_to_local(tile_pos)  
-	var grid_pos: Vector2 = dirt_layer.to_global(snapped_local_pos)
-	#var blueprint_size: Vector2 = blueprint.building_data.building_size
-	
-	## To represent a top-left aligning placement along the grid.
-	# grid_pos += Vector2(grid_size * (blueprint_size.x - 1) / 2, 0)
-	# grid_pos += Vector2(0, grid_size * (blueprint_size.y -  1) / 2)
-	## Return the world coordinates
-	return grid_pos	
 ## Function to set the variable for if the mouse in the map bounds
 func set_mouse_in_map(mouse_is_in_map: bool) -> void:
 	mouse_in_map = mouse_is_in_map

@@ -48,17 +48,20 @@ func shrink_landfill() -> void:
 
 	if (current_biomass < (current_max_biomass - auto_expand_max_capacity_amount)) and connected_landfill_sprites.size() > 0:
 		landfill_shrinked.emit(self)
-
+		
+## Function to set building as currently selected
 func building_selected(building: Building) -> void:
 	if building == self:
 		currently_selected = true
 	else:
 		currently_selected = false
-
+		
+## Function to set building as not currently selected
 func building_deselected(building: Building) -> void:
 	if building == self:
 		currently_selected = false
 
+## Function to higlight the all the connected landfills
 func highlight_building() -> void:
 	if currently_selected:
 		for building_highlight in higlights_list:

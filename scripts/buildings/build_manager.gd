@@ -186,7 +186,7 @@ func _on_placed_building(building: Building) -> void:
 		## TODO: Future implementantion, add button to stop auto expanding/shrinking
 		## otherwise manually adding landfills wont work since the landfill will automatically shrink
 		## the newly merged landfill, so right now it will just prevent from placing
-		## two seperate landfill instances near each other
+		## two seperate landfill instances near each other, and waste money
 		# var landfill_to_merge_with: BiomassLandfill = check_if_there_are_landfills_nearby(building, building.position)
 		
 		# if landfill_to_merge_with != null:
@@ -195,6 +195,7 @@ func _on_placed_building(building: Building) -> void:
 		# occupy_tiles(building, building.position) 
 		# placed_building.emit(building)
 		
+		## Connect the funcxtions to auto expand and shrink
 		building.landfill_expanded.connect(expand_landfill)
 		building.landfill_shrinked.connect(shrink_landfill)
 	# else:
@@ -203,7 +204,8 @@ func _on_placed_building(building: Building) -> void:
 
 	BuildManagerGlobal.update_roads.emit()
 	BuildManagerGlobal.print_networks()
-
+	
+## Function two merge landfills that are near each other
 func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_with: BiomassLandfill) -> void:
 	## Increase the max storage of the landfill.
 	var current_biomass: int = landfill_to_be_merged_with.output_storage.get(Enums.ResourceType.BIOMASS)
@@ -238,7 +240,7 @@ func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_wit
 	
 	landfill_placed.queue_free()
 	
-## Function that occupies tiles for a building
+## Function that occupies tiles for a building.
 func occupy_tiles(building: Building, position_to_adjust: Vector2) -> void:
 	var building_tile_size: Vector2 = building.building_data.building_size
 	var adjusted_pos: Vector2 = position_to_adjust
@@ -250,7 +252,9 @@ func occupy_tiles(building: Building, position_to_adjust: Vector2) -> void:
 	for x in range(building_tile_size.x):
 		for y in range(building_tile_size.y):
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
-			
+
+## Function that checks if there are landfills nearby for a landfill, returns null
+## if no landfill is found
 func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> BiomassLandfill:
 	## look at directions
 	var position_to_expand_to: Vector2 = Vector2(0,0)
@@ -283,7 +287,6 @@ func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> Bio
 			if building is BiomassLandfill:
 				return building
 		position_to_expand_to = Vector2(0,0)
-	## Return an invalid position to expand to
 	return null
 			
 ## Expand the landfill when at max capacity
@@ -334,7 +337,7 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	# var landfill_to_merge_with: BiomassLandfill = check_if_there_are_landfills_nearby(landfill, adjusted_pos)
 	# merge_landfills(landfill, landfill_to_merge_with)
 
-## Set the next position that the landfill can expand to
+## Set the next position that a landfill can expand to.
 func next_position_to_expand_to(landfill: BiomassLandfill, index: int) -> void:
 		var prev_occupied_tile_pos: Vector2 = Vector2(0,0)
 		
