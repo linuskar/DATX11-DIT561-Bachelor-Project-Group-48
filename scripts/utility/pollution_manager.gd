@@ -20,6 +20,7 @@ signal emissions_to_apply(emissions_dict: Dictionary[Vector2, float], emission_t
 var emissions_generated: Dictionary[Enums.ResourceType, float]
 ## Dictionary for the total emissions absorbed by other objects 
 var emissions_absorbed: Dictionary[Enums.ResourceType, float]
+var ongoing_wildfire: bool = false
 
 func _ready() -> void:
 	emissions_generated.set(Enums.ResourceType.CO2, 0)
@@ -29,6 +30,28 @@ func _ready() -> void:
 	emissions_absorbed.set(Enums.ResourceType.S02, 0)
 	
 	build_manager.placed_building.connect(_init_building_polluting)
+	
+func _process(delta: float) -> void:
+	start_wildfire()
+	
+func start_wildfire() -> void:
+	if ongoing_wildfire == false:
+		var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
+		var random_index: int = randi_range(0, all_trees.size()-1)
+		var random_tree: GatherableTree = all_trees[random_index]
+		random_tree.start_burning()
+		ongoing_wildfire = true
+		print("wildfire started")
+	else:
+		var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
+		var trees_burning: Array[Node] = []
+		for tree in all_trees:
+			if tree.burn_state == Enums.BurnState.BURNING:
+				trees_burning.append(tree)
+				
+		if trees_burning.size() == 0:
+			ongoing_wildfire = false
+			print("wildfire stopped")
 
 ## Function for initializing buildings that pollute
 func _init_building_polluting(building: Building) -> void:

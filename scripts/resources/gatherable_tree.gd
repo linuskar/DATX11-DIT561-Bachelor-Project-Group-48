@@ -7,6 +7,11 @@ extends GatherableResource
 ##
 ##
 
+var burn_state: Enums.BurnState = Enums.BurnState.NORMAL
+var burn_time: float = 3.0 
+var spread_radius: int = 32
+var fire_probability: float = 0.4 
+
 ## Dictionary for the maximum capacity of emissions that can be stored.
 ## Set the max capacity to -1 to indicate it has unlmited max capacity
 ## for a resource.
@@ -16,10 +21,56 @@ var emission_storage: Dictionary[Enums.ResourceType, float] = {}
 
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
+@onready var wildfire: WildFire = $Wildfire
 
 func _ready() -> void:
 	emission_storage.set(Enums.ResourceType.CO2, 0)
 	emission_storage.set(Enums.ResourceType.S02, 0)
+	wildfire.stop_fire()
+
+## Function to ignite the tree on fire
+func start_burning() -> void:
+	if burn_state != Enums.BurnState.NORMAL:
+		return
+	
+	burn_state = Enums.BurnState.BURNING
+	update_burn_visual()
+	become_burnt()
+	
+## Function to update the burn visuals of a tree
+func update_burn_visual():
+	match burn_state:
+		Enums.BurnState.NORMAL:
+			modulate = Color(1, 1, 1)
+		Enums.BurnState.BURNING:
+			wildfire.start_fire()
+		Enums.BurnState.BURNT:
+			wildfire.stop_fire()
+			## TODO: sprite for burnt tree
+			modulate = Color(0.2, 0.2, 0.2) 
+
+## Function to make the tree burnt and spread the fire 
+func become_burnt() -> void:
+	## Wait for a certain amount of time, spread the fire and then become burnt
+	await get_tree().create_timer(burn_time).timeout
+	spread_fire()
+
+	burn_state = Enums.BurnState.BURNT
+	update_burn_visual()
+	
+## Function to spread the fire to nearby trees in range
+func spread_fire():
+	var nearby_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
+	for tree in nearby_trees:
+		## Don't spread fire to itself
+		if tree == self:
+			continue
+		## Tree in range
+		if position.distance_to(tree.position) <= spread_radius:
+			## Start burning trees that have not been burned before,
+			## based on a probability for a fire to start
+			if tree.burn_state == Enums.BurnState.NORMAL and randf() <= fire_probability:
+				tree.start_burning()
 
 ## Function to check if the stored emissions are at or above the 
 ## max capacity that is allowed.

@@ -130,6 +130,12 @@ enum TileType {
 	RESOURCE, ## The tile type for a resource
 }
 
+## The different states of burning
+enum BurnState { 
+	NORMAL, ## The state when not having been burned previously
+	BURNING, 
+	BURNT }
+
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
 	return building_type in polluting_buildings
 	
