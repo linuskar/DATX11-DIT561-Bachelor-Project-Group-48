@@ -16,6 +16,16 @@ signal landfill_expanded(landfill: BiomassLandfill)
 signal landfill_shrinked(landfill: BiomassLandfill)
 
 @onready var clickable: TextureButton = $Clickable
+@onready var highlight: BuildingHighlight = $Highlight
+
+var higlights_list: Array[BuildingHighlight]
+
+func _ready() -> void:
+	super()
+	highlight.hide()
+	higlights_list.append(highlight)
+	BuildingSignals.building_clicked.connect(highlight_building)
+	BuildingSignals.building_info_closed.connect(building_deselected)
 
 func  _process(delta: float) -> void:
 	expand_landfill()
@@ -36,3 +46,19 @@ func shrink_landfill() -> void:
 
 	if (current_biomass < (current_max_biomass - auto_expand_max_capacity_amount)) and connected_landfill_sprites.size() > 0:
 		landfill_shrinked.emit(self)
+
+func highlight_building(building: Building) -> void:
+	if building == self:
+		for building_highlight in higlights_list:
+			building_highlight.show()
+			building_highlight.selected()
+	else:
+		for building_highlight in higlights_list:
+			building_highlight.hide()
+			building_highlight.de_selected()
+
+func building_deselected(building: Building) -> void:
+	if building == self:
+		for building_highlight in higlights_list:
+			building_highlight.hide()
+			building_highlight.de_selected()

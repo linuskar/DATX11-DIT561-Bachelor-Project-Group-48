@@ -77,7 +77,7 @@ func _update_blueprint():
 	## Clamp the blueprint position to make it not go out the playable area
 	var blueprint_size: Vector2 = blueprint.building_data.building_size
 	blueprint.position = get_clamped_position_to_playable_area(blueprint.position, blueprint_size)
-	
+			
 	## Checking for valid placement
 	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false or not player_can_afford(blueprint):
 		blueprint.modulate = invalid_placement_color
@@ -182,15 +182,96 @@ func are_tiles_occupied() -> bool:
 	
 ## Function marking tiles as occupied for placing down a building
 func _on_placed_building(building: Building) -> void:
+	if building is BiomassLandfill:
+		## TODO: Future implementantion, add button to stop auto expanding/shrinking
+		## otherwise manually adding landfills wont work since the landfill will automatically shrink
+		## the newly merged landfill, so right now it will just prevent from placing
+		## two seperate landfill instances near each other
+		# var landfill_to_merge_with: BiomassLandfill = check_if_there_are_landfills_nearby(building, building.position)
+		
+		# if landfill_to_merge_with != null:
+			# merge_landfills(building, landfill_to_merge_with)
+		# else:
+		# occupy_tiles(building, building.position) 
+		# placed_building.emit(building)
+		
+		building.landfill_expanded.connect(expand_landfill)
+		building.landfill_shrinked.connect(shrink_landfill)
+	# else:
 	occupy_tiles(building, building.position) 
 	placed_building.emit(building)
 
-	if building is BiomassLandfill:
-		building.landfill_expanded.connect(expand_landfill)
-		building.landfill_shrinked.connect(shrink_landfill)
-
 	BuildManagerGlobal.update_roads.emit()
 	BuildManagerGlobal.print_networks()
+
+func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_with: BiomassLandfill) -> void:
+	## Increase the max storage of the landfill.
+	var current_biomass: int = landfill_to_be_merged_with.output_storage.get(Enums.ResourceType.BIOMASS)
+	var current_max_biomass: int = landfill_to_be_merged_with.max_storage.get(Enums.ResourceType.BIOMASS)
+	landfill_to_be_merged_with.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass + landfill_to_be_merged_with.auto_expand_max_capacity_amount)
+	# print("After: " + str(landfill_to_be_merged_with.max_storage))
+	## Re-add landfill to request for input.
+	ResourceSignals.add_input_building.emit(landfill_to_be_merged_with)
+	
+	## Create new sprite for where the landfill expands to.
+	var new_sprite: Sprite2D = landfill_to_be_merged_with.building_sprite.duplicate()
+	new_sprite.position = landfill_placed.position
+	landfill_to_be_merged_with.add_child(new_sprite)
+	landfill_to_be_merged_with.connected_landfill_sprites.append(new_sprite)
+	
+	## TODO: Add collision shape, but right now it is not relevant for any logic
+	## var new_collision_shape: CollisionShape2D = null
+	
+	## Create new button for building info for where the landfill expands to
+	var building_info_button: TextureButton = landfill_to_be_merged_with.clickable.duplicate()
+	building_info_button.position = Vector2(landfill_placed.position)
+	landfill_to_be_merged_with.add_child(building_info_button)
+	landfill_to_be_merged_with.connected_landfill_clickables.append(building_info_button)
+	
+	## TODO: Add this in future implementation
+	# var building_highlight: BuildingHighlight = landfill_to_be_merged_with
+	
+	## Occupy tiles for where the landfill expanded to
+	var adjusted_pos: Vector2 = landfill_placed.position
+	occupy_tiles(landfill_to_be_merged_with, adjusted_pos) 
+	placed_building.emit(landfill_to_be_merged_with)
+	
+	landfill_placed.queue_free()
+
+func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> BiomassLandfill:
+	## look at directions
+	var position_to_expand_to: Vector2 = Vector2(0,0)
+	## Shuffle the possible directions to get a randomized selection
+	var directions = Enums.Direction.values()
+	directions.shuffle()
+	
+	var valid_tile_types_to_place: Array[Enums.TileType] = landfill.building_data.valid_tile_types_to_place_on
+	var size: Vector2 = landfill.building_data.building_size
+	
+	## Look at the tiles around in the possible directions
+	for direction in directions:
+		match direction:
+			Enums.Direction.UP:
+				position_to_expand_to = Vector2(0, -grid_size) + current_tile
+			Enums.Direction.DOWN:
+				position_to_expand_to = Vector2(0, grid_size) + current_tile
+			Enums.Direction.LEFT:
+				position_to_expand_to = Vector2(-grid_size, 0) + current_tile
+			Enums.Direction.RIGHT:
+				position_to_expand_to = Vector2(grid_size, 0) + current_tile
+			
+		var position_to_check: Vector2 = position_to_expand_to
+		position_to_check = get_clamped_position_to_playable_area(position_to_check, size)
+
+		## If the position has a landfill
+		if occupied_tiles.has(position_to_check):
+			var building: Building = occupied_tiles.get(position_to_check)
+
+			if building is BiomassLandfill:
+				return building
+		position_to_expand_to = Vector2(0,0)
+	## Return an invalid position to expand to
+	return null
 	
 ## Function that occupies tiles for a building
 func occupy_tiles(building: Building, position_to_adjust: Vector2) -> void:
@@ -221,6 +302,12 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	## Re-add landfill to request for input.
 	ResourceSignals.add_input_building.emit(landfill)
 	
+	## Create new higlight for where the landfill expands to
+	var building_highlight: BuildingHighlight = landfill.highlight.duplicate()
+	building_highlight.position += Vector2(landfill.position_to_expand_to)
+	landfill.add_child(building_highlight)
+	landfill.higlights_list.append(building_highlight)
+	
 	## Create new sprite for where the landfill expands to.
 	var new_sprite: Sprite2D = landfill.building_sprite.duplicate()
 	new_sprite.position += landfill.position_to_expand_to
@@ -240,6 +327,12 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	var adjusted_pos: Vector2 = landfill.position + landfill.position_to_expand_to
 	occupy_tiles(landfill, adjusted_pos) 
 	placed_building.emit(landfill)
+	
+	## TODO: Future implementation for merging landfills when auto expanding
+	## NOTE: have to take care of the resources that are currently transporting
+	## need to somehow reroute the resoruces that are transported to the current instance of landfill
+	# var landfill_to_merge_with: BiomassLandfill = check_if_there_are_landfills_nearby(landfill, adjusted_pos)
+	# merge_landfills(landfill, landfill_to_merge_with)
 
 ## Set the next position that the landfill can expand to
 func next_position_to_expand_to(landfill: BiomassLandfill, index: int) -> void:
@@ -250,17 +343,18 @@ func next_position_to_expand_to(landfill: BiomassLandfill, index: int) -> void:
 			prev_occupied_tile_pos = landfill.connected_landfill_sprites[index].position
 		else:
 			## When there is only one tile the landfill occupies
-			landfill.position_to_expand_to = look_at_tiles_around(landfill, prev_occupied_tile_pos)
+			landfill.position_to_expand_to = get_possible_position_to_expand_to(landfill, prev_occupied_tile_pos)
 			return
 
-		landfill.position_to_expand_to = look_at_tiles_around(landfill, prev_occupied_tile_pos)
+		landfill.position_to_expand_to = get_possible_position_to_expand_to(landfill, prev_occupied_tile_pos)
 		
 		## If no direction was possible for previously occupied tile by the landfill
 		if landfill.position_to_expand_to.x == 0 and landfill.position_to_expand_to.y == 0:
 			next_position_to_expand_to(landfill, index - 1)
 			
-## Look at tiles by the possible directions around a tile 
-func look_at_tiles_around(landfill: BiomassLandfill, current_tile: Vector2) -> Vector2:
+## Look at tiles by the possible directions around a tile, to get a position to
+## expand to.
+func get_possible_position_to_expand_to(landfill: BiomassLandfill, current_tile: Vector2) -> Vector2:
 	var occupied_tiles: Array[Vector2] = BuildManagerGlobal.occupied_tiles.keys()
 	var position_to_expand_to: Vector2 = Vector2(0,0)
 	## Shuffle the possible directions to get a randomized selection

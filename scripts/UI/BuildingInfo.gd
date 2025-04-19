@@ -22,6 +22,8 @@ var stored_resource_panel: PackedScene = preload("res://scenes/UI/stored_resourc
 ## stored resource panel
 var storage_connections: Dictionary[Enums.ResourceType, StoredResourcePanel] = {}
 
+signal closed_building_info(building: Building)
+
 func _ready() -> void:
 	super._ready()
 	BuildingSignals.building_clicked.connect(set_active)
@@ -185,11 +187,13 @@ func _set_tab_visible(tab_num: int) -> void:
 
 ## Hide the info panel
 func set_inactive() -> void:
+	closed_building_info.emit(current_building)
 	self.hide()
 
 ## Show the info panel and update its information
 func set_active(building: Building) -> void:
 	current_building = building
+	
 	reset_tabs()
 	self.show()
 	populate_info_label(building)

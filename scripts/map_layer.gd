@@ -63,15 +63,11 @@ func can_place_building(blueprint: BuildingBlueprint) -> bool:
 					return false
 	return true
 
-## TODO: make this be called by biomass landfill someway
-## Function to check if the tile is valid to place
+## Function to check if tile is valid to palce on
 func check_valid_tile(position_to_check: Vector2, valid_tile_types_to_place: Array[Enums.TileType]) -> bool:
 	var source_id: int = -1
-	## check if position to check is outside the border
 	for tile_type in Enums.TileType.values():
-		var grid_size = 32
 		var tilemap_position = water_layer.local_to_map(water_layer.to_local(position_to_check))
-		#var source_id = water_layer.get_cell_source_id(tilemap_position)
 		match tile_type:
 			Enums.TileType.WATER:
 				source_id = water_layer.get_cell_source_id(tilemap_position)
@@ -83,10 +79,8 @@ func check_valid_tile(position_to_check: Vector2, valid_tile_types_to_place: Arr
 				source_id = grass_layer.get_cell_source_id(tilemap_position)
 			Enums.TileType.RESOURCE:
 				source_id = water_layer.get_cell_source_id(tilemap_position)
-		print(source_id)
 		## If the invalid cell type does exist
 		if source_id >= 0 and tile_type not in valid_tile_types_to_place:
-			print(tile_type)
 			return false
 	return true
 
