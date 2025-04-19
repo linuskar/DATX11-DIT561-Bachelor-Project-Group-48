@@ -19,17 +19,19 @@ signal landfill_shrinked(landfill: BiomassLandfill)
 @onready var highlight: BuildingHighlight = $Highlight
 
 var higlights_list: Array[BuildingHighlight]
+var currently_selected: bool
 
 func _ready() -> void:
 	super()
 	highlight.hide()
 	higlights_list.append(highlight)
-	BuildingSignals.building_clicked.connect(highlight_building)
+	BuildingSignals.building_clicked.connect(building_selected)
 	BuildingSignals.building_info_closed.connect(building_deselected)
-
+	
 func  _process(delta: float) -> void:
 	expand_landfill()
 	shrink_landfill()
+	highlight_building()
 
 ## Expand the landfill when at max capacity
 func expand_landfill() -> void:
@@ -47,18 +49,22 @@ func shrink_landfill() -> void:
 	if (current_biomass < (current_max_biomass - auto_expand_max_capacity_amount)) and connected_landfill_sprites.size() > 0:
 		landfill_shrinked.emit(self)
 
-func highlight_building(building: Building) -> void:
+func building_selected(building: Building) -> void:
 	if building == self:
+		currently_selected = true
+	else:
+		currently_selected = false
+
+func building_deselected(building: Building) -> void:
+	if building == self:
+		currently_selected = false
+
+func highlight_building() -> void:
+	if currently_selected:
 		for building_highlight in higlights_list:
 			building_highlight.show()
 			building_highlight.selected()
 	else:
-		for building_highlight in higlights_list:
-			building_highlight.hide()
-			building_highlight.de_selected()
-
-func building_deselected(building: Building) -> void:
-	if building == self:
 		for building_highlight in higlights_list:
 			building_highlight.hide()
 			building_highlight.de_selected()

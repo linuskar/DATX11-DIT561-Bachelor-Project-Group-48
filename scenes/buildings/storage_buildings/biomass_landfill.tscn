@@ -17,6 +17,9 @@ building_data = ExtResource("2_d1p3v")
 visible = false
 shape = SubResource("RectangleShape2D_0igec")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_d1p3v")
+
 [node name="Highlight" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -30,10 +33,7 @@ script = ExtResource("5_phnxc")
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
-color = Color(8.66354e-07, 0.659073, 0.634244, 0.701961)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_d1p3v")
+color = Color(0.0509804, 0.843137, 0.898039, 0.364706)
 
 [node name="Clickable" type="TextureButton" parent="."]
 anchors_preset = 15

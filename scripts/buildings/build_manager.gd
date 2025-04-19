@@ -237,7 +237,20 @@ func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_wit
 	placed_building.emit(landfill_to_be_merged_with)
 	
 	landfill_placed.queue_free()
-
+	
+## Function that occupies tiles for a building
+func occupy_tiles(building: Building, position_to_adjust: Vector2) -> void:
+	var building_tile_size: Vector2 = building.building_data.building_size
+	var adjusted_pos: Vector2 = position_to_adjust
+	
+	## Adjust the position to start in a top-left manner
+	adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
+	adjusted_pos -= Vector2(0, grid_size * (building_tile_size.y -  1) / 2)
+	## Mark occupied tiles based on the building size
+	for x in range(building_tile_size.x):
+		for y in range(building_tile_size.y):
+			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
+			
 func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> BiomassLandfill:
 	## look at directions
 	var position_to_expand_to: Vector2 = Vector2(0,0)
@@ -272,19 +285,6 @@ func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> Bio
 		position_to_expand_to = Vector2(0,0)
 	## Return an invalid position to expand to
 	return null
-	
-## Function that occupies tiles for a building
-func occupy_tiles(building: Building, position_to_adjust: Vector2) -> void:
-	var building_tile_size: Vector2 = building.building_data.building_size
-	var adjusted_pos: Vector2 = position_to_adjust
-	
-	## Adjust the position to start in a top-left manner
-	adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
-	adjusted_pos -= Vector2(0, grid_size * (building_tile_size.y -  1) / 2)
-	## Mark occupied tiles based on the building size
-	for x in range(building_tile_size.x):
-		for y in range(building_tile_size.y):
-			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
 			
 ## Expand the landfill when at max capacity
 func expand_landfill(landfill: BiomassLandfill) -> void:
@@ -302,17 +302,17 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	## Re-add landfill to request for input.
 	ResourceSignals.add_input_building.emit(landfill)
 	
-	## Create new higlight for where the landfill expands to
-	var building_highlight: BuildingHighlight = landfill.highlight.duplicate()
-	building_highlight.position += Vector2(landfill.position_to_expand_to)
-	landfill.add_child(building_highlight)
-	landfill.higlights_list.append(building_highlight)
-	
 	## Create new sprite for where the landfill expands to.
 	var new_sprite: Sprite2D = landfill.building_sprite.duplicate()
 	new_sprite.position += landfill.position_to_expand_to
 	landfill.add_child(new_sprite)
 	landfill.connected_landfill_sprites.append(new_sprite)
+	
+	## Create new higlight for where the landfill expands to
+	var building_highlight: BuildingHighlight = landfill.highlight.duplicate()
+	building_highlight.position += Vector2(landfill.position_to_expand_to)
+	landfill.add_child(building_highlight)
+	landfill.higlights_list.append(building_highlight)
 	
 	## TODO: Add collision shape, but right now it is not relevant for any logic
 	## var new_collision_shape: CollisionShape2D = null
