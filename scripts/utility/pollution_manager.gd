@@ -9,6 +9,7 @@ extends Node
 
 @onready var map_layer: MapLayer = $"../MapLayer"
 @onready var build_manager: BuildManager = $"../BuildManager"
+@onready var timer: Timer = $Timer
 
 ## The buildings that are polluting
 var buildings_polluting: Dictionary[Building, Vector2]
@@ -20,7 +21,11 @@ signal emissions_to_apply(emissions_dict: Dictionary[Vector2, float], emission_t
 var emissions_generated: Dictionary[Enums.ResourceType, float]
 ## Dictionary for the total emissions absorbed by other objects 
 var emissions_absorbed: Dictionary[Enums.ResourceType, float]
+
 var ongoing_wildfire: bool = false
+var wildfire_percentage: float = 0.0
+var wait_time: float = 10.0
+var upper_limit: float = pow(10,8)
 
 func _ready() -> void:
 	emissions_generated.set(Enums.ResourceType.CO2, 0)
@@ -31,27 +36,51 @@ func _ready() -> void:
 	
 	build_manager.placed_building.connect(_init_building_polluting)
 	
-func _process(delta: float) -> void:
+func _on_timer_timeout() -> void:
+	try_start_wildfire()
+
+## TODO: make co2 decay, so the co2 amount wont be stuck at a fixed amount forever,
+## for example not forever at upper limit
+func update_wildfire_percentage() -> void:
+	## sum up values to get percentage, for every emission amount that can contribute
+	## to wildfires
+	var co2_amount: float = get_emissions_not_absorbed(Enums.ResourceType.CO2)
+	var normalized: float = inverse_lerp(0.0, upper_limit, co2_amount)
+	wildfire_percentage = normalized
+	print("Wildfire percentage: " + str(wildfire_percentage))
+	
+func try_start_wildfire():
+	check_for_wildfire()
+	
+	if ongoing_wildfire:
+		return 
+		
+	update_wildfire_percentage()
 	start_wildfire()
 	
+func check_for_wildfire() -> void:
+	var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
+	var trees_burning: Array[Node] = []
+	for tree in all_trees:
+		if tree.burn_state == Enums.BurnState.BURNING:
+			trees_burning.append(tree)
+			
+	if trees_burning.size() == 0:
+		ongoing_wildfire = false
+		print("no wildfire")
+		
 func start_wildfire() -> void:
 	if ongoing_wildfire == false:
-		var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
-		var random_index: int = randi_range(0, all_trees.size()-1)
-		var random_tree: GatherableTree = all_trees[random_index]
-		random_tree.start_burning()
-		ongoing_wildfire = true
-		print("wildfire started")
-	else:
-		var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
-		var trees_burning: Array[Node] = []
-		for tree in all_trees:
-			if tree.burn_state == Enums.BurnState.BURNING:
-				trees_burning.append(tree)
-				
-		if trees_burning.size() == 0:
-			ongoing_wildfire = false
-			print("wildfire stopped")
+		var random_number: float = randf()
+
+		print(random_number)
+		if random_number <= wildfire_percentage:
+			var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
+			var random_index: int = randi_range(0, all_trees.size()-1)
+			var random_tree: GatherableTree = all_trees[random_index]
+			random_tree.start_burning()
+			ongoing_wildfire = true
+			print("wildfire started")
 
 ## Function for initializing buildings that pollute
 func _init_building_polluting(building: Building) -> void:
