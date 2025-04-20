@@ -27,7 +27,6 @@ var dead_tree_sprite: CompressedTexture2D = preload("res://assets/dead_tree.png"
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
 @onready var wildfire: WildFire = $Wildfire
 
-
 func _ready() -> void:
 	emission_storage.set(Enums.ResourceType.CO2, 0)
 	emission_storage.set(Enums.ResourceType.S02, 0)

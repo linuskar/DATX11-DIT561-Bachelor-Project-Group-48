@@ -46,11 +46,13 @@ color_ramp = SubResource("GradientTexture1D_evk0r")
 script = ExtResource("1_ri7gw")
 
 [node name="Smoke_fire" parent="." instance=ExtResource("1_ha3ci")]
-modulate = Color(1, 1, 1, 0.14902)
+modulate = Color(1, 1, 1, 0.192157)
 position = Vector2(0, -18)
+emitting = false
 
 [node name="Fire" type="GPUParticles2D" parent="."]
-modulate = Color(1, 1, 1, 0.121569)
+modulate = Color(1, 1, 1, 0.133333)
+emitting = false
 amount = 500
 texture = ExtResource("2_ri7gw")
 lifetime = 0.1
