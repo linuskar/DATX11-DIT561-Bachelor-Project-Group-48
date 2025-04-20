@@ -5,7 +5,11 @@
 [node name="PollutionManager" type="Node"]
 script = ExtResource("1_6vgt2")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="WildfireTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="EmissionDecayTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="WildfireTimer" to="." method="_on_wildfire_timer_timeout"]
+[connection signal="timeout" from="EmissionDecayTimer" to="." method="_on_emission_decay_timer_timeout"]

@@ -47,7 +47,6 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 	}
 
 static var building_names: Dictionary[BuildingType, String] = {
-
 	BuildingType.FACTORY: "FACTORY",
 	BuildingType.IRON_MINE: "IRON MINE",
 	BuildingType.COAL_MINE: "COAL MINE",
@@ -77,6 +76,10 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.COAL: 3,
 	ResourceType.WOOD: 5,
 	ResourceType.ELECTRICITY: 10
+}
+
+static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
+	ResourceType.CO2: "CO2",
 }
 
 ## Function that returns the value of a resource when sold

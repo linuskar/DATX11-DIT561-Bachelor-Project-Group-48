@@ -9,7 +9,8 @@ extends Node
 
 @onready var map_layer: MapLayer = $"../MapLayer"
 @onready var build_manager: BuildManager = $"../BuildManager"
-@onready var timer: Timer = $Timer
+@onready var wildfire_timer: Timer = $WildfireTimer
+@onready var emission_decay_timer: Timer = $EmissionDecayTimer
 
 ## The buildings that are polluting
 var buildings_polluting: Dictionary[Building, Vector2]
@@ -22,10 +23,14 @@ var emissions_generated: Dictionary[Enums.ResourceType, float]
 ## Dictionary for the total emissions absorbed by other objects 
 var emissions_absorbed: Dictionary[Enums.ResourceType, float]
 
-var ongoing_wildfire: bool = false
+var emissions_not_absorbed: Dictionary[Enums.ResourceType, float]
+
 var wildfire_percentage: float = 0.0
-var wait_time: float = 10.0
-var upper_limit: float = pow(10,8)
+var wildfire_wait_time: float = 1.0
+var emission_upper_limit: float = pow(10,8)
+## Emissions decay by 1% of their total value
+var emission_decay: float = 0.01
+var emission_decay_wait_time: float = 1.0
 
 func _ready() -> void:
 	emissions_generated.set(Enums.ResourceType.CO2, 0)
@@ -34,31 +39,41 @@ func _ready() -> void:
 	emissions_absorbed.set(Enums.ResourceType.CO2, 0)
 	emissions_absorbed.set(Enums.ResourceType.S02, 0)
 	
-	build_manager.placed_building.connect(_init_building_polluting)
+	emissions_not_absorbed.set(Enums.ResourceType.CO2, 0)
+	emissions_not_absorbed.set(Enums.ResourceType.S02, 0)
 	
-func _on_timer_timeout() -> void:
+	build_manager.placed_building.connect(_init_building_polluting)
+	wildfire_timer.wait_time = wildfire_wait_time
+	emission_decay_wait_time = emission_decay_wait_time
+	
+## Function that decays emissions based on a time delay
+func _on_emission_decay_timer_timeout() -> void:
+	decay_emissions()
+
+## Function that decays emissions
+func decay_emissions() -> void:
+	for emission in emissions_generated.keys():
+		var emission_amount: float = emissions_not_absorbed.get(emission)
+		print(Enums.resource_type_to_string(emission) + ": " + str(emission_amount))
+		emission_amount -= emission_amount * emission_decay
+		## Prevent the amount to be below 0, a negative value
+		emission_amount = max(0, emission_amount)
+		emissions_not_absorbed.set(emission, emission_amount)
+
+## Function to try to start a wildfire based on a time delay
+func _on_wildfire_timer_timeout() -> void:
 	try_start_wildfire()
 
-## TODO: make co2 decay, so the co2 amount wont be stuck at a fixed amount forever,
-## for example not forever at upper limit
-func update_wildfire_percentage() -> void:
-	## sum up values to get percentage, for every emission amount that can contribute
-	## to wildfires
-	var co2_amount: float = get_emissions_not_absorbed(Enums.ResourceType.CO2)
-	var normalized: float = inverse_lerp(0.0, upper_limit, co2_amount)
-	wildfire_percentage = normalized
-	print("Wildfire percentage: " + str(wildfire_percentage))
-	
+## Function to try to start a wildfire
 func try_start_wildfire():
-	check_for_wildfire()
-	
-	if ongoing_wildfire:
+	if check_for_wildfire():
 		return 
 		
 	update_wildfire_percentage()
 	start_wildfire()
-	
-func check_for_wildfire() -> void:
+
+## Function to check if there is a ongoing wildfire
+func check_for_wildfire() -> bool:
 	var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
 	var trees_burning: Array[Node] = []
 	for tree in all_trees:
@@ -66,21 +81,36 @@ func check_for_wildfire() -> void:
 			trees_burning.append(tree)
 			
 	if trees_burning.size() == 0:
-		ongoing_wildfire = false
-		print("no wildfire")
+		print("No wildfire")
+		return false
+	else:
+		print("Ongoing wildfire")
+		return true
 		
+## Function that updates the probability for a wildfire to happen
+func update_wildfire_percentage() -> void:
+	var emission_amount: float = 0.0
+	wildfire_percentage = 0.0
+	for emission in Enums.emissions_contributing_to_wildfires:
+		emission_amount = emissions_not_absorbed.get(emission)
+		emission_amount = min(emission_amount, emission_upper_limit)
+		## Normalize, scale the value to range from 0 to 1
+		emission_amount = inverse_lerp(0.0, emission_upper_limit, emission_amount)
+		wildfire_percentage += emission_amount
+	
+	print("Wildfire percentage: " + str(wildfire_percentage))
+	
+## Function to start a wildfire, starting on a random tree
 func start_wildfire() -> void:
-	if ongoing_wildfire == false:
-		var random_number: float = randf()
+	var random_number: float = randf()
 
-		print(random_number)
-		if random_number <= wildfire_percentage:
-			var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
-			var random_index: int = randi_range(0, all_trees.size()-1)
-			var random_tree: GatherableTree = all_trees[random_index]
-			random_tree.start_burning()
-			ongoing_wildfire = true
-			print("wildfire started")
+	print(random_number)
+	if random_number <= wildfire_percentage:
+		var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
+		var random_index: int = randi_range(0, all_trees.size()-1)
+		var random_tree: GatherableTree = all_trees[random_index]
+		random_tree.start_burning()
+		print("wildfire started")
 
 ## Function for initializing buildings that pollute
 func _init_building_polluting(building: Building) -> void:
@@ -118,7 +148,8 @@ func emissions_falloff(amount: float, emissions_radius: int, building_pos: Vecto
 			amount_to_set = max(amount_to_set, 0)
 			emissions_dict.set(tile_pos, amount_to_set)
 			set_emissions_generated(emission_type, amount_to_set)
-
+			set_emissions_not_absorbed(emission_type, amount_to_set)
+			
 	return emissions_dict
 
 ## Function to set the amount of emissions generated
@@ -131,8 +162,6 @@ func set_emissions_absorbed(emission_type: Enums.ResourceType, amount: float) ->
 	var current_amount: float = emissions_absorbed.get(emission_type)
 	emissions_absorbed.set(emission_type, amount + current_amount)
 	
-## Function to get the amount of emissions not absorbed by other objects
-func get_emissions_not_absorbed(emission_type: Enums.ResourceType) -> float:
-	var emissions_generated: float = emissions_generated.get(emission_type)
-	var emissions_absorbed: float = emissions_absorbed.get(emission_type)
-	return emissions_generated - emissions_absorbed
+func set_emissions_not_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
+	var current_amount: float = emissions_not_absorbed.get(emission_type)
+	emissions_not_absorbed.set(emission_type, current_amount + amount)
