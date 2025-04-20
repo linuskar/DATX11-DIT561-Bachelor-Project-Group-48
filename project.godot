@@ -23,6 +23,7 @@ BuildingSignals="*res://scripts/utility/BuildingSignals.gd"
 PlayerCurrency="*res://scripts/utility/PlayerCurrency.gd"
 ZoomHandler="*res://scripts/utility/zoom_handler.gd"
 BuildManagerGlobal="*res://scripts/global/buildmanagerglobal.gd"
+PollutionSignals="*res://scripts/pollution/pollution_signals.gd"
 
 [display]
 

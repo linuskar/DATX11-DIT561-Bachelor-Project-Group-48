@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cgeyohlgf0u8t"]
 
 [ext_resource type="PackedScene" uid="uid://dl1aome3i6kt7" path="res://scenes/buildings/smoke/smoke_fire.tscn" id="1_ha3ci"]
-[ext_resource type="Script" uid="uid://dgg6arpc0kmsv" path="res://scripts/wildfire.gd" id="1_ri7gw"]
+[ext_resource type="Script" uid="uid://dgg6arpc0kmsv" path="res://scripts/pollution/wildfire.gd" id="1_ri7gw"]
 [ext_resource type="Texture2D" uid="uid://dh02lvtesfjj2" path="res://assets/particles/fire.png" id="2_ri7gw"]
 
 [sub_resource type="Curve" id="Curve_pcpuu"]

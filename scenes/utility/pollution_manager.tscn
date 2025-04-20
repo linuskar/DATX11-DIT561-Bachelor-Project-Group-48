@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bmfjen7u3vjeh"]
 
-[ext_resource type="Script" uid="uid://b8h8eu10uysh0" path="res://scripts/utility/pollution_manager.gd" id="1_6vgt2"]
+[ext_resource type="Script" uid="uid://b8h8eu10uysh0" path="res://scripts/pollution/pollution_manager.gd" id="1_6vgt2"]
 
 [node name="PollutionManager" type="Node"]
 script = ExtResource("1_6vgt2")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2jmiisw7cjfw"]
+
+[ext_resource type="PackedScene" uid="uid://cgeyohlgf0u8t" path="res://scenes/particles/wildfire.tscn" id="1_df8go"]
+
+[node name="WildfireIndicator" type="Node2D"]
+
+[node name="Wildfire" parent="." instance=ExtResource("1_df8go")]

@@ -27,10 +27,14 @@ var emissions_not_absorbed: Dictionary[Enums.ResourceType, float]
 
 var wildfire_percentage: float = 0.0
 var wildfire_wait_time: float = 1.0
-var emission_upper_limit: float = pow(10,7)
+var emission_upper_limit: float = pow(10,3)
 ## Emissions decay by 1% of their total value
 var emission_decay: float = 0.01
 var emission_decay_wait_time: float = 1.0
+var warning_indicator_scene = preload("res://scenes/UI/warning_indicator.tscn")
+var current_warning_indicator: WarningIndicator = null
+@onready var user_interface: CanvasLayer = $"../UserInterface"
+@onready var camera_movement: Camera2D = $"../CameraMovement"
 
 func _ready() -> void:
 	emissions_generated.set(Enums.ResourceType.CO2, 0)
@@ -82,6 +86,8 @@ func check_for_wildfire() -> bool:
 			
 	if trees_burning.size() == 0:
 		print("No wildfire")
+		if current_warning_indicator != null:
+			current_warning_indicator.queue_free()
 		return false
 	else:
 		print("Ongoing wildfire")
@@ -110,7 +116,11 @@ func start_wildfire() -> void:
 		var random_index: int = randi_range(0, all_trees.size()-1)
 		var random_tree: GatherableTree = all_trees[random_index]
 		random_tree.start_burning()
-		print("wildfire started")
+		
+		current_warning_indicator = warning_indicator_scene.instantiate()
+		current_warning_indicator.position = random_tree.position
+		
+		get_parent().add_child(current_warning_indicator)
 
 ## Function for initializing buildings that pollute
 func _init_building_polluting(building: Building) -> void:

@@ -3,6 +3,8 @@ extends Node
 ##
 ## A class that manages the main functions of the game
 ##
+@onready var user_interface: CanvasLayer = $"../UserInterface"
+@onready var camera: Camera2D = $"../CameraMovement"
 
 ## The control node for the building selection
 func _input(event) -> void:
