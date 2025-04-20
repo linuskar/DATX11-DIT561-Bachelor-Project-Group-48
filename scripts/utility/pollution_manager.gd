@@ -27,7 +27,7 @@ var emissions_not_absorbed: Dictionary[Enums.ResourceType, float]
 
 var wildfire_percentage: float = 0.0
 var wildfire_wait_time: float = 1.0
-var emission_upper_limit: float = pow(10,8)
+var emission_upper_limit: float = pow(10,7)
 ## Emissions decay by 1% of their total value
 var emission_decay: float = 0.01
 var emission_decay_wait_time: float = 1.0

@@ -58,6 +58,7 @@ func become_burnt() -> void:
 
 	burn_state = Enums.BurnState.BURNT
 	update_burn_visual()
+	quantity = 0
 	
 ## Function to spread the fire to nearby trees in range
 func spread_fire():
@@ -87,5 +88,6 @@ func check_if_at_emission_limit() -> bool:
 
 ## Function to absorb emissions.
 func absorb_emission(emission_type: Enums.ResourceType, amount: float):
-	var amount_to_set: float = amount + emission_storage.get(emission_type)
-	emission_storage.set(emission_type, amount_to_set)
+	if burn_state == Enums.BurnState.NORMAL:
+		var amount_to_set: float = amount + emission_storage.get(emission_type)
+		emission_storage.set(emission_type, amount_to_set)
