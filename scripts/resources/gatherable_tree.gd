@@ -20,9 +20,13 @@ var fire_probability: float = 0.4
 ## The current storage of emissions.
 var emission_storage: Dictionary[Enums.ResourceType, float] = {}
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
+var dead_tree_sprite: CompressedTexture2D = preload("res://assets/dead_tree.png")
+
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
 @onready var wildfire: WildFire = $Wildfire
+
 
 func _ready() -> void:
 	emission_storage.set(Enums.ResourceType.CO2, 0)
@@ -47,8 +51,8 @@ func update_burn_visual():
 			wildfire.start_fire()
 		Enums.BurnState.BURNT:
 			wildfire.stop_fire()
-			## TODO: sprite for burnt tree
-			modulate = Color(0.2, 0.2, 0.2) 
+			sprite_2d.region_enabled = false
+			sprite_2d.texture = dead_tree_sprite
 
 ## Function to make the tree burnt and spread the fire 
 func become_burnt() -> void:
