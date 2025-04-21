@@ -16,7 +16,6 @@ func _ready():
 	
 func _output_resources() -> void:
 	emit_smoke() 
-	$mining_particle.emitting = true
 	super()
 			
 ## Function for emitting smoke when possible

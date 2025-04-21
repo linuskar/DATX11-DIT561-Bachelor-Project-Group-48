@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://isbsjsm2mmil"]
+[gd_scene load_steps=19 format=3 uid="uid://isbsjsm2mmil"]
 
 [ext_resource type="Script" uid="uid://dkys5yq1u7s2q" path="res://scripts/buildings/gathering_buildings/iron_mine.gd" id="1_l5hob"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_jwvew"]
@@ -96,41 +96,9 @@ scale_curve = SubResource("CurveTexture_b44sr")
 color_ramp = SubResource("GradientTexture1D_7qqa8")
 alpha_curve = SubResource("CurveTexture_ahlc7")
 
-[sub_resource type="Curve" id="Curve_6w4bc"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.51032), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_oc4lm"]
-curve = SubResource("Curve_6w4bc")
-
-[sub_resource type="Gradient" id="Gradient_5k2sk"]
-offsets = PackedFloat32Array(0.639269, 0.940639)
-colors = PackedColorArray(0.49, 0.30919, 0.0882, 1, 0.34, 0.34, 0.34, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_6w4bc"]
-gradient = SubResource("Gradient_5k2sk")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ytwtp"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(16, 16, 16)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.0
-emission_ring_cone_angle = 90.0
-angle_min = 1.07288e-05
-angle_max = 360.0
-radial_velocity_min = -2.23517e-05
-radial_velocity_max = 30.0
-gravity = Vector3(0, 49, 0)
-scale_min = 0.1
-scale_max = 1.5
-color_ramp = SubResource("GradientTexture1D_6w4bc")
-alpha_curve = SubResource("CurveTexture_oc4lm")
-
-[node name="IronMine" type="StaticBody2D"]
+[node name="IronMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_l5hob")
+smokes = [NodePath("Smoke_v2"), NodePath("Smoke_v2_2"), NodePath("Smoke_v2_3")]
 building_data = ExtResource("2_jwvew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -159,15 +127,12 @@ script = ExtResource("4_6f8g6")
 
 [node name="Smoke_v2" parent="." instance=ExtResource("5_oc4lm")]
 position = Vector2(3.253, -14.6064)
-emitting = false
 
 [node name="Smoke_v2_2" parent="." instance=ExtResource("5_oc4lm")]
 position = Vector2(7.76016, -14.6252)
-emitting = false
 
 [node name="Smoke_v2_3" parent="." instance=ExtResource("5_oc4lm")]
 position = Vector2(12.258, -14.6627)
-emitting = false
 
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -181,15 +146,6 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mlxvk")
-
-[node name="mining_particle" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 128
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-randomness = 0.2
-process_material = SubResource("ParticleProcessMaterial_ytwtp")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
