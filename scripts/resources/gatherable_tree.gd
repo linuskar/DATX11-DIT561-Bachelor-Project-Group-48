@@ -10,8 +10,7 @@ extends GatherableResource
 var burn_state: Enums.BurnState = Enums.BurnState.NORMAL
 var burn_time: float = 3.0 
 var spread_radius: int = 32
-## TODO: dryness factor increasing based on carbon emissions
-var fire_probability: float = 0.4 
+var fire_spread_probability: float = 0.0
 
 ## Dictionary for the maximum capacity of emissions that can be stored.
 ## Set the max capacity to -1 to indicate it has unlmited max capacity
@@ -33,10 +32,10 @@ func _ready() -> void:
 	wildfire.stop_fire()
 
 ## Function to ignite the tree on fire
-func start_burning() -> void:
+func start_burning(fire_prob: float) -> void:
 	if burn_state != Enums.BurnState.NORMAL:
 		return
-	
+	fire_spread_probability = fire_prob
 	burn_state = Enums.BurnState.BURNING
 	update_burn_visual()
 	become_burnt()
@@ -74,8 +73,8 @@ func spread_fire():
 		if position.distance_to(tree.position) <= spread_radius:
 			## Start burning trees that have not been burned before,
 			## based on a probability for a fire to start
-			if tree.burn_state == Enums.BurnState.NORMAL and randf() <= fire_probability:
-				tree.start_burning()
+			if tree.burn_state == Enums.BurnState.NORMAL and randf() <= fire_spread_probability:
+				tree.start_burning(fire_spread_probability)
 
 ## Function to check if the stored emissions are at or above the 
 ## max capacity that is allowed.

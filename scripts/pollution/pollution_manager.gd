@@ -25,12 +25,17 @@ var emissions_absorbed: Dictionary[Enums.ResourceType, float]
 
 var emissions_not_absorbed: Dictionary[Enums.ResourceType, float] = {}
 
-var wildfire_percentage: float = 0.0
+var wildfire_start_percentage: float = 0.0
 var wildfire_wait_time: float = 1.0
 var emission_upper_limit: float = pow(10,7)
 ## Emissions decay by 1% of their total value
 var emission_decay: float = 0.01
 var emission_decay_wait_time: float = 1.0
+
+var min_fire_spread_probability: float = 0.4 
+var max_fire_spread_probability: float = 1.0
+
+var fire_spread_prob: float = 0.0
 
 var warning_indicator_scene = preload("res://scenes/UI/warning_indicator.tscn")
 var current_warning_indicator: WarningIndicator = null
@@ -89,26 +94,36 @@ func check_for_wildfire() -> bool:
 	else:
 		return true
 		
-## Function that updates the probability for a wildfire to happen
+## Function that updates the probability for a wildfire to happen and
+## the severity, to imitate how dry it is which increases the fire spread
 func update_wildfire_percentage() -> void:
 	var emission_amount: float = 0.0
-	wildfire_percentage = 0.0
+	wildfire_start_percentage = 0.0
+	fire_spread_prob = 0.0
 	for emission in Enums.emissions_contributing_to_wildfires:
 		emission_amount = emissions_not_absorbed.get(emission)
-		emission_amount = min(emission_amount, emission_upper_limit)
+		emission_amount += min(emission_amount, emission_upper_limit)
+		
 		## Normalize, scale the value to range from 0 to 1
-		emission_amount = inverse_lerp(0.0, emission_upper_limit, emission_amount)
-		wildfire_percentage += emission_amount
-	
+		var emission_norm: float = inverse_lerp(0.0, emission_upper_limit, emission_amount)
+		wildfire_start_percentage += emission_norm
+		
+		var emission_amount_fire_spread_prob_scaled: float = lerp(min_fire_spread_probability, max_fire_spread_probability, emission_norm)
+		fire_spread_prob += emission_amount_fire_spread_prob_scaled
+		
+	print(wildfire_start_percentage)
+	print(fire_spread_prob)
+		
 ## Function to start a wildfire, starting on a random tree
 func start_wildfire() -> void:
 	var random_number: float = randf()
 
-	if random_number <= wildfire_percentage:
+	if random_number <= wildfire_start_percentage:
 		var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
 		var random_index: int = randi_range(0, all_trees.size()-1)
 		var random_tree: GatherableTree = all_trees[random_index]
-		random_tree.start_burning()
+		
+		random_tree.start_burning(fire_spread_prob)
 		
 		current_warning_indicator = warning_indicator_scene.instantiate()
 		current_warning_indicator.position = random_tree.position
