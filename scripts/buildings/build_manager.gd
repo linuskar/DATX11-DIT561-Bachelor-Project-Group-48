@@ -325,6 +325,8 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	building_info_button.position += Vector2(landfill.position_to_expand_to)
 	landfill.add_child(building_info_button)
 	landfill.connected_landfill_clickables.append(building_info_button)
+
+	landfill.place_animation.play()
 	
 	## Occupy tiles for where the landfill expanded to
 	var adjusted_pos: Vector2 = landfill.position + landfill.position_to_expand_to
@@ -405,6 +407,8 @@ func shrink_landfill(landfill: BiomassLandfill) -> void:
 	
 	var landfill_clickable: TextureButton = landfill.connected_landfill_clickables.pop_back()
 	landfill_clickable.queue_free()
+	
+	landfill.place_animation.play()
 	
 	## Re-add landfill to request for input
 	ResourceSignals.add_input_building.emit(landfill)
