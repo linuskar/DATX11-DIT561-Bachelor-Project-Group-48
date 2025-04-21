@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://c7ded0ull7r3b"]
+[gd_scene load_steps=23 format=4 uid="uid://c7ded0ull7r3b"]
 
 [ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="1_7ny2r"]
 [ext_resource type="Script" uid="uid://dvsnvlsyog0u7" path="res://scripts/map_layer.gd" id="1_qds2b"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://csdjsjq4n5751" path="res://scenes/resources/iron_ore.tscn" id="6_psaw3"]
 [ext_resource type="PackedScene" uid="uid://bj5xuffyaonsb" path="res://scenes/resources/gatherable_tree.tscn" id="7_qds2b"]
 [ext_resource type="Script" uid="uid://ci1r0ft37y25" path="res://scripts/utility/map_areas.gd" id="8_ysx3f"]
-[ext_resource type="PackedScene" uid="uid://ck8h7axla2cb" path="res://scenes/fog.tscn" id="9_ysx3f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23fv6"]
 texture = ExtResource("1_7ny2r")
@@ -1056,9 +1055,3 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapAreas/LeftBound"]
 position = Vector2(322, 7.99889)
 shape = SubResource("WorldBoundaryShape2D_qds2b")
-
-[node name="Fog" parent="." instance=ExtResource("9_ysx3f")]
-offset_left = -1344.0
-offset_top = -1376.0
-offset_right = 1984.0
-offset_bottom = 1216.0

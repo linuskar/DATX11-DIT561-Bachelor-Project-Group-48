@@ -15,6 +15,9 @@ extends Node
 ## The layer the building is placed/locked on to get a grid based placement.
 @onready var map_layer: MapLayer = $"../MapLayer"
 
+@onready var buildings_node_container: Node = $BuildingsNodeContainer
+@onready var blueprint_node_container: Node = $BlueprintNodeContainer
+
 ## The currently occupied tiles, for example a building, tree, etc.
 var occupied_tiles: Dictionary[Vector2, Building] = BuildManagerGlobal.occupied_tiles
 
@@ -52,7 +55,7 @@ func _on_selected_building(building_data: BuildingData) ->  void:
 	
 	## Add the new blueprint to the game of the currently selected building
 	var new_blueprint: BuildingBlueprint = building_blueprints.get(building_data.building_type).instantiate()
-	add_child(new_blueprint)
+	blueprint_node_container.add_child(new_blueprint)
 	blueprint = new_blueprint
 	blueprint.show()
 		
@@ -151,7 +154,7 @@ func place_building() -> void:
 	var building_type: Enums.BuildingType = blueprint.building_data.building_type
 	var new_building: Building = buildings.get(building_type).instantiate()
 	new_building.position = blueprint.position
-	get_parent().add_child(new_building)
+	buildings_node_container.add_child(new_building)
 	
 	## Additionally decrease the players held currency equal to the cost of the building
 	PlayerCurrency.remove_currency(blueprint.building_data.building_cost)

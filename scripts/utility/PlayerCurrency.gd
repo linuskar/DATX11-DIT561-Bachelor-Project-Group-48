@@ -7,8 +7,7 @@ var player_held_currency: int = 300000
 signal currency_changed
 
 ## Adds an amount of currency to the players held total
-func add_currency(amount: int) -> void:
-	
+func add_currency(amount: int) -> void:	
 	player_held_currency += amount
 	currency_changed.emit()
 
