@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://u0w1syotmn42"]
+[gd_scene load_steps=42 format=3 uid="uid://u0w1syotmn42"]
 
 [ext_resource type="Script" uid="uid://dbn3nge5xhrd6" path="res://scripts/UI/BuildingInfo.gd" id="1_y4byq"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="2_oocw6"]
@@ -7,6 +7,16 @@
 [ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="6_itten"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="6_xxyib"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="7_xxyib"]
+[ext_resource type="AudioStream" uid="uid://dhgodxjdfbs5h" path="res://assets/sounds/money_sounds/coin_sound1.wav" id="8_gy07u"]
+[ext_resource type="AudioStream" uid="uid://bjnobxyxh85bs" path="res://assets/sounds/money_sounds/coin_sound2.wav" id="9_xwu3o"]
+[ext_resource type="AudioStream" uid="uid://dfehgt0stl6mi" path="res://assets/sounds/money_sounds/coin_sound3.wav" id="10_nq447"]
+[ext_resource type="AudioStream" uid="uid://c2y3cjqxefs6c" path="res://assets/sounds/money_sounds/coin_sound4.wav" id="11_pwsxf"]
+[ext_resource type="AudioStream" uid="uid://c5abpsqoivwon" path="res://assets/sounds/money_sounds/coin_sound5.wav" id="12_wt2s8"]
+[ext_resource type="AudioStream" uid="uid://cr2hv1g7ihhdy" path="res://assets/sounds/money_sounds/coin_sound6.wav" id="13_w6u5r"]
+[ext_resource type="AudioStream" uid="uid://c05iuodau0oac" path="res://assets/sounds/money_sounds/coin_sound7.wav" id="14_7hdxm"]
+[ext_resource type="AudioStream" uid="uid://csfyj5hov5c0r" path="res://assets/sounds/money_sounds/coin_sound8.wav" id="15_enqmq"]
+[ext_resource type="AudioStream" uid="uid://b4i2ra548jqeq" path="res://assets/sounds/money_sounds/coin_sound9.wav" id="16_yawob"]
+[ext_resource type="AudioStream" uid="uid://thu2vkflcyee" path="res://assets/sounds/money_sounds/coin_sound10.wav" id="17_ngutn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oocw6"]
 line_spacing = 1.0
@@ -167,6 +177,19 @@ region = Rect2(38, 22, 4, 4)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxyib"]
 atlas = ExtResource("5_6mxs2")
 region = Rect2(38, 22, 4, 4)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ih4yy"]
+streams_count = 10
+stream_0/stream = ExtResource("8_gy07u")
+stream_1/stream = ExtResource("9_xwu3o")
+stream_2/stream = ExtResource("10_nq447")
+stream_3/stream = ExtResource("11_pwsxf")
+stream_4/stream = ExtResource("12_wt2s8")
+stream_5/stream = ExtResource("13_w6u5r")
+stream_6/stream = ExtResource("14_7hdxm")
+stream_7/stream = ExtResource("15_enqmq")
+stream_8/stream = ExtResource("16_yawob")
+stream_9/stream = ExtResource("17_ngutn")
 
 [node name="BuildingInfo" type="Control"]
 custom_minimum_size = Vector2(408, 648)
@@ -432,6 +455,10 @@ texture_normal = SubResource("AtlasTexture_itten")
 texture_pressed = SubResource("AtlasTexture_6mxs2")
 texture_hover = SubResource("AtlasTexture_xxyib")
 stretch_mode = 4
+
+[node name="money_sound_player" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ih4yy")
+volume_db = 20.0
 
 [connection signal="button_down" from="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/Button" to="." method="_sell_chosen_resources"]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling" binds= [true]]

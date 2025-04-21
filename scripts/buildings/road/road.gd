@@ -15,6 +15,7 @@ var sibling_down: Building = null
 var sibling_up: Building = null
 
 func _ready():
+	$place_animation.play("place")
 	super()
 	BuildManagerGlobal.update_roads.connect(update_connections)
 	
@@ -135,3 +136,7 @@ func update_road_sprite() -> void:
 	elif up or down:
 		$Sprite2D.frame = 3  # Default vertical
 		
+
+
+func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+	$place_particle.emitting = true

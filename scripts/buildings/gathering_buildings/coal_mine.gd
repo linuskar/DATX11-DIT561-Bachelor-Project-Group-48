@@ -10,6 +10,7 @@ extends GatheringBuilding
 @export var smokes: Array[GPUParticles2D]
 
 func _ready():
+	$place_animation.play("place")
 	super()
 	emit_smoke()
 
@@ -25,3 +26,8 @@ func emit_smoke() -> void:
 	else:
 		for smoke in smokes:
 			smoke.emitting = true
+			$mining_particle.emitting = true
+
+
+func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+	$place_particle.emitting = true

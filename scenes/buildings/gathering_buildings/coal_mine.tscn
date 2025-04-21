@@ -1,13 +1,133 @@
-[gd_scene load_steps=7 format=3 uid="uid://djt4gpmfrp805"]
+[gd_scene load_steps=24 format=3 uid="uid://djt4gpmfrp805"]
 
 [ext_resource type="Script" uid="uid://o0k4pecox0g" path="res://scripts/buildings/gathering_buildings/coal_mine.gd" id="1_5wtww"]
 [ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_f8yp3"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="3_klpcp"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_f8yp3"]
+[ext_resource type="Script" path="res://scripts/UI/clickable.gd" id="4_f8yp3"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="5_klpcp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_fnoo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5ylux"]
+resource_name = "place"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86t2d"]
+_data = {
+&"RESET": SubResource("Animation_fnoo6"),
+&"place": SubResource("Animation_5ylux")
+}
+
+[sub_resource type="Curve" id="Curve_klpcp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b44sr"]
+curve = SubResource("Curve_klpcp")
+
+[sub_resource type="Gradient" id="Gradient_02jrp"]
+offsets = PackedFloat32Array(0.190909, 0.981818)
+colors = PackedColorArray(0.84, 0.84, 0.84, 1, 0.82, 0.81426, 0.8036, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ahlc7"]
+gradient = SubResource("Gradient_02jrp")
+
+[sub_resource type="Curve" id="Curve_8f8fg"]
+_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7qqa8"]
+curve = SubResource("Curve_8f8fg")
+
+[sub_resource type="Curve" id="Curve_qrqbt"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3m8jq"]
+curve = SubResource("Curve_qrqbt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rn1kv"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 16, 16)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+radial_velocity_min = 9.99998
+radial_velocity_max = 30.0
+radial_velocity_curve = SubResource("CurveTexture_7qqa8")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_3m8jq")
+color_ramp = SubResource("GradientTexture1D_ahlc7")
+alpha_curve = SubResource("CurveTexture_b44sr")
+
+[sub_resource type="Curve" id="Curve_02jrp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.51032), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kw5qq"]
+curve = SubResource("Curve_02jrp")
+
+[sub_resource type="Gradient" id="Gradient_8f8fg"]
+offsets = PackedFloat32Array(0.0936073, 0.509132)
+colors = PackedColorArray(0, 0, 0, 1, 0.34, 0.34, 0.34, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mlxvk"]
+gradient = SubResource("Gradient_8f8fg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qrqbt"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 16, 16)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.07288e-05
+angle_max = 360.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 30.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.1
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_mlxvk")
+alpha_curve = SubResource("CurveTexture_kw5qq")
 
 [node name="CoalMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5wtww")
@@ -39,5 +159,28 @@ script = ExtResource("4_f8yp3")
 [node name="Smoke_v1" parent="." instance=ExtResource("5_klpcp")]
 position = Vector2(10.5626, -11.5803)
 
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rn1kv")
+
+[node name="mining_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 128
+lifetime = 0.15
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+process_material = SubResource("ParticleProcessMaterial_qrqbt")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
+[connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]
