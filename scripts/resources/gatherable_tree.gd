@@ -25,6 +25,7 @@ var dead_tree_sprite: CompressedTexture2D = preload("res://assets/dead_tree.png"
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
 @onready var wildfire: WildFire = $Wildfire
+
 ## TODO: absorb more emissions, release emissions when burnt
 func _ready() -> void:
 	emission_storage.set(Enums.ResourceType.CO2, 0)
@@ -32,7 +33,8 @@ func _ready() -> void:
 	emission_storage.set(Enums.ResourceType.N0X, 0)
 	emission_storage.set(Enums.ResourceType.CH4, 0)
 	wildfire.stop_fire()
-
+	sprite_2d.material.set_shader_parameter("world_matrix", global_transform)
+	
 ## Function to ignite the tree on fire
 func start_burning(fire_prob: float) -> void:
 	if burn_state != Enums.BurnState.NORMAL:

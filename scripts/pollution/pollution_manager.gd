@@ -33,7 +33,7 @@ var emission_decay: float = 0.01
 var emission_decay_wait_time: float = 1.0
 
 var min_fire_spread_probability: float = 0.4 
-var max_fire_spread_probability: float = 0.8
+var max_fire_spread_probability: float = 0.6
 
 var fire_spread_prob: float = 0.0
 
