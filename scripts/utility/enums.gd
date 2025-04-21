@@ -9,9 +9,9 @@ static var polluting_buildings: Array[BuildingType] = [
 		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
 		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
 		
-static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02]
+static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
-static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
+static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
@@ -32,6 +32,8 @@ static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.S02: "SO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
 		ResourceType.BIOMASS: "BIOMASS",
+		ResourceType.N0X: "N0X",
+		ResourceType.CH4: "CH4",
 		ResourceType.NONE: "NONE",
 	}	
 	
@@ -43,6 +45,8 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"SO2": ResourceType.S02,
 		"ELECTRICITY": ResourceType.ELECTRICITY,
 		"BIOMASS": ResourceType.BIOMASS,
+		"N0X": ResourceType.N0X,
+		"CH4": ResourceType.CH4,
 		"NONE": ResourceType.NONE,
 	}
 
@@ -80,10 +84,13 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
 	ResourceType.CO2: "CO2",
+	ResourceType.N0X: "N0X",
+	ResourceType.CH4: "CH4",
 }
 ## TEMPORARY
 static var emissions_contributing_to_smog: Dictionary[ResourceType, String] = {
-	ResourceType.CO2: "CO2",
+	ResourceType.S02: "S02",
+	ResourceType.N0X: "N0X",
 }
 
 ## Function that returns the value of a resource when sold
@@ -125,6 +132,8 @@ enum ResourceType {
 	S02, ## The resource type for sulfur dioxide
 	ELECTRICITY, ## The resource type for electricity
 	BIOMASS, ## The resource type for biomass
+	N0X, ## The resource type for nitrogen oxides
+	CH4, ## The resource type for methane
 	NONE, ## The resource type for nothing
 }
 

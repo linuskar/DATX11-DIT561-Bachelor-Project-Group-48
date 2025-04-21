@@ -33,7 +33,7 @@ var emission_decay: float = 0.01
 var emission_decay_wait_time: float = 1.0
 
 var min_fire_spread_probability: float = 0.4 
-var max_fire_spread_probability: float = 1.0
+var max_fire_spread_probability: float = 0.8
 
 var fire_spread_prob: float = 0.0
 
@@ -41,14 +41,10 @@ var warning_indicator_scene = preload("res://scenes/UI/warning_indicator.tscn")
 var current_warning_indicator: WarningIndicator = null
 
 func _ready() -> void:
-	emissions_generated.set(Enums.ResourceType.CO2, 0)
-	emissions_generated.set(Enums.ResourceType.S02, 0)
-	
-	emissions_absorbed.set(Enums.ResourceType.CO2, 0)
-	emissions_absorbed.set(Enums.ResourceType.S02, 0)
-	
-	emissions_not_absorbed.set(Enums.ResourceType.CO2, 0)
-	emissions_not_absorbed.set(Enums.ResourceType.S02, 0)
+	for emission in Enums.emissions:
+		emissions_generated.set(emission, 0)
+		emissions_absorbed.set(emission, 0)
+		emissions_not_absorbed.set(emission, 0)
 	
 	build_manager.placed_building.connect(_init_building_polluting)
 	wildfire_timer.wait_time = wildfire_wait_time
@@ -100,19 +96,17 @@ func update_wildfire_percentage() -> void:
 	var emission_amount: float = 0.0
 	wildfire_start_percentage = 0.0
 	fire_spread_prob = 0.0
+	
 	for emission in Enums.emissions_contributing_to_wildfires:
-		emission_amount = emissions_not_absorbed.get(emission)
-		emission_amount += min(emission_amount, emission_upper_limit)
+		var emission_not_absorbed: float = emissions_not_absorbed.get(emission)
+		emission_amount += min(emission_not_absorbed, emission_upper_limit)
 		
-		## Normalize, scale the value to range from 0 to 1
-		var emission_norm: float = inverse_lerp(0.0, emission_upper_limit, emission_amount)
-		wildfire_start_percentage += emission_norm
-		
-		var emission_amount_fire_spread_prob_scaled: float = lerp(min_fire_spread_probability, max_fire_spread_probability, emission_norm)
-		fire_spread_prob += emission_amount_fire_spread_prob_scaled
-		
-	print(wildfire_start_percentage)
-	print(fire_spread_prob)
+	## Normalize, scale the value to range from 0 to 1
+	var emission_norm: float = inverse_lerp(0.0, emission_upper_limit, emission_amount)
+	wildfire_start_percentage = emission_norm
+	
+	var emission_amount_fire_spread_prob_scaled: float = lerp(min_fire_spread_probability, max_fire_spread_probability, emission_norm)
+	fire_spread_prob = emission_amount_fire_spread_prob_scaled
 		
 ## Function to start a wildfire, starting on a random tree
 func start_wildfire() -> void:

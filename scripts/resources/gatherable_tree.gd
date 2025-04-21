@@ -25,10 +25,12 @@ var dead_tree_sprite: CompressedTexture2D = preload("res://assets/dead_tree.png"
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
 @onready var wildfire: WildFire = $Wildfire
-
+## TODO: absorb more emissions, release emissions when burnt
 func _ready() -> void:
 	emission_storage.set(Enums.ResourceType.CO2, 0)
 	emission_storage.set(Enums.ResourceType.S02, 0)
+	emission_storage.set(Enums.ResourceType.N0X, 0)
+	emission_storage.set(Enums.ResourceType.CH4, 0)
 	wildfire.stop_fire()
 
 ## Function to ignite the tree on fire
@@ -82,8 +84,8 @@ func check_if_at_emission_limit() -> bool:
 	for emission_type in emission_storage.keys():	
 		var emission_stored: float = emission_storage.get(emission_type)
 		var emission_limit = emission_max_capacity.get(emission_type)
-		## Destroy the tree if the limit for sulfur dioxide is reached
-		if emission_stored >= emission_limit and emission_type == Enums.ResourceType.S02:
+		## Destroy the tree if the limit is reached
+		if emission_stored >= emission_limit and (emission_type == Enums.ResourceType.S02 or emission_type == Enums.ResourceType.N0X):
 			queue_free()
 			return true
 	return false
