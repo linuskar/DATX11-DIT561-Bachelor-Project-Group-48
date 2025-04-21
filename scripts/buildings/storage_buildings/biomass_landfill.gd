@@ -12,6 +12,9 @@ var connected_landfill_clickables: Array[TextureButton] = []
 var grid_size: int = 32
 var position_to_expand_to: Vector2 = Vector2(0, 0)
 
+@onready var place_animation: AnimationPlayer = $place_animation
+@onready var place_particle: GPUParticles2D = $place_particle
+
 signal landfill_expanded(landfill: BiomassLandfill)
 signal landfill_shrinked(landfill: BiomassLandfill)
 
@@ -23,6 +26,7 @@ var currently_selected: bool
 
 func _ready() -> void:
 	super()
+	place_animation.play("place")
 	highlight.hide()
 	higlights_list.append(highlight)
 	BuildingSignals.building_clicked.connect(building_selected)
@@ -71,3 +75,6 @@ func highlight_building() -> void:
 		for building_highlight in higlights_list:
 			building_highlight.hide()
 			building_highlight.de_selected()
+
+func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+	place_particle.emitting = true

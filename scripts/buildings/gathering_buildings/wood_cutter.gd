@@ -11,6 +11,7 @@ var current_tree_gathering: GatherableTree = null
 
 func _ready():
 	super()
+	$place_animation.play("place")
 
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
@@ -23,7 +24,7 @@ func _output_resources() -> void:
 		_handle_produced_goods()
 		_use_input_recipe()
 		_generate_byproducts()
-		
+	
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
 func check_for_output_overflow() -> bool:
@@ -65,6 +66,8 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 		## Producing wood
 		if is_instance_valid(current_tree_gathering):
 			produced_good_generated += current_tree_gathering.gather_resource(output_generation.get(Enums.ResourceType.WOOD))
+			$wood_chop_sound.pitch_scale = randf_range(0.75, 1.5)
+			$wood_chop_sound.play()
 			
 			current_tree_gathering.gathering_sprite_2d.show()
 			
@@ -105,4 +108,7 @@ func _generate_byproducts() -> void:
 			emitted_emissions.emit(self, byproduct, byproduct_generated_rate)
 		else:
 			byproduct_stored += byproduct_generated_rate
-			output_storage.set(byproduct, byproduct_stored)
+			output_storage.set(byproduct, byproduct_stored)	
+
+func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+	$place_particle.emitting = true

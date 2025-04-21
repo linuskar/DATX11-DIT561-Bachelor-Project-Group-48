@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c2hipt4wi8fgf"
+path="res://.godot/imported/FUI Short Tonal Click.wav-8a2de2fca9fa5f5152ee67238b6fcaa7.sample"
+
+[deps]
+
+source_file="res://assets/sounds/click/FUI Short Tonal Click.wav"
+dest_files=["res://.godot/imported/FUI Short Tonal Click.wav-8a2de2fca9fa5f5152ee67238b6fcaa7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

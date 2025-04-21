@@ -8,6 +8,7 @@ signal currency_changed
 
 ## Adds an amount of currency to the players held total
 func add_currency(amount: int) -> void:
+	
 	player_held_currency += amount
 	currency_changed.emit()
 

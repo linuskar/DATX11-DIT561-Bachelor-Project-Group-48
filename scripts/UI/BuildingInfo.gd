@@ -233,6 +233,11 @@ func _sell_chosen_resources() -> void:
 			PlayerCurrency.add_currency(currency_gain)
 			stored_resource_panel.resource_to_sell = 0
 			ResourceSignals.use_resource.emit(resource_type, sold_amount)
+			
+			#play sound if sell amount is bigger than 0.
+			if currency_gain > 0:
+				$money_sound_player.play()
+				
 	sell_value_label.text = "0"
 	
 func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
