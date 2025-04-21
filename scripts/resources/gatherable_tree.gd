@@ -7,10 +7,10 @@ extends GatherableResource
 ##
 ##
 
-## TODO: dryness factor increasing based on carbon emissions
 var burn_state: Enums.BurnState = Enums.BurnState.NORMAL
 var burn_time: float = 3.0 
 var spread_radius: int = 32
+## TODO: dryness factor increasing based on carbon emissions
 var fire_probability: float = 0.4 
 
 ## Dictionary for the maximum capacity of emissions that can be stored.
