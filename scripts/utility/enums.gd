@@ -130,6 +130,22 @@ enum TileType {
 	RESOURCE, ## The tile type for a resource
 }
 
+## The different types of pollution
+enum PollutionLevel {
+	NORMAL,
+	SLIGHTLY,
+	HEAVILY,
+	DEAD,
+}
+
+static var pollution_level_ordering: Array[PollutionLevel] = [PollutionLevel.NORMAL, PollutionLevel.SLIGHTLY, PollutionLevel.HEAVILY, PollutionLevel.DEAD]
+
+static var emissions_contributing_to_tree_pollution: Dictionary[ResourceType, String] = {
+	ResourceType.S02: "S02",
+}
+static func is_a_tree_pollution_contributor(resource_type: ResourceType) -> bool:
+	return resource_type in emissions_contributing_to_tree_pollution
+	
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
 	return building_type in polluting_buildings
 	
