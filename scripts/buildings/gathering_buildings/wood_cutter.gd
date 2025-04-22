@@ -11,6 +11,8 @@ var current_tree_gathering: GatherableTree = null
 
 func _ready():
 	super()
+	apply_research_upgrade()
+	Research.research_completed.connect(_on_research_completed)
 	$place_animation.play("place")
 
 ## Function to begin outputting resources from the production building.
@@ -112,3 +114,10 @@ func _generate_byproducts() -> void:
 
 func _on_place_animation_animation_finished(anim_name: StringName) -> void:
 	$place_particle.emitting = true
+
+func _on_research_completed(id: String) -> void:
+	apply_research_upgrade()
+
+func apply_research_upgrade() -> void:
+	if Research.has_completed("WC1"):
+		pass

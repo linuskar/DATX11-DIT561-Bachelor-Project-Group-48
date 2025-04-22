@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://4wqorptqpmal"]
+
+[ext_resource type="Script" uid="uid://c3l642fbplbie" path="res://scripts/buildings/research_lab.gd" id="1_g0hqv"]
+[ext_resource type="Resource" uid="uid://cwiawiaiit30p" path="res://resources/buildings/research_lab.tres" id="2_t6nnc"]
+[ext_resource type="Texture2D" uid="uid://cmjn4gx8ha263" path="res://assets/buildings_iso/research_building_96.png" id="3_b5gcx"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_b5gcx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0miy"]
+size = Vector2(96, 96)
+
+[node name="ResearchLab" type="StaticBody2D"]
+script = ExtResource("1_g0hqv")
+building_data = ExtResource("2_t6nnc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, -9.53674e-07)
+texture = ExtResource("3_b5gcx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k0miy")
+
+[node name="Clickable" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_b5gcx")
+
+[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
