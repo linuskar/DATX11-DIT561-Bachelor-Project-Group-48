@@ -165,6 +165,7 @@ func _on_placed_building(building: Building) -> void:
 	for x in range(building_tile_size.x):
 		for y in range(building_tile_size.y):
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
+	BuildManagerGlobal.update_networks(building)
 	placed_building.emit(building)
 	BuildManagerGlobal.update_roads.emit()
 	BuildManagerGlobal.print_networks()

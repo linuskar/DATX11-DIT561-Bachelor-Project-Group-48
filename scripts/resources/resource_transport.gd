@@ -81,5 +81,6 @@ func transport_resources(type: Enums.ResourceType) -> void:
 #Join two different networks into one, the new_network ahould be delete after this 
 func add_another_network(new_network: ResourceTransport):
 	buildings.append_array(new_network.buildings)
-	buildings_input.merge(new_network.buildings_input)
-	buildings_input.merge(new_network.buildings_output)
+	for type in Enums.ResourceType.values():
+		buildings_input.get(type).append_array(new_network.buildings_input.get(type))
+		buildings_output.get(type).append_array(new_network.buildings_output.get(type))
