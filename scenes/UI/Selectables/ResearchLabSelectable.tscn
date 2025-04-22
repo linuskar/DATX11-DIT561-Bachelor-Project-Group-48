@@ -105,11 +105,12 @@ layout_mode = 2
 texture = ExtResource("4_2iep7")
 
 [node name="BuildingNameCost" type="Label" parent="."]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 127.0
-offset_right = 134.0
-offset_bottom = 181.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.25
 mouse_filter = 1
 text = "Name Cost"
 label_settings = SubResource("LabelSettings_rvi21")
