@@ -44,11 +44,3 @@ func set_state(state: bool) -> void:
 		self.find_child("List").visible = true
 	if not state:
 		self.find_child("List").visible = false
-
-
-func _on_research_lab_selectable_selected(building: SelectableBuilding) -> void:
-	pass # Replace with function body.
-
-
-func on_building_selected(building: SelectableBuilding) -> void:
-	pass # Replace with function body.
