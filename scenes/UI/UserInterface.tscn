@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://djil6gjtsgbdu"]
+[gd_scene load_steps=9 format=3 uid="uid://djil6gjtsgbdu"]
 
 [ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_v3jyi"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bj1v7y2dejr2w" path="res://scenes/UI/ResourceUI.tscn" id="3_vr1b1"]
 [ext_resource type="PackedScene" uid="uid://u0w1syotmn42" path="res://scenes/UI/BuildingInfo.tscn" id="5_3wpr7"]
 [ext_resource type="PackedScene" uid="uid://cht3r13bjg58r" path="res://scenes/UI/PlayerCurrencyPanel.tscn" id="6_v3jyi"]
+[ext_resource type="PackedScene" uid="uid://bn4m2dsa1xi1m" path="res://scenes/UI/ResearchUI/ResearchUI.tscn" id="8_o6e1s"]
 
 [node name="UserInterface" type="CanvasLayer"]
 script = ExtResource("1_vr1b1")
@@ -31,6 +32,8 @@ mouse_filter = 1
 
 [node name="PlayerCurrencyPanel" parent="." instance=ExtResource("6_v3jyi")]
 mouse_force_pass_scroll_events = true
+
+[node name="ResearchUI" parent="." instance=ExtResource("8_o6e1s")]
 
 [connection signal="self_entered" from="PanelContainer" to="." method="add_reference"]
 [connection signal="self_exited" from="PanelContainer" to="." method="remove_reference"]

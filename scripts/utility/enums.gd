@@ -66,6 +66,7 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.SAW_MILL: "SAW MILL",
 	BuildingType.STEEL_MILL: "STEEL MILL",
 	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
+	BuildingType.RESEARCH_LAB: "RESEARCH LAB"
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
@@ -106,10 +107,7 @@ enum BuildingType {
 	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
 	BIOMASS_LANDFILL, ## The building type for a biomass landfill
 	WAREHOUSE, ## The building type for a warehouse
-	ROAD, ## The building type for roads
-	SAW_MILL, ## The building type for a saw mill 
-	STEEL_MILL, ## The building type for a steel mill 
-	GEAR_FACTORY, ## The building type for a gear factory
+	RESEARCH_LAB, ## The building type for a research lab
 }
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:

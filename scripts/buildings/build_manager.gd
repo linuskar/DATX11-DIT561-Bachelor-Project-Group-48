@@ -187,7 +187,6 @@ func _on_placed_building(building: Building) -> void:
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
 	placed_building.emit(building)
 	BuildManagerGlobal.update_roads.emit()
-	BuildManagerGlobal.print_networks()
 
 ## When the mouse has entered the building list:
 ## Disable the state of placing a building and hide the blueprint
