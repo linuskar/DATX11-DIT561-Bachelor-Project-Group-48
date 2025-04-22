@@ -154,7 +154,7 @@ func get_storage_text() -> String:
 func get_connected_biomass_landfills() -> String:
 	var text: String = ""
 	text += "\n" + "This building auto expands and shrinks its max capacity of BIOMASS by " + str(current_building.auto_expand_max_capacity_amount) + "."+ "\n"
-	text += "\nConnected Biomass Landfills: " + str(current_building.connected_landfill_sprites.size() + 1) + '\n'
+	text += "\nConnected Biomass Landfills: " + str(current_building.connected_landfills.size() + 1) + '\n'
 	return text
 
 ## Specific for gathering buildings, add the resource node it has to be placed on for operation

@@ -203,7 +203,7 @@ func _on_placed_building(building: Building) -> void:
 	placed_building.emit(building)
 
 	BuildManagerGlobal.update_roads.emit()
-	BuildManagerGlobal.print_networks()
+	# BuildManagerGlobal.print_networks()
 	
 ## Function two merge landfills that are near each other
 func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_with: BiomassLandfill) -> void:
@@ -292,7 +292,7 @@ func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> Bio
 ## Expand the landfill when at max capacity
 func expand_landfill(landfill: BiomassLandfill) -> void:
 	## Set the next position to expand to
-	next_position_to_expand_to(landfill, landfill.connected_landfill_sprites.size() - 1)
+	next_position_to_expand_to(landfill, landfill.connected_landfills.size() - 1)
 
 	## If there is no possible position that the landfill can expand to.
 	if landfill.position_to_expand_to.x == 0 and landfill.position_to_expand_to.y == 0:
@@ -305,28 +305,7 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	## Re-add landfill to request for input.
 	ResourceSignals.add_input_building.emit(landfill)
 	
-	## Create new sprite for where the landfill expands to.
-	var new_sprite: Sprite2D = landfill.building_sprite.duplicate()
-	new_sprite.position += landfill.position_to_expand_to
-	landfill.add_child(new_sprite)
-	landfill.connected_landfill_sprites.append(new_sprite)
-	
-	## Create new higlight for where the landfill expands to
-	var building_highlight: BuildingHighlight = landfill.highlight.duplicate()
-	building_highlight.position += Vector2(landfill.position_to_expand_to)
-	landfill.add_child(building_highlight)
-	landfill.higlights_list.append(building_highlight)
-	
-	## TODO: Add collision shape, but right now it is not relevant for any logic
-	## var new_collision_shape: CollisionShape2D = null
-	
-	## Create new button for building info for where the landfill expands to
-	var building_info_button: TextureButton = landfill.clickable.duplicate()
-	building_info_button.position += Vector2(landfill.position_to_expand_to)
-	landfill.add_child(building_info_button)
-	landfill.connected_landfill_clickables.append(building_info_button)
-
-	landfill.place_animation.play()
+	landfill.instantiate_auto_expand_landfill()
 	
 	## Occupy tiles for where the landfill expanded to
 	var adjusted_pos: Vector2 = landfill.position + landfill.position_to_expand_to
@@ -345,7 +324,7 @@ func next_position_to_expand_to(landfill: BiomassLandfill, index: int) -> void:
 		
 		## Go through all tiles the landfill occupies
 		if index >= 0:
-			prev_occupied_tile_pos = landfill.connected_landfill_sprites[index].position
+			prev_occupied_tile_pos = landfill.connected_landfills[index].position
 		else:
 			## When there is only one tile the landfill occupies
 			landfill.position_to_expand_to = get_possible_position_to_expand_to(landfill, prev_occupied_tile_pos)
@@ -401,15 +380,11 @@ func shrink_landfill(landfill: BiomassLandfill) -> void:
 
 	## Deoccupy the tile that the landfill previously occupied
 	## Remove corresponding sprite and clickable button
-	var landfill_sprite: Sprite2D = landfill.connected_landfill_sprites.pop_back()
-	occupied_tiles.erase(landfill_sprite.position)
-	landfill_sprite.queue_free()
+	var landfill_auto: LandfillAutoExpand = landfill.connected_landfills.pop_back()
+	occupied_tiles.erase(landfill_auto.position)
 	
-	var landfill_clickable: TextureButton = landfill.connected_landfill_clickables.pop_back()
-	landfill_clickable.queue_free()
-	
-	landfill.place_animation.play()
-	
+	landfill_auto.remove()
+
 	## Re-add landfill to request for input
 	ResourceSignals.add_input_building.emit(landfill)
 

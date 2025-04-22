@@ -7,8 +7,7 @@ extends StorageBuilding
 ##
 
 var auto_expand_max_capacity_amount: int = 100
-var connected_landfill_sprites: Array[Sprite2D] = []
-var connected_landfill_clickables: Array[TextureButton] = []
+var connected_landfills: Array[LandfillAutoExpand] = []
 var grid_size: int = 32
 var position_to_expand_to: Vector2 = Vector2(0, 0)
 
@@ -18,17 +17,17 @@ var position_to_expand_to: Vector2 = Vector2(0, 0)
 signal landfill_expanded(landfill: BiomassLandfill)
 signal landfill_shrinked(landfill: BiomassLandfill)
 
-@onready var clickable: TextureButton = $Clickable
+@onready var clickable: Clickable = $Clickable
 @onready var highlight: BuildingHighlight = $Highlight
 
-var higlights_list: Array[BuildingHighlight]
+var landfill_auto_expand: PackedScene = preload("res://scenes/buildings/storage_buildings/landfill_auto_expand.tscn")
+
 var currently_selected: bool
 
 func _ready() -> void:
 	super()
 	place_animation.play("place")
 	highlight.hide()
-	higlights_list.append(highlight)
 	BuildingSignals.building_clicked.connect(building_selected)
 	BuildingSignals.building_info_closed.connect(building_deselected)
 	
@@ -50,7 +49,7 @@ func shrink_landfill() -> void:
 	var current_biomass: int = output_storage.get(Enums.ResourceType.BIOMASS)
 	var current_max_biomass: int = max_storage.get(Enums.ResourceType.BIOMASS)
 
-	if (current_biomass < (current_max_biomass - auto_expand_max_capacity_amount)) and connected_landfill_sprites.size() > 0:
+	if (current_biomass < (current_max_biomass - auto_expand_max_capacity_amount)) and connected_landfills.size() > 0:
 		landfill_shrinked.emit(self)
 		
 ## Function to set building as currently selected
@@ -68,13 +67,23 @@ func building_deselected(building: Building) -> void:
 ## Function to higlight the all the connected landfills
 func highlight_building() -> void:
 	if currently_selected:
-		for building_highlight in higlights_list:
-			building_highlight.show()
-			building_highlight.selected()
+		highlight.show()
+		highlight.selected()
+		for landfill in connected_landfills:
+			landfill.highlight.show()
+			landfill.highlight.selected()
 	else:
-		for building_highlight in higlights_list:
-			building_highlight.hide()
-			building_highlight.de_selected()
+		highlight.hide()
+		highlight.de_selected()
+		for landfill in connected_landfills:
+			landfill.highlight.hide()
+			landfill.highlight.de_selected()
+
+func instantiate_auto_expand_landfill() -> void:
+	var landfill_auto: LandfillAutoExpand = landfill_auto_expand.instantiate()
+	add_child(landfill_auto)
+	landfill_auto.position = position_to_expand_to
+	connected_landfills.append(landfill_auto)
 
 func _on_place_animation_animation_finished(anim_name: StringName) -> void:
 	place_particle.emitting = true
