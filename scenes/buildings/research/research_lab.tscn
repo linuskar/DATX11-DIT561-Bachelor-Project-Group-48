@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3l642fbplbie" path="res://scripts/buildings/research_lab.gd" id="1_g0hqv"]
 [ext_resource type="Resource" uid="uid://cwiawiaiit30p" path="res://resources/buildings/research_lab.tres" id="2_t6nnc"]
-[ext_resource type="Texture2D" uid="uid://bmi4rw6s1obxs" path="res://assets/buildings_iso/Research_building.png" id="3_b5gcx"]
+[ext_resource type="Texture2D" uid="uid://cmjn4gx8ha263" path="res://assets/buildings_iso/research_building_96.png" id="3_b5gcx"]
 [ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_b5gcx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0miy"]
@@ -14,7 +14,6 @@ building_data = ExtResource("2_t6nnc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, -9.53674e-07)
-scale = Vector2(1.52381, 1.52381)
 texture = ExtResource("3_b5gcx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
