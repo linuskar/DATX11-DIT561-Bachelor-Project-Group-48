@@ -7,6 +7,7 @@ var networks: Dictionary[int, ResourceTransport] = {}
 func _ready() -> void:
 	ResourceSignals.add_resource.connect(_new_Resources)
 	ResourceSignals.use_resource.connect(_use_Resources)
+	ResourceSignals.add_input_building.connect(new_building_to_input)
 	for x in Enums.ResourceType.values():
 		resources.get_or_add(x, 0)
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://cxgue6a15y8w7"]
+
+[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="1_cdkf2"]
+
+[resource]
+script = ExtResource("1_cdkf2")
+research_id = "CM1"
+research_name = "More Coal!"
+description = "Search deeper, and finde more coal!"
+metadata/_custom_type_script = "uid://cxt2f6o7mobww"

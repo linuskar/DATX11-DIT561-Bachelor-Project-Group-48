@@ -1,20 +1,61 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7tg4gvbnd0i0"]
+[gd_scene load_steps=14 format=3 uid="uid://c7tg4gvbnd0i0"]
 
-[ext_resource type="Script" uid="uid://bkqiboubd2jx3" path="res://scripts/UI/coal_mine_selectable.gd" id="1_32o48"]
+[ext_resource type="Script" uid="uid://bkqiboubd2jx3" path="res://scripts/UI/selectables/coal_mine_selectable.gd" id="1_32o48"]
 [ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_53tyr"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="3_opi3k"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="4_32o48"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="6_nypja"]
+[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="7_32o48"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="7_fobci"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_opi3k"]
+[sub_resource type="LabelSettings" id="LabelSettings_32o48"]
 font = ExtResource("7_fobci")
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_32o48"]
+[sub_resource type="LabelSettings" id="LabelSettings_53tyr"]
 font = ExtResource("7_fobci")
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_32o48"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w3yhn"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("7_32o48")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_32o48"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("7_32o48")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.707967, 0.707967, 0.707967, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53tyr"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("7_32o48")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="CoalMineSelectable" type="Control"]
 custom_minimum_size = Vector2(320, 192)
@@ -26,7 +67,6 @@ mouse_filter = 1
 script = ExtResource("1_32o48")
 icon_path = "uid://t2kml7pea27i"
 building_data = ExtResource("2_53tyr")
-cost = 50
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
@@ -35,6 +75,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("3_opi3k")
 
 [node name="Selected" type="Panel" parent="."]
@@ -45,6 +86,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("4_32o48")
 
 [node name="Containers" type="PanelContainer" parent="."]
@@ -56,6 +98,7 @@ anchor_right = 0.425
 anchor_bottom = 0.65
 offset_right = -2.0
 offset_bottom = -0.399994
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("3_opi3k")
 
 [node name="MarginContainer" type="MarginContainer" parent="Containers"]
@@ -70,39 +113,60 @@ layout_mode = 2
 texture = ExtResource("6_nypja")
 
 [node name="BuildingNameCost" type="Label" parent="."]
-offset_left = 24.0
-offset_top = 127.0
-offset_right = 134.0
-offset_bottom = 181.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.2
 mouse_filter = 1
 text = "Name Cost"
-label_settings = SubResource("LabelSettings_opi3k")
+label_settings = SubResource("LabelSettings_32o48")
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="TextContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(160, 162)
-offset_left = 145.0
-offset_top = 15.0
-offset_right = 305.0
-offset_bottom = 177.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.25
+anchor_right = 0.95
+anchor_bottom = 0.9
 
-[node name="InfoText" type="Label" parent="TextContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextContainer"]
+layout_mode = 2
+
+[node name="InfoText" type="Label" parent="TextContainer/VBoxContainer"]
 custom_minimum_size = Vector2(160, 162)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-label_settings = SubResource("LabelSettings_32o48")
+label_settings = SubResource("LabelSettings_53tyr")
 autowrap_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="SelectButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.7
+anchor_right = 0.425
+anchor_bottom = 0.9
 mouse_filter = 1
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_fobci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_32o48")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_w3yhn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_32o48")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_53tyr")
+theme_override_styles/normal = ExtResource("3_opi3k")
+toggle_mode = true
+text = "Select"
+autowrap_mode = 2
 
-[connection signal="button_down" from="TextureButton" to="." method="_on_selected"]
+[connection signal="button_down" from="SelectButton" to="." method="_on_selected"]
+[connection signal="toggled" from="SelectButton" to="." method="_set_button_text"]

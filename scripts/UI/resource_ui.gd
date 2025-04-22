@@ -1,10 +1,12 @@
-extends Control
+extends UIElement
 
 var resource_labels: Dictionary[Enums.ResourceType, Label] = {}
 var resource_nodes: Dictionary[Enums.ResourceType, VBoxContainer] = {}
 var first_resource: bool = false
 
 func _ready():
+	super._ready()
+	
 	# References to each resource node and its label
 	resource_nodes[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood
 	resource_labels[Enums.ResourceType.WOOD] = $MarginContainer/HBoxContainer/Wood/Label
@@ -43,8 +45,3 @@ func _on_update_UI(resource_type: Enums.ResourceType, amount: int) -> void:
 
 		# Update resource amount
 		resource_labels[resource_type].text = str(amount)
-
-func _unhandled_input(event: InputEvent) -> void:
-	#Toggle UI, only possible after the first resource has been collected.
-	if event is InputEventKey and event.pressed and event.keycode == KEY_TAB and first_resource:
-		visible = not visible

@@ -15,7 +15,15 @@ static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
-	
+
+static var resource_image_paths: Dictionary[ResourceType, String] = {
+	ResourceType.IRON_ORE: "res://assets/UI/Resource UI/iron.tres",
+	ResourceType.COAL: "res://assets/UI/Resource UI/coal.tres",
+	ResourceType.WOOD: "res://assets/UI/Resource UI/wood.tres",
+	ResourceType.ELECTRICITY: "res://assets/UI/Resource UI/electricity.png",
+	ResourceType.BIOMASS: "res://assets/UI/Resource UI/biomass.png"
+}
+
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.IRON_ORE: "IRON ORE",
 		ResourceType.COAL: "COAL",
@@ -48,7 +56,8 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
 	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
 	BuildingType.WAREHOUSE: "WAREHOUSE",
-	BuildingType.ROAD: "ROAD"
+	BuildingType.ROAD: "ROAD",
+	BuildingType.RESEARCH_LAB: "RESEARCH LAB"
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
@@ -62,7 +71,22 @@ static var tile_names: Dictionary[TileType, String] = {
 	TileType.STONE: "STONE",
 	TileType.GRASS: "GRASS",
 	TileType.RESOURCE: "RESOURCE",
-	}	
+	}
+# List of the value of every resource when sold
+static var resource_costs: Dictionary[ResourceType, int] = {
+	ResourceType.IRON_ORE: 2,
+	ResourceType.COAL: 3,
+	ResourceType.WOOD: 5,
+	ResourceType.ELECTRICITY: 10
+}
+
+## Function that returns the value of a resource when sold
+static func get_value_of_resource(resource: ResourceType) -> int:
+	return resource_costs.get(resource)
+	
+static func get_value_of_resources(resource: ResourceType, amount: int) -> int:
+	return resource_costs.get(resource)*amount
+	
 ## The different types of buildings in the game
 # Factory and gathering building are just temporary names?
 enum BuildingType {
@@ -74,7 +98,8 @@ enum BuildingType {
 	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
 	BIOMASS_LANDFILL, ## The building type for a biomass landfill
 	WAREHOUSE, ## The building type for a warehouse
-	ROAD
+	ROAD,
+	RESEARCH_LAB, ## The building type for a research lab
 }
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:
@@ -105,6 +130,14 @@ enum TileType {
 	STONE, ## The tile type for stone
 	GRASS, ## The tile type for grass
 	RESOURCE, ## The tile type for a resource
+}
+
+## The possible directions
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
 }
 
 static func is_a_polluting_building(building_type: BuildingType) -> bool:

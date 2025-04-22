@@ -9,7 +9,7 @@ can_gather_resource_type = 2
 input_use_rates = Dictionary[int, int]({})
 output_generation = Dictionary[int, int]({
 2: 5,
-6: 4
+6: 2
 })
 emissions_radius = Dictionary[int, int]({})
 max_storage = Dictionary[int, int]({
@@ -21,4 +21,6 @@ output_types = Array[int]([2, 6])
 building_type = 3
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(1, 1)
+building_cost = 40
+building_upkeep = 5
 metadata/_custom_type_script = "uid://c2asdvge65j4d"
