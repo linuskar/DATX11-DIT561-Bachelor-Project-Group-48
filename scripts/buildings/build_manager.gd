@@ -66,6 +66,7 @@ func _process(_delta) -> void:
 
 			if valid_placement:
 				place_building()
+				
 		StateManager.State.IDLE:
 			pass	
 
