@@ -153,6 +153,14 @@ enum BurnState {
 	NORMAL, ## The state when not having been burned previously
 	BURNING, 
 	BURNT }
+	
+## The possible directions
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+}
 
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
 	return building_type in polluting_buildings

@@ -112,11 +112,14 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 			## maybe note the level like low, medium, high, to get an estimate
 			elif dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(resource_type):
 				text += key + ": In an area." + '\n'
+			elif dict_name == "Max Storage" and building_data.building_type == Enums.BuildingType.BIOMASS_LANDFILL:
+				text += key + ": " + str(dict.get(key)) + '\n'
+				text += "\n" + "This building auto expands and shrinks its max capacity of BIOMASS by " + str(building_data.max_storage.get(Enums.ResourceType.BIOMASS)) + "."+ "\n"
 			else:
 				text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'
 	return text
-
+	
 ## Sets this building into its 'selected' styling
 func _on_selected() -> void:
 	self.find_child("MainBox").visible = false
@@ -131,7 +134,6 @@ func unselected() -> void:
 
 func get_building_data() -> BuildingData:
 	return self.building_data
-
 
 func _set_button_text(toggled_on: bool) -> void:
 	if toggled_on:
