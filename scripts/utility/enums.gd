@@ -56,7 +56,8 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
 	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
 	BuildingType.WAREHOUSE: "WAREHOUSE",
-	BuildingType.ROAD: "ROAD"
+	BuildingType.ROAD: "ROAD",
+	BuildingType.RESEARCH_LAB: "RESEARCH LAB"
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {

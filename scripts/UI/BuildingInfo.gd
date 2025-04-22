@@ -184,7 +184,7 @@ func set_inactive() -> void:
 ## Show the info panel and update its information
 func set_active(building: Building) -> void:
 	current_building = building
-	if current_building == Enums.BuildingType.RESEARCH_LAB:
+	if current_building.building_data.building_type == Enums.BuildingType.RESEARCH_LAB:
 		get_tree().root.get_node("Game/UserInterface/ResearchUI").open()
 		return
 	reset_tabs()
