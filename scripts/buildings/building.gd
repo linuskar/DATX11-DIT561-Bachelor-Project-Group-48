@@ -31,4 +31,4 @@ func _on_research_completed(id: String) -> void:
 
 # this is a placeholder, override in child for specific upgrades
 func apply_research_upgrade() -> void:
-	print("Upgrade applied for: ", self.name)
+	pass
