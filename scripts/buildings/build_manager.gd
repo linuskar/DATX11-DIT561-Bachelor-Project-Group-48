@@ -200,8 +200,8 @@ func _on_placed_building(building: Building) -> void:
 		building.landfill_shrinked.connect(shrink_landfill)
 	# else:
 	occupy_tiles(building, building.position) 
+	BuildManagerGlobal.update_networks(building)
 	placed_building.emit(building)
-
 	BuildManagerGlobal.update_roads.emit()
 	# BuildManagerGlobal.print_networks()
 	
