@@ -120,4 +120,4 @@ func _on_research_completed(id: String) -> void:
 
 func apply_research_upgrade() -> void:
 	if Research.has_completed("WC1"):
-		print("WC1 applied to ", name)
+		pass
