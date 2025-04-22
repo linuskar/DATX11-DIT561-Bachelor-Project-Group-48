@@ -107,7 +107,7 @@ func update_wildfire_percentage() -> void:
 	
 	var emission_amount_fire_spread_prob_scaled: float = lerp(min_fire_spread_probability, max_fire_spread_probability, emission_norm)
 	fire_spread_prob = emission_amount_fire_spread_prob_scaled
-		
+	
 ## Function to start a wildfire, starting on a random tree
 func start_wildfire() -> void:
 	var random_number: float = randf()
