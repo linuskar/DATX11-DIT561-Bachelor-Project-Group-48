@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djt4gpmfrp805"]
+[gd_scene load_steps=11 format=3 uid="uid://djt4gpmfrp805"]
 
 [ext_resource type="Script" uid="uid://o0k4pecox0g" path="res://scripts/buildings/gathering_buildings/coal_mine.gd" id="1_5wtww"]
 [ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_f8yp3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bk6susslxg5o2" path="res://scenes/buildings/animation/place_animation.tscn" id="4_rn1kv"]
 [ext_resource type="PackedScene" uid="uid://bouaar65sta4q" path="res://scenes/buildings/animation/place_particle_small.tscn" id="5_e2gss"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="5_klpcp"]
+[ext_resource type="PackedScene" uid="uid://mm3smhbol1xr" path="res://assets/sounds/harvest_sounds/mine_sound.tscn" id="9_rn1kv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
@@ -44,6 +45,8 @@ script = ExtResource("4_f8yp3")
 
 [node name="Smoke_v1" parent="." instance=ExtResource("5_klpcp")]
 position = Vector2(10.5626, -11.5803)
+
+[node name="mine_sound" parent="." instance=ExtResource("9_rn1kv")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]

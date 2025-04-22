@@ -5,6 +5,7 @@ extends GatheringBuilding
 ## A class that is for the aspects of a coal mine. This class extends from
 ## the GatheringBuilding class.
 ##
+@onready var mine_sound: AudioStreamPlayer2D = $mine_sound
 
 ## The nodes emitting smoke.
 @export var smokes: Array[GPUParticles2D]
@@ -16,6 +17,7 @@ func _ready():
 func _output_resources() -> void:
 	emit_smoke() 
 	super()
+	mine_sound.play()
 			
 ## Function for emitting smoke when possible.
 func emit_smoke() -> void:
