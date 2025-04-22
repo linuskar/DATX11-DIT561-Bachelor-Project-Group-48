@@ -11,9 +11,6 @@ extends Control
 ## Emitted together with the building itself.
 signal selected(building: SelectableBuilding)
 
-## The cost of the building
-@export var cost: int
-
 ## Variable for checking whether the mouse is hovering over the buy button
 var hovering_buy: bool = false
 
@@ -35,22 +32,26 @@ var outputs: Dictionary[String, int]
 ## The list of resources that are required to place the building
 @export var required: Dictionary[String, int]
 
+## The text label to be filled with information pertaining to the 
+## building
+@onready var info_label: Label = $TextContainer/VBoxContainer/InfoText
+
+## Button that causes this selectable to be labeled a selected
+@onready var select_button: Button = $SelectButton
+
 func _ready() -> void:
 	building_name = Enums.building_type_to_string(building_data.building_type)
-	
-	if "max_storage" in building_data:
+	if building_data is StorageBuildingData:
 		init_resource_data(max_storage, building_data.max_storage)
-	if "output_generation" in building_data:
+	if building_data is ProductionBuildingData:
 		init_resource_data(outputs, building_data.output_generation)
-	if "input_use_rates" in building_data:
 		init_resource_data(inputs, building_data.input_use_rates)
-
 	
 	## Set the image of the factory to the path 
 	self.find_child("Containers").find_child("MarginContainer").find_child("BuildingIcon").set_texture(load(icon_path))
 		
 	## Set the name and cost of the building
-	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(cost))
+	self.find_child("BuildingNameCost").set_text(building_name + ": " + str(building_data.building_cost))
 	
 	## Set the text of the main panel according to the template
 	set_panel_text()
@@ -60,8 +61,8 @@ func _ready() -> void:
 func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[Enums.ResourceType, int]) -> void:
 	for resource in data.keys():
 		var resource_string: String = Enums.resource_type_to_string(resource)
-		var input_needed: int = data.get(resource)
-		string_data.set(resource_string, input_needed)
+		var resource_needed: int = data.get(resource)
+		string_data.set(resource_string, resource_needed)
 		
 func _input(event: InputEvent) -> void:
 	## Handling press of left mouse button for selecting a building to buy
@@ -73,16 +74,17 @@ func _input(event: InputEvent) -> void:
 
 ## Function that sets the text of the info panel using subfunctions
 func set_panel_text() -> void:
-	self.find_child("TextContainer").find_child("InfoText").text = ''
+	info_label.text = ''
 	
 	## Begin with the name of the building
 	var panel_text: String = building_name + '\n'
 	panel_text += add_dict_to_panel(inputs, "Inputs")
+	panel_text += "\nUpkeep\n" + str(building_data.building_upkeep) + "\n"
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
 	panel_text += add_dict_to_panel(contributables, "Contributables")
 	panel_text += add_dict_to_panel(required, "Required")
-	self.find_child("TextContainer").find_child("InfoText").text = panel_text
+	info_label.text = panel_text
 
 ## Function for taking keys from a dictionary and returning 
 ## a formatted string containing those keys and their values
@@ -91,7 +93,27 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 	if not dict.is_empty():
 		text += dict_name + '\n'
 		for key in dict.keys():
-			text += key + ": " + str(dict.get(key)) + '\n'
+			## Want to hide the number of emissions outputted,
+			## maybe note the level like low, medium, high, to get an estimate
+			var resource_type: Enums.ResourceType = Enums.string_to_resource_type(key)
+			if dict_name == "Outputs" and building_data is AreaGatheringBuildingData and !Enums.is_emission(resource_type):
+				var gather_radius: int = building_data.gather_radius
+				var size_x: int = building_data.building_size.x
+				var size_y: int = building_data.building_size.y
+				var area: String = str(size_x + 2 * gather_radius) + "x" + str(size_y + 2 * gather_radius)
+				if Enums.is_byproduct(resource_type) and building_data.building_type == Enums.BuildingType.WOOD_CUTTER:
+					var byproduct_from_wood: String = str(building_data.output_generation.get(resource_type))
+					text += key + ": " + byproduct_from_wood + " per tile." + '\n'
+				else:	
+					text += key + ": " + area + " area. " + str(dict.get(key)) + " per tile." + '\n'
+			elif dict_name == "Outputs" and Enums.is_gathering_building(building_data.building_type) and !Enums.is_emission(resource_type):
+				text += key + ": " + str(dict.get(key)) + " per tile." + '\n'
+			## Want to hide the number of emissions outputted,
+			## maybe note the level like low, medium, high, to get an estimate
+			elif dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(resource_type):
+				text += key + ": In an area." + '\n'
+			else:
+				text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'
 	return text
 
@@ -109,3 +131,10 @@ func unselected() -> void:
 
 func get_building_data() -> BuildingData:
 	return self.building_data
+
+
+func _set_button_text(toggled_on: bool) -> void:
+	if toggled_on:
+		self.select_button.text = "Unselect"
+	else:
+		self.select_button.text = "Select"

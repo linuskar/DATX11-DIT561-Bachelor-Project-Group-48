@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://drt57v7bjpsos"]
 
-[ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/building_blueprint.gd" id="1_g8dup"]
+[ext_resource type="Script" uid="uid://d3b76ppgno5rk" path="res://scripts/buildings/blueprints/wood_cutter_blueprint.gd" id="1_g8dup"]
 [ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="2_lyhxg"]
 [ext_resource type="Texture2D" uid="uid://babal08bnd1ox" path="res://assets/UI/LogCabin.png" id="3_g8dup"]
 

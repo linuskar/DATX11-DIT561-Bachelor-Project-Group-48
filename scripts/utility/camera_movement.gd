@@ -4,6 +4,8 @@ extends Camera2D
  
 var zoomTarget :Vector2
 
+var can_zoom: bool
+
 #Decide how fast wasd pan speed is, higher nr is faster
 @export var simplePanSpeed = 4
 
@@ -24,6 +26,7 @@ var isDragging : bool = false
 
 func _ready():
 	zoomTarget = zoom
+	ZoomHandler.allow_zoom.connect(set_can_zoom)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -33,20 +36,20 @@ func _process(delta):
 
 #Code for zoom
 func Zoom(delta):
-	if Input.is_action_just_pressed("camera_zoom_in"):
-		if (zoomTarget * (1 + zoomSensitivity)).length() < maxZoomLength:
-			zoomTarget *= 1 + zoomSensitivity
-		else:
-			zoomTarget = Vector2(maxZoom, maxZoom)
-		print(zoomTarget)
-	
-	if Input.is_action_just_pressed("camera_zoom_out"):
-		if (zoomTarget * (1 - zoomSensitivity)).length() > minZoomLength:
-			zoomTarget *= 1 - zoomSensitivity
-		else:
-			zoomTarget = Vector2(minZoom, minZoom)
-	
-	zoom = zoom.slerp(zoomTarget, zoomSpeed * delta)
+	if can_zoom:
+		if Input.is_action_just_pressed("camera_zoom_in"):
+			if (zoomTarget * (1 + zoomSensitivity)).length() < maxZoomLength:
+				zoomTarget *= 1 + zoomSensitivity
+			else:
+				zoomTarget = Vector2(maxZoom, maxZoom)
+		
+		if Input.is_action_just_pressed("camera_zoom_out"):
+			if (zoomTarget * (1 - zoomSensitivity)).length() > minZoomLength:
+				zoomTarget *= 1 - zoomSensitivity
+			else:
+				zoomTarget = Vector2(minZoom, minZoom)
+		
+		zoom = zoom.slerp(zoomTarget, zoomSpeed * delta)
 
 #Code for wasd movement
 #Can change/add movment buttons in Project -> Project settings -> Input map
@@ -77,3 +80,6 @@ func ClickAndDrag():
 	if isDragging:
 		var moveVector = get_viewport().get_mouse_position() - dragStartMousePos
 		position = dragStartCameraPos - moveVector * 1/zoom.x
+
+func set_can_zoom(zoom_allowed: bool) -> void:
+	self.can_zoom = zoom_allowed
