@@ -107,6 +107,10 @@ enum BuildingType {
 	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
 	BIOMASS_LANDFILL, ## The building type for a biomass landfill
 	WAREHOUSE, ## The building type for a warehouse
+	ROAD, ## The building type for roads
+	SAW_MILL, ## The building type for a saw mill 
+	STEEL_MILL, ## The building type for a steel mill 
+	GEAR_FACTORY, ## The building type for a gear factory
 	RESEARCH_LAB, ## The building type for a research lab
 }
 ## Function for checking if the BuildingType is a gathering building
