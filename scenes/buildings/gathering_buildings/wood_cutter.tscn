@@ -44,7 +44,7 @@ script = ExtResource("4_5ylux")
 
 [node name="wood_chop_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_fnoo6")
-volume_db = 3.0
+max_distance = 750.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
