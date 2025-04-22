@@ -132,6 +132,14 @@ enum TileType {
 	RESOURCE, ## The tile type for a resource
 }
 
+## The possible directions
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+}
+
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
 	return building_type in polluting_buildings
 	
