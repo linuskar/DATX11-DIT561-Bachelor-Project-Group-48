@@ -30,4 +30,5 @@ offset_left = -3.0
 offset_top = -6.0
 offset_right = 3325.0
 offset_bottom = 2586.0
+mouse_filter = 2
 script = ExtResource("2_lxcat")
