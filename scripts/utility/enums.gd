@@ -140,8 +140,6 @@ enum PollutionLevel {
 	DEAD,
 }
 
-static var pollution_level_ordering: Array[PollutionLevel] = [PollutionLevel.NORMAL, PollutionLevel.SLIGHTLY, PollutionLevel.HEAVILY, PollutionLevel.DEAD]
-
 static var emissions_contributing_to_tree_pollution: Dictionary[ResourceType, String] = {
 	ResourceType.S02: "S02",
 }

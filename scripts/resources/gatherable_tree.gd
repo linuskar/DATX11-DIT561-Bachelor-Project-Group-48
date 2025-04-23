@@ -7,17 +7,16 @@ extends GatherableResource
 ##
 ##
 
-## Dictionary for the maximum capacity of emissions that can be stored.
-## Set the max capacity to -1 to indicate it has unlmited max capacity
-## for a resource.
-@export var emission_max_capacity: int
-## The current storage of emissions.
-var emission_storage: Dictionary[Enums.ResourceType, float] = {}
+## The maximum amount of pollution a tree can absorb before it is considered dead
+@export var max_pollution_max_capacity: float
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
+
+## The current storage of emissions.
+var emission_storage: Dictionary[Enums.ResourceType, float] = {}
 
 var slightly_polluted_tree_sprite: CompressedTexture2D = preload("res://assets/trees/slightly_polluted_tree.png")
 var heavily_polluted_tree_sprite: CompressedTexture2D = preload("res://assets/trees/heavily_polluted_tree.png")
@@ -25,41 +24,39 @@ var dead_tree_sprite: CompressedTexture2D = preload("res://assets/trees/dead_tre
 
 var polluted_level: Enums.PollutionLevel = Enums.PollutionLevel.NORMAL
 
-var pollution_level_max_limits: Dictionary[Enums.PollutionLevel, int] = {}
-var pollution_level_min_limits: Dictionary[Enums.PollutionLevel, int] = {}
-
-var normal_range: Array 
-var slightly_range: Array
-var heavily_range: Array
+## Dictionary containing the maximum value limits for pollution levels
+var pollution_level_max_limits: Dictionary[Enums.PollutionLevel, float] = {}
+## Dictionary containing the minimum value limits for pollution levels
+var pollution_level_min_limits: Dictionary[Enums.PollutionLevel, float] = {}
 
 func _ready() -> void:	
 	emission_storage.set(Enums.ResourceType.CO2, 0)
 	emission_storage.set(Enums.ResourceType.S02, 0)
 
-	var min_level_value: int = 0
-	var pollution_levels: Array[Enums.PollutionLevel] = Enums.pollution_level_ordering
-	#pollution_levels.reverse()
-	var i: int = pollution_levels.size()
+	init_pollution_level_limits()
 
-	for pollution in pollution_levels:
-		if pollution == Enums.PollutionLevel.DEAD:
+## Function to initialize the value limits for the pollution levels to a tree
+func init_pollution_level_limits() -> void:
+	var min_level_value: float = 0
+	var i: int = Enums.PollutionLevel.size()
+
+	for level in Enums.PollutionLevel.values():
+		if level == Enums.PollutionLevel.DEAD:
 			i -= 1
 			continue
 			
-		var max_level_value: int = min(round(emission_max_capacity / i), emission_max_capacity)
-		pollution_level_max_limits.set(pollution, max_level_value)
-		pollution_level_min_limits.set(pollution, min_level_value)
+		var max_level_value: float = min(max_pollution_max_capacity / i, max_pollution_max_capacity)
+		pollution_level_max_limits.set(level, max_level_value)
+		pollution_level_min_limits.set(level, min_level_value)
 		min_level_value = max_level_value
 		
 		i -= 1
-	
-	normal_range = range(pollution_level_min_limits.get(Enums.PollutionLevel.NORMAL), pollution_level_max_limits.get(Enums.PollutionLevel.NORMAL))
-	slightly_range = range(pollution_level_min_limits.get(Enums.PollutionLevel.SLIGHTLY), pollution_level_max_limits.get(Enums.PollutionLevel.SLIGHTLY))
-	heavily_range = range(pollution_level_min_limits.get(Enums.PollutionLevel.HEAVILY), pollution_level_max_limits.get(Enums.PollutionLevel.HEAVILY))
-
+		
 func _process(delta: float) -> void:
 	update_pollution_level()
-	
+
+## Function to update the pollution level of a tree 
+## based on contributing emissions
 func update_pollution_level() -> void:
 	var emission_stored: float = 0.0
 	
@@ -67,19 +64,29 @@ func update_pollution_level() -> void:
 		if Enums.is_a_tree_pollution_contributor(emission_type):
 			emission_stored += emission_storage.get(emission_type)
 			
-	if float(normal_range[0]) < emission_stored and emission_stored <= float(normal_range[-1]):
+	var min_normal: float = pollution_level_min_limits.get(Enums.PollutionLevel.NORMAL)
+	var max_normal: float = pollution_level_max_limits.get(Enums.PollutionLevel.NORMAL)
+	
+	var min_slightly: float = pollution_level_min_limits.get(Enums.PollutionLevel.SLIGHTLY)
+	var max_slightly: float = pollution_level_max_limits.get(Enums.PollutionLevel.SLIGHTLY)
+	
+	var min_heavily: float = pollution_level_min_limits.get(Enums.PollutionLevel.HEAVILY)
+	var max_heavily: float = pollution_level_max_limits.get(Enums.PollutionLevel.HEAVILY)
+	
+	if min_normal < emission_stored and emission_stored <= max_normal:
 		polluted_level = Enums.PollutionLevel.NORMAL
-	elif float(slightly_range[0]) < emission_stored and emission_stored <= float(slightly_range[-1]):
+	elif min_slightly < emission_stored and emission_stored <= max_slightly:
 		polluted_level = Enums.PollutionLevel.SLIGHTLY
-	elif float(heavily_range[0]) < emission_stored and emission_stored <= float(heavily_range[-1]):
+	elif min_heavily < emission_stored and emission_stored <= max_heavily:
 		polluted_level = Enums.PollutionLevel.HEAVILY
-	elif emission_stored > float(heavily_range[-1]):
+	elif emission_stored > max_heavily:
 		polluted_level = Enums.PollutionLevel.DEAD
 		# TODO: make byproduct not return when quantity = 0
 		quantity = 0
 
 	update_pollution_level_visual()
-
+	
+## Function update the visuals of a tree based on pollution level
 func update_pollution_level_visual() -> void:
 	match polluted_level:
 		Enums.PollutionLevel.NORMAL:
