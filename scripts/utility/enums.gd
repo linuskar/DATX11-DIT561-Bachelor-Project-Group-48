@@ -166,7 +166,8 @@ static func is_a_tree_pollution_contributor(resource_type: ResourceType) -> bool
 enum BurnState { 
 	NORMAL, ## The state when not having been burned previously
 	BURNING, 
-	BURNT }
+	DEAD 
+}
 	
 ## The possible directions
 enum Direction {

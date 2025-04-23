@@ -1,7 +1,7 @@
 extends Node
 
 ## The amount of currency the player currently holds
-var player_held_currency: int = 300
+var player_held_currency: int = 3000000
 
 ## Signal emitted when currency is changed
 signal currency_changed

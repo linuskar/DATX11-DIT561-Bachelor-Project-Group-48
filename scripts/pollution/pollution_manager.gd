@@ -119,7 +119,8 @@ func start_wildfire() -> void:
 		var random_index: int = randi_range(0, all_trees.size()-1)
 		var random_tree: GatherableTree = all_trees[random_index]
 		
-		random_tree.start_burning(fire_spread_prob)
+		if random_tree.burn_state == Enums.BurnState.NORMAL and random_tree.polluted_level != Enums.PollutionLevel.DEAD:
+			random_tree.start_burning(fire_spread_prob)
 		
 		current_warning_indicator = warning_indicator_scene.instantiate()
 		current_warning_indicator.position = random_tree.position

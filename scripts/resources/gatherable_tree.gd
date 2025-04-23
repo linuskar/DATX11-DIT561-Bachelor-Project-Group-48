@@ -60,7 +60,8 @@ func init_pollution_level_limits() -> void:
 		i -= 1
 
 func _process(delta: float) -> void:
-	update_pollution_level()
+	if polluted_level != Enums.PollutionLevel.DEAD or burn_state != Enums.BurnState.DEAD:
+		update_pollution_level()
 
 ## Function to update the pollution level of a tree 
 ## based on contributing emissions
@@ -105,12 +106,13 @@ func update_pollution_level_visual() -> void:
 			sprite_2d.region_enabled = false
 			sprite_2d.texture = heavily_polluted_tree_sprite
 		Enums.PollutionLevel.DEAD:
+			burn_state = Enums.BurnState.DEAD
 			sprite_2d.region_enabled = false
 			sprite_2d.texture = dead_tree_sprite
 
 ## Function to ignite the tree on fire
 func start_burning(fire_prob: float) -> void:
-	if burn_state != Enums.BurnState.NORMAL:
+	if burn_state != Enums.BurnState.NORMAL or polluted_level == Enums.PollutionLevel.DEAD:
 		return
 	fire_spread_probability = fire_prob
 	burn_state = Enums.BurnState.BURNING
@@ -124,7 +126,8 @@ func update_burn_visual():
 			modulate = Color(1, 1, 1)
 		Enums.BurnState.BURNING:
 			wildfire.start_fire()
-		Enums.BurnState.BURNT:
+		Enums.BurnState.DEAD:
+			polluted_level = Enums.PollutionLevel.DEAD
 			wildfire.stop_fire()
 			sprite_2d.region_enabled = false
 			sprite_2d.texture = dead_tree_sprite
@@ -135,7 +138,7 @@ func become_burnt() -> void:
 	await get_tree().create_timer(burn_time).timeout
 	spread_fire()
 
-	burn_state = Enums.BurnState.BURNT
+	burn_state = Enums.BurnState.DEAD
 	update_burn_visual()
 	quantity = 0
 	
