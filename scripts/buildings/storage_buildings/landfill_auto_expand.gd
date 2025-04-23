@@ -1,7 +1,6 @@
 class_name LandfillAutoExpand
 extends Sprite2D
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var highlight: BuildingHighlight = $Highlight
 @onready var place_animation: AnimationPlayer = $place_animation
 @onready var place_particle: GPUParticles2D = $place_particle

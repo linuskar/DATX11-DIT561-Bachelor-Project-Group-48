@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://cgl1ql08os5y5"]
 
-[ext_resource type="Script" path="res://scripts/UI/building_highlight.gd" id="1_euk6p"]
+[ext_resource type="Script" uid="uid://porcip0fvgpn" path="res://scripts/UI/building_highlight.gd" id="1_euk6p"]
 [ext_resource type="Script" uid="uid://cr2cijyosovkf" path="res://scripts/buildings/storage_buildings/landfill_auto_expand.gd" id="1_md3jn"]
 [ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="2_md3jn"]
 [ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_4p3gb"]
