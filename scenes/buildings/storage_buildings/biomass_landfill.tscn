@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bu10hl3va8ff1" path="res://scripts/buildings/storage_buildings/biomass_landfill.gd" id="1_o3w30"]
 [ext_resource type="Resource" uid="uid://dpfrfu5x7p6yh" path="res://resources/buildings/biomass_landfill.tres" id="2_d1p3v"]
 [ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="3_d1p3v"]
-[ext_resource type="Script" path="res://scripts/UI/building_highlight.gd" id="5_phnxc"]
+[ext_resource type="Script" uid="uid://porcip0fvgpn" path="res://scripts/UI/building_highlight.gd" id="5_phnxc"]
 [ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="6_ygndr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
