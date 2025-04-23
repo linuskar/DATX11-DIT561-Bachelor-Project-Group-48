@@ -203,7 +203,7 @@ func _on_placed_building(building: Building) -> void:
 	BuildManagerGlobal.update_networks(building)
 	placed_building.emit(building)
 	BuildManagerGlobal.update_roads.emit()
-	# BuildManagerGlobal.print_networks()
+	BuildManagerGlobal.print_networks()
 	
 ## Function two merge landfills that are near each other
 func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_with: BiomassLandfill) -> void:
@@ -235,7 +235,8 @@ func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_wit
 	
 	## Occupy tiles for where the landfill expanded to
 	var adjusted_pos: Vector2 = landfill_placed.position
-	occupy_tiles(landfill_to_be_merged_with, adjusted_pos) 
+	occupy_tiles(landfill_to_be_merged_with, adjusted_pos)
+	BuildManagerGlobal.update_networks(landfill_to_be_merged_with) 
 	placed_building.emit(landfill_to_be_merged_with)
 	
 	landfill_placed.queue_free()
@@ -252,10 +253,6 @@ func occupy_tiles(building: Building, position_to_adjust: Vector2) -> void:
 	for x in range(building_tile_size.x):
 		for y in range(building_tile_size.y):
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
-	BuildManagerGlobal.update_networks(building)
-	placed_building.emit(building)
-	BuildManagerGlobal.update_roads.emit()
-	BuildManagerGlobal.print_networks()
 
 ## Function that checks if there are landfills nearby for a landfill, returns null
 ## if no landfill is found
@@ -313,7 +310,8 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	
 	## Occupy tiles for where the landfill expanded to
 	var adjusted_pos: Vector2 = landfill.position + landfill.position_to_expand_to
-	occupy_tiles(landfill, adjusted_pos) 
+	occupy_tiles(landfill, adjusted_pos)
+	BuildManagerGlobal.update_networks(landfill) 
 	placed_building.emit(landfill)
 	
 	## TODO: Future implementation for merging landfills when auto expanding
