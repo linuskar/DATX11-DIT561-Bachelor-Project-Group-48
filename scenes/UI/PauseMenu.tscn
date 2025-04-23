@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://ckurldaudp30o"]
 
 [ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="1_avwb0"]
-[ext_resource type="Script" uid="uid://ohln7c1yhsgr" path="res://scenes/UI/pause_menu.gd" id="1_onjwa"]
+[ext_resource type="Script" uid="uid://ohln7c1yhsgr" path="res://scripts/UI/pause_menu.gd" id="1_onjwa"]
 [ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="2_4r2wj"]
 [ext_resource type="StyleBox" uid="uid://kymp5o3e18e" path="res://resources/style_boxes/ui_panel_metallic_light.tres" id="2_6q0ex"]
 [ext_resource type="StyleBox" uid="uid://bfttb8f017gk2" path="res://resources/style_boxes/metal_red_outline_darker.tres" id="3_avwb0"]
-[ext_resource type="Script" uid="uid://bcrtd7gmwcod6" path="res://scenes/UI/resume.gd" id="5_73e60"]
+[ext_resource type="Script" uid="uid://bcrtd7gmwcod6" path="res://scripts/UI/resume.gd" id="5_73e60"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73e60"]
 content_margin_left = 50.0
