@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cht3r13bjg58r"]
 
 [ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="1_4rihh"]
-[ext_resource type="Script" uid="uid://dgkx854vljyes" path="res://scripts/UI/player_currency_panel.gd" id="1_hh3is"]
+[ext_resource type="Script" path="res://scripts/UI/player_currency_panel.gd" id="1_hh3is"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="2_m5yyy"]
 [ext_resource type="Texture2D" uid="uid://csyqwe6c5gqlf" path="res://assets/ezgif-split/tile000.png" id="4_okk18"]
 [ext_resource type="Texture2D" uid="uid://ejr5ulbb2euk" path="res://assets/ezgif-split/tile001.png" id="5_tt8i3"]

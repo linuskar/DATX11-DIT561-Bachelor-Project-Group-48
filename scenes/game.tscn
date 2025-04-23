@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=28 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://ck8h7axla2cb" path="res://scenes/Smog.tscn" id="3_rysoc"]
 [ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://mjtf8gsptloy" path="res://scenes/utility/build_manager.tscn" id="6_0tnpc"]
@@ -33,16 +34,12 @@
 
 [node name="MapLayer" parent="." instance=ExtResource("2_yqjtg")]
 
-[node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]
-
-[node name="ResourceManager" type="Node" parent="."]
-script = ExtResource("5_0tnpc")
-
-[node name="PlayerResources" type="Node" parent="."]
-script = ExtResource("8_gee14")
-
-[node name="Timer" type="Timer" parent="PlayerResources"]
-autostart = true
+[node name="Fog" parent="." instance=ExtResource("3_rysoc")]
+z_index = 1
+offset_left = -1344.0
+offset_top = -1376.0
+offset_right = 1984.0
+offset_bottom = 1216.0
 
 [node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
 buildings = Dictionary[int, Resource]({
@@ -68,16 +65,23 @@ building_blueprints = Dictionary[int, Resource]({
 9: ExtResource("15_rysoc")
 })
 
+[node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]
+
+[node name="ResourceManager" type="Node" parent="."]
+script = ExtResource("5_0tnpc")
+
+[node name="PlayerResources" type="Node" parent="."]
+script = ExtResource("8_gee14")
+
+[node name="Timer" type="Timer" parent="PlayerResources"]
+autostart = true
+
 [node name="PollutionManager" parent="." instance=ExtResource("8_vtaks")]
 
 [node name="UserInterface" parent="." instance=ExtResource("8_0tnpc")]
 
-[connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
 [connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
+[connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
 [connection signal="build_list_entered" from="UserInterface" to="BuildManager" method="_on_user_interface_build_list_entered"]
 [connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
 [connection signal="ui_status" from="UserInterface" to="BuildManager" method="set_ui_status"]
-
-[editable path="UserInterface"]
-[editable path="UserInterface/BuildingSelectList"]
-[editable path="UserInterface/ResourceUi"]

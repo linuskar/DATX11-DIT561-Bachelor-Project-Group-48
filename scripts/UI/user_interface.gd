@@ -1,3 +1,4 @@
+class_name UserInterface
 extends CanvasLayer
 
 signal build_list_entered
@@ -8,6 +9,7 @@ signal building_wanted(building: BuildingData)
 
 var hovered_references: Dictionary[UIElement, int] = {}
 @onready var building_info: BuildingInfo = $BuildingInfo
+@onready var panel_container: UIElement = $PanelContainer
 
 func _process(delta: float) -> void:
 	ui_status.emit(not hovered_references.is_empty())
