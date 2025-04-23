@@ -11,6 +11,7 @@ extends Node
 @onready var build_manager: BuildManager = $"../BuildManager"
 @onready var wildfire_timer: Timer = $WildfireTimer
 @onready var emission_decay_timer: Timer = $EmissionDecayTimer
+@onready var user_interface: UserInterface = $"../UserInterface"
 
 ## The buildings that are polluting
 var buildings_polluting: Dictionary[Building, Vector2]
@@ -22,19 +23,28 @@ signal emissions_to_apply(emissions_dict: Dictionary[Vector2, float], emission_t
 var emissions_generated: Dictionary[Enums.ResourceType, float]
 ## Dictionary for the total emissions absorbed by other objects 
 var emissions_absorbed: Dictionary[Enums.ResourceType, float]
-
+## Dictionary for the total emissions not absorbed by other objects 
 var emissions_not_absorbed: Dictionary[Enums.ResourceType, float] = {}
 
+## The percentage of when a wildfire could start
 var wildfire_start_percentage: float = 0.0
+## The wait time between wildfires happening, to avoid wildfires being spammed
+## as the game is running
 var wildfire_wait_time: float = 1.0
+## The upper limit for the amount of emissions that can exist in the game
 var emission_upper_limit: float = pow(10,7)
+
 ## Emissions decay by 1% of their total value
 var emission_decay: float = 0.01
+## The wait itme between emissions decaying
 var emission_decay_wait_time: float = 1.0
 
+## The minimum probability for a fire to spread to a tree
 var min_fire_spread_probability: float = 0.4 
+## The maximum probability for a fire to spread to a tree
 var max_fire_spread_probability: float = 0.6
 
+## The current probability for a fire to spread
 var fire_spread_prob: float = 0.0
 
 var warning_indicator_scene = preload("res://scenes/UI/warning_indicator.tscn")
@@ -52,10 +62,6 @@ func _ready() -> void:
 	
 ## Function that decays emissions based on a time delay
 func _on_emission_decay_timer_timeout() -> void:
-	decay_emissions()
-
-## Function that decays emissions
-func decay_emissions() -> void:
 	for emission in emissions_generated.keys():
 		var emission_amount: float = emissions_not_absorbed.get(emission)
 		emission_amount -= emission_amount * emission_decay
@@ -65,10 +71,6 @@ func decay_emissions() -> void:
 
 ## Function to try to start a wildfire based on a time delay
 func _on_wildfire_timer_timeout() -> void:
-	try_start_wildfire()
-
-## Function to try to start a wildfire
-func try_start_wildfire():
 	if check_for_wildfire():
 		return 
 		
@@ -121,6 +123,7 @@ func start_wildfire() -> void:
 		
 		current_warning_indicator = warning_indicator_scene.instantiate()
 		current_warning_indicator.position = random_tree.position
+		current_warning_indicator.top_y_offset = user_interface.panel_container.size.y
 		
 		get_parent().add_child(current_warning_indicator)
 

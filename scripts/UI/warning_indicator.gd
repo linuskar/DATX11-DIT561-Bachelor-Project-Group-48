@@ -4,7 +4,9 @@ extends Node2D
 @onready var marker: Sprite2D = $Marker
 @onready var warning_icon: Sprite2D = $Marker/WarningIcon
 
-var target_pos = null
+## Represnting null wtih Vector2.INF
+var target_pos: Vector2 = Vector2.INF
+var top_y_offset: int = 0
 
 func _process(delta: float) -> void:
 	var canvas: Transform2D = get_canvas_transform()
@@ -16,11 +18,10 @@ func _process(delta: float) -> void:
 	
 ## Function to set the position of the indicator
 func set_indicator_positon(bounds: Rect2):
-	if target_pos == null:
-		## TODO: adjust for TOP UI, to avoid +80 offest
+	if target_pos == Vector2.INF:
 		marker.global_position.x = clamp(global_position.x, bounds.position.x, bounds.end.x)
-		marker.global_position.y = clamp(global_position.y, bounds.position.y+80, bounds.end.y)
-	## TODO, future implementation currently implementation with target_pos does not work properly,
+		marker.global_position.y = clamp(global_position.y, bounds.position.y+top_y_offset, bounds.end.y)
+	## NOTE: current implementation with target_pos not being null does not work properly,
 	## followed this guide: https://www.youtube.com/watch?v=Sw9Iiejkae4 
 	else:
 		var displacement: Vector2 = global_position - target_pos

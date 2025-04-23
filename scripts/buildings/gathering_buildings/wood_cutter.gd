@@ -59,7 +59,6 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 	
 	for produced_good in produced_goods:
 		var gather_rate_per_tile: int = output_generation.get(produced_good)
-		var produced_good_generated: int = 0
 		
 		if current_tree_gathering == null and resource_to_gather_queue.size() != 0:
 			if is_instance_valid(resource_to_gather_queue[0]):
@@ -72,12 +71,12 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 			$wood_chop_sound.play()
 			
 			current_tree_gathering.gathering_sprite_2d.show()
-			produced_good_generated += current_tree_gathering.gather_resource(output_generation.get(Enums.ResourceType.WOOD))
-			wood_gathered = produced_good_generated
+
+			wood_gathered = current_tree_gathering.gather_resource(output_generation.get(Enums.ResourceType.WOOD))
 			if current_tree_gathering.quantity <= 0:
 				current_tree_gathering = null
 
-		resources_produced.set(produced_good, produced_good_generated)
+		resources_produced.set(produced_good, wood_gathered)
 		
 		if resource_to_gather_queue.size() == 0 and current_tree_gathering == null:
 			near_resource = false
