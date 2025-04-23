@@ -12,8 +12,6 @@ class_name BuildingInfo extends UIElement
 @onready var mode_tab: ScrollContainer = $MarginContainer/Selling
 @onready var tab_bar: TabBar = $TabBar
 
-
-
 ## The currently held building
 var current_building: Building
 
@@ -89,7 +87,9 @@ func handle_building(building: BuildingData) -> String:
 func handle_storage_building(building: StorageBuildingData) -> String:
 	var text: String = ""
 	text += handle_building(building)
-	text += get_storage_text(building)
+	text += get_storage_text()
+	if building.building_type == Enums.BuildingType.BIOMASS_LANDFILL:
+		text += get_connected_biomass_landfills()	
 	return text
 	
 func handle_prod_building(building: ProductionBuildingData) -> String:
@@ -144,11 +144,17 @@ func get_valid_tiles_text(building_data: BuildingData) -> String:
 	return text
 
 ## Adds storage capacity to the text
-func get_storage_text(building_data: StorageBuildingData) -> String:
+func get_storage_text() -> String:
 	var text: String = ""
-	text += "\nStorage\n"
-	for key in building_data.max_storage.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(building_data.max_storage.get(key)) + '\n'
+	text += "\nMax Storage\n"
+	for key in current_building.max_storage.keys():
+		text += Enums.resource_type_to_string(key) + ': ' + str(current_building.max_storage.get(key)) + '\n'
+	return text
+
+func get_connected_biomass_landfills() -> String:
+	var text: String = ""
+	text += "\n" + "This building auto expands and shrinks its max capacity of BIOMASS by " + str(current_building.auto_expand_max_capacity_amount) + "."+ "\n"
+	text += "\nConnected Biomass Landfills: " + str(current_building.connected_landfills.size() + 1) + '\n'
 	return text
 
 ## Specific for gathering buildings, add the resource node it has to be placed on for operation
@@ -179,11 +185,15 @@ func _set_tab_visible(tab_num: int) -> void:
 
 ## Hide the info panel
 func set_inactive() -> void:
+	BuildingSignals.building_info_closed.emit(current_building)
 	self.hide()
 
 ## Show the info panel and update its information
 func set_active(building: Building) -> void:
 	current_building = building
+	if current_building.building_data.building_type == Enums.BuildingType.RESEARCH_LAB:
+		get_tree().root.get_node("Game/UserInterface/ResearchUI").open()
+		return
 	reset_tabs()
 	self.show()
 	populate_info_label(building)
@@ -225,6 +235,11 @@ func _sell_chosen_resources() -> void:
 			PlayerCurrency.add_currency(currency_gain)
 			stored_resource_panel.resource_to_sell = 0
 			ResourceSignals.use_resource.emit(resource_type, sold_amount)
+			
+			#play sound if sell amount is bigger than 0.
+			if currency_gain > 0:
+				$money_sound_player.play()
+				
 	sell_value_label.text = "0"
 	
 func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:

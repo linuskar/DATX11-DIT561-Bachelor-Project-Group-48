@@ -56,7 +56,8 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.BIOMASS_POWER_PLANT: "BIOMASS POWER PLANT",
 	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
 	BuildingType.WAREHOUSE: "WAREHOUSE",
-	BuildingType.ROAD: "ROAD"
+	BuildingType.ROAD: "ROAD",
+	BuildingType.RESEARCH_LAB: "RESEARCH LAB"
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
@@ -97,7 +98,8 @@ enum BuildingType {
 	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
 	BIOMASS_LANDFILL, ## The building type for a biomass landfill
 	WAREHOUSE, ## The building type for a warehouse
-	ROAD
+	ROAD,
+	RESEARCH_LAB, ## The building type for a research lab
 }
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:
@@ -146,6 +148,14 @@ static var emissions_contributing_to_tree_pollution: Dictionary[ResourceType, St
 static func is_a_tree_pollution_contributor(resource_type: ResourceType) -> bool:
 	return resource_type in emissions_contributing_to_tree_pollution
 	
+## The possible directions
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+}
+
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
 	return building_type in polluting_buildings
 	
