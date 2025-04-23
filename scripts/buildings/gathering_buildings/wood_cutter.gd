@@ -5,7 +5,6 @@ extends GatheringBuilding
 ## A class that is for the aspects of an wood cutter. This class extends from
 ## the GatheringBuilding class.
 ##
-@onready var wood_chop_sound = $wood_chop_sound
 var resource_to_gather_queue: Array = []
 var current_tree_gathering: GatherableTree = null
 
@@ -65,10 +64,9 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 		## Producing wood
 		if is_instance_valid(current_tree_gathering):
 			produced_good_generated += current_tree_gathering.gather_resource(output_generation.get(Enums.ResourceType.WOOD))
-			wood_chop_sound.pitch_scale = randf_range(0.75, 1.5)
-			wood_chop_sound.play()
-			
+			current_tree_gathering.play_animation()
 			current_tree_gathering.gathering_sprite_2d.show()
+			
 			
 			if current_tree_gathering.quantity <= 0:
 				current_tree_gathering = null

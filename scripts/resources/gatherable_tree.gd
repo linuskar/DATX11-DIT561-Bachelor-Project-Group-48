@@ -7,6 +7,9 @@ extends GatherableResource
 ##
 ##
 
+@onready var wood_chop_sound: AudioStreamPlayer2D = $wood_chop_sound
+
+
 ## Dictionary for the maximum capacity of emissions that can be stored.
 ## Set the max capacity to -1 to indicate it has unlmited max capacity
 ## for a resource.
@@ -37,3 +40,12 @@ func check_if_at_emission_limit() -> bool:
 func absorb_emission(emission_type: Enums.ResourceType, amount: float):
 	var amount_to_set: float = amount + emission_storage.get(emission_type)
 	emission_storage.set(emission_type, amount_to_set)
+
+func play_animation():
+	$gathering_animation.play("chop")
+
+func _on_gathering_animation_animation_finished(anim_name: StringName) -> void:
+	$chop_particle.emitting = true
+	wood_chop_sound.pitch_scale = randf_range(0.75, 1.5)
+	wood_chop_sound.play()
+	

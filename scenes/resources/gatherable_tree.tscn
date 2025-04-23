@@ -1,11 +1,92 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj5xuffyaonsb"]
+[gd_scene load_steps=13 format=3 uid="uid://bj5xuffyaonsb"]
 
 [ext_resource type="Script" uid="uid://cmc4up8ckeogx" path="res://scripts/resources/gatherable_tree.gd" id="1_q50ek"]
 [ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="2_ljr1m"]
 [ext_resource type="Texture2D" uid="uid://ckte1nf5bm61q" path="res://assets/axe.png" id="3_ljr1m"]
+[ext_resource type="Texture2D" uid="uid://be01upgtspb4v" path="res://assets/wood_chip.png" id="4_aeadn"]
+[ext_resource type="AudioStream" uid="uid://danlvadxldepu" path="res://assets/sounds/harvest_sounds/wood_chop.wav" id="5_yx3au"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laj1l"]
 size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_ljr1m"]
+resource_name = "chop"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GatheringSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 0), Vector2(10, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GatheringSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.309, -0.523599]
+}
+
+[sub_resource type="Animation" id="Animation_aeadn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GatheringSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GatheringSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yx3au"]
+_data = {
+&"RESET": SubResource("Animation_aeadn"),
+&"chop": SubResource("Animation_ljr1m")
+}
+
+[sub_resource type="Curve" id="Curve_aeadn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yx3au"]
+curve = SubResource("Curve_aeadn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ljr1m"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angular_velocity_min = -30.0
+angular_velocity_max = 180.0
+radial_velocity_min = 30.0
+radial_velocity_max = 50.0
+gravity = Vector3(0, 65, 0)
+scale_curve = SubResource("CurveTexture_yx3au")
 
 [node name="GatherableTree" type="Area2D"]
 script = ExtResource("1_q50ek")
@@ -28,3 +109,23 @@ texture = ExtResource("3_ljr1m")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_laj1l")
+
+[node name="gathering_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yx3au")
+}
+
+[node name="chop_particle" type="GPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource("4_aeadn")
+lifetime = 0.35
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ljr1m")
+
+[node name="wood_chop_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_yx3au")
+volume_db = -5.0
+max_distance = 750.0
+
+[connection signal="animation_finished" from="gathering_animation" to="." method="_on_gathering_animation_animation_finished"]

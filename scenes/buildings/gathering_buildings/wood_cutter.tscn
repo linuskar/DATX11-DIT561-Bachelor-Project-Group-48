@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwfw57d10a85j"]
+[gd_scene load_steps=9 format=3 uid="uid://dwfw57d10a85j"]
 
 [ext_resource type="Script" uid="uid://d1rtbhcf3jhw3" path="res://scripts/buildings/gathering_buildings/wood_cutter.gd" id="1_4m5a3"]
 [ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="2_hjr1d"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://scripts/UI/clickable.gd" id="4_5ylux"]
 [ext_resource type="PackedScene" uid="uid://bk6susslxg5o2" path="res://scenes/buildings/animation/place_animation.tscn" id="4_l72kx"]
 [ext_resource type="PackedScene" uid="uid://bouaar65sta4q" path="res://scenes/buildings/animation/place_particle_small.tscn" id="5_85byr"]
-[ext_resource type="AudioStream" uid="uid://danlvadxldepu" path="res://assets/sounds/harvest_sounds/wood_chop.wav" id="5_fnoo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g67v6"]
 size = Vector2(32, 32)
@@ -41,11 +40,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_5ylux")
-
-[node name="wood_chop_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_fnoo6")
-volume_db = -5.0
-max_distance = 750.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
