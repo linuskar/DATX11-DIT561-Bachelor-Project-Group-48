@@ -1,3 +1,4 @@
+class_name CameraMovement
 extends Camera2D
 
 @export var zoomSpeed :float = 10;

@@ -9,9 +9,9 @@ static var polluting_buildings: Array[BuildingType] = [
 		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
 		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
 		
-static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02]
+static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
-static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02]
+static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
@@ -35,6 +35,8 @@ static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.S02: "SO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
 		ResourceType.BIOMASS: "BIOMASS",
+		ResourceType.N0X: "N0X",
+		ResourceType.CH4: "CH4",
 		ResourceType.NONE: "NONE",
 	}	
 	
@@ -49,11 +51,12 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"SO2": ResourceType.S02,
 		"ELECTRICITY": ResourceType.ELECTRICITY,
 		"BIOMASS": ResourceType.BIOMASS,
+		"N0X": ResourceType.N0X,
+		"CH4": ResourceType.CH4,
 		"NONE": ResourceType.NONE,
 	}
 
 static var building_names: Dictionary[BuildingType, String] = {
-
 	BuildingType.FACTORY: "FACTORY",
 	BuildingType.IRON_MINE: "IRON MINE",
 	BuildingType.COAL_MINE: "COAL MINE",
@@ -87,6 +90,17 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.COAL: 3,
 	ResourceType.WOOD: 5,
 	ResourceType.ELECTRICITY: 10
+}
+
+static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
+	ResourceType.CO2: "CO2",
+	ResourceType.N0X: "N0X",
+	ResourceType.CH4: "CH4",
+}
+## TEMPORARY
+static var emissions_contributing_to_smog: Dictionary[ResourceType, String] = {
+	ResourceType.S02: "S02",
+	ResourceType.N0X: "N0X",
 }
 
 ## Function that returns the value of a resource when sold
@@ -132,10 +146,12 @@ enum ResourceType {
 	S02, ## The resource type for sulfur dioxide
 	ELECTRICITY, ## The resource type for electricity
 	BIOMASS, ## The resource type for biomass
+	N0X, ## The resource type for nitrogen oxides
+	CH4, ## The resource type for methane
+	NONE, ## The resource type for nothing
 	PLANKS, ## The resource type for planks
 	STEEL, ## The resource type for steel
 	GEARS, ## The resource type for gears
-	NONE, ## The resource type for nothing
 }
 
 ## The different types of tiles in the game
@@ -145,6 +161,20 @@ enum TileType {
 	STONE, ## The tile type for stone
 	GRASS, ## The tile type for grass
 	RESOURCE, ## The tile type for a resource
+}
+
+## The different states of burning
+enum BurnState { 
+	NORMAL, ## The state when not having been burned previously
+	BURNING, 
+	BURNT }
+	
+## The possible directions
+enum Direction {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
 }
 
 static func is_a_polluting_building(building_type: BuildingType) -> bool:

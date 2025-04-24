@@ -8,6 +8,7 @@ extends GatheringBuilding
 
 var resource_to_gather_queue: Array = []
 var current_tree_gathering: GatherableTree = null
+var wood_gathered: int = 0
 
 func _ready():
 	super()
@@ -58,7 +59,6 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 	
 	for produced_good in produced_goods:
 		var gather_rate_per_tile: int = output_generation.get(produced_good)
-		var produced_good_generated: int = 0
 		
 		if current_tree_gathering == null and resource_to_gather_queue.size() != 0:
 			if is_instance_valid(resource_to_gather_queue[0]):
@@ -67,16 +67,16 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 				resource_to_gather_queue.pop_front()
 		## Producing wood
 		if is_instance_valid(current_tree_gathering):
-			produced_good_generated += current_tree_gathering.gather_resource(output_generation.get(Enums.ResourceType.WOOD))
 			$wood_chop_sound.pitch_scale = randf_range(0.75, 1.5)
 			$wood_chop_sound.play()
 			
 			current_tree_gathering.gathering_sprite_2d.show()
-			
+
+			wood_gathered = current_tree_gathering.gather_resource(output_generation.get(Enums.ResourceType.WOOD))
 			if current_tree_gathering.quantity <= 0:
 				current_tree_gathering = null
 
-		resources_produced.set(produced_good, produced_good_generated)
+		resources_produced.set(produced_good, wood_gathered)
 		
 		if resource_to_gather_queue.size() == 0 and current_tree_gathering == null:
 			near_resource = false
@@ -100,12 +100,15 @@ func sort_resource_tiles_to_gather() -> void:
 	
 ## Function to generate byproducts for a wood cutter based on wood produced.
 func _generate_byproducts() -> void:
+	if wood_gathered <= 0:
+		return
+		
 	for byproduct in byproducts:
 		var byproduct_generated_rate: int = output_generation.get(byproduct)
 		var byproduct_stored: int = output_storage.get(byproduct)
 		
 		ResourceSignals.add_resource.emit(byproduct, byproduct_generated_rate, self)
-		
+
 		if Enums.is_emission(byproduct):
 			emitted_emissions.emit(self, byproduct, byproduct_generated_rate)
 		else:

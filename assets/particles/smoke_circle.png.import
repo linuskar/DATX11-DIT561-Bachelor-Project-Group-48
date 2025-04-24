@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6yo5bqqvkw80"
-path="res://.godot/imported/smoke_circle.png-6dc912d8d7c29bd3748e9d5543166904.ctex"
+path="res://.godot/imported/smoke_circle.png-8fe5dbff22fb3b89e066c47b24b23dac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/smoke_circle.png"
-dest_files=["res://.godot/imported/smoke_circle.png-6dc912d8d7c29bd3748e9d5543166904.ctex"]
+source_file="res://assets/particles/smoke_circle.png"
+dest_files=["res://.godot/imported/smoke_circle.png-8fe5dbff22fb3b89e066c47b24b23dac.ctex"]
 
 [params]
 

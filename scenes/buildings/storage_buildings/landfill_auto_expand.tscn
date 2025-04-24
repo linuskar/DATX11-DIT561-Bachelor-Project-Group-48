@@ -1,13 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://jok1xl2oywc3"]
+[gd_scene load_steps=17 format=3 uid="uid://cgl1ql08os5y5"]
 
-[ext_resource type="Script" uid="uid://bu10hl3va8ff1" path="res://scripts/buildings/storage_buildings/biomass_landfill.gd" id="1_o3w30"]
-[ext_resource type="Resource" uid="uid://dpfrfu5x7p6yh" path="res://resources/buildings/biomass_landfill.tres" id="2_d1p3v"]
-[ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="3_d1p3v"]
-[ext_resource type="Script" uid="uid://porcip0fvgpn" path="res://scripts/UI/building_highlight.gd" id="5_phnxc"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="6_ygndr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
-size = Vector2(32, 32)
+[ext_resource type="Script" uid="uid://porcip0fvgpn" path="res://scripts/UI/building_highlight.gd" id="1_euk6p"]
+[ext_resource type="Script" uid="uid://cr2cijyosovkf" path="res://scripts/buildings/storage_buildings/landfill_auto_expand.gd" id="1_md3jn"]
+[ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="2_md3jn"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_4p3gb"]
 
 [sub_resource type="Animation" id="Animation_fnoo6"]
 length = 0.001
@@ -46,36 +42,36 @@ _data = {
 &"place": SubResource("Animation_5ylux")
 }
 
-[sub_resource type="Curve" id="Curve_d1p3v"]
+[sub_resource type="Curve" id="Curve_4p3gb"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_phnxc"]
-curve = SubResource("Curve_d1p3v")
+curve = SubResource("Curve_4p3gb")
 
-[sub_resource type="Gradient" id="Gradient_m6np2"]
+[sub_resource type="Gradient" id="Gradient_6653p"]
 offsets = PackedFloat32Array(0.190909, 0.981818)
 colors = PackedColorArray(0.84, 0.84, 0.84, 1, 0.82, 0.81426, 0.8036, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_m6np2"]
-gradient = SubResource("Gradient_m6np2")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghimp"]
+gradient = SubResource("Gradient_6653p")
 
-[sub_resource type="Curve" id="Curve_rv1rx"]
+[sub_resource type="Curve" id="Curve_mdre0"]
 _data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_ghimp"]
-curve = SubResource("Curve_rv1rx")
+[sub_resource type="CurveTexture" id="CurveTexture_mpisd"]
+curve = SubResource("Curve_mdre0")
 
-[sub_resource type="Curve" id="Curve_if2c4"]
+[sub_resource type="Curve" id="Curve_hkg67"]
 _limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_rv1rx"]
-curve = SubResource("Curve_if2c4")
+[sub_resource type="CurveTexture" id="CurveTexture_7ihue"]
+curve = SubResource("Curve_hkg67")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eujog"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_alyep"]
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(16, 16, 16)
 emission_shape = 6
@@ -88,24 +84,17 @@ angular_velocity_min = -1.60933e-05
 angular_velocity_max = 360.0
 radial_velocity_min = 9.99998
 radial_velocity_max = 30.0
-radial_velocity_curve = SubResource("CurveTexture_ghimp")
+radial_velocity_curve = SubResource("CurveTexture_mpisd")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_rv1rx")
-color_ramp = SubResource("GradientTexture1D_m6np2")
+scale_curve = SubResource("CurveTexture_7ihue")
+color_ramp = SubResource("GradientTexture1D_ghimp")
 alpha_curve = SubResource("CurveTexture_phnxc")
 
-[node name="BiomassLandfill" type="StaticBody2D"]
-script = ExtResource("1_o3w30")
-building_data = ExtResource("2_d1p3v")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_0igec")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_d1p3v")
+[node name="LandfillAutoExpand" type="Sprite2D"]
+texture = ExtResource("2_md3jn")
+script = ExtResource("1_md3jn")
 
 [node name="Highlight" type="Control" parent="."]
 layout_mode = 3
@@ -114,26 +103,13 @@ offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
-script = ExtResource("5_phnxc")
+script = ExtResource("1_euk6p")
 
 [node name="ColorRect" type="ColorRect" parent="Highlight"]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 color = Color(0.0509804, 0.843137, 0.898039, 0.364706)
-
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("6_ygndr")
 
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -146,7 +122,28 @@ amount = 60
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_eujog")
+process_material = SubResource("ParticleProcessMaterial_alyep")
 
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
+[node name="deplace_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_alyep")
+
+[node name="Clickable" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_4p3gb")
+
 [connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]
+[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]

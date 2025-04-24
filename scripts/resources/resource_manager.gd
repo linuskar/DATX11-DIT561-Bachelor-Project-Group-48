@@ -79,3 +79,4 @@ func apply_emissions(emissions_dict: Dictionary[Vector2, float], emission_type: 
 				gatherable_resource.absorb_emission(emission_type, amount_to_apply)
 				gatherable_resource.check_if_at_emission_limit()
 				pollution_manager.set_emissions_absorbed(emission_type, amount_to_apply)
+				pollution_manager.set_emissions_not_absorbed(emission_type, -amount_to_apply)
