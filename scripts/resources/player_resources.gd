@@ -29,7 +29,7 @@ func _use_Resources(type: Enums.ResourceType, amount: int) -> void:
 #Add buildings placed to the array of buildings
 func _on_build_manager_placed_building(building) -> void:
 	#Case of two or more adjacent networks
-	if BuildManagerGlobal.nr_adjacent_buildings >= 2:
+	if BuildManagerGlobal.nr_adjacent_networks >= 2:
 		join_networks()
 	
 	#Case of no adjacent networks, creates new network
