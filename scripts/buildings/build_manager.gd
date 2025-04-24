@@ -381,8 +381,8 @@ func shrink_landfill(landfill: BiomassLandfill) -> void:
 	var current_max_biomass: int = landfill.max_storage.get(Enums.ResourceType.BIOMASS)
 	landfill.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass - landfill.auto_expand_max_capacity_amount)
 
-	## Deoccupy the tile that the landfill previously occupied
-	## Remove corresponding sprite and clickable button
+	## Deoccupy the tile that the landfill previously occupied and remove the 
+	## auto expanded landfill
 	var landfill_auto: LandfillAutoExpand = landfill.connected_landfills.pop_back()
 	occupied_tiles.erase(landfill.position + landfill_auto.position)
 	

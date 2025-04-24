@@ -24,6 +24,7 @@ PlayerCurrency="*res://scripts/utility/PlayerCurrency.gd"
 ZoomHandler="*res://scripts/utility/zoom_handler.gd"
 BuildManagerGlobal="*res://scripts/global/buildmanagerglobal.gd"
 Research="*res://scripts/utility/Research/research_manager.gd"
+TreeSignals="*res://scripts/resources/tree_signals.gd"
 
 [display]
 

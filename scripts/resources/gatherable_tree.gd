@@ -95,6 +95,7 @@ func update_pollution_level() -> void:
 	elif emission_stored > max_heavily:
 		polluted_level = Enums.PollutionLevel.DEAD
 		quantity = 0
+		TreeSignals.dead.emit(self)
 
 	update_pollution_level_visual()
 	
@@ -145,6 +146,7 @@ func become_burnt() -> void:
 	burn_state = Enums.BurnState.DEAD
 	update_burn_visual()
 	quantity = 0
+	TreeSignals.dead.emit(self)
 	
 ## Function to spread the fire to nearby trees in range
 func spread_fire():
