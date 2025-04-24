@@ -14,14 +14,18 @@ static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIO
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
-	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
+	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD, 
+	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS]
 
 static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.IRON_ORE: "res://assets/UI/Resource UI/iron.tres",
 	ResourceType.COAL: "res://assets/UI/Resource UI/coal.tres",
 	ResourceType.WOOD: "res://assets/UI/Resource UI/wood.tres",
 	ResourceType.ELECTRICITY: "res://assets/UI/Resource UI/electricity.png",
-	ResourceType.BIOMASS: "res://assets/UI/Resource UI/biomass.png"
+	ResourceType.BIOMASS: "res://assets/UI/Resource UI/biomass.png",
+	ResourceType.STEEL: "res://assets/UI/Resource UI/steel_resource.png",
+	ResourceType.PLANKS: "res://assets/UI/Resource UI/planks_resource.png",
+	ResourceType.GEARS: "res://assets/UI/Resource UI/gears_resource.png",
 }
 
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
@@ -89,7 +93,10 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.IRON_ORE: 2,
 	ResourceType.COAL: 3,
 	ResourceType.WOOD: 5,
-	ResourceType.ELECTRICITY: 10
+	ResourceType.ELECTRICITY: 10,
+	ResourceType.STEEL: 10,
+	ResourceType.PLANKS: 16,
+	ResourceType.GEARS: 7
 }
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {

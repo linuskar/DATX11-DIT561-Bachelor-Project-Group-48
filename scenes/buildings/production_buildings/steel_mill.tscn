@@ -107,6 +107,7 @@ shape = SubResource("RectangleShape2D_haa26")
 texture = ExtResource("3_b64yw")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="Clickable" type="TextureButton" parent="."]
 anchors_preset = 15
@@ -146,4 +147,5 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_7dyfo")
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
