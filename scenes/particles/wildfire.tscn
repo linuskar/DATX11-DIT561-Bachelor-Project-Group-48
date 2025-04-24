@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgeyohlgf0u8t"]
+
+[ext_resource type="PackedScene" uid="uid://dl1aome3i6kt7" path="res://scenes/buildings/smoke/smoke_fire.tscn" id="1_ha3ci"]
+[ext_resource type="Script" uid="uid://dgg6arpc0kmsv" path="res://scripts/pollution/wildfire.gd" id="1_ri7gw"]
+[ext_resource type="Texture2D" uid="uid://dh02lvtesfjj2" path="res://assets/particles/fire.png" id="2_ri7gw"]
+
+[sub_resource type="Curve" id="Curve_pcpuu"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.253444, 203.664), 0.0, 0.0, 0, 0, Vector2(0.501377, -13.1897), 0.0, 0.0, 0, 0, Vector2(0.757576, 198.621), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_qco0s"]
+curve = SubResource("Curve_pcpuu")
+
+[sub_resource type="Gradient" id="Gradient_4cuac"]
+offsets = PackedFloat32Array(0, 0.255193, 0.299703, 0.406528, 0.566766, 0.783383, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.752672, 0.654431, 0, 1, 0.786203, 0.532628, 0.0351288, 1, 0.808429, 0.45189, 0.0584142, 1, 0.839852, 0.337744, 0.091335, 1, 0.821911, 2.62313e-06, 7.70092e-07, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_evk0r"]
+gradient = SubResource("Gradient_4cuac")
+
+[sub_resource type="Curve" id="Curve_0p44b"]
+_data = [Vector2(0.0743802, 0.502694), 0.0, -1.48316, 0, 0, Vector2(0.504132, 0.502694), -2.16589, -2.16589, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4yabp"]
+curve = SubResource("Curve_0p44b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qco0s"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_max = 290.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+angular_velocity_curve = SubResource("CurveTexture_qco0s")
+gravity = Vector3(0, -98, 0)
+scale_min = 0.0
+scale_max = 0.9
+scale_curve = SubResource("CurveTexture_4yabp")
+color_ramp = SubResource("GradientTexture1D_evk0r")
+
+[node name="Wildfire" type="Node2D"]
+script = ExtResource("1_ri7gw")
+
+[node name="Smoke_fire" parent="." instance=ExtResource("1_ha3ci")]
+modulate = Color(1, 1, 1, 0.192157)
+position = Vector2(0, -18)
+emitting = false
+
+[node name="Fire" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.133333)
+emitting = false
+amount = 500
+texture = ExtResource("2_ri7gw")
+lifetime = 0.1
+speed_scale = 0.2
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qco0s")

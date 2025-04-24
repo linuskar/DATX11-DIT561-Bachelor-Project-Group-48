@@ -1,6 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://bmfjen7u3vjeh"]
 
-[ext_resource type="Script" uid="uid://b8h8eu10uysh0" path="res://scripts/utility/pollution_manager.gd" id="1_6vgt2"]
+[ext_resource type="Script" uid="uid://b8h8eu10uysh0" path="res://scripts/pollution/pollution_manager.gd" id="1_6vgt2"]
 
 [node name="PollutionManager" type="Node"]
 script = ExtResource("1_6vgt2")
+
+[node name="WildfireTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="EmissionDecayTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="WildfireTimer" to="." method="_on_wildfire_timer_timeout"]
+[connection signal="timeout" from="EmissionDecayTimer" to="." method="_on_emission_decay_timer_timeout"]
