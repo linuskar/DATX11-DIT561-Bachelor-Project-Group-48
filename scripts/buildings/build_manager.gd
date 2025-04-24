@@ -240,7 +240,7 @@ func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_wit
 	occupy_tiles(landfill_to_be_merged_with, adjusted_pos)
 	BuildManagerGlobal.update_networks(landfill_to_be_merged_with) 
 	placed_building.emit(landfill_to_be_merged_with)
-	
+	BuildManagerGlobal.update_roads.emit()
 	landfill_placed.queue_free()
 	
 ## Function that occupies tiles for a building.
@@ -315,7 +315,7 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	occupy_tiles(landfill, adjusted_pos)
 	BuildManagerGlobal.update_networks(landfill) 
 	placed_building.emit(landfill)
-	
+	BuildManagerGlobal.update_roads.emit()
 	## TODO: Future implementation for merging landfills when auto expanding
 	## NOTE: have to take care of the resources that are currently transporting
 	## need to somehow reroute the resoruces that are transported to the current instance of landfill
