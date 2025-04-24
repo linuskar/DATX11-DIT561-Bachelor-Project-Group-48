@@ -51,21 +51,21 @@ _data = {
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_6supy"]
+[sub_resource type="CurveTexture" id="CurveTexture_f2q00"]
 curve = SubResource("Curve_f2q00")
 
 [sub_resource type="Gradient" id="Gradient_t5xvn"]
 offsets = PackedFloat32Array(0.190909, 0.981818)
 colors = PackedColorArray(0.84, 0.84, 0.84, 1, 0.82, 0.81426, 0.8036, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ut7x7"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6supy"]
 gradient = SubResource("Gradient_t5xvn")
 
 [sub_resource type="Curve" id="Curve_coaia"]
 _data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_m13is"]
+[sub_resource type="CurveTexture" id="CurveTexture_t5xvn"]
 curve = SubResource("Curve_coaia")
 
 [sub_resource type="Curve" id="Curve_61a07"]
@@ -73,7 +73,7 @@ _limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_lbck8"]
+[sub_resource type="CurveTexture" id="CurveTexture_ut7x7"]
 curve = SubResource("Curve_61a07")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yav6q"]
@@ -89,13 +89,13 @@ angular_velocity_min = -1.60933e-05
 angular_velocity_max = 360.0
 radial_velocity_min = 9.99998
 radial_velocity_max = 30.0
-radial_velocity_curve = SubResource("CurveTexture_m13is")
+radial_velocity_curve = SubResource("CurveTexture_t5xvn")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_lbck8")
-color_ramp = SubResource("GradientTexture1D_ut7x7")
-alpha_curve = SubResource("CurveTexture_6supy")
+scale_curve = SubResource("CurveTexture_ut7x7")
+color_ramp = SubResource("GradientTexture1D_6supy")
+alpha_curve = SubResource("CurveTexture_f2q00")
 
 [node name="CoalPowerPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_2asmk")
@@ -111,14 +111,6 @@ texture = ExtResource("3_f2q00")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Smoke_v3" parent="." instance=ExtResource("5_f2q00")]
-position = Vector2(-8, -40)
-emitting = false
-
-[node name="Smoke_v4" parent="." instance=ExtResource("6_6supy")]
-position = Vector2(32, -16)
-emitting = false
-
 [node name="Clickable" type="TextureButton" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,13 +124,29 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_lqwfw")
 
+[node name="Smoke_v3" parent="." instance=ExtResource("5_f2q00")]
+position = Vector2(-8, -40)
+emitting = false
+
+[node name="Smoke_v4" parent="." instance=ExtResource("6_6supy")]
+position = Vector2(8, -24)
+emitting = false
+
+[node name="Smoke_v5" parent="." instance=ExtResource("5_f2q00")]
+position = Vector2(24, -24)
+emitting = false
+
+[node name="Smoke_v6" parent="." instance=ExtResource("5_f2q00")]
+position = Vector2(40, -16)
+emitting = false
+
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_86t2d")
 }
 
 [node name="place_particle" type="GPUParticles2D" parent="."]
-position = Vector2(8, -32)
+position = Vector2(16, -32)
 emitting = false
 amount = 60
 lifetime = 0.5

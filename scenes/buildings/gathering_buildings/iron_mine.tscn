@@ -126,12 +126,15 @@ script = ExtResource("4_6f8g6")
 
 [node name="Smoke_v2" parent="." instance=ExtResource("5_oc4lm")]
 position = Vector2(-9, -24)
+emitting = false
 
 [node name="Smoke_v2_2" parent="." instance=ExtResource("5_oc4lm")]
 position = Vector2(0, -28)
+emitting = false
 
 [node name="Smoke_v2_3" parent="." instance=ExtResource("5_oc4lm")]
 position = Vector2(19, -27)
+emitting = false
 
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {

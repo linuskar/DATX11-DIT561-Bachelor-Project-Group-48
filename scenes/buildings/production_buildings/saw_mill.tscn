@@ -1,10 +1,99 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt0w2f1d2iaox"]
+[gd_scene load_steps=19 format=3 uid="uid://bt0w2f1d2iaox"]
 
 [ext_resource type="Script" uid="uid://dyx0dn8djmd0w" path="res://scripts/buildings/produktion_buildings/saw_mill.gd" id="1_ix051"]
 [ext_resource type="Resource" uid="uid://1tptrw7m37b" path="res://resources/buildings/saw_mill.tres" id="2_ckntf"]
 [ext_resource type="Texture2D" uid="uid://dhrbh478p212n" path="res://assets/buildings_iso/Sawmill.png" id="3_03u5a"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_03u5a"]
+[ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="5_wi8qw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjfo5"]
+
+[sub_resource type="Animation" id="Animation_fnoo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5ylux"]
+resource_name = "place"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86t2d"]
+_data = {
+&"RESET": SubResource("Animation_fnoo6"),
+&"place": SubResource("Animation_5ylux")
+}
+
+[sub_resource type="Curve" id="Curve_03u5a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wi8qw"]
+curve = SubResource("Curve_03u5a")
+
+[sub_resource type="Gradient" id="Gradient_nmvx1"]
+offsets = PackedFloat32Array(0.190909, 0.981818)
+colors = PackedColorArray(0.84, 0.84, 0.84, 1, 0.82, 0.81426, 0.8036, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5alkm"]
+gradient = SubResource("Gradient_nmvx1")
+
+[sub_resource type="Curve" id="Curve_ydt3p"]
+_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fbv32"]
+curve = SubResource("Curve_ydt3p")
+
+[sub_resource type="Curve" id="Curve_tot5u"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5q233"]
+curve = SubResource("Curve_tot5u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yda3m"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 16, 16)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+radial_velocity_min = 9.99998
+radial_velocity_max = 30.0
+radial_velocity_curve = SubResource("CurveTexture_fbv32")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_5q233")
+color_ramp = SubResource("GradientTexture1D_5alkm")
+alpha_curve = SubResource("CurveTexture_wi8qw")
 
 [node name="SawMill" type="StaticBody2D"]
 script = ExtResource("1_ix051")
@@ -17,3 +106,35 @@ shape = SubResource("RectangleShape2D_bjfo5")
 texture = ExtResource("3_03u5a")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Clickable" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_03u5a")
+
+[node name="Smoke_v1" parent="." instance=ExtResource("5_wi8qw")]
+position = Vector2(8, -24)
+emitting = false
+
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yda3m")
+
+[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
