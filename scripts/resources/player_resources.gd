@@ -33,14 +33,14 @@ func _on_build_manager_placed_building(building) -> void:
 		join_networks()
 	
 	#Case of no adjacent networks, creates new network
-	elif BuildManagerGlobal.nr_adjacent_buildings == 0:
+	elif BuildManagerGlobal.nr_adjacent_networks == 0:
 		new_network(BuildManagerGlobal.current_new_network_id, building)
 	
 	if building is not StorageBuilding:
 		return
 	
 	#Case of one adjacent network, adds building to existing network
-	if BuildManagerGlobal.nr_adjacent_buildings == 1:
+	if BuildManagerGlobal.nr_adjacent_networks == 1:
 		add_to_existing_network(building)
 
 #Joins networks into the last network (Already poped in BuildManagerGlobal) in the list current_networks
