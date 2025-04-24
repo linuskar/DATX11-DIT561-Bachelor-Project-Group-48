@@ -59,10 +59,15 @@ func init_pollution_level_limits() -> void:
 		
 		i -= 1
 
-func _process(delta: float) -> void:
+## Function to absorb emissions.
+func absorb_emission(emission_type: Enums.ResourceType, amount: float):
+	if burn_state == Enums.BurnState.NORMAL:
+		var amount_to_set: float = amount + emission_storage.get(emission_type)
+		emission_storage.set(emission_type, amount_to_set)
+		
 	if polluted_level != Enums.PollutionLevel.DEAD or burn_state != Enums.BurnState.DEAD:
 		update_pollution_level()
-
+				
 ## Function to update the pollution level of a tree 
 ## based on contributing emissions
 func update_pollution_level() -> void:
@@ -89,7 +94,6 @@ func update_pollution_level() -> void:
 		polluted_level = Enums.PollutionLevel.HEAVILY
 	elif emission_stored > max_heavily:
 		polluted_level = Enums.PollutionLevel.DEAD
-		# TODO: make byproduct not return when quantity = 0
 		quantity = 0
 
 	update_pollution_level_visual()
@@ -155,9 +159,3 @@ func spread_fire():
 			## based on a probability for a fire to start
 			if tree.burn_state == Enums.BurnState.NORMAL and randf() <= fire_spread_probability:
 				tree.start_burning(fire_spread_probability)
-
-## Function to absorb emissions.
-func absorb_emission(emission_type: Enums.ResourceType, amount: float):
-	if burn_state == Enums.BurnState.NORMAL:
-		var amount_to_set: float = amount + emission_storage.get(emission_type)
-		emission_storage.set(emission_type, amount_to_set)
