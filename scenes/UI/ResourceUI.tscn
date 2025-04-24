@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj1v7y2dejr2w"]
+[gd_scene load_steps=10 format=3 uid="uid://bj1v7y2dejr2w"]
 
 [ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="1_erkbk"]
 [ext_resource type="Script" uid="uid://dxmp87dbqrere" path="res://scripts/UI/resource_ui.gd" id="1_jxiwp"]
@@ -6,16 +6,27 @@
 [ext_resource type="Texture2D" uid="uid://b8dmip3wmfd3n" path="res://assets/UI/Resource UI/iron.tres" id="3_i4uxt"]
 [ext_resource type="Texture2D" uid="uid://b6kg1pkyvmwu" path="res://assets/UI/Resource UI/biomass.png" id="4_o2hj3"]
 [ext_resource type="Texture2D" uid="uid://bphavxn6qmicm" path="res://assets/UI/Resource UI/electricity.png" id="5_mh4jc"]
-[ext_resource type="LabelSettings" uid="uid://cbie3pafc45k2" path="res://assets/Fonts/standard_font_settings_black_text.tres" id="7_0cucw"]
+[ext_resource type="Texture2D" uid="uid://crmtdvhkoysqi" path="res://assets/UI/Resource UI/steel_resource.png" id="8_twb2c"]
+[ext_resource type="Texture2D" uid="uid://di0pw8173wn4u" path="res://assets/UI/Resource UI/gears_resource.png" id="9_pqlmi"]
+[ext_resource type="Texture2D" uid="uid://b5fis32quckn7" path="res://assets/UI/Resource UI/planks_resource.png" id="10_qcmja"]
 
 [node name="ResourceUi" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 120.0
 offset_bottom = 75.0
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_jxiwp")
+resources = Dictionary[int, Texture]({
+0: ExtResource("3_i4uxt"),
+1: ExtResource("2_jxiwp"),
+2: ExtResource("1_erkbk"),
+5: ExtResource("5_mh4jc"),
+6: ExtResource("4_o2hj3"),
+10: ExtResource("10_qcmja"),
+11: ExtResource("8_twb2c"),
+12: ExtResource("9_pqlmi")
+})
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -26,73 +37,3 @@ theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-
-[node name="Wood" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Wood"]
-layout_mode = 2
-texture = ExtResource("1_erkbk")
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Wood"]
-layout_mode = 2
-text = "0"
-label_settings = ExtResource("7_0cucw")
-horizontal_alignment = 1
-
-[node name="Coal" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Coal"]
-layout_mode = 2
-texture = ExtResource("2_jxiwp")
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Coal"]
-layout_mode = 2
-text = "0"
-label_settings = ExtResource("7_0cucw")
-horizontal_alignment = 1
-
-[node name="Biomass" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Biomass"]
-layout_mode = 2
-texture = ExtResource("4_o2hj3")
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Biomass"]
-layout_mode = 2
-text = "0"
-label_settings = ExtResource("7_0cucw")
-horizontal_alignment = 1
-
-[node name="Iron_Ore" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Iron_Ore"]
-layout_mode = 2
-texture = ExtResource("3_i4uxt")
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Iron_Ore"]
-layout_mode = 2
-text = "0"
-label_settings = ExtResource("7_0cucw")
-horizontal_alignment = 1
-
-[node name="Electricity" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/Electricity"]
-layout_mode = 2
-texture = ExtResource("5_mh4jc")
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Electricity"]
-layout_mode = 2
-text = "0"
-label_settings = ExtResource("7_0cucw")
-horizontal_alignment = 1

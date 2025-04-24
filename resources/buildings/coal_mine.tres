@@ -15,7 +15,7 @@ emissions_radius = Dictionary[int, int]({
 4: 16
 })
 max_storage = Dictionary[int, int]({
-1: 20
+1: 80
 })
 input_types = Array[int]([])
 output_types = Array[int]([1, 3])
