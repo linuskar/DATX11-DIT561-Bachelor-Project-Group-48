@@ -1,4 +1,4 @@
-extends UIElement
+extends UIMenu
 
 #Open UI
 func open():
