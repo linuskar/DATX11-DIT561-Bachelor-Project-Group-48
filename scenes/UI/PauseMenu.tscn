@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckurldaudp30o"]
+[gd_scene load_steps=11 format=3 uid="uid://ckurldaudp30o"]
 
 [ext_resource type="Texture2D" uid="uid://gmppfc3gw03p" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thin outline/tilemap_packed.png" id="1_avwb0"]
 [ext_resource type="Script" uid="uid://ohln7c1yhsgr" path="res://scripts/UI/pause_menu.gd" id="1_onjwa"]
@@ -15,6 +15,9 @@ content_margin_right = 50.0
 content_margin_bottom = 40.0
 texture = ExtResource("1_avwb0")
 region_rect = Rect2(224, 32, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3m1qe"]
+font_size = 32
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4r2wj"]
 
@@ -56,6 +59,13 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game paused"
+label_settings = SubResource("LabelSettings_3m1qe")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Resume" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 process_mode = 3
