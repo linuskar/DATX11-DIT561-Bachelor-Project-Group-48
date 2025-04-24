@@ -235,6 +235,7 @@ func _sell_chosen_resources() -> void:
 			PlayerCurrency.add_currency(currency_gain)
 			stored_resource_panel.resource_to_sell = 0
 			ResourceSignals.use_resource.emit(resource_type, sold_amount)
+			ResourceSignals.add_input_building.emit(current_building)
 			
 			#play sound if sell amount is bigger than 0.
 			if currency_gain > 0:

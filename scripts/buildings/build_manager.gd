@@ -203,7 +203,6 @@ func _on_placed_building(building: Building) -> void:
 	BuildManagerGlobal.update_networks(building)
 	placed_building.emit(building)
 	BuildManagerGlobal.update_roads.emit()
-	BuildManagerGlobal.print_networks()
 	
 ## Function two merge landfills that are near each other
 func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_with: BiomassLandfill) -> void:

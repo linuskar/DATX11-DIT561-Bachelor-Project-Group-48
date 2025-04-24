@@ -30,18 +30,17 @@ func _use_Resources(type: Enums.ResourceType, amount: int) -> void:
 func _on_build_manager_placed_building(building) -> void:
 	if BuildManagerGlobal.nr_adjacent_buildings >= 2:
 		join_networks()
+	elif BuildManagerGlobal.nr_adjacent_buildings == 0:
+		new_network(BuildManagerGlobal.current_new_network_id, building)
 	if building is not StorageBuilding:
 		return
-	if BuildManagerGlobal.nr_adjacent_buildings == 0:
-		new_network(BuildManagerGlobal.current_new_network_id, building)
-	elif BuildManagerGlobal.nr_adjacent_buildings == 1:
+	if BuildManagerGlobal.nr_adjacent_buildings == 1:
 		add_to_existing_network(building)
 
 func join_networks():
 	if !networks.has(BuildManagerGlobal.first):
 		networks.get_or_add(BuildManagerGlobal.first, preload("res://scripts/resources/resource_transport.gd").new())
 	for current_network in BuildManagerGlobal.current_networks:
-		print("Testing, ", networks.get(current_network))
 		networks.get(BuildManagerGlobal.first).add_another_network(networks.get(current_network))
 		networks.erase(current_network)
 
@@ -65,7 +64,8 @@ func same_nr_networks(new_networks):
 
 func new_network(network_id, building) -> void:
 	networks.get_or_add(network_id, preload("res://scripts/resources/resource_transport.gd").new())
-	networks.get(network_id).new_building(building)
+	if building is StorageBuilding:
+		networks.get(network_id).new_building(building)
 
 func new_building_to_output(building: StorageBuilding) -> void:
 	for temp in networks.keys():

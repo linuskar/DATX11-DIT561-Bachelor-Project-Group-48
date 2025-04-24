@@ -48,7 +48,7 @@ func update_networks(building: Building):
 	elif nr_adjacent_buildings == 1:
 		add_to_existing_network(current_networks.get(0), building)
 	elif nr_adjacent_buildings >= 2:
-		join_networks()
+		join_networks(building)
 
 func get_adjacent_tiles_centered(size: Vector2) -> Array:
 	var tile_size := 32
@@ -85,10 +85,11 @@ func create_new_network(building: Building):
 func add_to_existing_network(network_key: int, building: Building):
 	networks.get(network_key).append(building)
 
-func join_networks():
+func join_networks(building):
 	first = current_networks.pop_back()
 	for current_network_id in current_networks:
 		networks.get(first).append_array(networks.get(current_network_id))
+		networks.get(first).append(building)
 		networks.erase(current_network_id)
 	
 
