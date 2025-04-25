@@ -18,18 +18,13 @@ signal landfill_expanded(landfill: BiomassLandfill)
 signal landfill_shrinked(landfill: BiomassLandfill)
 
 @onready var clickable: Clickable = $Clickable
-@onready var highlight: BuildingHighlight = $Highlight
 
 var landfill_auto_expand: PackedScene = preload("res://scenes/buildings/storage_buildings/landfill_auto_expand.tscn")
-
-var currently_selected: bool
 
 func _ready() -> void:
 	super()
 	place_animation.play("place")
-	highlight.hide()
-	BuildingSignals.building_clicked.connect(building_selected)
-	BuildingSignals.building_info_closed.connect(building_deselected)
+	highlight.de_selected()
 	
 func  _process(delta: float) -> void:
 	expand_landfill()
@@ -51,32 +46,16 @@ func shrink_landfill() -> void:
 
 	if (current_biomass < (current_max_biomass - auto_expand_max_capacity_amount)) and connected_landfills.size() > 0:
 		landfill_shrinked.emit(self)
-		
-## Function to set building as currently selected
-func building_selected(building: Building) -> void:
-	if building == self:
-		currently_selected = true
-	else:
-		currently_selected = false
-		
-## Function to set building as not currently selected
-func building_deselected(building: Building) -> void:
-	if building == self:
-		currently_selected = false
 
 ## Function to higlight the all the connected landfills
 func highlight_building() -> void:
 	if currently_selected:
-		highlight.show()
 		highlight.selected()
 		for landfill in connected_landfills:
-			landfill.highlight.show()
 			landfill.highlight.selected()
 	else:
-		highlight.hide()
 		highlight.de_selected()
 		for landfill in connected_landfills:
-			landfill.highlight.hide()
 			landfill.highlight.de_selected()
 
 func instantiate_auto_expand_landfill() -> void:

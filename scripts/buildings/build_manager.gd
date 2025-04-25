@@ -384,7 +384,7 @@ func shrink_landfill(landfill: BiomassLandfill) -> void:
 	## Deoccupy the tile that the landfill previously occupied
 	## Remove corresponding sprite and clickable button
 	var landfill_auto: LandfillAutoExpand = landfill.connected_landfills.pop_back()
-	occupied_tiles.erase(landfill_auto.position)
+	occupied_tiles.erase(landfill.position + landfill_auto.position)
 	
 	landfill_auto.remove()
 
