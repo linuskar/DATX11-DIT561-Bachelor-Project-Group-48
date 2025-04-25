@@ -27,6 +27,7 @@ var currently_selected: bool
 
 func _ready() -> void:
 	highlight = highlight_scene.instantiate()
+	highlight.building_size = building_data.building_size
 	add_child(highlight)
 	highlight.de_selected()
 	

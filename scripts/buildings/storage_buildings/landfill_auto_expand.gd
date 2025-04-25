@@ -14,6 +14,8 @@ var highlight_scene: PackedScene = preload("res://scenes/buildings/highlight.tsc
 ## var new_collision_shape: CollisionShape2D = null
 func _ready() -> void:
 	highlight = highlight_scene.instantiate()
+	highlight.building_size = get_parent().building_data.building_size 
+
 	add_child(highlight)
 	highlight.de_selected()
 	
