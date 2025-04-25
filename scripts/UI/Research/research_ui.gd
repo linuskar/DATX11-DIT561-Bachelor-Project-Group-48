@@ -1,4 +1,4 @@
-extends Control
+extends UIMenu
 
 #Open UI
 func open():
