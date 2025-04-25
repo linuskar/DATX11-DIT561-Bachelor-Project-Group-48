@@ -1,4 +1,4 @@
-extends Control
+extends UIMenu
 
 var research_lab_selected: ResearchLab = null
 

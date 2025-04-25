@@ -1,4 +1,4 @@
-class_name BuildingInfo extends UIElement
+class_name BuildingInfo extends UIMenu
 
 @onready var image: TextureRect = $MarginContainer/General/VBoxContainer/MarginContainer3/FactoryImage
 @onready var building_name: Label = $MarginContainer/General/VBoxContainer/BuildingName

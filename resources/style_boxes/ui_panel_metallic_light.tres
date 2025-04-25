@@ -1,13 +1,12 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://kymp5o3e18e"]
 
-[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_jagq0"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hny5b"]
+load_path = "res://.godot/imported/tilemap_packed.png-f70ab1b24a16f17e2cb5fa150fb08651.ctex"
 
 [resource]
-texture = ExtResource("1_jagq0")
+texture = SubResource("CompressedTexture2D_hny5b")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
 region_rect = Rect2(64, 0, 32, 32)
