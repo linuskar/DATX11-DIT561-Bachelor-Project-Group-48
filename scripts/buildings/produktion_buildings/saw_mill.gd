@@ -20,7 +20,7 @@ func _on_timer_timeout() -> void:
 			
 ## Function for emitting smoke when possible.
 func emit_smoke() -> void:
-	if check_if_can_produce() == false:
+	if check_if_can_produce() == false or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
 		for smoke in smokes:
 			smoke.emitting = false
 	else:
