@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=23 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
@@ -37,6 +37,7 @@ pivot_offset = Vector2(400, 0)
 script = ExtResource("1_dphbc")
 
 [node name="List" type="Control" parent="."]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 1
