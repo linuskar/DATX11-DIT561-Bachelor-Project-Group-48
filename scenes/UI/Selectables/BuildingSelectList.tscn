@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=20 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
+[ext_resource type="Script" uid="uid://dmgsm1ff1lp3b" path="res://scripts/utility/ui_menu.gd" id="2_bh0ot"]
 [ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="3_epysl"]
 [ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/Selectables/CoalMineSelectable.tscn" id="4_2uf64"]
 [ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/Selectables/IronMineSelectable.tscn" id="5_2mva2"]
@@ -44,6 +45,7 @@ offset_bottom = 592.0
 grow_horizontal = 0
 pivot_offset = Vector2(400, 0)
 mouse_filter = 1
+script = ExtResource("2_bh0ot")
 
 [node name="ListPanel" type="Panel" parent="List"]
 layout_mode = 0
