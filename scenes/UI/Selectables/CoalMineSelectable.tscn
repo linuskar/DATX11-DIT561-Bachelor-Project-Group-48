@@ -65,7 +65,7 @@ offset_right = 320.0
 offset_bottom = 192.0
 mouse_filter = 1
 script = ExtResource("1_32o48")
-icon_path = "uid://t2kml7pea27i"
+icon_path = "uid://bx5qrg1nmnpld"
 building_data = ExtResource("2_53tyr")
 
 [node name="MainBox" type="Panel" parent="."]

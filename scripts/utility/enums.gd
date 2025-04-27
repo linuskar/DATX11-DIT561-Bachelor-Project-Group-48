@@ -14,20 +14,27 @@ static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIO
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
-	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD]
+	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD, 
+	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS]
 
 static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.IRON_ORE: "res://assets/UI/Resource UI/iron.tres",
 	ResourceType.COAL: "res://assets/UI/Resource UI/coal.tres",
 	ResourceType.WOOD: "res://assets/UI/Resource UI/wood.tres",
 	ResourceType.ELECTRICITY: "res://assets/UI/Resource UI/electricity.png",
-	ResourceType.BIOMASS: "res://assets/UI/Resource UI/biomass.png"
+	ResourceType.BIOMASS: "res://assets/UI/Resource UI/biomass.png",
+	ResourceType.STEEL: "res://assets/UI/Resource UI/steel_resource.png",
+	ResourceType.PLANKS: "res://assets/UI/Resource UI/planks_resource.png",
+	ResourceType.GEARS: "res://assets/UI/Resource UI/gears_resource.png",
 }
 
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.IRON_ORE: "IRON ORE",
 		ResourceType.COAL: "COAL",
 		ResourceType.WOOD: "WOOD",
+		ResourceType.PLANKS: "PLANKS",
+		ResourceType.STEEL: "STEEL",
+		ResourceType.GEARS: "GEARS",
 		ResourceType.CO2: "CO2",
 		ResourceType.S02: "SO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
@@ -41,6 +48,9 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"IRON ORE": ResourceType.IRON_ORE,
 		"COAL": ResourceType.COAL,
 		"WOOD": ResourceType.WOOD,
+		"PLANKS": ResourceType.PLANKS,
+		"STEEL": ResourceType.STEEL,
+		"GEARS": ResourceType.GEARS,
 		"CO2": ResourceType.CO2,
 		"SO2": ResourceType.S02,
 		"ELECTRICITY": ResourceType.ELECTRICITY,
@@ -60,6 +70,9 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
 	BuildingType.WAREHOUSE: "WAREHOUSE",
 	BuildingType.ROAD: "ROAD",
+	BuildingType.SAW_MILL: "SAW MILL",
+	BuildingType.STEEL_MILL: "STEEL MILL",
+	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
 	BuildingType.RESEARCH_LAB: "RESEARCH LAB"
 	}
 	
@@ -80,7 +93,10 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.IRON_ORE: 2,
 	ResourceType.COAL: 3,
 	ResourceType.WOOD: 5,
-	ResourceType.ELECTRICITY: 10
+	ResourceType.ELECTRICITY: 10,
+	ResourceType.STEEL: 10,
+	ResourceType.PLANKS: 16,
+	ResourceType.GEARS: 20
 }
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
@@ -112,7 +128,10 @@ enum BuildingType {
 	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
 	BIOMASS_LANDFILL, ## The building type for a biomass landfill
 	WAREHOUSE, ## The building type for a warehouse
-	ROAD,
+	ROAD, ## The building type for roads
+	SAW_MILL, ## The building type for a saw mill 
+	STEEL_MILL, ## The building type for a steel mill 
+	GEAR_FACTORY, ## The building type for a gear factory
 	RESEARCH_LAB, ## The building type for a research lab
 }
 ## Function for checking if the BuildingType is a gathering building
@@ -137,6 +156,9 @@ enum ResourceType {
 	N0X, ## The resource type for nitrogen oxides
 	CH4, ## The resource type for methane
 	NONE, ## The resource type for nothing
+	PLANKS, ## The resource type for planks
+	STEEL, ## The resource type for steel
+	GEARS, ## The resource type for gears
 }
 
 ## The different types of tiles in the game
