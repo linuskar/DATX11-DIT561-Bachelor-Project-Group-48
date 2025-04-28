@@ -78,7 +78,33 @@ func set_panel_text() -> void:
 	
 	## Begin with the name of the building
 	var panel_text: String = building_name + '\n'
-	panel_text += add_dict_to_panel(inputs, "Inputs")
+	
+	if building_data is ProductionBuildingData:
+		if building_data.input_recipes.keys():
+			var text: String = "\nInputs\n"
+			var input_recipes: Dictionary[int, Array] = {}
+			
+			for resource in building_data.input_recipes.keys():
+				var id = building_data.input_recipes.get(resource)
+				if input_recipes.has(id):
+					var new_array: Array = input_recipes.get(id)
+					new_array.append(resource)
+					input_recipes.set(id, new_array)
+				else:
+					input_recipes.set(id, [resource])
+			
+			var i: int = 0
+			
+			for recipe_id in input_recipes.keys():
+				if i > 0:
+					text += "OR\n"
+				var recipe: Array = input_recipes.get(recipe_id)	
+				for resource in recipe:
+					text += Enums.resource_type_to_string(resource) + ': ' + str(building_data.input_use_rates.get(resource)) + '\n'
+				i += 1
+			panel_text += text
+	else:
+		panel_text += add_dict_to_panel(inputs, "Inputs")
 	panel_text += "\nUpkeep\n" + str(building_data.building_upkeep) + "\n"
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")

@@ -126,13 +126,34 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
 	return text
 
+
 ## Adds all the different inputs of the building, if it has any
 func get_inputs_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
-	if building_data.input_use_rates.keys():
+	
+	if building_data.input_recipes.keys():
+		var input_recipes: Dictionary[int, Array] = {}
+		
+		for resource in building_data.input_recipes.keys():
+			var id = building_data.input_recipes.get(resource)
+			if input_recipes.has(id):
+				var new_array: Array = input_recipes.get(id)
+				new_array.append(resource)
+				input_recipes.set(id, new_array)
+			else:
+				input_recipes.set(id, [resource])
+		
 		text += "\nInputs\n"
-		for key in building_data.input_use_rates.keys():
-			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.input_use_rates.get(key)) + '\n'
+		
+		var i: int = 0
+		
+		for recipe_id in input_recipes.keys():
+			if i > 0:
+				text += "OR\n"
+			var recipe: Array = input_recipes.get(recipe_id)	
+			for resource in recipe:
+				text += Enums.resource_type_to_string(resource) + ': ' + str(building_data.input_use_rates.get(resource)) + '\n'
+			i += 1
 	return text
 	
 ## Adds all the tiles considered valid for placement

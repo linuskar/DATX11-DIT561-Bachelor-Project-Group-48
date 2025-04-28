@@ -20,6 +20,9 @@ var output_generation: Dictionary[Enums.ResourceType, int]
 ## Variable for checking whether the building is currently selling its outputs
 var currently_selling: bool = false
 
+## The valid input recipes to produce
+var input_recipes: Dictionary[int, Array]
+
 ## Signal for when emissions are emitted
 signal emitted_emissions(building: Building, emission_type: Enums.ResourceType, amount: int)
 
@@ -31,9 +34,21 @@ func _ready() -> void:
 ## Function to initialize the production building.
 func init_production_building() -> void:
 	input_use_rates = building_data.input_use_rates
-		
 	output_generation = building_data.output_generation
+	init_input_recipes()
 	
+## Function to initialize the input recipes, this is done due to how
+## Godot does not support nested arrays that are typed
+func init_input_recipes() -> void:
+	for resource in building_data.input_recipes.keys():
+		var id = building_data.input_recipes.get(resource)
+		if input_recipes.has(id):
+			var new_array: Array = input_recipes.get(id)
+			new_array.append(resource)
+			input_recipes.set(id, new_array)
+		else:
+			input_recipes.set(id, [resource])
+
 ## Activated at the end of each cycle.
 func _on_timer_timeout() -> void:
 	_output_resources()
@@ -44,8 +59,8 @@ func _output_resources() -> void:
 		production_cycle.paused = true
 	else:
 		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
-		_handle_produced_goods()
 		_use_input_recipe()
+		_handle_produced_goods()
 		_generate_byproducts()
 
 func _handle_produced_goods() -> void:
@@ -57,12 +72,12 @@ func _handle_produced_goods() -> void:
 		else:
 			PlayerCurrency.add_currency(Enums.get_value_of_resource(resource)*produced_resources.get(resource))
 	PlayerCurrency.remove_currency(self.building_data.building_upkeep)
-
+	
 ## Function to check if the production building can produce.
 func check_if_can_produce() -> bool:
 	var missing_input: bool = check_for_missing_input()
 	var can_be_output_overflow: bool = check_for_output_overflow()
-	
+
 	if missing_input:
 		return false
 		
@@ -84,15 +99,22 @@ func check_for_output_overflow() -> bool:
 		if produced_good_stored + produced_good_generated > produced_good_max_storage:
 			return true
 	return false
-		
+
 ## Function to check if the production building is missing resources for input
 ## to produce.
 func check_for_missing_input() -> bool:
-	for input in input_storage:
-		var input_quantity: int = input_storage.get(input)
-		var input_use_rate: int = input_use_rates.get(input)
-		
-		if input_quantity < input_use_rate:
+	var recipes_invalid: int = 0
+	
+	for recipe in input_recipes.values():
+		for input in recipe:
+			var input_quantity: int = input_storage.get(input)
+			var input_use_rate: int = input_use_rates.get(input)
+			
+			if input_quantity < input_use_rate:
+				recipes_invalid += 1
+				break
+				
+		if recipes_invalid == input_recipes.size():
 			return true
 	return false
 	
@@ -106,16 +128,17 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 
 ## Function to use the resources from input in a production building.
 func _use_input_recipe() -> void:
-	for input in input_storage:
-		var input_quantity: int = input_storage.get(input)
-		var input_use_rate: int = input_use_rates.get(input)
-		var input_left: int = input_quantity - input_use_rate
-		
-		if input_left <= 0:
-			input_left = 0
+	for recipe in input_recipes.values():
+		for input in recipe:
+			var input_quantity: int = input_storage.get(input)
+			var input_use_rate: int = input_use_rates.get(input)
+			var input_left: int = input_quantity - input_use_rate
 			
-		input_storage.set(input, input_left)
-		
+			if input_left <= 0:
+				input_left = 0
+				
+			input_storage.set(input, input_left)
+			
 	## Request input after using recipe
 	if input_storage.size() != 0:
 		ResourceSignals.add_input_building.emit(self)
@@ -133,7 +156,6 @@ func _generate_byproducts() -> void:
 		else:
 			byproduct_stored += byproduct_generated
 			output_storage.set(byproduct, byproduct_stored)
-
 	
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
