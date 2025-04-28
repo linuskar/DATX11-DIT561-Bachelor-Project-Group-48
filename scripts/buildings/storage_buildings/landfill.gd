@@ -18,20 +18,14 @@ signal landfill_expanded(landfill: BiomassLandfill)
 signal landfill_shrinked(landfill: BiomassLandfill)
 
 @onready var clickable: Clickable = $Clickable
-@onready var highlight: BuildingHighlight = $Highlight
 
 var landfill_auto_expand: PackedScene = preload("res://scenes/buildings/storage_buildings/landfill_auto_expand.tscn")
-
-var currently_selected: bool
 
 @export var main_resource: Enums.ResourceType
 
 func _ready() -> void:
 	super()
 	place_animation.play("place")
-	highlight.hide()
-	BuildingSignals.building_clicked.connect(building_selected)
-	BuildingSignals.building_info_closed.connect(building_deselected)
 	
 func  _process(delta: float) -> void:
 	expand_landfill()
@@ -69,17 +63,13 @@ func building_deselected(building: Building) -> void:
 ## Function to higlight the all the connected landfills
 func highlight_building() -> void:
 	if currently_selected:
-		highlight.show()
 		highlight.selected()
 		for landfill in connected_landfills:
-			landfill.highlight.show()
 			landfill.highlight.selected()
 	else:
-		highlight.hide()
-		highlight.de_selected()
+		highlight.unselected()
 		for landfill in connected_landfills:
-			landfill.highlight.hide()
-			landfill.highlight.de_selected()
+			landfill.highlight.unselected()
 
 func instantiate_auto_expand_landfill() -> void:
 	var landfill_auto: LandfillAutoExpand = landfill_auto_expand.instantiate()
