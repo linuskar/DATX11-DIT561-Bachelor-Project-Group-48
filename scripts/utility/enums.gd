@@ -9,7 +9,7 @@ static var polluting_buildings: Array[BuildingType] = [
 		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
 		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
 		
-static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
+static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4, ResourceType.METAL_SCRAP]
 
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
@@ -26,6 +26,7 @@ static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.STEEL: "res://assets/UI/Resource UI/steel_resource.png",
 	ResourceType.PLANKS: "res://assets/UI/Resource UI/planks_resource.png",
 	ResourceType.GEARS: "res://assets/UI/Resource UI/gears_resource.png",
+	ResourceType.METAL_SCRAP: "res://assets/UI/Resource UI/metal_scrap.png",
 }
 
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
@@ -35,6 +36,7 @@ static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.PLANKS: "PLANKS",
 		ResourceType.STEEL: "STEEL",
 		ResourceType.GEARS: "GEARS",
+		ResourceType.METAL_SCRAP: "METAL SCRAP",
 		ResourceType.CO2: "CO2",
 		ResourceType.S02: "SO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
@@ -51,6 +53,7 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"PLANKS": ResourceType.PLANKS,
 		"STEEL": ResourceType.STEEL,
 		"GEARS": ResourceType.GEARS,
+		"METAL SCRAP": ResourceType.METAL_SCRAP,
 		"CO2": ResourceType.CO2,
 		"SO2": ResourceType.S02,
 		"ELECTRICITY": ResourceType.ELECTRICITY,
@@ -96,7 +99,7 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.ELECTRICITY: 10,
 	ResourceType.STEEL: 10,
 	ResourceType.PLANKS: 16,
-	ResourceType.GEARS: 20
+	ResourceType.GEARS: 20,
 }
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
@@ -116,7 +119,25 @@ static func get_value_of_resource(resource: ResourceType) -> int:
 	
 static func get_value_of_resources(resource: ResourceType, amount: int) -> int:
 	return resource_costs.get(resource)*amount
-	
+
+## The different types of resources in the game
+enum ResourceType {
+	IRON_ORE, ## The resource type for iron ore
+	COAL, ## The resource type for coal
+	WOOD, ## The resource type for wood
+	CO2, ## The resource type for carbon dioxide
+	S02, ## The resource type for sulfur dioxide
+	ELECTRICITY, ## The resource type for electricity
+	BIOMASS, ## The resource type for biomass
+	N0X, ## The resource type for nitrogen oxides
+	CH4, ## The resource type for methane
+	NONE, ## The resource type for nothing
+	PLANKS, ## The resource type for planks
+	STEEL, ## The resource type for steel
+	GEARS, ## The resource type for gears
+	METAL_SCRAP, ## The resource type for metal scrap
+}
+
 ## The different types of buildings in the game
 # Factory and gathering building are just temporary names?
 enum BuildingType {
@@ -143,23 +164,6 @@ static func is_gathering_building(building_type: BuildingType) -> bool:
 static func is_power_generator(building_type: BuildingType) -> bool:
 	var power_generators: Array[BuildingType] = [BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
 	return building_type in power_generators
-
-## The different types of resources in the game
-enum ResourceType {
-	IRON_ORE, ## The resource type for iron ore
-	COAL, ## The resource type for coal
-	WOOD, ## The resource type for wood
-	CO2, ## The resource type for carbon dioxide
-	S02, ## The resource type for sulfur dioxide
-	ELECTRICITY, ## The resource type for electricity
-	BIOMASS, ## The resource type for biomass
-	N0X, ## The resource type for nitrogen oxides
-	CH4, ## The resource type for methane
-	NONE, ## The resource type for nothing
-	PLANKS, ## The resource type for planks
-	STEEL, ## The resource type for steel
-	GEARS, ## The resource type for gears
-}
 
 ## The different types of tiles in the game
 enum TileType {

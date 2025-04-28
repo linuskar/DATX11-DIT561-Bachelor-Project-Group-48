@@ -5,7 +5,7 @@ var resource_labels: Dictionary[Enums.ResourceType, Label] = {}
 var resource_nodes: Dictionary[Enums.ResourceType, VBoxContainer] = {}
 var first_resource: bool = false
 @onready var list: HBoxContainer = $MarginContainer/HBoxContainer
-var resource_entry = preload("res://scenes/UI/ResourceUIEntry.tscn")
+var resource_entry: Resource = preload("res://scenes/UI/ResourceUIEntry.tscn")
 
 func _ready():
 	super._ready()
