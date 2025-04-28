@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://djil6gjtsgbdu"]
+[gd_scene load_steps=17 format=3 uid="uid://djil6gjtsgbdu"]
 
 [ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_v3jyi"]
 [ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/Selectables/BuildingSelectList.tscn" id="2_yl4mc"]
-[ext_resource type="Script" path="res://scripts/utility/ui_element.gd" id="3_v3jyi"]
+[ext_resource type="Script" uid="uid://ogxgrnm1q7jm" path="res://scripts/utility/ui_element.gd" id="3_v3jyi"]
 [ext_resource type="PackedScene" uid="uid://bj1v7y2dejr2w" path="res://scenes/UI/ResourceUI.tscn" id="3_vr1b1"]
 [ext_resource type="PackedScene" uid="uid://u0w1syotmn42" path="res://scenes/UI/BuildingInfo.tscn" id="5_3wpr7"]
 [ext_resource type="PackedScene" uid="uid://cht3r13bjg58r" path="res://scenes/UI/PlayerCurrencyPanel.tscn" id="6_v3jyi"]
@@ -13,6 +13,8 @@
 [ext_resource type="StyleBox" uid="uid://cppa2lt0s7fyx" path="res://resources/style_boxes/ui_panel_light_hovered.tres" id="10_gojqa"]
 [ext_resource type="Texture2D" uid="uid://dx1sr2p46acxm" path="res://assets/UI/kenney_game-icons/pause1x.png" id="10_rtk7f"]
 [ext_resource type="Script" uid="uid://c5wl1b3s3af3" path="res://scripts/UI/button.gd" id="11_nk1x2"]
+[ext_resource type="PackedScene" uid="uid://rkxfq20ab5t1" path="res://scenes/UI/StartMenu.tscn" id="14_xa1es"]
+[ext_resource type="PackedScene" uid="uid://fysawqvslmw8" path="res://scenes/UI/KeyBinds.tscn" id="15_jqgkf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gojqa"]
 
@@ -68,6 +70,13 @@ expand_icon = true
 script = ExtResource("11_nk1x2")
 
 [node name="PauseMenu" parent="." instance=ExtResource("9_k31su")]
+visible = false
+
+[node name="StartMenu" parent="." instance=ExtResource("14_xa1es")]
+anchors_preset = -1
+
+[node name="KeyBinds" parent="." instance=ExtResource("15_jqgkf")]
+visible = false
 
 [connection signal="self_entered" from="PanelContainer" to="." method="add_reference"]
 [connection signal="self_exited" from="PanelContainer" to="." method="remove_reference"]
