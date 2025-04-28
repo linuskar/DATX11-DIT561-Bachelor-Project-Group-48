@@ -45,7 +45,7 @@ texture_margin_bottom = 5.0
 region_rect = Rect2(0, 0, 32, 32)
 modulate_color = Color(0.707967, 0.707967, 0.707967, 1)
 
-[node name="MetalScrapLandfillSelectable" type="Control"]
+[node name="SteelScrapLandfillSelectable" type="Control"]
 custom_minimum_size = Vector2(320, 192)
 layout_mode = 3
 anchors_preset = 15
@@ -60,7 +60,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_6m4am")
-icon_path = "uid://bqeautb4vgenl"
+icon_path = "uid://pjrnc7gnxm2r"
 building_data = ExtResource("2_udkrx")
 
 [node name="MainBox" type="Panel" parent="."]
