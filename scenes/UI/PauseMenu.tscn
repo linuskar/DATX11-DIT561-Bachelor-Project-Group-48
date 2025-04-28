@@ -23,7 +23,6 @@ font_size = 32
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4r2wj"]
 
 [node name="PauseMenu" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,18 +79,6 @@ theme_override_styles/normal = ExtResource("2_6q0ex")
 text = "Resume"
 script = ExtResource("5_73e60")
 
-[node name="Exit game" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-process_mode = 3
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4r2wj")
-theme_override_styles/hover = ExtResource("2_4r2wj")
-theme_override_styles/pressed = ExtResource("3_avwb0")
-theme_override_styles/normal = ExtResource("2_6q0ex")
-text = "Exit Game"
-script = ExtResource("7_3m1qe")
-
 [node name="Keybinds" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
@@ -104,6 +91,18 @@ theme_override_styles/normal = ExtResource("2_6q0ex")
 text = "Keybinds"
 script = ExtResource("8_77ihb")
 
+[node name="Exit game" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4r2wj")
+theme_override_styles/hover = ExtResource("2_4r2wj")
+theme_override_styles/pressed = ExtResource("3_avwb0")
+theme_override_styles/normal = ExtResource("2_6q0ex")
+text = "Exit Game"
+script = ExtResource("7_3m1qe")
+
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Resume" to="PanelContainer/MarginContainer/VBoxContainer/Resume" method="_on_button_down"]
-[connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Exit game" to="PanelContainer/MarginContainer/VBoxContainer/Exit game" method="_on_button_down"]
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Keybinds" to="PanelContainer/MarginContainer/VBoxContainer/Keybinds" method="_on_button_down"]
+[connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Exit game" to="PanelContainer/MarginContainer/VBoxContainer/Exit game" method="_on_button_down"]
