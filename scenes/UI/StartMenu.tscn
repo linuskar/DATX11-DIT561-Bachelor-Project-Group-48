@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bqugr640sxpqq" path="res://assets/buildings_iso/Ironmine_building1.png" id="4_uhw4i"]
 [ext_resource type="Script" uid="uid://cho1xwcqhuhkf" path="res://scenes/UI/start_game.gd" id="5_8ljlw"]
 [ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="5_yarrf"]
-[ext_resource type="Script" uid="uid://buy2ynx4k5vi4" path="res://scenes/UI/exit_game.gd" id="6_osnf7"]
-[ext_resource type="Script" uid="uid://bn81tpnvy7yit" path="res://scenes/UI/keybinds.gd" id="8_i35m3"]
+[ext_resource type="Script" uid="uid://bn81tpnvy7yit" path="res://scripts/UI/keybinds.gd" id="8_i35m3"]
+[ext_resource type="Script" uid="uid://cqw7jn6eqdu3n" path="res://scripts/UI/exit_game.gd" id="9_i35m3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhw4i"]
 atlas = ExtResource("1_ghpp4")
@@ -227,7 +227,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_yarrf")
 theme_override_styles/hover = ExtResource("4_i35m3")
 theme_override_styles/normal = ExtResource("5_yarrf")
 text = "Exit Game"
-script = ExtResource("6_osnf7")
+script = ExtResource("9_i35m3")
 
 [connection signal="button_down" from="VBoxContainer/StartGame" to="VBoxContainer/StartGame" method="start_game"]
 [connection signal="button_down" from="VBoxContainer/Keybinds" to="VBoxContainer/Keybinds" method="_on_button_down"]

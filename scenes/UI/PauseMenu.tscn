@@ -7,7 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://bfttb8f017gk2" path="res://resources/style_boxes/metal_red_outline_darker.tres" id="3_avwb0"]
 [ext_resource type="Script" uid="uid://bcrtd7gmwcod6" path="res://scripts/UI/resume.gd" id="5_73e60"]
 [ext_resource type="Script" uid="uid://cqw7jn6eqdu3n" path="res://scripts/UI/exit_game.gd" id="7_3m1qe"]
-[ext_resource type="Script" uid="uid://bn81tpnvy7yit" path="res://scenes/UI/keybinds.gd" id="8_77ihb"]
+[ext_resource type="Script" uid="uid://bn81tpnvy7yit" path="res://scripts/UI/keybinds.gd" id="8_77ihb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73e60"]
 content_margin_left = 50.0
