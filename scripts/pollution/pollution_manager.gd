@@ -179,22 +179,22 @@ func emissions_falloff(amount: float, emissions_radius: int, building_pos: Vecto
 			## No negative amounts to set
 			amount_to_set = max(amount_to_set, 0)
 			emissions_dict.set(tile_pos, amount_to_set)
-			set_emissions_generated(emission_type, amount_to_set)
-			set_emissions_not_absorbed(emission_type, amount_to_set)
+			add_emissions_generated(emission_type, amount_to_set)
+			add_emissions_not_absorbed(emission_type, amount_to_set)
 			
 	return emissions_dict
 
 ## Function to set the amount of emissions generated
-func set_emissions_generated(emission_type: Enums.ResourceType, amount: float) -> void:
+func add_emissions_generated(emission_type: Enums.ResourceType, amount: float) -> void:
 	var current_amount: float = emissions_generated.get(emission_type)
 	emissions_generated.set(emission_type, amount + current_amount)
 
 ## Function to set the amount of emissions absorbed by other objects
-func set_emissions_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
+func add_emissions_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
 	var current_amount: float = emissions_absorbed.get(emission_type)
 	emissions_absorbed.set(emission_type, amount + current_amount)
 	
 ## Function to set the amount of emissions not absorbed by other objects
-func set_emissions_not_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
+func add_emissions_not_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
 	var current_amount: float = emissions_not_absorbed.get(emission_type)
 	emissions_not_absorbed.set(emission_type, current_amount + amount)
