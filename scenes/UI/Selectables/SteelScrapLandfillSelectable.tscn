@@ -1,20 +1,20 @@
 [gd_scene load_steps=13 format=3 uid="uid://cbnpo6ya5w0fv"]
 
-[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_ux50r"]
-[ext_resource type="Resource" uid="uid://vf545h38qqxt" path="res://resources/buildings/metal_scrap_landfill.tres" id="2_ux50r"]
-[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="3_1wo6h"]
-[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="4_nphuj"]
-[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="5_ocwof"]
-[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_qekdg"]
-[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="7_ndfsn"]
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_6m4am"]
+[ext_resource type="Resource" uid="uid://vf545h38qqxt" path="res://resources/buildings/steel_scrap_landfill.tres" id="2_udkrx"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="3_1uebf"]
+[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="4_afv5k"]
+[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="5_xl116"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_vkix4"]
+[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="7_yn8s5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y6nl7"]
-font = ExtResource("6_qekdg")
+font = ExtResource("6_vkix4")
 font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_u3dyx"]
-font = ExtResource("6_qekdg")
+font = ExtResource("6_vkix4")
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_entep"]
@@ -24,7 +24,7 @@ content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
-texture = ExtResource("7_ndfsn")
+texture = ExtResource("7_yn8s5")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
@@ -37,7 +37,7 @@ content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
-texture = ExtResource("7_ndfsn")
+texture = ExtResource("7_yn8s5")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
@@ -59,9 +59,9 @@ scale = Vector2(0.599748, 0.599748)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
-script = ExtResource("1_ux50r")
+script = ExtResource("1_6m4am")
 icon_path = "uid://bqeautb4vgenl"
-building_data = ExtResource("2_ux50r")
+building_data = ExtResource("2_udkrx")
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
@@ -71,7 +71,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("3_1wo6h")
+theme_override_styles/panel = ExtResource("3_1uebf")
 
 [node name="Selected" type="Panel" parent="."]
 visible = false
@@ -82,7 +82,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("4_nphuj")
+theme_override_styles/panel = ExtResource("4_afv5k")
 
 [node name="Containers" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -94,7 +94,7 @@ anchor_bottom = 0.65
 offset_right = -2.0
 offset_bottom = -0.399994
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("3_1wo6h")
+theme_override_styles/panel = ExtResource("3_1uebf")
 
 [node name="MarginContainer" type="MarginContainer" parent="Containers"]
 layout_mode = 2
@@ -105,7 +105,7 @@ theme_override_constants/margin_bottom = 0
 
 [node name="BuildingIcon" type="TextureRect" parent="Containers/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("5_ocwof")
+texture = ExtResource("5_xl116")
 
 [node name="BuildingNameCost" type="Label" parent="."]
 layout_mode = 1
@@ -155,12 +155,12 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_qekdg")
+theme_override_fonts/font = ExtResource("6_vkix4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_entep")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_y6nl7")
 theme_override_styles/hover = SubResource("StyleBoxTexture_tc4f2")
-theme_override_styles/pressed = ExtResource("3_1wo6h")
-theme_override_styles/normal = ExtResource("3_1wo6h")
+theme_override_styles/pressed = ExtResource("3_1uebf")
+theme_override_styles/normal = ExtResource("3_1uebf")
 toggle_mode = true
 text = "Select"
 autowrap_mode = 2

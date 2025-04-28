@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ddbcnvs3frisw" path="res://scenes/UI/Selectables/SteelMillSelectable.tscn" id="14_p772r"]
 [ext_resource type="PackedScene" uid="uid://bnw7off718dvw" path="res://scenes/UI/Selectables/GearFactorySelectable.tscn" id="15_tqq1s"]
 [ext_resource type="PackedScene" uid="uid://dhdmdoa2x24cb" path="res://scenes/UI/Selectables/ResearchLabSelectable.tscn" id="16_tqq1s"]
-[ext_resource type="PackedScene" uid="uid://cbnpo6ya5w0fv" path="res://scenes/UI/Selectables/MetalScrapLandfillSelectable.tscn" id="18_2tosp"]
+[ext_resource type="PackedScene" uid="uid://cbnpo6ya5w0fv" path="res://scenes/UI/Selectables/SteelScrapLandfillSelectable.tscn" id="18_2tosp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mva2"]
 

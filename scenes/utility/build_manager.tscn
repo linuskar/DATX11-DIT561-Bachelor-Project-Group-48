@@ -17,13 +17,13 @@
 [ext_resource type="PackedScene" uid="uid://d0obknopqb3j6" path="res://scenes/buildings/production_buildings/steel_mill.tscn" id="11_okohd"]
 [ext_resource type="PackedScene" uid="uid://b0ef776hgtpta" path="res://scenes/buildings/building_blueprints/power_generators/biomass_power_plant_blueprint.tscn" id="11_xcllt"]
 [ext_resource type="PackedScene" uid="uid://bb0k6gsn5k6v3" path="res://scenes/buildings/production_buildings/gear_factory.tscn" id="12_jq8ob"]
-[ext_resource type="PackedScene" uid="uid://dqescnbl4e761" path="res://scenes/buildings/storage_buildings/metal_scrap_landfill.tscn" id="13_g3lso"]
+[ext_resource type="PackedScene" uid="uid://dqescnbl4e761" path="res://scenes/buildings/storage_buildings/steel_scrap_landfill.tscn" id="13_g3lso"]
 [ext_resource type="PackedScene" uid="uid://d0n2xkqggqdmg" path="res://scenes/buildings/building_blueprints/storage_buildings/biomass_landfill_blueprint.tscn" id="13_gtan0"]
 [ext_resource type="PackedScene" uid="uid://chfljd8f6ww5l" path="res://scenes/buildings/building_blueprints/road_blueprint.tscn" id="16_b6ppb"]
 [ext_resource type="PackedScene" uid="uid://drsrk2maerqd2" path="res://scenes/buildings/building_blueprints/production_buildings/saw_mill_blueprint.tscn" id="18_k82q2"]
 [ext_resource type="PackedScene" uid="uid://cqg67jejofbse" path="res://scenes/buildings/building_blueprints/production_buildings/steel_mill_blueprint.tscn" id="20_52bjm"]
 [ext_resource type="PackedScene" uid="uid://cn6sefxukvlqm" path="res://scenes/buildings/building_blueprints/production_buildings/gear_factory_blueprint.tscn" id="22_437j0"]
-[ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/metal_scrap_landfill_blueprint.tscn" id="24_jdlbb"]
+[ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="24_jdlbb"]
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
 script = ExtResource("1_aenhx")

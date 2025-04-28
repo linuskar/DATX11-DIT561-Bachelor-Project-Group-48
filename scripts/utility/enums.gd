@@ -9,7 +9,7 @@ static var polluting_buildings: Array[BuildingType] = [
 		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
 		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
 		
-static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4, ResourceType.METAL_SCRAP]
+static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4, ResourceType.STEEL_SCRAP]
 
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
@@ -17,7 +17,7 @@ static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE,
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD, 
 	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS]
 
-static var landfills: Array[BuildingType] = [BuildingType.BIOMASS_LANDFILL, BuildingType.METAL_SCRAP_LANDFILL]
+static var landfills: Array[BuildingType] = [BuildingType.BIOMASS_LANDFILL, BuildingType.STEEL_SCRAP_LANDFILL]
 
 static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.IRON_ORE: "res://assets/UI/Resource UI/iron.tres",
@@ -28,7 +28,7 @@ static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.STEEL: "res://assets/UI/Resource UI/steel_resource.png",
 	ResourceType.PLANKS: "res://assets/UI/Resource UI/planks_resource.png",
 	ResourceType.GEARS: "res://assets/UI/Resource UI/gears_resource.png",
-	ResourceType.METAL_SCRAP: "res://assets/UI/Resource UI/metal_scrap.png",
+	ResourceType.STEEL_SCRAP: "res://assets/UI/Resource UI/steel_scrap.png",
 }
 
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
@@ -38,7 +38,7 @@ static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.PLANKS: "PLANKS",
 		ResourceType.STEEL: "STEEL",
 		ResourceType.GEARS: "GEARS",
-		ResourceType.METAL_SCRAP: "METAL SCRAP",
+		ResourceType.STEEL_SCRAP: "STEEL SCRAP",
 		ResourceType.CO2: "CO2",
 		ResourceType.S02: "SO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
@@ -55,7 +55,7 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"PLANKS": ResourceType.PLANKS,
 		"STEEL": ResourceType.STEEL,
 		"GEARS": ResourceType.GEARS,
-		"METAL SCRAP": ResourceType.METAL_SCRAP,
+		"STEEL SCRAP": ResourceType.STEEL_SCRAP,
 		"CO2": ResourceType.CO2,
 		"SO2": ResourceType.S02,
 		"ELECTRICITY": ResourceType.ELECTRICITY,
@@ -79,13 +79,13 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.STEEL_MILL: "STEEL MILL",
 	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
 	BuildingType.RESEARCH_LAB: "RESEARCH LAB",
-	BuildingType.METAL_SCRAP_LANDFILL: "METAL SCRAP LANDFILL",
+	BuildingType.STEEL_SCRAP_LANDFILL: "STEEL SCRAP LANDFILL",
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
 	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
 	BuildingType.WAREHOUSE: "WAREHOUSE",
-	BuildingType.METAL_SCRAP_LANDFILL: "METAL SCRAP LANDFILL",
+	BuildingType.STEEL_SCRAP_LANDFILL: "STEEL SCRAP LANDFILL",
 	}
 
 static var tile_names: Dictionary[TileType, String] = {
@@ -139,7 +139,7 @@ enum ResourceType {
 	PLANKS, ## The resource type for planks
 	STEEL, ## The resource type for steel
 	GEARS, ## The resource type for gears
-	METAL_SCRAP, ## The resource type for metal scrap
+	STEEL_SCRAP, ## The resource type for STEEL SCRAP
 }
 
 ## The different types of buildings in the game
@@ -158,7 +158,7 @@ enum BuildingType {
 	STEEL_MILL, ## The building type for a steel mill 
 	GEAR_FACTORY, ## The building type for a gear factory
 	RESEARCH_LAB, ## The building type for a research lab
-	METAL_SCRAP_LANDFILL ## The building type for a metal scrap landfill,
+	STEEL_SCRAP_LANDFILL ## The building type for a STEEL SCRAP landfill,
 }
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:

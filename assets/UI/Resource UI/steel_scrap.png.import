@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cb0fltxgtn1ns"
-path="res://.godot/imported/metal_scrap.png-a43fc47a3f5ea84e9260e1b5619ebece.ctex"
+path="res://.godot/imported/steel_scrap.png-d56e9aba786f5c68a37602f776570354.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Resource UI/metal_scrap.png"
-dest_files=["res://.godot/imported/metal_scrap.png-a43fc47a3f5ea84e9260e1b5619ebece.ctex"]
+source_file="res://assets/UI/Resource UI/steel_scrap.png"
+dest_files=["res://.godot/imported/steel_scrap.png-d56e9aba786f5c68a37602f776570354.ctex"]
 
 [params]
 

@@ -105,7 +105,6 @@ func check_for_output_overflow() -> bool:
 			var byproduct_max_storage: int = max_storage.get(byproduct)
 			if byproduct_stored + byproduct_generated > byproduct_max_storage:
 				return true
-
 	return false
 
 ## Function to check if the production building is missing resources for input

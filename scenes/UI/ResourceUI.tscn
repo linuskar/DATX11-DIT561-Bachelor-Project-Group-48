@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bphavxn6qmicm" path="res://assets/UI/Resource UI/electricity.png" id="5_mh4jc"]
 [ext_resource type="Texture2D" uid="uid://crmtdvhkoysqi" path="res://assets/UI/Resource UI/steel_resource.png" id="8_twb2c"]
 [ext_resource type="Texture2D" uid="uid://di0pw8173wn4u" path="res://assets/UI/Resource UI/gears_resource.png" id="9_pqlmi"]
-[ext_resource type="Texture2D" uid="uid://cb0fltxgtn1ns" path="res://assets/UI/Resource UI/metal_scrap.png" id="10_nyad3"]
+[ext_resource type="Texture2D" uid="uid://cb0fltxgtn1ns" path="res://assets/UI/Resource UI/steel_scrap.png" id="10_nyad3"]
 [ext_resource type="Texture2D" uid="uid://b5fis32quckn7" path="res://assets/UI/Resource UI/planks_resource.png" id="10_qcmja"]
 
 [node name="ResourceUi" type="Control"]
