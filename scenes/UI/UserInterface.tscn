@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://u0w1syotmn42" path="res://scenes/UI/BuildingInfo.tscn" id="5_3wpr7"]
 [ext_resource type="PackedScene" uid="uid://cht3r13bjg58r" path="res://scenes/UI/PlayerCurrencyPanel.tscn" id="6_v3jyi"]
 [ext_resource type="PackedScene" uid="uid://bn4m2dsa1xi1m" path="res://scenes/UI/ResearchUI/ResearchUI.tscn" id="8_o6e1s"]
-[ext_resource type="PackedScene" path="res://scenes/UI/PauseMenu.tscn" id="9_k31su"]
-[ext_resource type="StyleBox" path="res://resources/style_boxes/ui_panel_light_pressed.tres" id="10_4rcww"]
-[ext_resource type="StyleBox" path="res://resources/style_boxes/ui_panel_light_hovered.tres" id="10_gojqa"]
+[ext_resource type="PackedScene" uid="uid://ckurldaudp30o" path="res://scenes/UI/PauseMenu.tscn" id="9_k31su"]
+[ext_resource type="StyleBox" uid="uid://qav7i8thq0cw" path="res://resources/style_boxes/ui_panel_light_pressed.tres" id="10_4rcww"]
+[ext_resource type="StyleBox" uid="uid://cppa2lt0s7fyx" path="res://resources/style_boxes/ui_panel_light_hovered.tres" id="10_gojqa"]
 [ext_resource type="Texture2D" uid="uid://dx1sr2p46acxm" path="res://assets/UI/kenney_game-icons/pause1x.png" id="10_rtk7f"]
-[ext_resource type="Script" path="res://scripts/UI/button.gd" id="11_nk1x2"]
+[ext_resource type="Script" uid="uid://c5wl1b3s3af3" path="res://scripts/UI/button.gd" id="11_nk1x2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gojqa"]
 
