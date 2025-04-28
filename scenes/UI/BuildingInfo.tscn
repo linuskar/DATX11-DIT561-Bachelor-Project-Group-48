@@ -155,14 +155,7 @@ texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 region_rect = Rect2(32, 0, 32, 32)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n50wj"]
-texture = ExtResource("6_xxyib")
-texture_margin_left = 5.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 5.0
-region_rect = Rect2(96, 0, 32, 32)
-modulate_color = Color(0.683, 0.683, 0.683, 0.469)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gy07u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83uro"]
 
@@ -425,6 +418,7 @@ offset_top = 19.0
 offset_right = 314.0
 offset_bottom = 63.0
 mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_86cwq")
 theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_xxyib")
@@ -432,16 +426,13 @@ theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_xjg1s")
 theme_override_styles/tab_unselected = ExtResource("7_xxyib")
 theme_override_styles/tab_hovered = ExtResource("6_itten")
 theme_override_styles/tab_selected = SubResource("StyleBoxTexture_83uro")
-theme_override_styles/tab_disabled = SubResource("StyleBoxTexture_n50wj")
+theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_gy07u")
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_83uro")
 current_tab = 0
 tab_count = 3
 tab_0/title = "General"
-tab_0/tooltip = "General info"
 tab_1/title = "Storage"
-tab_1/tooltip = "Max and current storage"
 tab_2/title = "Selling"
-tab_2/tooltip = "Selling your storage"
 
 [node name="CloseButton" type="TextureButton" parent="."]
 layout_mode = 2
