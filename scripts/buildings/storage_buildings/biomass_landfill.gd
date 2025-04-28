@@ -24,7 +24,6 @@ var landfill_auto_expand: PackedScene = preload("res://scenes/buildings/storage_
 func _ready() -> void:
 	super()
 	place_animation.play("place")
-	highlight.de_selected()
 	
 func  _process(delta: float) -> void:
 	expand_landfill()
@@ -54,9 +53,9 @@ func highlight_building() -> void:
 		for landfill in connected_landfills:
 			landfill.highlight.selected()
 	else:
-		highlight.de_selected()
+		highlight.unselected()
 		for landfill in connected_landfills:
-			landfill.highlight.de_selected()
+			landfill.highlight.unselected()
 
 func instantiate_auto_expand_landfill() -> void:
 	var landfill_auto: LandfillAutoExpand = landfill_auto_expand.instantiate()

@@ -12,7 +12,7 @@ extends Control
 var building_size: Vector2
 
 func _ready() -> void:
-	de_selected()
+	unselected()
 	init_size()
 	
 func init_size() -> void:
@@ -30,6 +30,6 @@ func selected() -> void:
 	show()
 	color_rect.show()
 
-func de_selected() -> void:
+func unselected() -> void:
 	hide()
 	color_rect.hide()

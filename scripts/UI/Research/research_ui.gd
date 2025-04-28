@@ -3,6 +3,7 @@ extends UIMenu
 var research_lab_selected: ResearchLab = null
 
 func _ready() -> void:
+	super()
 	hide()
 
 #Open UI

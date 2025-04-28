@@ -29,7 +29,7 @@ func _ready() -> void:
 	highlight = highlight_scene.instantiate()
 	highlight.building_size = building_data.building_size
 	add_child(highlight)
-	highlight.de_selected()
+	highlight.unselected()
 	
 	BuildingSignals.building_clicked.connect(building_selected)
 	BuildingSignals.building_info_closed.connect(building_deselected)
@@ -44,14 +44,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	highlight_building()
 
-## Function to higlight the all the connected landfills
+## Function to higlight the building
 func highlight_building() -> void:
 	if currently_selected:
 		highlight.show()
 		highlight.selected()
 	else:
 		highlight.hide()
-		highlight.de_selected()
+		highlight.unselected()
 
 ## Function to set building as currently selected
 func building_selected(building: Building) -> void:
