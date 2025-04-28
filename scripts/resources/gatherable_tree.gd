@@ -61,11 +61,9 @@ func init_pollution_level_limits() -> void:
 
 ## Function to absorb emissions.
 func absorb_emission(emission_type: Enums.ResourceType, amount: float):
-	if burn_state == Enums.BurnState.NORMAL:
+	if polluted_level != Enums.PollutionLevel.DEAD or burn_state != Enums.BurnState.DEAD:
 		var amount_to_set: float = amount + emission_storage.get(emission_type)
 		emission_storage.set(emission_type, amount_to_set)
-		
-	if polluted_level != Enums.PollutionLevel.DEAD or burn_state != Enums.BurnState.DEAD:
 		update_pollution_level()
 				
 ## Function to update the pollution level of a tree 
