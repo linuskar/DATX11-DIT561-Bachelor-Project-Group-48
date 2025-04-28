@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=24 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ddbcnvs3frisw" path="res://scenes/UI/Selectables/SteelMillSelectable.tscn" id="14_p772r"]
 [ext_resource type="PackedScene" uid="uid://bnw7off718dvw" path="res://scenes/UI/Selectables/GearFactorySelectable.tscn" id="15_tqq1s"]
 [ext_resource type="PackedScene" uid="uid://dhdmdoa2x24cb" path="res://scenes/UI/Selectables/ResearchLabSelectable.tscn" id="16_tqq1s"]
+[ext_resource type="PackedScene" uid="uid://cbnpo6ya5w0fv" path="res://scenes/UI/Selectables/MetalScrapLandfillSelectable.tscn" id="18_2tosp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mva2"]
 
@@ -119,6 +120,9 @@ layout_mode = 2
 [node name="ResearchLabSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("16_tqq1s")]
 layout_mode = 2
 
+[node name="MetalScrapLandfillSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("18_2tosp")]
+layout_mode = 2
+
 [node name="OpenListButton" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.2
@@ -160,4 +164,5 @@ text = "Buildings"
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/SteelMillSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/GearFactorySelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/ResearchLabSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/MetalScrapLandfillSelectable" to="." method="_on_building_selected"]
 [connection signal="button_down" from="OpenListButton/Button" to="." method="_on_open_build_list"]

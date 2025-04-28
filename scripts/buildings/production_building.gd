@@ -93,11 +93,19 @@ func check_for_output_overflow() -> bool:
 		var produced_good_generated: int = output_generation.get(produced_good)
 		var produced_good_stored: int = output_storage.get(produced_good)
 		var produced_good_max_storage: int = max_storage.get(produced_good)
-		var produced_good_string = Enums.resource_type_to_string(produced_good)
 		
 		## When at possible overflow of resources for output
 		if produced_good_stored + produced_good_generated > produced_good_max_storage:
 			return true
+			
+	for byproduct in byproducts:
+		if !Enums.is_emission(byproduct):
+			var byproduct_generated: int = output_generation.get(byproduct)
+			var byproduct_stored: int = output_storage.get(byproduct)
+			var byproduct_max_storage: int = max_storage.get(byproduct)
+			if byproduct_stored + byproduct_generated > byproduct_max_storage:
+				return true
+
 	return false
 
 ## Function to check if the production building is missing resources for input

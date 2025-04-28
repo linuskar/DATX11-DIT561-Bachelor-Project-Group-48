@@ -17,6 +17,8 @@ static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE,
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD, 
 	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS]
 
+static var landfills: Array[BuildingType] = [BuildingType.BIOMASS_LANDFILL, BuildingType.METAL_SCRAP_LANDFILL]
+
 static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.IRON_ORE: "res://assets/UI/Resource UI/iron.tres",
 	ResourceType.COAL: "res://assets/UI/Resource UI/coal.tres",
@@ -76,12 +78,14 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.SAW_MILL: "SAW MILL",
 	BuildingType.STEEL_MILL: "STEEL MILL",
 	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
-	BuildingType.RESEARCH_LAB: "RESEARCH LAB"
+	BuildingType.RESEARCH_LAB: "RESEARCH LAB",
+	BuildingType.METAL_SCRAP_LANDFILL: "METAL SCRAP LANDFILL",
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
 	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
 	BuildingType.WAREHOUSE: "WAREHOUSE",
+	BuildingType.METAL_SCRAP_LANDFILL: "METAL SCRAP LANDFILL",
 	}
 
 static var tile_names: Dictionary[TileType, String] = {
@@ -154,6 +158,7 @@ enum BuildingType {
 	STEEL_MILL, ## The building type for a steel mill 
 	GEAR_FACTORY, ## The building type for a gear factory
 	RESEARCH_LAB, ## The building type for a research lab
+	METAL_SCRAP_LANDFILL ## The building type for a metal scrap landfill,
 }
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:

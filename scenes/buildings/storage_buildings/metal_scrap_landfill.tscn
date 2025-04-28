@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://jok1xl2oywc3"]
+[gd_scene load_steps=19 format=3 uid="uid://dqescnbl4e761"]
 
-[ext_resource type="Script" uid="uid://bu10hl3va8ff1" path="res://scripts/buildings/storage_buildings/biomass_landfill.gd" id="1_o3w30"]
-[ext_resource type="Resource" uid="uid://dpfrfu5x7p6yh" path="res://resources/buildings/biomass_landfill.tres" id="2_d1p3v"]
-[ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="3_d1p3v"]
-[ext_resource type="Script" uid="uid://porcip0fvgpn" path="res://scripts/UI/building_highlight.gd" id="5_phnxc"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="6_ygndr"]
+[ext_resource type="Script" uid="uid://bu10hl3va8ff1" path="res://scripts/buildings/storage_buildings/biomass_landfill.gd" id="1_so42s"]
+[ext_resource type="Resource" uid="uid://vf545h38qqxt" path="res://resources/buildings/metal_scrap_landfill.tres" id="2_so42s"]
+[ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="3_4cmnl"]
+[ext_resource type="Script" uid="uid://porcip0fvgpn" path="res://scripts/UI/building_highlight.gd" id="4_avokr"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="5_4bt5f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
@@ -96,17 +96,17 @@ scale_curve = SubResource("CurveTexture_rv1rx")
 color_ramp = SubResource("GradientTexture1D_m6np2")
 alpha_curve = SubResource("CurveTexture_phnxc")
 
-[node name="BiomassLandfill" type="StaticBody2D"]
-script = ExtResource("1_o3w30")
-main_resource = 6
-building_data = ExtResource("2_d1p3v")
+[node name="MetalScrapLandfill" type="StaticBody2D"]
+script = ExtResource("1_so42s")
+main_resource = 13
+building_data = ExtResource("2_so42s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_0igec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_d1p3v")
+texture = ExtResource("3_4cmnl")
 
 [node name="Highlight" type="Control" parent="."]
 layout_mode = 3
@@ -115,7 +115,7 @@ offset_left = -16.0
 offset_top = -16.0
 offset_right = 16.0
 offset_bottom = 16.0
-script = ExtResource("5_phnxc")
+script = ExtResource("4_avokr")
 
 [node name="ColorRect" type="ColorRect" parent="Highlight"]
 layout_mode = 0
@@ -134,7 +134,7 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("6_ygndr")
+script = ExtResource("5_4bt5f")
 
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
