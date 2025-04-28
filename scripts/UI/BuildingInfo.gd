@@ -218,7 +218,7 @@ func set_inactive() -> void:
 func set_active(building: Building) -> void:
 	current_building = building
 	if current_building.building_data.building_type == Enums.BuildingType.RESEARCH_LAB:
-		get_tree().root.get_node("Game/UserInterface/ResearchUI").open()
+		get_tree().root.get_node("Game/UserInterface/ResearchUI").open(current_building)
 		return
 	reset_tabs()
 	self.show()

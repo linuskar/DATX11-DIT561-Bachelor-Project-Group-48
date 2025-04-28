@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProductionBuildingData" load_steps=2 format=3 uid="uid://brpfklrac16fv"]
+[gd_resource type="Resource" script_class="ProductionBuildingData" load_steps=2 format=3 uid="uid://b0be614d6hrxk"]
 
 [ext_resource type="Script" uid="uid://bdhmlhlah8dvo" path="res://scripts/buildings/building_data/production_building_data.gd" id="1_66x87"]
 
