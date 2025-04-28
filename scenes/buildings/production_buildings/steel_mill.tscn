@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://d0obknopqb3j6"]
 
 [ext_resource type="Script" uid="uid://4hqwpqg5pt2" path="res://scripts/buildings/produktion_buildings/steel_mill.gd" id="1_vousk"]
-[ext_resource type="Resource" uid="uid://brpfklrac16fv" path="res://resources/buildings/steel_mill.tres" id="2_b64yw"]
+[ext_resource type="Resource" uid="uid://b0be614d6hrxk" path="res://resources/buildings/steel_mill.tres" id="2_b64yw"]
 [ext_resource type="Texture2D" uid="uid://bgyn65jypc72u" path="res://assets/buildings_iso/Steel_building2.png" id="3_b64yw"]
 [ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_mf0mg"]
 [ext_resource type="PackedScene" uid="uid://crmaq0u0wgneb" path="res://scenes/buildings/smoke/smoke_v3.tscn" id="5_2ssl4"]
