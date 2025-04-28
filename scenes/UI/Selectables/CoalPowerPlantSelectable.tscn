@@ -58,7 +58,7 @@ grow_vertical = 2
 scale = Vector2(0.599748, 0.599748)
 mouse_filter = 1
 script = ExtResource("1_vp1x3")
-icon_path = "uid://c6m6vftsynwql"
+icon_path = "uid://bnbb8mhi8ddv7"
 building_data = ExtResource("2_3stuo")
 
 [node name="MainBox" type="Panel" parent="."]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://drsrk2maerqd2"]
+
+[ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_w2xdl"]
+[ext_resource type="Texture2D" uid="uid://dhrbh478p212n" path="res://assets/buildings_iso/Sawmill.png" id="2_1an1m"]
+[ext_resource type="Resource" uid="uid://1tptrw7m37b" path="res://resources/buildings/saw_mill.tres" id="2_aqn5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqn5s"]
+size = Vector2(96, 96)
+
+[node name="SawMillBlueprint" type="Area2D"]
+script = ExtResource("1_w2xdl")
+building_data = ExtResource("2_aqn5s")
+metadata/_custom_type_script = "uid://d0rvbghldeyhr"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aqn5s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1an1m")
