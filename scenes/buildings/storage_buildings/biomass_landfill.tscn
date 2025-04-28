@@ -97,6 +97,7 @@ alpha_curve = SubResource("CurveTexture_phnxc")
 
 [node name="BiomassLandfill" type="StaticBody2D"]
 script = ExtResource("1_o3w30")
+auto_expand_max_capacity_amount = 100
 main_resource = 6
 building_data = ExtResource("2_d1p3v")
 

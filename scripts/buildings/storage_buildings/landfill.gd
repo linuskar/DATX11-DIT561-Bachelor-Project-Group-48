@@ -6,7 +6,7 @@ extends StorageBuilding
 ## the StorageBuilding class.
 ##
 
-var auto_expand_max_capacity_amount: int = 100
+@export var auto_expand_max_capacity_amount: int
 var connected_landfills: Array[LandfillAutoExpand] = []
 var grid_size: int = 32
 var position_to_expand_to: Vector2 = Vector2(0, 0)

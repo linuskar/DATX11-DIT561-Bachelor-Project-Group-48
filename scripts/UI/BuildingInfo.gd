@@ -126,7 +126,6 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
 	return text
 
-
 ## Adds all the different inputs of the building, if it has any
 func get_inputs_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""

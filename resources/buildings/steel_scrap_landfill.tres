@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_eitg2")
 max_storage = Dictionary[int, int]({
-13: 100
+13: 20
 })
 input_types = Array[int]([13])
 output_types = Array[int]([13])
