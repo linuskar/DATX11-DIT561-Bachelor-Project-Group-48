@@ -79,6 +79,15 @@ func set_panel_text() -> void:
 	## Begin with the name of the building
 	var panel_text: String = building_name + '\n'
 	
+	panel_text += get_inputs()
+	panel_text += "\nUpkeep\n" + str(building_data.building_upkeep) + "\n"
+	panel_text += add_dict_to_panel(outputs, "Outputs")
+	panel_text += add_dict_to_panel(max_storage, "Max Storage")
+	panel_text += add_dict_to_panel(contributables, "Contributables")
+	panel_text += add_dict_to_panel(required, "Required")
+	info_label.text = panel_text
+
+func get_inputs() -> String:
 	if building_data is ProductionBuildingData:
 		if building_data.input_recipes.keys():
 			var text: String = "\nInputs\n"
@@ -102,15 +111,8 @@ func set_panel_text() -> void:
 				for resource in recipe:
 					text += Enums.resource_type_to_string(resource) + ': ' + str(building_data.input_use_rates.get(resource)) + '\n'
 				i += 1
-			panel_text += text
-	else:
-		panel_text += add_dict_to_panel(inputs, "Inputs")
-	panel_text += "\nUpkeep\n" + str(building_data.building_upkeep) + "\n"
-	panel_text += add_dict_to_panel(outputs, "Outputs")
-	panel_text += add_dict_to_panel(max_storage, "Max Storage")
-	panel_text += add_dict_to_panel(contributables, "Contributables")
-	panel_text += add_dict_to_panel(required, "Required")
-	info_label.text = panel_text
+			return text
+	return add_dict_to_panel(inputs, "Inputs")
 
 ## Function for taking keys from a dictionary and returning 
 ## a formatted string containing those keys and their values
