@@ -7,7 +7,7 @@ signal ui_status(status: bool)
 
 signal building_wanted(building: BuildingData)
 
-var hovered_references: Dictionary[UIElement, int] = {}
+static var hovered_references: Dictionary[UIElement, int] = {}
 @onready var building_info: BuildingInfo = $BuildingInfo
 @onready var panel_container: UIElement = $PanelContainer
 

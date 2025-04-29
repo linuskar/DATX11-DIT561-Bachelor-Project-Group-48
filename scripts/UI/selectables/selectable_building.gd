@@ -156,6 +156,7 @@ func _on_selected() -> void:
 
 ## Sets this building to its 'unselected' styling
 func unselected() -> void:
+	_set_button_text(false)
 	self.find_child("MainBox").visible = true
 	self.find_child("Selected").visible = false
 	
