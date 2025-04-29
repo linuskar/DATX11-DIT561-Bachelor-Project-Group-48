@@ -213,6 +213,9 @@ func set_inactive() -> void:
 	BuildingSignals.building_info_closed.emit(current_building)
 	self.hide()
 
+func hide_ui_menu() -> void:
+	set_inactive()
+
 ## Show the info panel and update its information
 func set_active(building: Building) -> void:
 	current_building = building

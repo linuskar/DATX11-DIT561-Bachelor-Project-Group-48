@@ -26,7 +26,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause game"):
 		if not opened_menus.is_empty():
 			var current_menu: UIMenu = opened_menus.pop_back()
-			current_menu.hide()
+			current_menu.hide_ui_menu()
 		else:
 			game_state_updated.emit(not get_tree().paused)
 
