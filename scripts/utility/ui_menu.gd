@@ -9,3 +9,8 @@ func _on_menu_visibility_changed() -> void:
 		GameStateManager.add_menu(self)
 	else:
 		GameStateManager.remove_menu(self)
+
+## Function to hide UI menu.
+## Can be overriden by classes that extend this.
+func hide_ui_menu() -> void:
+	hide()

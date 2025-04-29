@@ -1,6 +1,5 @@
 [gd_scene load_steps=17 format=3 uid="uid://djil6gjtsgbdu"]
 
-
 [ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_v3jyi"]
 [ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/Selectables/BuildingSelectList.tscn" id="2_yl4mc"]
