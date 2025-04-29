@@ -50,6 +50,8 @@ var fire_spread_prob: float = 0.0
 var warning_indicator_scene = preload("res://scenes/UI/warning_indicator.tscn")
 var current_warning_indicator: WarningIndicator = null
 
+var dead_trees: Array[Node]
+
 func _ready() -> void:
 	for emission in Enums.emissions:
 		emissions_generated.set(emission, 0)
@@ -60,6 +62,11 @@ func _ready() -> void:
 	wildfire_timer.wait_time = wildfire_wait_time
 	emission_decay_wait_time = emission_decay_wait_time
 	
+	TreeSignals.dead.connect(add_dead_trees)	
+
+func add_dead_trees(dead_tree: Node) -> void:
+	dead_trees.append(dead_tree)
+
 ## Function that decays emissions based on a time delay
 func _on_emission_decay_timer_timeout() -> void:
 	for emission in emissions_generated.keys():
@@ -76,7 +83,7 @@ func _on_wildfire_timer_timeout() -> void:
 		
 	update_wildfire_percentage()
 	start_wildfire()
-
+	
 ## Function to check if there is a ongoing wildfire
 func check_for_wildfire() -> bool:
 	var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
@@ -115,18 +122,28 @@ func start_wildfire() -> void:
 	var random_number: float = randf()
 
 	if random_number <= wildfire_start_percentage:
-		var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
-		var random_index: int = randi_range(0, all_trees.size()-1)
-		var random_tree: GatherableTree = all_trees[random_index]
+		var all_alive_trees: Array[Node] = get_all_all_alive_trees()
+		var random_index: int = randi_range(0, all_alive_trees.size()-1)
+		var random_alive_tree: GatherableTree = all_alive_trees[random_index]
 		
-		random_tree.start_burning(fire_spread_prob)
+		random_alive_tree.start_burning(fire_spread_prob)
 		
 		current_warning_indicator = warning_indicator_scene.instantiate()
-		current_warning_indicator.position = random_tree.position
+		current_warning_indicator.position = random_alive_tree.position
 		current_warning_indicator.top_y_offset = user_interface.panel_container.size.y
 		
 		get_parent().add_child(current_warning_indicator)
+		
+func get_all_all_alive_trees() -> Array[Node]:
+	var all_trees: Array[Node] = get_tree().get_nodes_in_group("trees")
+	var alive_trees: Array[Node] = []
 
+	for tree in all_trees:
+		if tree not in dead_trees:
+			alive_trees.append(tree)
+		
+	return alive_trees
+	
 ## Function for initializing buildings that pollute
 func _init_building_polluting(building: Building) -> void:
 	if Enums.is_a_polluting_building(building.building_type):
@@ -162,22 +179,22 @@ func emissions_falloff(amount: float, emissions_radius: int, building_pos: Vecto
 			## No negative amounts to set
 			amount_to_set = max(amount_to_set, 0)
 			emissions_dict.set(tile_pos, amount_to_set)
-			set_emissions_generated(emission_type, amount_to_set)
-			set_emissions_not_absorbed(emission_type, amount_to_set)
+			add_emissions_generated(emission_type, amount_to_set)
+			add_emissions_not_absorbed(emission_type, amount_to_set)
 			
 	return emissions_dict
 
 ## Function to set the amount of emissions generated
-func set_emissions_generated(emission_type: Enums.ResourceType, amount: float) -> void:
+func add_emissions_generated(emission_type: Enums.ResourceType, amount: float) -> void:
 	var current_amount: float = emissions_generated.get(emission_type)
 	emissions_generated.set(emission_type, amount + current_amount)
 
 ## Function to set the amount of emissions absorbed by other objects
-func set_emissions_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
+func add_emissions_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
 	var current_amount: float = emissions_absorbed.get(emission_type)
 	emissions_absorbed.set(emission_type, amount + current_amount)
 	
 ## Function to set the amount of emissions not absorbed by other objects
-func set_emissions_not_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
+func add_emissions_not_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
 	var current_amount: float = emissions_not_absorbed.get(emission_type)
 	emissions_not_absorbed.set(emission_type, current_amount + amount)

@@ -7,37 +7,115 @@ extends GatherableResource
 ##
 ##
 
+## The maximum amount of pollution a tree can absorb before it is considered dead
+@export var max_pollution_max_capacity: float
+@onready var sprite_2d: Sprite2D = $Sprite2D
+## Sprite that gets shown when resource is gathered
+@onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
+@onready var wildfire: WildFire = $Wildfire
+
 var burn_state: Enums.BurnState = Enums.BurnState.NORMAL
 var burn_time: float = 3.0 
 var spread_radius: int = 32
 var fire_spread_probability: float = 0.0
 
-## Dictionary for the maximum capacity of emissions that can be stored.
-## Set the max capacity to -1 to indicate it has unlmited max capacity
-## for a resource.
-@export var emission_max_capacity: Dictionary[Enums.ResourceType, float] = {}
 ## The current storage of emissions.
 var emission_storage: Dictionary[Enums.ResourceType, float] = {}
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
-var dead_tree_sprite: CompressedTexture2D = preload("res://assets/dead_tree.png")
+var slightly_polluted_tree_sprite: CompressedTexture2D = preload("res://assets/trees/slightly_polluted_tree.png")
+var heavily_polluted_tree_sprite: CompressedTexture2D = preload("res://assets/trees/heavily_polluted_tree.png")
+var dead_tree_sprite: CompressedTexture2D = preload("res://assets/trees/dead_tree.png")
 
-## Sprite that gets shown when resource is gathered
-@onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
-@onready var wildfire: WildFire = $Wildfire
+var polluted_level: Enums.PollutionLevel = Enums.PollutionLevel.NORMAL
 
-## TODO: absorb more emissions, release emissions when burnt
-func _ready() -> void:
+## Dictionary containing the maximum value limits for pollution levels
+var pollution_level_max_limits: Dictionary[Enums.PollutionLevel, float] = {}
+## Dictionary containing the minimum value limits for pollution levels
+var pollution_level_min_limits: Dictionary[Enums.PollutionLevel, float] = {}
+
+func _ready() -> void:	
 	emission_storage.set(Enums.ResourceType.CO2, 0)
 	emission_storage.set(Enums.ResourceType.S02, 0)
 	emission_storage.set(Enums.ResourceType.N0X, 0)
 	emission_storage.set(Enums.ResourceType.CH4, 0)
 	wildfire.stop_fire()
 	sprite_2d.material.set_shader_parameter("world_matrix", global_transform)
+	init_pollution_level_limits()
+
+## Function to initialize the value limits for the pollution levels to a tree
+func init_pollution_level_limits() -> void:
+	var min_level_value: float = 0
+	var i: int = Enums.PollutionLevel.size()
+
+	for level in Enums.PollutionLevel.values():
+		if level == Enums.PollutionLevel.DEAD:
+			i -= 1
+			continue
+			
+		var max_level_value: float = min(max_pollution_max_capacity / i, max_pollution_max_capacity)
+		pollution_level_max_limits.set(level, max_level_value)
+		pollution_level_min_limits.set(level, min_level_value)
+		min_level_value = max_level_value
+		
+		i -= 1
+
+## Function to absorb emissions.
+func absorb_emission(emission_type: Enums.ResourceType, amount: float):
+	if polluted_level != Enums.PollutionLevel.DEAD or burn_state != Enums.BurnState.DEAD:
+		var amount_to_set: float = amount + emission_storage.get(emission_type)
+		emission_storage.set(emission_type, amount_to_set)
+		update_pollution_level()
+				
+## Function to update the pollution level of a tree 
+## based on contributing emissions
+func update_pollution_level() -> void:
+	var emission_stored: float = 0.0
 	
+	for emission_type in emission_storage.keys():
+		if Enums.is_a_tree_pollution_contributor(emission_type):
+			emission_stored += emission_storage.get(emission_type)
+			
+	var min_normal: float = pollution_level_min_limits.get(Enums.PollutionLevel.NORMAL)
+	var max_normal: float = pollution_level_max_limits.get(Enums.PollutionLevel.NORMAL)
+	
+	var min_slightly: float = pollution_level_min_limits.get(Enums.PollutionLevel.SLIGHTLY)
+	var max_slightly: float = pollution_level_max_limits.get(Enums.PollutionLevel.SLIGHTLY)
+	
+	var min_heavily: float = pollution_level_min_limits.get(Enums.PollutionLevel.HEAVILY)
+	var max_heavily: float = pollution_level_max_limits.get(Enums.PollutionLevel.HEAVILY)
+	
+	if min_normal < emission_stored and emission_stored <= max_normal:
+		polluted_level = Enums.PollutionLevel.NORMAL
+	elif min_slightly < emission_stored and emission_stored <= max_slightly:
+		polluted_level = Enums.PollutionLevel.SLIGHTLY
+	elif min_heavily < emission_stored and emission_stored <= max_heavily:
+		polluted_level = Enums.PollutionLevel.HEAVILY
+	elif emission_stored > max_heavily:
+		polluted_level = Enums.PollutionLevel.DEAD
+		quantity = 0
+		TreeSignals.dead.emit(self)
+
+	update_pollution_level_visual()
+	
+## Function update the visuals of a tree based on pollution level
+func update_pollution_level_visual() -> void:
+	match polluted_level:
+		Enums.PollutionLevel.NORMAL:
+			modulate = Color(1, 1, 1)
+		Enums.PollutionLevel.SLIGHTLY:
+			sprite_2d.region_enabled = false
+			sprite_2d.texture = slightly_polluted_tree_sprite
+		Enums.PollutionLevel.HEAVILY:
+			sprite_2d.region_enabled = false
+			sprite_2d.texture = heavily_polluted_tree_sprite
+		Enums.PollutionLevel.DEAD:
+			burn_state = Enums.BurnState.DEAD
+			sprite_2d.region_enabled = false
+			sprite_2d.texture = dead_tree_sprite
+
 ## Function to ignite the tree on fire
 func start_burning(fire_prob: float) -> void:
-	if burn_state != Enums.BurnState.NORMAL:
+	if burn_state != Enums.BurnState.NORMAL or polluted_level == Enums.PollutionLevel.DEAD:
 		return
 	fire_spread_probability = fire_prob
 	burn_state = Enums.BurnState.BURNING
@@ -51,7 +129,8 @@ func update_burn_visual():
 			modulate = Color(1, 1, 1)
 		Enums.BurnState.BURNING:
 			wildfire.start_fire()
-		Enums.BurnState.BURNT:
+		Enums.BurnState.DEAD:
+			polluted_level = Enums.PollutionLevel.DEAD
 			wildfire.stop_fire()
 			sprite_2d.region_enabled = false
 			sprite_2d.texture = dead_tree_sprite
@@ -62,9 +141,10 @@ func become_burnt() -> void:
 	await get_tree().create_timer(burn_time).timeout
 	spread_fire()
 
-	burn_state = Enums.BurnState.BURNT
+	burn_state = Enums.BurnState.DEAD
 	update_burn_visual()
 	quantity = 0
+	TreeSignals.dead.emit(self)
 	
 ## Function to spread the fire to nearby trees in range
 func spread_fire():
@@ -79,21 +159,3 @@ func spread_fire():
 			## based on a probability for a fire to start
 			if tree.burn_state == Enums.BurnState.NORMAL and randf() <= fire_spread_probability:
 				tree.start_burning(fire_spread_probability)
-
-## Function to check if the stored emissions are at or above the 
-## max capacity that is allowed.
-func check_if_at_emission_limit() -> bool:
-	for emission_type in emission_storage.keys():	
-		var emission_stored: float = emission_storage.get(emission_type)
-		var emission_limit = emission_max_capacity.get(emission_type)
-		## Destroy the tree if the limit is reached
-		if emission_stored >= emission_limit and (emission_type == Enums.ResourceType.S02 or emission_type == Enums.ResourceType.N0X):
-			queue_free()
-			return true
-	return false
-
-## Function to absorb emissions.
-func absorb_emission(emission_type: Enums.ResourceType, amount: float):
-	if burn_state == Enums.BurnState.NORMAL:
-		var amount_to_set: float = amount + emission_storage.get(emission_type)
-		emission_storage.set(emission_type, amount_to_set)
