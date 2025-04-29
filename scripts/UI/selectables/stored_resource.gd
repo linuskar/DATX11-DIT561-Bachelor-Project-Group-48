@@ -40,6 +40,7 @@ var image_path: String
 @onready var held_amount_text: Label = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/PanelContainer/HBoxContainer/Holding
 
 func _process(delta: float) -> void:
+	update_resources()
 	update_text()
 
 func ready_instance(new_resource: Enums.ResourceType, stored_amount: int) -> void:
@@ -96,3 +97,8 @@ func disable_selling() -> void:
 	five_less_button.hide()
 	minus_label.hide()
 	selling_panel.hide()
+
+func update_resources() -> void:
+	if resource_to_sell > resource_held:
+		resource_to_sell = resource_held
+		resource_held_changed.emit(resource, resource_to_sell)
