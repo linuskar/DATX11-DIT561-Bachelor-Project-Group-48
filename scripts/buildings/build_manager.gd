@@ -203,10 +203,9 @@ func _on_placed_building(building: Building) -> void:
 		building.landfill_shrinked.connect(shrink_landfill)
 	# else:
 	occupy_tiles(building, building.position) 
+	BuildManagerGlobal.update_networks(building)
 	placed_building.emit(building)
-
 	BuildManagerGlobal.update_roads.emit()
-	# BuildManagerGlobal.print_networks()
 	
 ## Function two merge landfills that are near each other
 func merge_landfills(landfill_placed: Landfill, landfill_to_be_merged_with: Landfill) -> void:
@@ -238,9 +237,10 @@ func merge_landfills(landfill_placed: Landfill, landfill_to_be_merged_with: Land
 	
 	## Occupy tiles for where the landfill expanded to
 	var adjusted_pos: Vector2 = landfill_placed.position
-	occupy_tiles(landfill_to_be_merged_with, adjusted_pos) 
+	occupy_tiles(landfill_to_be_merged_with, adjusted_pos)
+	BuildManagerGlobal.update_networks(landfill_to_be_merged_with) 
 	placed_building.emit(landfill_to_be_merged_with)
-	
+	BuildManagerGlobal.update_roads.emit()
 	landfill_placed.queue_free()
 	
 ## Function that occupies tiles for a building.
@@ -312,9 +312,10 @@ func expand_landfill(landfill: Landfill) -> void:
 	
 	## Occupy tiles for where the landfill expanded to
 	var adjusted_pos: Vector2 = landfill.position + landfill.position_to_expand_to
-	occupy_tiles(landfill, adjusted_pos) 
+	occupy_tiles(landfill, adjusted_pos)
+	BuildManagerGlobal.update_networks(landfill) 
 	placed_building.emit(landfill)
-	
+	BuildManagerGlobal.update_roads.emit()
 	## TODO: Future implementation for merging landfills when auto expanding
 	## NOTE: have to take care of the resources that are currently transporting
 	## need to somehow reroute the resoruces that are transported to the current instance of landfill

@@ -70,6 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_wquds")
 
 [node name="Selected" type="Panel" parent="."]
@@ -80,6 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("3_4dbu2")
 
 [node name="Containers" type="PanelContainer" parent="."]
@@ -91,6 +93,7 @@ anchor_right = 0.425
 anchor_bottom = 0.65
 offset_right = -2.0
 offset_bottom = -0.399994
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_wquds")
 
 [node name="MarginContainer" type="MarginContainer" parent="Containers"]

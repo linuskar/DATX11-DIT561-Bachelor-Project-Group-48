@@ -1,7 +1,7 @@
 extends Node
 
 var resources: Dictionary[int, int] = {}
-var networks: Array[ResourceTransport] = [preload("res://scripts/resources/resource_transport.gd").new()]
+var networks: Dictionary[int, ResourceTransport] = {}
 
 #Connect the signals the code will use and initiate a dictonary with a key for each enum with value 0
 func _ready() -> void:
@@ -28,32 +28,52 @@ func _use_Resources(type: Enums.ResourceType, amount: int) -> void:
 
 #Add buildings placed to the array of buildings
 func _on_build_manager_placed_building(building: Building) -> void:
-	##TODO Logic whether to add building to existing resource_transport instance or create a new
+	#Case of two or more adjacent networks
+	if BuildManagerGlobal.nr_adjacent_networks >= 2:
+		join_networks()
 	
-	#Temporary solution
+	#Case of no adjacent networks, creates new network
+	elif BuildManagerGlobal.nr_adjacent_networks == 0:
+		new_network(BuildManagerGlobal.current_new_network_id, building)
+	
+	if building is not StorageBuilding:
+		return
+	
+	#Case of one adjacent network, adds building to existing network
+	if BuildManagerGlobal.nr_adjacent_networks == 1:
+		add_to_existing_network(building)
+
+#Joins networks into the last network (Already poped in BuildManagerGlobal) in the list current_networks
+func join_networks(): 
+	for current_network in BuildManagerGlobal.current_networks:
+		networks.get(BuildManagerGlobal.first).add_another_network(networks.get(current_network))
+		networks.erase(current_network)
+
+#Add a building into an existing network
+func add_to_existing_network(building):
+	if networks.get(BuildManagerGlobal.current_networks.get(0)) == null:
+		new_network(BuildManagerGlobal.current_networks.get(0), building)
+	else:
+		networks.get(BuildManagerGlobal.current_networks.get(0)).new_building(building)
+
+#Creates a new network with building in it if it is a StorageBuilding
+func new_network(network_id, building) -> void:
+	networks.get_or_add(network_id, preload("res://scripts/resources/resource_transport.gd").new())
 	if building is StorageBuilding:
-		networks.get(0).new_building(building)
+		networks.get(network_id).new_building(building)
 
 func new_building_to_output(building: StorageBuilding) -> void:
-	##TODO Logic to send new_building_to_output to the correct instance
-	
-	##Temp solution
-	networks.get(0).new_building_to_output(building)
+	for temp in networks.keys():
+		if networks.get(temp).buildings.has(building):
+			networks.get(temp).new_building_to_output(building)
 
 func new_building_to_input(building: StorageBuilding) -> void:
-	##TODO Logic to send new_building_to_input to the correct instance
-	##Temp solution
-	networks.get(0).new_building_to_input(building)
+	for temp in networks.keys():
+		if networks.get(temp).buildings.has(building):
+			networks.get(temp).new_building_to_input(building)
 
-func temp(type) -> void:
-	for current_network in networks:
-		current_network.transport_resources(type)
-
-
+#Transport resources
 func _on_timer_timeout() -> void:
-	for key in resources.keys():
-		temp(key)
-
-func join_two_networks():
-	##TODO join two different networks into one, call add_another_network() in resource_transport.gd
-	pass
+	for type in resources.keys():
+		for current_network in networks.values():
+			current_network.transport_resources(type)
