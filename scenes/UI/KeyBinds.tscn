@@ -1,0 +1,210 @@
+[gd_scene load_steps=17 format=3 uid="uid://fysawqvslmw8"]
+
+[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_xpy7k"]
+[ext_resource type="Script" uid="uid://c40ab5qfubtd1" path="res://scenes/UI/keybinds_panel.gd" id="2_metke"]
+[ext_resource type="Texture2D" uid="uid://dbos2d0ah5ofc" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_default.png" id="3_oiv7n"]
+[ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="6_2aqdx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1gcc"]
+content_margin_left = 120.0
+content_margin_top = 80.0
+content_margin_right = 120.0
+content_margin_bottom = 100.0
+texture = ExtResource("1_xpy7k")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(96, 0, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2aqdx"]
+font_size = 28
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8um3"]
+atlas = ExtResource("3_oiv7n")
+region = Rect2(591, 74, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb78m"]
+atlas = ExtResource("3_oiv7n")
+region = Rect2(520, 136, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i4mw"]
+atlas = ExtResource("3_oiv7n")
+region = Rect2(392, 904, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr6a3"]
+atlas = ExtResource("3_oiv7n")
+region = Rect2(648, 264, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewnap"]
+atlas = ExtResource("3_oiv7n")
+region = Rect2(456, 648, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmo40"]
+atlas = ExtResource("3_oiv7n")
+region = Rect2(456, 776, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giiqk"]
+atlas = ExtResource("3_oiv7n")
+region = Rect2(200, 584, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1gcc"]
+atlas = ExtResource("6_2aqdx")
+region = Rect2(1, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aqdx"]
+atlas = ExtResource("6_2aqdx")
+region = Rect2(33, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiv7n"]
+atlas = ExtResource("6_2aqdx")
+region = Rect2(17, 1, 14, 14)
+
+[node name="KeyBinds" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_metke")
+
+[node name="KeybindsPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_m1gcc")
+
+[node name="MarginContainer" type="MarginContainer" parent="KeybindsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="KeybindsPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MoveCameraMouse" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MoveCameraMouse"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move camera (Hold and drag)"
+label_settings = SubResource("LabelSettings_2aqdx")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MoveCameraMouse"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_g8um3")
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MoveCameraWASD" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move camera (Keyboard)"
+label_settings = SubResource("LabelSettings_2aqdx")
+vertical_alignment = 1
+
+[node name="W" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_cb78m")
+
+[node name="A" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_0i4mw")
+
+[node name="S" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_kr6a3")
+
+[node name="D" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_ewnap")
+
+[node name="MarginContainer3" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="LastSelectedBuilding" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/LastSelectedBuilding"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Build last building"
+label_settings = SubResource("LabelSettings_2aqdx")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/LastSelectedBuilding"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_fmo40")
+stretch_mode = 4
+
+[node name="MarginContainer4" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CloseMenues" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4/CloseMenues"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Close menu"
+label_settings = SubResource("LabelSettings_2aqdx")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4/CloseMenues"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_giiqk")
+stretch_mode = 4
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 931.0
+offset_top = 69.0
+offset_right = 1032.0
+offset_bottom = 170.0
+mouse_filter = 1
+texture_normal = SubResource("AtlasTexture_m1gcc")
+texture_pressed = SubResource("AtlasTexture_2aqdx")
+texture_hover = SubResource("AtlasTexture_oiv7n")
+stretch_mode = 4
+
+[connection signal="button_down" from="TextureButton" to="." method="update" binds= [false]]
