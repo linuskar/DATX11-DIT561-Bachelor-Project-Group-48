@@ -80,7 +80,6 @@ visible = false
 
 [connection signal="self_entered" from="PanelContainer" to="." method="add_reference"]
 [connection signal="self_exited" from="PanelContainer" to="." method="remove_reference"]
-[connection signal="build_list_entered" from="BuildingSelectList" to="." method="_on_building_select_list_build_list_entered"]
 [connection signal="building_wanted" from="BuildingSelectList" to="." method="_on_building_select_list_building_wanted"]
 [connection signal="self_entered" from="BuildingSelectList" to="." method="add_reference"]
 [connection signal="self_exited" from="BuildingSelectList" to="." method="remove_reference"]

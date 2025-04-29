@@ -67,7 +67,7 @@ func _process(_delta) -> void:
 		StateManager.State.PLACE_BUILDING:
 			_update_blueprint()
 
-			if valid_placement:
+			if valid_placement and UserInterface.hovered_references.is_empty():
 				place_building()
 		StateManager.State.IDLE:
 			pass	
@@ -393,23 +393,13 @@ func shrink_landfill(landfill: Landfill) -> void:
 	## Re-add landfill to request for input
 	ResourceSignals.add_input_building.emit(landfill)
 
-## When the mouse has entered the building list:
-## Disable the state of placing a building and hide the blueprint
-func _on_user_interface_build_list_entered() -> void:
-	StateManager.set_state(StateManager.State.IDLE)
-	_on_build_mode()
-
-## Receiver for ui_status signal in UserInterface
-## Disables building ability if the mouse is in any ui element
-func set_ui_status(status: bool) -> void:
-	if status:
-		StateManager.set_state(StateManager.State.IDLE)
-		_on_build_mode()
-
 ## When the mouse has exited the building list with a selected building:
 ## Set the currently selected building and show its blueprint
 func _on_user_interface_building_wanted(building: BuildingData) -> void:
 	if not building == null:
 		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
 		_on_selected_building(building)
+		_on_build_mode()
+	else:
+		StateManager.set_state(StateManager.State.IDLE)
 		_on_build_mode()
