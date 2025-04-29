@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bj1v7y2dejr2w"]
+[gd_scene load_steps=11 format=3 uid="uid://bj1v7y2dejr2w"]
 
 [ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="1_erkbk"]
 [ext_resource type="Script" uid="uid://dxmp87dbqrere" path="res://scripts/UI/resource_ui.gd" id="1_jxiwp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bphavxn6qmicm" path="res://assets/UI/Resource UI/electricity.png" id="5_mh4jc"]
 [ext_resource type="Texture2D" uid="uid://crmtdvhkoysqi" path="res://assets/UI/Resource UI/steel_resource.png" id="8_twb2c"]
 [ext_resource type="Texture2D" uid="uid://di0pw8173wn4u" path="res://assets/UI/Resource UI/gears_resource.png" id="9_pqlmi"]
+[ext_resource type="Texture2D" uid="uid://cb0fltxgtn1ns" path="res://assets/UI/Resource UI/steel_scrap.png" id="10_nyad3"]
 [ext_resource type="Texture2D" uid="uid://b5fis32quckn7" path="res://assets/UI/Resource UI/planks_resource.png" id="10_qcmja"]
 
 [node name="ResourceUi" type="Control"]
@@ -25,7 +26,8 @@ resources = Dictionary[int, Texture]({
 6: ExtResource("4_o2hj3"),
 10: ExtResource("10_qcmja"),
 11: ExtResource("8_twb2c"),
-12: ExtResource("9_pqlmi")
+12: ExtResource("9_pqlmi"),
+13: ExtResource("10_nyad3")
 })
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

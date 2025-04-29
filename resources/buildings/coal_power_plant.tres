@@ -16,6 +16,9 @@ emissions_radius = Dictionary[int, int]({
 3: 16,
 4: 16
 })
+input_recipes = Dictionary[int, int]({
+1: 0
+})
 max_storage = Dictionary[int, int]({
 1: 100,
 5: 200

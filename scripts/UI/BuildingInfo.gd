@@ -88,8 +88,8 @@ func handle_storage_building(building: StorageBuildingData) -> String:
 	var text: String = ""
 	text += handle_building(building)
 	text += get_storage_text()
-	if building.building_type == Enums.BuildingType.BIOMASS_LANDFILL:
-		text += get_connected_biomass_landfills()	
+	if building.building_type in Enums.landfills:
+		text += get_connected_landfills()
 	return text
 	
 func handle_prod_building(building: ProductionBuildingData) -> String:
@@ -129,10 +129,30 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 ## Adds all the different inputs of the building, if it has any
 func get_inputs_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
-	if building_data.input_use_rates.keys():
+	
+	if building_data.input_recipes.keys():
+		var input_recipes: Dictionary[int, Array] = {}
+		
+		for resource in building_data.input_recipes.keys():
+			var id = building_data.input_recipes.get(resource)
+			if input_recipes.has(id):
+				var new_array: Array = input_recipes.get(id)
+				new_array.append(resource)
+				input_recipes.set(id, new_array)
+			else:
+				input_recipes.set(id, [resource])
+		
 		text += "\nInputs\n"
-		for key in building_data.input_use_rates.keys():
-			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.input_use_rates.get(key)) + '\n'
+		
+		var i: int = 0
+		
+		for recipe_id in input_recipes.keys():
+			if i > 0:
+				text += "OR\n"
+			var recipe: Array = input_recipes.get(recipe_id)	
+			for resource in recipe:
+				text += Enums.resource_type_to_string(resource) + ': ' + str(building_data.input_use_rates.get(resource)) + '\n'
+			i += 1
 	return text
 	
 ## Adds all the tiles considered valid for placement
@@ -151,10 +171,15 @@ func get_storage_text() -> String:
 		text += Enums.resource_type_to_string(key) + ': ' + str(current_building.max_storage.get(key)) + '\n'
 	return text
 
-func get_connected_biomass_landfills() -> String:
-	var text: String = ""
-	text += "\n" + "This building auto expands and shrinks its max capacity of BIOMASS by " + str(current_building.auto_expand_max_capacity_amount) + "."+ "\n"
-	text += "\nConnected Biomass Landfills: " + str(current_building.connected_landfills.size() + 1) + '\n'
+func get_connected_landfills() -> String:
+	var text: String = "" 
+	
+	var main_resource: String = Enums.resource_type_to_string(current_building.main_resource)
+	var auto_expand_max_capacity_amount: String = str(current_building.auto_expand_max_capacity_amount)
+	var landfill_type: String = Enums.building_type_to_string(current_building.building_type)
+	
+	text += "\n" + "This building auto expands and shrinks its max capacity of " + main_resource + " by " +  auto_expand_max_capacity_amount + "."+ "\n"
+	text += "\nConnected " + landfill_type + "S: " + str(current_building.connected_landfills.size() + 1) + '\n'
 	return text
 
 ## Specific for gathering buildings, add the resource node it has to be placed on for operation

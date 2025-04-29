@@ -17,7 +17,7 @@ func _ready() -> void:
 	highlight.building_size = get_parent().building_data.building_size 
 
 	add_child(highlight)
-	highlight.de_selected()
+	highlight.unselected()
 	
 	clickable.building = get_parent()
 	place_animation.play("place")

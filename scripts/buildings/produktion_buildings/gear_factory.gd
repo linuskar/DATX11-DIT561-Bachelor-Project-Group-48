@@ -12,11 +12,10 @@ extends ProductionBuilding
 func _ready():
 	super()
 	emit_smoke()
-
-## Activated at the end of each cycle.
-func _on_timer_timeout() -> void:
-	_output_resources()
-	emit_smoke()
+	
+func _output_resources() -> void:
+	emit_smoke() 
+	super()
 			
 ## Function for emitting smoke when possible.
 func emit_smoke() -> void:

@@ -31,11 +31,6 @@ func _output_resources() -> void:
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
 func check_for_output_overflow() -> bool:
-	## NOTE: right now it checks for overflow when the total sum 
-	## of the next production cycle overflows, i.e. for the total area of resources.
-	## Maybe for future, adjust so that if that were the case then the
-	## resources to be gathered within the gathering area are selected to a few.
-	## Still allowing to get closer to max storage, without overflow
 	var wood_gather_rate_per_tile: int = output_generation.get(Enums.ResourceType.WOOD)
 	
 	var wood_gather_rate: int = output_generation.get(Enums.ResourceType.WOOD)

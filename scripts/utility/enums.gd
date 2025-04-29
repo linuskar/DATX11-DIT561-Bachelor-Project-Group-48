@@ -9,13 +9,15 @@ static var polluting_buildings: Array[BuildingType] = [
 		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
 		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT, BuildingType.STEEL_MILL]
 		
-static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
+static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4, ResourceType.STEEL_SCRAP]
 
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD, 
 	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS]
+
+static var landfills: Array[BuildingType] = [BuildingType.BIOMASS_LANDFILL, BuildingType.STEEL_SCRAP_LANDFILL]
 
 static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.IRON_ORE: "res://assets/UI/Resource UI/iron.tres",
@@ -26,6 +28,7 @@ static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.STEEL: "res://assets/UI/Resource UI/steel_resource.png",
 	ResourceType.PLANKS: "res://assets/UI/Resource UI/planks_resource.png",
 	ResourceType.GEARS: "res://assets/UI/Resource UI/gears_resource.png",
+	ResourceType.STEEL_SCRAP: "res://assets/UI/Resource UI/steel_scrap.png",
 }
 
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
@@ -35,6 +38,7 @@ static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.PLANKS: "PLANKS",
 		ResourceType.STEEL: "STEEL",
 		ResourceType.GEARS: "GEARS",
+		ResourceType.STEEL_SCRAP: "STEEL SCRAP",
 		ResourceType.CO2: "CO2",
 		ResourceType.S02: "SO2",
 		ResourceType.ELECTRICITY: "ELECTRICITY",
@@ -51,6 +55,7 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"PLANKS": ResourceType.PLANKS,
 		"STEEL": ResourceType.STEEL,
 		"GEARS": ResourceType.GEARS,
+		"STEEL SCRAP": ResourceType.STEEL_SCRAP,
 		"CO2": ResourceType.CO2,
 		"SO2": ResourceType.S02,
 		"ELECTRICITY": ResourceType.ELECTRICITY,
@@ -73,12 +78,14 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.SAW_MILL: "SAW MILL",
 	BuildingType.STEEL_MILL: "STEEL MILL",
 	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
-	BuildingType.RESEARCH_LAB: "RESEARCH LAB"
+	BuildingType.RESEARCH_LAB: "RESEARCH LAB",
+	BuildingType.STEEL_SCRAP_LANDFILL: "STEEL SCRAP LANDFILL",
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
 	BuildingType.BIOMASS_LANDFILL: "BIOMASS LANDFILL",
 	BuildingType.WAREHOUSE: "WAREHOUSE",
+	BuildingType.STEEL_SCRAP_LANDFILL: "STEEL SCRAP LANDFILL",
 	}
 
 static var tile_names: Dictionary[TileType, String] = {
@@ -96,7 +103,7 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.ELECTRICITY: 10,
 	ResourceType.STEEL: 10,
 	ResourceType.PLANKS: 16,
-	ResourceType.GEARS: 20
+	ResourceType.GEARS: 20,
 }
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
@@ -116,33 +123,6 @@ static func get_value_of_resource(resource: ResourceType) -> int:
 	
 static func get_value_of_resources(resource: ResourceType, amount: int) -> int:
 	return resource_costs.get(resource)*amount
-	
-## The different types of buildings in the game
-# Factory and gathering building are just temporary names?
-enum BuildingType {
-	FACTORY, ## The building type for a test factory
-	IRON_MINE, ## The building type for an iron mine
-	COAL_MINE, ## The building type for a coal mine
-	WOOD_CUTTER, ## The building type for a wood cutter
-	COAL_POWER_PLANT, ## The building type for a coal power plant
-	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
-	BIOMASS_LANDFILL, ## The building type for a biomass landfill
-	WAREHOUSE, ## The building type for a warehouse
-	ROAD, ## The building type for roads
-	SAW_MILL, ## The building type for a saw mill 
-	STEEL_MILL, ## The building type for a steel mill 
-	GEAR_FACTORY, ## The building type for a gear factory
-	RESEARCH_LAB, ## The building type for a research lab
-}
-## Function for checking if the BuildingType is a gathering building
-static func is_gathering_building(building_type: BuildingType) -> bool:
-	var gathering_buildings: Array[BuildingType] = [BuildingType.IRON_MINE, BuildingType.COAL_MINE, BuildingType.WOOD_CUTTER]
-	return building_type in gathering_buildings
-	
-## Function for checking if the BuildingType is a power generator
-static func is_power_generator(building_type: BuildingType) -> bool:
-	var power_generators: Array[BuildingType] = [BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
-	return building_type in power_generators
 
 ## The different types of resources in the game
 enum ResourceType {
@@ -159,7 +139,36 @@ enum ResourceType {
 	PLANKS, ## The resource type for planks
 	STEEL, ## The resource type for steel
 	GEARS, ## The resource type for gears
+	STEEL_SCRAP, ## The resource type for STEEL SCRAP
 }
+
+## The different types of buildings in the game
+# Factory and gathering building are just temporary names?
+enum BuildingType {
+	FACTORY, ## The building type for a test factory
+	IRON_MINE, ## The building type for an iron mine
+	COAL_MINE, ## The building type for a coal mine
+	WOOD_CUTTER, ## The building type for a wood cutter
+	COAL_POWER_PLANT, ## The building type for a coal power plant
+	BIOMASS_POWER_PLANT, ## The building type for a biomass power plant
+	BIOMASS_LANDFILL, ## The building type for a biomass landfill
+	WAREHOUSE, ## The building type for a warehouse
+	ROAD, ## The building type for roads
+	SAW_MILL, ## The building type for a saw mill 
+	STEEL_MILL, ## The building type for a steel mill 
+	GEAR_FACTORY, ## The building type for a gear factory
+	RESEARCH_LAB, ## The building type for a research lab
+	STEEL_SCRAP_LANDFILL ## The building type for a STEEL SCRAP landfill,
+}
+## Function for checking if the BuildingType is a gathering building
+static func is_gathering_building(building_type: BuildingType) -> bool:
+	var gathering_buildings: Array[BuildingType] = [BuildingType.IRON_MINE, BuildingType.COAL_MINE, BuildingType.WOOD_CUTTER]
+	return building_type in gathering_buildings
+	
+## Function for checking if the BuildingType is a power generator
+static func is_power_generator(building_type: BuildingType) -> bool:
+	var power_generators: Array[BuildingType] = [BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
+	return building_type in power_generators
 
 ## The different types of tiles in the game
 enum TileType {

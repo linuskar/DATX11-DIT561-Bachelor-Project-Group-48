@@ -14,6 +14,9 @@ output_generation = Dictionary[int, int]({
 emissions_radius = Dictionary[int, int]({
 3: 16
 })
+input_recipes = Dictionary[int, int]({
+6: 0
+})
 max_storage = Dictionary[int, int]({
 5: 200,
 6: 100

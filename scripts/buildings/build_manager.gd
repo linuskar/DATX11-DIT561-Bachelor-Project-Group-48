@@ -185,12 +185,12 @@ func are_tiles_occupied() -> bool:
 	
 ## Function marking tiles as occupied for placing down a building
 func _on_placed_building(building: Building) -> void:
-	if building is BiomassLandfill:
+	if building is Landfill:
 		## TODO: Future implementantion, add button to stop auto expanding/shrinking
 		## otherwise manually adding landfills wont work since the landfill will automatically shrink
 		## the newly merged landfill, so right now it will just prevent from placing
 		## two seperate landfill instances near each other, and waste money
-		# var landfill_to_merge_with: BiomassLandfill = check_if_there_are_landfills_nearby(building, building.position)
+		# var landfill_to_merge_with: Landfill = check_if_there_are_landfills_nearby(building, building.position)
 		
 		# if landfill_to_merge_with != null:
 			# merge_landfills(building, landfill_to_merge_with)
@@ -209,11 +209,11 @@ func _on_placed_building(building: Building) -> void:
 	# BuildManagerGlobal.print_networks()
 	
 ## Function two merge landfills that are near each other
-func merge_landfills(landfill_placed: BiomassLandfill, landfill_to_be_merged_with: BiomassLandfill) -> void:
+func merge_landfills(landfill_placed: Landfill, landfill_to_be_merged_with: Landfill) -> void:
 	## Increase the max storage of the landfill.
-	var current_biomass: int = landfill_to_be_merged_with.output_storage.get(Enums.ResourceType.BIOMASS)
-	var current_max_biomass: int = landfill_to_be_merged_with.max_storage.get(Enums.ResourceType.BIOMASS)
-	landfill_to_be_merged_with.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass + landfill_to_be_merged_with.auto_expand_max_capacity_amount)
+	var current_main_resource: int = landfill_to_be_merged_with.output_storage.get(landfill_to_be_merged_with.main_resource)
+	var current_max_main_resource: int = landfill_to_be_merged_with.max_storage.get(landfill_to_be_merged_with.main_resource)
+	landfill_to_be_merged_with.max_storage.set(landfill_to_be_merged_with.main_resource, current_max_main_resource + landfill_to_be_merged_with.auto_expand_max_capacity_amount)
 	# print("After: " + str(landfill_to_be_merged_with.max_storage))
 	## Re-add landfill to request for input.
 	ResourceSignals.add_input_building.emit(landfill_to_be_merged_with)
@@ -258,7 +258,7 @@ func occupy_tiles(building: Building, position_to_adjust: Vector2) -> void:
 
 ## Function that checks if there are landfills nearby for a landfill, returns null
 ## if no landfill is found
-func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> BiomassLandfill:
+func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> Landfill:
 	## look at directions
 	var position_to_expand_to: Vector2 = Vector2(0,0)
 	## Shuffle the possible directions to get a randomized selection
@@ -287,13 +287,13 @@ func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> Bio
 		if occupied_tiles.has(position_to_check):
 			var building: Building = occupied_tiles.get(position_to_check)
 
-			if building is BiomassLandfill:
+			if building is Landfill:
 				return building
 		position_to_expand_to = Vector2(0,0)
 	return null
 			
 ## Expand the landfill when at max capacity
-func expand_landfill(landfill: BiomassLandfill) -> void:
+func expand_landfill(landfill: Landfill) -> void:
 	## Set the next position to expand to
 	next_position_to_expand_to(landfill, landfill.connected_landfills.size() - 1)
 
@@ -302,9 +302,9 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 		return
 
 	## Increase the max storage of the landfill.
-	var current_biomass: int = landfill.output_storage.get(Enums.ResourceType.BIOMASS)
-	var current_max_biomass: int = landfill.max_storage.get(Enums.ResourceType.BIOMASS)
-	landfill.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass + landfill.auto_expand_max_capacity_amount)
+	var current_main_resource: int = landfill.output_storage.get(landfill.main_resource)
+	var current_max_main_resource: int = landfill.max_storage.get(landfill.main_resource)
+	landfill.max_storage.set(landfill.main_resource, current_max_main_resource + landfill.auto_expand_max_capacity_amount)
 	## Re-add landfill to request for input.
 	ResourceSignals.add_input_building.emit(landfill)
 	
@@ -318,11 +318,11 @@ func expand_landfill(landfill: BiomassLandfill) -> void:
 	## TODO: Future implementation for merging landfills when auto expanding
 	## NOTE: have to take care of the resources that are currently transporting
 	## need to somehow reroute the resoruces that are transported to the current instance of landfill
-	# var landfill_to_merge_with: BiomassLandfill = check_if_there_are_landfills_nearby(landfill, adjusted_pos)
+	# var landfill_to_merge_with: Landfill = check_if_there_are_landfills_nearby(landfill, adjusted_pos)
 	# merge_landfills(landfill, landfill_to_merge_with)
 
 ## Set the next position that a landfill can expand to.
-func next_position_to_expand_to(landfill: BiomassLandfill, index: int) -> void:
+func next_position_to_expand_to(landfill: Landfill, index: int) -> void:
 		var prev_occupied_tile_pos: Vector2 = Vector2(0,0)
 		
 		## Go through all tiles the landfill occupies
@@ -341,7 +341,7 @@ func next_position_to_expand_to(landfill: BiomassLandfill, index: int) -> void:
 			
 ## Look at tiles by the possible directions around a tile, to get a position to
 ## expand to.
-func get_possible_position_to_expand_to(landfill: BiomassLandfill, current_tile: Vector2) -> Vector2:
+func get_possible_position_to_expand_to(landfill: Landfill, current_tile: Vector2) -> Vector2:
 	var occupied_tiles: Array[Vector2] = BuildManagerGlobal.occupied_tiles.keys()
 	var position_to_expand_to: Vector2 = Vector2(0,0)
 	## Shuffle the possible directions to get a randomized selection
@@ -374,17 +374,18 @@ func get_possible_position_to_expand_to(landfill: BiomassLandfill, current_tile:
 	## Return an invalid position to expand to
 	return position_to_expand_to
 	
-## Shrink the landfill when the current amount of biomass is below a certain threshold
-func shrink_landfill(landfill: BiomassLandfill) -> void:
+## Shrink the landfill when the current amount of main_resource is below a certain threshold
+func shrink_landfill(landfill: Landfill) -> void:
 	## Decrease the max storage of the landfill
-	var current_biomass: int = landfill.output_storage.get(Enums.ResourceType.BIOMASS)
-	var current_max_biomass: int = landfill.max_storage.get(Enums.ResourceType.BIOMASS)
-	landfill.max_storage.set(Enums.ResourceType.BIOMASS, current_max_biomass - landfill.auto_expand_max_capacity_amount)
+	var current_main_resource: int = landfill.output_storage.get(landfill.main_resource)
+	var current_max_main_resource: int = landfill.max_storage.get(landfill.main_resource)
+	landfill.max_storage.set(landfill.main_resource, current_max_main_resource - landfill.auto_expand_max_capacity_amount)
 
 	## Deoccupy the tile that the landfill previously occupied and remove the 
 	## auto expanded landfill
 	var landfill_auto: LandfillAutoExpand = landfill.connected_landfills.pop_back()
-	occupied_tiles.erase(landfill.position + landfill_auto.position)
+	var occupied_pos: Vector2 = landfill.position + landfill_auto.position
+	occupied_tiles.erase(occupied_pos)
 	
 	landfill_auto.remove()
 

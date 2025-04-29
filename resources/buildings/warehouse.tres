@@ -11,10 +11,11 @@ max_storage = Dictionary[int, int]({
 6: 100,
 10: 100,
 11: 100,
-12: 100
+12: 100,
+13: 100
 })
-input_types = Array[int]([0, 1, 2, 6, 10, 11, 12])
-output_types = Array[int]([0, 1, 2, 6, 10, 11, 12])
+input_types = Array[int]([0, 1, 2, 6, 10, 11, 12, 13])
+output_types = Array[int]([0, 1, 2, 6, 10, 11, 12, 13])
 building_type = 7
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(2, 2)
