@@ -381,8 +381,8 @@ func shrink_landfill(landfill: Landfill) -> void:
 	var current_max_main_resource: int = landfill.max_storage.get(landfill.main_resource)
 	landfill.max_storage.set(landfill.main_resource, current_max_main_resource - landfill.auto_expand_max_capacity_amount)
 
-	## Deoccupy the tile that the landfill previously occupied
-	## Remove corresponding sprite and clickable button
+	## Deoccupy the tile that the landfill previously occupied and remove the 
+	## auto expanded landfill
 	var landfill_auto: LandfillAutoExpand = landfill.connected_landfills.pop_back()
 	var occupied_pos: Vector2 = landfill.position + landfill_auto.position
 	occupied_tiles.erase(occupied_pos)

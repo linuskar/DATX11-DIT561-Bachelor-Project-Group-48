@@ -7,7 +7,7 @@ class_name Enums
 
 static var polluting_buildings: Array[BuildingType] = [
 		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
-		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT]
+		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT, BuildingType.STEEL_MILL]
 		
 static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4, ResourceType.STEEL_SCRAP]
 
@@ -179,11 +179,26 @@ enum TileType {
 	RESOURCE, ## The tile type for a resource
 }
 
+## The different types of pollution
+enum PollutionLevel {
+	NORMAL,
+	SLIGHTLY,
+	HEAVILY,
+	DEAD,
+}
+
+static var emissions_contributing_to_tree_pollution: Dictionary[ResourceType, String] = {
+	ResourceType.S02: "S02",
+}
+static func is_a_tree_pollution_contributor(resource_type: ResourceType) -> bool:
+	return resource_type in emissions_contributing_to_tree_pollution
+	
 ## The different states of burning
 enum BurnState { 
 	NORMAL, ## The state when not having been burned previously
 	BURNING, 
-	BURNT }
+	DEAD 
+}
 	
 ## The possible directions
 enum Direction {
