@@ -25,7 +25,6 @@ atlas = ExtResource("7_c2yi1")
 region = Rect2(1, 33, 14, 14)
 
 [node name="ResearchUI" type="Control"]
-visible = false
 custom_minimum_size = Vector2(408, 648)
 layout_mode = 3
 anchor_left = 0.5

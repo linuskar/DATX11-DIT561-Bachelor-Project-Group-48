@@ -4,6 +4,13 @@ extends Node
 ## of the game updates.
 signal game_state_updated(paused: bool)
 
+## Signal emitted when the game begins or ends
+signal game_started(running: bool)
+
+## Signal emitted when keybinds panel is to be shown
+## or hidden
+signal show_keybinds(show: bool)
+
 ## A dictionary of all currently opened menus
 var opened_menus: Array[UIMenu] = []
 
