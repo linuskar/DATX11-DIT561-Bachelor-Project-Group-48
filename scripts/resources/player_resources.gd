@@ -27,7 +27,7 @@ func _use_Resources(type: Enums.ResourceType, amount: int) -> void:
 	ResourceSignals.update_UI.emit(type, resources.get(type))
 
 #Add buildings placed to the array of buildings
-func _on_build_manager_placed_building(building) -> void:
+func _on_build_manager_placed_building(building: Building) -> void:
 	#Case of two or more adjacent networks
 	if BuildManagerGlobal.nr_adjacent_networks >= 2:
 		join_networks()
