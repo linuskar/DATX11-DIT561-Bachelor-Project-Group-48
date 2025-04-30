@@ -239,6 +239,7 @@ func set_building_selling(selling: bool) -> void:
 	current_building.currently_selling = selling
 	if selling:
 		sell_store_status_label.text = "Selling"
+		current_building._output_resources()
 	else:
 		sell_store_status_label.text = "Storing"
 		
