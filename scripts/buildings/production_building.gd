@@ -24,7 +24,7 @@ var output_generation: Dictionary[Enums.ResourceType, int]
 var currently_selling: bool = false
 
 ## The valid input recipes to produce
-var input_recipes: Dictionary[int, Array]
+var input_recipes: Dictionary[int, InputRecipe]
 
 ## Signal for when emissions are emitted
 signal emitted_emissions(building: Building, emission_type: Enums.ResourceType, amount: int)
@@ -59,14 +59,18 @@ func init_production_building() -> void:
 ## Function to initialize the input recipes, this is done due to how
 ## Godot does not support nested arrays that are typed
 func init_input_recipes() -> void:
-	for resource in building_data.input_recipes.keys():
-		var id = building_data.input_recipes.get(resource)
-		if input_recipes.has(id):
-			var new_array: Array = input_recipes.get(id)
-			new_array.append(resource)
-			input_recipes.set(id, new_array)
-		else:
-			input_recipes.set(id, [resource])
+	for id in building_data.input_recipes.keys():
+		var recipe: Array = building_data.input_recipes.get(id)
+		
+		for resource_type in recipe:
+			if input_recipes.has(id):
+				var input_recipe: InputRecipe = input_recipes.get(id)
+				input_recipe.resources.append(resource_type)
+				input_recipes.set(id, input_recipe)
+			else:
+				var new_array: InputRecipe = InputRecipe.new()
+				new_array.resources.append(resource_type)
+				input_recipes.set(id, new_array)
 
 ## Activated at the end of each cycle.
 func _on_timer_timeout() -> void:
@@ -132,8 +136,8 @@ func check_for_output_overflow() -> bool:
 func check_for_missing_input() -> bool:
 	var recipes_invalid: int = 0
 	
-	for recipe in input_recipes.values():
-		for input in recipe:
+	for input_recipe in input_recipes.values():
+		for input in input_recipe.resources:
 			var input_quantity: int = input_storage.get(input)
 			var input_use_rate: int = input_use_rates.get(input)
 			
@@ -155,8 +159,8 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 
 ## Function to use the resources from input in a production building.
 func _use_input_recipe() -> void:
-	for recipe in input_recipes.values():
-		for input in recipe:
+	for input_recipe in input_recipes.values():
+		for input in input_recipe.resources:
 			var input_quantity: int = input_storage.get(input)
 			var input_use_rate: int = input_use_rates.get(input)
 			var input_left: int = input_quantity - input_use_rate

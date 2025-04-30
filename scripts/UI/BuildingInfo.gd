@@ -132,18 +132,26 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 ## Adds all the different inputs of the building, if it has any
 func get_inputs_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
-	
+				
 	if building_data.input_recipes.keys():
-		var input_recipes: Dictionary[int, Array] = {}
+		## If the recipe is empty for a production building
+		if building_data.input_recipes.get(0).size() == 0:
+			return ""
+			
+		var input_recipes: Dictionary[int, InputRecipe] = {}
 		
-		for resource in building_data.input_recipes.keys():
-			var id = building_data.input_recipes.get(resource)
-			if input_recipes.has(id):
-				var new_array: Array = input_recipes.get(id)
-				new_array.append(resource)
-				input_recipes.set(id, new_array)
-			else:
-				input_recipes.set(id, [resource])
+		for id in building_data.input_recipes.keys():
+			var recipe: Array = building_data.input_recipes.get(id)
+			
+			for resource_type in recipe:
+				if input_recipes.has(id):
+					var input_recipe: InputRecipe = input_recipes.get(id)
+					input_recipe.resources.append(resource_type)
+					input_recipes.set(id, input_recipe)
+				else:
+					var new_array: InputRecipe = InputRecipe.new()
+					new_array.resources.append(resource_type)
+					input_recipes.set(id, new_array)
 		
 		text += "\nInputs\n"
 		
@@ -152,8 +160,8 @@ func get_inputs_text(building_data: ProductionBuildingData) -> String:
 		for recipe_id in input_recipes.keys():
 			if i > 0:
 				text += "OR\n"
-			var recipe: Array = input_recipes.get(recipe_id)	
-			for resource in recipe:
+			var recipe: InputRecipe = input_recipes.get(recipe_id)
+			for resource in recipe.resources:
 				text += Enums.resource_type_to_string(resource) + ': ' + str(building_data.input_use_rates.get(resource)) + '\n'
 			i += 1
 	return text
