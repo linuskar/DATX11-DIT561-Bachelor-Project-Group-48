@@ -124,7 +124,7 @@ mouse_filter = 1
 script = ExtResource("4_03u5a")
 
 [node name="Smoke_v1" parent="." instance=ExtResource("5_wi8qw")]
-position = Vector2(8, -24)
+position = Vector2(5.39507, -24.2397)
 emitting = false
 
 [node name="place_animation" type="AnimationPlayer" parent="."]

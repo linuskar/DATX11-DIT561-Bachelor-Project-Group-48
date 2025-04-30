@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbk8oqqcmsa30"]
+[gd_scene load_steps=29 format=3 uid="uid://cbk8oqqcmsa30"]
 
 [ext_resource type="Script" uid="uid://duuowy6imteh8" path="res://scripts/buildings/power_generators/coal_power_plant.gd" id="1_2asmk"]
 [ext_resource type="Resource" uid="uid://dxv8ly1srx0hh" path="res://resources/buildings/coal_power_plant.tres" id="2_lqwfw"]
@@ -9,6 +9,51 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(96, 96)
+
+[sub_resource type="Curve" id="Curve_f8yp3"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_klpcp"]
+curve = SubResource("Curve_f8yp3")
+
+[sub_resource type="Curve" id="Curve_klpcp"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00719424, -0.00891519), 0.0, 0.0, 0, 0, Vector2(0.97482, 0.995542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_02jrp"]
+curve = SubResource("Curve_klpcp")
+
+[sub_resource type="Curve" id="Curve_8f8fg"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1.49012e-08), 0.0, 1.69169, 0, 0, Vector2(0.4, 0.4), 0.81556, 0.81556, 0, 0, Vector2(0.7, 0.8), 1.65217, 1.65217, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_qrqbt"]
+curve = SubResource("Curve_8f8fg")
+
+[sub_resource type="Curve" id="Curve_ss1ql"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h4pdi"]
+curve = SubResource("Curve_ss1ql")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f2q00"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 275.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 9.49949e-08
+orbit_velocity_curve = SubResource("CurveTexture_02jrp")
+gravity = Vector3(0, -98, 0)
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_qrqbt")
+scale_over_velocity_curve = SubResource("CurveTexture_h4pdi")
+alpha_curve = SubResource("CurveTexture_klpcp")
 
 [sub_resource type="Animation" id="Animation_fnoo6"]
 length = 0.001
@@ -125,20 +170,24 @@ mouse_filter = 1
 script = ExtResource("4_lqwfw")
 
 [node name="Smoke_v3" parent="." instance=ExtResource("5_f2q00")]
-position = Vector2(-8, -40)
-emitting = false
+position = Vector2(-8, -40.6934)
+process_material = SubResource("ParticleProcessMaterial_f2q00")
 
 [node name="Smoke_v4" parent="." instance=ExtResource("6_6supy")]
-position = Vector2(8, -24)
-emitting = false
+position = Vector2(5, -27)
+process_material = SubResource("ParticleProcessMaterial_f2q00")
 
 [node name="Smoke_v5" parent="." instance=ExtResource("5_f2q00")]
-position = Vector2(24, -24)
-emitting = false
+position = Vector2(20, -21)
+process_material = SubResource("ParticleProcessMaterial_f2q00")
 
 [node name="Smoke_v6" parent="." instance=ExtResource("5_f2q00")]
-position = Vector2(40, -16)
-emitting = false
+position = Vector2(35, -16)
+process_material = SubResource("ParticleProcessMaterial_f2q00")
+
+[node name="Smoke_v7" parent="." instance=ExtResource("5_f2q00")]
+position = Vector2(45.6848, -8.6848)
+process_material = SubResource("ParticleProcessMaterial_f2q00")
 
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
