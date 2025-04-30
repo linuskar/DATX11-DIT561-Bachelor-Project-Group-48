@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=25 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
 [ext_resource type="Script" uid="uid://dmgsm1ff1lp3b" path="res://scripts/utility/ui_menu.gd" id="2_bh0ot"]
-[ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="3_epysl"]
 [ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/Selectables/CoalMineSelectable.tscn" id="4_2uf64"]
 [ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/Selectables/IronMineSelectable.tscn" id="5_2mva2"]
 [ext_resource type="PackedScene" uid="uid://bhrcu48dc2f50" path="res://scenes/UI/Selectables/WoodCutterSelectable.tscn" id="6_de1jr"]
@@ -23,6 +22,24 @@
 [ext_resource type="PackedScene" uid="uid://dhdmdoa2x24cb" path="res://scenes/UI/Selectables/ResearchLabSelectable.tscn" id="16_tqq1s"]
 [ext_resource type="PackedScene" uid="uid://cbnpo6ya5w0fv" path="res://scenes/UI/Selectables/SteelScrapLandfillSelectable.tscn" id="18_2tosp"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ona1n"]
+load_path = "res://.godot/imported/tilemap_packed.png-f70ab1b24a16f17e2cb5fa150fb08651.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_115ir"]
+content_margin_left = 0.0
+content_margin_top = 10.0
+content_margin_right = 0.0
+content_margin_bottom = 10.0
+texture = SubResource("CompressedTexture2D_ona1n")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(32, 0, 32, 32)
+modulate_color = Color(0.851769, 0.851769, 0.851769, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2mva2"]
 
 [node name="BuildingSelectList" type="Control"]
@@ -38,7 +55,6 @@ pivot_offset = Vector2(400, 0)
 script = ExtResource("1_dphbc")
 
 [node name="List" type="Control" parent="."]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 1
@@ -68,12 +84,11 @@ anchor_bottom = 0.7
 offset_top = 118.4
 offset_bottom = 158.4
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("3_epysl")
+theme_override_styles/panel = SubResource("StyleBoxTexture_115ir")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="List/PanelContainer"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 vertical_scroll_mode = 3
 
 [node name="Buildings" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer"]
