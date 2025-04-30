@@ -131,7 +131,7 @@ alpha_curve = SubResource("CurveTexture_kw5qq")
 
 [node name="CoalMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5wtww")
-smokes = [NodePath("Smoke_v1")]
+smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2")]
 building_data = ExtResource("2_f8yp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

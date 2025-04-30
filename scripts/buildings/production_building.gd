@@ -9,6 +9,9 @@ extends StorageBuilding
 ##
 ##
 
+## The nodes emitting smoke.
+@export var smokes: Array[GPUParticles2D]
+
 ## The rates/quantity of input resources the production building uses each cycle.
 var input_use_rates: Dictionary[Enums.ResourceType, int]
 ## The rates/quantity of resources the production building outputs each cycle.
@@ -30,6 +33,16 @@ func _ready() -> void:
 	super()
 	PlayerCurrency.currency_changed.connect(restart_operation)
 	init_production_building()
+	emit_smoke()
+
+## Function for emitting smoke when possible.
+func emit_smoke() -> void:
+	if check_if_can_produce() == false or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
+		for smoke in smokes:
+			smoke.emitting = false
+	else:
+		for smoke in smokes:
+			smoke.emitting = true
 
 ## Function to initialize the production building.
 func init_production_building() -> void:
@@ -55,6 +68,7 @@ func _on_timer_timeout() -> void:
 
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
+	emit_smoke() 
 	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
 		production_cycle.paused = true
 	else:

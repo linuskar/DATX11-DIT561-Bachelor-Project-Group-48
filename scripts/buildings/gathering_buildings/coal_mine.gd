@@ -6,18 +6,13 @@ extends GatheringBuilding
 ## the GatheringBuilding class.
 ##
 
-## The nodes emitting smoke.
-@export var smokes: Array[GPUParticles2D]
-
 func _ready():
 	$place_animation.play("place")
 	super()
-	emit_smoke()
 
-func _output_resources() -> void:
-	emit_smoke() 
-	super()
-			
+func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+	$place_particle.emitting = true
+
 ## Function for emitting smoke when possible.
 func emit_smoke() -> void:
 	if check_if_can_produce() == false or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
@@ -27,7 +22,3 @@ func emit_smoke() -> void:
 		for smoke in smokes:
 			smoke.emitting = true
 			$mining_particle.emitting = true
-
-
-func _on_place_animation_animation_finished(anim_name: StringName) -> void:
-	$place_particle.emitting = true
