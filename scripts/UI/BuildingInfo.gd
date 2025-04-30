@@ -122,8 +122,11 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
 	if building_data.output_generation.keys():
 		text += "\nOutputs\n"
-		for key in building_data.output_generation.keys():
-			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
+		for output in building_data.output_generation.keys():
+			if Enums.is_emission(output):
+				text += Enums.resource_type_to_string(output) + ": In an area.\n"
+			else:
+				text += Enums.resource_type_to_string(output) + ': ' + str(building_data.output_generation.get(output)) + '\n'
 	return text
 
 ## Adds all the different inputs of the building, if it has any
@@ -185,16 +188,6 @@ func get_connected_landfills() -> String:
 ## Specific for gathering buildings, add the resource node it has to be placed on for operation
 func get_resource_node_text(building_data: GatheringBuildingData) -> String:
 	return "\nGathers on resource node: " + Enums.resource_type_to_string(building_data.can_gather_resource_type) + '\n'
-
-## Gets text representing a building pollution outputs, if it has any
-func get_pollution_text(building_data: ProductionBuildingData) -> String:
-	if Enums.is_a_polluting_building(building_data.building_type):
-		var text: String = "\nPollution\n"
-		for output in building_data.output_generation.keys():
-			if Enums.is_emission(output):
-				text += building_data.output_generation.get(output) + ": In an area.\n"
-		return text
-	return ""
 	
 func get_gathering_text(building_data: AreaGatheringBuildingData) -> String:
 	var text: String = "\nGathering\n"
