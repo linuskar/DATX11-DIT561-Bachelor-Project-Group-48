@@ -81,7 +81,7 @@ func check_if_can_produce() -> bool:
 	if missing_input:
 		return false
 		
-	if can_be_output_overflow:
+	if can_be_output_overflow and not currently_selling:
 		return false
 	
 	return true
