@@ -2,12 +2,12 @@ extends Node2D
 
 ## Variable for whether the mouse is being dragged or not
 var dragging: bool = false
-## List of buildings that were selected
-var selected: Array = []
 ## Start position for the selecting rectangle
 var drag_start: Vector2 = Vector2.ZERO
 ## The selecting rectangle
 var select_rect: RectangleShape2D = RectangleShape2D.new()
+## Signal emitted containing the selected buildings
+signal buildings_selected(buildings: Array[Building])
 
 func _draw() -> void:
 	if dragging:
@@ -23,18 +23,32 @@ func _unhandled_input(event: InputEvent) -> void:
 			dragging = true
 			drag_start = get_global_mouse_position()
 
-		## If the button was just released,
+		## If the button was just released, get the selected buildings 
 		elif dragging:
-			selected = []
+			## Create empty list of buildings
+			var selected: Array[Building] = []
+			## Set dragging to false
 			dragging = false
+			## Redraw the rectangle one last time
 			queue_redraw()
-			var drag_end = get_global_mouse_position()
-			select_rect.extents =(drag_end - drag_start)/2
+			## Get the end position for the rectangle
+			var drag_end: Vector2 = get_global_mouse_position()
+			## Set size of rectangle (set like radius)
+			select_rect.extents = (drag_end - drag_start)/2
+			## Gets the state of the 2D world 
 			var space = get_world_2d().direct_space_state
+			## An empty query to be used for the space
 			var query = PhysicsShapeQueryParameters2D.new()
+			## Setting the shape of the query
 			query.shape = select_rect
+			## Setting the (center) position 
 			query.transform = Transform2D(0, (drag_end + drag_start)/2)
-			selected = space.intersect_shape(query)
-			print(selected)
+			## Querying the space for collisions
+			var selected_dicts = space.intersect_shape(query)
+			for dict in selected_dicts:
+				selected.append(dict.get("collider"))
+			buildings_selected.emit(selected)
+			
+	## If the event is mouse movement, update the rectangle
 	if event is InputEventMouseMotion and dragging:
 		queue_redraw()
