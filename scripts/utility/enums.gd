@@ -192,6 +192,7 @@ enum PollutionLevel {
 
 static var emissions_contributing_to_tree_pollution: Dictionary[ResourceType, String] = {
 	ResourceType.S02: "S02",
+	ResourceType.N0X: "N0X",
 }
 static func is_a_tree_pollution_contributor(resource_type: ResourceType) -> bool:
 	return resource_type in emissions_contributing_to_tree_pollution

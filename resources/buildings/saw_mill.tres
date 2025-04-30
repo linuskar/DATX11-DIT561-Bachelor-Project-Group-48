@@ -5,21 +5,29 @@
 [resource]
 script = ExtResource("1_y7ck1")
 input_use_rates = Dictionary[int, int]({
-2: 1
+2: 1,
+5: 1
 })
 output_generation = Dictionary[int, int]({
+3: 5,
+7: 100,
 10: 2
 })
-emissions_radius = Dictionary[int, int]({})
+emissions_radius = Dictionary[int, int]({
+3: 16,
+7: 16
+})
 input_recipes = Dictionary[int, int]({
-2: 0
+2: 0,
+5: 0
 })
 max_storage = Dictionary[int, int]({
 2: 20,
+5: 20,
 10: 100
 })
-input_types = Array[int]([2])
-output_types = Array[int]([10])
+input_types = Array[int]([2, 5])
+output_types = Array[int]([10, 3, 7])
 building_type = 9
 valid_tile_types_to_place_on = Array[int]([1, 2, 3])
 building_size = Vector2(2, 2)
