@@ -33,7 +33,13 @@ func _ready() -> void:
 	super()
 	PlayerCurrency.currency_changed.connect(restart_operation)
 	init_production_building()
-	emit_smoke()
+	init_smoke()
+
+## Function for initializing the smoke emitting
+func init_smoke() -> void:
+	for smoke in smokes:
+		smoke.z_index = 1
+		smoke.emitting = false
 
 ## Function for emitting smoke when possible.
 func emit_smoke() -> void:
