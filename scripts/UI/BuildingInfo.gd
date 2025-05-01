@@ -15,6 +15,9 @@ class_name BuildingInfo extends UIMenu
 ## The currently held building
 var current_building: Building
 
+## The currently selected buildings
+var selected_buildings: Array[Building]
+
 ## Template scene for a stored resource panel
 var stored_resource_panel: PackedScene = preload("res://scenes/UI/stored_resource.tscn")
 
@@ -25,6 +28,7 @@ var storage_connections: Dictionary[Enums.ResourceType, StoredResourcePanel] = {
 func _ready() -> void:
 	super._ready()
 	BuildingSignals.building_clicked.connect(set_active)
+	BuildingSelector.buildings_selected.connect(set_active_multiple)
 	set_inactive()
 
 func _process(delta: float) -> void:
@@ -275,3 +279,11 @@ func _sell_chosen_resources() -> void:
 func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
 	var value: int = Enums.get_value_of_resources(resource, amount)
 	sell_value_label.set_text(str(int(sell_value_label.text)+value))
+
+func set_active_multiple(buildings: Array[Building]) -> void:
+	selected_buildings = buildings
+	if selected_buildings.size() == 1 and selected_buildings.front() is ResearchLab:
+		get_tree().root.get_node("Game/UserInterface/ResearchUI").open(selected_buildings.front())
+		return
+	else:
+		print("Other")
