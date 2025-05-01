@@ -110,7 +110,7 @@ texture = ExtResource("3_03u5a")
 autostart = true
 
 [node name="Smoke_v1" parent="." instance=ExtResource("5_wi8qw")]
-position = Vector2(8, -24)
+position = Vector2(5.39507, -24.2397)
 emitting = false
 
 [node name="place_animation" type="AnimationPlayer" parent="."]

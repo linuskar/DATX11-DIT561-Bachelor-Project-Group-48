@@ -18,7 +18,8 @@ extends StorageBuildingData
 ## A dictionary containing the recipes to produce for a building.
 ## The value is an int, acting as an ID for the recipe.
 ## NOTE: Due to how you can't type nested arrays, connect the ID correctly for each recipe.
-@export var input_recipes: Dictionary[Enums.ResourceType, int]
+## The array should consists of integers representing an enum value for a resource type
+@export var input_recipes: Dictionary[int, Array]
 
 func accept(handler: BuildingInfo) -> String:
 	return handler.handle_prod_building(self)

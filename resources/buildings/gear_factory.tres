@@ -9,13 +9,17 @@ input_use_rates = Dictionary[int, int]({
 11: 1
 })
 output_generation = Dictionary[int, int]({
+3: 5,
+7: 2,
 12: 2,
 13: 5
 })
-emissions_radius = Dictionary[int, int]({})
-input_recipes = Dictionary[int, int]({
-5: 0,
-11: 0
+emissions_radius = Dictionary[int, int]({
+3: 16,
+7: 16
+})
+input_recipes = Dictionary[int, Array]({
+0: [5, 11]
 })
 max_storage = Dictionary[int, int]({
 5: 20,
@@ -24,7 +28,7 @@ max_storage = Dictionary[int, int]({
 13: 20
 })
 input_types = Array[int]([11, 5])
-output_types = Array[int]([12, 13])
+output_types = Array[int]([12, 13, 3, 7])
 building_type = 11
 valid_tile_types_to_place_on = Array[int]([1, 2, 3])
 building_size = Vector2(2, 2)

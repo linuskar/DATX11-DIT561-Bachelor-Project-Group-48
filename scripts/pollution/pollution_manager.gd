@@ -32,7 +32,7 @@ var wildfire_start_percentage: float = 0.0
 ## as the game is running
 var wildfire_wait_time: float = 1.0
 ## The upper limit for the amount of emissions that can exist in the game
-var emission_upper_limit: float = pow(10,7)
+var emission_upper_limit: float = pow(10,8)
 
 ## Emissions decay by 1% of their total value
 var emission_decay: float = 0.01
@@ -152,14 +152,23 @@ func _init_building_polluting(building: Building) -> void:
 
 ## Function to apply emissions emitted by a building
 func apply_emissions(building: Building, emission_type: Enums.ResourceType, amount: float) -> void:
-	var building_pos: Vector2 = buildings_polluting.get(building)
 	var emissions_radius: int = building.building_data.emissions_radius.get(emission_type)
-	emissions_to_apply.emit(emissions_falloff(amount, emissions_radius, building_pos, emission_type), emission_type)
+	emissions_to_apply.emit(emissions_falloff(amount, emissions_radius, building, emission_type), emission_type)
 	
 ## Function to calculate the emissions emitted in the area around the building
-func emissions_falloff(amount: float, emissions_radius: int, building_pos: Vector2, emission_type: Enums.ResourceType) -> Dictionary[Vector2, float]:
+func emissions_falloff(amount: float, emissions_radius: int, building: Building, emission_type: Enums.ResourceType) -> Dictionary[Vector2, float]:
 	var emissions_dict: Dictionary[Vector2, float] = {}  
 	var grid_size: int = 32
+	
+	var building_pos: Vector2 = buildings_polluting.get(building)
+	var building_size: Vector2 = building.building_data.building_size
+	
+	## Get the side positions of the building
+	var left_building_x: float = building_pos.x - (grid_size * building_size.x) / 2
+	var right_building_x: float = building_pos.x + (grid_size * building_size.x) / 2
+	var top_building_y: float = building_pos.y - (grid_size * building_size.y) / 2
+	var bottom_building_y: float = building_pos.y + (grid_size * building_size.y) / 2
+	
 	## Iterate around the 2D area centered on the building,
 	## where the area is determined by the emissions radius
 	for x in range(-emissions_radius, emissions_radius + 1):
@@ -170,18 +179,32 @@ func emissions_falloff(amount: float, emissions_radius: int, building_pos: Vecto
 			## If outside the emissions radius
 			if distance_from_building > emissions_radius:
 				continue
-				
-			var tile_pos = building_pos + Vector2(x * grid_size, y * grid_size)
-
-			## An exponential emission falloff
+			
+			var center_pos: Vector2 = building_pos
+			
+			## If the position is divisible by 2 then center the building position
+			## to a nearby tile. This is done because the center position will not
+			## always be in the middle of a tile due to the building size in the grid.
+			if fmod(building_size.x, 2.0) == 0.0 and fmod(building_size.y, 2.0) == 0.0:
+				center_pos.x -= grid_size/2
+				center_pos.y -= grid_size/2
+			
+			var tile_pos: Vector2 = center_pos + Vector2(x * grid_size, y * grid_size)
+			
+			## An exponential falloff for the emission amount
 			var amount_to_set: float = amount * exp(float(-distance_from_building) / emissions_radius)
 			
+			var in_building_x: bool = tile_pos.x >= left_building_x and tile_pos.x <= right_building_x
+			var in_building_y: bool = tile_pos.y >= top_building_y and tile_pos.y <= bottom_building_y
+			## Make the emission amount to be the strongest at the tiles the building occupies
+			if in_building_x and in_building_y:
+				amount_to_set = amount
+				
 			## No negative amounts to set
 			amount_to_set = max(amount_to_set, 0)
 			emissions_dict.set(tile_pos, amount_to_set)
 			add_emissions_generated(emission_type, amount_to_set)
 			add_emissions_not_absorbed(emission_type, amount_to_set)
-			
 	return emissions_dict
 
 ## Function to set the amount of emissions generated

@@ -70,7 +70,6 @@ func absorb_emission(emission_type: Enums.ResourceType, amount: float):
 ## based on contributing emissions
 func update_pollution_level() -> void:
 	var emission_stored: float = 0.0
-	
 	for emission_type in emission_storage.keys():
 		if Enums.is_a_tree_pollution_contributor(emission_type):
 			emission_stored += emission_storage.get(emission_type)

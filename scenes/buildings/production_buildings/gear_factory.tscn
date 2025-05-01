@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bb0k6gsn5k6v3"]
+[gd_scene load_steps=26 format=3 uid="uid://bb0k6gsn5k6v3"]
 
 [ext_resource type="Script" uid="uid://0jnwqslcprox" path="res://scripts/buildings/produktion_buildings/gear_factory.gd" id="1_essim"]
 [ext_resource type="Texture2D" uid="uid://beimrsmpocu3u" path="res://assets/buildings_iso/Gear_building.png" id="1_vsc0x"]
@@ -6,6 +6,42 @@
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="5_e0qy3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_essim"]
+
+[sub_resource type="Curve" id="Curve_f8yp3"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_klpcp"]
+curve = SubResource("Curve_f8yp3")
+
+[sub_resource type="Curve" id="Curve_klpcp"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00719424, -0.00891519), 0.0, 0.0, 0, 0, Vector2(0.97482, 0.995542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_02jrp"]
+curve = SubResource("Curve_klpcp")
+
+[sub_resource type="Curve" id="Curve_8f8fg"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1.49012e-08), 0.0, 1.69169, 0, 0, Vector2(0.4, 0.4), 0.81556, 0.81556, 0, 0, Vector2(0.7, 0.8), 1.65217, 1.65217, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_qrqbt"]
+curve = SubResource("Curve_8f8fg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y5nrc"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 275.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 9.49949e-08
+orbit_velocity_curve = SubResource("CurveTexture_02jrp")
+gravity = Vector3(0, -98, 0)
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_qrqbt")
+alpha_curve = SubResource("CurveTexture_klpcp")
 
 [sub_resource type="Animation" id="Animation_fnoo6"]
 length = 0.001
@@ -48,7 +84,7 @@ _data = {
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_klpcp"]
+[sub_resource type="CurveTexture" id="CurveTexture_e0qy3"]
 curve = SubResource("Curve_y5nrc")
 
 [sub_resource type="Gradient" id="Gradient_e0qy3"]
@@ -70,7 +106,7 @@ _limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_qrqbt"]
+[sub_resource type="CurveTexture" id="CurveTexture_64241"]
 curve = SubResource("Curve_5krq3")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qi7j2"]
@@ -90,9 +126,9 @@ radial_velocity_curve = SubResource("CurveTexture_8f8fg")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.1
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_qrqbt")
+scale_curve = SubResource("CurveTexture_64241")
 color_ramp = SubResource("GradientTexture1D_02jrp")
-alpha_curve = SubResource("CurveTexture_klpcp")
+alpha_curve = SubResource("CurveTexture_e0qy3")
 
 [node name="GearFactory" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_essim")
@@ -109,8 +145,9 @@ texture = ExtResource("1_vsc0x")
 autostart = true
 
 [node name="Smoke_v1" parent="." instance=ExtResource("5_e0qy3")]
-position = Vector2(16, -16)
+position = Vector2(18, -17)
 emitting = false
+process_material = SubResource("ParticleProcessMaterial_y5nrc")
 
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
