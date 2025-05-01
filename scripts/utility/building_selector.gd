@@ -24,7 +24,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			if event.pressed:
 				dragging = true
 				drag_start = get_global_mouse_position()
-
 			## If the button was just released, get the selected buildings 
 			elif dragging:
 				## Create empty list of buildings

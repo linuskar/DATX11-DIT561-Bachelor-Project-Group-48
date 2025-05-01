@@ -1,8 +1,8 @@
 class_name BuildingInfo extends UIMenu
 
-@onready var image: TextureRect = $MarginContainer/General/VBoxContainer/MarginContainer3/FactoryImage
-@onready var building_name: Label = $MarginContainer/General/VBoxContainer/BuildingName
-@onready var info: Label = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
+@onready var image: TextureRect = $MarginContainer/General/SingleSelected/MarginContainer3/FactoryImage
+@onready var building_name: Label = $MarginContainer/General/SingleSelected/BuildingName
+@onready var info: Label = $MarginContainer/General/SingleSelected/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 @onready var main_container: MarginContainer = $MarginContainer
 @onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/VBoxContainer/StoredResources
 @onready var sell_value_label: Label = $MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/SellValue
