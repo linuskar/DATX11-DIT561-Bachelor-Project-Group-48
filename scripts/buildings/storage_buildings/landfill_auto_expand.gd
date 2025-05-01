@@ -42,3 +42,6 @@ func _on_place_animation_animation_finished(anim_name: StringName) -> void:
 
 func _on_ready() -> void:
 	self.building_sprite.texture = self.texture
+
+func get_building() -> Building:
+	return get_parent()

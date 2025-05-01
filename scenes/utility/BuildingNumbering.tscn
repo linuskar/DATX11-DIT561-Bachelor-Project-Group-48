@@ -34,7 +34,7 @@ stretch_mode = 4
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "x 2"
+text = "x 1"
 label_settings = SubResource("LabelSettings_oiqms")
 
 [connection signal="ready" from="." to="." method="_on_ready"]

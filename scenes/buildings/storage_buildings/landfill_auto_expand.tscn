@@ -1,22 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://cgl1ql08os5y5"]
+[gd_scene load_steps=16 format=3 uid="uid://cgl1ql08os5y5"]
 
 [ext_resource type="Script" uid="uid://cr2cijyosovkf" path="res://scripts/buildings/storage_buildings/landfill_auto_expand.gd" id="1_md3jn"]
-[ext_resource type="Script" uid="uid://biaknkwuc2qk8" path="res://scripts/buildings/building_data/storage_building_data.gd" id="2_4p3gb"]
 [ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="2_md3jn"]
-
-[sub_resource type="Resource" id="Resource_6653p"]
-script = ExtResource("2_4p3gb")
-max_storage = Dictionary[int, int]({
-6: 100
-})
-input_types = Array[int]([6])
-output_types = Array[int]([6])
-building_type = 6
-valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
-building_size = Vector2(0, 0)
-building_cost = 0
-building_upkeep = 0
-metadata/_custom_type_script = "uid://biaknkwuc2qk8"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_euk6p"]
 size = Vector2(32, 32)
@@ -110,7 +95,6 @@ alpha_curve = SubResource("CurveTexture_phnxc")
 
 [node name="LandfillAutoExpand" type="StaticBody2D"]
 script = ExtResource("1_md3jn")
-building_data = SubResource("Resource_6653p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_euk6p")

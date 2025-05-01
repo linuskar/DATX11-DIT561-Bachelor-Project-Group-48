@@ -34,7 +34,7 @@ var storage_connections: Dictionary[Enums.ResourceType, StoredResourcePanel] = {
 func _ready() -> void:
 	super._ready()
 	#BuildingSignals.building_clicked.connect(set_active)
-	BuildingSelector.buildings_selected.connect(set_active_multiple)
+	BuildingSelector.buildings_selected.connect(set_active)
 	set_inactive()
 
 func _process(delta: float) -> void:
@@ -54,6 +54,9 @@ func populate_info_label(building: Building) -> void:
 	info.text = get_text(building.building_data)
 
 func populate_multi_selected(buildings: Array[Building]) -> void:
+	for child in multi_select.get_children():
+		child.queue_free()
+	building_numberings.clear()
 	for building in buildings:
 		building.building_selected(building)
 		if building.building_type in building_numberings.keys():
@@ -120,9 +123,6 @@ func handle_storage_building(building: StorageBuildingData) -> String:
 	if building.building_type in Enums.landfills:
 		text += get_connected_landfills(building)
 	return text
-	
-func handle_expanding_landfill(building: AutoLandfillData) -> String:
-	return ""
 
 func handle_prod_building(building: ProductionBuildingData) -> String:
 	var text: String = ""
@@ -308,11 +308,10 @@ func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
 	var value: int = Enums.get_value_of_resources(resource, amount)
 	sell_value_label.set_text(str(int(sell_value_label.text)+value))
 
-func set_active_multiple(buildings: Array[Building]) -> void:
+func set_active(buildings: Array[Building]) -> void:
 	if buildings.is_empty():
 		return
-	clean_buildings_list()
-	selected_buildings = buildings
+	selected_buildings = clean_buildings_list(buildings)
 	if selected_buildings.size() == 1:
 		selected_buildings.front().building_selected(selected_buildings.front())
 		var current_building: Building = buildings.front()
@@ -331,8 +330,13 @@ func set_active_multiple(buildings: Array[Building]) -> void:
 		multi_select.show()
 		reset_tabs()
 		self.show()
-		populate_multi_selected(buildings)
+		populate_multi_selected(selected_buildings)
 		populate_storage_panel()
 
-func clean_buildings_list() -> void:
-	pass
+func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
+	var cleaned_list: Dictionary[Building, bool] = {}
+	for building in buildings:
+		var current: Building = building.get_building()
+		if not cleaned_list.has(building):
+			cleaned_list.set(current, true)
+	return cleaned_list.keys()
