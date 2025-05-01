@@ -1,8 +1,25 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgl1ql08os5y5"]
+[gd_scene load_steps=18 format=3 uid="uid://cgl1ql08os5y5"]
 
 [ext_resource type="Script" uid="uid://cr2cijyosovkf" path="res://scripts/buildings/storage_buildings/landfill_auto_expand.gd" id="1_md3jn"]
+[ext_resource type="Script" uid="uid://biaknkwuc2qk8" path="res://scripts/buildings/building_data/storage_building_data.gd" id="2_4p3gb"]
 [ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="2_md3jn"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_4p3gb"]
+
+[sub_resource type="Resource" id="Resource_6653p"]
+script = ExtResource("2_4p3gb")
+max_storage = Dictionary[int, int]({
+6: 100
+})
+input_types = Array[int]([6])
+output_types = Array[int]([6])
+building_type = 6
+valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
+building_size = Vector2(0, 0)
+building_cost = 0
+building_upkeep = 0
+metadata/_custom_type_script = "uid://biaknkwuc2qk8"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euk6p"]
+size = Vector2(32, 32)
 
 [sub_resource type="Animation" id="Animation_fnoo6"]
 length = 0.001
@@ -91,9 +108,12 @@ scale_curve = SubResource("CurveTexture_7ihue")
 color_ramp = SubResource("GradientTexture1D_ghimp")
 alpha_curve = SubResource("CurveTexture_phnxc")
 
-[node name="LandfillAutoExpand" type="Sprite2D"]
-texture = ExtResource("2_md3jn")
+[node name="LandfillAutoExpand" type="StaticBody2D"]
 script = ExtResource("1_md3jn")
+building_data = SubResource("Resource_6653p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_euk6p")
 
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -116,18 +136,8 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_alyep")
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_4p3gb")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_md3jn")
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]

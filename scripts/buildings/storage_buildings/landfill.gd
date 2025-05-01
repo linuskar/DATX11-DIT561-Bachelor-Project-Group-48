@@ -65,6 +65,7 @@ func highlight_building() -> void:
 	if currently_selected:
 		highlight.selected()
 		for landfill in connected_landfills:
+			landfill.currently_selected = true
 			landfill.highlight.selected()
 	else:
 		highlight.unselected()

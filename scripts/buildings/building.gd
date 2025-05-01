@@ -31,7 +31,6 @@ func _ready() -> void:
 	add_child(highlight)
 	highlight.unselected()
 	
-	BuildingSignals.building_clicked.connect(building_selected)
 	BuildingSignals.building_info_closed.connect(building_deselected)
 	
 	building_type = building_data.building_type

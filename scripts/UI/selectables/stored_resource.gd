@@ -98,6 +98,17 @@ func disable_selling() -> void:
 	minus_label.hide()
 	selling_panel.hide()
 
+func connect_to_building(building: StorageBuilding) -> void:
+	building.resources_changed.connect(change_resources)
+
+## Function for changing the amount of resources held
+func change_resources(resource_type: Enums.ResourceType, amount: int) -> void:
+	if self.resource == resource_type:
+		resource_held += amount
+		update_resources()
+		update_text()
+		resource_held_changed.emit(resource_held, resource_to_sell)
+
 func update_resources() -> void:
 	if resource_to_sell > resource_held:
 		resource_to_sell = resource_held

@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqescnbl4e761"]
+[gd_scene load_steps=18 format=3 uid="uid://dqescnbl4e761"]
 
 [ext_resource type="Script" uid="uid://bu10hl3va8ff1" path="res://scripts/buildings/storage_buildings/biomass_landfill.gd" id="1_rgerm"]
 [ext_resource type="Resource" uid="uid://vf545h38qqxt" path="res://resources/buildings/steel_scrap_landfill.tres" id="2_xp6x7"]
 [ext_resource type="Texture2D" uid="uid://pjrnc7gnxm2r" path="res://assets/buildings_iso/steel_scrap_landfill.png" id="3_rgerm"]
 [ext_resource type="Script" uid="uid://porcip0fvgpn" path="res://scripts/UI/building_highlight.gd" id="4_rs2lj"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="5_755j7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
@@ -124,19 +123,6 @@ offset_right = 32.0
 offset_bottom = 32.0
 color = Color(0.0509804, 0.843137, 0.898039, 0.364706)
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("5_755j7")
-
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_86t2d")
@@ -150,5 +136,4 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_eujog")
 
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
 [connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]

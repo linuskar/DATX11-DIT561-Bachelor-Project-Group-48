@@ -16,7 +16,6 @@ var output_generation: Dictionary[Enums.ResourceType, int]
 
 ## The timer representing the production cycle of a production building.
 @onready var production_cycle: Timer = $Timer
-
 ## Variable for checking whether the building is currently selling its outputs
 var currently_selling: bool = false
 
@@ -58,7 +57,7 @@ func _output_resources() -> void:
 	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
 		production_cycle.paused = true
 	else:
-		var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
+		#var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
 		_use_input_recipe()
 		_handle_produced_goods()
 		_generate_byproducts()
@@ -69,6 +68,7 @@ func _handle_produced_goods() -> void:
 		if not currently_selling:
 			output_storage.set(resource, output_storage.get(resource)+produced_resources.get(resource))
 			ResourceSignals.add_resource.emit(resource, produced_resources.get(resource), self)
+			resources_changed.emit(resource, produced_resources.get(resource))
 		else:
 			PlayerCurrency.add_currency(Enums.get_value_of_resource(resource)*produced_resources.get(resource))
 	PlayerCurrency.remove_currency(self.building_data.building_upkeep)
@@ -168,7 +168,7 @@ func _generate_byproducts() -> void:
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	var resource_quantity: int = output_storage.get(resource_type)
 	output_storage.set(resource_type, resource_quantity - amount)
-	
+	resources_changed.emit(resource_type, -amount)
 	if check_if_can_produce():
 		production_cycle.paused = false
 

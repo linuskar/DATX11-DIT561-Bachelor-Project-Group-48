@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bb0k6gsn5k6v3"]
+[gd_scene load_steps=18 format=3 uid="uid://bb0k6gsn5k6v3"]
 
 [ext_resource type="Script" uid="uid://0jnwqslcprox" path="res://scripts/buildings/produktion_buildings/gear_factory.gd" id="1_essim"]
 [ext_resource type="Texture2D" uid="uid://beimrsmpocu3u" path="res://assets/buildings_iso/Gear_building.png" id="1_vsc0x"]
 [ext_resource type="Resource" uid="uid://crn1l8b1plvqe" path="res://resources/buildings/gear_factory.tres" id="2_fbl6r"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_y5nrc"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="5_e0qy3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_essim"]
@@ -109,19 +108,6 @@ texture = ExtResource("1_vsc0x")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_y5nrc")
-
 [node name="Smoke_v1" parent="." instance=ExtResource("5_e0qy3")]
 position = Vector2(16, -16)
 emitting = false
@@ -140,4 +126,3 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_qi7j2")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]

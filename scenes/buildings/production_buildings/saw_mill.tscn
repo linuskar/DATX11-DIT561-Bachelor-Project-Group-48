@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bt0w2f1d2iaox"]
+[gd_scene load_steps=18 format=3 uid="uid://bt0w2f1d2iaox"]
 
 [ext_resource type="Script" uid="uid://dyx0dn8djmd0w" path="res://scripts/buildings/produktion_buildings/saw_mill.gd" id="1_ix051"]
-[ext_resource type="Resource" uid="uid://1tptrw7m37b" path="res://resources/buildings/saw_mill.tres" id="2_ckntf"]
+[ext_resource type="Resource" uid="uid://dt62w7ld42f8y" path="res://resources/buildings/saw_mill.tres" id="2_ckntf"]
 [ext_resource type="Texture2D" uid="uid://dhrbh478p212n" path="res://assets/buildings_iso/Sawmill.png" id="3_03u5a"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_03u5a"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="5_wi8qw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjfo5"]
@@ -110,19 +109,6 @@ texture = ExtResource("3_03u5a")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_03u5a")
-
 [node name="Smoke_v1" parent="." instance=ExtResource("5_wi8qw")]
 position = Vector2(8, -24)
 emitting = false
@@ -141,4 +127,3 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_yda3m")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
