@@ -96,6 +96,7 @@ func handle_prod_building(building: ProductionBuildingData) -> String:
 	var text: String = ""
 	text += handle_storage_building(building)
 	text += get_ouputs_text(building)
+	text += get_emissions_text(building)
 	text += get_inputs_text(building)
 	disable_sell_tab(false)
 	return text
@@ -123,10 +124,18 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 	if building_data.output_generation.keys():
 		text += "\nOutputs\n"
 		for output in building_data.output_generation.keys():
+			if !Enums.is_emission(output):
+				text += Enums.resource_type_to_string(output) + ": In an area.\n"
+	return text
+	
+## Gets text representing what the emissions are for a building, if it has any
+func get_emissions_text(building_data: ProductionBuildingData) -> String:
+	var text: String = ""
+	if Enums.is_a_polluting_building(building_data.building_type):
+		text += "\nEmissions\n"
+		for output in building_data.output_generation.keys():
 			if Enums.is_emission(output):
 				text += Enums.resource_type_to_string(output) + ": In an area.\n"
-			else:
-				text += Enums.resource_type_to_string(output) + ': ' + str(building_data.output_generation.get(output)) + '\n'
 	return text
 
 ## Adds all the different inputs of the building, if it has any
