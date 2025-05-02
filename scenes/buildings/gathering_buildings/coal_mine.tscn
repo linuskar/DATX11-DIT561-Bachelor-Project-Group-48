@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://djt4gpmfrp805"]
+[gd_scene load_steps=31 format=3 uid="uid://djt4gpmfrp805"]
 
 [ext_resource type="Script" uid="uid://o0k4pecox0g" path="res://scripts/buildings/gathering_buildings/coal_mine.gd" id="1_5wtww"]
 [ext_resource type="Resource" uid="uid://tnait5c2k6ei" path="res://resources/buildings/coal_mine.tres" id="2_f8yp3"]

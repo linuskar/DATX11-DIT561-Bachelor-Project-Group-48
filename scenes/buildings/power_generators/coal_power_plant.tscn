@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cbk8oqqcmsa30"]
+[gd_scene load_steps=28 format=3 uid="uid://cbk8oqqcmsa30"]
 
 [ext_resource type="Script" uid="uid://duuowy6imteh8" path="res://scripts/buildings/power_generators/coal_power_plant.gd" id="1_2asmk"]
 [ext_resource type="Resource" uid="uid://dxv8ly1srx0hh" path="res://resources/buildings/coal_power_plant.tres" id="2_lqwfw"]

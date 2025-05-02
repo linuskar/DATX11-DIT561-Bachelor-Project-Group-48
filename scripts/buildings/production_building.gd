@@ -187,6 +187,7 @@ func _generate_byproducts() -> void:
 		else:
 			byproduct_stored += byproduct_generated
 			output_storage.set(byproduct, byproduct_stored)
+			resources_changed.emit(byproduct, byproduct_generated)
 	
 ## Function to send resources away from this buildings output storage.
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:

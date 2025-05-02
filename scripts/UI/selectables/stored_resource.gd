@@ -4,10 +4,14 @@ class_name StoredResourcePanel extends UIElement
 ## in create instance function
 static var scene: PackedScene  = load("res://scenes/UI/stored_resource.tscn")
 
-## Signal emitted when changes to the held amount and selling amounts
-## are changed. Includes the type of resource and the amount of it that is 
-## currently labeled as selling. 
-signal resource_held_changed(resource: Enums.ResourceType, selling_amount: int)
+## Signal emitted when the held amount is changed
+## Includes the type of resource and the amount of it and the way
+## it has changed
+signal resource_held_changed(resource: Enums.ResourceType, change: int)
+
+## Signal emitted when changes to the selling amount is made.
+## Includes the type of resource and the value of change.
+signal resource_selling_changed(resource: Enums.ResourceType, change: int)
 
 @onready var one_less_button: Button = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/Decrease
 @onready var five_less_button: Button = $PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/DecreaseMore
@@ -51,38 +55,42 @@ func ready_instance(new_resource: Enums.ResourceType, stored_amount: int) -> voi
 ## Triggered when pressing the Increase button, increases 
 ## selling resources by 1
 func increase() -> void:
+	var sell_before: int = resource_to_sell
 	if resource_to_sell + 1 >= resource_held:
 		resource_to_sell = resource_held
 	else: 
 		resource_to_sell += 1
-	resource_held_changed.emit(resource, resource_to_sell)
+	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
 	
 ## Triggered when pressing the IncreaseMore button, increases
 ## selling resources by 5
 func increase_more() -> void:
+	var sell_before: int = resource_to_sell
 	if resource_to_sell + 5 >= resource_held:
 		resource_to_sell = resource_held
 	else: 
 		resource_to_sell += 5
-	resource_held_changed.emit(resource, resource_to_sell)
+	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
 
 ## Triggered when pressing the Decrease button, decreases 
 ## selling resources by 1
 func decrease() -> void:
+	var sell_before: int = resource_to_sell
 	if resource_to_sell - 1 <= 0:
 		resource_to_sell = 0
 	else:
 		resource_to_sell -= 1
-	resource_held_changed.emit(resource, resource_to_sell)
+	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
 	
 ## Triggered when pressing the DecreaseMore button, decreases
 ## selling resources by 5
 func decrease_more() -> void:
+	var sell_before: int = resource_to_sell
 	if resource_to_sell - 5 <= 0:
 		resource_to_sell = 0
 	else:
 		resource_to_sell -= 5
-	resource_held_changed.emit(resource, resource_to_sell)
+	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
 
 ## Updates the text of the label to match the resources to sell count
 func update_text() -> void:
@@ -107,9 +115,9 @@ func change_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 		resource_held += amount
 		update_resources()
 		update_text()
-		resource_held_changed.emit(resource_held, resource_to_sell)
+		resource_held_changed.emit(resource, resource_to_sell)
 
 func update_resources() -> void:
 	if resource_to_sell > resource_held:
 		resource_to_sell = resource_held
-		resource_held_changed.emit(resource, resource_to_sell)
+		resource_selling_changed.emit(resource, resource_to_sell)

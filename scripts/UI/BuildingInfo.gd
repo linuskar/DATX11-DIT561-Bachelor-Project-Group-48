@@ -42,10 +42,8 @@ func _process(delta: float) -> void:
 
 ## Updates the storage panel
 func update_storage() -> void:
-	for building in selected_buildings:
-		sell_value_label.text = "0"
-		for resource in storage_connections.keys():
-			pass
+	pass
+		
 
 ## Fills the info label with text dependant on the building it recieved
 func populate_info_label(building: Building) -> void:
@@ -80,7 +78,7 @@ func populate_storage_panel() -> void:
 		if building is StorageBuilding:
 			for resource in building.output_storage.keys():
 				if Enums.is_emission(resource):
-					pass ## We dont want to display emissions as part of storage
+					continue ## We dont want to display emissions as part of storage
 				elif Enums.is_byproduct(resource):
 					var stored_amount: int = building.output_storage.get(resource)
 					if not storage_connections.has(resource):
@@ -101,6 +99,7 @@ func populate_storage_panel() -> void:
 						instance.ready_instance(resource, stored_amount)
 						storage_connections.set(resource, instance)
 						instance.connect_to_building(building)
+						instance.resource_selling_changed.connect(update_sell_amount)
 					else:
 						storage_connections.get(resource).change_resources(resource, stored_amount)
 						storage_connections.get(resource).connect_to_building(building)
@@ -312,10 +311,12 @@ func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
 func set_active(buildings: Array[Building]) -> void:
 	if buildings.is_empty():
 		return
+	for building in selected_buildings:
+		building.building_deselected(building)
 	selected_buildings = clean_buildings_list(buildings)
 	if selected_buildings.size() == 1:
 		selected_buildings.front().building_selected(selected_buildings.front())
-		var current_building: Building = buildings.front()
+		var current_building: Building = selected_buildings.front()
 		if current_building is ResearchLab:
 			get_tree().root.get_node("Game/UserInterface/ResearchUI").open(selected_buildings.front())
 			return
