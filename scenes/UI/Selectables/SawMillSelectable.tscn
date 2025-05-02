@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_kiv37"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_feteh"]
-[ext_resource type="Resource" uid="uid://1tptrw7m37b" path="res://resources/buildings/saw_mill.tres" id="2_lt1rx"]
+[ext_resource type="Resource" uid="uid://dt62w7ld42f8y" path="res://resources/buildings/saw_mill.tres" id="2_lt1rx"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_lt1rx"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_hgtfd"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_b1wv1"]

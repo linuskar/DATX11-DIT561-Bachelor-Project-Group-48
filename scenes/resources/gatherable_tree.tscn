@@ -24,7 +24,7 @@ size = Vector2(32, 32)
 
 [node name="GatherableTree" type="Area2D" groups=["trees"]]
 script = ExtResource("1_q50ek")
-max_pollution_max_capacity = 1000.0
+max_pollution_max_capacity = 2000.0
 quantity = 40
 resource_type = 2
 

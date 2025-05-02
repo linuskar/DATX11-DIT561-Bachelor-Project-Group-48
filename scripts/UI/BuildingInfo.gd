@@ -96,6 +96,7 @@ func handle_prod_building(building: ProductionBuildingData) -> String:
 	var text: String = ""
 	text += handle_storage_building(building)
 	text += get_ouputs_text(building)
+	text += get_emissions_text(building)
 	text += get_inputs_text(building)
 	disable_sell_tab(false)
 	return text
@@ -122,25 +123,44 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
 	if building_data.output_generation.keys():
 		text += "\nOutputs\n"
-		for key in building_data.output_generation.keys():
-			text += Enums.resource_type_to_string(key) + ': ' + str(building_data.output_generation.get(key)) + '\n'
+		for output in building_data.output_generation.keys():
+			if !Enums.is_emission(output):
+				text += Enums.resource_type_to_string(output) + ": In an area.\n"
+	return text
+	
+## Gets text representing what the emissions are for a building, if it has any
+func get_emissions_text(building_data: ProductionBuildingData) -> String:
+	var text: String = ""
+	if Enums.is_a_polluting_building(building_data.building_type):
+		text += "\nEmissions\n"
+		for output in building_data.output_generation.keys():
+			if Enums.is_emission(output):
+				text += Enums.resource_type_to_string(output) + ": In an area.\n"
 	return text
 
 ## Adds all the different inputs of the building, if it has any
 func get_inputs_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
-	
+				
 	if building_data.input_recipes.keys():
-		var input_recipes: Dictionary[int, Array] = {}
+		## If the recipe is empty for a production building
+		if building_data.input_recipes.is_empty():
+			return ""
+			
+		var input_recipes: Dictionary[int, InputRecipe] = {}
 		
-		for resource in building_data.input_recipes.keys():
-			var id = building_data.input_recipes.get(resource)
-			if input_recipes.has(id):
-				var new_array: Array = input_recipes.get(id)
-				new_array.append(resource)
-				input_recipes.set(id, new_array)
-			else:
-				input_recipes.set(id, [resource])
+		for id in building_data.input_recipes.keys():
+			var recipe: Array = building_data.input_recipes.get(id)
+			
+			for resource_type in recipe:
+				if input_recipes.has(id):
+					var input_recipe: InputRecipe = input_recipes.get(id)
+					input_recipe.resources.append(resource_type)
+					input_recipes.set(id, input_recipe)
+				else:
+					var new_array: InputRecipe = InputRecipe.new()
+					new_array.resources.append(resource_type)
+					input_recipes.set(id, new_array)
 		
 		text += "\nInputs\n"
 		
@@ -149,8 +169,8 @@ func get_inputs_text(building_data: ProductionBuildingData) -> String:
 		for recipe_id in input_recipes.keys():
 			if i > 0:
 				text += "OR\n"
-			var recipe: Array = input_recipes.get(recipe_id)	
-			for resource in recipe:
+			var recipe: InputRecipe = input_recipes.get(recipe_id)
+			for resource in recipe.resources:
 				text += Enums.resource_type_to_string(resource) + ': ' + str(building_data.input_use_rates.get(resource)) + '\n'
 			i += 1
 	return text
@@ -185,16 +205,6 @@ func get_connected_landfills() -> String:
 ## Specific for gathering buildings, add the resource node it has to be placed on for operation
 func get_resource_node_text(building_data: GatheringBuildingData) -> String:
 	return "\nGathers on resource node: " + Enums.resource_type_to_string(building_data.can_gather_resource_type) + '\n'
-
-## Gets text representing a building pollution outputs, if it has any
-func get_pollution_text(building_data: ProductionBuildingData) -> String:
-	if Enums.is_a_polluting_building(building_data.building_type):
-		var text: String = "\nPollution\n"
-		for output in building_data.output_generation.keys():
-			if Enums.is_emission(output):
-				text += building_data.output_generation.get(output) + ": In an area.\n"
-		return text
-	return ""
 	
 func get_gathering_text(building_data: AreaGatheringBuildingData) -> String:
 	var text: String = "\nGathering\n"

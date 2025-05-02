@@ -7,7 +7,10 @@ class_name Enums
 
 static var polluting_buildings: Array[BuildingType] = [
 		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
-		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT, BuildingType.STEEL_MILL]
+		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT, 
+		BuildingType.STEEL_MILL, BuildingType.GEAR_FACTORY,
+		BuildingType.SAW_MILL
+		]
 		
 static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4, ResourceType.STEEL_SCRAP]
 
@@ -189,6 +192,7 @@ enum PollutionLevel {
 
 static var emissions_contributing_to_tree_pollution: Dictionary[ResourceType, String] = {
 	ResourceType.S02: "S02",
+	ResourceType.N0X: "N0X",
 }
 static func is_a_tree_pollution_contributor(resource_type: ResourceType) -> bool:
 	return resource_type in emissions_contributing_to_tree_pollution
