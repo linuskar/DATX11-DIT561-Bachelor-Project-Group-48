@@ -198,7 +198,7 @@ script = ExtResource("1_y4byq")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(102, 162)
-layout_mode = 0
+layout_mode = 1
 offset_right = 102.0
 offset_bottom = 162.0
 scale = Vector2(4, 4)
@@ -207,13 +207,13 @@ theme_override_styles/panel = ExtResource("7_xxyib")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="General" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -224,6 +224,7 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+alignment = 1
 
 [node name="Padding" type="MarginContainer" parent="MarginContainer/General/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
@@ -233,18 +234,28 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/General/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/General/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="SingleSelected" type="VBoxContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FactoryImage" type="TextureRect" parent="MarginContainer/General/VBoxContainer/MarginContainer3"]
+[node name="FactoryImage" type="TextureRect" parent="MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected/MarginContainer3"]
 custom_minimum_size = Vector2(224, 224)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("2_oocw6")
 stretch_mode = 4
 
-[node name="BuildingName" type="Label" parent="MarginContainer/General/VBoxContainer"]
+[node name="BuildingName" type="Label" parent="MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected"]
 custom_minimum_size = Vector2(307, 65)
 layout_mode = 2
 mouse_filter = 1
@@ -253,7 +264,7 @@ label_settings = SubResource("LabelSettings_oocw6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/General/VBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 10
@@ -261,20 +272,23 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer4"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected/MarginContainer4"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_xxyib")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected/MarginContainer4/PanelContainer"]
 layout_mode = 2
 
-[node name="BuildingInfo" type="Label" parent="MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer"]
+[node name="BuildingInfo" type="Label" parent="MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected/MarginContainer4/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(280, 160)
 layout_mode = 2
 size_flags_horizontal = 4
 label_settings = SubResource("LabelSettings_6mxs2")
 autowrap_mode = 3
+
+[node name="MultiSelected" type="VBoxContainer" parent="MarginContainer/General/VBoxContainer/MarginContainer"]
+layout_mode = 2
 
 [node name="Storage" type="ScrollContainer" parent="MarginContainer"]
 visible = false
@@ -283,9 +297,9 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Storage"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Storage/MarginContainer"]
@@ -403,7 +417,7 @@ text = "Set store production"
 autowrap_mode = 2
 
 [node name="ExitButtonPanel" type="Panel" parent="."]
-layout_mode = 2
+layout_mode = 1
 offset_left = 314.0
 offset_right = 338.0
 offset_bottom = 24.0

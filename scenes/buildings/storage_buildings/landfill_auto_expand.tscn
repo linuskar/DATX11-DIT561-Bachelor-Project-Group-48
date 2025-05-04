@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cr2cijyosovkf" path="res://scripts/buildings/storage_buildings/landfill_auto_expand.gd" id="1_md3jn"]
 [ext_resource type="Texture2D" uid="uid://bqeautb4vgenl" path="res://assets/buildings_iso/biomass_landfill.png" id="2_md3jn"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_4p3gb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euk6p"]
+size = Vector2(32, 32)
 
 [sub_resource type="Animation" id="Animation_fnoo6"]
 length = 0.001
@@ -91,9 +93,11 @@ scale_curve = SubResource("CurveTexture_7ihue")
 color_ramp = SubResource("GradientTexture1D_ghimp")
 alpha_curve = SubResource("CurveTexture_phnxc")
 
-[node name="LandfillAutoExpand" type="Sprite2D"]
-texture = ExtResource("2_md3jn")
+[node name="LandfillAutoExpand" type="StaticBody2D"]
 script = ExtResource("1_md3jn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_euk6p")
 
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -116,18 +120,8 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_alyep")
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_4p3gb")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_md3jn")
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]

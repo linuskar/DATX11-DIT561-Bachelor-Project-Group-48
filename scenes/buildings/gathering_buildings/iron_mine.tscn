@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://isbsjsm2mmil"]
+[gd_scene load_steps=18 format=3 uid="uid://isbsjsm2mmil"]
 
 [ext_resource type="Script" uid="uid://dkys5yq1u7s2q" path="res://scripts/buildings/gathering_buildings/iron_mine.gd" id="1_l5hob"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_jwvew"]
 [ext_resource type="Texture2D" uid="uid://bqugr640sxpqq" path="res://assets/buildings_iso/Ironmine_building1.png" id="3_oc4lm"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_6f8g6"]
 [ext_resource type="PackedScene" uid="uid://bkqqe6bdw740k" path="res://scenes/buildings/smoke/smoke_v2.tscn" id="5_oc4lm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwrwc"]
@@ -110,19 +109,6 @@ texture = ExtResource("3_oc4lm")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_6f8g6")
-
 [node name="Smoke_v2" parent="." instance=ExtResource("5_oc4lm")]
 position = Vector2(-8.64637, -23.88)
 emitting = false
@@ -149,5 +135,4 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mlxvk")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
 [connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]

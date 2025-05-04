@@ -17,8 +17,6 @@ var position_to_expand_to: Vector2 = Vector2(0, 0)
 signal landfill_expanded(landfill: BiomassLandfill)
 signal landfill_shrinked(landfill: BiomassLandfill)
 
-@onready var clickable: Clickable = $Clickable
-
 var landfill_auto_expand: PackedScene = preload("res://scenes/buildings/storage_buildings/landfill_auto_expand.tscn")
 
 @export var main_resource: Enums.ResourceType
@@ -65,6 +63,7 @@ func highlight_building() -> void:
 	if currently_selected:
 		highlight.selected()
 		for landfill in connected_landfills:
+			landfill.currently_selected = true
 			landfill.highlight.selected()
 	else:
 		highlight.unselected()

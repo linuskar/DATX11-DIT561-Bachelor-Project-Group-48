@@ -1,8 +1,8 @@
 class_name BuildingInfo extends UIMenu
 
-@onready var image: TextureRect = $MarginContainer/General/VBoxContainer/MarginContainer3/FactoryImage
-@onready var building_name: Label = $MarginContainer/General/VBoxContainer/BuildingName
-@onready var info: Label = $MarginContainer/General/VBoxContainer/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
+@onready var image: TextureRect = $MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected/MarginContainer3/FactoryImage
+@onready var building_name: Label = $MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected/BuildingName
+@onready var info: Label = $MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected/MarginContainer4/PanelContainer/MarginContainer/BuildingInfo
 @onready var main_container: MarginContainer = $MarginContainer
 @onready var storage_list: VBoxContainer = $MarginContainer/Storage/MarginContainer/VBoxContainer/StoredResources
 @onready var sell_value_label: Label = $MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/SellValue
@@ -12,11 +12,20 @@ class_name BuildingInfo extends UIMenu
 @onready var mode_tab: ScrollContainer = $MarginContainer/Selling
 @onready var tab_bar: TabBar = $TabBar
 
-## The currently held building
-var current_building: Building
+## The currently selected buildings
+var selected_buildings: Array[Building]
 
 ## Template scene for a stored resource panel
 var stored_resource_panel: PackedScene = preload("res://scenes/UI/stored_resource.tscn")
+
+## The single selected panel
+@onready var single_select: VBoxContainer = $MarginContainer/General/VBoxContainer/MarginContainer/SingleSelected
+## The multiselect panel
+@onready var multi_select: VBoxContainer = $MarginContainer/General/VBoxContainer/MarginContainer/MultiSelected
+## Template for a panel with number of buildings
+var building_numbering: PackedScene = preload("res://scenes/utility/BuildingNumbering.tscn")
+## Dictionary containing the numbered buildings
+var building_numberings: Dictionary[Enums.BuildingType, BuildingNumbering] = {}
 
 ## A dict containing references from a resourcetype to the corresponding
 ## stored resource panel
@@ -24,22 +33,9 @@ var storage_connections: Dictionary[Enums.ResourceType, StoredResourcePanel] = {
 
 func _ready() -> void:
 	super._ready()
-	BuildingSignals.building_clicked.connect(set_active)
+	#BuildingSignals.building_clicked.connect(set_active)
+	BuildingSelector.buildings_selected.connect(set_active)
 	set_inactive()
-
-func _process(delta: float) -> void:
-	update_storage()
-
-## Updates the storage panel
-func update_storage() -> void:
-	if current_building is StorageBuilding:
-		sell_value_label.text = "0"
-		for resource in storage_connections.keys():
-			var stored_resources: int = current_building.output_storage.get(resource)
-			storage_connections.get(resource).resource_held = stored_resources
-			if not Enums.is_byproduct(resource):
-				update_sell_amount(resource, storage_connections.get(resource).resource_to_sell)
-		
 
 ## Fills the info label with text dependant on the building it recieved
 func populate_info_label(building: Building) -> void:
@@ -47,31 +43,58 @@ func populate_info_label(building: Building) -> void:
 	building_name.set_text(Enums.building_type_to_string(building.building_data.building_type))
 	info.text = get_text(building.building_data)
 
+func populate_multi_selected(buildings: Array[Building]) -> void:
+	for child in multi_select.get_children():
+		child.queue_free()
+	building_numberings.clear()
+	for building in buildings:
+		building.building_selected(building)
+		if building.building_type in building_numberings.keys():
+			building_numberings.get(building.building_type).number_of_buildings += 1
+			building_numberings.get(building.building_type).update_text()
+		else:
+			var new_instance: BuildingNumbering = building_numbering.instantiate()
+			building_numberings.set(building.building_type, new_instance)
+			building_numberings.get(building.building_type).number_of_buildings = 1
+			new_instance.ready_instance(building.building_type, building)
+			multi_select.add_child(new_instance)
+
 ## Fills the storage panel with stored resources. Also adds the panels
 ## to the storage connections
-func populate_storage_panel(building: StorageBuilding) -> void:
+func populate_storage_panel() -> void:
 	## First clear all children from the storage list and storage connections dict
 	storage_connections.clear()
 	for child in storage_list.get_children():
 		child.queue_free()
-	for resource in building.output_storage.keys():
-		if Enums.is_emission(resource):
-			pass ## We dont want to display emissions as part of storage
-		elif Enums.is_byproduct(resource):
-			var stored_amount: int = building.output_storage.get(resource)
-			var instance: StoredResourcePanel = stored_resource_panel.instantiate()
-			storage_list.add_child(instance)
-			instance.ready_instance(resource, stored_amount)
-			storage_connections.set(resource, instance)
-			instance.disable_selling()
-		else:
-			var stored_amount: int = building.output_storage.get(resource)
-			var instance: StoredResourcePanel = stored_resource_panel.instantiate()
-			storage_list.add_child(instance)
-			instance.ready_instance(resource, stored_amount)
-			storage_connections.set(resource, instance)
-			instance.resource_held_changed.connect(update_sell_amount)
-
+	for building in selected_buildings:
+		if building is StorageBuilding:
+			for resource in building.output_storage.keys():
+				if Enums.is_emission(resource):
+					continue ## We dont want to display emissions as part of storage
+				elif Enums.is_byproduct(resource):
+					var stored_amount: int = building.output_storage.get(resource)
+					if not storage_connections.has(resource):
+						var instance: StoredResourcePanel = stored_resource_panel.instantiate()
+						storage_list.add_child(instance)
+						instance.ready_instance(resource, stored_amount)
+						storage_connections.set(resource, instance)
+						instance.disable_selling()
+						instance.connect_to_building(building)
+					else:
+						storage_connections.get(resource).change_resources(resource, stored_amount)
+						storage_connections.get(resource).connect_to_building(building)
+				else:
+					var stored_amount: int = building.output_storage.get(resource)
+					if not storage_connections.has(resource):
+						var instance: StoredResourcePanel = stored_resource_panel.instantiate()
+						storage_list.add_child(instance)
+						instance.ready_instance(resource, stored_amount)
+						storage_connections.set(resource, instance)
+						instance.connect_to_building(building)
+						instance.resource_selling_changed.connect(update_sell_amount)
+					else:
+						storage_connections.get(resource).change_resources(resource, stored_amount)
+						storage_connections.get(resource).connect_to_building(building)
 ## Formating building data into a string that is then displayed in the
 ## building info panel.
 func get_text(building_data: BuildingData) -> String:
@@ -87,11 +110,11 @@ func handle_building(building: BuildingData) -> String:
 func handle_storage_building(building: StorageBuildingData) -> String:
 	var text: String = ""
 	text += handle_building(building)
-	text += get_storage_text()
+	text += get_storage_text(building)
 	if building.building_type in Enums.landfills:
-		text += get_connected_landfills()
+		text += get_connected_landfills(building)
 	return text
-	
+
 func handle_prod_building(building: ProductionBuildingData) -> String:
 	var text: String = ""
 	text += handle_storage_building(building)
@@ -184,22 +207,23 @@ func get_valid_tiles_text(building_data: BuildingData) -> String:
 	return text
 
 ## Adds storage capacity to the text
-func get_storage_text() -> String:
+func get_storage_text(building_data: StorageBuildingData) -> String:
 	var text: String = ""
 	text += "\nMax Storage\n"
-	for key in current_building.max_storage.keys():
-		text += Enums.resource_type_to_string(key) + ': ' + str(current_building.max_storage.get(key)) + '\n'
+	for key in selected_buildings.front().max_storage.keys():
+		text += Enums.resource_type_to_string(key) + ': ' + str(selected_buildings.front().max_storage.get(key)) + '\n'
 	return text
 
-func get_connected_landfills() -> String:
+func get_connected_landfills(building: StorageBuildingData) -> String:
+
 	var text: String = "" 
 	
-	var main_resource: String = Enums.resource_type_to_string(current_building.main_resource)
-	var auto_expand_max_capacity_amount: String = str(current_building.auto_expand_max_capacity_amount)
-	var landfill_type: String = Enums.building_type_to_string(current_building.building_type)
+	var main_resource: String = Enums.resource_type_to_string(selected_buildings.front().main_resource)
+	var auto_expand_max_capacity_amount: String = str(selected_buildings.front().auto_expand_max_capacity_amount)
+	var landfill_type: String = Enums.building_type_to_string(selected_buildings.front().building_type)
 	
 	text += "\n" + "This building auto expands and shrinks its max capacity of " + main_resource + " by " +  auto_expand_max_capacity_amount + "."+ "\n"
-	text += "\nConnected " + landfill_type + "S: " + str(current_building.connected_landfills.size() + 1) + '\n'
+	text += "\nConnected " + landfill_type + "S: " + str(selected_buildings.front().connected_landfills.size() + 1) + '\n'
 	return text
 
 ## Specific for gathering buildings, add the resource node it has to be placed on for operation
@@ -220,25 +244,12 @@ func _set_tab_visible(tab_num: int) -> void:
 
 ## Hide the info panel
 func set_inactive() -> void:
-	BuildingSignals.building_info_closed.emit(current_building)
+	for building in selected_buildings:
+		BuildingSignals.building_info_closed.emit(building)
 	self.hide()
 
 func hide_ui_menu() -> void:
 	set_inactive()
-
-## Show the info panel and update its information
-func set_active(building: Building) -> void:
-	current_building = building
-	if current_building.building_data.building_type == Enums.BuildingType.RESEARCH_LAB:
-		get_tree().root.get_node("Game/UserInterface/ResearchUI").open(current_building)
-		return
-	reset_tabs()
-	self.show()
-	populate_info_label(building)
-	if current_building is StorageBuilding:
-		populate_storage_panel(current_building)
-	if current_building is ProductionBuilding:
-		set_building_selling(current_building.currently_selling)
 
 ## Function that disables or enables the selling tab
 ## Disables on true, enables on false
@@ -246,10 +257,12 @@ func disable_sell_tab(disable_sell_tab: bool) -> void:
 	self.find_child("TabBar").set_tab_disabled(2, disable_sell_tab)
 	
 func set_building_selling(selling: bool) -> void:
-	current_building.currently_selling = selling
+	for building in selected_buildings:
+		if building is ProductionBuilding:
+			building.currently_selling = selling
+			building._output_resources()
 	if selling:
 		sell_store_status_label.text = "Selling"
-		current_building._output_resources()
 	else:
 		sell_store_status_label.text = "Storing"
 		
@@ -269,12 +282,22 @@ func _sell_chosen_resources() -> void:
 			var stored_resource_panel: StoredResourcePanel = storage_connections.get(resource_type)
 			var sold_amount: int = stored_resource_panel.resource_to_sell
 			var currency_gain: int = Enums.get_value_of_resource(resource_type)*sold_amount
-			var stored_amount: int = current_building.output_storage.get(resource_type)
-			current_building._send_resources(resource_type, sold_amount)
+			for building in selected_buildings:
+				if sold_amount == 0:
+					continue
+				if building is StorageBuilding and building.building_data.output_types.has(resource_type):
+					var s_building: StorageBuilding = building
+					var in_storage: int = s_building.output_storage.get(resource_type)
+					if sold_amount > in_storage:
+						sold_amount -= in_storage
+						building._send_resources(resource_type, in_storage)
+						ResourceSignals.add_input_building.emit(building)
+					else:
+						building._send_resources(resource_type, sold_amount)
+						ResourceSignals.add_input_building.emit(building)
+			ResourceSignals.use_resource.emit(resource_type, sold_amount)
 			PlayerCurrency.add_currency(currency_gain)
 			stored_resource_panel.resource_to_sell = 0
-			ResourceSignals.use_resource.emit(resource_type, sold_amount)
-			ResourceSignals.add_input_building.emit(current_building)
 			
 			#play sound if sell amount is bigger than 0.
 			if currency_gain > 0:
@@ -285,3 +308,38 @@ func _sell_chosen_resources() -> void:
 func update_sell_amount(resource: Enums.ResourceType, amount: int) -> void:
 	var value: int = Enums.get_value_of_resources(resource, amount)
 	sell_value_label.set_text(str(int(sell_value_label.text)+value))
+
+func set_active(buildings: Array[Building]) -> void:
+	if buildings.is_empty():
+		return
+	for building in selected_buildings:
+		building.building_deselected(building)
+	selected_buildings = clean_buildings_list(buildings)
+	if selected_buildings.size() == 1:
+		selected_buildings.front().building_selected(selected_buildings.front())
+		var current_building: Building = selected_buildings.front()
+		if current_building is ResearchLab:
+			get_tree().root.get_node("Game/UserInterface/ResearchUI").open(selected_buildings.front())
+			return
+		else:
+			single_select.show()
+			multi_select.hide()
+			reset_tabs()
+			self.show()
+			populate_info_label(current_building)
+			populate_storage_panel()
+	elif selected_buildings.size() > 1:
+		single_select.hide()
+		multi_select.show()
+		reset_tabs()
+		self.show()
+		populate_multi_selected(selected_buildings)
+		populate_storage_panel()
+
+func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
+	var cleaned_list: Dictionary[Building, bool] = {}
+	for building in buildings:
+		var current: Building = building.get_building()
+		if not cleaned_list.has(building):
+			cleaned_list.set(current, true)
+	return cleaned_list.keys()

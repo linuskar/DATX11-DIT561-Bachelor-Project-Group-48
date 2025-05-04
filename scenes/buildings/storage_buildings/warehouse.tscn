@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxdbme3urfb2i"]
+[gd_scene load_steps=17 format=3 uid="uid://dxdbme3urfb2i"]
 
 [ext_resource type="Script" uid="uid://1nqmw0tgxr05" path="res://scripts/buildings/storage_buildings/warehouse.gd" id="1_5pk0i"]
 [ext_resource type="Resource" uid="uid://ix3necejb3ix" path="res://resources/buildings/warehouse.tres" id="2_4c0dy"]
 [ext_resource type="Texture2D" uid="uid://bk0cwfm4rdk2w" path="res://assets/buildings_iso/warehouse.png" id="3_4c0dy"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_ctsfu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)
@@ -105,19 +104,6 @@ shape = SubResource("RectangleShape2D_0igec")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_4c0dy")
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_ctsfu")
-
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_86t2d")
@@ -131,5 +117,4 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ipmv7")
 
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
 [connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]

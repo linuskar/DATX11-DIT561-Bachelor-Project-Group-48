@@ -108,7 +108,8 @@ func _generate_byproducts() -> void:
 			emitted_emissions.emit(self, byproduct, byproduct_generated_rate)
 		else:
 			byproduct_stored += byproduct_generated_rate
-			output_storage.set(byproduct, byproduct_stored)	
+			output_storage.set(byproduct, byproduct_stored)
+			resources_changed.emit(byproduct, byproduct_generated_rate)
 
 func _on_place_animation_animation_finished(anim_name: StringName) -> void:
 	$place_particle.emitting = true

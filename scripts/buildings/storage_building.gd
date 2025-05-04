@@ -13,7 +13,10 @@ var max_storage: Dictionary[Enums.ResourceType, int]
 ## The input and its storage of the resources the building stores.
 var input_storage: Dictionary[Enums.ResourceType, int]
 ## The storage of the resources the building sends.
-var output_storage: Dictionary[Enums.ResourceType, int] 
+var output_storage: Dictionary[Enums.ResourceType, int]
+
+## Signal emitted when the amount of resources held changes
+signal resources_changed(resource: Enums.ResourceType, difference: int)
 
 ## The byproducts the storage building takes in and outputs.
 var byproducts: Array[Enums.ResourceType]
@@ -51,8 +54,8 @@ func init_storage_building() -> void:
 func _send_resources(resource_type: Enums.ResourceType, amount: int) -> void:
 	var resource_quantity: int = output_storage.get(resource_type)
 	output_storage.set(resource_type, resource_quantity - amount)
-	
 	input_storage.set(resource_type, resource_quantity - amount)
+	resources_changed.emit(resource_type, -amount)
 	
 func get_produced_resources() -> Array[Enums.ResourceType]:
 	var arr: Array[Enums.ResourceType] = []
@@ -69,3 +72,4 @@ func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> vo
 	output_storage.set(input_type, current + input_amount)
 	ResourceSignals.use_resource.emit(input_type, input_amount)
 	ResourceSignals.add_resource.emit(input_type, input_amount, self)
+	resources_changed.emit(input_type, input_amount)

@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://dwfw57d10a85j"]
+[gd_scene load_steps=23 format=3 uid="uid://dwfw57d10a85j"]
 
 [ext_resource type="Script" uid="uid://d1rtbhcf3jhw3" path="res://scripts/buildings/gathering_buildings/wood_cutter.gd" id="1_4m5a3"]
 [ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="2_hjr1d"]
 [ext_resource type="Texture2D" uid="uid://babal08bnd1ox" path="res://assets/UI/LogCabin.png" id="3_gte52"]
-[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_5ylux"]
 [ext_resource type="AudioStream" uid="uid://danlvadxldepu" path="res://assets/sounds/click/wood_chop.wav" id="5_fnoo6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g67v6"]
@@ -143,19 +142,6 @@ texture = ExtResource("3_gte52")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_5ylux")
-
 [node name="place_animation" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_86t2d")
@@ -183,5 +169,4 @@ stream = ExtResource("5_fnoo6")
 volume_db = 10.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
 [connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]
