@@ -35,7 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				## Get the end position for the rectangle
 				var drag_end: Vector2 = get_global_mouse_position()
 				## Set size of rectangle (set like radius)
-				select_rect.extents = (drag_end - drag_start)/2
+				select_rect.extents = abs((drag_end - drag_start)/2)
 				## Gets the state of the 2D world 
 				var space = get_world_2d().direct_space_state
 				## An empty query to be used for the space
