@@ -17,8 +17,6 @@ var position_to_expand_to: Vector2 = Vector2(0, 0)
 signal landfill_expanded(landfill: BiomassLandfill)
 signal landfill_shrinked(landfill: BiomassLandfill)
 
-@onready var clickable: Clickable = $Clickable
-
 var landfill_auto_expand: PackedScene = preload("res://scenes/buildings/storage_buildings/landfill_auto_expand.tscn")
 
 @export var main_resource: Enums.ResourceType
