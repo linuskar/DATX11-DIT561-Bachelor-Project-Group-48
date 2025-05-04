@@ -8,7 +8,7 @@ extends GatherableResource
 ##
 
 ## The maximum amount of pollution a tree can absorb before it is considered dead
-@export var max_pollution_max_capacity: float
+@export var max_pollution_capacity: float
 @onready var sprite_2d: Sprite2D = $Sprite2D
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
@@ -33,14 +33,24 @@ var pollution_level_max_limits: Dictionary[Enums.PollutionLevel, float] = {}
 ## Dictionary containing the minimum value limits for pollution levels
 var pollution_level_min_limits: Dictionary[Enums.PollutionLevel, float] = {}
 
-func _ready() -> void:	
-	emission_storage.set(Enums.ResourceType.CO2, 0)
-	emission_storage.set(Enums.ResourceType.S02, 0)
-	emission_storage.set(Enums.ResourceType.N0X, 0)
-	emission_storage.set(Enums.ResourceType.CH4, 0)
+var tree_size: Enums.TreeSize
+var tree_size_factor: float
+
+func _ready() -> void:
+	for emission in Enums.emissions:
+		emission_storage.set(emission, 0)
 	wildfire.stop_fire()
 	sprite_2d.material.set_shader_parameter("world_matrix", global_transform)
+	init_tree_size()
 	init_pollution_level_limits()
+
+## Function to initialize the tree size
+func init_tree_size() -> void:
+	var random_int = randi_range(0, Enums.TreeSize.size() - 1)
+	tree_size = Enums.TreeSize.values()[random_int]
+	tree_size_factor = Enums.tree_size_multiplier.get(tree_size)
+	
+	quantity *= tree_size_factor
 
 ## Function to initialize the value limits for the pollution levels to a tree
 func init_pollution_level_limits() -> void:
@@ -52,7 +62,7 @@ func init_pollution_level_limits() -> void:
 			i -= 1
 			continue
 			
-		var max_level_value: float = min(max_pollution_max_capacity / i, max_pollution_max_capacity)
+		var max_level_value: float = min(max_pollution_capacity / i, max_pollution_capacity) * tree_size_factor
 		pollution_level_max_limits.set(level, max_level_value)
 		pollution_level_min_limits.set(level, min_level_value)
 		min_level_value = max_level_value

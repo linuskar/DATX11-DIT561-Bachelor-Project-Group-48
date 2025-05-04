@@ -212,6 +212,19 @@ enum Direction {
 	RIGHT,
 }
 
+static var tree_size_multiplier: Dictionary[Enums.TreeSize, float] = {
+	TreeSize.SMALL: 0.5,
+	TreeSize.MEDIUM: 1.0,
+	TreeSize.LARGE: 1.5,
+}
+
+## The possible tree sizes
+enum TreeSize {
+	SMALL,
+	MEDIUM,
+	LARGE,
+}
+
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
 	return building_type in polluting_buildings
 	
