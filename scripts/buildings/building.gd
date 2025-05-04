@@ -25,8 +25,6 @@ var building_type: Enums.BuildingType
 ## Boolean for when the building is currently selected by the player
 var currently_selected: bool
 
-
-
 func _ready() -> void:
 	highlight = highlight_scene.instantiate()
 	highlight.building_size = building_data.building_size
