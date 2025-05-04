@@ -37,14 +37,6 @@ func _ready() -> void:
 	BuildingSelector.buildings_selected.connect(set_active)
 	set_inactive()
 
-func _process(delta: float) -> void:
-	update_storage()
-
-## Updates the storage panel
-func update_storage() -> void:
-	pass
-		
-
 ## Fills the info label with text dependant on the building it recieved
 func populate_info_label(building: Building) -> void:
 	image.set_texture(building.building_sprite.texture)
