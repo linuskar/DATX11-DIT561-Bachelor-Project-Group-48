@@ -12,7 +12,6 @@ var wood_gathered: int = 0
 
 func _ready():
 	super()
-	# Research.research_completed.connect(_on_research_completed)
 	$place_animation.play("place")
 
 ## Function to begin outputting resources from the production building.
@@ -112,7 +111,3 @@ func _generate_byproducts() -> void:
 
 func _on_place_animation_animation_finished(anim_name: StringName) -> void:
 	$place_particle.emitting = true
-
-func apply_research_upgrade(id: Enums.ResearchID) -> void:
-	if Research.has_completed(id):
-		pass
