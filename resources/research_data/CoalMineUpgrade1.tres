@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_cdkf2")
-research_id = "CM1"
+research_id = 2
 research_name = "More Coal!"
 description = "Search deeper, and finde more coal!"
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

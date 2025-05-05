@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_w1yc1")
-research_id = "WC1"
+research_id = 1
 research_name = "More Wood!"
 description = "More efficient woodcutters"
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

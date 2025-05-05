@@ -9,7 +9,7 @@ extends StaticBody2D
 
 ## The metadata for the building
 @export var building_data: BuildingData  
-@export var research_required: String = ""
+@export var available_research: Array[ResearchData]
 
 ## The sprite of the building
 @onready var building_sprite: Sprite2D = $Sprite2D
@@ -34,11 +34,7 @@ func _ready() -> void:
 	BuildingSignals.building_info_closed.connect(building_deselected)
 	
 	building_type = building_data.building_type
-	if research_required != "":
-		if Research.has_completed(research_required):
-			apply_research_upgrade()
-		else:
-			Research.research_completed.connect(_on_research_completed)
+	Research.research_completed.connect(_on_research_completed)
 
 func _process(delta: float) -> void:
 	highlight_building()
@@ -64,12 +60,13 @@ func building_deselected(building: Building) -> void:
 	if building == self:
 		currently_selected = false
 
-func _on_research_completed(id: String) -> void:
-	if id == research_required:
-		apply_research_upgrade()
+func _on_research_completed(id: Enums.ResearchID) -> void:
+	for reserach in available_research:
+		if id == reserach.research_id:
+			apply_research_upgrade(id)
 
 # this is a placeholder, override in child for specific upgrades
-func apply_research_upgrade() -> void:
+func apply_research_upgrade(id: Enums.ResearchID) -> void:
 	pass
 
 func get_building() -> Building:

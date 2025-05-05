@@ -55,7 +55,8 @@ func _ready() -> void:
 	
 	## Set the text of the main panel according to the template
 	set_panel_text()
-	
+	Research.research_completed.connect(update_panel_text)
+
 ## Initialize the variables for resource metadata related to a building
 ## and convert them into strings 
 func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[Enums.ResourceType, int]) -> void:
@@ -63,6 +64,9 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 		var resource_string: String = Enums.resource_type_to_string(resource)
 		var resource_needed: int = data.get(resource)
 		string_data.set(resource_string, resource_needed)
+
+func update_panel_text(research_id: Enums.ResearchID) -> void:
+	set_panel_text()
 		
 func _input(event: InputEvent) -> void:
 	## Handling press of left mouse button for selecting a building to buy
