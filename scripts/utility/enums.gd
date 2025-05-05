@@ -163,6 +163,23 @@ enum BuildingType {
 	RESEARCH_LAB, ## The building type for a research lab
 	STEEL_SCRAP_LANDFILL ## The building type for a STEEL SCRAP landfill,
 }
+
+static var building_data: Dictionary[BuildingType, Resource] = {
+	BuildingType.IRON_MINE: load("res://resources/buildings/iron_mine.tres"),
+	BuildingType.COAL_MINE: load("res://resources/buildings/coal_mine.tres"), 
+	BuildingType.WOOD_CUTTER: load("res://resources/buildings/wood_cutter.tres"), 
+	BuildingType.COAL_POWER_PLANT: load("res://resources/buildings/coal_power_plant.tres"), 
+	BuildingType.BIOMASS_POWER_PLANT: load("res://resources/buildings/biomass_power_plant.tres"), 
+	BuildingType.BIOMASS_LANDFILL: load("res://resources/buildings/biomass_landfill.tres"), 
+	BuildingType.WAREHOUSE: load("res://resources/buildings/warehouse.tres"), 
+	BuildingType.ROAD: load("res://resources/buildings/road.tres"), 
+	BuildingType.SAW_MILL: load("res://resources/buildings/saw_mill.tres"),
+	BuildingType.STEEL_MILL: load("res://resources/buildings/steel_mill.tres"),
+	BuildingType.GEAR_FACTORY: load("res://resources/buildings/gear_factory.tres"),
+	BuildingType.RESEARCH_LAB: load("res://resources/buildings/research_lab.tres"),
+	BuildingType.STEEL_SCRAP_LANDFILL: load("res://resources/buildings/steel_scrap_landfill.tres"),
+}
+
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:
 	var gathering_buildings: Array[BuildingType] = [BuildingType.IRON_MINE, BuildingType.COAL_MINE, BuildingType.WOOD_CUTTER]
@@ -210,6 +227,13 @@ enum Direction {
 	DOWN,
 	LEFT,
 	RIGHT,
+}
+
+## The possible research IDs
+enum ResearchID {
+	SM_1 = 0, ## Steel mill upgrade
+	WC_1 = 1, ## Wood cutter upgrade
+	CM_1 = 2, ## Coal mine upgrade
 }
 
 static func is_a_polluting_building(building_type: BuildingType) -> bool:
