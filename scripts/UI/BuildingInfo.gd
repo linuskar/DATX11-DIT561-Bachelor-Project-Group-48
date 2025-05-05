@@ -260,7 +260,7 @@ func set_building_selling(selling: bool) -> void:
 	for building in selected_buildings:
 		if building is ProductionBuilding:
 			building.currently_selling = selling
-			building._output_resources()
+			building.check_restart_production()
 	if selling:
 		sell_store_status_label.text = "Selling"
 	else:

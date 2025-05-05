@@ -210,3 +210,11 @@ func add_input_resource(input_type: Enums.ResourceType, input_amount: int) -> vo
 func restart_operation() -> void:
 	if not PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
 		production_cycle.paused = false
+
+## Function for checking whether the building can continue producing
+func check_restart_production() -> void:
+	emit_smoke() 
+	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
+		production_cycle.paused = true
+	else:
+		production_cycle.paused = false
