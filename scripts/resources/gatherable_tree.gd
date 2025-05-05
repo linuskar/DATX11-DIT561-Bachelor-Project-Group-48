@@ -8,7 +8,7 @@ extends GatherableResource
 ##
 
 ## The maximum amount of pollution a tree can absorb before it is considered dead
-@export var max_pollution_max_capacity: float
+@export var max_pollution_capacity: float
 @onready var sprite_2d: Sprite2D = $Sprite2D
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
@@ -22,10 +22,6 @@ var fire_spread_probability: float = 0.0
 ## The current storage of emissions.
 var emission_storage: Dictionary[Enums.ResourceType, float] = {}
 
-var slightly_polluted_tree_sprite: CompressedTexture2D = preload("res://assets/trees/slightly_polluted_tree.png")
-var heavily_polluted_tree_sprite: CompressedTexture2D = preload("res://assets/trees/heavily_polluted_tree.png")
-var dead_tree_sprite: CompressedTexture2D = preload("res://assets/trees/dead_tree.png")
-
 var polluted_level: Enums.PollutionLevel = Enums.PollutionLevel.NORMAL
 
 ## Dictionary containing the maximum value limits for pollution levels
@@ -33,14 +29,32 @@ var pollution_level_max_limits: Dictionary[Enums.PollutionLevel, float] = {}
 ## Dictionary containing the minimum value limits for pollution levels
 var pollution_level_min_limits: Dictionary[Enums.PollutionLevel, float] = {}
 
-func _ready() -> void:	
-	emission_storage.set(Enums.ResourceType.CO2, 0)
-	emission_storage.set(Enums.ResourceType.S02, 0)
-	emission_storage.set(Enums.ResourceType.N0X, 0)
-	emission_storage.set(Enums.ResourceType.CH4, 0)
+var tree_sprites: Dictionary[Enums.TreeSize, CompressedTexture2D]
+
+var tree_size: Enums.TreeSize
+
+const grid_size: float = 32.0
+const normal_tree_sprite_x: float = grid_size * 0
+const slightly_polluted_tree_sprite_x: float = grid_size * 1
+const heavily_polluted_tree_sprite_x: float = grid_size * 2
+const dead_tree_sprite_x: float = grid_size * 3
+
+func _ready() -> void:
+	for emission in Enums.emissions:
+		emission_storage.set(emission, 0)
 	wildfire.stop_fire()
 	sprite_2d.material.set_shader_parameter("world_matrix", global_transform)
+	init_tree_size()
 	init_pollution_level_limits()
+
+## Function to initialize the tree size
+func init_tree_size() -> void:
+	var random_int = randi_range(0, Enums.TreeSize.size() - 1)
+	
+	tree_size = Enums.TreeSize.values()[random_int]
+
+	sprite_2d.region_rect.position.y = grid_size * tree_size
+	quantity *= Enums.tree_size_multiplier_quantity.get(tree_size)
 
 ## Function to initialize the value limits for the pollution levels to a tree
 func init_pollution_level_limits() -> void:
@@ -52,7 +66,7 @@ func init_pollution_level_limits() -> void:
 			i -= 1
 			continue
 			
-		var max_level_value: float = min(max_pollution_max_capacity / i, max_pollution_max_capacity)
+		var max_level_value: float = min(max_pollution_capacity / i, max_pollution_capacity) * Enums.tree_size_multiplier_pollution.get(tree_size)
 		pollution_level_max_limits.set(level, max_level_value)
 		pollution_level_min_limits.set(level, min_level_value)
 		min_level_value = max_level_value
@@ -100,17 +114,14 @@ func update_pollution_level() -> void:
 func update_pollution_level_visual() -> void:
 	match polluted_level:
 		Enums.PollutionLevel.NORMAL:
-			modulate = Color(1, 1, 1)
+			sprite_2d.region_rect.position.x = normal_tree_sprite_x
 		Enums.PollutionLevel.SLIGHTLY:
-			sprite_2d.region_enabled = false
-			sprite_2d.texture = slightly_polluted_tree_sprite
+			sprite_2d.region_rect.position.x = slightly_polluted_tree_sprite_x
 		Enums.PollutionLevel.HEAVILY:
-			sprite_2d.region_enabled = false
-			sprite_2d.texture = heavily_polluted_tree_sprite
+			sprite_2d.region_rect.position.x = heavily_polluted_tree_sprite_x
 		Enums.PollutionLevel.DEAD:
 			burn_state = Enums.BurnState.DEAD
-			sprite_2d.region_enabled = false
-			sprite_2d.texture = dead_tree_sprite
+			sprite_2d.region_rect.position.x = dead_tree_sprite_x
 
 ## Function to ignite the tree on fire
 func start_burning(fire_prob: float) -> void:
@@ -125,14 +136,13 @@ func start_burning(fire_prob: float) -> void:
 func update_burn_visual():
 	match burn_state:
 		Enums.BurnState.NORMAL:
-			modulate = Color(1, 1, 1)
+			sprite_2d.region_rect.position.x = normal_tree_sprite_x
 		Enums.BurnState.BURNING:
 			wildfire.start_fire()
 		Enums.BurnState.DEAD:
 			polluted_level = Enums.PollutionLevel.DEAD
 			wildfire.stop_fire()
-			sprite_2d.region_enabled = false
-			sprite_2d.texture = dead_tree_sprite
+			sprite_2d.region_rect.position.x = dead_tree_sprite_x
 
 ## Function to make the tree burnt and spread the fire 
 func become_burnt() -> void:
