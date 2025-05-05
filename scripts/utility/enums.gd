@@ -231,9 +231,9 @@ enum Direction {
 
 ## The possible research IDs
 enum ResearchID {
-	SM_1 = 0, ## Steel mill upgrade
-	WC_1 = 1, ## Wood cutter upgrade
-	CM_1 = 2, ## Coal mine upgrade
+	SM_1, ## Steel mill upgrade
+	WC_1, ## Wood cutter upgrade
+	CM_1, ## Coal mine upgrade
 }
 
 static func is_a_polluting_building(building_type: BuildingType) -> bool:

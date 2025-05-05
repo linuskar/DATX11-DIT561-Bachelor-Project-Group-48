@@ -167,7 +167,7 @@ func get_inputs_text(building_data: ProductionBuildingData) -> String:
 				
 	if building_data.input_recipes.keys():
 		## If the recipe is empty for a production building
-		if building_data.input_recipes.is_empty():
+		if building_data.input_recipes.get(0).is_empty():
 			return ""
 			
 		var input_recipes: Dictionary[int, InputRecipe] = {}
