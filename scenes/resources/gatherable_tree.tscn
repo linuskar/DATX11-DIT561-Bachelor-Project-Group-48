@@ -1,21 +1,21 @@
 [gd_scene load_steps=8 format=3 uid="uid://bj5xuffyaonsb"]
 
 [ext_resource type="Script" uid="uid://cmc4up8ckeogx" path="res://scripts/resources/gatherable_tree.gd" id="1_q50ek"]
-[ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="2_ljr1m"]
 [ext_resource type="Shader" uid="uid://bpgoqtksg5n87" path="res://assets/shaders/gatherable_tree.gdshader" id="2_yx3au"]
 [ext_resource type="Texture2D" uid="uid://ckte1nf5bm61q" path="res://assets/axe.png" id="3_ljr1m"]
+[ext_resource type="Texture2D" uid="uid://tnr5wqenbrpg" path="res://assets/trees.png" id="3_yx3au"]
 [ext_resource type="PackedScene" uid="uid://cgeyohlgf0u8t" path="res://scenes/particles/wildfire.tscn" id="4_aeadn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yx3au"]
 shader = ExtResource("2_yx3au")
-shader_parameter/speed = 3.0
-shader_parameter/minStrength = 0.05
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.01
 shader_parameter/maxStrength = 0.01
 shader_parameter/strengthScale = 100.0
 shader_parameter/interval = 3.5
 shader_parameter/detail = 1.0
-shader_parameter/distortion = 0.1
-shader_parameter/heightOffset = 0.2
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
 shader_parameter/world_matrix = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/offset = 0.0
 
@@ -30,9 +30,9 @@ resource_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yx3au")
-texture = ExtResource("2_ljr1m")
+texture = ExtResource("3_yx3au")
 region_enabled = true
-region_rect = Rect2(0, 32, 32, 32)
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="GatheringSprite2D" type="Sprite2D" parent="."]
 visible = false

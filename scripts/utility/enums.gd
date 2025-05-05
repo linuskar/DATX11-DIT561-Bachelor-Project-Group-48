@@ -212,10 +212,16 @@ enum Direction {
 	RIGHT,
 }
 
-static var tree_size_multiplier: Dictionary[Enums.TreeSize, float] = {
+static var tree_size_multiplier_quantity: Dictionary[Enums.TreeSize, float] = {
 	TreeSize.SMALL: 0.5,
 	TreeSize.MEDIUM: 1.0,
 	TreeSize.LARGE: 1.5,
+}
+
+static var tree_size_multiplier_pollution: Dictionary[Enums.TreeSize, float] = {
+	TreeSize.SMALL: 0.8,
+	TreeSize.MEDIUM: 1.0,
+	TreeSize.LARGE: 1.2,
 }
 
 ## The possible tree sizes
