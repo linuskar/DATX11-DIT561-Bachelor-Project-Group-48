@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bb0k6gsn5k6v3"]
+[gd_scene load_steps=25 format=3 uid="uid://bb0k6gsn5k6v3"]
 
 [ext_resource type="Script" uid="uid://0jnwqslcprox" path="res://scripts/buildings/produktion_buildings/gear_factory.gd" id="1_essim"]
 [ext_resource type="Texture2D" uid="uid://beimrsmpocu3u" path="res://assets/buildings_iso/Gear_building.png" id="1_vsc0x"]

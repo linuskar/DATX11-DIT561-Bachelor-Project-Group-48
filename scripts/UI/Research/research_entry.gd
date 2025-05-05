@@ -5,7 +5,9 @@ class_name ResearchEntry
 
 @onready var name_label: Label = $HBoxContainer/LeftContainer/VBoxContainer/Name
 @onready var description_label: Label = $HBoxContainer/LeftContainer/VBoxContainer/Description
-@onready var cost_label: Label = $HBoxContainer/RightContainer/Cost
+#@onready var cost_label: Label = $HBoxContainer/RightContainer/Cost
+#@onready var cost: Label = $HBoxContainer/LeftContainer/VBoxContainer/Cost
+@onready var cost_label: Label = $HBoxContainer/LeftContainer/VBoxContainer/Cost
 
 func _ready() -> void:
 	if research_data:

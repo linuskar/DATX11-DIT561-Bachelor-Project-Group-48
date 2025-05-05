@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bn4m2dsa1xi1m"]
+[gd_scene load_steps=13 format=3 uid="uid://bn4m2dsa1xi1m"]
 
 [ext_resource type="Script" uid="uid://jw3k7gchg50y" path="res://scripts/UI/Research/research_ui.gd" id="1_l02gs"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_id0mj"]
-[ext_resource type="PackedScene" uid="uid://505ijduj0bi7" path="res://scenes/UI/ResearchUI/Research_Entry.tscn" id="3_5c7gb"]
-[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_l02gs"]
+[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="2_vfn66"]
+[ext_resource type="Resource" uid="uid://cgm6sg3jw06lu" path="res://resources/research_data/WoodCutterUpgrade1.tres" id="3_rn6eb"]
+[ext_resource type="Resource" uid="uid://cxgue6a15y8w7" path="res://resources/research_data/CoalMineUpgrade1.tres" id="4_ijudn"]
+[ext_resource type="Resource" uid="uid://bhrfavsdvkf7l" path="res://resources/research_data/steel_mill_upgrade1.tres" id="5_ihpgc"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="6_45l3e"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="7_c2yi1"]
 
@@ -39,6 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_l02gs")
+available_research = Array[ExtResource("2_vfn66")]([ExtResource("4_ijudn"), ExtResource("3_rn6eb"), ExtResource("5_ihpgc")])
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(102, 162)
@@ -68,11 +71,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
-
-[node name="ResearchEntry" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_5c7gb")]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-theme_override_styles/pressed = ExtResource("3_l02gs")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

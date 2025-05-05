@@ -10,14 +10,15 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_5qm04"]
 font = ExtResource("2_3pahr")
-font_size = 36
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_q8ipl"]
-font = ExtResource("2_3pahr")
+font_size = 32
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3f7ss"]
+font = ExtResource("2_3pahr")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8ipl"]
 font = ExtResource("2_3pahr")
 font_size = 24
 font_color = Color(0, 0, 0, 1)
@@ -60,20 +61,16 @@ text = "Research"
 label_settings = SubResource("LabelSettings_5qm04")
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="HBoxContainer/LeftContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Description"
-label_settings = SubResource("LabelSettings_q8ipl")
-
-[node name="RightContainer" type="MarginContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_right = 16
-
-[node name="Cost" type="Label" parent="HBoxContainer/RightContainer"]
+[node name="Cost" type="Label" parent="HBoxContainer/LeftContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cost"
 label_settings = SubResource("LabelSettings_3f7ss")
-horizontal_alignment = 2
+
+[node name="Description" type="Label" parent="HBoxContainer/LeftContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description"
+label_settings = SubResource("LabelSettings_q8ipl")
+autowrap_mode = 2
