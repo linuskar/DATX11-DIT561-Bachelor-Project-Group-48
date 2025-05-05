@@ -25,6 +25,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="ResearchEntry" type="Button"]
 custom_minimum_size = Vector2(550, 200)
 size_flags_horizontal = 3
+mouse_filter = 1
 theme_override_styles/disabled = ExtResource("1_x6kkh")
 theme_override_styles/hover_pressed_mirrored = ExtResource("1_5qm04")
 theme_override_styles/hover = ExtResource("2_q8ipl")

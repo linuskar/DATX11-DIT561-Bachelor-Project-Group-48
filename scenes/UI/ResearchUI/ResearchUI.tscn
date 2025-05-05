@@ -36,6 +36,7 @@ offset_bottom = 388.6
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+mouse_filter = 1
 script = ExtResource("1_l02gs")
 
 [node name="Panel" type="Panel" parent="."]
@@ -44,6 +45,7 @@ layout_mode = 1
 offset_right = 150.0
 offset_bottom = 162.0
 scale = Vector2(4, 4)
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_id0mj")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -75,6 +77,7 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = -20.0
 offset_bottom = 100.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_xjg1s")
 
 [node name="CloseButton" type="TextureButton" parent="PanelContainer"]
