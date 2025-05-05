@@ -33,7 +33,11 @@ var tree_sprites: Dictionary[Enums.TreeSize, CompressedTexture2D]
 
 var tree_size: Enums.TreeSize
 
-var grid_size: float = 32.0
+const grid_size: float = 32.0
+const normal_tree_sprite_x: float = grid_size * 0
+const slightly_polluted_tree_sprite_x: float = grid_size * 1
+const heavily_polluted_tree_sprite_x: float = grid_size * 2
+const dead_tree_sprite_x: float = grid_size * 3
 
 func _ready() -> void:
 	for emission in Enums.emissions:
@@ -48,7 +52,7 @@ func init_tree_size() -> void:
 	var random_int = randi_range(0, Enums.TreeSize.size() - 1)
 	
 	tree_size = Enums.TreeSize.values()[random_int]
-	
+
 	sprite_2d.region_rect.position.y = grid_size * tree_size
 	quantity *= Enums.tree_size_multiplier_quantity.get(tree_size)
 
@@ -110,14 +114,14 @@ func update_pollution_level() -> void:
 func update_pollution_level_visual() -> void:
 	match polluted_level:
 		Enums.PollutionLevel.NORMAL:
-			sprite_2d.region_rect.position.x = grid_size * 0
+			sprite_2d.region_rect.position.x = normal_tree_sprite_x
 		Enums.PollutionLevel.SLIGHTLY:
-			sprite_2d.region_rect.position.x = grid_size * 1
+			sprite_2d.region_rect.position.x = slightly_polluted_tree_sprite_x
 		Enums.PollutionLevel.HEAVILY:
-			sprite_2d.region_rect.position.x = grid_size * 2
+			sprite_2d.region_rect.position.x = heavily_polluted_tree_sprite_x
 		Enums.PollutionLevel.DEAD:
 			burn_state = Enums.BurnState.DEAD
-			sprite_2d.region_rect.position.x = grid_size * 3
+			sprite_2d.region_rect.position.x = dead_tree_sprite_x
 
 ## Function to ignite the tree on fire
 func start_burning(fire_prob: float) -> void:
@@ -132,13 +136,13 @@ func start_burning(fire_prob: float) -> void:
 func update_burn_visual():
 	match burn_state:
 		Enums.BurnState.NORMAL:
-			sprite_2d.region_rect.position.x = grid_size * 0
+			sprite_2d.region_rect.position.x = normal_tree_sprite_x
 		Enums.BurnState.BURNING:
 			wildfire.start_fire()
 		Enums.BurnState.DEAD:
 			polluted_level = Enums.PollutionLevel.DEAD
 			wildfire.stop_fire()
-			sprite_2d.region_rect.position.x = grid_size * 3
+			sprite_2d.region_rect.position.x = dead_tree_sprite_x
 
 ## Function to make the tree burnt and spread the fire 
 func become_burnt() -> void:
