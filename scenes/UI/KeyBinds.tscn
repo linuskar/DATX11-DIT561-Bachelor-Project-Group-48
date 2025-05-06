@@ -1,9 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://fysawqvslmw8"]
+[gd_scene load_steps=27 format=3 uid="uid://fysawqvslmw8"]
 
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_xpy7k"]
-[ext_resource type="Script" uid="uid://c40ab5qfubtd1" path="res://scenes/UI/keybinds_panel.gd" id="2_metke"]
+[ext_resource type="Script" uid="uid://c40ab5qfubtd1" path="res://scripts/UI/keybinds_panel.gd" id="2_metke"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="3_m1gcc"]
 [ext_resource type="Texture2D" uid="uid://dbos2d0ah5ofc" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_default.png" id="3_oiv7n"]
+[ext_resource type="Texture2D" uid="uid://dccsm7n35fohy" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap.png" id="4_m1gcc"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="6_2aqdx"]
+[ext_resource type="Script" uid="uid://bynalp1f7wn0d" path="res://scenes/UI/grid_button.gd" id="6_g8um3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1gcc"]
 content_margin_left = 120.0
@@ -16,6 +19,34 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 region_rect = Rect2(96, 0, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oiv7n"]
+font = ExtResource("3_m1gcc")
+font_size = 48
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m1gcc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g8um3"]
+texture = ExtResource("4_m1gcc")
+region_rect = Rect2(68, 19, 16, 12)
+modulate_color = Color(0.521569, 0.521569, 0.521569, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2aqdx"]
+texture = ExtResource("4_m1gcc")
+region_rect = Rect2(51, 19, 16, 12)
+modulate_color = Color(0.521141, 0.521141, 0.521141, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cb78m"]
+texture = ExtResource("4_m1gcc")
+region_rect = Rect2(68, 19, 16, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oiv7n"]
+texture = ExtResource("6_2aqdx")
+region_rect = Rect2(48, 18, 16, 12)
+
+[sub_resource type="LabelSettings" id="LabelSettings_metke"]
+font = ExtResource("3_m1gcc")
+font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_2aqdx"]
 font_size = 28
@@ -82,10 +113,6 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_m1gcc")
 
 [node name="MarginContainer" type="MarginContainer" parent="KeybindsPanel"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="KeybindsPanel/MarginContainer"]
 layout_mode = 2
@@ -93,6 +120,43 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="MarginContainer5" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+theme_override_constants/separation = 240
+alignment = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Show map grid"
+label_settings = SubResource("LabelSettings_oiv7n")
+
+[node name="Button" type="Button" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m1gcc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_g8um3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2aqdx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cb78m")
+theme_override_styles/normal = SubResource("StyleBoxTexture_oiv7n")
+toggle_mode = true
+script = ExtResource("6_g8um3")
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "KEYBINDS"
+label_settings = SubResource("LabelSettings_metke")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -207,4 +271,5 @@ texture_pressed = SubResource("AtlasTexture_2aqdx")
 texture_hover = SubResource("AtlasTexture_oiv7n")
 stretch_mode = 4
 
+[connection signal="toggled" from="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5/HBoxContainer/Button" to="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5/HBoxContainer/Button" method="_on_toggled"]
 [connection signal="button_down" from="TextureButton" to="." method="update" binds= [false]]
