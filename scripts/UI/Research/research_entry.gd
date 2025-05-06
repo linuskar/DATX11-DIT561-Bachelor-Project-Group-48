@@ -13,14 +13,31 @@ func _ready() -> void:
 		description_label.text = research_data.description
 		cost_label.text = "Cost: FREE"  # Placeholder
 
-		#if Research.has_completed(research_data.research_id):
+		#if Research.has_completed(research_data):
 		#	disabled = true
+		cost_label.text = "\nCost"
+		
+		if research_data.money_cost:
+			cost_label.text += "\n" + str(research_data.money_cost) + "\n" 
+		
+		## TODO:
+		if research_data.resource_cost:
+			for resource in research_data.resource_cost.keys():
+				var amount: String = str(research_data.resource_cost.get(resource))
+				cost_label.text += "\n" + Enums.resource_type_to_string(resource) + ": " + amount + "\n"
+		
+		if research_data.money_cost == null and research_data.resource_cost == null:
+			cost_label.text = "\nFREE\n"  
+			
+		#if Research.has_completed(research_data):
+			#disabled = true
 
 		connect("pressed", _on_pressed)
 		ResearchSignals.research_completed.connect(disable_research_entry)
 
-func disable_research_entry(research_data: ResearchData) -> void:
-	disabled = true
+func disable_research_entry(research_data_to_check: ResearchData) -> void:
+	if research_data == research_data_to_check:
+		disabled = true
 
 func _on_pressed() -> void:
 	#if Research.has_completed(research_data.research_id):
@@ -29,5 +46,4 @@ func _on_pressed() -> void:
 	#Research.complete_research(research_data.research_id)
 	
 	ResearchSignals.research_clicked.emit(research_data)
-	ResearchSignals.research_completed
 	disabled = true
