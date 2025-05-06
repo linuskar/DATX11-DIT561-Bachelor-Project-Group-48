@@ -6,13 +6,13 @@ signal research_completed(research_id: Enums.ResearchID)
 
 #@export var player_resources: PlayerResources 
 
-# A list storing the IDs of completed research 
+## A list storing the IDs of completed research 
 var completed_research: Array[Enums.ResearchID] = []
 
 func _ready() -> void:
 	ResearchSignals.research_clicked.connect(complete_research)
 
-# Function for completing research
+## Function for completing research
 func complete_research(research_data: ResearchData) -> void:
 	if has_completed(research_data):
 		return
@@ -31,7 +31,7 @@ func has_completed(research_data: ResearchData) -> bool:
 
 func update_data(research_id: Enums.ResearchID) -> void:
 	if research_id == Enums.ResearchID.SM_1:
-		var data: BuildingData = Enums.building_data.get(Enums.BuildingType.STEEL_MILL)
+		var data: ProductionBuildingData = Enums.building_data.get(Enums.BuildingType.STEEL_MILL)
 		data.input_types.append(Enums.ResourceType.STEEL_SCRAP)
 		data.input_use_rates.set(Enums.ResourceType.STEEL_SCRAP, 60)
 		data.max_storage.set(Enums.ResourceType.STEEL_SCRAP, 60)
