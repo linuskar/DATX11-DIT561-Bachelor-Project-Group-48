@@ -13,14 +13,21 @@ func _ready() -> void:
 		description_label.text = research_data.description
 		cost_label.text = "Cost: FREE"  # Placeholder
 
-		if Research.has_completed(research_data.research_id):
-			disabled = true
+		#if Research.has_completed(research_data.research_id):
+		#	disabled = true
 
 		connect("pressed", _on_pressed)
+		ResearchSignals.research_completed.connect(disable_research_entry)
+
+func disable_research_entry(research_data: ResearchData) -> void:
+	disabled = true
 
 func _on_pressed() -> void:
-	if Research.has_completed(research_data.research_id):
-		return
+	#if Research.has_completed(research_data.research_id):
+	#	return
 
-	Research.complete_research(research_data.research_id)
+	#Research.complete_research(research_data.research_id)
+	
+	ResearchSignals.research_clicked.emit(research_data)
+	ResearchSignals.research_completed
 	disabled = true
