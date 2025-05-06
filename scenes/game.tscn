@@ -1,27 +1,86 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=37 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://ck8h7axla2cb" path="res://scenes/Smog.tscn" id="3_rysoc"]
 [ext_resource type="PackedScene" uid="uid://bubuuk4seq6lw" path="res://scenes/utility/game_manager.tscn" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://bl6gh8e7bdkt0" path="res://scripts/resources/resource_manager.gd" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://mjtf8gsptloy" path="res://scenes/utility/build_manager.tscn" id="6_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://isbsjsm2mmil" path="res://scenes/buildings/gathering_buildings/iron_mine.tscn" id="7_bhx41"]
 [ext_resource type="PackedScene" uid="uid://djil6gjtsgbdu" path="res://scenes/UI/UserInterface.tscn" id="8_0tnpc"]
 [ext_resource type="Script" uid="uid://blx0oecro2xmu" path="res://scripts/resources/player_resources.gd" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://djt4gpmfrp805" path="res://scenes/buildings/gathering_buildings/coal_mine.tscn" id="8_qnb83"]
 [ext_resource type="PackedScene" uid="uid://bmfjen7u3vjeh" path="res://scenes/utility/pollution_manager.tscn" id="8_vtaks"]
+[ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/gathering_buildings/wood_cutter.tscn" id="9_sww3w"]
+[ext_resource type="PackedScene" uid="uid://cbk8oqqcmsa30" path="res://scenes/buildings/power_generators/coal_power_plant.tscn" id="10_suyxu"]
+[ext_resource type="PackedScene" uid="uid://0tdfrbqq2650" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="11_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://d0n2xkqggqdmg" path="res://scenes/buildings/building_blueprints/storage_buildings/biomass_landfill_blueprint.tscn" id="12_ca42v"]
+[ext_resource type="PackedScene" uid="uid://jok1xl2oywc3" path="res://scenes/buildings/storage_buildings/biomass_landfill.tscn" id="12_qouja"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="13_bhx41"]
 [ext_resource type="PackedScene" uid="uid://b6ddmakepot3r" path="res://scenes/buildings/building_blueprints/storage_buildings/warehouse_blueprint.tscn" id="13_ca42v"]
+[ext_resource type="PackedScene" uid="uid://dxdbme3urfb2i" path="res://scenes/buildings/storage_buildings/warehouse.tscn" id="13_wljb1"]
 [ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/gathering_buildings/coal_mine_blueprint.tscn" id="14_qnb83"]
+[ext_resource type="PackedScene" uid="uid://c2opqml4lhdk5" path="res://scenes/buildings/road.tscn" id="14_v2yb1"]
+[ext_resource type="PackedScene" uid="uid://bt0w2f1d2iaox" path="res://scenes/buildings/production_buildings/saw_mill.tscn" id="15_suyxu"]
 [ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/gathering_buildings/wood_cutter_blueprint.tscn" id="15_sww3w"]
+[ext_resource type="PackedScene" uid="uid://d0obknopqb3j6" path="res://scenes/buildings/production_buildings/steel_mill.tscn" id="16_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://bn5arwp4ceymc" path="res://scenes/buildings/building_blueprints/power_generators/coal_power_plant_blueprint.tscn" id="16_suyxu"]
+[ext_resource type="PackedScene" uid="uid://dqescnbl4e761" path="res://scenes/buildings/storage_buildings/steel_scrap_landfill.tscn" id="17_gxtfn"]
+[ext_resource type="PackedScene" uid="uid://bb0k6gsn5k6v3" path="res://scenes/buildings/production_buildings/gear_factory.tscn" id="17_qouja"]
 [ext_resource type="PackedScene" uid="uid://b0ef776hgtpta" path="res://scenes/buildings/building_blueprints/power_generators/biomass_power_plant_blueprint.tscn" id="17_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://chfljd8f6ww5l" path="res://scenes/buildings/building_blueprints/road_blueprint.tscn" id="18_qouja"]
+[ext_resource type="PackedScene" uid="uid://4wqorptqpmal" path="res://scenes/buildings/research/research_lab.tscn" id="18_wljb1"]
+[ext_resource type="PackedScene" uid="uid://drsrk2maerqd2" path="res://scenes/buildings/building_blueprints/production_buildings/saw_mill_blueprint.tscn" id="27_wljb1"]
+[ext_resource type="PackedScene" uid="uid://cqg67jejofbse" path="res://scenes/buildings/building_blueprints/production_buildings/steel_mill_blueprint.tscn" id="28_v2yb1"]
+[ext_resource type="PackedScene" uid="uid://cn6sefxukvlqm" path="res://scenes/buildings/building_blueprints/production_buildings/gear_factory_blueprint.tscn" id="29_js0lu"]
+[ext_resource type="PackedScene" uid="uid://in383t1pyum1" path="res://scenes/buildings/building_blueprints/research_lab_blueprint.tscn" id="30_gxtfn"]
+[ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="30_twgab"]
+[ext_resource type="PackedScene" uid="uid://b48liywofkol4" path="res://scenes/utility/BuildingSelector.tscn" id="36_twgab"]
 
 [node name="Game" type="Node2D"]
 
 [node name="CameraMovement" parent="." instance=ExtResource("1_ux6r8")]
 
 [node name="MapLayer" parent="." instance=ExtResource("2_yqjtg")]
+
+[node name="Fog" parent="." instance=ExtResource("3_rysoc")]
+z_index = 1
+offset_left = -1344.0
+offset_top = -1376.0
+offset_right = 1984.0
+offset_bottom = 1216.0
+
+[node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
+buildings = Dictionary[int, Resource]({
+1: ExtResource("7_bhx41"),
+2: ExtResource("8_qnb83"),
+3: ExtResource("9_sww3w"),
+4: ExtResource("10_suyxu"),
+5: ExtResource("11_sgl2t"),
+6: ExtResource("12_qouja"),
+7: ExtResource("13_wljb1"),
+8: ExtResource("14_v2yb1"),
+9: ExtResource("15_suyxu"),
+10: ExtResource("16_sgl2t"),
+11: ExtResource("17_qouja"),
+12: ExtResource("18_wljb1"),
+13: ExtResource("17_gxtfn")
+})
+building_blueprints = Dictionary[int, Resource]({
+1: ExtResource("13_bhx41"),
+2: ExtResource("14_qnb83"),
+3: ExtResource("15_sww3w"),
+4: ExtResource("16_suyxu"),
+5: ExtResource("17_sgl2t"),
+6: ExtResource("12_ca42v"),
+7: ExtResource("13_ca42v"),
+8: ExtResource("18_qouja"),
+9: ExtResource("27_wljb1"),
+10: ExtResource("28_v2yb1"),
+11: ExtResource("29_js0lu"),
+12: ExtResource("30_gxtfn"),
+13: ExtResource("30_twgab")
+})
 
 [node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]
 
@@ -34,28 +93,12 @@ script = ExtResource("8_gee14")
 [node name="Timer" type="Timer" parent="PlayerResources"]
 autostart = true
 
-[node name="BuildManager" parent="." instance=ExtResource("6_0tnpc")]
-building_blueprints = Dictionary[int, Resource]({
-1: ExtResource("13_bhx41"),
-2: ExtResource("14_qnb83"),
-3: ExtResource("15_sww3w"),
-4: ExtResource("16_suyxu"),
-5: ExtResource("17_sgl2t"),
-6: ExtResource("12_ca42v"),
-7: ExtResource("13_ca42v"),
-8: ExtResource("18_qouja")
-})
-
 [node name="PollutionManager" parent="." instance=ExtResource("8_vtaks")]
 
 [node name="UserInterface" parent="." instance=ExtResource("8_0tnpc")]
 
-[connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
-[connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
-[connection signal="build_list_entered" from="UserInterface" to="BuildManager" method="_on_user_interface_build_list_entered"]
-[connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
-[connection signal="ui_status" from="UserInterface" to="BuildManager" method="set_ui_status"]
+[node name="BuildingSelector" parent="." instance=ExtResource("36_twgab")]
 
-[editable path="UserInterface"]
-[editable path="UserInterface/BuildingSelectList"]
-[editable path="UserInterface/ResourceUi"]
+[connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
+[connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
+[connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]

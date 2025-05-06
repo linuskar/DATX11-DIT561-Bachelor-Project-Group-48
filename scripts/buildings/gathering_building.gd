@@ -28,13 +28,35 @@ func check_if_can_produce() -> bool:
 	if missing_input:
 		return false
 		
-	if can_be_output_overflow:
+	if can_be_output_overflow and not currently_selling:
 		return false
 	
 	if !near_resource:
 		return false
 	
 	return true
+
+## Function to check if the production building is going to overflow with 
+## resources in output.
+func check_for_output_overflow() -> bool:
+	for produced_good in produced_goods:
+		var produced_good_generated: int = output_generation.get(produced_good) * resource_tiles_to_gather.size()
+		var produced_good_stored: int = output_storage.get(produced_good)
+		var produced_good_max_storage: int = max_storage.get(produced_good)
+		var produced_good_string = Enums.resource_type_to_string(produced_good)
+		
+		## When at possible overflow of resources for output
+		if produced_good_stored + produced_good_generated > produced_good_max_storage:
+			return true
+			
+	for byproduct in byproducts:
+		if !Enums.is_emission(byproduct):
+			var byproduct_generated: int = output_generation.get(byproduct)
+			var byproduct_stored: int = output_storage.get(byproduct)
+			var byproduct_max_storage: int = max_storage.get(byproduct)
+			if byproduct_stored + byproduct_generated > byproduct_max_storage:
+				return true
+	return false
 
 ## Function to produce the goods the gathering building can output.
 func _produce_goods() -> Dictionary[Enums.ResourceType, int]:

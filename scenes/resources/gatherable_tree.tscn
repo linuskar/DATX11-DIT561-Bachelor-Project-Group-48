@@ -1,14 +1,28 @@
 [gd_scene load_steps=13 format=3 uid="uid://bj5xuffyaonsb"]
 
 [ext_resource type="Script" uid="uid://cmc4up8ckeogx" path="res://scripts/resources/gatherable_tree.gd" id="1_q50ek"]
-[ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="2_ljr1m"]
+[ext_resource type="Shader" uid="uid://bpgoqtksg5n87" path="res://assets/shaders/gatherable_tree.gdshader" id="2_yx3au"]
 [ext_resource type="Texture2D" uid="uid://ckte1nf5bm61q" path="res://assets/axe.png" id="3_ljr1m"]
-[ext_resource type="Texture2D" uid="uid://be01upgtspb4v" path="res://assets/wood_chip.png" id="4_aeadn"]
+[ext_resource type="Texture2D" uid="uid://be01upgtspb4v" path="res://assets/wood_chip.png" id="4_ahadn"]
 [ext_resource type="AudioStream" uid="uid://danlvadxldepu" path="res://assets/sounds/harvest_sounds/wood_chop.wav" id="5_yx3au"]
+[ext_resource type="Texture2D" uid="uid://tnr5wqenbrpg" path="res://assets/trees.png" id="3_yx3au"]
+[ext_resource type="PackedScene" uid="uid://cgeyohlgf0u8t" path="res://scenes/particles/wildfire.tscn" id="4_aeadn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yx3au"]
+shader = ExtResource("2_yx3au")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.01
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 0.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/world_matrix = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/offset = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laj1l"]
 size = Vector2(32, 32)
-
 [sub_resource type="Animation" id="Animation_aeadn"]
 length = 0.001
 tracks/0/type = "value"
@@ -88,19 +102,17 @@ radial_velocity_max = 50.0
 gravity = Vector3(0, 65, 0)
 scale_curve = SubResource("CurveTexture_yx3au")
 
-[node name="GatherableTree" type="Area2D"]
+[node name="GatherableTree" type="Area2D" groups=["trees"]]
 script = ExtResource("1_q50ek")
-emission_max_capacity = Dictionary[int, float]({
-3: -1.0,
-4: 500.0
-})
+max_pollution_capacity = 2000.0
 quantity = 40
 resource_type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ljr1m")
+material = SubResource("ShaderMaterial_yx3au")
+texture = ExtResource("3_yx3au")
 region_enabled = true
-region_rect = Rect2(0, 32, 32, 32)
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="GatheringSprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -129,3 +141,4 @@ volume_db = -5.0
 max_distance = 750.0
 
 [connection signal="animation_finished" from="gathering_animation" to="." method="_on_gathering_animation_animation_finished"]
+[node name="Wildfire" parent="." instance=ExtResource("4_aeadn")]

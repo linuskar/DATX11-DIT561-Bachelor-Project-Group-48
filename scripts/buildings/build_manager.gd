@@ -15,6 +15,9 @@ extends Node
 ## The layer the building is placed/locked on to get a grid based placement.
 @onready var map_layer: MapLayer = $"../MapLayer"
 
+@onready var buildings_node_container: Node = $BuildingsNodeContainer
+@onready var blueprint_node_container: Node = $BlueprintNodeContainer
+
 ## The currently occupied tiles, for example a building, tree, etc.
 var occupied_tiles: Dictionary[Vector2, Building] = BuildManagerGlobal.occupied_tiles
 
@@ -52,7 +55,7 @@ func _on_selected_building(building_data: BuildingData) ->  void:
 	
 	## Add the new blueprint to the game of the currently selected building
 	var new_blueprint: BuildingBlueprint = building_blueprints.get(building_data.building_type).instantiate()
-	add_child(new_blueprint)
+	blueprint_node_container.add_child(new_blueprint)
 	blueprint = new_blueprint
 	blueprint.show()
 		
@@ -64,7 +67,7 @@ func _process(_delta) -> void:
 		StateManager.State.PLACE_BUILDING:
 			_update_blueprint()
 
-			if valid_placement:
+			if valid_placement and UserInterface.hovered_references.is_empty():
 				place_building()
 				
 		StateManager.State.IDLE:
@@ -74,18 +77,11 @@ func _process(_delta) -> void:
 func _update_blueprint():
 	var grid_pos: Vector2 = get_snapped_world_position()
 	blueprint.position = grid_pos 
-	
-	var min_x: float = map_layer.map_areas.left_bound.position.x
-	var max_x: float = map_layer.map_areas.right_bound.position.x
-
-	var min_y: float = map_layer.map_areas.upper_bound.position.y
-	var max_y: float = map_layer.map_areas.lower_bound.position.y
-	var blueprint_size: Vector2 = blueprint.building_data.building_size
 
 	## Clamp the blueprint position to make it not go out the playable area
-	blueprint.position.x = clampf(blueprint.position.x, min_x + grid_size * (blueprint_size.x - 1) / 2, max_x - grid_size * (blueprint_size.x - 1) / 2)
-	blueprint.position.y = clampf(blueprint.position.y, min_y +  grid_size * (blueprint_size.y -  1) / 2, max_y -  grid_size * (blueprint_size.y -  1) / 2)
-	
+	var blueprint_size: Vector2 = blueprint.building_data.building_size
+	blueprint.position = get_clamped_position_to_playable_area(blueprint.position, blueprint_size)
+			
 	## Checking for valid placement
 	if are_tiles_occupied() or map_layer.can_place_building(blueprint) == false or not player_can_afford(blueprint):
 		blueprint.modulate = invalid_placement_color
@@ -93,7 +89,21 @@ func _update_blueprint():
 	else:
 		blueprint.modulate = valid_placement_color	
 		valid_placement = true
-			
+		
+## Function for getting a position that is clamped to the playable area
+func get_clamped_position_to_playable_area(object_position: Vector2, size: Vector2) -> Vector2:
+	var min_x: float = map_layer.map_areas.left_bound.position.x
+	var max_x: float = map_layer.map_areas.right_bound.position.x
+
+	var min_y: float = map_layer.map_areas.upper_bound.position.y
+	var max_y: float = map_layer.map_areas.lower_bound.position.y
+	
+	var clamped_position: Vector2 = Vector2(0,0)
+	clamped_position.x = clampf(object_position.x, min_x + grid_size * (size.x - 1) / 2, max_x - grid_size * (size.x - 1) / 2)
+	clamped_position.y = clampf(object_position.y, min_y +  grid_size * (size.y -  1) / 2, max_y -  grid_size * (size.y -  1) / 2)
+	
+	return clamped_position
+	
 func _input(event: InputEvent) -> void:
 	## When trying to place a building that is selected
 	if event.is_action_pressed("place") and valid_placement and StateManager.state == StateManager.State.SELECTED_BUILDING:
@@ -152,7 +162,7 @@ func place_building() -> void:
 	var building_type: Enums.BuildingType = blueprint.building_data.building_type
 	var new_building: Building = buildings.get(building_type).instantiate()
 	new_building.position = blueprint.position
-	get_parent().add_child(new_building)
+	buildings_node_container.add_child(new_building)
 	
 	## Additionally decrease the players held currency equal to the cost of the building
 	PlayerCurrency.remove_currency(blueprint.building_data.building_cost)
@@ -176,8 +186,68 @@ func are_tiles_occupied() -> bool:
 	
 ## Function marking tiles as occupied for placing down a building
 func _on_placed_building(building: Building) -> void:
+	if building is Landfill:
+		## TODO: Future implementantion, add button to stop auto expanding/shrinking
+		## otherwise manually adding landfills wont work since the landfill will automatically shrink
+		## the newly merged landfill, so right now it will just prevent from placing
+		## two seperate landfill instances near each other, and waste money
+		# var landfill_to_merge_with: Landfill = check_if_there_are_landfills_nearby(building, building.position)
+		
+		# if landfill_to_merge_with != null:
+			# merge_landfills(building, landfill_to_merge_with)
+		# else:
+		# occupy_tiles(building, building.position) 
+		# placed_building.emit(building)
+		
+		## Connect the funcxtions to auto expand and shrink
+		building.landfill_expanded.connect(expand_landfill)
+		building.landfill_shrinked.connect(shrink_landfill)
+	# else:
+	occupy_tiles(building, building.position) 
+	BuildManagerGlobal.update_networks(building)
+	placed_building.emit(building)
+	BuildManagerGlobal.update_roads.emit()
+	
+## Function two merge landfills that are near each other
+func merge_landfills(landfill_placed: Landfill, landfill_to_be_merged_with: Landfill) -> void:
+	## Increase the max storage of the landfill.
+	var current_main_resource: int = landfill_to_be_merged_with.output_storage.get(landfill_to_be_merged_with.main_resource)
+	var current_max_main_resource: int = landfill_to_be_merged_with.max_storage.get(landfill_to_be_merged_with.main_resource)
+	landfill_to_be_merged_with.max_storage.set(landfill_to_be_merged_with.main_resource, current_max_main_resource + landfill_to_be_merged_with.auto_expand_max_capacity_amount)
+	# print("After: " + str(landfill_to_be_merged_with.max_storage))
+	## Re-add landfill to request for input.
+	ResourceSignals.add_input_building.emit(landfill_to_be_merged_with)
+	
+	## Create new sprite for where the landfill expands to.
+	var new_sprite: Sprite2D = landfill_to_be_merged_with.building_sprite.duplicate()
+	new_sprite.position = landfill_placed.position
+	landfill_to_be_merged_with.add_child(new_sprite)
+	landfill_to_be_merged_with.connected_landfill_sprites.append(new_sprite)
+	
+	## TODO: Add collision shape, but right now it is not relevant for any logic
+	## var new_collision_shape: CollisionShape2D = null
+	
+	## Create new button for building info for where the landfill expands to
+	var building_info_button: TextureButton = landfill_to_be_merged_with.clickable.duplicate()
+	building_info_button.position = Vector2(landfill_placed.position)
+	landfill_to_be_merged_with.add_child(building_info_button)
+	landfill_to_be_merged_with.connected_landfill_clickables.append(building_info_button)
+	
+	## TODO: Add this in future implementation
+	# var building_highlight: BuildingHighlight = landfill_to_be_merged_with
+	
+	## Occupy tiles for where the landfill expanded to
+	var adjusted_pos: Vector2 = landfill_placed.position
+	occupy_tiles(landfill_to_be_merged_with, adjusted_pos)
+	BuildManagerGlobal.update_networks(landfill_to_be_merged_with) 
+	placed_building.emit(landfill_to_be_merged_with)
+	BuildManagerGlobal.update_roads.emit()
+	landfill_placed.queue_free()
+	
+## Function that occupies tiles for a building.
+func occupy_tiles(building: Building, position_to_adjust: Vector2) -> void:
 	var building_tile_size: Vector2 = building.building_data.building_size
-	var adjusted_pos: Vector2 = building.position 
+	var adjusted_pos: Vector2 = position_to_adjust
 	
 	## Adjust the position to start in a top-left manner
 	adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
@@ -186,22 +256,143 @@ func _on_placed_building(building: Building) -> void:
 	for x in range(building_tile_size.x):
 		for y in range(building_tile_size.y):
 			occupied_tiles[adjusted_pos + Vector2(x * grid_size, y * grid_size)] = building
-	placed_building.emit(building)
+
+## Function that checks if there are landfills nearby for a landfill, returns null
+## if no landfill is found
+func check_if_there_are_landfills_nearby(landfill, current_tile: Vector2) -> Landfill:
+	## look at directions
+	var position_to_expand_to: Vector2 = Vector2(0,0)
+	## Shuffle the possible directions to get a randomized selection
+	var directions = Enums.Direction.values()
+	directions.shuffle()
+	
+	var valid_tile_types_to_place: Array[Enums.TileType] = landfill.building_data.valid_tile_types_to_place_on
+	var size: Vector2 = landfill.building_data.building_size
+	
+	## Look at the tiles around in the possible directions
+	for direction in directions:
+		match direction:
+			Enums.Direction.UP:
+				position_to_expand_to = Vector2(0, -grid_size) + current_tile
+			Enums.Direction.DOWN:
+				position_to_expand_to = Vector2(0, grid_size) + current_tile
+			Enums.Direction.LEFT:
+				position_to_expand_to = Vector2(-grid_size, 0) + current_tile
+			Enums.Direction.RIGHT:
+				position_to_expand_to = Vector2(grid_size, 0) + current_tile
+			
+		var position_to_check: Vector2 = position_to_expand_to
+		position_to_check = get_clamped_position_to_playable_area(position_to_check, size)
+
+		## If the position has a landfill
+		if occupied_tiles.has(position_to_check):
+			var building: Building = occupied_tiles.get(position_to_check)
+
+			if building is Landfill:
+				return building
+		position_to_expand_to = Vector2(0,0)
+	return null
+			
+## Expand the landfill when at max capacity
+func expand_landfill(landfill: Landfill) -> void:
+	## Set the next position to expand to
+	next_position_to_expand_to(landfill, landfill.connected_landfills.size() - 1)
+
+	## If there is no possible position that the landfill can expand to.
+	if landfill.position_to_expand_to.x == 0 and landfill.position_to_expand_to.y == 0:
+		return
+
+	## Increase the max storage of the landfill.
+	var current_main_resource: int = landfill.output_storage.get(landfill.main_resource)
+	var current_max_main_resource: int = landfill.max_storage.get(landfill.main_resource)
+	landfill.max_storage.set(landfill.main_resource, current_max_main_resource + landfill.auto_expand_max_capacity_amount)
+	## Re-add landfill to request for input.
+	ResourceSignals.add_input_building.emit(landfill)
+	
+	landfill.instantiate_auto_expand_landfill()
+	
+	## Occupy tiles for where the landfill expanded to
+	var adjusted_pos: Vector2 = landfill.position + landfill.position_to_expand_to
+	occupy_tiles(landfill, adjusted_pos)
+	BuildManagerGlobal.update_networks(landfill) 
+	placed_building.emit(landfill)
 	BuildManagerGlobal.update_roads.emit()
-	BuildManagerGlobal.print_networks()
+	## TODO: Future implementation for merging landfills when auto expanding
+	## NOTE: have to take care of the resources that are currently transporting
+	## need to somehow reroute the resoruces that are transported to the current instance of landfill
+	# var landfill_to_merge_with: Landfill = check_if_there_are_landfills_nearby(landfill, adjusted_pos)
+	# merge_landfills(landfill, landfill_to_merge_with)
 
-## When the mouse has entered the building list:
-## Disable the state of placing a building and hide the blueprint
-func _on_user_interface_build_list_entered() -> void:
-	StateManager.set_state(StateManager.State.IDLE)
-	_on_build_mode()
+## Set the next position that a landfill can expand to.
+func next_position_to_expand_to(landfill: Landfill, index: int) -> void:
+		var prev_occupied_tile_pos: Vector2 = Vector2(0,0)
+		
+		## Go through all tiles the landfill occupies
+		if index >= 0:
+			prev_occupied_tile_pos = landfill.connected_landfills[index].position
+		else:
+			## When there is only one tile the landfill occupies
+			landfill.position_to_expand_to = get_possible_position_to_expand_to(landfill, prev_occupied_tile_pos)
+			return
 
-## Receiver for ui_status signal in UserInterface
-## Disables building ability if the mouse is in any ui element
-func set_ui_status(status: bool) -> void:
-	if status:
-		StateManager.set_state(StateManager.State.IDLE)
-		_on_build_mode()
+		landfill.position_to_expand_to = get_possible_position_to_expand_to(landfill, prev_occupied_tile_pos)
+		
+		## If no direction was possible for previously occupied tile by the landfill
+		if landfill.position_to_expand_to.x == 0 and landfill.position_to_expand_to.y == 0:
+			next_position_to_expand_to(landfill, index - 1)
+			
+## Look at tiles by the possible directions around a tile, to get a position to
+## expand to.
+func get_possible_position_to_expand_to(landfill: Landfill, current_tile: Vector2) -> Vector2:
+	var occupied_tiles: Array[Vector2] = BuildManagerGlobal.occupied_tiles.keys()
+	var position_to_expand_to: Vector2 = Vector2(0,0)
+	## Shuffle the possible directions to get a randomized selection
+	var directions = Enums.Direction.values()
+	directions.shuffle()
+	
+	var valid_tile_types_to_place: Array[Enums.TileType] = landfill.building_data.valid_tile_types_to_place_on
+	var size: Vector2 = landfill.building_data.building_size
+	
+	## Look at the tiles around in the possible directions
+	for direction in directions:
+		match direction:
+			Enums.Direction.UP:
+				position_to_expand_to = Vector2(0, -grid_size) + current_tile
+			Enums.Direction.DOWN:
+				position_to_expand_to = Vector2(0, grid_size) + current_tile
+			Enums.Direction.LEFT:
+				position_to_expand_to = Vector2(-grid_size, 0) + current_tile
+			Enums.Direction.RIGHT:
+				position_to_expand_to = Vector2(grid_size, 0) + current_tile
+			
+		var position_to_check: Vector2 = position_to_expand_to + landfill.position
+		position_to_check = get_clamped_position_to_playable_area(position_to_check, size)
+		
+		## If the position is valid to expand to
+		if !(position_to_check in occupied_tiles) and map_layer.check_valid_tile(position_to_check, valid_tile_types_to_place):
+			return position_to_expand_to
+			
+		position_to_expand_to = Vector2(0,0)
+	## Return an invalid position to expand to
+	return position_to_expand_to
+	
+## Shrink the landfill when the current amount of main_resource is below a certain threshold
+func shrink_landfill(landfill: Landfill) -> void:
+	## Decrease the max storage of the landfill
+	var current_main_resource: int = landfill.output_storage.get(landfill.main_resource)
+	var current_max_main_resource: int = landfill.max_storage.get(landfill.main_resource)
+	landfill.max_storage.set(landfill.main_resource, current_max_main_resource - landfill.auto_expand_max_capacity_amount)
+
+	## Deoccupy the tile that the landfill previously occupied and remove the 
+	## auto expanded landfill
+	var landfill_auto: LandfillAutoExpand = landfill.connected_landfills.pop_back()
+	var occupied_pos: Vector2 = landfill.position + landfill_auto.position
+	occupied_tiles.erase(occupied_pos)
+	
+	landfill_auto.remove()
+
+	## Re-add landfill to request for input
+	ResourceSignals.add_input_building.emit(landfill)
 
 ## When the mouse has exited the building list with a selected building:
 ## Set the currently selected building and show its blueprint
@@ -209,4 +400,7 @@ func _on_user_interface_building_wanted(building: BuildingData) -> void:
 	if not building == null:
 		StateManager.set_state(StateManager.State.SELECTED_BUILDING)
 		_on_selected_building(building)
+		_on_build_mode()
+	else:
+		StateManager.set_state(StateManager.State.IDLE)
 		_on_build_mode()

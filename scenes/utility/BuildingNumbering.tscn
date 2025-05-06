@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbgcgjj51glev"]
+
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="1_ovoo7"]
+[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="1_vvld2"]
+[ext_resource type="Script" uid="uid://c0oy1kfdaqqb5" path="res://scenes/utility/building_numbering.gd" id="2_oiqms"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="3_oesxr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oiqms"]
+font = ExtResource("3_oesxr")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[node name="BuildingNumbering" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 80)
+offset_right = 28.0
+offset_bottom = 23.0
+theme_override_styles/panel = ExtResource("1_ovoo7")
+script = ExtResource("2_oiqms")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("1_vvld2")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "x 1"
+label_settings = SubResource("LabelSettings_oiqms")
+
+[connection signal="ready" from="." to="." method="_on_ready"]

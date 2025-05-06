@@ -1,0 +1,169 @@
+[gd_scene load_steps=13 format=3 uid="uid://bnw7off718dvw"]
+
+[ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_em7rw"]
+[ext_resource type="Resource" uid="uid://crn1l8b1plvqe" path="res://resources/buildings/gear_factory.tres" id="2_a0nkr"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_sk0rn"]
+[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_a0nkr"]
+[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_0ryk5"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_ypdwi"]
+[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="6_qv2pm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7shli"]
+font = ExtResource("5_ypdwi")
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0hp0e"]
+font = ExtResource("5_ypdwi")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hp0e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7shli"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("6_qv2pm")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n7k0i"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("6_qv2pm")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.707967, 0.707967, 0.707967, 1)
+
+[node name="GearFactorySelectable" type="Control"]
+custom_minimum_size = Vector2(320, 192)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -832.0
+offset_bottom = -456.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.599748, 0.599748)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+script = ExtResource("1_em7rw")
+icon_path = "uid://beimrsmpocu3u"
+building_data = ExtResource("2_a0nkr")
+
+[node name="MainBox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_sk0rn")
+
+[node name="Selected" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("3_a0nkr")
+
+[node name="Containers" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.075
+anchor_right = 0.425
+anchor_bottom = 0.65
+offset_right = -2.0
+offset_bottom = -0.399994
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_sk0rn")
+
+[node name="MarginContainer" type="MarginContainer" parent="Containers"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="BuildingIcon" type="TextureRect" parent="Containers/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_0ryk5")
+
+[node name="BuildingNameCost" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.25
+mouse_filter = 1
+text = "Name Cost"
+label_settings = SubResource("LabelSettings_7shli")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TextContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_bottom = 0.9
+offset_left = 145.0
+offset_right = 305.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextContainer"]
+layout_mode = 2
+
+[node name="InfoText" type="Label" parent="TextContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 162)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+label_settings = SubResource("LabelSettings_0hp0e")
+autowrap_mode = 2
+
+[node name="SelectButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.7
+anchor_right = 0.425
+anchor_bottom = 0.9
+offset_top = 1.52588e-05
+offset_bottom = 1.52588e-05
+mouse_filter = 1
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_ypdwi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0hp0e")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_7shli")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n7k0i")
+theme_override_styles/pressed = ExtResource("2_sk0rn")
+theme_override_styles/normal = ExtResource("2_sk0rn")
+toggle_mode = true
+text = "Select"
+autowrap_mode = 2
+
+[connection signal="button_down" from="SelectButton" to="." method="_on_selected"]
+[connection signal="toggled" from="SelectButton" to="." method="_set_button_text"]

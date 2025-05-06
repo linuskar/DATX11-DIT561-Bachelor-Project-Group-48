@@ -7,12 +7,8 @@ extends GatheringBuilding
 ##
 @onready var mine_sound: AudioStreamPlayer2D = $mine_sound
 
-## The nodes emitting smoke.
-@export var smokes: Array[GPUParticles2D]
-
 func _ready():
 	super()
-	emit_smoke()
 
 func _output_resources() -> void:
 	emit_smoke() 
@@ -27,3 +23,4 @@ func emit_smoke() -> void:
 	else:
 		for smoke in smokes:
 			smoke.emitting = true
+			$mining_particle.emitting = true

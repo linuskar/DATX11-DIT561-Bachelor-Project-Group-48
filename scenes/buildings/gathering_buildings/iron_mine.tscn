@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://isbsjsm2mmil"]
-
-[ext_resource type="Script" uid="uid://dkys5yq1u7s2q" path="res://scripts/buildings/gathering_buildings/iron_mine.gd" id="1_l5hob"]
-[ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_jwvew"]
+[gd_scene load_steps=18 format=3 uid="uid://isbsjsm2mmil"]
 [ext_resource type="PackedScene" uid="uid://ctj754ex6tihn" path="res://assets/sounds/place_sound.tscn" id="3_5k2sk"]
 [ext_resource type="Texture2D" uid="uid://d1566usymavrh" path="res://assets/buildings_iso/pixilart-drawing.png" id="3_dbmr5"]
 [ext_resource type="Script" path="res://scripts/UI/clickable.gd" id="4_6f8g6"]
 [ext_resource type="PackedScene" uid="uid://bk6susslxg5o2" path="res://scenes/buildings/animation/place_animation.tscn" id="4_mlxvk"]
+[ext_resource type="Script" uid="uid://dkys5yq1u7s2q" path="res://scripts/buildings/gathering_buildings/iron_mine.gd" id="1_l5hob"]
+[ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_jwvew"]
+[ext_resource type="Texture2D" uid="uid://bqugr640sxpqq" path="res://assets/buildings_iso/Ironmine_building1.png" id="3_oc4lm"]
 [ext_resource type="PackedScene" uid="uid://bkqqe6bdw740k" path="res://scenes/buildings/smoke/smoke_v2.tscn" id="5_oc4lm"]
 [ext_resource type="PackedScene" uid="uid://bouaar65sta4q" path="res://scenes/buildings/animation/place_particle_small.tscn" id="5_ytwtp"]
 [ext_resource type="PackedScene" uid="uid://mm3smhbol1xr" path="res://assets/sounds/harvest_sounds/mine_sound.tscn" id="9_mlxvk"]
@@ -22,39 +22,28 @@ scene_place_animation = ExtResource("4_mlxvk")
 scene_place_particle = ExtResource("5_ytwtp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_cwrwc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_dbmr5")
+texture = ExtResource("3_oc4lm")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_6f8g6")
-
 [node name="Smoke_v2" parent="." instance=ExtResource("5_oc4lm")]
-position = Vector2(3.253, -14.6064)
+position = Vector2(-8.64637, -23.88)
+emitting = false
 
 [node name="Smoke_v2_2" parent="." instance=ExtResource("5_oc4lm")]
-position = Vector2(7.76016, -14.6252)
+position = Vector2(0.010253, -27.2544)
+emitting = false
 
 [node name="Smoke_v2_3" parent="." instance=ExtResource("5_oc4lm")]
-position = Vector2(12.258, -14.6627)
+position = Vector2(19.0324, -26.3278)
+emitting = false
 
 [node name="mine_sound" parent="." instance=ExtResource("9_mlxvk")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
+[connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]

@@ -10,7 +10,6 @@ extends GatheringBuilding
 @export var smokes: Array[GPUParticles2D]
 @onready var mine_sound: AudioStreamPlayer2D = $mine_sound
 
-
 func _ready():
 	super()
 	emit_smoke()

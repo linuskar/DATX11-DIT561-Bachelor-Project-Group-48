@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mjtf8gsptloy"]
+[gd_scene load_steps=25 format=3 uid="uid://mjtf8gsptloy"]
 
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="1_aenhx"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="2_ofppe"]
@@ -12,14 +12,22 @@
 [ext_resource type="PackedScene" uid="uid://jok1xl2oywc3" path="res://scenes/buildings/storage_buildings/biomass_landfill.tscn" id="7_td6n1"]
 [ext_resource type="PackedScene" uid="uid://dxdbme3urfb2i" path="res://scenes/buildings/storage_buildings/warehouse.tscn" id="8_gtan0"]
 [ext_resource type="PackedScene" uid="uid://2rxgk2u0xxpj" path="res://scenes/buildings/building_blueprints/gathering_buildings/coal_mine_blueprint.tscn" id="8_vw4yu"]
+[ext_resource type="PackedScene" uid="uid://bt0w2f1d2iaox" path="res://scenes/buildings/production_buildings/saw_mill.tscn" id="10_8n2kk"]
 [ext_resource type="PackedScene" uid="uid://bn5arwp4ceymc" path="res://scenes/buildings/building_blueprints/power_generators/coal_power_plant_blueprint.tscn" id="10_xcllt"]
+[ext_resource type="PackedScene" uid="uid://d0obknopqb3j6" path="res://scenes/buildings/production_buildings/steel_mill.tscn" id="11_okohd"]
 [ext_resource type="PackedScene" uid="uid://b0ef776hgtpta" path="res://scenes/buildings/building_blueprints/power_generators/biomass_power_plant_blueprint.tscn" id="11_xcllt"]
+[ext_resource type="PackedScene" uid="uid://bb0k6gsn5k6v3" path="res://scenes/buildings/production_buildings/gear_factory.tscn" id="12_jq8ob"]
+[ext_resource type="PackedScene" uid="uid://dqescnbl4e761" path="res://scenes/buildings/storage_buildings/steel_scrap_landfill.tscn" id="13_g3lso"]
 [ext_resource type="PackedScene" uid="uid://d0n2xkqggqdmg" path="res://scenes/buildings/building_blueprints/storage_buildings/biomass_landfill_blueprint.tscn" id="13_gtan0"]
 [ext_resource type="PackedScene" uid="uid://chfljd8f6ww5l" path="res://scenes/buildings/building_blueprints/road_blueprint.tscn" id="16_b6ppb"]
+[ext_resource type="PackedScene" uid="uid://drsrk2maerqd2" path="res://scenes/buildings/building_blueprints/production_buildings/saw_mill_blueprint.tscn" id="18_k82q2"]
+[ext_resource type="PackedScene" uid="uid://cqg67jejofbse" path="res://scenes/buildings/building_blueprints/production_buildings/steel_mill_blueprint.tscn" id="20_52bjm"]
+[ext_resource type="PackedScene" uid="uid://cn6sefxukvlqm" path="res://scenes/buildings/building_blueprints/production_buildings/gear_factory_blueprint.tscn" id="22_437j0"]
+[ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="24_jdlbb"]
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
 script = ExtResource("1_aenhx")
-blueprint = NodePath("IronMineBlueprint")
+blueprint = NodePath("BlueprintNodeContainer/IronMineBlueprint")
 buildings = Dictionary[int, Resource]({
 1: ExtResource("2_w7lpy"),
 2: ExtResource("3_dr161"),
@@ -28,7 +36,11 @@ buildings = Dictionary[int, Resource]({
 5: ExtResource("6_6xou4"),
 6: ExtResource("7_td6n1"),
 7: ExtResource("8_gtan0"),
-8: ExtResource("7_gtan0")
+8: ExtResource("7_gtan0"),
+9: ExtResource("10_8n2kk"),
+10: ExtResource("11_okohd"),
+11: ExtResource("12_jq8ob"),
+13: ExtResource("13_g3lso")
 })
 building_blueprints = Dictionary[int, Resource]({
 1: ExtResource("2_ofppe"),
@@ -38,8 +50,16 @@ building_blueprints = Dictionary[int, Resource]({
 5: ExtResource("11_xcllt"),
 6: ExtResource("13_gtan0"),
 7: ExtResource("8_gtan0"),
-8: ExtResource("16_b6ppb")
+8: ExtResource("16_b6ppb"),
+9: ExtResource("18_k82q2"),
+10: ExtResource("20_52bjm"),
+11: ExtResource("22_437j0"),
+13: ExtResource("24_jdlbb")
 })
 
-[node name="IronMineBlueprint" parent="." instance=ExtResource("2_ofppe")]
+[node name="BuildingsNodeContainer" type="Node" parent="."]
+
+[node name="BlueprintNodeContainer" type="Node" parent="."]
+
+[node name="IronMineBlueprint" parent="BlueprintNodeContainer" instance=ExtResource("2_ofppe")]
 visible = false

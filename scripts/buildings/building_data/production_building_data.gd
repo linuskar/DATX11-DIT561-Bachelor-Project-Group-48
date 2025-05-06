@@ -15,5 +15,11 @@ extends StorageBuildingData
 ## The radius in which the emissions gets emitted to, in a square area
 @export var emissions_radius: Dictionary[Enums.ResourceType, int]
 
+## A dictionary containing the recipes to produce for a building.
+## The value is an int, acting as an ID for the recipe.
+## NOTE: Due to how you can't type nested arrays, connect the ID correctly for each recipe.
+## The array should consists of integers representing an enum value for a resource type
+@export var input_recipes: Dictionary[int, Array]
+
 func accept(handler: BuildingInfo) -> String:
 	return handler.handle_prod_building(self)

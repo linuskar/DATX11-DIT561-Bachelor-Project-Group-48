@@ -55,7 +55,8 @@ func _ready() -> void:
 	
 	## Set the text of the main panel according to the template
 	set_panel_text()
-	
+	Research.research_completed.connect(update_panel_text)
+
 ## Initialize the variables for resource metadata related to a building
 ## and convert them into strings 
 func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[Enums.ResourceType, int]) -> void:
@@ -63,6 +64,9 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 		var resource_string: String = Enums.resource_type_to_string(resource)
 		var resource_needed: int = data.get(resource)
 		string_data.set(resource_string, resource_needed)
+
+func update_panel_text(research_id: Enums.ResearchID) -> void:
+	set_panel_text()
 		
 func _input(event: InputEvent) -> void:
 	## Handling press of left mouse button for selecting a building to buy
@@ -78,13 +82,49 @@ func set_panel_text() -> void:
 	
 	## Begin with the name of the building
 	var panel_text: String = building_name + '\n'
-	panel_text += add_dict_to_panel(inputs, "Inputs")
+	
+	panel_text += get_inputs()
 	panel_text += "\nUpkeep\n" + str(building_data.building_upkeep) + "\n"
 	panel_text += add_dict_to_panel(outputs, "Outputs")
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
 	panel_text += add_dict_to_panel(contributables, "Contributables")
 	panel_text += add_dict_to_panel(required, "Required")
 	info_label.text = panel_text
+
+func get_inputs() -> String:
+	if building_data is ProductionBuildingData:
+		if building_data.input_recipes.keys():
+			## If the recipe is empty for a production building
+			if building_data.input_recipes.get(0).is_empty():
+				return ""
+				
+			var text: String = "\nInputs\n"
+			var input_recipes: Dictionary[int, InputRecipe] = {}
+			
+			for id in building_data.input_recipes.keys():
+				var recipe: Array = building_data.input_recipes.get(id)
+				
+				for resource_type in recipe:
+					if input_recipes.has(id):
+						var input_recipe: InputRecipe = input_recipes.get(id)
+						input_recipe.resources.append(resource_type)
+						input_recipes.set(id, input_recipe)
+					else:
+						var new_array: InputRecipe = InputRecipe.new()
+						new_array.resources.append(resource_type)
+						input_recipes.set(id, new_array)
+			
+			var i: int = 0
+			
+			for recipe_id in input_recipes.keys():
+				if i > 0:
+					text += "OR\n"
+				var recipe: InputRecipe = input_recipes.get(recipe_id)
+				for resource in recipe.resources:
+					text += Enums.resource_type_to_string(resource) + ': ' + str(building_data.input_use_rates.get(resource)) + '\n'
+				i += 1
+			return text
+	return add_dict_to_panel(inputs, "Inputs")
 
 ## Function for taking keys from a dictionary and returning 
 ## a formatted string containing those keys and their values
@@ -112,11 +152,14 @@ func add_dict_to_panel(dict: Dictionary[String, int], dict_name: String) -> Stri
 			## maybe note the level like low, medium, high, to get an estimate
 			elif dict_name == "Outputs" and Enums.is_a_polluting_building(building_data.building_type) and Enums.is_emission(resource_type):
 				text += key + ": In an area." + '\n'
+			elif dict_name == "Max Storage" and building_data.building_type == Enums.BuildingType.BIOMASS_LANDFILL:
+				text += key + ": " + str(dict.get(key)) + '\n'
+				text += "\n" + "This building auto expands and shrinks its max capacity of BIOMASS by " + str(building_data.max_storage.get(Enums.ResourceType.BIOMASS)) + "."+ "\n"
 			else:
 				text += key + ": " + str(dict.get(key)) + '\n'
 		text += '\n'
 	return text
-
+	
 ## Sets this building into its 'selected' styling
 func _on_selected() -> void:
 	self.find_child("MainBox").visible = false
@@ -125,13 +168,13 @@ func _on_selected() -> void:
 
 ## Sets this building to its 'unselected' styling
 func unselected() -> void:
+	_set_button_text(false)
 	self.find_child("MainBox").visible = true
 	self.find_child("Selected").visible = false
 	
 
 func get_building_data() -> BuildingData:
 	return self.building_data
-
 
 func _set_button_text(toggled_on: bool) -> void:
 	if toggled_on:

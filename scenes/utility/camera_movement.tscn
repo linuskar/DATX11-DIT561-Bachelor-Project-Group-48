@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://d0334soyjc5wq" path="res://scripts/utility/camera_movement.gd" id="1_oitpw"]
 
-[node name="CameraMovement" type="Camera2D"]
+[node name="CameraMovement" type="Camera2D" groups=["camera"]]
 script = ExtResource("1_oitpw")

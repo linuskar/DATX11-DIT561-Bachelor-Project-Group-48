@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://0tdfrbqq2650"]
+[gd_scene load_steps=19 format=3 uid="uid://0tdfrbqq2650"]
 
 [ext_resource type="Script" uid="uid://cjthdvxj7p6kc" path="res://scripts/buildings/power_generators/biomass_power_plant.gd" id="1_pu6ix"]
 [ext_resource type="Resource" uid="uid://okbenuas7tpt" path="res://resources/buildings/biomass_power_plant.tres" id="2_n2s4e"]
 [ext_resource type="PackedScene" uid="uid://ctj754ex6tihn" path="res://assets/sounds/place_sound.tscn" id="3_d1lr6"]
 [ext_resource type="Texture2D" uid="uid://cyb5gnrnuag2x" path="res://assets/buildings_iso/biomass_power_plant.png" id="3_n2s4e"]
-[ext_resource type="Script" path="res://scripts/UI/clickable.gd" id="4_j2gvm"]
 [ext_resource type="PackedScene" uid="uid://crmaq0u0wgneb" path="res://scenes/buildings/smoke/smoke_v3.tscn" id="4_m34gt"]
 [ext_resource type="PackedScene" uid="uid://bk6susslxg5o2" path="res://scenes/buildings/animation/place_animation.tscn" id="4_rjbir"]
 [ext_resource type="PackedScene" uid="uid://d0ydf6r25ra05" path="res://scenes/buildings/smoke/smoke_v4.tscn" id="5_m34gt"]
@@ -38,18 +37,18 @@ emitting = false
 position = Vector2(25.017, -13.5643)
 emitting = false
 
-[node name="Clickable" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -48.0
-offset_right = 48.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_j2gvm")
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mgjeb")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
+[connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]

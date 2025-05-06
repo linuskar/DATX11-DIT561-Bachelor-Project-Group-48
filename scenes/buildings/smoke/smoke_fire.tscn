@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://dl1aome3i6kt7"]
+
+[ext_resource type="Texture2D" uid="uid://b6yo5bqqvkw80" path="res://assets/particles/smoke_circle.png" id="1_ps8kd"]
+
+[sub_resource type="Curve" id="Curve_f8yp3"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_klpcp"]
+curve = SubResource("Curve_f8yp3")
+
+[sub_resource type="Curve" id="Curve_klpcp"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00719424, -0.00891519), 0.0, 0.0, 0, 0, Vector2(0.97482, 0.995542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_02jrp"]
+curve = SubResource("Curve_klpcp")
+
+[sub_resource type="Curve" id="Curve_8f8fg"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1.49012e-08), 0.0, 1.69169, 0, 0, Vector2(0.4, 0.4), 0.81556, 0.81556, 0, 0, Vector2(0.7, 0.8), 1.65217, 1.65217, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_qrqbt"]
+curve = SubResource("Curve_8f8fg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5wtww"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 16.0
+angle_min = 1.07288e-05
+angle_max = 275.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 9.49949e-08
+orbit_velocity_curve = SubResource("CurveTexture_02jrp")
+gravity = Vector3(0, -98, 0)
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_qrqbt")
+alpha_curve = SubResource("CurveTexture_klpcp")
+
+[node name="Smoke_fire" type="GPUParticles2D"]
+self_modulate = Color(1, 1, 1, 0.2)
+amount = 500
+texture = ExtResource("1_ps8kd")
+lifetime = 3.0
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_5wtww")

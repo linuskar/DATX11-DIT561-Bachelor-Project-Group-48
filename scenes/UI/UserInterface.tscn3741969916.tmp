@@ -1,0 +1,260 @@
+[gd_scene load_steps=28 format=3 uid="uid://djil6gjtsgbdu"]
+
+[ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_v3jyi"]
+[ext_resource type="PackedScene" uid="uid://boeiac6bfcce2" path="res://scenes/UI/Selectables/BuildingSelectList.tscn" id="2_yl4mc"]
+[ext_resource type="Script" uid="uid://ogxgrnm1q7jm" path="res://scripts/utility/ui_element.gd" id="3_v3jyi"]
+[ext_resource type="PackedScene" uid="uid://bj1v7y2dejr2w" path="res://scenes/UI/ResourceUI.tscn" id="3_vr1b1"]
+[ext_resource type="PackedScene" uid="uid://u0w1syotmn42" path="res://scenes/UI/BuildingInfo.tscn" id="5_3wpr7"]
+[ext_resource type="PackedScene" uid="uid://cht3r13bjg58r" path="res://scenes/UI/PlayerCurrencyPanel.tscn" id="6_v3jyi"]
+[ext_resource type="PackedScene" uid="uid://bn4m2dsa1xi1m" path="res://scenes/UI/ResearchUI/ResearchUI.tscn" id="8_o6e1s"]
+[ext_resource type="PackedScene" uid="uid://ckurldaudp30o" path="res://scenes/UI/PauseMenu.tscn" id="9_k31su"]
+[ext_resource type="StyleBox" uid="uid://qav7i8thq0cw" path="res://resources/style_boxes/ui_panel_light_pressed.tres" id="10_4rcww"]
+[ext_resource type="StyleBox" uid="uid://cppa2lt0s7fyx" path="res://resources/style_boxes/ui_panel_light_hovered.tres" id="10_gojqa"]
+[ext_resource type="Texture2D" uid="uid://dx1sr2p46acxm" path="res://assets/UI/kenney_game-icons/pause1x.png" id="10_rtk7f"]
+[ext_resource type="Script" uid="uid://c5wl1b3s3af3" path="res://scripts/UI/button.gd" id="11_nk1x2"]
+[ext_resource type="PackedScene" uid="uid://rkxfq20ab5t1" path="res://scenes/UI/StartMenu.tscn" id="14_xa1es"]
+[ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="15_l7j4o"]
+[ext_resource type="Script" uid="uid://c40ab5qfubtd1" path="res://scenes/UI/keybinds_panel.gd" id="16_l7j4o"]
+[ext_resource type="Texture2D" uid="uid://dbos2d0ah5ofc" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_default.png" id="17_wi4a4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gojqa"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bukrn"]
+content_margin_left = 120.0
+content_margin_top = 80.0
+content_margin_right = 120.0
+content_margin_bottom = 100.0
+texture = ExtResource("15_l7j4o")
+region_rect = Rect2(96, 0, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0i2fy"]
+font_size = 28
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw5h8"]
+atlas = ExtResource("17_wi4a4")
+region = Rect2(591, 74, 34, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s47j"]
+atlas = ExtResource("17_wi4a4")
+region = Rect2(520, 136, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrws2"]
+atlas = ExtResource("17_wi4a4")
+region = Rect2(392, 904, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1834i"]
+atlas = ExtResource("17_wi4a4")
+region = Rect2(648, 264, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ux3k"]
+atlas = ExtResource("17_wi4a4")
+region = Rect2(456, 648, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ro1m"]
+atlas = ExtResource("17_wi4a4")
+region = Rect2(456, 776, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jph7x"]
+atlas = ExtResource("17_wi4a4")
+region = Rect2(200, 584, 48, 48)
+
+[node name="UserInterface" type="CanvasLayer"]
+script = ExtResource("1_vr1b1")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.125
+grow_horizontal = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("2_v3jyi")
+script = ExtResource("3_v3jyi")
+
+[node name="BuildingSelectList" parent="." instance=ExtResource("2_yl4mc")]
+offset_left = -400.0
+offset_right = 0.0
+mouse_filter = 1
+
+[node name="ResourceUi" parent="." instance=ExtResource("3_vr1b1")]
+
+[node name="BuildingInfo" parent="." instance=ExtResource("5_3wpr7")]
+
+[node name="PlayerCurrencyPanel" parent="." instance=ExtResource("6_v3jyi")]
+mouse_force_pass_scroll_events = true
+
+[node name="ResearchUI" parent="." instance=ExtResource("8_o6e1s")]
+
+[node name="PauseGame" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.35
+anchor_top = 0.01
+anchor_right = 0.425
+anchor_bottom = 0.115
+script = ExtResource("3_v3jyi")
+
+[node name="Button" type="Button" parent="PauseGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gojqa")
+theme_override_styles/hover = ExtResource("10_gojqa")
+theme_override_styles/pressed = ExtResource("10_4rcww")
+theme_override_styles/normal = ExtResource("2_v3jyi")
+icon = ExtResource("10_rtk7f")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("11_nk1x2")
+
+[node name="PauseMenu" parent="." instance=ExtResource("9_k31su")]
+
+[node name="StartMenu" parent="." instance=ExtResource("14_xa1es")]
+anchors_preset = -1
+
+[node name="KeybindsPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+theme_override_styles/panel = SubResource("StyleBoxTexture_bukrn")
+script = ExtResource("16_l7j4o")
+
+[node name="MarginContainer" type="MarginContainer" parent="KeybindsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="KeybindsPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MoveCameraMouse" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MoveCameraMouse"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move camera (Hold and drag)"
+label_settings = SubResource("LabelSettings_0i2fy")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MoveCameraMouse"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_aw5h8")
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MoveCameraWASD" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move camera (Keyboard)"
+label_settings = SubResource("LabelSettings_0i2fy")
+vertical_alignment = 1
+
+[node name="W" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8s47j")
+
+[node name="A" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_wrws2")
+
+[node name="S" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1834i")
+
+[node name="D" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7ux3k")
+
+[node name="MarginContainer3" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="LastSelectedBuilding" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/LastSelectedBuilding"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Build last building"
+label_settings = SubResource("LabelSettings_0i2fy")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/LastSelectedBuilding"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_4ro1m")
+stretch_mode = 4
+
+[node name="MarginContainer4" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CloseMenues" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4/CloseMenues"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Close menu"
+label_settings = SubResource("LabelSettings_0i2fy")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4/CloseMenues"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jph7x")
+stretch_mode = 4
+
+[connection signal="self_entered" from="PanelContainer" to="." method="add_reference"]
+[connection signal="self_exited" from="PanelContainer" to="." method="remove_reference"]
+[connection signal="build_list_entered" from="BuildingSelectList" to="." method="_on_building_select_list_build_list_entered"]
+[connection signal="building_wanted" from="BuildingSelectList" to="." method="_on_building_select_list_building_wanted"]
+[connection signal="self_entered" from="BuildingSelectList" to="." method="add_reference"]
+[connection signal="self_exited" from="BuildingSelectList" to="." method="remove_reference"]
+[connection signal="self_entered" from="ResourceUi" to="." method="add_reference"]
+[connection signal="self_exited" from="ResourceUi" to="." method="remove_reference"]
+[connection signal="self_entered" from="BuildingInfo" to="." method="add_reference"]
+[connection signal="self_exited" from="BuildingInfo" to="." method="remove_reference"]
+[connection signal="self_entered" from="PlayerCurrencyPanel" to="." method="add_reference"]
+[connection signal="self_exited" from="PlayerCurrencyPanel" to="." method="remove_reference"]
+[connection signal="self_entered" from="ResearchUI" to="." method="add_reference"]
+[connection signal="self_exited" from="ResearchUI" to="." method="remove_reference"]
+[connection signal="self_entered" from="PauseGame" to="." method="add_reference"]
+[connection signal="self_exited" from="PauseGame" to="." method="remove_reference"]
+[connection signal="button_down" from="PauseGame/Button" to="PauseGame/Button" method="_on_button_down"]
+[connection signal="button_up" from="PauseGame/Button" to="PauseGame/Button" method="_on_button_up"]

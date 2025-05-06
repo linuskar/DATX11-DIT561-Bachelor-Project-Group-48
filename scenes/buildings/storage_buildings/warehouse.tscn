@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxdbme3urfb2i"]
+[gd_scene load_steps=17 format=3 uid="uid://dxdbme3urfb2i"]
 
 [ext_resource type="Script" uid="uid://1nqmw0tgxr05" path="res://scripts/buildings/storage_buildings/warehouse.gd" id="1_5pk0i"]
 [ext_resource type="Resource" uid="uid://ix3necejb3ix" path="res://resources/buildings/warehouse.tres" id="2_4c0dy"]
@@ -38,3 +38,17 @@ mouse_filter = 1
 script = ExtResource("4_ctsfu")
 
 [connection signal="button_down" from="Clickable" to="Clickable" method="_on_button_down"]
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ipmv7")
+
+[connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]
