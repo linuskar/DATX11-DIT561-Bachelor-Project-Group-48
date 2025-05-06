@@ -11,6 +11,8 @@ extends StorageBuilding
 
 ## The nodes emitting smoke.
 @export var smokes: Array[GPUParticles2D]
+@export var production_sound_scene: PackedScene
+var production_sound: AudioStreamPlayer2D
 
 ## The rates/quantity of input resources the production building uses each cycle.
 var input_use_rates: Dictionary[Enums.ResourceType, int]
@@ -33,6 +35,9 @@ func _ready() -> void:
 	PlayerCurrency.currency_changed.connect(restart_operation)
 	init_production_building()
 	init_smoke()
+	if production_sound_scene != null:
+		production_sound = production_sound_scene.instantiate()
+		add_child(production_sound)
 
 ## Function for initializing the smoke emitting
 func init_smoke() -> void:
@@ -78,16 +83,15 @@ func _on_timer_timeout() -> void:
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
 	emit_smoke()
-	check_if_can_produce()
+	
 	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
 		production_cycle.paused = true
-		print("cant produce")
 	else:
-		#var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
 		_use_input_recipe()
 		_handle_produced_goods()
 		_generate_byproducts()
-	$mine_sound.play()
+		if production_sound != null:
+			production_sound.play()
 	
 func _handle_produced_goods() -> void:
 	var produced_resources: Dictionary[Enums.ResourceType, int] = _produce_goods()
@@ -104,13 +108,10 @@ func _handle_produced_goods() -> void:
 func check_if_can_produce() -> bool:
 	var missing_input: bool = check_for_missing_input()
 	var can_be_output_overflow: bool = check_for_output_overflow()
-	print("check")
 	if missing_input:
-		print("missing input")
 		return false
 		
 	if can_be_output_overflow and not currently_selling:
-		print("overflow and not selling")
 		return false
 	
 	return true

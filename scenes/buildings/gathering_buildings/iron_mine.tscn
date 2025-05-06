@@ -12,6 +12,7 @@ size = Vector2(64, 64)
 
 [node name="IronMine" type="StaticBody2D"]
 script = ExtResource("1_l5hob")
+production_sound_scene = ExtResource("9_mlxvk")
 building_data = ExtResource("2_jwvew")
 scene_place_particle = ExtResource("5_5k2sk")
 
@@ -35,7 +36,5 @@ emitting = false
 [node name="Smoke_v2_3" parent="." instance=ExtResource("5_oc4lm")]
 position = Vector2(19.0324, -26.3278)
 emitting = false
-
-[node name="mine_sound" parent="." instance=ExtResource("9_mlxvk")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

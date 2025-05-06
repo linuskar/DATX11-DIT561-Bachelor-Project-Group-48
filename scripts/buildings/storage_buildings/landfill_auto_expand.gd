@@ -20,6 +20,10 @@ func _ready() -> void:
 	add_child(highlight)
 	highlight.unselected()
 	
+	place_animation = $place_animation
+	place_particle = $place_particle
+	place_sound = get_parent().place_sound
+	
 	place_animation.play("place")
 	deplace_particle.finished.connect(self.queue_free)
 
@@ -30,11 +34,10 @@ func highlight_building() -> void:
 	else:
 		highlight.unselected()
 
-
 func remove() -> void:
 	deplace_particle.emitting = true
 
-func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+func _on_place_animation_finished(anim_name: StringName) -> void:
 	place_particle.emitting = true
 
 func _on_ready() -> void:

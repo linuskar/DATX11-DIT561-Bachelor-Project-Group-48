@@ -63,6 +63,7 @@ alpha_curve = SubResource("CurveTexture_klpcp")
 [node name="CoalMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5wtww")
 smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2")]
+production_sound_scene = ExtResource("9_rn1kv")
 building_data = ExtResource("2_f8yp3")
 available_research = Array[ExtResource("3_02jrp")]([ExtResource("4_8f8fg")])
 scene_place_particle = ExtResource("7_e2gss")
@@ -85,7 +86,5 @@ process_material = SubResource("ParticleProcessMaterial_klpcp")
 position = Vector2(23.949, -12.6954)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_02jrp")
-
-[node name="mine_sound" parent="." instance=ExtResource("9_rn1kv")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
