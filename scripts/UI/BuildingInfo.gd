@@ -343,3 +343,9 @@ func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
 		if not cleaned_list.has(building):
 			cleaned_list.set(current, true)
 	return cleaned_list.keys()
+
+func pause_production() -> void:
+	for building in selected_buildings:
+		if building is ProductionBuilding:
+			building.pause_operations()
+	sell_store_status_label.text = "Paused"

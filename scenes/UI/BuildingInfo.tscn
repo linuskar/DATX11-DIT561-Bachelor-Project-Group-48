@@ -216,6 +216,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="General" type="ScrollContainer" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
@@ -356,8 +357,9 @@ layout_mode = 2
 alignment = 1
 
 [node name="Selling" type="ScrollContainer" parent="MarginContainer"]
-visible = false
 layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Selling"]
 custom_minimum_size = Vector2(0, 80)
@@ -416,6 +418,23 @@ theme_override_styles/normal = ExtResource("7_xxyib")
 text = "Set store production"
 autowrap_mode = 2
 
+[node name="Pause" type="Button" parent="MarginContainer/Selling/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_86cwq")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qlyug")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qlyug")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m21pg")
+theme_override_styles/normal = ExtResource("7_xxyib")
+text = "Pause production"
+autowrap_mode = 2
+
 [node name="ExitButtonPanel" type="Panel" parent="."]
 layout_mode = 1
 offset_left = 314.0
@@ -468,5 +487,6 @@ volume_db = 20.0
 [connection signal="button_down" from="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/Button" to="." method="_sell_chosen_resources"]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling" binds= [true]]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_selling" binds= [false]]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Pause" to="." method="pause_production"]
 [connection signal="tab_clicked" from="TabBar" to="." method="_set_tab_visible"]
 [connection signal="button_down" from="CloseButton" to="." method="set_inactive"]

@@ -99,17 +99,40 @@ func _handle_produced_goods() -> void:
 	
 ## Function to check if the production building can produce.
 func check_if_can_produce() -> bool:
-	var missing_input: bool = check_for_missing_input()
 	var can_be_output_overflow: bool = check_for_output_overflow()
 
-	if missing_input:
+	if check_for_missing_input():
 		return false
 		
-	if can_be_output_overflow and not currently_selling:
+	if check_for_production_overflow() and not currently_selling:
+		return false
+	
+	if check_for_byproduct_overflow():
 		return false
 	
 	return true
+
+func check_for_production_overflow() -> bool:
+	for produced_good in produced_goods:
+		var produced_good_generated: int = output_generation.get(produced_good)
+		var produced_good_stored: int = output_storage.get(produced_good)
+		var produced_good_max_storage: int = max_storage.get(produced_good)
+		
+		## When at possible overflow of resources for output
+		if produced_good_stored + produced_good_generated > produced_good_max_storage:
+			return true
+	return false
 	
+func check_for_byproduct_overflow() -> bool:
+	for byproduct in byproducts:
+		if !Enums.is_emission(byproduct):
+			var byproduct_generated: int = output_generation.get(byproduct)
+			var byproduct_stored: int = output_storage.get(byproduct)
+			var byproduct_max_storage: int = max_storage.get(byproduct)
+			if byproduct_stored + byproduct_generated > byproduct_max_storage:
+				return true
+	return false
+
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
 func check_for_output_overflow() -> bool:
@@ -218,3 +241,13 @@ func check_restart_production() -> void:
 		production_cycle.paused = true
 	else:
 		production_cycle.paused = false
+
+## Function for pausing the operations of a building
+func pause_operations() -> void:
+	pause_smokes()
+	production_cycle.paused = true
+
+## Function for pausing smoke emissions
+func pause_smokes() -> void:
+	for smoke in smokes:
+			smoke.emitting = false
