@@ -9,6 +9,6 @@ research_name = "Recycling Steel Scrap"
 description = "Steel mills can also create steel using steel scrap and electricity."
 money_cost = 50
 resource_cost = Dictionary[int, int]({
-11: 50
+2: 5
 })
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

@@ -19,6 +19,8 @@ var first: int #The network other networks join into
 
 var tile_size: int = 32 #Size of tiles
 
+## The buildings in the game that are currently placed.
+var buildings_placed: Array[Building]
 
 #Updates road_networks with a network_id key to a list of the buildings positions.
 func update_networks(building: Building) -> void:

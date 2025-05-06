@@ -11,10 +11,6 @@ func _ready() -> void:
 	if research_data:
 		name_label.text = research_data.research_name
 		description_label.text = research_data.description
-		cost_label.text = "Cost: FREE"  # Placeholder
-
-		#if Research.has_completed(research_data):
-		#	disabled = true
 		cost_label.text = "\nCost"
 		
 		if research_data.money_cost:
@@ -40,10 +36,4 @@ func disable_research_entry(research_data_to_check: ResearchData) -> void:
 		disabled = true
 
 func _on_pressed() -> void:
-	#if Research.has_completed(research_data.research_id):
-	#	return
-
-	#Research.complete_research(research_data.research_id)
-	
 	ResearchSignals.research_clicked.emit(research_data)
-	disabled = true
