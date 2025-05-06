@@ -15,7 +15,6 @@ extends GatherableResource
 ## for a resource.
 ## The maximum amount of pollution a tree can absorb before it is considered dead
 @export var max_pollution_capacity: float
-@onready var sprite_2d: Sprite2D = $Sprite2D
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
 @onready var wildfire: WildFire = $Wildfire

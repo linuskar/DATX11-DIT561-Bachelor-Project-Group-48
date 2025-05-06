@@ -1,8 +1,9 @@
 [gd_scene load_steps=28 format=3 uid="uid://cbk8oqqcmsa30"]
+
 [ext_resource type="Texture2D" uid="uid://c6m6vftsynwql" path="res://assets/buildings_iso/coal_power_plant.png" id="3_2as3mk"]
-[ext_resource type="PackedScene" uid="uid://ctj754ex6tihn" path="res://assets/sounds/place_sound.tscn" id="3_ut7x7"]
+[ext_resource type="PackedScene" uid="uid://ctj754ex6tihn" path="res://scenes/buildings/animation/place_sound.tscn" id="3_ut7x7"]
 [ext_resource type="PackedScene" uid="uid://bk6susslxg5o2" path="res://scenes/buildings/animation/place_animation.tscn" id="4_coaia"]
-[ext_resource type="Script" path="res://scripts/UI/clickable.gd" id="4_lqwfw"]
+[ext_resource type="Script" uid="uid://0mr1k4838td2" path="res://scripts/UI/clickable.gd" id="4_lqwfw"]
 [ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="5_ut7x7"]
 [ext_resource type="Script" uid="uid://duuowy6imteh8" path="res://scripts/buildings/power_generators/coal_power_plant.gd" id="1_2asmk"]
 [ext_resource type="Resource" uid="uid://dxv8ly1srx0hh" path="res://resources/buildings/coal_power_plant.tres" id="2_lqwfw"]

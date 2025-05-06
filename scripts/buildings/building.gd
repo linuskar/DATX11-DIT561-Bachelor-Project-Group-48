@@ -14,10 +14,10 @@ extends StaticBody2D
 ## The sprite of the building
 @onready var building_sprite: Sprite2D = $Sprite2D
 
-@export var scene_place_sound: PackedScene
+var scene_place_sound: PackedScene = preload("res://scenes/buildings/animation/place_sound.tscn")
 var place_sound: AudioStreamPlayer2D
 
-@export var scene_place_animation: PackedScene
+var scene_place_animation: PackedScene = preload("res://scenes/buildings/animation/place_animation.tscn")
 @export var scene_place_particle: PackedScene
 var place_particle: GPUParticles2D
 var place_animation: AnimationPlayer
@@ -33,6 +33,10 @@ var building_type: Enums.BuildingType
 var currently_selected: bool
 
 func _ready() -> void:
+	highlight = highlight_scene.instantiate()
+	highlight.building_size = building_data.building_size
+	add_child(highlight)
+	highlight.unselected()
 	
 	place_particle = scene_place_particle.instantiate()
 	place_animation = scene_place_animation.instantiate()
@@ -43,7 +47,7 @@ func _ready() -> void:
 	place_animation.play("place")
 	place_animation.connect("animation_finished", _on_place_animation_animation_finished)
 	
-func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+func _on_place_animation_animation_finished() -> void:
 	place_particle.emitting = true
 	place_sound.pitch_scale = randf_range(0.8, 1.2)
 	place_sound.play()

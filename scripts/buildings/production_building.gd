@@ -77,15 +77,18 @@ func _on_timer_timeout() -> void:
 
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
-	emit_smoke() 
+	emit_smoke()
+	check_if_can_produce()
 	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
 		production_cycle.paused = true
+		print("cant produce")
 	else:
 		#var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
 		_use_input_recipe()
 		_handle_produced_goods()
 		_generate_byproducts()
-
+	$mine_sound.play()
+	
 func _handle_produced_goods() -> void:
 	var produced_resources: Dictionary[Enums.ResourceType, int] = _produce_goods()
 	for resource in produced_resources.keys():
@@ -101,11 +104,13 @@ func _handle_produced_goods() -> void:
 func check_if_can_produce() -> bool:
 	var missing_input: bool = check_for_missing_input()
 	var can_be_output_overflow: bool = check_for_output_overflow()
-
+	print("check")
 	if missing_input:
+		print("missing input")
 		return false
 		
 	if can_be_output_overflow and not currently_selling:
+		print("overflow and not selling")
 		return false
 	
 	return true

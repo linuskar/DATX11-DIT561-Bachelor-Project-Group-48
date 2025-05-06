@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://bt0w2f1d2iaox"]
+[gd_scene load_steps=19 format=3 uid="uid://bt0w2f1d2iaox"]
 
 [ext_resource type="Script" uid="uid://dyx0dn8djmd0w" path="res://scripts/buildings/produktion_buildings/saw_mill.gd" id="1_ix051"]
 [ext_resource type="Resource" uid="uid://dt62w7ld42f8y" path="res://resources/buildings/saw_mill.tres" id="2_ckntf"]
 [ext_resource type="Texture2D" uid="uid://dhrbh478p212n" path="res://assets/buildings_iso/Sawmill.png" id="3_03u5a"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="5_wi8qw"]
+[ext_resource type="PackedScene" uid="uid://bouaar65sta4q" path="res://scenes/buildings/animation/place_particle_small.tscn" id="5_ydt3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjfo5"]
 size = Vector2(64, 64)
@@ -99,6 +100,7 @@ alpha_curve = SubResource("CurveTexture_wi8qw")
 script = ExtResource("1_ix051")
 smokes = [NodePath("Smoke_v1")]
 building_data = ExtResource("2_ckntf")
+scene_place_particle = ExtResource("5_ydt3p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bjfo5")

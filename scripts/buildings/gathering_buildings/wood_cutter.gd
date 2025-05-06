@@ -57,9 +57,7 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 			else:
 				resource_to_gather_queue.pop_front()
 		## Producing wood
-		if is_instance_valid(current_tree_gathering):
-			produced_good_generated += current_tree_gathering.gather_resource(output_generation.get(Enums.ResourceType.WOOD))
-			
+		if is_instance_valid(current_tree_gathering):			
 			
 			$wood_chop_sound.pitch_scale = randf_range(0.75, 1.5)
 			$wood_chop_sound.play()
@@ -110,6 +108,3 @@ func _generate_byproducts() -> void:
 			byproduct_stored += byproduct_generated_rate
 			output_storage.set(byproduct, byproduct_stored)
 			resources_changed.emit(byproduct, byproduct_generated_rate)
-
-func _on_place_animation_animation_finished(anim_name: StringName) -> void:
-	$place_particle.emitting = true

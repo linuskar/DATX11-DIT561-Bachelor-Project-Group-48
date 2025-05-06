@@ -2,9 +2,6 @@ class_name LandfillAutoExpand
 extends StorageBuilding
 
 @onready var deplace_particle: GPUParticles2D = $deplace_particle
-@onready var place_animation: AnimationPlayer = $place_animation
-@onready var place_particle: GPUParticles2D = $place_particle
-
 ## The texture of the landfill, to be set when ready
 var texture: Texture
 
