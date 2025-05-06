@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://fysawqvslmw8"]
+[gd_scene load_steps=28 format=3 uid="uid://fysawqvslmw8"]
 
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_xpy7k"]
 [ext_resource type="Script" uid="uid://c40ab5qfubtd1" path="res://scripts/UI/keybinds_panel.gd" id="2_metke"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dccsm7n35fohy" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap.png" id="4_m1gcc"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="6_2aqdx"]
 [ext_resource type="Script" uid="uid://bynalp1f7wn0d" path="res://scenes/UI/grid_button.gd" id="6_g8um3"]
+[ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="7_g8um3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1gcc"]
 content_margin_left = 120.0
@@ -151,7 +152,15 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_oiv7n")
 toggle_mode = true
 script = ExtResource("6_g8um3")
 
-[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("7_g8um3")
+
+[node name="MarginContainer6" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/MarginContainer6"]
 layout_mode = 2
 text = "KEYBINDS"
 label_settings = SubResource("LabelSettings_metke")
