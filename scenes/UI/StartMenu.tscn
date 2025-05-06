@@ -209,14 +209,14 @@ theme_override_styles/normal = ExtResource("5_yarrf")
 text = "Start Game"
 script = ExtResource("5_8ljlw")
 
-[node name="Keybinds" type="Button" parent="VBoxContainer"]
+[node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_g18el")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_i35m3")
 theme_override_styles/hover = ExtResource("4_i35m3")
 theme_override_styles/normal = ExtResource("5_yarrf")
-text = "Keybinds"
+text = "Settings"
 script = ExtResource("8_i35m3")
 
 [node name="Exit Game" type="Button" parent="VBoxContainer"]
@@ -230,5 +230,5 @@ text = "Exit Game"
 script = ExtResource("9_i35m3")
 
 [connection signal="button_down" from="VBoxContainer/StartGame" to="VBoxContainer/StartGame" method="start_game"]
-[connection signal="button_down" from="VBoxContainer/Keybinds" to="VBoxContainer/Keybinds" method="_on_button_down"]
+[connection signal="button_down" from="VBoxContainer/Settings" to="VBoxContainer/Settings" method="_on_button_down"]
 [connection signal="button_down" from="VBoxContainer/Exit Game" to="VBoxContainer/Exit Game" method="exit_game"]
