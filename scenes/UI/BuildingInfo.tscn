@@ -216,7 +216,6 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="General" type="ScrollContainer" parent="MarginContainer"]
-visible = false
 layout_mode = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
@@ -357,6 +356,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Selling" type="ScrollContainer" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 0
