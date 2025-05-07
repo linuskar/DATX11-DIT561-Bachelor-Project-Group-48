@@ -101,7 +101,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4r2wj")
 theme_override_styles/hover = ExtResource("2_4r2wj")
 theme_override_styles/pressed = ExtResource("3_avwb0")
 theme_override_styles/normal = ExtResource("2_6q0ex")
-text = "Exit to Menu"
+text = "Exit to Main Menu"
 script = ExtResource("8_2tp5j")
 
 [node name="Exit to desktop" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
