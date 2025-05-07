@@ -33,7 +33,6 @@ script = ExtResource("3_v3jyi")
 [node name="BuildingSelectList" parent="." instance=ExtResource("2_yl4mc")]
 offset_left = -400.0
 offset_right = 0.0
-mouse_filter = 1
 
 [node name="ResourceUi" parent="." instance=ExtResource("3_vr1b1")]
 
