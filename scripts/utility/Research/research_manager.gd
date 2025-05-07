@@ -1,9 +1,6 @@
 class_name ResearchManager
 extends Node
 
-# Signal sent when research is completed
-signal research_completed(research_id: Enums.ResearchID)
-
 @onready var player_resources: PlayerResources = $"../PlayerResources"
 @onready var research_complete_sound: AudioStreamPlayer2D = $ResearchCompleteSound
 
