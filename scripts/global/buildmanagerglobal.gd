@@ -25,8 +25,9 @@ var buildings_placed: Array[Building]
 func get_all_storage_buildings() -> Array[StorageBuilding]:
 	var storage_buildings: Array[StorageBuilding] = []
 	
-	for buidling in buildings_placed:
-		storage_buildings.append(buidling)
+	for building in buildings_placed:
+		if building is StorageBuilding:
+			storage_buildings.append(building)
 		
 	return storage_buildings
 

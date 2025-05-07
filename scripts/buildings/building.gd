@@ -61,8 +61,8 @@ func building_deselected(building: Building) -> void:
 		currently_selected = false
 
 func _on_research_completed(research_data: ResearchData) -> void:
-	for reserach in available_research:
-		if research_data.research_id == reserach.research_id:
+	for research in available_research:
+		if research_data.research_id == research.research_id:
 			apply_research_upgrade(research_data)
 
 # this is a placeholder, override in child for specific upgrades

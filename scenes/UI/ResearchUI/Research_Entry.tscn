@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://505ijduj0bi7"]
+[gd_scene load_steps=11 format=3 uid="uid://505ijduj0bi7"]
 
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="1_5qm04"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="1_f8fog"]
@@ -11,6 +11,8 @@
 font = ExtResource("2_3pahr")
 font_size = 32
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f7ss"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3f7ss"]
 font = ExtResource("2_3pahr")
@@ -65,6 +67,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_3pahr")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3f7ss")
 theme_override_styles/disabled = ExtResource("1_x6kkh")
 theme_override_styles/hover_pressed_mirrored = ExtResource("1_5qm04")
 theme_override_styles/hover = ExtResource("2_q8ipl")

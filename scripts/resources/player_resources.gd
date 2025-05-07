@@ -30,12 +30,9 @@ func _use_Resources(type: Enums.ResourceType, amount: int) -> void:
 func check_if_resource_amount_is_stored(resource: Enums.ResourceType, amount_needed: int) -> bool:
 	if resources.has(resource):
 		var current_amount: int = resources.get(resource)
-		if current_amount < amount_needed:
-			return false
-		else:
+		if current_amount >= amount_needed:
 			return true
-	else:
-		return false
+	return false
 		
 ## Function to use resources and "buy" with them.
 ## This function takes into account all the building that has resoruces
@@ -86,10 +83,7 @@ func check_resource_amount_in_network(type: Enums.ResourceType, amount_needed: i
 				## If the amount needed is less or equal to the resources stored in the building
 				else:
 					amount_needed_left -= amount_needed_left
-	if amount_needed_left == 0:
-		return true
-	else:
-		return false
+	return not amount_needed_left
 
 #Add buildings placed to the array of buildings
 func _on_build_manager_placed_building(building: Building) -> void:
