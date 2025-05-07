@@ -71,28 +71,25 @@ theme_override_styles/hover = ExtResource("2_q8ipl")
 theme_override_styles/normal = ExtResource("1_f8fog")
 text = "Research"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 offset_left = 8.0
 offset_top = 53.0
 offset_right = 388.0
 offset_bottom = 189.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(380, 0)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Cost" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Cost" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cost"
 label_settings = SubResource("LabelSettings_3f7ss")
 
-[node name="Description" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Description" type="Label" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_vertical = 3

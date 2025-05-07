@@ -3,8 +3,8 @@ extends Control
 
 var research_data: ResearchData
 @onready var name_label: Label = $ResearchName
-@onready var cost_label: Label = $HBoxContainer/ScrollContainer/VBoxContainer/Cost
-@onready var description_label: Label = $HBoxContainer/ScrollContainer/VBoxContainer/Description
+@onready var cost_label: Label = $ScrollContainer/VBoxContainer/Cost
+@onready var description_label: Label = $ScrollContainer/VBoxContainer/Description
 @onready var research_button: Button = $ResearchButton
 
 func _ready() -> void:
