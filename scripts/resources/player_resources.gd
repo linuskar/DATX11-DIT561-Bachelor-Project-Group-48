@@ -65,15 +65,6 @@ func buy_with_resources(type: Enums.ResourceType, amount_needed: int, buildings_
 					building.output_storage.set(type, output_stored - amount_needed_left)
 					amount_needed_left -= amount_needed_left
 
-func buy_with_resources_in_network_with_research(type: Enums.ResourceType, amount_needed: int, research_lab: StorageBuilding) -> void:
-	var amount_needed_left: int = amount_needed
-	var lab_network: ResourceTransport = get_network_for_building(research_lab)
-	
-	if lab_network == null:
-		return
-		
-	buy_with_resources(type, amount_needed, lab_network.buildings)
-
 func get_network_for_building(building_to_check: StorageBuilding) -> ResourceTransport:
 	for network in networks.values():
 		for building in network.buildings:

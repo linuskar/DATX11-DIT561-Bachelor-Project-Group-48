@@ -1,6 +1,6 @@
 extends UIMenu
 
-@onready var v_box_container: VBoxContainer = $ScrollContainer/VBoxContainer
+@onready var research_container: VBoxContainer = $List/PanelContainer/ScrollContainer/ResearchContainer
 
 var available_research: Array[ResearchData] = [
 	load("res://resources/research_data/CoalMineUpgrade1.tres"),
@@ -18,7 +18,7 @@ func _ready() -> void:
 		var research_entry: ResearchEntry = research_entry_scene.instantiate()
 		research_entry.research_data = research
 		research_entries.append(research_entry)
-		v_box_container.add_child(research_entry)
+		research_container.add_child(research_entry)
 	
 	hide()
 

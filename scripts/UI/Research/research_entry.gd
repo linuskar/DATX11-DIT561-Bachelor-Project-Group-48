@@ -1,11 +1,11 @@
-extends Button
 class_name ResearchEntry
+extends Control
 
 var research_data: ResearchData
-
-@onready var name_label: Label = $HBoxContainer/LeftContainer/VBoxContainer/Name
-@onready var description_label: Label = $HBoxContainer/LeftContainer/VBoxContainer/Description
-@onready var cost_label: Label = $HBoxContainer/LeftContainer/VBoxContainer/Cost
+@onready var name_label: Label = $ResearchName
+@onready var cost_label: Label = $HBoxContainer/ScrollContainer/VBoxContainer/Cost
+@onready var description_label: Label = $HBoxContainer/ScrollContainer/VBoxContainer/Description
+@onready var research_button: Button = $ResearchButton
 
 func _ready() -> void:
 	if research_data:
@@ -25,15 +25,12 @@ func _ready() -> void:
 		if research_data.money_cost == null and research_data.resource_cost == null:
 			cost_label.text = "\nFREE\n"  
 			
-		#if Research.has_completed(research_data):
-			#disabled = true
-
-		connect("pressed", _on_pressed)
+		research_button.pressed.connect(_on_pressed)
 		ResearchSignals.research_completed.connect(disable_research_entry)
 
 func disable_research_entry(research_data_to_check: ResearchData) -> void:
 	if research_data == research_data_to_check:
-		disabled = true
+		research_button.disabled = true
 
 func _on_pressed() -> void:
 	ResearchSignals.research_clicked.emit(research_data)
