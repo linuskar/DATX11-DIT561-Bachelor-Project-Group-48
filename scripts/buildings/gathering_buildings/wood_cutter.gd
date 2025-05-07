@@ -59,9 +59,6 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 		## Producing wood
 		if is_instance_valid(current_tree_gathering):			
 			
-			$wood_chop_sound.pitch_scale = randf_range(0.75, 1.5)
-			$wood_chop_sound.play()
-			
 			current_tree_gathering.gathering_sprite_2d.show()
 			current_tree_gathering.play_animation()
 
