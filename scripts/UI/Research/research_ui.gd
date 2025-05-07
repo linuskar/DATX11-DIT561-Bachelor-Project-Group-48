@@ -26,9 +26,11 @@ func _ready() -> void:
 func open(research_lab_clicked: ResearchLab) -> void:
 	research_lab_selected = research_lab_clicked
 	research_lab_selected.currently_selected = true
+	ResearchSignals.research_lab_selected.emit(research_lab_selected)
 	show()
 
 #Close UI
 func close() -> void:
 	research_lab_selected.currently_selected = false
+	ResearchSignals.research_lab_selected.emit(null)
 	hide()

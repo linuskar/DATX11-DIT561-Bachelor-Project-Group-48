@@ -22,6 +22,14 @@ var tile_size: int = 32 #Size of tiles
 ## The buildings in the game that are currently placed.
 var buildings_placed: Array[Building]
 
+func get_all_storage_buildings() -> Array[StorageBuilding]:
+	var storage_buildings: Array[StorageBuilding] = []
+	
+	for buidling in buildings_placed:
+		storage_buildings.append(buidling)
+		
+	return storage_buildings
+
 #Updates road_networks with a network_id key to a list of the buildings positions.
 func update_networks(building: Building) -> void:
 	#Find all sibling
