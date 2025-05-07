@@ -14,6 +14,8 @@ signal show_keybinds(show: bool)
 ## A dictionary of all currently opened menus
 var opened_menus: Array[UIMenu] = []
 
+## A dictionary of all currently hovered UIelements
+
 ## Set the script to always update even if the rest of 
 ## the game is paused.
 func _ready() -> void:

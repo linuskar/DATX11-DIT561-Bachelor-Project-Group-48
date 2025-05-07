@@ -72,12 +72,6 @@ func find_connected_buildings(parent: Building = null, visited: Dictionary[Vecto
 #Use the function find_connected_buildings and adds them to a list.
 func check_network_connections() -> Array[Building]: #returning list of type Building or null.
 	var connected_buildings: Array[Building] = find_connected_buildings()
-	if connected_buildings.size() > 0:
-		modulate = Color(0, 1, 0, 1)  # Green if connected to buildings
-		
-	else:
-		modulate = Color(1, 1, 1, 1)  # White if not connected
-		
 	return connected_buildings
 
 #Returns the roads connected to the network_id in a list

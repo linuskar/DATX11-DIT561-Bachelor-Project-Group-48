@@ -1,2 +1,2 @@
 class_name ResearchLab
-extends Building
+extends StorageBuilding
