@@ -28,21 +28,14 @@ func _output_resources() -> void:
 	
 ## Function to check if the production building is going to overflow with 
 ## resources in output.
-func check_for_output_overflow() -> bool:
-	var wood_gather_rate_per_tile: int = output_generation.get(Enums.ResourceType.WOOD)
-	
+func check_for_output_overflow() -> bool:	
 	var wood_gather_rate: int = output_generation.get(Enums.ResourceType.WOOD)
-		
-	var biomass_generated_rate: int = output_generation.get(Enums.ResourceType.BIOMASS)
 	
 	var wood_stored: int = output_storage.get(Enums.ResourceType.WOOD)
 	var wood_max_storage: int = max_storage.get(Enums.ResourceType.WOOD)
-	
-	var biomass_stored: int = output_storage.get(Enums.ResourceType.BIOMASS)
-	var biomass_max_storage: int = max_storage.get(Enums.ResourceType.BIOMASS)
 
 	## When at possible overflow of resources for output
-	if wood_stored + wood_gather_rate > wood_max_storage or biomass_stored + biomass_generated_rate > biomass_max_storage:
+	if wood_stored + wood_gather_rate > wood_max_storage:
 		return true
 	return false
 			
