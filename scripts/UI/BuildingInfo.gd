@@ -327,7 +327,6 @@ func set_active(buildings: Array[Building]) -> void:
 			self.show()
 			populate_info_label(current_building)
 			populate_storage_panel()
-			set_sell_status_label(current_building)
 	elif selected_buildings.size() > 1:
 		single_select.hide()
 		multi_select.show()
@@ -336,13 +335,6 @@ func set_active(buildings: Array[Building]) -> void:
 		set_mode_label()
 		populate_multi_selected(selected_buildings)
 		populate_storage_panel()
-		
-func set_sell_status_label(building: Building) -> void:
-	if building is ProductionBuilding:
-		if building.currently_selling:
-			sell_store_status_label.text = "Selling"
-		else:
-			sell_store_status_label.text = "Storing"
 
 func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
 	var cleaned_list: Dictionary[Building, bool] = {}
