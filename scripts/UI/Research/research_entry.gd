@@ -11,19 +11,18 @@ func _ready() -> void:
 	if research_data:
 		name_label.text = research_data.research_name
 		description_label.text = research_data.description
-		cost_label.text = "\nCost"
+		cost_label.text = "\nCost\n"
 		
 		if research_data.money_cost:
-			cost_label.text += "\n" + str(research_data.money_cost) + "\n" 
-		
-		## TODO:
+			cost_label.text += "Currency: " + str(research_data.money_cost) + "\n" 
+
 		if research_data.resource_cost:
 			for resource in research_data.resource_cost.keys():
 				var amount: String = str(research_data.resource_cost.get(resource))
-				cost_label.text += "\n" + Enums.resource_type_to_string(resource) + ": " + amount + "\n"
+				cost_label.text += Enums.resource_type_to_string(resource) + ": " + amount + "\n"
 		
-		if research_data.money_cost == null and research_data.resource_cost == null:
-			cost_label.text = "\nFREE\n"  
+		if research_data.money_cost == 0 and research_data.resource_cost.size() == 0:
+			cost_label.text += "FREE\n"  
 			
 		research_button.pressed.connect(_on_pressed)
 		ResearchSignals.research_completed.connect(disable_research_entry)

@@ -7,4 +7,6 @@ script = ExtResource("1_cdkf2")
 research_id = 2
 research_name = "More Coal!"
 description = "Search deeper, and finde more coal!"
+money_cost = 0
+resource_cost = Dictionary[int, int]({})
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"
