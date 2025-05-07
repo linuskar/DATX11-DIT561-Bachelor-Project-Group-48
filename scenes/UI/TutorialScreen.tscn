@@ -42,3 +42,6 @@ vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size={24}]In this game you will build your manufacturing empire while earning money and resources while [s]exploiting [/s] utilizing the environment for your gain.[/font_size]"
