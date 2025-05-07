@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs254s4myb4sk"]
+
+[ext_resource type="Script" uid="uid://d4ki4k6lwj512" path="res://scripts/utility/Research/research_manager.gd" id="1_j23qk"]
+[ext_resource type="AudioStream" uid="uid://bh3300phj7j0s" path="res://assets/sounds/research/145797__211redman112__chemistry.wav" id="2_gfyc2"]
+
+[node name="ResearchManager" type="Node"]
+script = ExtResource("1_j23qk")
+
+[node name="ResearchCompleteSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_gfyc2")

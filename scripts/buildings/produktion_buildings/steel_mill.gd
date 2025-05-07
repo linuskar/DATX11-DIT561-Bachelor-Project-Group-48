@@ -9,8 +9,8 @@ extends ProductionBuilding
 func _ready():
 	super()
 
-func apply_research_upgrade(id: Enums.ResearchID) -> void:
-	if id == Enums.ResearchID.SM_1:
+func apply_research_upgrade(research_data: ResearchData) -> void:
+	if research_data.research_id == Enums.ResearchID.SM_1:
 		var input_array: Array[Enums.ResourceType] = [Enums.ResourceType.ELECTRICITY, Enums.ResourceType.STEEL_SCRAP]
 		var new_input_recipe: InputRecipe = InputRecipe.new()
 
