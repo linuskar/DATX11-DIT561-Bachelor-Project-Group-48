@@ -1,3 +1,4 @@
+class_name PlayerResources
 extends Node
 
 var resources: Dictionary[int, int] = {}
@@ -21,10 +22,68 @@ func _new_Resources(type: Enums.ResourceType, amount: int, building: Building) -
 	
 #Remove new amounts for already existing resources
 func _use_Resources(type: Enums.ResourceType, amount: int) -> void:
-	var newAmount: int = resources.get(type) - amount
-	resources.set(type, newAmount)
+	var new_amount: int = resources.get(type) - amount
+	resources.set(type, new_amount)
 	#Send the new amount to the UI
 	ResourceSignals.update_UI.emit(type, resources.get(type))
+						
+func check_if_resource_amount_is_stored(resource: Enums.ResourceType, amount_needed: int) -> bool:
+	if resources.has(resource):
+		var current_amount: int = resources.get(resource)
+		if current_amount >= amount_needed:
+			return true
+	return false
+		
+## Function to use resources and "buy" with them.
+## This function takes into account all the building that has resoruces
+## in their output storage. Resources will be used in a building if the amount is satisfied.
+## NOTE: This function assumes the required amount of a resource is already met.
+func buy_with_resources(type: Enums.ResourceType, amount_needed: int, buildings_to_use: Array[StorageBuilding]) -> void:
+	var amount_needed_left: int = amount_needed
+	
+	for building in buildings_to_use:
+		if building.output_storage.has(type):
+			if amount_needed_left == 0:
+				return
+			
+			var output_stored: int = building.output_storage.get(type)
+			## If the resources needed are there.
+			if output_stored > 0:
+				## If the amount needed is greater than the resources stored in the building
+				if amount_needed_left > output_stored:
+					## Take all the resources in the output storage for the building
+					_use_Resources(type, output_stored)
+					building.output_storage.set(type, output_stored - output_stored)
+					amount_needed_left -= output_stored
+				## If the amount needed is less or equal to the resources stored in the building
+				else:
+					## Take some parts of the resources in the output storage for the building
+					_use_Resources(type, amount_needed_left)
+					building.output_storage.set(type, output_stored - amount_needed_left)
+					amount_needed_left -= amount_needed_left
+
+func get_network_for_building(building_to_check: StorageBuilding) -> ResourceTransport:
+	for network in networks.values():
+		for building in network.buildings:
+			if building == building_to_check:
+				return network
+	return null
+
+func check_resource_amount_in_network(type: Enums.ResourceType, amount_needed: int, network: ResourceTransport) -> bool:
+	var amount_needed_left: int = amount_needed
+
+	for building in network.buildings:
+		if building.output_storage.has(type):		
+			var output_stored: int = building.output_storage.get(type)
+			## If the resources needed are there.
+			if output_stored > 0:
+				## If the amount needed is greater than the resources stored in the building
+				if amount_needed_left > output_stored:
+					amount_needed_left -= output_stored
+				## If the amount needed is less or equal to the resources stored in the building
+				else:
+					amount_needed_left -= amount_needed_left
+	return not amount_needed_left
 
 #Add buildings placed to the array of buildings
 func _on_build_manager_placed_building(building: Building) -> void:

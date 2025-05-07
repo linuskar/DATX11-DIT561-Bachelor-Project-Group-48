@@ -38,7 +38,7 @@ func new_building_to_input(building: StorageBuilding) -> void:
 			all_input_buildings.append(building)
 			buildings_input.set(input_type, all_input_buildings)
 
-#Flyttar resources från byggnader i output_buildings till byggnader i input_buildings
+## Moves resources from buildings in output_buildings to buildings in input_buildings
 func transport_resources(type: Enums.ResourceType) -> void:
 	## TODO: Allow for a part of resources a building stores to be transported
 	## for the case when max_input >= max_get
