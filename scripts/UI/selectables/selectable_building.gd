@@ -92,6 +92,10 @@ func set_panel_text() -> void:
 	panel_text += add_dict_to_panel(max_storage, "Max Storage")
 	panel_text += add_dict_to_panel(contributables, "Contributables")
 	panel_text += add_dict_to_panel(required, "Required")
+	if building_data.building_type == Enums.BuildingType.ROAD:
+		panel_text += "\nRoads connect buildings in a network, making them transport resources between eachother in the network.\n"
+	elif building_data.building_type == Enums.BuildingType.RESEARCH_LAB:
+		panel_text += "\nResearch labs allows for the research of new buildings and upgrades. A research lab needs to be connected to a network if resources are needed.\n"
 	info_label.text = panel_text
 
 func get_inputs() -> String:

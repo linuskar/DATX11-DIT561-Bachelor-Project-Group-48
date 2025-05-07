@@ -10,7 +10,6 @@ description = "Steel mills can also create steel using steel scrap and electrici
 money_cost = 50
 resource_cost = Dictionary[int, int]({
 0: 5,
-2: 5,
-12: 2
+2: 5
 })
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

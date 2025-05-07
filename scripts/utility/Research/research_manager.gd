@@ -5,6 +5,7 @@ extends Node
 signal research_completed(research_id: Enums.ResearchID)
 
 @onready var player_resources: PlayerResources = $"../PlayerResources"
+@onready var research_complete_sound: AudioStreamPlayer2D = $ResearchCompleteSound
 
 ## A list storing the IDs of completed research 
 var completed_research: Array[Enums.ResearchID] = []
@@ -47,6 +48,8 @@ func complete_research(research_data: ResearchData) -> void:
 	update_data(research_data.research_id)
 	completed_research.append(research_data.research_id)			# Add to the completed list
 	ResearchSignals.research_completed.emit(research_data)
+	research_complete_sound.position = selected_research_lab.position
+	research_complete_sound.play(2.24)
 
 # Function to check for already completed research 
 # (Probably useful when you place a new building)

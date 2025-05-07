@@ -38,6 +38,7 @@ pivot_offset = Vector2(400, 0)
 script = ExtResource("1_dphbc")
 
 [node name="List" type="Control" parent="."]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 1

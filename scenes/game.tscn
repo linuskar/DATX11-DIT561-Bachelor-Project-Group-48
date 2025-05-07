@@ -36,7 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://in383t1pyum1" path="res://scenes/buildings/building_blueprints/research_lab_blueprint.tscn" id="30_gxtfn"]
 [ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="30_twgab"]
 [ext_resource type="PackedScene" uid="uid://b48liywofkol4" path="res://scenes/utility/BuildingSelector.tscn" id="36_twgab"]
-[ext_resource type="Script" uid="uid://d4ki4k6lwj512" path="res://scripts/utility/Research/research_manager.gd" id="37_02fa5"]
+[ext_resource type="PackedScene" uid="uid://bs254s4myb4sk" path="res://scenes/utility/research_manager.tscn" id="37_02fa5"]
 
 [node name="Game" type="Node2D"]
 
@@ -100,8 +100,7 @@ autostart = true
 
 [node name="BuildingSelector" parent="." instance=ExtResource("36_twgab")]
 
-[node name="ResearchManager" type="Node" parent="."]
-script = ExtResource("37_02fa5")
+[node name="ResearchManager" parent="." instance=ExtResource("37_02fa5")]
 
 [connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
 [connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
