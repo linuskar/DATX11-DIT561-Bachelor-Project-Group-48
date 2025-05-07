@@ -28,7 +28,7 @@ func check_if_can_produce() -> bool:
 	if missing_input:
 		return false
 		
-	if check_for_production_overflow() and not currently_selling:
+	if check_for_production_overflow() and not mode == Enums.ProductionBuildingMode.SELLING:
 		return false
 	
 	if check_for_byproduct_overflow():

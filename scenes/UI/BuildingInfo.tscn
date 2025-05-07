@@ -485,8 +485,8 @@ stream = SubResource("AudioStreamRandomizer_ih4yy")
 volume_db = 20.0
 
 [connection signal="button_down" from="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/Button" to="." method="_sell_chosen_resources"]
-[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling" binds= [true]]
-[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_selling" binds= [false]]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling"]
+[connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_storing"]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Pause" to="." method="pause_production"]
 [connection signal="tab_clicked" from="TabBar" to="." method="_set_tab_visible"]
 [connection signal="button_down" from="CloseButton" to="." method="set_inactive"]
