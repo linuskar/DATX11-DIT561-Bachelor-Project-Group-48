@@ -104,6 +104,8 @@ func handle_building(building: BuildingData) -> String:
 	var text: String = ""
 	text += get_valid_tiles_text(building)
 	text += get_upkeep_text(building)
+	if building.building_type == Enums.BuildingType.ROAD:
+		text += "\nRoads connect buildings in a network, making them transport resources between eachother in the network.\n"
 	disable_sell_tab(true)
 	return text
 	
@@ -215,7 +217,6 @@ func get_storage_text(building_data: StorageBuildingData) -> String:
 	return text
 
 func get_connected_landfills(building: StorageBuildingData) -> String:
-
 	var text: String = "" 
 	
 	var main_resource: String = Enums.resource_type_to_string(selected_buildings.front().main_resource)
@@ -328,6 +329,7 @@ func set_active(buildings: Array[Building]) -> void:
 			self.show()
 			populate_info_label(current_building)
 			populate_storage_panel()
+			set_sell_status_label(current_building)
 	elif selected_buildings.size() > 1:
 		single_select.hide()
 		multi_select.show()
@@ -335,6 +337,13 @@ func set_active(buildings: Array[Building]) -> void:
 		self.show()
 		populate_multi_selected(selected_buildings)
 		populate_storage_panel()
+		
+func set_sell_status_label(building: Building) -> void:
+	if building is ProductionBuilding:
+		if building.currently_selling:
+			sell_store_status_label.text = "Selling"
+		else:
+			sell_store_status_label.text = "Storing"
 
 func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
 	var cleaned_list: Dictionary[Building, bool] = {}

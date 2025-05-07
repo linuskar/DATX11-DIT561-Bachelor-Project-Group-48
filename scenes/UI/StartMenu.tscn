@@ -231,4 +231,4 @@ script = ExtResource("9_i35m3")
 
 [connection signal="button_down" from="VBoxContainer/StartGame" to="VBoxContainer/StartGame" method="start_game"]
 [connection signal="button_down" from="VBoxContainer/Settings" to="VBoxContainer/Settings" method="_on_button_down"]
-[connection signal="button_down" from="VBoxContainer/Exit Game" to="VBoxContainer/Exit Game" method="exit_game"]
+[connection signal="button_down" from="VBoxContainer/Exit Game" to="VBoxContainer/Exit Game" method="_on_button_down"]
