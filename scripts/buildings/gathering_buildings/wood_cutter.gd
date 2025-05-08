@@ -26,19 +26,28 @@ func _output_resources() -> void:
 		_use_input_recipe()
 		_generate_byproducts()
 	
-## Function to check if the production building is going to overflow with 
-## resources in output.
-func check_for_output_overflow() -> bool:	
+## Function for checking whether produced resources will overflow on next production
+func check_for_production_overflow() -> bool:
 	var wood_gather_rate: int = output_generation.get(Enums.ResourceType.WOOD)
-	
 	var wood_stored: int = output_storage.get(Enums.ResourceType.WOOD)
 	var wood_max_storage: int = max_storage.get(Enums.ResourceType.WOOD)
-
+	
 	## When at possible overflow of resources for output
 	if wood_stored + wood_gather_rate > wood_max_storage:
 		return true
 	return false
-			
+
+## Function for checking whether byproducts will overflow on next production
+func check_for_byproduct_overflow() -> bool:
+	var biomass_generated_rate: int = output_generation.get(Enums.ResourceType.BIOMASS)
+	var biomass_stored: int = output_storage.get(Enums.ResourceType.BIOMASS)
+	var biomass_max_storage: int = max_storage.get(Enums.ResourceType.BIOMASS)
+	
+	## When at possible overflow of resources for output
+	if biomass_stored + biomass_generated_rate > biomass_max_storage:
+		return true
+	return false
+
 ## Function to produce the goods the gathering building can output.
 func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 	var resources_produced: Dictionary[Enums.ResourceType, int]
@@ -101,6 +110,10 @@ func _generate_byproducts() -> void:
 			byproduct_stored += byproduct_generated_rate
 			output_storage.set(byproduct, byproduct_stored)
 			resources_changed.emit(byproduct, byproduct_generated_rate)
+
+func pause_operations() -> void:
+	super()
+	current_tree_gathering.gathering_sprite_2d.hide()
 
 func _on_place_animation_animation_finished(anim_name: StringName) -> void:
 	$place_particle.emitting = true
