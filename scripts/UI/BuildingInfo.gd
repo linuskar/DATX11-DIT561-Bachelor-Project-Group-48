@@ -33,7 +33,6 @@ var storage_connections: Dictionary[Enums.ResourceType, StoredResourcePanel] = {
 
 func _ready() -> void:
 	super._ready()
-	#BuildingSignals.building_clicked.connect(set_active)
 	BuildingSelector.buildings_selected.connect(set_active)
 	set_inactive()
 
@@ -257,16 +256,13 @@ func hide_ui_menu() -> void:
 func disable_sell_tab(disable_sell_tab: bool) -> void:
 	self.find_child("TabBar").set_tab_disabled(2, disable_sell_tab)
 	
-func set_building_selling(selling: bool) -> void:
+func set_building_mode(mode: Enums.ProductionBuildingMode) -> void:
 	for building in selected_buildings:
 		if building is ProductionBuilding:
-			building.currently_selling = selling
+			building.mode = mode
 			building.check_restart_production()
-	if selling:
-		sell_store_status_label.text = "Selling"
-	else:
-		sell_store_status_label.text = "Storing"
-		
+			sell_store_status_label.text = Enums.mode_to_string(mode)
+
 ## Resets the tabs and panels to basic state
 ## Shows the general tab and panel by default
 func reset_tabs() -> void:
@@ -317,8 +313,10 @@ func set_active(buildings: Array[Building]) -> void:
 		building.building_deselected(building)
 	selected_buildings = clean_buildings_list(buildings)
 	if selected_buildings.size() == 1:
-		selected_buildings.front().building_selected(selected_buildings.front())
 		var current_building: Building = selected_buildings.front()
+		current_building.building_selected(current_building)
+		if current_building is ProductionBuilding:
+			sell_store_status_label.text = Enums.mode_to_string(current_building.mode)
 		if current_building is ResearchLab:
 			get_tree().root.get_node("Game/UserInterface/ResearchUI").open(selected_buildings.front())
 			return
@@ -329,21 +327,14 @@ func set_active(buildings: Array[Building]) -> void:
 			self.show()
 			populate_info_label(current_building)
 			populate_storage_panel()
-			set_sell_status_label(current_building)
 	elif selected_buildings.size() > 1:
 		single_select.hide()
 		multi_select.show()
 		reset_tabs()
 		self.show()
+		set_mode_label()
 		populate_multi_selected(selected_buildings)
 		populate_storage_panel()
-		
-func set_sell_status_label(building: Building) -> void:
-	if building is ProductionBuilding:
-		if building.currently_selling:
-			sell_store_status_label.text = "Selling"
-		else:
-			sell_store_status_label.text = "Storing"
 
 func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
 	var cleaned_list: Dictionary[Building, bool] = {}
@@ -352,3 +343,25 @@ func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
 		if not cleaned_list.has(building):
 			cleaned_list.set(current, true)
 	return cleaned_list.keys()
+
+func pause_production() -> void:
+	for building in selected_buildings:
+		if building is ProductionBuilding:
+			set_building_mode(Enums.ProductionBuildingMode.PAUSED)
+
+func set_building_selling() -> void:
+	set_building_mode(Enums.ProductionBuildingMode.SELLING)
+
+func set_building_storing() -> void:
+	set_building_mode(Enums.ProductionBuildingMode.STORING)
+
+func set_mode_label() -> void:
+	var first_mode: Enums.ProductionBuildingMode
+	for building in selected_buildings:
+		if building is ProductionBuilding:
+			if not first_mode:
+				first_mode = building.mode
+			elif not building.mode == first_mode:
+				sell_store_status_label.text = "Mixed"
+				return
+	sell_store_status_label.text = Enums.mode_to_string(first_mode)
