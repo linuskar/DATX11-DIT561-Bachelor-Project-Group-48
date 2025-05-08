@@ -251,6 +251,7 @@ enum ResearchID {
 	SM_1, ## Steel mill upgrade
 	WC_1, ## Wood cutter upgrade
 	CM_1, ## Coal mine upgrade
+	IM_1, ## Iron mine upgrade
 }
 
 static var tree_size_multiplier_quantity: Dictionary[Enums.TreeSize, float] = {

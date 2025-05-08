@@ -38,15 +38,15 @@ func check_for_production_overflow() -> bool:
 	return false
 
 ## Function for checking whether byproducts will overflow on next production
-func check_for_byproduct_overflow() -> bool:
-	var biomass_generated_rate: int = output_generation.get(Enums.ResourceType.BIOMASS)
-	var biomass_stored: int = output_storage.get(Enums.ResourceType.BIOMASS)
-	var biomass_max_storage: int = max_storage.get(Enums.ResourceType.BIOMASS)
+#func check_for_byproduct_overflow() -> bool:
+	#var biomass_generated_rate: int = output_generation.get(Enums.ResourceType.BIOMASS)
+	#var biomass_stored: int = output_storage.get(Enums.ResourceType.BIOMASS)
+	#var biomass_max_storage: int = max_storage.get(Enums.ResourceType.BIOMASS)
 	
-	## When at possible overflow of resources for output
-	if biomass_stored + biomass_generated_rate > biomass_max_storage:
-		return true
-	return false
+	### When at possible overflow of resources for output
+	#if biomass_stored + biomass_generated_rate > biomass_max_storage:
+	#	return true
+	#return false
 
 ## Function to produce the goods the gathering building can output.
 func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
