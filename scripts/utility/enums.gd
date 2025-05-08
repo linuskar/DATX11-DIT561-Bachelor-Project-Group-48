@@ -127,6 +127,23 @@ static func get_value_of_resource(resource: ResourceType) -> int:
 static func get_value_of_resources(resource: ResourceType, amount: int) -> int:
 	return resource_costs.get(resource)*amount
 
+## The different modes a productionbuilding can be in
+enum ProductionBuildingMode {
+	NULL,
+	SELLING,
+	STORING,
+	PAUSED
+}
+
+static var mode_names: Dictionary[ProductionBuildingMode, String] = {
+	ProductionBuildingMode.SELLING: "Selling",
+	ProductionBuildingMode.STORING: "Storing",
+	ProductionBuildingMode.PAUSED: "Paused"
+}
+
+static func mode_to_string(mode: ProductionBuildingMode) -> String:
+	return mode_names.get(mode)
+
 ## The different types of resources in the game
 enum ResourceType {
 	IRON_ORE, ## The resource type for iron ore
