@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://dwfw57d10a85j"]
+[gd_scene load_steps=24 format=3 uid="uid://dwfw57d10a85j"]
 
 [ext_resource type="Script" uid="uid://d1rtbhcf3jhw3" path="res://scripts/buildings/gathering_buildings/wood_cutter.gd" id="1_4m5a3"]
 [ext_resource type="Resource" uid="uid://jhy8bfinrkd0" path="res://resources/buildings/wood_cutter.tres" id="2_hjr1d"]
-[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="3_86t2d"]
 [ext_resource type="Texture2D" uid="uid://babal08bnd1ox" path="res://assets/UI/LogCabin.png" id="3_gte52"]
 [ext_resource type="Resource" uid="uid://cgm6sg3jw06lu" path="res://resources/research_data/WoodCutterUpgrade1.tres" id="4_3enbn"]
 [ext_resource type="AudioStream" uid="uid://danlvadxldepu" path="res://assets/sounds/click/wood_chop.wav" id="5_fnoo6"]
@@ -133,7 +132,7 @@ alpha_curve = SubResource("CurveTexture_86t2d")
 [node name="WoodCutter" type="StaticBody2D"]
 script = ExtResource("1_4m5a3")
 building_data = ExtResource("2_hjr1d")
-available_research = Array[ExtResource("3_86t2d")]([ExtResource("4_3enbn")])
+available_research = [ExtResource("4_3enbn")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g67v6")

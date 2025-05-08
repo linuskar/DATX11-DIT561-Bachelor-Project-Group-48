@@ -1,18 +1,35 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmvw3pwwig65k"]
+[gd_scene load_steps=20 format=3 uid="uid://dmvw3pwwig65k"]
 
 [ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="1_h6eyb"]
 [ext_resource type="Script" uid="uid://dmgsm1ff1lp3b" path="res://scripts/utility/ui_menu.gd" id="1_kntav"]
+[ext_resource type="FontFile" uid="uid://dgnmdqxxp7yha" path="res://assets/UI/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.ttf" id="3_6g8cb"]
 [ext_resource type="Texture2D" uid="uid://ctuhkctnubbh1" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_double.png" id="3_ayics"]
 [ext_resource type="Texture2D" uid="uid://dbos2d0ah5ofc" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_default.png" id="3_kcwoq"]
+[ext_resource type="StyleBox" uid="uid://diy6o1sjaexn8" path="res://resources/style_boxes/pointed_box.tres" id="4_5hfe2"]
+[ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="4_6wa57"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h6eyb"]
 font_size = 64
 
+[sub_resource type="LabelSettings" id="LabelSettings_5hfe2"]
+font = ExtResource("3_6g8cb")
+font_size = 48
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kcwoq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_68ee1"]
+texture = ExtResource("3_kcwoq")
+region_rect = Rect2(8, 840, 48, 48)
+modulate_color = Color(0.577008, 0.577008, 0.577008, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5hfe2"]
 texture = ExtResource("3_kcwoq")
 region_rect = Rect2(8, 840, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_64u78"]
+texture = ExtResource("3_kcwoq")
+region_rect = Rect2(8, 840, 48, 48)
+modulate_color = Color(0.843137, 0.843137, 0.843137, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6g8cb"]
 texture = ExtResource("3_kcwoq")
@@ -20,9 +37,19 @@ region_rect = Rect2(968, 904, 48, 48)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6g8cb"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e17rj"]
+texture = ExtResource("3_kcwoq")
+region_rect = Rect2(136, 840, 48, 48)
+modulate_color = Color(0.576471, 0.576471, 0.576471, 1)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6wa57"]
 texture = ExtResource("3_kcwoq")
 region_rect = Rect2(136, 840, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xh7s6"]
+texture = ExtResource("3_kcwoq")
+region_rect = Rect2(136, 840, 48, 48)
+modulate_color = Color(0.843184, 0.843184, 0.843184, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kcwoq"]
 texture = ExtResource("3_ayics")
@@ -30,10 +57,10 @@ region_rect = Rect2(144, 1680, 96, 96)
 
 [node name="TutorialScreen" type="Control"]
 layout_mode = 3
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kntav")
@@ -64,7 +91,6 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="Welcome" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -75,36 +101,169 @@ label_settings = SubResource("LabelSettings_h6eyb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Welcome"]
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Welcome"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_6wa57")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Welcome/PanelContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
-text = "[font_size={24}]In this game you will build your manufacturing empire while earning money and resources while [s]exploiting [/s] utilizing the environment for your gain.[/font_size]"
+text = "[font_size={24}]In this game you will build your manufacturing empire, earning money and resources while [s]exploiting [/s] utilizing the environment for your gain.[/font_size]"
 
-[node name="Keybinds" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+[node name="PlacingBuildings" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Keybinds"]
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/PlacingBuildings"]
 layout_mode = 2
 text = "How to play the game"
+label_settings = SubResource("LabelSettings_5hfe2")
 
-[node name="Functionality" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/PlacingBuildings"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_6wa57")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/PlacingBuildings/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24]Place buildings by selecting them from the buildings list and left clicking on an available space on the playing field (make sure the tile placement is valid and that the building has access to all the resources it needs):
+
+[center]List: [img=200x150]res://resources/tutorial_images/tutorial_buildings_list.tres[/img] Valid: [img=200x150]res://resources/tutorial_images/tutorial_valid_placement.tres[/img] Invalid: [img=200x150]res://resources/tutorial_images/tutorial_invalid_placement.tres[/img][/center]
+If you've done everything correctly your building should now be producing resources for you!
+
+How about we do something with those resources!"
+
+[node name="SellingResources" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+visible = false
 layout_mode = 2
 
-[node name="ButtonBar" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/SellingResources"]
+layout_mode = 2
+text = "Selling Resources"
+label_settings = SubResource("LabelSettings_5hfe2")
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/SellingResources"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_6wa57")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/SellingResources/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24]When your buildings produce resources the resources will be stored inside those very same buildings. To view these resources you have to select the buildings, this can be done by either clicking on the buildings or by pressing the left mouse button and dragging it so that the building is within the blue box.
+
+[center]Producing: [img=200x200]res://resources/tutorial_images/tutorial_producing_building.tres[/img] Selected: [img=200x200]res://resources/tutorial_images/tutorial_selected_building.tres[/img][/center]
+
+After selecting a building, info pertaining to that building will pop up in a panel on the left hand side of the screen. It is here you can see information such as where the building should be placed, how much it costs to operate the building as well as what the building produces and emits.
+
+At the top there are several tabs, pressing the storage tab will open up a panel displaying the resources that are currently stored in this building. This is also the place where you can sell your resources.
+
+[center]Info panel: [img=300x300]res://resources/tutorial_images/tutorial_building_info.tres[/img] Storage tab: [img=300x300]res://resources/tutorial_images/tutorial_storage_tab.tres[/img][/center]
+[/font_size]
+"
+
+[node name="Roads" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Roads"]
+layout_mode = 2
+text = "Roads and resource transport"
+label_settings = SubResource("LabelSettings_5hfe2")
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Roads"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_6wa57")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Roads/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24]Some buildings require resources to function, these resources are often produced by different buildings. To make sure the first building gets resources from the second building the two buildings must be connected by road.
+
+[center]Road: [img=200x200]res://resources/tutorial_images/tutorial_road.tres[/img] Network: [img=250x200]res://resources/tutorial_images/tutorial_network.tres[/img][/center]
+[/font_size]"
+
+[node name="Research" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Research"]
+layout_mode = 2
+text = "Research"
+label_settings = SubResource("LabelSettings_5hfe2")
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Research"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_6wa57")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Research/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24]To further your manufacturing empire progress is necessary! And for progress, you need a research lab. Research labs are built for the building list like any other building. However, unlike other buildings, when clicked on a research lab does not display information about itself, instead you will see a list of possible research, their costs as well as their effects. 
+
+[center]Research lab: [img=200x200]res://resources/tutorial_images/tutorial_research_lab.tres[/img] Research entry: [img=400x200]res://resources/tutorial_images/tutorial_research_entry.tres[/img][/center]
+Research entries can be free but most cost money and/or resources, make sure its connected to the right network!
+[/font_size]"
+
+[node name="EndGoal" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/EndGoal"]
+layout_mode = 2
+text = "Goal of the Game"
+label_settings = SubResource("LabelSettings_5hfe2")
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/EndGoal"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_6wa57")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/EndGoal/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24]There is only one goal in this game, be the manufacturing mogul who flew to the moon! To accomplish this will take time, money, resources, and most of all research.
+[/font_size]"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("4_5hfe2")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ButtonBar" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Backward" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/ButtonBar"]
+[node name="Backward" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonBar"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kcwoq")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_68ee1")
 theme_override_styles/hover = SubResource("StyleBoxTexture_5hfe2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_64u78")
 theme_override_styles/normal = SubResource("StyleBoxTexture_6g8cb")
 
-[node name="Forward" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/ButtonBar"]
+[node name="Forward" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/PanelContainer/MarginContainer/ButtonBar"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6g8cb")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_e17rj")
 theme_override_styles/hover = SubResource("StyleBoxTexture_6wa57")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xh7s6")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kcwoq")

@@ -102,6 +102,5 @@ autostart = true
 
 [node name="ResearchManager" parent="." instance=ExtResource("37_02fa5")]
 
-[connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
 [connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
 [connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
