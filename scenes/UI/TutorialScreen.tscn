@@ -64,6 +64,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="Welcome" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -82,6 +83,10 @@ text = "[font_size={24}]In this game you will build your manufacturing empire wh
 
 [node name="Keybinds" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Keybinds"]
+layout_mode = 2
+text = "How to play the game"
 
 [node name="Functionality" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
 layout_mode = 2
