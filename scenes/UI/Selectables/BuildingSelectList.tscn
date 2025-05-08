@@ -149,17 +149,4 @@ theme_override_styles/pressed = ExtResource("11_epysl")
 theme_override_styles/normal = ExtResource("9_epysl")
 text = "Buildings"
 
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/CoalMineSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/IronMineSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/WoodCutterSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/CoalPowerPlantSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/WarehouseSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/BiomassLandfillSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/RoadSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/SawMillSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/SteelMillSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/GearFactorySelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/ResearchLabSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/Buildings/MetalScrapLandfillSelectable" to="." method="_on_building_selected"]
 [connection signal="button_down" from="OpenListButton/Button" to="." method="_on_open_build_list"]

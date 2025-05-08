@@ -11,6 +11,9 @@ signal game_started(running: bool)
 ## or hidden
 signal show_keybinds(show: bool)
 
+## Signal emitted when the tutorial panel
+signal tutorial_visibility_changed(opened: bool)
+
 ## A dictionary of all currently opened menus
 var opened_menus: Array[UIMenu] = []
 
