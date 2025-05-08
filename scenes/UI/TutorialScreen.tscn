@@ -1,10 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmvw3pwwig65k"]
+[gd_scene load_steps=12 format=3 uid="uid://dmvw3pwwig65k"]
 
 [ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="1_h6eyb"]
 [ext_resource type="Script" uid="uid://dmgsm1ff1lp3b" path="res://scripts/utility/ui_menu.gd" id="1_kntav"]
+[ext_resource type="Texture2D" uid="uid://ctuhkctnubbh1" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_double.png" id="3_ayics"]
+[ext_resource type="Texture2D" uid="uid://dbos2d0ah5ofc" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_default.png" id="3_kcwoq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h6eyb"]
 font_size = 64
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kcwoq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5hfe2"]
+texture = ExtResource("3_kcwoq")
+region_rect = Rect2(8, 840, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6g8cb"]
+texture = ExtResource("3_kcwoq")
+region_rect = Rect2(968, 904, 48, 48)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6g8cb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6wa57"]
+texture = ExtResource("3_kcwoq")
+region_rect = Rect2(136, 840, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kcwoq"]
+texture = ExtResource("3_ayics")
+region_rect = Rect2(144, 1680, 96, 96)
 
 [node name="TutorialScreen" type="Control"]
 layout_mode = 3
@@ -33,15 +55,51 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="Content" type="MarginContainer" parent="PanelContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Welcome" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Welcome"]
 layout_mode = 2
 text = "Welcome to Facterra!"
 label_settings = SubResource("LabelSettings_h6eyb")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/Welcome"]
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "[font_size={24}]In this game you will build your manufacturing empire while earning money and resources while [s]exploiting [/s] utilizing the environment for your gain.[/font_size]"
+
+[node name="Keybinds" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+layout_mode = 2
+
+[node name="Functionality" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
+layout_mode = 2
+
+[node name="ButtonBar" type="HBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Backward" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/ButtonBar"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kcwoq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5hfe2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_6g8cb")
+
+[node name="Forward" type="Button" parent="PanelContainer/ScrollContainer/VBoxContainer/ButtonBar"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6g8cb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6wa57")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kcwoq")
