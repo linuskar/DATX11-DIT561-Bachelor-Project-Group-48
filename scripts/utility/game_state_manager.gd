@@ -14,7 +14,8 @@ signal show_keybinds(show: bool)
 ## A dictionary of all currently opened menus
 var opened_menus: Array[UIMenu] = []
 
-## A dictionary of all currently hovered UIelements
+## Signal emitted when the grid setting is toggled
+signal grid_setting_toggled(toggled_on: bool)
 
 ## Set the script to always update even if the rest of 
 ## the game is paused.

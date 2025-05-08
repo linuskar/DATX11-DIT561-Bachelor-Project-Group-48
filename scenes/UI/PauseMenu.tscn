@@ -80,7 +80,7 @@ theme_override_styles/normal = ExtResource("2_6q0ex")
 text = "Resume"
 script = ExtResource("5_73e60")
 
-[node name="Keybinds" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -89,7 +89,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4r2wj")
 theme_override_styles/hover = ExtResource("2_4r2wj")
 theme_override_styles/pressed = ExtResource("3_avwb0")
 theme_override_styles/normal = ExtResource("2_6q0ex")
-text = "Keybinds"
+text = "Settings"
 script = ExtResource("8_77ihb")
 
 [node name="Exit to main menu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -117,6 +117,7 @@ text = "Exit to Desktop"
 script = ExtResource("7_3m1qe")
 
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Resume" to="PanelContainer/MarginContainer/VBoxContainer/Resume" method="_on_button_down"]
-[connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Keybinds" to="PanelContainer/MarginContainer/VBoxContainer/Keybinds" method="_on_button_down"]
+[connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Settings" to="PanelContainer/MarginContainer/VBoxContainer/Settings" method="_on_button_down"]
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Exit to main menu" to="PanelContainer/MarginContainer/VBoxContainer/Exit to main menu" method="_on_button_down"]
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Exit to desktop" to="PanelContainer/MarginContainer/VBoxContainer/Exit to desktop" method="_on_button_down"]
+

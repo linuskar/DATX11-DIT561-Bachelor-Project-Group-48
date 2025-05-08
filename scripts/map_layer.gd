@@ -16,6 +16,8 @@ extends Node2D
 @onready var grass_layer: TileMapLayer = $Grass
 ## The resources layer of the TileMap
 @onready var resources_layer: TileMapLayer = $Resources
+## The TileMapLayer responsible for the grid
+@onready var grid_layer: TileMapLayer = $Grid
 
 ## The areas/bounds of the map, 
 ## i.e. the playable area and the outer areas/bounds
@@ -29,6 +31,7 @@ var blueprint_in_map: bool
 func _ready() -> void:
 	map_areas.mouse_in_map.connect(set_mouse_in_map)
 	map_areas.blueprint_in_map.connect(set_blueprint_in_map)
+	GameStateManager.grid_setting_toggled.connect(toggle_grid_map)
 	blueprint_in_map = true
 	
 ## Function checking if there is valid types of cells for the
@@ -98,3 +101,10 @@ func set_mouse_in_map(mouse_is_in_map: bool) -> void:
 ## Function to set the variable for if the mouse in the map bounds
 func set_blueprint_in_map(blueprint_is_in_map: bool) -> void:
 	blueprint_in_map = blueprint_is_in_map
+
+## Function to toggle the grid
+func toggle_grid_map(toggled_on: bool) -> void:
+	if toggled_on:
+		grid_layer.show()
+	else:
+		grid_layer.hide()
