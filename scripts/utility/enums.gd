@@ -138,7 +138,7 @@ enum ProductionBuildingMode {
 static var mode_names: Dictionary[ProductionBuildingMode, String] = {
 	ProductionBuildingMode.SELLING: "Selling",
 	ProductionBuildingMode.STORING: "Storing",
-	ProductionBuildingMode.PAUSED: "Paused"
+	ProductionBuildingMode.PAUSED: "Paused",
 }
 
 static func mode_to_string(mode: ProductionBuildingMode) -> String:

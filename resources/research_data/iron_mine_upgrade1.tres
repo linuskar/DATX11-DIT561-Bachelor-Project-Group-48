@@ -6,10 +6,12 @@
 script = ExtResource("1_k3dyd")
 research_id = 3
 research_name = "More iron!"
-description = "Search deeper, and find more iron! Increase output of iron per tile by 5."
-money_cost = 50
+description = "Get more efficient iron mines and increase output of iron per tile by 5."
+money_cost = 1000
 resource_cost = Dictionary[int, int]({
-0: 5,
-2: 5
+5: 200,
+10: 50,
+11: 50,
+12: 50
 })
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"
