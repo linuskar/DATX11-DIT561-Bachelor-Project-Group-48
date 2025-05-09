@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://csdjsjq4n5751"]
+[gd_scene load_steps=5 format=3 uid="uid://csdjsjq4n5751"]
 
 [ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/resources/gatherable_resource.gd" id="1_o8yg8"]
-[ext_resource type="Texture2D" uid="uid://pcumsvb4k0ay" path="res://assets/Tilesets/resource_tiles.png" id="2_o8yg8"]
+[ext_resource type="Texture2D" uid="uid://cc4iew34euvsf" path="res://assets/iron_ore_spritesheet.png" id="2_rhhfs"]
+[ext_resource type="Texture2D" uid="uid://dmdmdv4pugn0y" path="res://assets/pickaxe_32.png" id="3_rhhfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laj1l"]
 size = Vector2(32, 32)
@@ -11,10 +12,14 @@ script = ExtResource("1_o8yg8")
 quantity = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_o8yg8")
+texture = ExtResource("2_rhhfs")
 region_enabled = true
 region_rect = Rect2(32, 0, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_laj1l")
+
+[node name="gather_pickaxe" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_rhhfs")

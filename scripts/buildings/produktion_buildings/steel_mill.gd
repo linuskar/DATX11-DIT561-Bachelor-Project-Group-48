@@ -20,4 +20,7 @@ func apply_research_upgrade(research_data: ResearchData) -> void:
 		max_storage.set(Enums.ResourceType.STEEL_SCRAP, 60)
 		input_storage.set(Enums.ResourceType.STEEL_SCRAP, 60)
 		input_use_rates.set(Enums.ResourceType.STEEL_SCRAP, 60)
-		
+		## Adding a new recipe requires the steel mill to request to use steel scrap,
+		## this is only for some cases where the steel mill is not currently producing
+		## meaning it will not use steel scrap otherwise.
+		ResourceSignals.add_input_building.emit(self)
