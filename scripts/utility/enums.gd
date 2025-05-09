@@ -262,10 +262,12 @@ enum ResearchID {
 }
 
 static var building_research: Dictionary[BuildingType, Array] = {
-	BuildingType.STEEL_MILL: [ResearchID.SM_1],
+	BuildingType.STEEL_MILL: [ResearchID.SM_1, ResearchID.SM_0],
 	BuildingType.WOOD_CUTTER: [ResearchID.WC_1],
 	BuildingType.COAL_MINE: [ResearchID.CM_1],
 	BuildingType.IRON_MINE: [ResearchID.IM_1],
+	BuildingType.GEAR_FACTORY: [ResearchID.GF_0],
+	BuildingType.BIOMASS_POWER_PLANT: [ResearchID.BMPP_0]
 }
 
 static var tree_size_multiplier_quantity: Dictionary[Enums.TreeSize, float] = {

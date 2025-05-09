@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_nakkw")
-research_id = 5
+research_id = 9
 research_name = "Wildifre Statistics"
 description = "Get statistics related to wildfires in the statistics tab for the research lab."
 money_cost = 1000

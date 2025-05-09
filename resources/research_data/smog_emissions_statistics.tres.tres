@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_bqt33")
-research_id = 6
+research_id = 10
 research_name = "Smog Emissions Statistics"
 description = "Get statistics related to smog in the statistics tab for the research lab."
 money_cost = 1000
