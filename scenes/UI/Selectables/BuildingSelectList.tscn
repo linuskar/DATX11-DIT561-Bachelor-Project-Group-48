@@ -91,6 +91,7 @@ pivot_offset = Vector2(400, 0)
 script = ExtResource("1_dphbc")
 
 [node name="List" type="Control" parent="."]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 1
@@ -118,6 +119,7 @@ anchor_left = 0.05
 anchor_right = 0.95
 offset_top = 80.0
 offset_bottom = 123.0
+mouse_filter = 1
 theme_override_constants/h_separation = 0
 theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_2tosp")
 theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_oxyvt")
