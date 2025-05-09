@@ -36,10 +36,15 @@ offset_bottom = 388.6
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-mouse_filter = 1
 script = ExtResource("1_l02gs")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="List" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 648.0
+mouse_filter = 1
+
+[node name="ListPanel" type="Panel" parent="List"]
 custom_minimum_size = Vector2(102, 162)
 layout_mode = 1
 offset_right = 150.0
@@ -48,22 +53,26 @@ scale = Vector2(4, 4)
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_id0mj")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="List"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.034
-anchor_top = 0.155
-anchor_right = 0.966
-anchor_bottom = 0.969
-offset_left = -0.400002
-offset_top = -0.440002
-offset_right = 0.399963
-offset_bottom = 0.0880127
+anchor_left = 0.033
+anchor_top = 0.154
+anchor_right = 0.967
+anchor_bottom = 0.968
+offset_left = 0.200001
+offset_top = -1.79201
+offset_right = -0.200012
+offset_bottom = 2.73596
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_id0mj")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="List/PanelContainer"]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_og7lo")
-horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="ResearchContainer" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

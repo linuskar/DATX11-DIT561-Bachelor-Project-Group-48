@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dkys5yq1u7s2q" path="res://scripts/buildings/gathering_buildings/iron_mine.gd" id="1_l5hob"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_jwvew"]
+[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="3_6w4bc"]
 [ext_resource type="Texture2D" uid="uid://bqugr640sxpqq" path="res://assets/buildings_iso/Ironmine_building1.png" id="3_oc4lm"]
 [ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="5_5k2sk"]
+[ext_resource type="Resource" uid="uid://c1lm1b6aqpnde" path="res://resources/research_data/iron_mine_upgrade1.tres" id="4_kw5qq"]
 [ext_resource type="PackedScene" uid="uid://bkqqe6bdw740k" path="res://scenes/buildings/smoke/smoke_v2.tscn" id="5_oc4lm"]
 [ext_resource type="PackedScene" uid="uid://mm3smhbol1xr" path="res://assets/sounds/harvest_sounds/mine_sound.tscn" id="9_mlxvk"]
 
@@ -15,6 +17,7 @@ script = ExtResource("1_l5hob")
 production_sound_scene = ExtResource("9_mlxvk")
 building_data = ExtResource("2_jwvew")
 scene_place_particle = ExtResource("5_5k2sk")
+available_research = Array[ExtResource("3_6w4bc")]([ExtResource("4_kw5qq")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cwrwc")

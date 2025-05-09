@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://brpjd4mngg72r"]
+
+[ext_resource type="FontFile" uid="uid://dgnmdqxxp7yha" path="res://assets/UI/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.ttf" id="1_enjov"]
+
+[resource]
+font = ExtResource("1_enjov")
+font_size = 36

@@ -54,7 +54,7 @@ func _ready() -> void:
 	place_animation.connect("animation_finished", _on_place_animation_animation_finished)
 	
 	BuildingSignals.building_info_closed.connect(building_deselected)
-	Research.research_completed.connect(_on_research_completed)
+	ResearchSignals.research_completed.connect(_on_research_completed)
 
 	
 func _on_place_animation_animation_finished(anim_name: String) -> void:
@@ -86,13 +86,13 @@ func building_deselected(building: Building) -> void:
 	if building == self:
 		currently_selected = false
 
-func _on_research_completed(id: Enums.ResearchID) -> void:
-	for reserach in available_research:
-		if id == reserach.research_id:
-			apply_research_upgrade(id)
+func _on_research_completed(research_data: ResearchData) -> void:
+	for research in available_research:
+		if research_data.research_id == research.research_id:
+			apply_research_upgrade(research_data)
 
 # this is a placeholder, override in child for specific upgrades
-func apply_research_upgrade(id: Enums.ResearchID) -> void:
+func apply_research_upgrade(research_data: ResearchData) -> void:
 	pass
 
 func get_building() -> Building:

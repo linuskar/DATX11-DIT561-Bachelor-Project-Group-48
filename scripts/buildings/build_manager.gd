@@ -31,9 +31,6 @@ var default_color: Color = Color(1, 1, 1, 1)
 ## The blueprints for the buildings that you can place.
 @export var building_blueprints: Dictionary[Enums.BuildingType, Resource]
 
-## The buildings in the game that are currently placed.
-var buildings_placed: Array[Building]
-
 ## The buildings in the game that are currently placed and gathering resources.
 var buildings_gathering_resources: Array[Building]
 
@@ -163,7 +160,7 @@ func place_building() -> void:
 	var new_building: Building = buildings.get(building_type).instantiate()
 	new_building.position = blueprint.position
 	buildings_node_container.add_child(new_building)
-	
+	BuildManagerGlobal.buildings_placed.append(new_building)
 	## Additionally decrease the players held currency equal to the cost of the building
 	PlayerCurrency.remove_currency(blueprint.building_data.building_cost)
 	_on_placed_building(new_building)
