@@ -57,16 +57,16 @@ func add_completed_research(research_data: ResearchData) -> void:
 
 func init_contributors() -> void:
 	for emission in Enums.emissions:	
-		emissions_contributors.text += "\n" + Enums.resource_type_to_string(emission) + ": ???"
+		emissions_contributors.text += "\n" + Enums.resource_type_to_string(emission)
 		
 	for emission in Enums.emissions_contributing_to_wildfires:
-		wildfire_contributors.text += "\n" + Enums.resource_type_to_string(emission) + ": ???"
+		wildfire_contributors.text += "\n" + Enums.resource_type_to_string(emission)
 		
 	for emission in Enums.emissions_contributing_to_tree_pollution:
 		tree_pollution_contributors.text += "\n" + Enums.resource_type_to_string(emission)
 	
 	for emission in Enums.emissions_contributing_to_smog:
-		smog_contributors.text += "\n" + Enums.resource_type_to_string(emission) + ": ???"
+		smog_contributors.text += "\n" + Enums.resource_type_to_string(emission)
 
 ## NOTE: This is very bad for performance
 func update_contributor_percentage(emissions: Dictionary[Enums.ResourceType, float]) -> void:
