@@ -1,6 +1,6 @@
 extends UIMenu
 
-@onready var buildings: PanelContainer = $ScrollContainer/BuildingsContainer
+@onready var buildings: PanelContainer = $PanelContainer/ScrollContainer/BuildingsContainer
 @onready var tabs: TabBar = $TabBar
 
 ## Function for setting the corresponding list visible
