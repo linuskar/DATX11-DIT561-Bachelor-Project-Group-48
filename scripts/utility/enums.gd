@@ -252,6 +252,10 @@ enum ResearchID {
 	WC_1, ## Wood cutter upgrade
 	CM_1, ## Coal mine upgrade
 	IM_1, ## Iron mine upgrade
+	SM_0, ## Steel mill unlock
+	SwM_0, ## Saw mill unlock
+	GF_0, ## Gear factory unlock
+	BMPP_0, ## Biomass power plant unlock
 	TE, ## Total emissions statistics
 	WE, ## Wildfire emissions statistics
 	SE, ## Smog emissions statistics
