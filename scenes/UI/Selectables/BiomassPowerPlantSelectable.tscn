@@ -60,6 +60,7 @@ mouse_filter = 1
 script = ExtResource("1_afr5s")
 icon_path = "uid://cyb5gnrnuag2x"
 building_data = ExtResource("2_afr5s")
+on_research_reveal = Array[int]([7])
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
