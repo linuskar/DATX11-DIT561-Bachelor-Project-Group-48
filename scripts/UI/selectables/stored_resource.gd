@@ -121,3 +121,7 @@ func update_resources() -> void:
 	if resource_to_sell > resource_held:
 		resource_to_sell = resource_held
 		resource_selling_changed.emit(resource, resource_to_sell)
+
+func reset_selling() -> void:
+	resource_to_sell = 0
+	resource_selling_changed.emit(resource, resource_to_sell)

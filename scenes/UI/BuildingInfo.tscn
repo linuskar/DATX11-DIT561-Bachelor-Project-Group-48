@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="5_6mxs2"]
 [ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="6_itten"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="6_xxyib"]
+[ext_resource type="StyleBox" uid="uid://y5y7axbnqsdv" path="res://resources/style_boxes/ui_panel_light_brown.tres" id="7_xwu3o"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="7_xxyib"]
 [ext_resource type="AudioStream" uid="uid://dhgodxjdfbs5h" path="res://assets/sounds/money_sounds/coin_sound1.wav" id="8_gy07u"]
 [ext_resource type="AudioStream" uid="uid://bjnobxyxh85bs" path="res://assets/sounds/money_sounds/coin_sound2.wav" id="9_xwu3o"]
@@ -142,18 +143,6 @@ region_rect = Rect2(0, 0, 32, 32)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xxyib"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjg1s"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83uro"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-texture = ExtResource("6_xxyib")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-region_rect = Rect2(32, 0, 32, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gy07u"]
 
@@ -458,7 +447,7 @@ theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_xxyib")
 theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_xjg1s")
 theme_override_styles/tab_unselected = ExtResource("7_xxyib")
 theme_override_styles/tab_hovered = ExtResource("6_itten")
-theme_override_styles/tab_selected = SubResource("StyleBoxTexture_83uro")
+theme_override_styles/tab_selected = ExtResource("7_xwu3o")
 theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_gy07u")
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_83uro")
 current_tab = 0
