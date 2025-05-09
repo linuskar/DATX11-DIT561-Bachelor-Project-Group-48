@@ -7,6 +7,9 @@ extends Control
 ## The metadata for building that is selected
 @export var building_data: BuildingData
 
+## The list of research IDs for which this selectable will reveal itself
+@export var on_research_reveal: Array[Enums.ResearchID]
+
 ## Signal to be emitted when this building is selected. 
 ## Emitted together with the building itself.
 signal selected(building: SelectableBuilding)
@@ -52,6 +55,12 @@ func _ready() -> void:
 	## Set the text of the main panel according to the template
 	set_panel_text()
 	ResearchSignals.research_completed.connect(update_panel_text)
+	ResearchSignals.research_completed.connect(_on_research_completed)
+	
+	## If there are specific research ids which reveal this selectable
+	## hide the selectable until those research datas are finished
+	if on_research_reveal:
+		hide()
 	
 func initialize_resource_data() -> void:
 	if building_data is StorageBuildingData:
@@ -192,3 +201,7 @@ func _set_button_text(toggled_on: bool) -> void:
 		self.select_button.text = "Unselect"
 	else:
 		self.select_button.text = "Select"
+
+func _on_research_completed(research: ResearchData) -> void:
+	if on_research_reveal.has(research.research_id):
+		show()

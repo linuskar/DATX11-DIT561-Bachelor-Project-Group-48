@@ -7,11 +7,7 @@ extends GatheringBuilding
 ##
 
 func _ready():
-	$place_animation.play("place")
 	super()
-
-func _on_place_animation_animation_finished(anim_name: StringName) -> void:
-	$place_particle.emitting = true
 
 func apply_research_upgrade(research_data: ResearchData) -> void:
 	if research_data.research_id == Enums.ResearchID.IM_1:
