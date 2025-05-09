@@ -67,9 +67,13 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 		var resource_needed: int = data.get(resource)
 		string_data.set(resource_string, resource_needed)
 
+## Function to update panel text if research data is applicable to building type
 func update_panel_text(research_data: ResearchData) -> void:
-	initialize_resource_data()
-	set_panel_text()
+	if Enums.building_research.has(building_data.building_type):
+		var research: Array = Enums.building_research.get(building_data.building_type)
+		if research_data.research_id in research:
+			initialize_resource_data()
+			set_panel_text()
 
 func _input(event: InputEvent) -> void:
 	## Handling press of left mouse button for selecting a building to buy
