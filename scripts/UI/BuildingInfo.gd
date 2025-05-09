@@ -149,7 +149,10 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 		text += "\nOutputs\n"
 		for output in building_data.output_generation.keys():
 			if !Enums.is_emission(output):
-				text += Enums.resource_type_to_string(output) + ": " + str(building_data.output_generation.get(output)) + "\n"
+				if Enums.is_gathering_building(building_data.building_type) :
+					text += Enums.resource_type_to_string(output) + ": " + str(building_data.output_generation.get(output)) + " per tile" + "\n"
+				else:
+					text += Enums.resource_type_to_string(output) + ": " + str(building_data.output_generation.get(output)) + "\n"
 	return text
 	
 ## Gets text representing what the emissions are for a building, if it has any

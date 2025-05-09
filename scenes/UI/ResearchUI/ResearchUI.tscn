@@ -36,7 +36,6 @@ offset_bottom = 388.6
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-mouse_filter = 1
 script = ExtResource("1_l02gs")
 
 [node name="List" type="Control" parent="."]
