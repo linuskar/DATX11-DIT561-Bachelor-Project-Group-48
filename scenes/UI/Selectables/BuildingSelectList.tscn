@@ -29,9 +29,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oxyvt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_albfh"]
-content_margin_left = 13.0
+content_margin_left = 12.0
 content_margin_top = 10.0
-content_margin_right = 13.0
+content_margin_right = 12.0
 content_margin_bottom = 10.0
 texture = ExtResource("19_oxyvt")
 texture_margin_left = 5.0
@@ -44,9 +44,9 @@ region_rect = Rect2(0, 0, 32, 32)
 load_path = "res://.godot/imported/tilemap_packed.png-f70ab1b24a16f17e2cb5fa150fb08651.ctex"
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6f0jf"]
-content_margin_left = 10.0
+content_margin_left = 12.0
 content_margin_top = 10.0
-content_margin_right = 10.0
+content_margin_right = 12.0
 content_margin_bottom = 10.0
 texture = SubResource("CompressedTexture2D_ona1n")
 texture_margin_left = 4.0
@@ -59,9 +59,9 @@ region_rect = Rect2(32, 0, 32, 32)
 modulate_color = Color(0.851769, 0.851769, 0.851769, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwgrj"]
-content_margin_left = 10.0
+content_margin_left = 12.0
 content_margin_top = 10.0
-content_margin_right = 10.0
+content_margin_right = 12.0
 content_margin_bottom = 10.0
 texture = ExtResource("19_oxyvt")
 texture_margin_left = 4.0
