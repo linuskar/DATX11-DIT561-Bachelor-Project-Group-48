@@ -27,6 +27,7 @@ TreeSignals="*res://scripts/resources/tree_signals.gd"
 GameStateManager="*res://scripts/utility/game_state_manager.gd"
 BuildingSelector="*res://scripts/utility/building_selector.gd"
 ResearchSignals="*res://scripts/utility/Research/research_signals.gd"
+PollutionStatistics="*res://scripts/pollution/pollution_statistics.gd"
 
 [display]
 
