@@ -139,6 +139,7 @@ static var mode_names: Dictionary[ProductionBuildingMode, String] = {
 	ProductionBuildingMode.SELLING: "Selling",
 	ProductionBuildingMode.STORING: "Storing",
 	ProductionBuildingMode.PAUSED: "Paused",
+	ProductionBuildingMode.NULL: "None"
 }
 
 static func mode_to_string(mode: ProductionBuildingMode) -> String:

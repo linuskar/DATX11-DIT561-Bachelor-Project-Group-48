@@ -367,4 +367,5 @@ func set_mode_label() -> void:
 			elif not building.mode == first_mode:
 				sell_store_status_label.text = "Mixed"
 				return
-	sell_store_status_label.text = Enums.mode_to_string(first_mode)
+	if not first_mode:
+		sell_store_status_label.text = Enums.mode_to_string(first_mode)
