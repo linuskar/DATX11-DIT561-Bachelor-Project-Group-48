@@ -145,18 +145,21 @@ layout_mode = 2
 
 [node name="Emissions" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/EmissionsContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Emissions"
 label_settings = SubResource("LabelSettings_l02gs")
 
 [node name="Description" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/EmissionsContainer/VBoxContainer"]
 custom_minimum_size = Vector2(430, 20)
 layout_mode = 2
+mouse_filter = 1
 text = "The distribution of emissions in the air."
 label_settings = SubResource("LabelSettings_rn6eb")
 autowrap_mode = 2
 
 [node name="EmissionsContributors" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/EmissionsContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Contributors"
 label_settings = SubResource("LabelSettings_1ak1k")
 
@@ -169,18 +172,21 @@ layout_mode = 2
 
 [node name="Wildfire" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/WildfireContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Wildfire"
 label_settings = SubResource("LabelSettings_l02gs")
 
 [node name="Description" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/WildfireContainer/VBoxContainer"]
 custom_minimum_size = Vector2(430, 50)
 layout_mode = 2
+mouse_filter = 1
 text = "The distribution of emissions in the air causing wildfires."
 label_settings = SubResource("LabelSettings_rn6eb")
 autowrap_mode = 2
 
 [node name="WildfireContributors" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/WildfireContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Contributors"
 label_settings = SubResource("LabelSettings_ihpgc")
 
@@ -193,18 +199,21 @@ layout_mode = 2
 
 [node name="TreePollution" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/TreePollutionContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Tree Pollution"
 label_settings = SubResource("LabelSettings_l02gs")
 
 [node name="Description" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/TreePollutionContainer/VBoxContainer"]
 custom_minimum_size = Vector2(430, 40)
 layout_mode = 2
+mouse_filter = 1
 text = "The emissions that trees absorb and harm them."
 label_settings = SubResource("LabelSettings_rn6eb")
 autowrap_mode = 2
 
 [node name="TreePollutionContributors" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/TreePollutionContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Contributors"
 label_settings = SubResource("LabelSettings_vfn66")
 
@@ -217,18 +226,21 @@ layout_mode = 2
 
 [node name="Smog" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/SmogContanier/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Smog"
 label_settings = SubResource("LabelSettings_l02gs")
 
 [node name="Description" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/SmogContanier/VBoxContainer"]
 custom_minimum_size = Vector2(430, 50)
 layout_mode = 2
+mouse_filter = 1
 text = "The distribution of emissions in the air causing smog to appear."
 label_settings = SubResource("LabelSettings_rn6eb")
 autowrap_mode = 2
 
 [node name="SmogContributors" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/SmogContanier/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Contributors"
 label_settings = SubResource("LabelSettings_vfn66")
 
