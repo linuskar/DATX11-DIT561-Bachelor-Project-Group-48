@@ -55,7 +55,6 @@ func _ready() -> void:
 	
 	BuildingSignals.building_info_closed.connect(building_deselected)
 	ResearchSignals.research_completed.connect(_on_research_completed)
-
 	
 func _on_place_animation_animation_finished(anim_name: String) -> void:
 	place_particle.emitting = true

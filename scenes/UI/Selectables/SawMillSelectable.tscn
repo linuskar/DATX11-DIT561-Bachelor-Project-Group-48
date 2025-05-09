@@ -62,6 +62,8 @@ mouse_filter = 1
 script = ExtResource("1_kiv37")
 icon_path = "uid://dhrbh478p212n"
 building_data = ExtResource("2_lt1rx")
+contributables = null
+required = null
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1

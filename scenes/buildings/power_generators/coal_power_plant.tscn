@@ -57,7 +57,7 @@ alpha_curve = SubResource("CurveTexture_klpcp")
 
 [node name="CoalPowerPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_2asmk")
-smokes = [NodePath("Smoke_v3"), NodePath("Smoke_v4"), NodePath("Smoke_v5"), NodePath("Smoke_v6")]
+smokes = [NodePath("Smoke_v3"), NodePath("Smoke_v4"), NodePath("Smoke_v5"), NodePath("Smoke_v6"), NodePath("Smoke_v7")]
 building_data = ExtResource("2_lqwfw")
 scene_place_particle = ExtResource("5_ut7x7")
 

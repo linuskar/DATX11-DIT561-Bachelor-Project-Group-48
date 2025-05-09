@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
 [ext_resource type="Script" uid="uid://dmgsm1ff1lp3b" path="res://scripts/utility/ui_menu.gd" id="2_bh0ot"]
-[ext_resource type="StyleBox" uid="uid://dadrhoewtjg6p" path="res://resources/style_boxes/ui_brown_background.tres" id="4_2tosp"]
+[ext_resource type="StyleBox" uid="uid://i3h2ffup8w16" path="res://resources/style_boxes/ui_brown_background.tres" id="4_2tosp"]
 [ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/Selectables/CoalMineSelectable.tscn" id="4_2uf64"]
 [ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/Selectables/IronMineSelectable.tscn" id="5_2mva2"]
 [ext_resource type="PackedScene" uid="uid://bhrcu48dc2f50" path="res://scenes/UI/Selectables/WoodCutterSelectable.tscn" id="6_de1jr"]
