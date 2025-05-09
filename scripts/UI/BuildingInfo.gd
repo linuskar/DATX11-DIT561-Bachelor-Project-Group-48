@@ -363,8 +363,10 @@ func set_mode_label() -> void:
 			elif not building.mode == first_mode:
 				sell_store_status_label.text = "Mixed"
 				return
-	if not first_mode:
+	if first_mode:
 		sell_store_status_label.text = Enums.mode_to_string(first_mode)
+	else:
+		sell_store_status_label.text = Enums.mode_to_string(Enums.ProductionBuildingMode.NULL)
 
 func reset_storage_selling() -> void:
 	for resource in storage_connections.keys():
