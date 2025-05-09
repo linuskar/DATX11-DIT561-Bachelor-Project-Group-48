@@ -143,7 +143,6 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_g8um3")
 theme_override_styles/hover = SubResource("StyleBoxTexture_2aqdx")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_cb78m")
 theme_override_styles/normal = SubResource("StyleBoxTexture_oiv7n")
-toggle_mode = true
 script = ExtResource("6_g8um3")
 
 [node name="ShowMapGrid" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]

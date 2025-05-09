@@ -94,3 +94,5 @@ visible = false
 [connection signal="self_exited" from="PauseGame" to="." method="remove_reference"]
 [connection signal="button_down" from="PauseGame/Button" to="PauseGame/Button" method="_on_button_down"]
 [connection signal="button_up" from="PauseGame/Button" to="PauseGame/Button" method="_on_button_up"]
+[connection signal="self_entered" from="TutorialScreen" to="." method="add_reference"]
+[connection signal="self_exited" from="TutorialScreen" to="." method="remove_reference"]
