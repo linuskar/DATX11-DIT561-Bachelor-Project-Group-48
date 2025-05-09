@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://rkxfq20ab5t1"]
 
-[ext_resource type="Script" uid="uid://b6cspy4cp5u5d" path="res://scenes/UI/start_menu.gd" id="1_3k5yw"]
+[ext_resource type="Script" uid="uid://b6cspy4cp5u5d" path="res://scripts/UI/start_menu.gd" id="1_3k5yw"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="1_g18el"]
 [ext_resource type="Texture2D" uid="uid://tnr5wqenbrpg" path="res://assets/trees.png" id="2_i35m3"]
 [ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="4_i35m3"]
 [ext_resource type="Texture2D" uid="uid://bqugr640sxpqq" path="res://assets/buildings_iso/Ironmine_building1.png" id="4_uhw4i"]
-[ext_resource type="Script" uid="uid://cho1xwcqhuhkf" path="res://scenes/UI/start_game.gd" id="5_8ljlw"]
+[ext_resource type="Script" uid="uid://cho1xwcqhuhkf" path="res://scripts/UI/start_game.gd" id="5_8ljlw"]
 [ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="5_yarrf"]
 [ext_resource type="Script" uid="uid://bn81tpnvy7yit" path="res://scripts/UI/keybinds.gd" id="8_i35m3"]
 [ext_resource type="Script" uid="uid://cqw7jn6eqdu3n" path="res://scripts/UI/exit_game.gd" id="9_i35m3"]

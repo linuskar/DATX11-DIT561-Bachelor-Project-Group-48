@@ -318,26 +318,22 @@ func set_active(buildings: Array[Building]) -> void:
 	if selected_buildings.size() == 1:
 		var current_building: Building = selected_buildings.front()
 		current_building.building_selected(current_building)
-		if current_building is ProductionBuilding:
-			sell_store_status_label.text = Enums.mode_to_string(current_building.mode)
 		if current_building is ResearchLab:
 			get_tree().root.get_node("Game/UserInterface/ResearchUI").open(selected_buildings.front())
 			return
 		else:
 			single_select.show()
 			multi_select.hide()
-			reset_tabs()
-			self.show()
 			populate_info_label(current_building)
-			populate_storage_panel()
 	elif selected_buildings.size() > 1:
 		single_select.hide()
 		multi_select.show()
-		reset_tabs()
-		self.show()
-		set_mode_label()
 		populate_multi_selected(selected_buildings)
-		populate_storage_panel()
+	set_mode_label()
+	self.show()
+	reset_tabs()
+	populate_storage_panel()
+	reset_storage_selling()
 
 func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
 	var cleaned_list: Dictionary[Building, bool] = {}
@@ -369,3 +365,8 @@ func set_mode_label() -> void:
 				return
 	if not first_mode:
 		sell_store_status_label.text = Enums.mode_to_string(first_mode)
+
+func reset_storage_selling() -> void:
+	for resource in storage_connections.keys():
+		storage_connections.get(resource).reset_selling()
+	sell_value_label.text = "0"
