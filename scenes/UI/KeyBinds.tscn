@@ -117,25 +117,53 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="MarginContainer5" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="ShowTutorial" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5"]
+[node name="HBoxContainer" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowTutorial"]
+layout_mode = 2
+theme_override_constants/separation = 370
+alignment = 2
+
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowTutorial/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Show tutorial"
+label_settings = ExtResource("3_0i4mw")
+
+[node name="Button" type="Button" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowTutorial/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m1gcc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_g8um3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2aqdx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cb78m")
+theme_override_styles/normal = SubResource("StyleBoxTexture_oiv7n")
+script = ExtResource("6_g8um3")
+
+[node name="ShowMapGrid" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowMapGrid"]
 layout_mode = 2
 theme_override_constants/separation = 340
 alignment = 2
 
-[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5/HBoxContainer"]
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowMapGrid/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Show map grid"
 label_settings = ExtResource("3_0i4mw")
 
-[node name="Button" type="Button" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5/HBoxContainer"]
+[node name="Button" type="Button" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowMapGrid/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m1gcc")
@@ -146,118 +174,118 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_oiv7n")
 toggle_mode = true
 script = ExtResource("6_g8um3")
 
-[node name="PanelContainer" type="PanelContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Keybinds" type="PanelContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("7_g8um3")
 
-[node name="MarginContainer6" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer6" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/Keybinds"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 
-[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/MarginContainer6"]
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/Keybinds/MarginContainer6"]
 layout_mode = 2
 text = "KEYBINDS"
 label_settings = SubResource("LabelSettings_kr6a3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="MoveCamera" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="MoveCameraMouse" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+[node name="MoveCameraMouse" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCamera"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MoveCameraMouse"]
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCamera/MoveCameraMouse"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Move camera (Hold and drag)"
 label_settings = ExtResource("3_0i4mw")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MoveCameraMouse"]
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCamera/MoveCameraMouse"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = SubResource("AtlasTexture_g8um3")
 stretch_mode = 4
 
-[node name="MarginContainer2" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="MoveCameraAlt" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="MoveCameraWASD" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2"]
+[node name="MoveCameraWASD" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCameraAlt"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCameraAlt/MoveCameraWASD"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Move camera (Keyboard)"
 label_settings = ExtResource("3_0i4mw")
 vertical_alignment = 1
 
-[node name="W" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+[node name="W" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCameraAlt/MoveCameraWASD"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_cb78m")
 
-[node name="A" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+[node name="A" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCameraAlt/MoveCameraWASD"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_0i4mw")
 
-[node name="S" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+[node name="S" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCameraAlt/MoveCameraWASD"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_kr6a3")
 
-[node name="D" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer2/MoveCameraWASD"]
+[node name="D" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MoveCameraAlt/MoveCameraWASD"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_ewnap")
 
-[node name="MarginContainer3" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="RebuildBuilding" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="LastSelectedBuilding" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3"]
+[node name="LastSelectedBuilding" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/RebuildBuilding"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/LastSelectedBuilding"]
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/RebuildBuilding/LastSelectedBuilding"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Build last building"
 label_settings = ExtResource("3_0i4mw")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/LastSelectedBuilding"]
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/RebuildBuilding/LastSelectedBuilding"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = SubResource("AtlasTexture_fmo40")
 stretch_mode = 4
 
-[node name="MarginContainer4" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="CloseMenues" type="MarginContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="CloseMenues" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4"]
+[node name="CloseMenues" type="HBoxContainer" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/CloseMenues"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4/CloseMenues"]
+[node name="Label" type="Label" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/CloseMenues/CloseMenues"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Close menu"
 label_settings = ExtResource("3_0i4mw")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer4/CloseMenues"]
+[node name="TextureRect" type="TextureRect" parent="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/CloseMenues/CloseMenues"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_giiqk")
 stretch_mode = 4
@@ -274,5 +302,6 @@ texture_pressed = SubResource("AtlasTexture_2aqdx")
 texture_hover = SubResource("AtlasTexture_oiv7n")
 stretch_mode = 4
 
-[connection signal="toggled" from="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5/HBoxContainer/Button" to="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer5/HBoxContainer/Button" method="_on_toggled"]
+[connection signal="button_up" from="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowTutorial/HBoxContainer/Button" to="." method="_on_tutorial_show"]
+[connection signal="toggled" from="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowMapGrid/HBoxContainer/Button" to="KeybindsPanel/MarginContainer/ScrollContainer/VBoxContainer/ShowMapGrid/HBoxContainer/Button" method="_on_toggled"]
 [connection signal="button_down" from="TextureButton" to="." method="update" binds= [false]]
