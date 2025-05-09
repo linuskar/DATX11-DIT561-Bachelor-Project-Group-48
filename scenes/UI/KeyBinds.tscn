@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dbos2d0ah5ofc" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_default.png" id="3_oiv7n"]
 [ext_resource type="Texture2D" uid="uid://dccsm7n35fohy" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap.png" id="4_m1gcc"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="6_2aqdx"]
-[ext_resource type="Script" uid="uid://bynalp1f7wn0d" path="res://scenes/UI/grid_button.gd" id="6_g8um3"]
+[ext_resource type="Script" uid="uid://bynalp1f7wn0d" path="res://scripts/UI/grid_button.gd" id="6_g8um3"]
 [ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="7_g8um3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m1gcc"]
