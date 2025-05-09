@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://fysawqvslmw8"]
 
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="1_xpy7k"]
-[ext_resource type="Script" path="res://scripts/UI/keybinds_panel.gd" id="2_metke"]
+[ext_resource type="Script" uid="uid://c40ab5qfubtd1" path="res://scripts/UI/keybinds_panel.gd" id="2_metke"]
 [ext_resource type="LabelSettings" uid="uid://brpjd4mngg72r" path="res://resources/fontSettings/standard_non_pixelated.tres" id="3_0i4mw"]
 [ext_resource type="FontFile" uid="uid://dgnmdqxxp7yha" path="res://assets/UI/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.ttf" id="3_cb78m"]
 [ext_resource type="Texture2D" uid="uid://dbos2d0ah5ofc" path="res://assets/UI/Keyboard & Mouse/keyboard-&-mouse_sheet_default.png" id="3_oiv7n"]
