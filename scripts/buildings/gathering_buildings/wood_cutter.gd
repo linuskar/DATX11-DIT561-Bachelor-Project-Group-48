@@ -28,24 +28,12 @@ func _output_resources() -> void:
 	
 ## Function for checking whether produced resources will overflow on next production
 func check_for_production_overflow() -> bool:
-	var wood_gather_rate_per_tile: int = output_generation.get(Enums.ResourceType.WOOD)
 	var wood_gather_rate: int = output_generation.get(Enums.ResourceType.WOOD)
 	var wood_stored: int = output_storage.get(Enums.ResourceType.WOOD)
 	var wood_max_storage: int = max_storage.get(Enums.ResourceType.WOOD)
 	
 	## When at possible overflow of resources for output
 	if wood_stored + wood_gather_rate > wood_max_storage:
-		return true
-	return false
-
-## Function for checking whether byproducts will overflow on next production
-func check_for_byproduct_overflow() -> bool:
-	var biomass_generated_rate: int = output_generation.get(Enums.ResourceType.BIOMASS)
-	var biomass_stored: int = output_storage.get(Enums.ResourceType.BIOMASS)
-	var biomass_max_storage: int = max_storage.get(Enums.ResourceType.BIOMASS)
-	
-	## When at possible overflow of resources for output
-	if biomass_stored + biomass_generated_rate > biomass_max_storage:
 		return true
 	return false
 
@@ -118,3 +106,8 @@ func pause_operations() -> void:
 
 func _on_place_animation_animation_finished(anim_name: StringName) -> void:
 	$place_particle.emitting = true
+
+func apply_research_upgrade(research_data: ResearchData) -> void:
+	if research_data.research_id == Enums.ResearchID.WC_1:
+		var wood_gather_rate: int = output_generation.get(Enums.ResourceType.WOOD)
+		output_generation.set(Enums.ResourceType.WOOD, wood_gather_rate + 5)

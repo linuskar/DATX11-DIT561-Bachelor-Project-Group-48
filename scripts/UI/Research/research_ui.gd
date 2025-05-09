@@ -3,9 +3,10 @@ extends UIMenu
 @onready var research_container: VBoxContainer = $List/PanelContainer/ScrollContainer/ResearchContainer
 
 var available_research: Array[ResearchData] = [
-	load("res://resources/research_data/CoalMineUpgrade1.tres"),
 	load("res://resources/research_data/steel_mill_upgrade1.tres"),
+	load("res://resources/research_data/CoalMineUpgrade1.tres"),
 	load("res://resources/research_data/WoodCutterUpgrade1.tres"),
+	load("res://resources/research_data/iron_mine_upgrade1.tres"),
 ]
 var research_lab_selected: ResearchLab = null
 var research_entry_scene: PackedScene = preload("res://scenes/UI/ResearchUI/Research_Entry.tscn")

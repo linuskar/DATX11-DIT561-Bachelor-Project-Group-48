@@ -89,7 +89,7 @@ func check_resource_amount_in_network(type: Enums.ResourceType, amount_needed: i
 func _on_build_manager_placed_building(building: Building) -> void:
 	#Case of two or more adjacent networks
 	if BuildManagerGlobal.nr_adjacent_networks >= 2:
-		join_networks()
+		join_networks(building)
 	
 	#Case of no adjacent networks, creates new network
 	elif BuildManagerGlobal.nr_adjacent_networks == 0:
@@ -103,10 +103,12 @@ func _on_build_manager_placed_building(building: Building) -> void:
 		add_to_existing_network(building)
 
 #Joins networks into the last network (Already poped in BuildManagerGlobal) in the list current_networks
-func join_networks(): 
+func join_networks(building: Building): 
 	for current_network in BuildManagerGlobal.current_networks:
 		networks.get(BuildManagerGlobal.first).add_another_network(networks.get(current_network))
 		networks.erase(current_network)
+	if building is StorageBuilding:
+		networks.get(BuildManagerGlobal.first).new_building(building)
 
 #Add a building into an existing network
 func add_to_existing_network(building):

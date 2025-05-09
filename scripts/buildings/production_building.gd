@@ -52,8 +52,8 @@ func emit_smoke() -> void:
 
 ## Function to initialize the production building.
 func init_production_building() -> void:
-	input_use_rates = building_data.input_use_rates
-	output_generation = building_data.output_generation
+	input_use_rates = building_data.input_use_rates.duplicate()
+	output_generation = building_data.output_generation.duplicate()
 	init_input_recipes()
 	
 ## Function to initialize the input recipes, this is done due to how

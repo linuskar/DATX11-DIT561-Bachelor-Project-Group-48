@@ -63,3 +63,15 @@ func update_data(research_id: Enums.ResearchID) -> void:
 		var input_array: Array[Enums.ResourceType] = [Enums.ResourceType.ELECTRICITY, Enums.ResourceType.STEEL_SCRAP]
 		var new_input_recipe: InputRecipe = InputRecipe.new()
 		data.input_recipes.set(1, input_array)
+	elif research_id == Enums.ResearchID.IM_1:
+		var data: GatheringBuildingData = Enums.building_data.get(Enums.BuildingType.IRON_MINE)
+		var iron_gather_rate: int = data.output_generation.get(Enums.ResourceType.IRON_ORE)
+		data.output_generation.set(Enums.ResourceType.IRON_ORE, iron_gather_rate + 5)
+	elif research_id == Enums.ResearchID.WC_1:
+		var data: AreaGatheringBuildingData = Enums.building_data.get(Enums.BuildingType.WOOD_CUTTER)
+		var wood_gather_rate: int = data.output_generation.get(Enums.ResourceType.WOOD)
+		data.output_generation.set(Enums.ResourceType.WOOD, wood_gather_rate + 5)
+	elif research_id == Enums.ResearchID.CM_1:
+		var data: GatheringBuildingData = Enums.building_data.get(Enums.BuildingType.COAL_MINE)
+		var coal_gather_rate: int = data.output_generation.get(Enums.ResourceType.COAL)
+		data.output_generation.set(Enums.ResourceType.COAL, coal_gather_rate + 5)
