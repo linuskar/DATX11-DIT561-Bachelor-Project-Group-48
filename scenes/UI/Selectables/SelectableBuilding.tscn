@@ -60,6 +60,8 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_7shli")
 icon_path = "uid://t2kml7pea27i"
+contributables = null
+required = null
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
