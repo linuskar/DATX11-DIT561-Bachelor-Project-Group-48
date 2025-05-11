@@ -81,6 +81,7 @@ anchors_preset = -1
 [node name="KeyBinds" parent="." instance=ExtResource("15_jqgkf")]
 visible = false
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="self_entered" from="PanelContainer" to="." method="add_reference"]
 [connection signal="self_exited" from="PanelContainer" to="." method="remove_reference"]
 [connection signal="building_wanted" from="BuildingSelectList" to="." method="_on_building_select_list_building_wanted"]
