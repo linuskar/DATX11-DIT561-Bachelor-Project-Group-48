@@ -182,7 +182,7 @@ anchor_bottom = 1.0
 offset_right = -744.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_y4byq")
 
 [node name="Panel" type="Panel" parent="."]
