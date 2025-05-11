@@ -143,7 +143,7 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 bbcode_enabled = true
-text = "[font_size={24}]In this game you will build your manufacturing empire, earning money and resources while [s]exploiting [/s] utilizing the environment for your gain.[/font_size]"
+text = "[font_size={24}]In this game you will build your manufacturing empire, earning money and resources while utilizing the environment for your gain.[/font_size]"
 
 [node name="PlacingBuildings" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
 visible = false
@@ -151,7 +151,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/PlacingBuildings"]
 layout_mode = 2
-text = "How to play the game"
+text = "Placing buildings"
 label_settings = SubResource("LabelSettings_5hfe2")
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/PlacingBuildings"]
@@ -160,17 +160,18 @@ size_flags_vertical = 3
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("4_6wa57")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/PlacingBuildings/PanelContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/PlacingBuildings/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ScrollContainer/VBoxContainer/Content/PlacingBuildings/PanelContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 bbcode_enabled = true
-text = "[font_size=24]Place buildings by selecting them from the buildings list and left clicking on an available space on the playing field (make sure the tile placement is valid and that the building has access to all the resources it needs):
+text = "[font_size=24]Select a building from the list of buildings and place the building with left click. Some buildings need to placed on resources to function.
 
-[center]List: [img=200x150]res://resources/tutorial_images/tutorial_buildings_list.tres[/img] Valid: [img=200x150]res://resources/tutorial_images/tutorial_valid_placement.tres[/img] Invalid: [img=200x150]res://resources/tutorial_images/tutorial_invalid_placement.tres[/img][/center]
-If you've done everything correctly your building should now be producing resources for you!
-
-How about we do something with those resources!"
+[center]List: [img=200x150]res://resources/tutorial_images/tutorial_buildings_list.tres[/img] Valid: [img=200x150]res://resources/tutorial_images/tutorial_valid_placement.tres[/img] Invalid: [img=200x150]res://resources/tutorial_images/tutorial_invalid_placement.tres[/img][/center]"
 
 [node name="SellingResources" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
 visible = false
@@ -192,13 +193,11 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 bbcode_enabled = true
-text = "[font_size=24]When your buildings produce resources the resources will be stored inside those very same buildings. To view these resources you have to select the buildings, this can be done by either clicking on the buildings or by pressing the left mouse button and dragging it so that the building is within the blue box.
+text = "[font_size=24]Select a building by clicking on it or holding the left mouse button and dragging the mouse over the building to put the building in the blue selection box. This will show a window with information about that building.
 
-[center]Producing: [img=200x200]res://resources/tutorial_images/tutorial_producing_building.tres[/img] Selected: [img=200x200]res://resources/tutorial_images/tutorial_selected_building.tres[/img][/center]
+[center]Producing: [img=200x200]res://resources/tutorial_images/tutorial_producing_building.tres[/img] Drag select: [img=200x200]res://resources/tutorial_images/tutorial_drag_select.tres[/img][/center]
 
-After selecting a building, info pertaining to that building will pop up in a panel on the left hand side of the screen. It is here you can see information such as where the building should be placed, how much it costs to operate the building as well as what the building produces and emits.
-
-At the top there are several tabs, pressing the storage tab will open up a panel displaying the resources that are currently stored in this building. This is also the place where you can sell your resources.
+In the Storage tab at the top you can choose the amount of resources you want to sell from this building.
 
 [center]Info panel: [img=300x300]res://resources/tutorial_images/tutorial_building_info.tres[/img] Storage tab: [img=300x300]res://resources/tutorial_images/tutorial_storage_tab.tres[/img][/center]
 [/font_size]
@@ -224,7 +223,7 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 bbcode_enabled = true
-text = "[font_size=24]Some buildings require resources to function, these resources are often produced by different buildings. To make sure the first building gets resources from the second building the two buildings must be connected by road.
+text = "[font_size=24]Resources generated by a building can only be used by another building if they are connected by road or directly next to each other.
 
 [center]Road: [img=200x200]res://resources/tutorial_images/tutorial_road.tres[/img] Network: [img=250x200]res://resources/tutorial_images/tutorial_network.tres[/img][/center]
 [/font_size]"
@@ -249,10 +248,10 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
 bbcode_enabled = true
-text = "[font_size=24]To further your manufacturing empire progress is necessary! And for progress, you need a research lab. Research labs are built for the building list like any other building. However, unlike other buildings, when clicked on a research lab does not display information about itself, instead you will see a list of possible research, their costs as well as their effects. 
+text = "[font_size=24]Research gets you improvements to your buildings and even new buildings entirely. Place and click on a research lab to open up the research manager.
 
 [center]Research lab: [img=200x200]res://resources/tutorial_images/tutorial_research_lab.tres[/img] Research entry: [img=400x200]res://resources/tutorial_images/tutorial_research_entry.tres[/img][/center]
-Research entries can be free but most cost money and/or resources, make sure its connected to the right network!
+Research entries cost a mix of resources and money and the lab will pull those resources from the network it is attached to.
 [/font_size]"
 
 [node name="EndGoal" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]

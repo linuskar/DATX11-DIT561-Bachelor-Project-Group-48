@@ -22,6 +22,6 @@ func add_reference(ui_element: UIElement) -> void:
 
 func _on_ready() -> void:
 	for child in self.get_children():
-		if child is UIMenu:
+		if child is UIElement:
 			child.self_entered.connect(add_reference)
 			child.self_exited.connect(remove_reference)
