@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="5_qi7j2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_essim"]
+size = Vector2(64, 64)
 
 [sub_resource type="Curve" id="Curve_f8yp3"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

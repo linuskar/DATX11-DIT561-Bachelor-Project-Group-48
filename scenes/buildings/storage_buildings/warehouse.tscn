@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="5_0mb1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [node name="Warehouse" type="StaticBody2D"]
 script = ExtResource("1_5pk0i")
