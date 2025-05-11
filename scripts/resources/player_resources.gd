@@ -1,7 +1,7 @@
 class_name PlayerResources
 extends Node
 
-var resources: Dictionary[int, int] = {}
+static var resources: Dictionary[Enums.ResourceType, int] = {}
 var networks: Dictionary[int, ResourceTransport] = {}
 
 #Connect the signals the code will use and initiate a dictonary with a key for each enum with value 0
@@ -138,3 +138,8 @@ func _on_timer_timeout() -> void:
 	for type in resources.keys():
 		for current_network in networks.values():
 			current_network.transport_resources(type)
+
+## Checks whether the player has a certain amount of the given resourcetype
+## Return true if the player has the required amount and false otherwise
+func check_player_has_resource(resource: Enums.ResourceType, amount: int) -> bool:
+	return resources.get(resource) and resources.get(resource) >= amount

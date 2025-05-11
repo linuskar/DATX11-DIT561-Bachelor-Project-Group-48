@@ -17,30 +17,26 @@ func set_research_lab(research_lab: ResearchLab) -> void:
 
 ## Function for completing research
 func complete_research(research_data: ResearchData) -> void:
-	var lab_network: ResourceTransport = player_resources.get_network_for_building(selected_research_lab)
 	
-	if has_completed(research_data) or selected_research_lab == null or lab_network == null:
+	if has_completed(research_data) or selected_research_lab == null:
 		return
 		
-	if research_data.resource_cost:
-		for resource in research_data.resource_cost.keys():
-			var amount_needed: int = research_data.resource_cost.get(resource)
-			var amount_needed_is_stored: bool = player_resources.check_resource_amount_in_network(resource, amount_needed, lab_network)
-			
-			if not amount_needed_is_stored:
-				return
-	
 	if research_data.money_cost:
 		if PlayerCurrency.player_held_currency < research_data.money_cost:
 			return
-		
+		PlayerCurrency.player_held_currency -= research_data.money_cost
+			
+	if research_data.resource_cost:
+		for resource in research_data.resource_cost.keys():
+			var amount_needed: int = research_data.resource_cost.get(resource)
+			
+			if not player_resources.check_player_has_resource(resource, amount_needed):
+				return
+				
 	for resource in research_data.resource_cost.keys():
 		var current_amount: int = player_resources.resources.get(resource)
 		var amount_needed: int = research_data.resource_cost.get(resource)
-		player_resources.buy_with_resources(resource, amount_needed, lab_network.buildings)
-
-	if research_data.money_cost:
-		PlayerCurrency.player_held_currency -= research_data.money_cost
+		player_resources.buy_with_resources(resource, amount_needed, get_parent().find_child("BuildManager").get_storage_buildings())
 	
 	update_data(research_data.research_id)
 	completed_research.append(research_data.research_id)			# Add to the completed list
