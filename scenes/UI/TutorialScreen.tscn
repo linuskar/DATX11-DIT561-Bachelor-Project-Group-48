@@ -251,7 +251,7 @@ bbcode_enabled = true
 text = "[font_size=24]Research gets you improvements to your buildings and even new buildings entirely. Place and click on a research lab to open up the research manager.
 
 [center]Research lab: [img=200x200]res://resources/tutorial_images/tutorial_research_lab.tres[/img] Research entry: [img=400x200]res://resources/tutorial_images/tutorial_research_entry.tres[/img][/center]
-Research entries can be free but most cost money and/or resources, make sure its connected to the right network!
+Research entries cost a mix of resources and money and the lab will pull those resources from the network it is attached to.
 [/font_size]"
 
 [node name="EndGoal" type="VBoxContainer" parent="PanelContainer/ScrollContainer/VBoxContainer/Content"]
