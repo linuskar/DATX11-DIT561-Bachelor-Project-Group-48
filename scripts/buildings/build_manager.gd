@@ -401,3 +401,11 @@ func _on_user_interface_building_wanted(building: BuildingData) -> void:
 	else:
 		StateManager.set_state(StateManager.State.IDLE)
 		_on_build_mode()
+
+## Function that collects and returns all the buildings currently placed in the game
+func get_storage_buildings() -> Array[StorageBuilding]:
+	var buildings_list: Array[StorageBuilding] = []
+	for building in buildings_node_container.get_children():
+		if building is StorageBuilding:
+			buildings_list.append(building)
+	return buildings_list
