@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dmvw3pwwig65k"]
+[gd_scene load_steps=29 format=3 uid="uid://dmvw3pwwig65k"]
 
 [ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="1_h6eyb"]
 [ext_resource type="Script" uid="uid://ba5rx1v1hm5u" path="res://scenes/UI/tutorial_screen.gd" id="1_xh7s6"]
@@ -10,6 +10,7 @@
 [ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="4_6wa57"]
 [ext_resource type="FontFile" uid="uid://b6m81ts57ocic" path="res://assets/UI/Keyboard & Mouse/Fonts/kenney_input_keyboard_&_mouse.otf" id="4_e17rj"]
 [ext_resource type="Texture2D" uid="uid://dccsm7n35fohy" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap.png" id="10_xh7s6"]
+[ext_resource type="Texture2D" uid="uid://cv3gy6yfdvgxi" path="res://assets/UI/kenney_game-icons/Spritesheet/sheet_black1x.png" id="11_64u78"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_68ee1"]
 font = ExtResource("4_e17rj")
@@ -64,14 +65,24 @@ region_rect = Rect2(144, 1680, 96, 96)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r5ml1"]
 texture = ExtResource("10_xh7s6")
 region_rect = Rect2(204, 34, 16, 16)
+modulate_color = Color(0.868985, 0.868985, 0.868985, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6cap6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
 texture = ExtResource("10_xh7s6")
 region_rect = Rect2(221, 34, 16, 16)
+modulate_color = Color(0.577008, 0.577008, 0.577008, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q4pt3"]
 texture = ExtResource("10_xh7s6")
 region_rect = Rect2(204, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5ml1"]
+atlas = ExtResource("11_64u78")
+region = Rect2(394, 395, 62, 62)
 
 [node name="TutorialScreen" type="Control"]
 process_mode = 3
@@ -317,6 +328,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_64u78")
 theme_override_styles/hover = SubResource("StyleBoxTexture_r5ml1")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6cap6")
 theme_override_styles/normal = SubResource("StyleBoxTexture_q4pt3")
+icon = SubResource("AtlasTexture_r5ml1")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="ready" from="PanelContainer/ScrollContainer/VBoxContainer" to="PanelContainer/ScrollContainer/VBoxContainer" method="_on_ready"]
