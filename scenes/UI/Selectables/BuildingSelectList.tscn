@@ -191,12 +191,6 @@ layout_mode = 2
 [node name="OilRigSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("12_orqwn")]
 layout_mode = 2
 
-[node name="SolarPlantSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("13_e1kqc")]
-layout_mode = 2
-
-[node name="WindTurbineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("14_lfrtl")]
-layout_mode = 2
-
 [node name="Producing" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer/BuildingsContainer"]
 visible = false
 clip_contents = true
@@ -230,6 +224,12 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="NuclearPlantSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("23_goijm")]
+layout_mode = 2
+
+[node name="SolarPlantSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("13_e1kqc")]
+layout_mode = 2
+
+[node name="WindTurbineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("14_lfrtl")]
 layout_mode = 2
 
 [node name="Storing" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer/BuildingsContainer"]
@@ -297,8 +297,6 @@ text = "Buildings"
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/WoodCutterSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/WaterPumpSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/OilRigSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/SolarPlantSelectable" to="." method="_on_building_selected"]
-[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/WindTurbineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/CoalPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/SawMillSelectable" to="." method="_on_building_selected"]
@@ -308,6 +306,8 @@ text = "Buildings"
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/ElectronicsFactorySelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/GlassworksSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/NuclearPlantSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/SolarPlantSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/WindTurbineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Storing/WarehouseSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Storing/BiomassLandfillSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Storing/MetalScrapLandfillSelectable" to="." method="_on_building_selected"]

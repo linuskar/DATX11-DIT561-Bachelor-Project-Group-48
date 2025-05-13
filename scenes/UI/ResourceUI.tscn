@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj1v7y2dejr2w"]
+[gd_scene load_steps=23 format=3 uid="uid://bj1v7y2dejr2w"]
 
 [ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="1_erkbk"]
 [ext_resource type="Script" uid="uid://dxmp87dbqrere" path="res://scripts/UI/resource_ui.gd" id="1_jxiwp"]
@@ -10,6 +10,18 @@
 [ext_resource type="Texture2D" uid="uid://di0pw8173wn4u" path="res://assets/UI/Resource UI/gears_resource.png" id="9_pqlmi"]
 [ext_resource type="Texture2D" uid="uid://cb0fltxgtn1ns" path="res://assets/UI/Resource UI/steel_scrap.png" id="10_nyad3"]
 [ext_resource type="Texture2D" uid="uid://b5fis32quckn7" path="res://assets/UI/Resource UI/planks_resource.png" id="10_qcmja"]
+[ext_resource type="Texture2D" uid="uid://bukcuu8xgv88y" path="res://assets/UI/Resource UI/crude_oil_resource.png" id="11_2018x"]
+[ext_resource type="Texture2D" uid="uid://cveph4f0geqyb" path="res://assets/UI/Resource UI/sand_resource.png" id="12_1k2jg"]
+[ext_resource type="Texture2D" uid="uid://blj1lc0lqsfeu" path="res://assets/UI/Resource UI/water_resource.png" id="13_sovkc"]
+[ext_resource type="Texture2D" uid="uid://dtg8epwtw4n1l" path="res://assets/UI/Resource UI/fuel_resource.png" id="14_rw2sw"]
+[ext_resource type="Texture2D" uid="uid://llvxfi8pqjh1" path="res://assets/UI/Resource UI/plastics_resource.png" id="15_0ygd4"]
+[ext_resource type="Texture2D" uid="uid://bt8sbadxy5tgs" path="res://assets/UI/Resource UI/glass_sheets_resource.png" id="16_yfgjf"]
+[ext_resource type="Texture2D" uid="uid://cpodrq14bassf" path="res://assets/UI/Resource UI/circuit_board_resource.png" id="17_6ugck"]
+[ext_resource type="Texture2D" uid="uid://d2b7agx6mk71l" path="res://assets/UI/Resource UI/uranium_resource.png" id="18_owthk"]
+[ext_resource type="Texture2D" uid="uid://1f255bhyf8hg" path="res://assets/UI/Resource UI/engine_resource.png" id="19_ym5ha"]
+[ext_resource type="Texture2D" uid="uid://dmj2u2m321ujc" path="res://assets/UI/Resource UI/tools_resource.png" id="20_582i3"]
+[ext_resource type="Texture2D" uid="uid://bjf5x5jtx2go2" path="res://assets/UI/Resource UI/copper_ore_resource.png" id="21_6bivq"]
+[ext_resource type="Texture2D" uid="uid://b7lxq6k824ym1" path="res://assets/UI/Resource UI/copper_bars_resource.png" id="22_blsyi"]
 
 [node name="ResourceUi" type="Control"]
 layout_mode = 3
@@ -27,7 +39,19 @@ resources = Dictionary[int, Texture]({
 10: ExtResource("10_qcmja"),
 11: ExtResource("8_twb2c"),
 12: ExtResource("9_pqlmi"),
-13: ExtResource("10_nyad3")
+13: ExtResource("10_nyad3"),
+14: ExtResource("11_2018x"),
+15: ExtResource("12_1k2jg"),
+16: ExtResource("13_sovkc"),
+17: ExtResource("14_rw2sw"),
+18: ExtResource("15_0ygd4"),
+19: ExtResource("16_yfgjf"),
+20: ExtResource("17_6ugck"),
+21: ExtResource("18_owthk"),
+22: ExtResource("20_582i3"),
+23: ExtResource("19_ym5ha"),
+24: ExtResource("21_6bivq"),
+25: ExtResource("22_blsyi")
 })
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

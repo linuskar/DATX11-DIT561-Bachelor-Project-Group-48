@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo36u6s8pout"]
+
+[ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/resources/gatherable_resource.gd" id="1_eyr01"]
+[ext_resource type="Texture2D" uid="uid://cgrip445ks12b" path="res://assets/coal_ore_spritesheet.png" id="2_10jrq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qiw3"]
+size = Vector2(32, 32)
+
+[node name="OilWell" type="Area2D"]
+script = ExtResource("1_eyr01")
+quantity = 200
+resource_type = 14
+metadata/_custom_type_script = "uid://bmd2n814mv2li"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_1qiw3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_10jrq")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

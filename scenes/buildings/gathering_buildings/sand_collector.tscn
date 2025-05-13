@@ -63,3 +63,5 @@ autostart = true
 libraries = {
 &"": SubResource("AnimationLibrary_86t2d")
 }
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -18,7 +18,11 @@ static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02,
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD, 
-	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS]
+	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS,
+	ResourceType.OIL, ResourceType.SAND, ResourceType.WATER,
+	ResourceType.FUEL, ResourceType.PLASTICS, ResourceType.GLASS,
+	ResourceType.ELECTRONICS, ResourceType.URANIUM, ResourceType.TOOLS,
+	ResourceType.ENGINE, ResourceType.COPPER_ORE, ResourceType.COPPER_BARS,]
 
 static var landfills: Array[BuildingType] = [BuildingType.BIOMASS_LANDFILL, BuildingType.STEEL_SCRAP_LANDFILL]
 
@@ -40,7 +44,7 @@ static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.GLASS: "res://assets/UI/Resource UI/glass_sheets_resource.png",
 	ResourceType.ELECTRONICS: "res://assets/UI/Resource UI/circuit_board_resource.png",
 	ResourceType.URANIUM: "res://assets/UI/Resource UI/uranium_resource.png",
-	ResourceType.TOOLS: "res://assets/UI/Resource UI/",
+	ResourceType.TOOLS: "res://assets/UI/Resource UI/tools_resource.png",
 	ResourceType.ENGINE: "res://assets/UI/Resource UI/engine_resource.png",
 	ResourceType.COPPER_ORE: "res://assets/UI/Resource UI/copper_ore_resource.png",
 	ResourceType.COPPER_BARS: "res://assets/UI/Resource UI/copper_bars_resource.png",
@@ -301,9 +305,16 @@ static var building_data: Dictionary[BuildingType, Resource] = {
 	##BuildingType.COPPER_SMELTERY, ## No data
 }
 
+static var gathering_buildings: Array[BuildingType] = [
+	BuildingType.IRON_MINE,
+	BuildingType.COAL_MINE,
+	BuildingType.WOOD_CUTTER,
+	BuildingType.SAND_COLLECTOR,
+	BuildingType.WATER_PUMP,
+]
+
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:
-	var gathering_buildings: Array[BuildingType] = [BuildingType.IRON_MINE, BuildingType.COAL_MINE, BuildingType.WOOD_CUTTER]
 	return building_type in gathering_buildings
 	
 ## Function for checking if the BuildingType is a power generator
