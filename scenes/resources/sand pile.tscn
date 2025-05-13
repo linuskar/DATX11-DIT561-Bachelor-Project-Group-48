@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://svhmf724tafv"]
 
-[ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/resources/gatherable_resource.gd" id="1_p43uh"]
-[ext_resource type="Texture2D" uid="uid://cgrip445ks12b" path="res://assets/coal_ore_spritesheet.png" id="2_h01m3"]
+[ext_resource type="Script" uid="uid://djduior7eddn3" path="res://scenes/resources/sand_pile.gd" id="1_h01m3"]
+[ext_resource type="Texture2D" uid="uid://d3yla03icynra" path="res://assets/sand_source_node.png" id="2_h01m3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht52s"]
 size = Vector2(32, 32)
 
 [node name="SandPile" type="Area2D"]
-script = ExtResource("1_p43uh")
+script = ExtResource("1_h01m3")
 quantity = 300
 resource_type = 15
 metadata/_custom_type_script = "uid://bmd2n814mv2li"

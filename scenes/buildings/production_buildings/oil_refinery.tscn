@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://cxnkefq0npq8a"]
+[gd_scene load_steps=26 format=3 uid="uid://cxnkefq0npq8a"]
 
 [ext_resource type="Script" uid="uid://cmwa1gql6b2rd" path="res://scenes/buildings/production_buildings/oil_refinery.gd" id="1_sbtwa"]
-[ext_resource type="Resource" uid="uid://c7j83fmf5dbt5" path="res://resources/buildings/oil_rig.tres" id="2_u62wg"]
+[ext_resource type="Resource" uid="uid://e535t1sb5v55" path="res://resources/buildings/oil_refinery.tres" id="2_kav1w"]
+[ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_jbuk0"]
 [ext_resource type="Texture2D" uid="uid://ccs5uayo56gkc" path="res://assets/buildings_iso/oil_refinery_building.png" id="3_kav1w"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_jbuk0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fqns7"]
+size = Vector2(96, 96)
 
 [sub_resource type="Curve" id="Curve_y8a2q"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -130,9 +132,11 @@ scale_curve = SubResource("CurveTexture_ak05g")
 color_ramp = SubResource("GradientTexture1D_6nisg")
 alpha_curve = SubResource("CurveTexture_gmsax")
 
-[node name="OilRefinery" type="StaticBody2D"]
+[node name="OilRefinery" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_sbtwa")
-building_data = ExtResource("2_u62wg")
+smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2")]
+building_data = ExtResource("2_kav1w")
+scene_place_particle = ExtResource("3_jbuk0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fqns7")
@@ -166,3 +170,5 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_decdw")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -165,7 +165,7 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.GEARS: 20,
 	ResourceType.SAND: 1,
 	ResourceType.WATER: 2,
-	ResourceType.OIL: 12,
+	ResourceType.OIL: 8,
 	ResourceType.PLASTICS: 30,
 	ResourceType.FUEL: 40,
 	ResourceType.ELECTRONICS: 80,
@@ -311,6 +311,7 @@ static var gathering_buildings: Array[BuildingType] = [
 	BuildingType.WOOD_CUTTER,
 	BuildingType.SAND_COLLECTOR,
 	BuildingType.WATER_PUMP,
+	BuildingType.OIL_RIG,
 ]
 
 ## Function for checking if the BuildingType is a gathering building

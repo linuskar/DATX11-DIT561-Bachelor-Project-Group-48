@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ulaygdthqy66"]
+
+[ext_resource type="Script" uid="uid://b1w1dsfvf2r8h" path="res://scenes/resources/water.gd" id="1_j2ikp"]
+[ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="2_j2ikp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7abp"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7abp"]
+atlas = ExtResource("2_j2ikp")
+region = Rect2(32, 192, 32, 32)
+
+[node name="Water" type="Area2D"]
+script = ExtResource("1_j2ikp")
+quantity = 900000000
+resource_type = 16
+metadata/_custom_type_script = "uid://bmd2n814mv2li"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_q7abp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_q7abp")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

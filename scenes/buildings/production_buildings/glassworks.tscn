@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://cw03ujy7wulm7"]
+[gd_scene load_steps=26 format=3 uid="uid://cw03ujy7wulm7"]
 
 [ext_resource type="Script" uid="uid://xipcvymy4rah" path="res://scenes/buildings/production_buildings/glassworks.gd" id="1_5n5v5"]
 [ext_resource type="Resource" uid="uid://c38obejc16nka" path="res://resources/buildings/glassworks.tres" id="2_on0h8"]
 [ext_resource type="Texture2D" uid="uid://jy52drtirq27" path="res://assets/buildings_iso/glass_works_building.png" id="3_8s3bt"]
+[ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_r3eh6"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_r3eh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx217"]
+size = Vector2(96, 96)
 
 [sub_resource type="Curve" id="Curve_ew4fw"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -130,9 +132,11 @@ scale_curve = SubResource("CurveTexture_wy4bt")
 color_ramp = SubResource("GradientTexture1D_ij8kt")
 alpha_curve = SubResource("CurveTexture_ou1ye")
 
-[node name="Glassworks" type="StaticBody2D"]
+[node name="Glassworks" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5n5v5")
+smokes = [NodePath("Smoke_v1")]
 building_data = ExtResource("2_on0h8")
+scene_place_particle = ExtResource("3_r3eh6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nx217")
@@ -160,3 +164,5 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_e3rgl")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

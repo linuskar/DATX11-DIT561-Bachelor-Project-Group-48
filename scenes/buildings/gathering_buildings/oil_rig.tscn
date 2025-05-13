@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://bhim0ddsu7b32"]
+[gd_scene load_steps=26 format=3 uid="uid://bhim0ddsu7b32"]
 
 [ext_resource type="Script" uid="uid://ccj0s0ltj7710" path="res://scenes/buildings/gathering_buildings/oil_rig.gd" id="1_vsuda"]
 [ext_resource type="Resource" uid="uid://c7j83fmf5dbt5" path="res://resources/buildings/oil_rig.tres" id="2_hv786"]
+[ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_ek07n"]
 [ext_resource type="Texture2D" uid="uid://b70cuh7lr88ap" path="res://assets/buildings_iso/oil_rig_building.png" id="3_qnd0e"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_qnd0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvldc"]
+size = Vector2(96, 96)
 
 [sub_resource type="Curve" id="Curve_ek07n"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -133,6 +135,7 @@ alpha_curve = SubResource("CurveTexture_g5s6y")
 [node name="OilRig" type="StaticBody2D"]
 script = ExtResource("1_vsuda")
 building_data = ExtResource("2_hv786")
+scene_place_particle = ExtResource("3_ek07n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vvldc")
@@ -161,3 +164,5 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_odbd0")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
