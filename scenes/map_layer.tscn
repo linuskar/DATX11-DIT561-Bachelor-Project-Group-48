@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://c7ded0ull7r3b"]
+[gd_scene load_steps=28 format=4 uid="uid://c7ded0ull7r3b"]
 
 [ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="1_7ny2r"]
 [ext_resource type="Script" uid="uid://dvsnvlsyog0u7" path="res://scripts/map_layer.gd" id="1_qds2b"]
@@ -7,12 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://1g535ircrcnf" path="res://scenes/resources/coal_ore.tscn" id="5_v8mp5"]
 [ext_resource type="PackedScene" uid="uid://csdjsjq4n5751" path="res://scenes/resources/iron_ore.tscn" id="6_psaw3"]
 [ext_resource type="PackedScene" uid="uid://bj5xuffyaonsb" path="res://scenes/resources/gatherable_tree.tscn" id="7_qds2b"]
-[ext_resource type="PackedScene" uid="uid://bo36u6s8pout" path="res://scenes/resources/oil_well.tscn" id="8_7gaei"]
+[ext_resource type="PackedScene" path="res://scenes/resources/oil_well.tscn" id="8_7gaei"]
 [ext_resource type="Texture2D" uid="uid://cjixpoac5aspc" path="res://assets/pixil-frame-0 (3).png" id="8_n1fju"]
 [ext_resource type="Script" uid="uid://ci1r0ft37y25" path="res://scripts/utility/map_areas.gd" id="8_ysx3f"]
-[ext_resource type="PackedScene" uid="uid://svhmf724tafv" path="res://scenes/resources/sand pile.tscn" id="9_tigd3"]
-[ext_resource type="Texture2D" uid="uid://do28n54qad1rk" path="res://assets/buildings_iso/city_buildings.png" id="10_n1fju"]
-[ext_resource type="Texture2D" uid="uid://cdhpjlyeurjm3" path="res://assets/road/road_tilemap-Sheet.png" id="11_hrbfy"]
+[ext_resource type="PackedScene" path="res://scenes/resources/sand pile.tscn" id="9_tigd3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23fv6"]
 texture = ExtResource("1_7ny2r")
@@ -1005,8 +1003,6 @@ size = Vector2(3328, 2592)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qds2b"]
 distance = -10.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrbfy"]
-
 [node name="MapLayer" type="Node2D"]
 script = ExtResource("1_qds2b")
 
@@ -1079,17 +1075,3 @@ rotation = 1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapAreas/LeftBound"]
 position = Vector2(322, 7.99889)
 shape = SubResource("WorldBoundaryShape2D_qds2b")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_hrbfy")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-texture = ExtResource("10_n1fju")
-
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(0, 88)
-texture = ExtResource("11_hrbfy")
-region_enabled = true
-region_rect = Rect2(63.8734, 0, 32.3036, 32.1173)
