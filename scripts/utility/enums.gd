@@ -4,14 +4,7 @@ class_name Enums
 ## A class that contains all the enums available, making it easier to access
 ## the enums globally accross scripts.
 ##
-
-static var polluting_buildings: Array[BuildingType] = [
-		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
-		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT, 
-		BuildingType.STEEL_MILL, BuildingType.GEAR_FACTORY,
-		BuildingType.SAW_MILL
-		]
-		
+	
 static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4, ResourceType.STEEL_SCRAP]
 
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
@@ -375,6 +368,17 @@ enum ResearchID {
 	TE, ## Total emissions statistics
 	WE, ## Wildfire emissions statistics
 	SE, ## Smog emissions statistics
+	ORG_0, ## Oil rig unlock
+	ORY_0, ## Oil refinery unlock
+	GL_0, ## Glassworks unlock
+	EF_0, ## Electronics factory unlock
+	SP_0, ## Solar plant unlock
+	WT_0, ## Windturbine unlock
+	NP_0, ## Nuclear plant unlock
+	RLP_0, ## Rocket launchpad unlock
+	TF_0, ## Tool factory unlock
+	OPP_0, ## Oil power plant unlock
+	EngF_0, ## Engine factory unlock
 }
 
 static var building_research: Dictionary[BuildingType, Array] = {
@@ -405,8 +409,13 @@ enum TreeSize {
 	LARGE,
 }
 
-static func is_a_polluting_building(building_type: BuildingType) -> bool:
-	return building_type in polluting_buildings
+static func is_a_polluting_building(building_data: BuildingData) -> bool:
+	if building_data is ProductionBuildingData:
+		for output in building_data.output_types:
+			if is_emission(output):
+				return true
+	return false
+	#return building_type in polluting_buildings
 	
 static func is_warehouse(building_type: Enums.BuildingType) -> bool:
 	return building_type in warehouses

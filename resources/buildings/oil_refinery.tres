@@ -32,7 +32,7 @@ max_storage = Dictionary[int, int]({
 18: 50
 })
 input_types = Array[int]([14, 5])
-output_types = Array[int]([18, 17])
+output_types = Array[int]([18, 17, 3, 4, 7, 8])
 building_type = 17
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(3, 3)
