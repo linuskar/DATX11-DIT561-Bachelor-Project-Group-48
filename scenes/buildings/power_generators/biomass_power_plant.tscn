@@ -1,4 +1,4 @@
-        qqqqqqqqqqqqqqqqqqqqqqq[gd_scene load_steps=8 format=3 uid="uid://0tdfrbqq2650"]
+[gd_scene load_steps=8 format=3 uid="uid://0tdfrbqq2650"]
 
 [ext_resource type="Script" uid="uid://cjthdvxj7p6kc" path="res://scripts/buildings/power_generators/biomass_power_plant.gd" id="1_pu6ix"]
 [ext_resource type="Resource" uid="uid://okbenuas7tpt" path="res://resources/buildings/biomass_power_plant.tres" id="2_n2s4e"]
@@ -12,6 +12,7 @@ size = Vector2(96, 96)
 
 [node name="BiomassPowerPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_pu6ix")
+smokes = [NodePath("Smoke_v3"), NodePath("Smoke_v4")]
 building_data = ExtResource("2_n2s4e")
 scene_place_particle = ExtResource("4_q2yos")
 

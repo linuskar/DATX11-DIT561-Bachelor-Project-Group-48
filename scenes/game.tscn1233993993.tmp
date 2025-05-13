@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=57 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="Script" uid="uid://btud0tf6wyhq6" path="res://scenes/game.gd" id="1_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
@@ -55,15 +55,6 @@
 [ext_resource type="AudioStream" uid="uid://cassuw27v5ddy" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 01 Main Menu Theme.mp3" id="41_oaba0"]
 [ext_resource type="AudioStream" uid="uid://cqu1ydlbtiavm" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 02 Exploration Theme 01.mp3" id="42_458eo"]
 [ext_resource type="AudioStream" uid="uid://cm6f8xjxemvxa" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 03 Exploration Theme 02.mp3" id="43_h3rex"]
-[ext_resource type="PackedScene" uid="uid://bhhd2aon7ictq" path="res://scenes/buildings/building_blueprints/gathering_buildings/oil_rig_blueprint.tscn" id="44_n8ral"]
-[ext_resource type="PackedScene" uid="uid://dgk8kh1ntpdta" path="res://scenes/buildings/building_blueprints/gathering_buildings/sand_collector_blueprint.tscn" id="45_yd4ix"]
-[ext_resource type="PackedScene" uid="uid://ec78nt876671" path="res://scenes/buildings/building_blueprints/gathering_buildings/water_pump_blueprint.tscn" id="46_66xif"]
-[ext_resource type="PackedScene" uid="uid://bokbgwhcie14x" path="res://scenes/buildings/building_blueprints/production_buildings/oil_refinery_blueprint.tscn" id="47_bnuda"]
-[ext_resource type="PackedScene" uid="uid://bj8m2p4p5i0d6" path="res://scenes/buildings/building_blueprints/production_buildings/glassworks_blueprint.tscn" id="48_yd4ix"]
-[ext_resource type="PackedScene" uid="uid://qnbotpfvwjja" path="res://scenes/buildings/building_blueprints/production_buildings/electronics_factory_blueprint.tscn" id="49_bnuda"]
-[ext_resource type="PackedScene" uid="uid://j1uhdqmtm78e" path="res://scenes/buildings/building_blueprints/power_generators/solar_plant_blueprint.tscn" id="50_0rmfi"]
-[ext_resource type="PackedScene" uid="uid://b5owoke6enj8i" path="res://scenes/buildings/building_blueprints/power_generators/wind_turbine_blueprint.tscn" id="51_xbak0"]
-[ext_resource type="PackedScene" uid="uid://30eqq3u63bsd" path="res://scenes/buildings/building_blueprints/power_generators/nuclear_plant_blueprint.tscn" id="52_3x28f"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fedci"]
 streams_count = 5
@@ -128,16 +119,7 @@ building_blueprints = Dictionary[int, Resource]({
 10: ExtResource("28_v2yb1"),
 11: ExtResource("29_js0lu"),
 12: ExtResource("30_gxtfn"),
-13: ExtResource("30_twgab"),
-14: ExtResource("44_n8ral"),
-15: ExtResource("45_yd4ix"),
-16: ExtResource("46_66xif"),
-17: ExtResource("47_bnuda"),
-18: ExtResource("48_yd4ix"),
-19: ExtResource("49_bnuda"),
-20: ExtResource("50_0rmfi"),
-21: ExtResource("51_xbak0"),
-22: ExtResource("52_3x28f")
+13: ExtResource("30_twgab")
 })
 
 [node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]

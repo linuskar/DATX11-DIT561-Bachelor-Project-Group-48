@@ -153,6 +153,7 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.PLASTICS: 30,
 	ResourceType.FUEL: 40,
 	ResourceType.ELECTRONICS: 80,
+	ResourceType.GLASS: 5,
 }
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
@@ -270,6 +271,22 @@ static var building_data: Dictionary[BuildingType, Resource] = {
 	BuildingType.GEAR_FACTORY: load("res://resources/buildings/gear_factory.tres"),
 	BuildingType.RESEARCH_LAB: load("res://resources/buildings/research_lab.tres"),
 	BuildingType.STEEL_SCRAP_LANDFILL: load("res://resources/buildings/steel_scrap_landfill.tres"),
+	BuildingType.OIL_RIG: load("res://resources/buildings/oil_rig.tres"), 
+	BuildingType.SAND_COLLECTOR: load("res://resources/buildings/sand_collector.tres"),
+	BuildingType.WATER_PUMP: load("res://resources/buildings/water_pump.tres"),
+	BuildingType.OIL_REFINERY: load("res://resources/buildings/oil_refinery.tres"),
+	BuildingType.GLASSWORKS: load("res://resources/buildings/glassworks.tres"), 
+	BuildingType.ELECTRONICS_FACTORY: load("res://resources/buildings/electronics_factory.tres"), 
+	BuildingType.SOLAR_PLANT: load("res://resources/buildings/solar_plant.tres"), 
+	BuildingType.WIND_TURBINE: load("res://resources/buildings/solar_plant.tres"),
+	BuildingType.NUCLEAR_PLANT: load("res://resources/buildings/nuclear_plant.tres"),
+	#BuildingType.ROCKET_LAUNCHPAD: load("rocket"), ## To be added when Noel makes a rocket building
+	#BuildingType.URANIUM_MINE: load(), ## There is currently no building data for a uranium mine
+	#BuildingType.TOOL_FACTORY: load(), ## There is currently no tool factory
+	#BuildingType.OIL_POWER_PLANT: load(oil_po), ## There is currently no data for oil power plant
+	#BuildingType.ENGINE_FACTORY: load(), ## There is no data 
+	#BuildingType.COPPER_MINE: load(copper), ## No data
+	##BuildingType.COPPER_SMELTERY, ## No data
 }
 
 ## Function for checking if the BuildingType is a gathering building

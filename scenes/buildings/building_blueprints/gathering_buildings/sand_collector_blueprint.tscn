@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgk8kh1ntpdta"]
 
 [ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_ww32w"]
-[ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_14ppv"]
+[ext_resource type="Resource" uid="uid://dxejc11awrfyg" path="res://resources/buildings/sand_collector.tres" id="2_u5bba"]
 [ext_resource type="Texture2D" uid="uid://dohpboskgevxf" path="res://assets/buildings_iso/sand_collector_building.png" id="3_u5bba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
 size = Vector2(32, 32)
 
-[node name="SandCollectorBlueprint" type="StaticBody2D"]
+[node name="SandCollectorBlueprint" type="Area2D"]
 script = ExtResource("1_ww32w")
-building_data = ExtResource("2_14ppv")
+building_data = ExtResource("2_u5bba")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qb2p1")

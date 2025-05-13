@@ -4,15 +4,26 @@
 
 [resource]
 script = ExtResource("1_dydaj")
-input_use_rates = Dictionary[int, int]({})
-output_generation = Dictionary[int, int]({})
+input_use_rates = Dictionary[int, int]({
+16: 20,
+21: 10
+})
+output_generation = Dictionary[int, int]({
+5: 40
+})
 emissions_radius = Dictionary[int, int]({})
-input_recipes = Dictionary[int, Array]({})
-max_storage = Dictionary[int, int]({})
-input_types = Array[int]([])
-output_types = Array[int]([])
+input_recipes = Dictionary[int, Array]({
+0: [21, 16]
+})
+max_storage = Dictionary[int, int]({
+5: 200,
+16: 100,
+21: 50
+})
+input_types = Array[int]([16, 21])
+output_types = Array[int]([5])
 building_type = 22
-valid_tile_types_to_place_on = Array[int]([])
-building_size = Vector2(0, 0)
-building_cost = 0
-building_upkeep = 0
+valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
+building_size = Vector2(3, 3)
+building_cost = 500
+building_upkeep = 100
