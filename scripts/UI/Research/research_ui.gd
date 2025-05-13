@@ -1,3 +1,4 @@
+class_name ResearchUI
 extends UIMenu
 
 @onready var research_container: VBoxContainer = $List/PanelContainer/Research/ResearchContainer
@@ -123,6 +124,9 @@ func reset_tabs() -> void:
 
 #Close UI
 func close() -> void:
-	research_lab_selected.currently_selected = false
+	research_lab_selected.building_deselected(research_lab_selected)
 	ResearchSignals.research_lab_selected.emit(null)
 	hide()
+
+func hide_ui_menu() -> void:
+	close()

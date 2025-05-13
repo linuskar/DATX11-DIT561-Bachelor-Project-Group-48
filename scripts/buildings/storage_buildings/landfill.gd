@@ -23,9 +23,9 @@ func _ready() -> void:
 	place_animation.play("place")
 	
 func  _process(delta: float) -> void:
+	super(delta)
 	expand_landfill()
 	shrink_landfill()
-	highlight_building()
 
 ## Expand the landfill when at max capacity
 func expand_landfill() -> void:
