@@ -150,6 +150,9 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.SAND: 1,
 	ResourceType.WATER: 2,
 	ResourceType.OIL: 12,
+	ResourceType.PLASTICS: 30,
+	ResourceType.FUEL: 40,
+	ResourceType.ELECTRONICS: 80,
 }
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
@@ -190,32 +193,32 @@ static func mode_to_string(mode: ProductionBuildingMode) -> String:
 
 ## The different types of resources in the game
 enum ResourceType {
-	IRON_ORE, ## The resource type for iron ore
+	IRON_ORE, ## The resource type for iron ore #0 in list
 	COAL, ## The resource type for coal
 	WOOD, ## The resource type for wood
 	CO2, ## The resource type for carbon dioxide
 	S02, ## The resource type for sulfur dioxide
-	ELECTRICITY, ## The resource type for electricity
+	ELECTRICITY, ## The resource type for electricity #5 in list
 	BIOMASS, ## The resource type for biomass
 	N0X, ## The resource type for nitrogen oxides
 	CH4, ## The resource type for methane
 	NONE, ## The resource type for nothing
-	PLANKS, ## The resource type for planks
+	PLANKS, ## The resource type for planks #10 in list
 	STEEL, ## The resource type for steel
 	GEARS, ## The resource type for gears
 	STEEL_SCRAP, ## The resource type for STEEL SCRAP
 	OIL, ## The resource type for crude oil
-	SAND, ## The resource type for sand
+	SAND, ## The resource type for sand #15 in list
 	WATER, ## The resource type for water droplet
 	FUEL, ## The resource type for fuel
 	PLASTICS, ## The resource type for plastics
 	GLASS, ## The resource type for glass
-	ELECTRONICS, ## The resource type for electronics
+	ELECTRONICS, ## The resource type for electronics #20 in list
 	URANIUM, ## The resource type for uranium
 	TOOLS, ## The resource type for tools
 	ENGINE, ## The resource type for engine
 	COPPER_ORE, ## The resource type for copper ore
-	COPPER_BARS, ## The resource type for copper bars
+	COPPER_BARS, ## The resource type for copper bars #25 in list
 }
 
 ## The different types of buildings in the game
