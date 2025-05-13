@@ -124,7 +124,11 @@ func update_road_sprite() -> void:
 		$Sprite2D.frame = 8  # Bottom-left corner
 	elif left and up:
 		$Sprite2D.frame = 9  # Bottom-right corner
-	elif left or right:
-		$Sprite2D.frame = 4  # Default horizontal
-	elif up or down:
-		$Sprite2D.frame = 3  # Default vertical
+	elif left:
+		$Sprite2D.frame = 13
+	elif right:
+		$Sprite2D.frame = 12
+	elif up:
+		$Sprite2D.frame = 15  # Default vertical
+	elif down:
+		$Sprite2D.frame = 14
