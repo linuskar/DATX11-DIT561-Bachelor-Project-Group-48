@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuxja7o0fqd05"
-path="res://.godot/imported/road_tilemap-Sheet.png-64c168fa835354dc6d0211c2fe157e65.ctex"
+uid="uid://xlj8h8qm5ryy"
+path="res://.godot/imported/road_tilemap-Sheet-export.png-71bf40921f68b55f5295af4018f26a24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/road/road_tilemap-Sheet.png"
-dest_files=["res://.godot/imported/road_tilemap-Sheet.png-64c168fa835354dc6d0211c2fe157e65.ctex"]
+source_file="res://assets/road/road_tilemap-Sheet-export.png"
+dest_files=["res://.godot/imported/road_tilemap-Sheet-export.png-71bf40921f68b55f5295af4018f26a24.ctex"]
 
 [params]
 
