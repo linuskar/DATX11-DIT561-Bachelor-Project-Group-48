@@ -1,11 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://bn4m2dsa1xi1m"]
+[gd_scene load_steps=21 format=3 uid="uid://bn4m2dsa1xi1m"]
 
 [ext_resource type="Script" uid="uid://jw3k7gchg50y" path="res://scripts/UI/Research/research_ui.gd" id="1_l02gs"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_id0mj"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_l02gs"]
+[ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="6_1ak1k"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="6_45l3e"]
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="7_c2yi1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_og7lo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l02gs"]
+font = ExtResource("5_l02gs")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rn6eb"]
+font = ExtResource("5_l02gs")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ak1k"]
+font = ExtResource("5_l02gs")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ihpgc"]
+font = ExtResource("5_l02gs")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vfn66"]
+font = ExtResource("5_l02gs")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjg1s"]
 texture = ExtResource("6_45l3e")
@@ -13,6 +40,26 @@ texture_margin_bottom = 10.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(36, 4, 24, 28)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihpgc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vfn66"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rn6eb"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("6_45l3e")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(32, 0, 32, 32)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijudn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydok3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_itten"]
 atlas = ExtResource("7_c2yi1")
@@ -36,7 +83,6 @@ offset_bottom = 388.6
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-mouse_filter = 1
 script = ExtResource("1_l02gs")
 
 [node name="List" type="Control" parent="."]
@@ -68,16 +114,135 @@ offset_bottom = 2.73596
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_id0mj")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="List/PanelContainer"]
+[node name="Research" type="ScrollContainer" parent="List/PanelContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_og7lo")
 vertical_scroll_mode = 3
 
-[node name="ResearchContainer" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer"]
+[node name="ResearchContainer" type="VBoxContainer" parent="List/PanelContainer/Research"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 0
+
+[node name="Statistics" type="ScrollContainer" parent="List/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_og7lo")
+vertical_scroll_mode = 3
+
+[node name="StatisticsContainer" type="VBoxContainer" parent="List/PanelContainer/Statistics"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="EmissionsContainer" type="MarginContainer" parent="List/PanelContainer/Statistics/StatisticsContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="List/PanelContainer/Statistics/StatisticsContainer/EmissionsContainer"]
+layout_mode = 2
+
+[node name="Emissions" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/EmissionsContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Emissions"
+label_settings = SubResource("LabelSettings_l02gs")
+
+[node name="Description" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/EmissionsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(430, 20)
+layout_mode = 2
+mouse_filter = 1
+text = "The emissions in the air."
+label_settings = SubResource("LabelSettings_rn6eb")
+autowrap_mode = 2
+
+[node name="EmissionsContributors" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/EmissionsContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Contributors"
+label_settings = SubResource("LabelSettings_1ak1k")
+
+[node name="WildfireContainer" type="MarginContainer" parent="List/PanelContainer/Statistics/StatisticsContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="List/PanelContainer/Statistics/StatisticsContainer/WildfireContainer"]
+layout_mode = 2
+
+[node name="Wildfire" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/WildfireContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Wildfire"
+label_settings = SubResource("LabelSettings_l02gs")
+
+[node name="Description" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/WildfireContainer/VBoxContainer"]
+custom_minimum_size = Vector2(430, 50)
+layout_mode = 2
+mouse_filter = 1
+text = "The emissions in the air causing wildfires."
+label_settings = SubResource("LabelSettings_rn6eb")
+autowrap_mode = 2
+
+[node name="WildfireContributors" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/WildfireContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Contributors"
+label_settings = SubResource("LabelSettings_ihpgc")
+
+[node name="TreePollutionContainer" type="MarginContainer" parent="List/PanelContainer/Statistics/StatisticsContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="List/PanelContainer/Statistics/StatisticsContainer/TreePollutionContainer"]
+layout_mode = 2
+
+[node name="TreePollution" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/TreePollutionContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Tree Pollution"
+label_settings = SubResource("LabelSettings_l02gs")
+
+[node name="Description" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/TreePollutionContainer/VBoxContainer"]
+custom_minimum_size = Vector2(430, 20)
+layout_mode = 2
+mouse_filter = 1
+text = "The emissions that harm trees."
+label_settings = SubResource("LabelSettings_rn6eb")
+autowrap_mode = 2
+
+[node name="TreePollutionContributors" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/TreePollutionContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Contributors"
+label_settings = SubResource("LabelSettings_vfn66")
+
+[node name="SmogContanier" type="MarginContainer" parent="List/PanelContainer/Statistics/StatisticsContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="List/PanelContainer/Statistics/StatisticsContainer/SmogContanier"]
+layout_mode = 2
+
+[node name="Smog" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/SmogContanier/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Smog"
+label_settings = SubResource("LabelSettings_l02gs")
+
+[node name="Description" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/SmogContanier/VBoxContainer"]
+custom_minimum_size = Vector2(430, 50)
+layout_mode = 2
+mouse_filter = 1
+text = "The emissions in the air causing smog to appear."
+label_settings = SubResource("LabelSettings_rn6eb")
+autowrap_mode = 2
+
+[node name="SmogContributors" type="Label" parent="List/PanelContainer/Statistics/StatisticsContainer/SmogContanier/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Contributors"
+label_settings = SubResource("LabelSettings_vfn66")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -90,13 +255,41 @@ offset_bottom = 100.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_xjg1s")
 
-[node name="CloseButton" type="TextureButton" parent="PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TabBar" type="TabBar" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_l02gs")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_ihpgc")
+theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_vfn66")
+theme_override_styles/tab_unselected = ExtResource("2_id0mj")
+theme_override_styles/tab_hovered = ExtResource("6_1ak1k")
+theme_override_styles/tab_selected = SubResource("StyleBoxTexture_rn6eb")
+theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_ijudn")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_ydok3")
+current_tab = 0
+tab_count = 2
+tab_0/title = "Research"
+tab_0/tooltip = "Research"
+tab_1/title = "Statistics"
+tab_1/tooltip = "Statistics"
+
+[node name="CloseButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+offset_left = 510.0
+offset_top = 20.0
+offset_right = 580.0
+offset_bottom = 90.0
 size_flags_horizontal = 8
 mouse_filter = 1
 texture_normal = SubResource("AtlasTexture_itten")
 texture_pressed = SubResource("AtlasTexture_6mxs2")
 stretch_mode = 4
 
-[connection signal="pressed" from="PanelContainer/CloseButton" to="." method="close"]
+[connection signal="pressed" from="CloseButton" to="." method="close"]

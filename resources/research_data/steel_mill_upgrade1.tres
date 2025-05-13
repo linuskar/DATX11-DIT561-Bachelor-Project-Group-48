@@ -7,9 +7,10 @@ script = ExtResource("1_jxjli")
 research_id = 0
 research_name = "Recycling Steel Scrap"
 description = "Steel mills can also create steel using steel scrap and electricity."
-money_cost = 50
+money_cost = 2000
 resource_cost = Dictionary[int, int]({
-0: 5,
-2: 5
+5: 200,
+11: 50,
+12: 50
 })
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

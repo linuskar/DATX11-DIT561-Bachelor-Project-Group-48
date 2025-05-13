@@ -53,43 +53,43 @@ func ready_instance(new_resource: Enums.ResourceType, stored_amount: int) -> voi
 	self.texture_rect.set_texture(load(Enums.resource_image_paths.get(new_resource)))
 
 ## Triggered when pressing the Increase button, increases 
-## selling resources by 1
-func increase() -> void:
-	var sell_before: int = resource_to_sell
-	if resource_to_sell + 1 >= resource_held:
-		resource_to_sell = resource_held
-	else: 
-		resource_to_sell += 1
-	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
-	
-## Triggered when pressing the IncreaseMore button, increases
 ## selling resources by 5
-func increase_more() -> void:
+func increase() -> void:
 	var sell_before: int = resource_to_sell
 	if resource_to_sell + 5 >= resource_held:
 		resource_to_sell = resource_held
 	else: 
 		resource_to_sell += 5
 	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
+	
+## Triggered when pressing the IncreaseMore button, increases
+## selling resources by 10
+func increase_more() -> void:
+	var sell_before: int = resource_to_sell
+	if resource_to_sell + 10 >= resource_held:
+		resource_to_sell = resource_held
+	else: 
+		resource_to_sell += 10
+	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
 
 ## Triggered when pressing the Decrease button, decreases 
-## selling resources by 1
-func decrease() -> void:
-	var sell_before: int = resource_to_sell
-	if resource_to_sell - 1 <= 0:
-		resource_to_sell = 0
-	else:
-		resource_to_sell -= 1
-	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
-	
-## Triggered when pressing the DecreaseMore button, decreases
 ## selling resources by 5
-func decrease_more() -> void:
+func decrease() -> void:
 	var sell_before: int = resource_to_sell
 	if resource_to_sell - 5 <= 0:
 		resource_to_sell = 0
 	else:
 		resource_to_sell -= 5
+	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
+	
+## Triggered when pressing the DecreaseMore button, decreases
+## selling resources by 10
+func decrease_more() -> void:
+	var sell_before: int = resource_to_sell
+	if resource_to_sell - 10 <= 0:
+		resource_to_sell = 0
+	else:
+		resource_to_sell -= 10
 	resource_selling_changed.emit(resource, resource_to_sell-sell_before)
 
 ## Updates the text of the label to match the resources to sell count
@@ -121,3 +121,7 @@ func update_resources() -> void:
 	if resource_to_sell > resource_held:
 		resource_to_sell = resource_held
 		resource_selling_changed.emit(resource, resource_to_sell)
+
+func reset_selling() -> void:
+	resource_to_sell = 0
+	resource_selling_changed.emit(resource, resource_to_sell)
