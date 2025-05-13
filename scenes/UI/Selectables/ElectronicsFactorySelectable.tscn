@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjkxqp6q0uauk"]
+[gd_scene load_steps=13 format=3 uid="uid://cjkxqp6q0uauk"]
 
 [ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_ewjyi"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_3rhne"]
+[ext_resource type="Resource" uid="uid://by3u3gc26dus4" path="res://resources/buildings/electronics_factory.tres" id="2_ai21b"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_ai21b"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_b0uda"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_587hw"]
@@ -60,6 +61,7 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_ewjyi")
 icon_path = "uid://t2kml7pea27i"
+building_data = ExtResource("2_ai21b")
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
