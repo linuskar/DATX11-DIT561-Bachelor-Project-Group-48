@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://mjtf8gsptloy"]
+[gd_scene load_steps=57 format=3 uid="uid://mjtf8gsptloy"]
 
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="1_aenhx"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="2_ofppe"]
@@ -32,7 +32,14 @@
 [ext_resource type="PackedScene" uid="uid://d0spxcsdvc4p2" path="res://scenes/buildings/power_generators/wind_turbine.tscn" id="21_4wpfj"]
 [ext_resource type="PackedScene" uid="uid://cn6sefxukvlqm" path="res://scenes/buildings/building_blueprints/production_buildings/gear_factory_blueprint.tscn" id="22_437j0"]
 [ext_resource type="PackedScene" uid="uid://buy1x4mpuil0m" path="res://scenes/buildings/power_generators/nuclear_plant.tscn" id="22_gp82u"]
+[ext_resource type="PackedScene" uid="uid://3n02qq3l4ykf" path="res://scenes/buildings/rocket_launch_pad.tscn" id="23_lvpxh"]
 [ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="24_jdlbb"]
+[ext_resource type="PackedScene" uid="uid://ql0fl0fj208o" path="res://scenes/buildings/gathering_buildings/uranium_mine.tscn" id="24_xm7k7"]
+[ext_resource type="PackedScene" uid="uid://7xdlbekfpnhw" path="res://scenes/buildings/production_buildings/tool_factory.tscn" id="25_kdn40"]
+[ext_resource type="PackedScene" uid="uid://35jat72r8x6k" path="res://scenes/buildings/power_generators/oil_power_plant.tscn" id="26_rcqth"]
+[ext_resource type="PackedScene" uid="uid://dlydrx24clc16" path="res://scenes/buildings/production_buildings/engine_factory.tscn" id="27_q2npk"]
+[ext_resource type="PackedScene" uid="uid://dh1kidmxc4h2w" path="res://scenes/buildings/gathering_buildings/copper_mine.tscn" id="28_qamyb"]
+[ext_resource type="PackedScene" uid="uid://puvqlpxdf7oj" path="res://scenes/buildings/production_buildings/copper_smeltery.tscn" id="29_tgb3x"]
 [ext_resource type="PackedScene" uid="uid://bhhd2aon7ictq" path="res://scenes/buildings/building_blueprints/gathering_buildings/oil_rig_blueprint.tscn" id="34_q2p5x"]
 [ext_resource type="PackedScene" uid="uid://dgk8kh1ntpdta" path="res://scenes/buildings/building_blueprints/gathering_buildings/sand_collector_blueprint.tscn" id="35_klrmx"]
 [ext_resource type="PackedScene" uid="uid://ec78nt876671" path="res://scenes/buildings/building_blueprints/gathering_buildings/water_pump_blueprint.tscn" id="36_wfdxp"]
@@ -42,6 +49,13 @@
 [ext_resource type="PackedScene" uid="uid://j1uhdqmtm78e" path="res://scenes/buildings/building_blueprints/power_generators/solar_plant_blueprint.tscn" id="40_xm7k7"]
 [ext_resource type="PackedScene" uid="uid://b5owoke6enj8i" path="res://scenes/buildings/building_blueprints/power_generators/wind_turbine_blueprint.tscn" id="41_kdn40"]
 [ext_resource type="PackedScene" uid="uid://30eqq3u63bsd" path="res://scenes/buildings/building_blueprints/power_generators/nuclear_plant_blueprint.tscn" id="42_rcqth"]
+[ext_resource type="PackedScene" uid="uid://ddoqkjg5rmpxp" path="res://scenes/buildings/building_blueprints/rocket_launch_pad_blueprint.tscn" id="50_rvjmf"]
+[ext_resource type="PackedScene" uid="uid://d23g4wwp0sagp" path="res://scenes/buildings/building_blueprints/gathering_buildings/uranium_mine_blueprint.tscn" id="51_8uvkl"]
+[ext_resource type="PackedScene" uid="uid://b4qrqvoca6ocr" path="res://scenes/buildings/building_blueprints/production_buildings/tool_factory_blueprint.tscn" id="52_r363h"]
+[ext_resource type="PackedScene" uid="uid://c86icppjwet06" path="res://scenes/buildings/building_blueprints/power_generators/oil_power_plant_blueprint.tscn" id="53_bjynr"]
+[ext_resource type="PackedScene" uid="uid://c0qom0xo35ei0" path="res://scenes/buildings/building_blueprints/production_buildings/engine_factory_blueprint.tscn" id="54_ycvk4"]
+[ext_resource type="PackedScene" uid="uid://b7hjhx2kagc1k" path="res://scenes/buildings/building_blueprints/gathering_buildings/copper_mine_blueprint.tscn" id="55_vybox"]
+[ext_resource type="PackedScene" uid="uid://c01px6l3e3ce4" path="res://scenes/buildings/building_blueprints/production_buildings/copper_smeltery_blueprint.tscn" id="56_jvlq1"]
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
 script = ExtResource("1_aenhx")
@@ -67,7 +81,14 @@ buildings = Dictionary[int, Resource]({
 19: ExtResource("19_20xql"),
 20: ExtResource("20_1p60n"),
 21: ExtResource("21_4wpfj"),
-22: ExtResource("22_gp82u")
+22: ExtResource("22_gp82u"),
+23: ExtResource("23_lvpxh"),
+24: ExtResource("24_xm7k7"),
+25: ExtResource("25_kdn40"),
+26: ExtResource("26_rcqth"),
+27: ExtResource("27_q2npk"),
+28: ExtResource("28_qamyb"),
+29: ExtResource("29_tgb3x")
 })
 building_blueprints = Dictionary[int, Resource]({
 1: ExtResource("2_ofppe"),
@@ -90,7 +111,14 @@ building_blueprints = Dictionary[int, Resource]({
 19: ExtResource("39_lvpxh"),
 20: ExtResource("40_xm7k7"),
 21: ExtResource("41_kdn40"),
-22: ExtResource("42_rcqth")
+22: ExtResource("42_rcqth"),
+23: ExtResource("50_rvjmf"),
+24: ExtResource("51_8uvkl"),
+25: ExtResource("52_r363h"),
+26: ExtResource("53_bjynr"),
+27: ExtResource("54_ycvk4"),
+28: ExtResource("55_vybox"),
+29: ExtResource("56_jvlq1")
 })
 
 [node name="BuildingsNodeContainer" type="Node" parent="."]

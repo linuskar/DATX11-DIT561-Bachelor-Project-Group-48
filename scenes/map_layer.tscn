@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://1g535ircrcnf" path="res://scenes/resources/coal_ore.tscn" id="5_v8mp5"]
 [ext_resource type="PackedScene" uid="uid://csdjsjq4n5751" path="res://scenes/resources/iron_ore.tscn" id="6_psaw3"]
 [ext_resource type="PackedScene" uid="uid://bj5xuffyaonsb" path="res://scenes/resources/gatherable_tree.tscn" id="7_qds2b"]
-[ext_resource type="PackedScene" path="res://scenes/resources/oil_well.tscn" id="8_7gaei"]
+[ext_resource type="PackedScene" uid="uid://bo36u6s8pout" path="res://scenes/resources/oil_well.tscn" id="8_7gaei"]
 [ext_resource type="Texture2D" uid="uid://cjixpoac5aspc" path="res://assets/pixil-frame-0 (3).png" id="8_n1fju"]
 [ext_resource type="Script" uid="uid://ci1r0ft37y25" path="res://scripts/utility/map_areas.gd" id="8_ysx3f"]
-[ext_resource type="PackedScene" path="res://scenes/resources/sand pile.tscn" id="9_tigd3"]
+[ext_resource type="PackedScene" uid="uid://svhmf724tafv" path="res://scenes/resources/sand pile.tscn" id="9_tigd3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23fv6"]
 texture = ExtResource("1_7ny2r")
