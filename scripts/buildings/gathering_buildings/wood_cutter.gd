@@ -105,3 +105,10 @@ func apply_research_upgrade(research_data: ResearchData) -> void:
 	if research_data.research_id == Enums.ResearchID.WC_1:
 		var wood_gather_rate: int = output_generation.get(Enums.ResourceType.WOOD)
 		output_generation.set(Enums.ResourceType.WOOD, wood_gather_rate + 5)
+
+func pay_for_production() -> void:
+	PlayerCurrency.remove_currency(self.building_data.building_upkeep)
+
+## Function checking whether the player has more than a given amount of currency
+func check_afford_production() -> bool:
+	return PlayerCurrency.player_held_currency >= building_data.building_upkeep

@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://puvqlpxdf7oj"]
+[gd_scene load_steps=5 format=3 uid="uid://puvqlpxdf7oj"]
 
-[ext_resource type="Script" uid="uid://brt3vn6mmx3y3" path="res://scenes/buildings/production_buildings/copper_smeltery.gd" id="1_ycxmy"]
+[ext_resource type="Script" path="res://scenes/buildings/production_buildings/copper_smeltery.gd" id="1_ycxmy"]
+[ext_resource type="Resource" uid="uid://cg58cw3xto8m1" path="res://resources/buildings/copper_smeltery.tres" id="2_8bwfs"]
+[ext_resource type="Texture2D" uid="uid://b52ga2tf54bjo" path="res://assets/buildings_iso/copper_smeltery_building.png" id="2_v2s3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2s3n"]
+size = Vector2(64, 64)
 
 [node name="CopperSmeltery" type="StaticBody2D"]
 script = ExtResource("1_ycxmy")
+building_data = ExtResource("2_8bwfs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v2s3n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v2s3n")

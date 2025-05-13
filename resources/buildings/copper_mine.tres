@@ -4,16 +4,25 @@
 
 [resource]
 script = ExtResource("1_p3bys")
-can_gather_resource_type = 0
+can_gather_resource_type = 24
 input_use_rates = Dictionary[int, int]({})
-output_generation = Dictionary[int, int]({})
-emissions_radius = Dictionary[int, int]({})
+output_generation = Dictionary[int, int]({
+3: 4,
+7: 4,
+24: 5
+})
+emissions_radius = Dictionary[int, int]({
+3: 12,
+7: 12
+})
 input_recipes = Dictionary[int, Array]({})
-max_storage = Dictionary[int, int]({})
+max_storage = Dictionary[int, int]({
+24: 60
+})
 input_types = Array[int]([])
-output_types = Array[int]([])
-building_type = 0
-valid_tile_types_to_place_on = Array[int]([])
-building_size = Vector2(0, 0)
-building_cost = 0
-building_upkeep = 0
+output_types = Array[int]([24])
+building_type = 28
+valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
+building_size = Vector2(2, 2)
+building_cost = 50
+building_upkeep = 6
