@@ -49,14 +49,18 @@ func buy_with_resources(type: Enums.ResourceType, amount_needed: int, buildings_
 				## If the amount needed is greater or equal to the resources stored in the building
 				if amount_needed_left >= output_stored:
 					## Take all the resources in the output storage for the building
-					_use_Resources(type, output_stored)
+					ResourceSignals.use_resource.emit(type, output_stored)
 					building.output_storage.set(type, output_stored - output_stored)
+					if Enums.is_warehouse(building.building_type):
+						building.input_storage.set(type, output_stored - output_stored)
 					amount_needed_left -= output_stored
 				## If the amount needed is less than the resources stored in the building
 				else:
 					## Take some parts of the resources in the output storage for the building
-					_use_Resources(type, amount_needed_left)
+					ResourceSignals.use_resource.emit(type, amount_needed_left)
 					building.output_storage.set(type, output_stored - amount_needed_left)
+					if Enums.is_warehouse(building.building_type):
+						building.input_storage.set(type, output_stored - amount_needed_left)
 					amount_needed_left -= amount_needed_left
 		if amount_needed_left == 0:
 			return
