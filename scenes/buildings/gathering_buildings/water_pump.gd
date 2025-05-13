@@ -10,7 +10,7 @@ func _ready():
 	$place_animation.play("place")
 	super()
 
-func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+func _on_place_animation_animation_finished(anim_name: String) -> void:
 	$place_particle.emitting = true
 
 ## Function for emitting smoke when possible.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=45 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
@@ -6,23 +6,34 @@
 [ext_resource type="PackedScene" uid="uid://c7tg4gvbnd0i0" path="res://scenes/UI/Selectables/CoalMineSelectable.tscn" id="4_2uf64"]
 [ext_resource type="PackedScene" uid="uid://8hwvsiww32an" path="res://scenes/UI/Selectables/IronMineSelectable.tscn" id="5_2mva2"]
 [ext_resource type="StyleBox" uid="uid://y5y7axbnqsdv" path="res://resources/style_boxes/ui_panel_light_brown.tres" id="5_albfh"]
+[ext_resource type="PackedScene" uid="uid://dy810ojnwcemw" path="res://scenes/UI/Selectables/SandCollectorSelectable.tscn" id="6_3avdw"]
 [ext_resource type="PackedScene" uid="uid://bhrcu48dc2f50" path="res://scenes/UI/Selectables/WoodCutterSelectable.tscn" id="6_de1jr"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_epysl"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="6_qf7o5"]
 [ext_resource type="PackedScene" uid="uid://bvbhybq0wqtk8" path="res://scenes/UI/Selectables/BiomassPowerPlantSelectable.tscn" id="7_2uf64"]
+[ext_resource type="Resource" uid="uid://dxejc11awrfyg" path="res://resources/buildings/sand_collector.tres" id="7_orqwn"]
 [ext_resource type="PackedScene" uid="uid://bcpxbii6e6t0h" path="res://scenes/UI/Selectables/CoalPowerPlantSelectable.tscn" id="8_2mva2"]
 [ext_resource type="PackedScene" uid="uid://ctkvuv2f8407w" path="res://scenes/UI/Selectables/RoadSelectable.tscn" id="9_djsgt"]
 [ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="9_epysl"]
+[ext_resource type="PackedScene" uid="uid://sl7v4ivhxgsu" path="res://scenes/UI/Selectables/WaterPumpSelectable.tscn" id="10_albfh"]
 [ext_resource type="PackedScene" uid="uid://eho7susuq8fj" path="res://scenes/UI/Selectables/WarehouseSelectable.tscn" id="10_nt76t"]
 [ext_resource type="StyleBox" uid="uid://bfttb8f017gk2" path="res://resources/style_boxes/metal_red_outline_darker.tres" id="11_epysl"]
 [ext_resource type="PackedScene" uid="uid://br2gryi0lgaf4" path="res://scenes/UI/Selectables/BiomassLandfillSelectable.tscn" id="11_yhkbe"]
 [ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="12_djsgt"]
+[ext_resource type="PackedScene" uid="uid://bh5yk25bowm83" path="res://scenes/UI/Selectables/OilRigSelectable.tscn" id="12_orqwn"]
+[ext_resource type="PackedScene" uid="uid://c7irvn4jjjftq" path="res://scenes/UI/Selectables/SolarPlantSelectable.tscn" id="13_e1kqc"]
+[ext_resource type="Resource" uid="uid://sawvwdpa2ebo" path="res://resources/buildings/water_pump.tres" id="13_lfrtl"]
 [ext_resource type="PackedScene" uid="uid://dikayexhi6tv3" path="res://scenes/UI/Selectables/SawMillSelectable.tscn" id="13_lhb8k"]
+[ext_resource type="PackedScene" uid="uid://t6up4c1vor8q" path="res://scenes/UI/Selectables/WindTurbineSelectable.tscn" id="14_lfrtl"]
 [ext_resource type="PackedScene" uid="uid://ddbcnvs3frisw" path="res://scenes/UI/Selectables/SteelMillSelectable.tscn" id="14_p772r"]
 [ext_resource type="PackedScene" uid="uid://bnw7off718dvw" path="res://scenes/UI/Selectables/GearFactorySelectable.tscn" id="15_tqq1s"]
 [ext_resource type="PackedScene" uid="uid://dhdmdoa2x24cb" path="res://scenes/UI/Selectables/ResearchLabSelectable.tscn" id="16_tqq1s"]
 [ext_resource type="PackedScene" uid="uid://cbnpo6ya5w0fv" path="res://scenes/UI/Selectables/SteelScrapLandfillSelectable.tscn" id="18_2tosp"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="19_oxyvt"]
+[ext_resource type="PackedScene" uid="uid://cidj2cwdvefr5" path="res://scenes/UI/Selectables/OilRefinerySelectable.tscn" id="20_axpsv"]
+[ext_resource type="PackedScene" uid="uid://cjkxqp6q0uauk" path="res://scenes/UI/Selectables/ElectronicsFactorySelectable.tscn" id="21_l350y"]
+[ext_resource type="PackedScene" uid="uid://ikfwscf7i3th" path="res://scenes/UI/Selectables/GlassworksSelectable.tscn" id="22_p0kdu"]
+[ext_resource type="PackedScene" uid="uid://cb02low7v5a8j" path="res://scenes/UI/Selectables/NuclearPlantSelectable.tscn" id="23_goijm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tosp"]
 
@@ -162,6 +173,10 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 6
 
+[node name="SandCollectorBuilding" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("6_3avdw")]
+layout_mode = 2
+building_data = ExtResource("7_orqwn")
+
 [node name="CoalMineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("4_2uf64")]
 layout_mode = 2
 
@@ -172,6 +187,19 @@ building_data = ExtResource("6_qf7o5")
 [node name="WoodCutterSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("6_de1jr")]
 layout_mode = 2
 mouse_filter = 1
+
+[node name="WaterPumpSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("10_albfh")]
+layout_mode = 2
+building_data = ExtResource("13_lfrtl")
+
+[node name="OilRigSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("12_orqwn")]
+layout_mode = 2
+
+[node name="SolarPlantSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("13_e1kqc")]
+layout_mode = 2
+
+[node name="WindTurbineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("14_lfrtl")]
+layout_mode = 2
 
 [node name="Producing" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer/BuildingsContainer"]
 visible = false
@@ -194,6 +222,18 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GearFactorySelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("15_tqq1s")]
+layout_mode = 2
+
+[node name="OilRefinerySelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("20_axpsv")]
+layout_mode = 2
+
+[node name="ElectronicsFactorySelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("21_l350y")]
+layout_mode = 2
+
+[node name="GlassworksSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("22_p0kdu")]
+layout_mode = 2
+
+[node name="NuclearPlantSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("23_goijm")]
 layout_mode = 2
 
 [node name="Storing" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer/BuildingsContainer"]
@@ -227,51 +267,6 @@ layout_mode = 2
 [node name="ResearchLabSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Utility" instance=ExtResource("16_tqq1s")]
 layout_mode = 2
 
-[node name="OilRigSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("19_albfh")]
-layout_mode = 2
-icon_path = "uid://b70cuh7lr88ap"
-building_data = ExtResource("20_6f0jf")
-
-[node name="SandCollectorBuilding" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("21_6f0jf")]
-layout_mode = 2
-icon_path = "uid://dohpboskgevxf"
-building_data = ExtResource("22_jmofw")
-
-[node name="WaterPumpSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("23_cfofv")]
-layout_mode = 2
-icon_path = "uid://c7lw7p7gyi471"
-building_data = ExtResource("24_wxl1d")
-
-[node name="OilRefinerySelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("25_brlim")]
-layout_mode = 2
-icon_path = "uid://ccs5uayo56gkc"
-building_data = ExtResource("26_nw24q")
-
-[node name="GlassworksSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("27_h6imt")]
-layout_mode = 2
-icon_path = "uid://jy52drtirq27"
-building_data = ExtResource("28_d6711")
-
-[node name="ElectronicsFactorySelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("29_1bxmb")]
-layout_mode = 2
-icon_path = "uid://dxx0jtwe758im"
-building_data = ExtResource("30_sgmpg")
-
-[node name="SolarPlantSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("31_yn24e")]
-layout_mode = 2
-icon_path = "uid://ceii7ikq0rhlc"
-building_data = ExtResource("32_dvubm")
-
-[node name="WindTurbineSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("33_e2bcp")]
-layout_mode = 2
-icon_path = "uid://cedvwr5yai70w"
-building_data = ExtResource("34_oe8xc")
-
-[node name="NuclearPlantSelectable" parent="List/PanelContainer/ScrollContainer/Buildings" instance=ExtResource("35_lp0wq")]
-layout_mode = 2
-icon_path = "uid://wy4s57w28vpo"
-building_data = ExtResource("36_1qk4d")
-
 [node name="OpenListButton" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.2
@@ -300,14 +295,23 @@ theme_override_styles/normal = ExtResource("9_epysl")
 text = "Buildings"
 
 [connection signal="tab_clicked" from="List/TabBar" to="List" method="_set_tab_visible"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/SandCollectorBuilding" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/CoalMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/IronMineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/WoodCutterSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/WaterPumpSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/OilRigSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/SolarPlantSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering/WindTurbineSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/CoalPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/BiomassPowerPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/SawMillSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/SteelMillSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/GearFactorySelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/OilRefinerySelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/ElectronicsFactorySelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/GlassworksSelectable" to="." method="_on_building_selected"]
+[connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing/NuclearPlantSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Storing/WarehouseSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Storing/BiomassLandfillSelectable" to="." method="_on_building_selected"]
 [connection signal="selected" from="List/PanelContainer/ScrollContainer/BuildingsContainer/Storing/MetalScrapLandfillSelectable" to="." method="_on_building_selected"]

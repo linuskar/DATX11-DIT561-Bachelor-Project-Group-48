@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_16wi5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dijo8"]
+size = Vector2(64, 64)
 
 [sub_resource type="Curve" id="Curve_3jnfg"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

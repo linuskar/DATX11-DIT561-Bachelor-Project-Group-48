@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://t6up4c1vor8q"]
+[gd_scene load_steps=13 format=3 uid="uid://t6up4c1vor8q"]
 
 [ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_hy3pw"]
+[ext_resource type="Resource" uid="uid://rqk78xvb4mmr" path="res://resources/buildings/wind_turbine.tres" id="2_1hdvq"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_8yj0o"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_1hdvq"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_lsb52"]
@@ -60,6 +61,7 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_hy3pw")
 icon_path = "uid://t2kml7pea27i"
+building_data = ExtResource("2_1hdvq")
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1
