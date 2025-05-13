@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh1kidmxc4h2w"]
+
+[ext_resource type="Script" uid="uid://cnl13itkvlmi4" path="res://scenes/buildings/gathering_buildings/copper_mine.gd" id="1_bn4rk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kx33f"]
+
+[node name="CopperMine" type="StaticBody2D"]
+script = ExtResource("1_bn4rk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kx33f")
