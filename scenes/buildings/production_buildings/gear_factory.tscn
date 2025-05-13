@@ -45,7 +45,7 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_qrqbt")
 alpha_curve = SubResource("CurveTexture_klpcp")
 
-[node name="GearFactory" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
+[node name="GearFactory" type="StaticBody2D"]
 script = ExtResource("1_essim")
 building_data = ExtResource("2_fbl6r")
 scene_place_particle = ExtResource("5_qi7j2")
