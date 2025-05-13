@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbq8hl57bqr2y"
-path="res://.godot/imported/iron_ore_spritesheet.png-aa13a1ad33cb28675edef361d7d09334.ctex"
+uid="uid://b7lnq5nirbs7n"
+path="res://.godot/imported/uranium_ore_spritesheet.png-ea853c28b997bca19596953e75b41247.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/iron_ore_spritesheet.png"
-dest_files=["res://.godot/imported/iron_ore_spritesheet.png-aa13a1ad33cb28675edef361d7d09334.ctex"]
+source_file="res://assets/uranium_ore_spritesheet.png"
+dest_files=["res://.godot/imported/uranium_ore_spritesheet.png-ea853c28b997bca19596953e75b41247.ctex"]
 
 [params]
 

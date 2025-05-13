@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjfo5"]
 size = Vector2(64, 64)
 
-[node name="SawMill" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
+[node name="SawMill" type="StaticBody2D"]
 script = ExtResource("1_ix051")
 building_data = ExtResource("2_ckntf")
 scene_place_particle = ExtResource("5_ydt3p")
