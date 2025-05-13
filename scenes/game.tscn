@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bmfjen7u3vjeh" path="res://scenes/utility/pollution_manager.tscn" id="8_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/gathering_buildings/wood_cutter.tscn" id="9_sww3w"]
 [ext_resource type="PackedScene" uid="uid://cbk8oqqcmsa30" path="res://scenes/buildings/power_generators/coal_power_plant.tscn" id="10_suyxu"]
-[ext_resource type="PackedScene" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="11_sgl2t"]
+[ext_resource type="PackedScene" uid="uid://0tdfrbqq2650" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="11_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://d0n2xkqggqdmg" path="res://scenes/buildings/building_blueprints/storage_buildings/biomass_landfill_blueprint.tscn" id="12_ca42v"]
 [ext_resource type="PackedScene" uid="uid://jok1xl2oywc3" path="res://scenes/buildings/storage_buildings/biomass_landfill.tscn" id="12_qouja"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="13_bhx41"]
@@ -168,3 +168,5 @@ autoplay = true
 [connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
 [connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
 [connection signal="finished" from="Background_music" to="." method="_on_background_music_finished"]
+
+[editable path="UserInterface"]
