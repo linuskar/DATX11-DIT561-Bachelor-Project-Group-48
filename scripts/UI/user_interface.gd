@@ -18,10 +18,3 @@ func remove_reference(ui_element: UIElement) -> void:
 
 func add_reference(ui_element: UIElement) -> void:
 	hovered_references.set(ui_element, 0)
-
-
-func _on_ready() -> void:
-	for child in self.get_children():
-		if child is UIElement:
-			child.self_entered.connect(add_reference)
-			child.self_exited.connect(remove_reference)

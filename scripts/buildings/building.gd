@@ -14,15 +14,6 @@ extends StaticBody2D
 ## The sprite of the building
 @onready var building_sprite: Sprite2D = $Sprite2D
 
-var scene_place_sound: PackedScene = preload("res://scenes/buildings/animation/place_sound.tscn")
-var place_sound: AudioStreamPlayer2D
-
-var scene_place_animation: PackedScene = preload("res://scenes/buildings/animation/place_animation.tscn")
-@export var scene_place_particle: PackedScene
-
-var place_particle: GPUParticles2D
-var place_animation: AnimationPlayer
-
 ## The highlight of a building for when it is selected
 @onready var highlight: BuildingHighlight
 
@@ -35,31 +26,15 @@ var building_type: Enums.BuildingType
 var currently_selected: bool
 
 func _ready() -> void:
-	building_type = building_data.building_type
-	
 	highlight = highlight_scene.instantiate()
 	highlight.building_size = building_data.building_size
 	add_child(highlight)
 	highlight.unselected()
 	
-	place_particle = scene_place_particle.instantiate()
-	place_animation = scene_place_animation.instantiate()
-	place_sound = scene_place_sound.instantiate()
-	
-	add_child(place_animation)
-	add_child(place_particle)
-	add_child(place_sound)
-	
-	place_animation.play("place")
-	place_animation.connect("animation_finished", _on_place_animation_animation_finished)
-	
 	BuildingSignals.building_info_closed.connect(building_deselected)
-	ResearchSignals.research_completed.connect(_on_research_completed)
 	
-func _on_place_animation_animation_finished(anim_name: String) -> void:
-	place_particle.emitting = true
-	place_sound.pitch_scale = randf_range(0.8, 1.2)
-	place_sound.play()
+	building_type = building_data.building_type
+	ResearchSignals.research_completed.connect(_on_research_completed)
 
 func _process(delta: float) -> void:
 	highlight_building()

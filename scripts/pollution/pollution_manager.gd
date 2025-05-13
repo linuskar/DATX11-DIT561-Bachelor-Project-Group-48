@@ -221,4 +221,3 @@ func add_emissions_absorbed(emission_type: Enums.ResourceType, amount: float) ->
 func add_emissions_not_absorbed(emission_type: Enums.ResourceType, amount: float) -> void:
 	var current_amount: float = emissions_not_absorbed.get(emission_type)
 	emissions_not_absorbed.set(emission_type, current_amount + amount)
-	PollutionStatistics.emissions_not_absorbed.emit(emissions_not_absorbed)

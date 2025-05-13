@@ -63,7 +63,6 @@ func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos
 				if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
 					gather_area_dict.set(tile_pos, resource_tile)
 					building.near_resource = true
-					
 	building.resource_tiles_to_gather = gather_area_dict
 	if building is WoodCutter:
 		building.sort_resource_tiles_to_gather()

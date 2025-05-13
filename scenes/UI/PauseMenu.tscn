@@ -120,3 +120,4 @@ script = ExtResource("7_3m1qe")
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Settings" to="PanelContainer/MarginContainer/VBoxContainer/Settings" method="_on_button_down"]
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Exit to main menu" to="PanelContainer/MarginContainer/VBoxContainer/Exit to main menu" method="_on_button_down"]
 [connection signal="button_down" from="PanelContainer/MarginContainer/VBoxContainer/Exit to desktop" to="PanelContainer/MarginContainer/VBoxContainer/Exit to desktop" method="_on_button_down"]
+

@@ -6,12 +6,5 @@
 script = ExtResource("1_w1yc1")
 research_id = 1
 research_name = "More Wood!"
-description = "Get more efficient woodcutters and increase output of wood per tile by 5."
-money_cost = 1000
-resource_cost = Dictionary[int, int]({
-5: 200,
-10: 50,
-11: 50,
-12: 50
-})
+description = "More efficient woodcutters"
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

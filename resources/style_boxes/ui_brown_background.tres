@@ -1,4 +1,4 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://i3h2ffup8w16"]
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dadrhoewtjg6p"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ona1n"]
 load_path = "res://.godot/imported/tilemap_packed.png-f70ab1b24a16f17e2cb5fa150fb08651.ctex"

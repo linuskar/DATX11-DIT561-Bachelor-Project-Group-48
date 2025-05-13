@@ -1,10 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2opqml4lhdk5"]
+[gd_scene load_steps=17 format=3 uid="uid://c2opqml4lhdk5"]
 
 [ext_resource type="Script" uid="uid://cu5ckd0xfhc82" path="res://scripts/buildings/road/road.gd" id="1_ahlc7"]
 [ext_resource type="Resource" uid="uid://dr8i1lynkasf7" path="res://resources/buildings/road.tres" id="2_7qqa8"]
-[ext_resource type="PackedScene" uid="uid://ctj754ex6tihn" path="res://scenes/buildings/animation/place_sound.tscn" id="3_b44sr"]
-[ext_resource type="PackedScene" uid="uid://bk6susslxg5o2" path="res://scenes/buildings/animation/place_animation.tscn" id="4_2ad6y"]
-[ext_resource type="PackedScene" uid="uid://bouaar65sta4q" path="res://scenes/buildings/animation/place_particle_small.tscn" id="5_lr1d3"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ahlc7"]
 load_path = "res://.godot/imported/road_tilemap-Sheet.png-64c168fa835354dc6d0211c2fe157e65.ctex"
@@ -12,12 +9,96 @@ load_path = "res://.godot/imported/road_tilemap-Sheet.png-64c168fa835354dc6d0211
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67t7r"]
 size = Vector2(32, 32)
 
+[sub_resource type="Animation" id="Animation_fnoo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5ylux"]
+resource_name = "place"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86t2d"]
+_data = {
+&"RESET": SubResource("Animation_fnoo6"),
+&"place": SubResource("Animation_5ylux")
+}
+
+[sub_resource type="Curve" id="Curve_3m8jq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ahlc7"]
+curve = SubResource("Curve_3m8jq")
+
+[sub_resource type="Gradient" id="Gradient_ahlc7"]
+offsets = PackedFloat32Array(0.190909, 0.981818)
+colors = PackedColorArray(0.84, 0.84, 0.84, 1, 0.82, 0.81426, 0.8036, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7qqa8"]
+gradient = SubResource("Gradient_ahlc7")
+
+[sub_resource type="Curve" id="Curve_ahlc7"]
+_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3m8jq"]
+curve = SubResource("Curve_ahlc7")
+
+[sub_resource type="Curve" id="Curve_7qqa8"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b44sr"]
+curve = SubResource("Curve_7qqa8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ahlc7"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 16, 16)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+radial_velocity_min = 9.99998
+radial_velocity_max = 30.0
+radial_velocity_curve = SubResource("CurveTexture_3m8jq")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_b44sr")
+color_ramp = SubResource("GradientTexture1D_7qqa8")
+alpha_curve = SubResource("CurveTexture_ahlc7")
+
 [node name="Road" type="StaticBody2D"]
 script = ExtResource("1_ahlc7")
 building_data = ExtResource("2_7qqa8")
-scene_place_sound = ExtResource("3_b44sr")
-scene_place_animation = ExtResource("4_2ad6y")
-scene_place_particle = ExtResource("5_lr1d3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CompressedTexture2D_ahlc7")
@@ -27,3 +108,18 @@ frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_67t7r")
+
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ahlc7")
+
+[connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]

@@ -11,6 +11,9 @@ var connected_landfills: Array[LandfillAutoExpand] = []
 var grid_size: int = 32
 var position_to_expand_to: Vector2 = Vector2(0, 0)
 
+@onready var place_animation: AnimationPlayer = $place_animation
+@onready var place_particle: GPUParticles2D = $place_particle
+
 signal landfill_expanded(landfill: BiomassLandfill)
 signal landfill_shrinked(landfill: BiomassLandfill)
 
@@ -73,3 +76,6 @@ func instantiate_auto_expand_landfill() -> void:
 	add_child(landfill_auto)
 	landfill_auto.position = position_to_expand_to
 	connected_landfills.append(landfill_auto)
+
+func _on_place_animation_animation_finished(anim_name: StringName) -> void:
+	place_particle.emitting = true

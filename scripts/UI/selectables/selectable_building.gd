@@ -7,9 +7,6 @@ extends Control
 ## The metadata for building that is selected
 @export var building_data: BuildingData
 
-## The list of research IDs for which this selectable will reveal itself
-@export var on_research_reveal: Array[Enums.ResearchID]
-
 ## Signal to be emitted when this building is selected. 
 ## Emitted together with the building itself.
 signal selected(building: SelectableBuilding)
@@ -55,12 +52,6 @@ func _ready() -> void:
 	## Set the text of the main panel according to the template
 	set_panel_text()
 	ResearchSignals.research_completed.connect(update_panel_text)
-	ResearchSignals.research_completed.connect(_on_research_completed)
-	
-	## If there are specific research ids which reveal this selectable
-	## hide the selectable until those research datas are finished
-	if on_research_reveal:
-		hide()
 	
 func initialize_resource_data() -> void:
 	if building_data is StorageBuildingData:
@@ -76,13 +67,9 @@ func init_resource_data(string_data: Dictionary[String, int], data: Dictionary[E
 		var resource_needed: int = data.get(resource)
 		string_data.set(resource_string, resource_needed)
 
-## Function to update panel text if research data is applicable to building type
 func update_panel_text(research_data: ResearchData) -> void:
-	if Enums.building_research.has(building_data.building_type):
-		var research: Array = Enums.building_research.get(building_data.building_type)
-		if research_data.research_id in research:
-			initialize_resource_data()
-			set_panel_text()
+	initialize_resource_data()
+	set_panel_text()
 
 func _input(event: InputEvent) -> void:
 	## Handling press of left mouse button for selecting a building to buy
@@ -109,10 +96,6 @@ func set_panel_text() -> void:
 		panel_text += "\nRoads connect buildings in a network, making them transport resources between eachother in the network.\n"
 	elif building_data.building_type == Enums.BuildingType.RESEARCH_LAB:
 		panel_text += "\nResearch labs allows for the research of new buildings and upgrades. A research lab needs to be connected to a network if resources are needed.\n"
-	if building_data.building_type in Enums.landfills:
-		var landfill_type: String = Enums.building_type_to_string(building_data.building_type)
-		panel_text += "\nThis building auto expands and shrinks its max capacity.\n"
-		panel_text += "\nThis building automatically expands to a nearby unoccupied tile with a " + landfill_type + " and shrinks by unoccuping a tile." + '\n'
 	info_label.text = panel_text
 
 func get_inputs() -> String:
@@ -205,7 +188,3 @@ func _set_button_text(toggled_on: bool) -> void:
 		self.select_button.text = "Unselect"
 	else:
 		self.select_button.text = "Select"
-
-func _on_research_completed(research: ResearchData) -> void:
-	if on_research_reveal.has(research.research_id):
-		show()

@@ -1,6 +1,5 @@
-[gd_scene load_steps=45 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=38 format=3 uid="uid://b4ie8fujdth75"]
 
-[ext_resource type="Script" uid="uid://btud0tf6wyhq6" path="res://scenes/game.gd" id="1_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ck8h7axla2cb" path="res://scenes/Smog.tscn" id="3_rysoc"]
@@ -38,22 +37,8 @@
 [ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="30_twgab"]
 [ext_resource type="PackedScene" uid="uid://b48liywofkol4" path="res://scenes/utility/BuildingSelector.tscn" id="36_twgab"]
 [ext_resource type="PackedScene" uid="uid://bs254s4myb4sk" path="res://scenes/utility/research_manager.tscn" id="37_02fa5"]
-[ext_resource type="AudioStream" uid="uid://cos03bvp2sgta" path="res://music/One Man Symphony - A New Day's Hurry (Free)/One Man Symphony - A New Day's Hurry (Free) - 01 A New Day Begins (General Background Music).mp3" id="39_05nbr"]
-[ext_resource type="AudioStream" uid="uid://wiwwgy5hfurd" path="res://music/One Man Symphony - A New Day's Hurry (Free)/One Man Symphony - A New Day's Hurry (Free) - 02 A New Day's Hurry (General Background Music).mp3" id="40_0sl42"]
-[ext_resource type="AudioStream" uid="uid://cassuw27v5ddy" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 01 Main Menu Theme.mp3" id="41_oaba0"]
-[ext_resource type="AudioStream" uid="uid://cqu1ydlbtiavm" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 02 Exploration Theme 01.mp3" id="42_458eo"]
-[ext_resource type="AudioStream" uid="uid://cm6f8xjxemvxa" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 03 Exploration Theme 02.mp3" id="43_h3rex"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fedci"]
-streams_count = 5
-stream_0/stream = ExtResource("39_05nbr")
-stream_1/stream = ExtResource("40_0sl42")
-stream_2/stream = ExtResource("41_oaba0")
-stream_3/stream = ExtResource("42_458eo")
-stream_4/stream = ExtResource("43_h3rex")
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_pr1ej")
 
 [node name="CameraMovement" parent="." instance=ExtResource("1_ux6r8")]
 
@@ -116,11 +101,6 @@ autostart = true
 [node name="BuildingSelector" parent="." instance=ExtResource("36_twgab")]
 
 [node name="ResearchManager" parent="." instance=ExtResource("37_02fa5")]
-
-[node name="Background_music" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_fedci")
-volume_db = -35.0
-autoplay = true
 
 [connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
 [connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]

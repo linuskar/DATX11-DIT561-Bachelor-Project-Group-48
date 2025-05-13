@@ -1,6 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://r0ucqsro85cc"]
-
-[ext_resource type="Texture2D" uid="uid://bd8hb0s748vcd" path="res://resources/tutorial_images/images/invalid_placement.png" id="1_rfkmt"]
-
-[resource]
-atlas = ExtResource("1_rfkmt")

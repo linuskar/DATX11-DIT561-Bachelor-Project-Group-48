@@ -1,24 +1,103 @@
-[gd_scene load_steps=10 format=3 uid="uid://isbsjsm2mmil"]
+[gd_scene load_steps=18 format=3 uid="uid://isbsjsm2mmil"]
 
 [ext_resource type="Script" uid="uid://dkys5yq1u7s2q" path="res://scripts/buildings/gathering_buildings/iron_mine.gd" id="1_l5hob"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_jwvew"]
-[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="3_6w4bc"]
 [ext_resource type="Texture2D" uid="uid://bqugr640sxpqq" path="res://assets/buildings_iso/Ironmine_building1.png" id="3_oc4lm"]
-[ext_resource type="Resource" uid="uid://c1lm1b6aqpnde" path="res://resources/research_data/iron_mine_upgrade1.tres" id="4_kw5qq"]
-[ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="5_5k2sk"]
 [ext_resource type="PackedScene" uid="uid://bkqqe6bdw740k" path="res://scenes/buildings/smoke/smoke_v2.tscn" id="5_oc4lm"]
-[ext_resource type="PackedScene" uid="uid://mm3smhbol1xr" path="res://assets/sounds/harvest_sounds/mine_sound.tscn" id="9_mlxvk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwrwc"]
 size = Vector2(64, 64)
 
-[node name="IronMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
+[sub_resource type="Animation" id="Animation_fnoo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5ylux"]
+resource_name = "place"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86t2d"]
+_data = {
+&"RESET": SubResource("Animation_fnoo6"),
+&"place": SubResource("Animation_5ylux")
+}
+
+[sub_resource type="Curve" id="Curve_oc4lm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ahlc7"]
+curve = SubResource("Curve_oc4lm")
+
+[sub_resource type="Gradient" id="Gradient_6w4bc"]
+offsets = PackedFloat32Array(0.190909, 0.981818)
+colors = PackedColorArray(0.84, 0.84, 0.84, 1, 0.82, 0.81426, 0.8036, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7qqa8"]
+gradient = SubResource("Gradient_6w4bc")
+
+[sub_resource type="Curve" id="Curve_kw5qq"]
+_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3m8jq"]
+curve = SubResource("Curve_kw5qq")
+
+[sub_resource type="Curve" id="Curve_5k2sk"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b44sr"]
+curve = SubResource("Curve_5k2sk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mlxvk"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 16, 16)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+radial_velocity_min = 9.99998
+radial_velocity_max = 30.0
+radial_velocity_curve = SubResource("CurveTexture_3m8jq")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_b44sr")
+color_ramp = SubResource("GradientTexture1D_7qqa8")
+alpha_curve = SubResource("CurveTexture_ahlc7")
+
+[node name="IronMine" type="StaticBody2D"]
 script = ExtResource("1_l5hob")
-smokes = [NodePath("Smoke_v2"), NodePath("Smoke_v2_2"), NodePath("Smoke_v2_3")]
-production_sound_scene = ExtResource("9_mlxvk")
 building_data = ExtResource("2_jwvew")
-available_research = Array[ExtResource("3_6w4bc")]([ExtResource("4_kw5qq")])
-scene_place_particle = ExtResource("5_5k2sk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cwrwc")
@@ -41,4 +120,18 @@ emitting = false
 position = Vector2(19.0324, -26.3278)
 emitting = false
 
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mlxvk")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="place_animation" to="." method="_on_place_animation_animation_finished"]

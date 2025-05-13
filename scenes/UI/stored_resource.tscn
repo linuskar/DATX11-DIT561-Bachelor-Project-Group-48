@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="4_g6d0v"]
 [ext_resource type="StyleBox" uid="uid://kymp5o3e18e" path="res://resources/style_boxes/ui_panel_metallic_light.tres" id="5_7kvcf"]
 [ext_resource type="StyleBox" uid="uid://bqftk5gt786kf" path="res://resources/style_boxes/green_outline_pointed.tres" id="5_g7s0o"]
+[ext_resource type="StyleBox" uid="uid://cpkojydfp4ktl" path="res://resources/style_boxes/metal_dark.tres" id="9_s8ok0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvsck"]
 
@@ -82,24 +83,15 @@ modulate_color = Color(0.577008, 0.577008, 0.577008, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_s8ok0"]
 font = ExtResource("3_f1xfy")
-font_size = 28
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_hxcr2"]
 font = ExtResource("3_f1xfy")
 font_size = 32
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cklw3"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-texture = ExtResource("4_g6d0v")
-region_rect = Rect2(96, 0, 32, 32)
-modulate_color = Color(0.683077, 0.683077, 0.683077, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_g6d0v"]
 font = ExtResource("3_f1xfy")
-font_size = 28
+font_size = 32
 
 [node name="StoredResource" type="Control"]
 custom_minimum_size = Vector2(340, 100)
@@ -158,7 +150,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_gvsck")
 theme_override_styles/hover = SubResource("StyleBoxTexture_tsana")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_x28sw")
 theme_override_styles/normal = ExtResource("3_7kvcf")
-text = "10
+text = "5
 -"
 
 [node name="Decrease" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage"]
@@ -175,7 +167,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_g7s0o")
 theme_override_styles/hover = SubResource("StyleBoxTexture_s8ok0")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_gvsck")
 theme_override_styles/normal = ExtResource("3_7kvcf")
-text = "5
+text = "1
 -"
 
 [node name="IncreaseMore" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage"]
@@ -192,7 +184,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_s8ok0")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sd6ve")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_d1dnf")
 theme_override_styles/normal = ExtResource("5_g7s0o")
-text = "10
+text = "5
 +"
 
 [node name="Increase" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage"]
@@ -209,7 +201,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_hxcr2")
 theme_override_styles/hover = SubResource("StyleBoxTexture_hxcr2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_g7s0o")
 theme_override_styles/normal = ExtResource("5_g7s0o")
-text = "5
+text = "1
 +"
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage"]
@@ -242,7 +234,7 @@ label_settings = SubResource("LabelSettings_hxcr2")
 
 [node name="Selling" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/MarginContainer/SellingStorage/PanelContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_cklw3")
+theme_override_styles/normal = ExtResource("9_s8ok0")
 text = "0"
 label_settings = SubResource("LabelSettings_g6d0v")
 horizontal_alignment = 1

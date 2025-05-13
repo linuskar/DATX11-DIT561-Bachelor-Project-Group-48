@@ -149,10 +149,7 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 		text += "\nOutputs\n"
 		for output in building_data.output_generation.keys():
 			if !Enums.is_emission(output):
-				if Enums.is_gathering_building(building_data.building_type) :
-					text += Enums.resource_type_to_string(output) + ": " + str(building_data.output_generation.get(output)) + " per tile" + "\n"
-				else:
-					text += Enums.resource_type_to_string(output) + ": " + str(building_data.output_generation.get(output)) + "\n"
+				text += Enums.resource_type_to_string(output) + ": " + str(building_data.output_generation.get(output)) + "\n"
 	return text
 	
 ## Gets text representing what the emissions are for a building, if it has any
@@ -318,22 +315,26 @@ func set_active(buildings: Array[Building]) -> void:
 	if selected_buildings.size() == 1:
 		var current_building: Building = selected_buildings.front()
 		current_building.building_selected(current_building)
+		if current_building is ProductionBuilding:
+			sell_store_status_label.text = Enums.mode_to_string(current_building.mode)
 		if current_building is ResearchLab:
 			get_tree().root.get_node("Game/UserInterface/ResearchUI").open(selected_buildings.front())
 			return
 		else:
 			single_select.show()
 			multi_select.hide()
+			reset_tabs()
+			self.show()
 			populate_info_label(current_building)
+			populate_storage_panel()
 	elif selected_buildings.size() > 1:
 		single_select.hide()
 		multi_select.show()
+		reset_tabs()
+		self.show()
+		set_mode_label()
 		populate_multi_selected(selected_buildings)
-	set_mode_label()
-	self.show()
-	reset_tabs()
-	populate_storage_panel()
-	reset_storage_selling()
+		populate_storage_panel()
 
 func clean_buildings_list(buildings: Array[Building]) -> Array[Building]:
 	var cleaned_list: Dictionary[Building, bool] = {}
@@ -360,16 +361,7 @@ func set_mode_label() -> void:
 		if building is ProductionBuilding:
 			if not first_mode:
 				first_mode = building.mode
-				disable_sell_tab(false)
 			elif not building.mode == first_mode:
 				sell_store_status_label.text = "Mixed"
 				return
-	if first_mode:
-		sell_store_status_label.text = Enums.mode_to_string(first_mode)
-	else:
-		sell_store_status_label.text = Enums.mode_to_string(Enums.ProductionBuildingMode.NULL)
-
-func reset_storage_selling() -> void:
-	for resource in storage_connections.keys():
-		storage_connections.get(resource).reset_selling()
-	sell_value_label.text = "0"
+	sell_store_status_label.text = Enums.mode_to_string(first_mode)
