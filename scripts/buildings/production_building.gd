@@ -11,6 +11,8 @@ extends StorageBuilding
 
 ## The nodes emitting smoke.
 @export var smokes: Array[GPUParticles2D]
+@export var production_sound_scene: PackedScene
+var production_sound: AudioStreamPlayer2D
 
 ## The rates/quantity of input resources the production building uses each cycle.
 var input_use_rates: Dictionary[Enums.ResourceType, int]
@@ -34,6 +36,9 @@ func _ready() -> void:
 	PlayerCurrency.currency_changed.connect(restart_operation)
 	init_production_building()
 	init_smoke()
+	if production_sound_scene != null:
+		production_sound = production_sound_scene.instantiate()
+		add_child(production_sound)
 
 ## Function for initializing the smoke emitting
 func init_smoke() -> void:
@@ -52,8 +57,8 @@ func emit_smoke() -> void:
 
 ## Function to initialize the production building.
 func init_production_building() -> void:
-	input_use_rates = building_data.input_use_rates
-	output_generation = building_data.output_generation
+	input_use_rates = building_data.input_use_rates.duplicate()
+	output_generation = building_data.output_generation.duplicate()
 	init_input_recipes()
 	
 ## Function to initialize the input recipes, this is done due to how
@@ -78,17 +83,19 @@ func _on_timer_timeout() -> void:
 
 ## Function to begin outputting resources from the production building.
 func _output_resources() -> void:
-	emit_smoke() 
+	emit_smoke()
+	
 	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
 		production_cycle.paused = true
 	elif mode == Enums.ProductionBuildingMode.PAUSED:
 		pause_operations()
 	else:
-		#var building_type_string: String = Enums.building_type_to_string(building_data.building_type)
 		_use_input_recipe()
 		_handle_produced_goods()
 		_generate_byproducts()
-
+		if production_sound != null:
+			production_sound.play()
+	
 func _handle_produced_goods() -> void:
 	var produced_resources: Dictionary[Enums.ResourceType, int] = _produce_goods()
 	for resource in produced_resources.keys():

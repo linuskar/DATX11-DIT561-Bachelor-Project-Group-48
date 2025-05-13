@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://u0w1syotmn42"]
+[gd_scene load_steps=47 format=3 uid="uid://u0w1syotmn42"]
 
 [ext_resource type="Script" uid="uid://dbn3nge5xhrd6" path="res://scripts/UI/BuildingInfo.gd" id="1_y4byq"]
 [ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="2_oocw6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b17bx8vlcf53q" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Small tiles/Thick outline/tilemap_packed.png" id="5_6mxs2"]
 [ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="6_itten"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="6_xxyib"]
+[ext_resource type="StyleBox" uid="uid://y5y7axbnqsdv" path="res://resources/style_boxes/ui_panel_light_brown.tres" id="7_xwu3o"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="7_xxyib"]
 [ext_resource type="AudioStream" uid="uid://dhgodxjdfbs5h" path="res://assets/sounds/money_sounds/coin_sound1.wav" id="8_gy07u"]
 [ext_resource type="AudioStream" uid="uid://bjnobxyxh85bs" path="res://assets/sounds/money_sounds/coin_sound2.wav" id="9_xwu3o"]
@@ -17,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://csfyj5hov5c0r" path="res://assets/sounds/money_sounds/coin_sound8.wav" id="15_enqmq"]
 [ext_resource type="AudioStream" uid="uid://b4i2ra548jqeq" path="res://assets/sounds/money_sounds/coin_sound9.wav" id="16_yawob"]
 [ext_resource type="AudioStream" uid="uid://thu2vkflcyee" path="res://assets/sounds/money_sounds/coin_sound10.wav" id="17_ngutn"]
+[ext_resource type="Texture2D" uid="uid://cv3gy6yfdvgxi" path="res://assets/UI/kenney_game-icons/Spritesheet/sheet_black1x.png" id="19_nq447"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oocw6"]
 line_spacing = 1.0
@@ -143,18 +145,6 @@ region_rect = Rect2(0, 0, 32, 32)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjg1s"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83uro"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-texture = ExtResource("6_xxyib")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-region_rect = Rect2(32, 0, 32, 32)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gy07u"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83uro"]
@@ -184,6 +174,24 @@ stream_7/stream = ExtResource("15_enqmq")
 stream_8/stream = ExtResource("16_yawob")
 stream_9/stream = ExtResource("17_ngutn")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pwsxf"]
+texture = ExtResource("6_xxyib")
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.691357, 0.691357, 0.691357, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nq447"]
+texture = ExtResource("6_xxyib")
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.466181, 0.466181, 0.466181, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xwu3o"]
+texture = ExtResource("6_xxyib")
+region_rect = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwsxf"]
+atlas = ExtResource("19_nq447")
+region = Rect2(409, 410, 32, 32)
+
 [node name="BuildingInfo" type="Control"]
 custom_minimum_size = Vector2(408, 648)
 layout_mode = 3
@@ -193,7 +201,7 @@ anchor_bottom = 1.0
 offset_right = -744.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_y4byq")
 
 [node name="Panel" type="Panel" parent="."]
@@ -436,6 +444,7 @@ text = "Pause production"
 autowrap_mode = 2
 
 [node name="ExitButtonPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 offset_left = 314.0
 offset_right = 338.0
@@ -458,7 +467,7 @@ theme_override_styles/button_highlight = SubResource("StyleBoxEmpty_xxyib")
 theme_override_styles/button_pressed = SubResource("StyleBoxEmpty_xjg1s")
 theme_override_styles/tab_unselected = ExtResource("7_xxyib")
 theme_override_styles/tab_hovered = ExtResource("6_itten")
-theme_override_styles/tab_selected = SubResource("StyleBoxTexture_83uro")
+theme_override_styles/tab_selected = ExtResource("7_xwu3o")
 theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_gy07u")
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_83uro")
 current_tab = 0
@@ -468,6 +477,7 @@ tab_1/title = "Storage"
 tab_2/title = "Selling"
 
 [node name="CloseButton" type="TextureButton" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 338.0
 offset_top = 24.0
@@ -484,9 +494,25 @@ stretch_mode = 4
 stream = SubResource("AudioStreamRandomizer_ih4yy")
 volume_db = 20.0
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_bottom = 92.0
+grow_horizontal = 0
+mouse_filter = 1
+theme_override_styles/hover = SubResource("StyleBoxTexture_pwsxf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nq447")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xwu3o")
+icon = SubResource("AtlasTexture_pwsxf")
+icon_alignment = 1
+
 [connection signal="button_down" from="MarginContainer/Storage/MarginContainer/VBoxContainer/MarginContainer/Control/Button" to="." method="_sell_chosen_resources"]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Sell" to="." method="set_building_selling"]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Store" to="." method="set_building_storing"]
 [connection signal="button_down" from="MarginContainer/Selling/MarginContainer/VBoxContainer/Pause" to="." method="pause_production"]
 [connection signal="tab_clicked" from="TabBar" to="." method="_set_tab_visible"]
 [connection signal="button_down" from="CloseButton" to="." method="set_inactive"]
+[connection signal="button_down" from="Button" to="." method="set_inactive"]

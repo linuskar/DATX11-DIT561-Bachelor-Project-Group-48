@@ -7,9 +7,14 @@ extends GatherableResource
 ##
 ##
 
+@onready var wood_chop_sound: AudioStreamPlayer2D = $wood_chop_sound
+
+
+## Dictionary for the maximum capacity of emissions that can be stored.
+## Set the max capacity to -1 to indicate it has unlmited max capacity
+## for a resource.
 ## The maximum amount of pollution a tree can absorb before it is considered dead
 @export var max_pollution_capacity: float
-@onready var sprite_2d: Sprite2D = $Sprite2D
 ## Sprite that gets shown when resource is gathered
 @onready var gathering_sprite_2d: Sprite2D = $GatheringSprite2D
 @onready var wildfire: WildFire = $Wildfire
@@ -79,6 +84,16 @@ func absorb_emission(emission_type: Enums.ResourceType, amount: float):
 		var amount_to_set: float = amount + emission_storage.get(emission_type)
 		emission_storage.set(emission_type, amount_to_set)
 		update_pollution_level()
+
+
+func play_animation():
+	$gathering_animation.play("chop")
+
+func _on_gathering_animation_animation_finished(anim_name: StringName) -> void:
+	$chop_particle.emitting = true
+	wood_chop_sound.pitch_scale = randf_range(0.75, 1.5)
+	wood_chop_sound.play()
+	
 				
 ## Function to update the pollution level of a tree 
 ## based on contributing emissions

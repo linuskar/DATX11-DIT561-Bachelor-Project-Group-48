@@ -178,7 +178,8 @@ enum ProductionBuildingMode {
 static var mode_names: Dictionary[ProductionBuildingMode, String] = {
 	ProductionBuildingMode.SELLING: "Selling",
 	ProductionBuildingMode.STORING: "Storing",
-	ProductionBuildingMode.PAUSED: "Paused"
+	ProductionBuildingMode.PAUSED: "Paused",
+	ProductionBuildingMode.NULL: "None"
 }
 
 static func mode_to_string(mode: ProductionBuildingMode) -> String:
@@ -319,6 +320,23 @@ enum ResearchID {
 	SM_1, ## Steel mill upgrade
 	WC_1, ## Wood cutter upgrade
 	CM_1, ## Coal mine upgrade
+	IM_1, ## Iron mine upgrade
+	SM_0, ## Steel mill unlock
+	SwM_0, ## Saw mill unlock
+	GF_0, ## Gear factory unlock
+	BMPP_0, ## Biomass power plant unlock
+	TE, ## Total emissions statistics
+	WE, ## Wildfire emissions statistics
+	SE, ## Smog emissions statistics
+}
+
+static var building_research: Dictionary[BuildingType, Array] = {
+	BuildingType.STEEL_MILL: [ResearchID.SM_1, ResearchID.SM_0],
+	BuildingType.WOOD_CUTTER: [ResearchID.WC_1],
+	BuildingType.COAL_MINE: [ResearchID.CM_1],
+	BuildingType.IRON_MINE: [ResearchID.IM_1],
+	BuildingType.GEAR_FACTORY: [ResearchID.GF_0],
+	BuildingType.BIOMASS_POWER_PLANT: [ResearchID.BMPP_0]
 }
 
 static var tree_size_multiplier_quantity: Dictionary[Enums.TreeSize, float] = {

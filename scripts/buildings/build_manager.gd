@@ -66,6 +66,7 @@ func _process(_delta) -> void:
 
 			if valid_placement and UserInterface.hovered_references.is_empty():
 				place_building()
+				
 		StateManager.State.IDLE:
 			pass	
 
