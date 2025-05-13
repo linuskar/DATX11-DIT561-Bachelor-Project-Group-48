@@ -132,7 +132,7 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.SOLAR_PLANT: "SOLAR PLANT",
 	BuildingType.WIND_TURBINE: "WIND TURBINE",
 	BuildingType.NUCLEAR_PLANT: "NUCLEAR PLANT",
-	BuildingType.ROCKET_LAUNCHPAD: "ROCKET LAUNCHPAD",
+	BuildingType.ROCKET_LAUNCH_PAD: "ROCKET LAUNCH PAD",
 	BuildingType.URANIUM_MINE: "URANIUM MINE",
 	BuildingType.TOOL_FACTORY: "TOOL FACTORY",
 	BuildingType.OIL_POWER_PLANT: "OIL POWER PLANT",
@@ -264,7 +264,7 @@ enum BuildingType {
 	SOLAR_PLANT, ## The building type for a solar plant
 	WIND_TURBINE, ## The building type for a wind turbine
 	NUCLEAR_PLANT, ## The building type for a nuclear plant
-	ROCKET_LAUNCHPAD, ## The building type for a rocket launchpad
+	ROCKET_LAUNCH_PAD, ## The building type for a rocket launch pad
 	URANIUM_MINE, ## The building type for a uranium mine
 	TOOL_FACTORY, ## The building type for a tool factory
 	OIL_POWER_PLANT, ## The building type for an oil power plant
@@ -296,7 +296,7 @@ static var building_data: Dictionary[BuildingType, Resource] = {
 	BuildingType.SOLAR_PLANT: load("res://resources/buildings/solar_plant.tres"), 
 	BuildingType.WIND_TURBINE: load("res://resources/buildings/solar_plant.tres"),
 	BuildingType.NUCLEAR_PLANT: load("res://resources/buildings/nuclear_plant.tres"),
-	#BuildingType.ROCKET_LAUNCHPAD: load("rocket"), ## To be added when Noel makes a rocket building
+	#BuildingType.ROCKET_LAUNCH_PAD: load("rocket"), ## To be added when Noel makes a rocket building
 	#BuildingType.URANIUM_MINE: load(), ## There is currently no building data for a uranium mine
 	#BuildingType.TOOL_FACTORY: load(), ## There is currently no tool factory
 	#BuildingType.OIL_POWER_PLANT: load(oil_po), ## There is currently no data for oil power plant

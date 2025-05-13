@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://7xdlbekfpnhw"]
+
+[ext_resource type="Script" uid="uid://qhlvfcvbuqla" path="res://scenes/buildings/production_buildings/tool_factory.gd" id="1_qqk6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_30mtx"]
+
+[node name="ToolFactory" type="StaticBody2D"]
+script = ExtResource("1_qqk6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_30mtx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

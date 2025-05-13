@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlydrx24clc16"]
+
+[ext_resource type="Script" uid="uid://dyx0cl53j3t7s" path="res://scenes/buildings/production_buildings/engine_factory.gd" id="1_5cr7t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1mow"]
+
+[node name="EngineFactory" type="StaticBody2D"]
+script = ExtResource("1_5cr7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t1mow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

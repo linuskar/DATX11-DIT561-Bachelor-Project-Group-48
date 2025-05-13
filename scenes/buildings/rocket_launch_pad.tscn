@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3n02qq3l4ykf"]
+
+[ext_resource type="Script" uid="uid://brhi72vbr2mvt" path="res://scenes/buildings/rocket_launch_pad.gd" id="1_6dfnd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fdx6"]
+
+[node name="RocketLaunchPad" type="StaticBody2D"]
+script = ExtResource("1_6dfnd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6fdx6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
