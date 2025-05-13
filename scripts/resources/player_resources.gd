@@ -43,24 +43,23 @@ func buy_with_resources(type: Enums.ResourceType, amount_needed: int, buildings_
 	
 	for building in buildings_to_use:
 		if building.output_storage.has(type):
-			if amount_needed_left == 0:
-				return
-			
 			var output_stored: int = building.output_storage.get(type)
 			## If the resources needed are there.
 			if output_stored > 0:
-				## If the amount needed is greater than the resources stored in the building
-				if amount_needed_left > output_stored:
+				## If the amount needed is greater or equal to the resources stored in the building
+				if amount_needed_left >= output_stored:
 					## Take all the resources in the output storage for the building
 					_use_Resources(type, output_stored)
 					building.output_storage.set(type, output_stored - output_stored)
 					amount_needed_left -= output_stored
-				## If the amount needed is less or equal to the resources stored in the building
+				## If the amount needed is less than the resources stored in the building
 				else:
 					## Take some parts of the resources in the output storage for the building
 					_use_Resources(type, amount_needed_left)
 					building.output_storage.set(type, output_stored - amount_needed_left)
 					amount_needed_left -= amount_needed_left
+		if amount_needed_left == 0:
+			return
 
 func get_network_for_building(building_to_check: StorageBuilding) -> ResourceTransport:
 	for network in networks.values():
@@ -73,7 +72,7 @@ func check_resource_amount_in_network(type: Enums.ResourceType, amount_needed: i
 	var amount_needed_left: int = amount_needed
 
 	for building in network.buildings:
-		if building.output_storage.has(type):		
+		if building.output_storage.has(type):
 			var output_stored: int = building.output_storage.get(type)
 			## If the resources needed are there.
 			if output_stored > 0:
@@ -83,7 +82,9 @@ func check_resource_amount_in_network(type: Enums.ResourceType, amount_needed: i
 				## If the amount needed is less or equal to the resources stored in the building
 				else:
 					amount_needed_left -= amount_needed_left
-	return not amount_needed_left
+		if amount_needed_left == 0:
+			return true
+	return false
 
 #Add buildings placed to the array of buildings
 func _on_build_manager_placed_building(building: Building) -> void:
