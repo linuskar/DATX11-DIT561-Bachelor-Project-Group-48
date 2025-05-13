@@ -32,6 +32,18 @@ static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.PLANKS: "res://assets/UI/Resource UI/planks_resource.png",
 	ResourceType.GEARS: "res://assets/UI/Resource UI/gears_resource.png",
 	ResourceType.STEEL_SCRAP: "res://assets/UI/Resource UI/steel_scrap.png",
+	ResourceType.OIL: "res://assets/UI/Resource UI/crude_oil_resource.png",
+	ResourceType.SAND: "res://assets/UI/Resource UI/sand_resource.png",
+	ResourceType.WATER: "res://assets/UI/Resource UI/water_resource.png",
+	ResourceType.FUEL: "res://assets/UI/Resource UI/fuel_resource.png",
+	ResourceType.PLASTICS: "res://assets/UI/Resource UI/plastics_resource.png",
+	ResourceType.GLASS: "res://assets/UI/Resource UI/glass_sheets_resource.png",
+	ResourceType.ELECTRONICS: "res://assets/UI/Resource UI/circuit_board_resource.png",
+	ResourceType.URANIUM: "res://assets/UI/Resource UI/uranium_resource.png",
+	ResourceType.TOOLS: "res://assets/UI/Resource UI/",
+	ResourceType.ENGINE: "res://assets/UI/Resource UI/engine_resource.png",
+	ResourceType.COPPER_ORE: "res://assets/UI/Resource UI/copper_ore_resource.png",
+	ResourceType.COPPER_BARS: "res://assets/UI/Resource UI/copper_bars_resource.png",
 }
 
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {

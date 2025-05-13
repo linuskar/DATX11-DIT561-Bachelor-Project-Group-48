@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dy810ojnwcemw"]
+[gd_scene load_steps=13 format=3 uid="uid://dy810ojnwcemw"]
 
 [ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_bv00n"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_12s4a"]
+[ext_resource type="Resource" uid="uid://dxejc11awrfyg" path="res://resources/buildings/sand_collector.tres" id="2_m3ayt"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_m3ayt"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_fu0x5"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_4dnre"]
@@ -59,7 +60,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_bv00n")
-icon_path = "uid://t2kml7pea27i"
+icon_path = "uid://dohpboskgevxf"
+building_data = ExtResource("2_m3ayt")
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1

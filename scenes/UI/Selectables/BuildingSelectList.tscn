@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=43 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
@@ -11,7 +11,6 @@
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="6_epysl"]
 [ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="6_qf7o5"]
 [ext_resource type="PackedScene" uid="uid://bvbhybq0wqtk8" path="res://scenes/UI/Selectables/BiomassPowerPlantSelectable.tscn" id="7_2uf64"]
-[ext_resource type="Resource" uid="uid://dxejc11awrfyg" path="res://resources/buildings/sand_collector.tres" id="7_orqwn"]
 [ext_resource type="PackedScene" uid="uid://bcpxbii6e6t0h" path="res://scenes/UI/Selectables/CoalPowerPlantSelectable.tscn" id="8_2mva2"]
 [ext_resource type="PackedScene" uid="uid://ctkvuv2f8407w" path="res://scenes/UI/Selectables/RoadSelectable.tscn" id="9_djsgt"]
 [ext_resource type="StyleBox" uid="uid://e856phkm0uek" path="res://resources/style_boxes/metal_red_outline.tres" id="9_epysl"]
@@ -22,7 +21,6 @@
 [ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="12_djsgt"]
 [ext_resource type="PackedScene" uid="uid://bh5yk25bowm83" path="res://scenes/UI/Selectables/OilRigSelectable.tscn" id="12_orqwn"]
 [ext_resource type="PackedScene" uid="uid://c7irvn4jjjftq" path="res://scenes/UI/Selectables/SolarPlantSelectable.tscn" id="13_e1kqc"]
-[ext_resource type="Resource" uid="uid://sawvwdpa2ebo" path="res://resources/buildings/water_pump.tres" id="13_lfrtl"]
 [ext_resource type="PackedScene" uid="uid://dikayexhi6tv3" path="res://scenes/UI/Selectables/SawMillSelectable.tscn" id="13_lhb8k"]
 [ext_resource type="PackedScene" uid="uid://t6up4c1vor8q" path="res://scenes/UI/Selectables/WindTurbineSelectable.tscn" id="14_lfrtl"]
 [ext_resource type="PackedScene" uid="uid://ddbcnvs3frisw" path="res://scenes/UI/Selectables/SteelMillSelectable.tscn" id="14_p772r"]
@@ -175,7 +173,6 @@ size_flags_horizontal = 6
 
 [node name="SandCollectorBuilding" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("6_3avdw")]
 layout_mode = 2
-building_data = ExtResource("7_orqwn")
 
 [node name="CoalMineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("4_2uf64")]
 layout_mode = 2
@@ -190,7 +187,6 @@ mouse_filter = 1
 
 [node name="WaterPumpSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("10_albfh")]
 layout_mode = 2
-building_data = ExtResource("13_lfrtl")
 
 [node name="OilRigSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("12_orqwn")]
 layout_mode = 2
