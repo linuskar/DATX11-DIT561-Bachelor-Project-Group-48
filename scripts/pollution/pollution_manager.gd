@@ -146,7 +146,7 @@ func get_all_all_alive_trees() -> Array[Node]:
 	
 ## Function for initializing buildings that pollute
 func _init_building_polluting(building: Building) -> void:
-	if Enums.is_a_polluting_building(building.building_type):
+	if Enums.is_a_polluting_building(building.building_data):
 		buildings_polluting.set(building, building.position)
 		building.emitted_emissions.connect(apply_emissions)
 

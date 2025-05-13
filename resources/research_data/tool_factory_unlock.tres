@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://b83trvsrawwdf"]
+
+[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="1_hiucj"]
+
+[resource]
+script = ExtResource("1_hiucj")
+research_id = 19
+research_name = "Tool Factory"
+description = "Unlock Tool Factory"
+money_cost = 0
+resource_cost = Dictionary[int, int]({})
+metadata/_custom_type_script = "uid://cxt2f6o7mobww"
