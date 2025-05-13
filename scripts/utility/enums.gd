@@ -49,6 +49,18 @@ static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.N0X: "N0X",
 		ResourceType.CH4: "CH4",
 		ResourceType.NONE: "NONE",
+		ResourceType.OIL: "OIL",
+		ResourceType.SAND: "SAND",
+		ResourceType.WATER: "WATER",
+		ResourceType.FUEL: "FUEL",
+		ResourceType.PLASTICS: "PLASTICS",
+		ResourceType.GLASS: "GLASS",
+		ResourceType.ELECTRONICS: "ELECTRONICS",
+		ResourceType.URANIUM: "URANIUM",
+		ResourceType.TOOLS: "TOOLS",
+		ResourceType.ENGINE: "ENGINE",
+		ResourceType.COPPER_ORE: "COPPER ORE",
+		ResourceType.COPPER_BARS: "COPPER BARS",
 	}	
 	
 static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
@@ -66,6 +78,18 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"N0X": ResourceType.N0X,
 		"CH4": ResourceType.CH4,
 		"NONE": ResourceType.NONE,
+		"OIL": ResourceType.OIL,
+		"SAND": ResourceType.SAND,
+		"WATER": ResourceType.WATER,
+		"FUEL": ResourceType.FUEL,
+		"PLASTICS": ResourceType.PLASTICS,
+		"GLASS": ResourceType.GLASS,
+		"ELECTRONICS": ResourceType.ELECTRONICS,
+		"URANIUM": ResourceType.URANIUM,
+		"TOOLS": ResourceType.TOOLS,
+		"ENGINE": ResourceType.ENGINE,
+		"COPPER ORE": ResourceType.COPPER_ORE,
+		"COPPER BARS": ResourceType.COPPER_BARS,
 	}
 
 static var building_names: Dictionary[BuildingType, String] = {
@@ -83,6 +107,22 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
 	BuildingType.RESEARCH_LAB: "RESEARCH LAB",
 	BuildingType.STEEL_SCRAP_LANDFILL: "STEEL SCRAP LANDFILL",
+	BuildingType.OIL_RIG: "OIL RIG",
+	BuildingType.SAND_COLLECTOR: "SAND COLLECTOR",
+	BuildingType.WATER_PUMP: "WATER PUMP",
+	BuildingType.OIL_REFINERY: "OIL REFINERY",
+	BuildingType.GLASSWORKS: "GLASSWORKS",
+	BuildingType.ELECTRONICS_FACTORY: "ELECTRONICS FACTORY",
+	BuildingType.SOLAR_PLANT: "SOLAR PLANT",
+	BuildingType.WIND_TURBINE: "WIND TURBINE",
+	BuildingType.NUCLEAR_PLANT: "NUCLEAR PLANT",
+	BuildingType.ROCKET_LAUNCHPAD: "ROCKET LAUNCHPAD",
+	BuildingType.URANIUM_MINE: "URANIUM MINE",
+	BuildingType.TOOL_FACTORY: "TOOL FACTORY",
+	BuildingType.OIL_POWER_PLANT: "OIL POWER PLANT",
+	BuildingType.ENGINE_FACTORY: "ENGINE FACTORY",
+	BuildingType.COPPER_MINE: "COPPER MINE",
+	BuildingType.COPPER_SMELTERY: "COPPER SMELTERY",
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
@@ -160,6 +200,18 @@ enum ResourceType {
 	STEEL, ## The resource type for steel
 	GEARS, ## The resource type for gears
 	STEEL_SCRAP, ## The resource type for STEEL SCRAP
+	OIL, ## The resource type for crude oil
+	SAND, ## The resource type for sand
+	WATER, ## The resource type for water droplet
+	FUEL, ## The resource type for fuel
+	PLASTICS, ## The resource type for plastics
+	GLASS, ## The resource type for glass
+	ELECTRONICS, ## The resource type for electronics
+	URANIUM, ## The resource type for uranium
+	TOOLS, ## The resource type for tools
+	ENGINE, ## The resource type for engine
+	COPPER_ORE, ## The resource type for copper ore
+	COPPER_BARS, ## The resource type for copper bars
 }
 
 ## The different types of buildings in the game
@@ -178,7 +230,23 @@ enum BuildingType {
 	STEEL_MILL, ## The building type for a steel mill 
 	GEAR_FACTORY, ## The building type for a gear factory
 	RESEARCH_LAB, ## The building type for a research lab
-	STEEL_SCRAP_LANDFILL ## The building type for a STEEL SCRAP landfill,
+	STEEL_SCRAP_LANDFILL, ## The building type for a steel scrap landfill,
+	OIL_RIG, ## The building type for an oil rig
+	SAND_COLLECTOR, ## The building type for a sand collector
+	WATER_PUMP, ## The building type for a water pump
+	OIL_REFINERY, ## The building type for an oil refinery
+	GLASSWORKS, ## The building type for a glassworks
+	ELECTRONICS_FACTORY, ## The building type for an electronics factory
+	SOLAR_PLANT, ## The building type for a solar plant
+	WIND_TURBINE, ## The building type for a wind turbine
+	NUCLEAR_PLANT, ## The building type for a nuclear plant
+	ROCKET_LAUNCHPAD, ## The building type for a rocket launchpad
+	URANIUM_MINE, ## The building type for a uranium mine
+	TOOL_FACTORY, ## The building type for a tool factory
+	OIL_POWER_PLANT, ## The building type for an oil power plant
+	ENGINE_FACTORY, ## The building type for an engine factory
+	COPPER_MINE, ## The building type for a copper mine
+	COPPER_SMELTERY, ## The building type for a copper smeltery
 }
 
 static var building_data: Dictionary[BuildingType, Resource] = {

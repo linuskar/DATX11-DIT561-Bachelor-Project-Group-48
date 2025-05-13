@@ -130,9 +130,8 @@ scale_curve = SubResource("CurveTexture_64241")
 color_ramp = SubResource("GradientTexture1D_02jrp")
 alpha_curve = SubResource("CurveTexture_e0qy3")
 
-[node name="GearFactory" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
+[node name="GearFactory" type="StaticBody2D"]
 script = ExtResource("1_essim")
-smokes = [NodePath("Smoke_v1")]
 building_data = ExtResource("2_fbl6r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

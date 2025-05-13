@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://ec78nt876671"]
+
+[ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_kevp3"]
+[ext_resource type="Resource" uid="uid://diqlbkga3u00b" path="res://resources/buildings/iron_mine.tres" id="2_bm57r"]
+[ext_resource type="Texture2D" uid="uid://c7lw7p7gyi471" path="res://assets/buildings_iso/water_pump_building.png" id="3_fmidi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
+size = Vector2(32, 32)
+
+[node name="WaterPumpBlueprint" type="StaticBody2D"]
+script = ExtResource("1_kevp3")
+building_data = ExtResource("2_bm57r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qb2p1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_fmidi")

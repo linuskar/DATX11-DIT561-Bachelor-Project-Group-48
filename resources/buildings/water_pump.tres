@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="GatheringBuildingData" load_steps=2 format=3 uid="uid://sawvwdpa2ebo"]
+
+[ext_resource type="Script" uid="uid://cbekrj4vplgw" path="res://scripts/buildings/building_data/gathering_building_data.gd" id="1_o3txq"]
+
+[resource]
+script = ExtResource("1_o3txq")
+can_gather_resource_type = 0
+input_use_rates = Dictionary[int, int]({})
+output_generation = Dictionary[int, int]({})
+emissions_radius = Dictionary[int, int]({})
+input_recipes = Dictionary[int, Array]({})
+max_storage = Dictionary[int, int]({})
+input_types = Array[int]([])
+output_types = Array[int]([])
+building_type = 16
+valid_tile_types_to_place_on = Array[int]([])
+building_size = Vector2(0, 0)
+building_cost = 0
+building_upkeep = 0

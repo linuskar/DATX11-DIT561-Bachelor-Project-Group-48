@@ -1,0 +1,184 @@
+[gd_scene load_steps=25 format=3 uid="uid://buy1x4mpuil0m"]
+
+[ext_resource type="Script" uid="uid://blam8ysc5pw1h" path="res://scenes/buildings/power_generators/nuclear_plant.gd" id="1_c08f2"]
+[ext_resource type="Resource" uid="uid://c0tro8pwsicts" path="res://resources/buildings/nuclear_plant.tres" id="2_t7cuc"]
+[ext_resource type="Texture2D" uid="uid://wy4s57w28vpo" path="res://assets/buildings_iso/nuclear_plant_building.png" id="3_wmuqx"]
+[ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_wmuqx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52ked"]
+
+[sub_resource type="Curve" id="Curve_c8wy6"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_raytu"]
+curve = SubResource("Curve_c8wy6")
+
+[sub_resource type="Curve" id="Curve_1l5pp"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00719424, -0.00891519), 0.0, 0.0, 0, 0, Vector2(0.97482, 0.995542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7osqp"]
+curve = SubResource("Curve_1l5pp")
+
+[sub_resource type="Curve" id="Curve_ua7ur"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1.49012e-08), 0.0, 1.69169, 0, 0, Vector2(0.4, 0.4), 0.81556, 0.81556, 0, 0, Vector2(0.7, 0.8), 1.65217, 1.65217, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_lh4at"]
+curve = SubResource("Curve_ua7ur")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7c5px"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 275.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 9.49949e-08
+orbit_velocity_curve = SubResource("CurveTexture_7osqp")
+gravity = Vector3(0, -98, 0)
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_lh4at")
+alpha_curve = SubResource("CurveTexture_raytu")
+
+[sub_resource type="Animation" id="Animation_fnoo6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5ylux"]
+resource_name = "place"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86t2d"]
+_data = {
+&"RESET": SubResource("Animation_fnoo6"),
+&"place": SubResource("Animation_5ylux")
+}
+
+[sub_resource type="Curve" id="Curve_q7wsv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.224719), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2t8d0"]
+curve = SubResource("Curve_q7wsv")
+
+[sub_resource type="Gradient" id="Gradient_5tvuw"]
+offsets = PackedFloat32Array(0.190909, 0.981818)
+colors = PackedColorArray(0.84, 0.84, 0.84, 1, 0.82, 0.81426, 0.8036, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w7rlm"]
+gradient = SubResource("Gradient_5tvuw")
+
+[sub_resource type="Curve" id="Curve_aqqh2"]
+_data = [Vector2(0, 0.247191), 0.0, 0.0, 0, 0, Vector2(0.257353, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.191011), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_odapu"]
+curve = SubResource("Curve_aqqh2")
+
+[sub_resource type="Curve" id="Curve_hwxng"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0.876405), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y3nw3"]
+curve = SubResource("Curve_hwxng")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dy1me"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 16, 16)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = 360.0
+radial_velocity_min = 9.99998
+radial_velocity_max = 30.0
+radial_velocity_curve = SubResource("CurveTexture_odapu")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_y3nw3")
+color_ramp = SubResource("GradientTexture1D_w7rlm")
+alpha_curve = SubResource("CurveTexture_2t8d0")
+
+[node name="NuclearPlant" type="StaticBody2D"]
+script = ExtResource("1_c08f2")
+building_data = ExtResource("2_t7cuc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_52ked")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_wmuqx")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Smoke_v1" parent="." instance=ExtResource("4_wmuqx")]
+position = Vector2(-24, -32)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_7c5px")
+
+[node name="Smoke_v4" parent="." instance=ExtResource("4_wmuqx")]
+position = Vector2(-16, -32)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_7c5px")
+
+[node name="Smoke_v5" parent="." instance=ExtResource("4_wmuqx")]
+position = Vector2(-32, -32)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_7c5px")
+
+[node name="Smoke_v2" parent="." instance=ExtResource("4_wmuqx")]
+position = Vector2(8, -24)
+process_material = SubResource("ParticleProcessMaterial_7c5px")
+
+[node name="Smoke_v6" parent="." instance=ExtResource("4_wmuqx")]
+position = Vector2(0, -24)
+process_material = SubResource("ParticleProcessMaterial_7c5px")
+
+[node name="Smoke_v3" parent="." instance=ExtResource("4_wmuqx")]
+position = Vector2(32, -28)
+process_material = SubResource("ParticleProcessMaterial_7c5px")
+
+[node name="place_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86t2d")
+}
+
+[node name="place_particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_dy1me")

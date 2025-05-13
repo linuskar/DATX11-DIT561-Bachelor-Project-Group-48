@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://mjtf8gsptloy"]
+[gd_scene load_steps=43 format=3 uid="uid://mjtf8gsptloy"]
 
 [ext_resource type="Script" uid="uid://cvh3fnoivdf4t" path="res://scripts/buildings/build_manager.gd" id="1_aenhx"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="2_ofppe"]
@@ -19,11 +19,29 @@
 [ext_resource type="PackedScene" uid="uid://bb0k6gsn5k6v3" path="res://scenes/buildings/production_buildings/gear_factory.tscn" id="12_jq8ob"]
 [ext_resource type="PackedScene" uid="uid://dqescnbl4e761" path="res://scenes/buildings/storage_buildings/steel_scrap_landfill.tscn" id="13_g3lso"]
 [ext_resource type="PackedScene" uid="uid://d0n2xkqggqdmg" path="res://scenes/buildings/building_blueprints/storage_buildings/biomass_landfill_blueprint.tscn" id="13_gtan0"]
+[ext_resource type="PackedScene" uid="uid://bhim0ddsu7b32" path="res://scenes/buildings/gathering_buildings/oil_rig.tscn" id="14_1s231"]
+[ext_resource type="PackedScene" uid="uid://b7s4g1pq5nc7g" path="res://scenes/buildings/gathering_buildings/sand_collector.tscn" id="15_lgxha"]
+[ext_resource type="PackedScene" uid="uid://1rktsuign2af" path="res://scenes/buildings/gathering_buildings/water_pump.tscn" id="16_4qouf"]
 [ext_resource type="PackedScene" uid="uid://chfljd8f6ww5l" path="res://scenes/buildings/building_blueprints/road_blueprint.tscn" id="16_b6ppb"]
+[ext_resource type="PackedScene" uid="uid://cxnkefq0npq8a" path="res://scenes/buildings/production_buildings/oil_refinery.tscn" id="17_i5r2i"]
 [ext_resource type="PackedScene" uid="uid://drsrk2maerqd2" path="res://scenes/buildings/building_blueprints/production_buildings/saw_mill_blueprint.tscn" id="18_k82q2"]
+[ext_resource type="PackedScene" uid="uid://cw03ujy7wulm7" path="res://scenes/buildings/production_buildings/glassworks.tscn" id="18_las34"]
+[ext_resource type="PackedScene" uid="uid://buy8txkj2fesj" path="res://scenes/buildings/production_buildings/electronics_factory.tscn" id="19_20xql"]
+[ext_resource type="PackedScene" uid="uid://x5rpjk1ot6sp" path="res://scenes/buildings/power_generators/solar_plant.tscn" id="20_1p60n"]
 [ext_resource type="PackedScene" uid="uid://cqg67jejofbse" path="res://scenes/buildings/building_blueprints/production_buildings/steel_mill_blueprint.tscn" id="20_52bjm"]
+[ext_resource type="PackedScene" uid="uid://d0spxcsdvc4p2" path="res://scenes/buildings/power_generators/wind_turbine.tscn" id="21_4wpfj"]
 [ext_resource type="PackedScene" uid="uid://cn6sefxukvlqm" path="res://scenes/buildings/building_blueprints/production_buildings/gear_factory_blueprint.tscn" id="22_437j0"]
+[ext_resource type="PackedScene" uid="uid://buy1x4mpuil0m" path="res://scenes/buildings/power_generators/nuclear_plant.tscn" id="22_gp82u"]
 [ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="24_jdlbb"]
+[ext_resource type="PackedScene" uid="uid://bhhd2aon7ictq" path="res://scenes/buildings/building_blueprints/gathering_buildings/oil_rig_blueprint.tscn" id="34_q2p5x"]
+[ext_resource type="PackedScene" uid="uid://dgk8kh1ntpdta" path="res://scenes/buildings/building_blueprints/gathering_buildings/sand_collector_blueprint.tscn" id="35_klrmx"]
+[ext_resource type="PackedScene" uid="uid://ec78nt876671" path="res://scenes/buildings/building_blueprints/gathering_buildings/water_pump_blueprint.tscn" id="36_wfdxp"]
+[ext_resource type="PackedScene" uid="uid://bokbgwhcie14x" path="res://scenes/buildings/building_blueprints/production_buildings/oil_refinery_blueprint.tscn" id="37_n3eay"]
+[ext_resource type="PackedScene" uid="uid://bj8m2p4p5i0d6" path="res://scenes/buildings/building_blueprints/production_buildings/glassworks_blueprint.tscn" id="38_rs60c"]
+[ext_resource type="PackedScene" uid="uid://qnbotpfvwjja" path="res://scenes/buildings/building_blueprints/production_buildings/electronics_factory_blueprint.tscn" id="39_lvpxh"]
+[ext_resource type="PackedScene" uid="uid://j1uhdqmtm78e" path="res://scenes/buildings/building_blueprints/power_generators/solar_plant_blueprint.tscn" id="40_xm7k7"]
+[ext_resource type="PackedScene" uid="uid://b5owoke6enj8i" path="res://scenes/buildings/building_blueprints/power_generators/wind_turbine_blueprint.tscn" id="41_kdn40"]
+[ext_resource type="PackedScene" uid="uid://30eqq3u63bsd" path="res://scenes/buildings/building_blueprints/power_generators/nuclear_plant_blueprint.tscn" id="42_rcqth"]
 
 [node name="BuildManager" type="Node" node_paths=PackedStringArray("blueprint")]
 script = ExtResource("1_aenhx")
@@ -40,7 +58,16 @@ buildings = Dictionary[int, Resource]({
 9: ExtResource("10_8n2kk"),
 10: ExtResource("11_okohd"),
 11: ExtResource("12_jq8ob"),
-13: ExtResource("13_g3lso")
+13: ExtResource("13_g3lso"),
+14: ExtResource("14_1s231"),
+15: ExtResource("15_lgxha"),
+16: ExtResource("16_4qouf"),
+17: ExtResource("17_i5r2i"),
+18: ExtResource("18_las34"),
+19: ExtResource("19_20xql"),
+20: ExtResource("20_1p60n"),
+21: ExtResource("21_4wpfj"),
+22: ExtResource("22_gp82u")
 })
 building_blueprints = Dictionary[int, Resource]({
 1: ExtResource("2_ofppe"),
@@ -54,7 +81,16 @@ building_blueprints = Dictionary[int, Resource]({
 9: ExtResource("18_k82q2"),
 10: ExtResource("20_52bjm"),
 11: ExtResource("22_437j0"),
-13: ExtResource("24_jdlbb")
+13: ExtResource("24_jdlbb"),
+14: ExtResource("34_q2p5x"),
+15: ExtResource("35_klrmx"),
+16: ExtResource("36_wfdxp"),
+17: ExtResource("37_n3eay"),
+18: ExtResource("38_rs60c"),
+19: ExtResource("39_lvpxh"),
+20: ExtResource("40_xm7k7"),
+21: ExtResource("41_kdn40"),
+22: ExtResource("42_rcqth")
 })
 
 [node name="BuildingsNodeContainer" type="Node" parent="."]

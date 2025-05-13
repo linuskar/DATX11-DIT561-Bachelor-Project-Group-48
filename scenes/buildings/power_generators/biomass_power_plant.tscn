@@ -96,9 +96,8 @@ scale_curve = SubResource("CurveTexture_h10hn")
 color_ramp = SubResource("GradientTexture1D_d1lr6")
 alpha_curve = SubResource("CurveTexture_2iayc")
 
-[node name="BiomassPowerPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
+[node name="BiomassPowerPlant" type="StaticBody2D"]
 script = ExtResource("1_pu6ix")
-smokes = [NodePath("Smoke_v3"), NodePath("Smoke_v4")]
 building_data = ExtResource("2_n2s4e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
