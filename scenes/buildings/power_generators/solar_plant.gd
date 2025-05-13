@@ -7,7 +7,6 @@ extends ProductionBuilding
 ##
 
 func _ready():
-	$place_animation.play("place")
 	super()
 
 
