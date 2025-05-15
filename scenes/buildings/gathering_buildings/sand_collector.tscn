@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7s4g1pq5nc7g"]
+[gd_scene load_steps=6 format=3 uid="uid://b7s4g1pq5nc7g"]
 
 [ext_resource type="Script" uid="uid://db8l0ytyg4l4d" path="res://scenes/buildings/gathering_buildings/sand_collector.gd" id="1_7fb31"]
 [ext_resource type="Resource" uid="uid://dxejc11awrfyg" path="res://resources/buildings/sand_collector.tres" id="2_y2h6b"]
@@ -7,43 +7,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5p7b"]
 size = Vector2(64, 64)
-
-[sub_resource type="Animation" id="Animation_fnoo6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5ylux"]
-resource_name = "place"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_86t2d"]
-_data = {
-&"RESET": SubResource("Animation_fnoo6"),
-&"place": SubResource("Animation_5ylux")
-}
 
 [node name="SandCollector" type="StaticBody2D"]
 script = ExtResource("1_7fb31")
@@ -58,10 +21,5 @@ texture = ExtResource("3_qsib2")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
-
-[node name="place_animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_86t2d")
-}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

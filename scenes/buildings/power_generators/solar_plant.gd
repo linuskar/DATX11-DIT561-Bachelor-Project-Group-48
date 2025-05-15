@@ -8,7 +8,3 @@ extends ProductionBuilding
 
 func _ready():
 	super()
-
-
-func _on_place_animation_animation_finished(anim_name: String) -> void:
-	$place_particle.emitting = true
