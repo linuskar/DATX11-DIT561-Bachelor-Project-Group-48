@@ -62,6 +62,7 @@ mouse_filter = 1
 script = ExtResource("1_ewjyi")
 icon_path = "uid://dxx0jtwe758im"
 building_data = ExtResource("2_ai21b")
+on_research_reveal = Array[int]([14])
 
 [node name="MainBox" type="Panel" parent="."]
 layout_mode = 1

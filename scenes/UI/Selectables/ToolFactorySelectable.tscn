@@ -60,6 +60,7 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_8j7gs")
 icon_path = "uid://t2kml7pea27i"
+on_research_reveal = Array[int]([19])
 contributables = null
 required = null
 
