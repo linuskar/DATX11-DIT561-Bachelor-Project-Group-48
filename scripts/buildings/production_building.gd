@@ -86,7 +86,7 @@ func _output_resources() -> void:
 	emit_smoke()
 	
 	if !check_if_can_produce() or not check_afford_production():
-		production_cycle.paused = true
+		pause_operations()
 	elif mode == Enums.ProductionBuildingMode.PAUSED:
 		pause_operations()
 	else:

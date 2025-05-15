@@ -22,7 +22,6 @@ func _ready() -> void:
 	
 ## Function to check if the gathering building can produce.
 func check_if_can_produce() -> bool:
-	
 	if check_for_missing_input():
 		return false
 		
@@ -71,7 +70,6 @@ func _produce_goods() -> Dictionary[Enums.ResourceType, int]:
 			near_resource = false
 	return resources_produced
 
-##
 func pay_for_production() -> void:
 	PlayerCurrency.remove_currency(self.building_data.building_upkeep*resource_tiles_to_gather.size())
 
