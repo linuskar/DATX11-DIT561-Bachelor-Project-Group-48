@@ -33,14 +33,12 @@ func complete_research(research_data: ResearchData) -> void:
 	if research_data.money_cost:
 		if PlayerCurrency.player_held_currency < research_data.money_cost:
 			return
-		
-	for resource in research_data.resource_cost.keys():
-		var current_amount: int = player_resources.resources.get(resource)
-		var amount_needed: int = research_data.resource_cost.get(resource)
-		player_resources.buy_with_resources(resource, amount_needed, lab_network.buildings)
-
-	if research_data.money_cost:
 		PlayerCurrency.player_held_currency -= research_data.money_cost
+		
+	if research_data.resource_cost:
+		for resource in research_data.resource_cost.keys():
+			var amount_needed: int = research_data.resource_cost.get(resource)
+			player_resources.buy_with_resources(resource, amount_needed, lab_network.buildings)
 	
 	update_data(research_data.research_id)
 	completed_research.append(research_data.research_id)			# Add to the completed list
