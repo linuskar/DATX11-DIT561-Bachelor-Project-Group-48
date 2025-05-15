@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://7xdlbekfpnhw"]
+[gd_scene load_steps=5 format=3 uid="uid://7xdlbekfpnhw"]
 
 [ext_resource type="Script" uid="uid://qhlvfcvbuqla" path="res://scenes/buildings/production_buildings/tool_factory.gd" id="1_qqk6m"]
+[ext_resource type="Texture2D" uid="uid://cecxn058vno7r" path="res://assets/buildings_iso/tool_factory_building.png" id="2_30mtx"]
+[ext_resource type="Resource" uid="uid://cnffi15rv2sjl" path="res://resources/buildings/tool_factory.tres" id="2_sui8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30mtx"]
+size = Vector2(96, 96)
 
 [node name="ToolFactory" type="StaticBody2D"]
 script = ExtResource("1_qqk6m")
+building_data = ExtResource("2_sui8n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_30mtx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_30mtx")
