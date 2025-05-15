@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bj1v7y2dejr2w"]
+[gd_scene load_steps=30 format=3 uid="uid://bj1v7y2dejr2w"]
 
 [ext_resource type="Texture2D" uid="uid://clwoen2hegxrs" path="res://assets/UI/Resource UI/wood.tres" id="1_erkbk"]
 [ext_resource type="Script" uid="uid://dxmp87dbqrere" path="res://scripts/UI/resource_ui.gd" id="1_jxiwp"]
@@ -22,6 +22,18 @@
 [ext_resource type="Texture2D" uid="uid://dmj2u2m321ujc" path="res://assets/UI/Resource UI/tools_resource.png" id="20_582i3"]
 [ext_resource type="Texture2D" uid="uid://bjf5x5jtx2go2" path="res://assets/UI/Resource UI/copper_ore_resource.png" id="21_6bivq"]
 [ext_resource type="Texture2D" uid="uid://b7lxq6k824ym1" path="res://assets/UI/Resource UI/copper_bars_resource.png" id="22_blsyi"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="23_yfgjf"]
+[ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="24_6ugck"]
+[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="25_owthk"]
+[ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="26_ym5ha"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="27_582i3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6bivq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yfgjf"]
+font = ExtResource("23_yfgjf")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [node name="ResourceUi" type="Control"]
 layout_mode = 3
@@ -54,12 +66,57 @@ resources = Dictionary[int, Texture]({
 25: ExtResource("22_blsyi")
 })
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="BackgroundPanel" type="Panel" parent="."]
 layout_mode = 0
+offset_right = 400.0
+offset_bottom = 81.0
+theme_override_styles/panel = ExtResource("27_582i3")
+
+[node name="ExpandButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_direction = 3
+layout_mode = 2
+offset_left = -270.0
+offset_top = 15.0
+offset_right = -220.0
+offset_bottom = 65.0
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("23_yfgjf")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6bivq")
+theme_override_styles/disabled = ExtResource("24_6ugck")
+theme_override_styles/hover_pressed_mirrored = ExtResource("25_owthk")
+theme_override_styles/hover = ExtResource("26_ym5ha")
+theme_override_styles/normal = ExtResource("27_582i3")
+text = "
+"
+
+[node name="ArrowLabel" type="Label" parent="ExpandButton"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 35.0
+offset_right = 36.0
+offset_bottom = 67.0
+rotation = -1.5708
+mouse_filter = 1
+text = "<"
+label_settings = SubResource("LabelSettings_yfgjf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 16.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

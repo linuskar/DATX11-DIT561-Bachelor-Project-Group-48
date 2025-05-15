@@ -52,6 +52,8 @@ anchor_left = 0.35
 anchor_top = 0.01
 anchor_right = 0.425
 anchor_bottom = 0.115
+offset_left = 10.0
+offset_right = 10.0
 script = ExtResource("3_v3jyi")
 
 [node name="Button" type="Button" parent="PauseGame"]
