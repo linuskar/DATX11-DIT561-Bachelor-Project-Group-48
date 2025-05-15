@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=70 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="Script" uid="uid://btud0tf6wyhq6" path="res://scenes/game.gd" id="1_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://dh1kidmxc4h2w" path="res://scenes/buildings/gathering_buildings/copper_mine.tscn" id="30_ms3bu"]
 [ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="30_twgab"]
 [ext_resource type="PackedScene" uid="uid://7xdlbekfpnhw" path="res://scenes/buildings/production_buildings/tool_factory.tscn" id="31_3x28f"]
+[ext_resource type="PackedScene" uid="uid://3n02qq3l4ykf" path="res://scenes/buildings/rocket_launch_pad.tscn" id="32_weeiq"]
 [ext_resource type="PackedScene" uid="uid://b48liywofkol4" path="res://scenes/utility/BuildingSelector.tscn" id="36_twgab"]
 [ext_resource type="PackedScene" uid="uid://bs254s4myb4sk" path="res://scenes/utility/research_manager.tscn" id="37_02fa5"]
 [ext_resource type="AudioStream" uid="uid://cos03bvp2sgta" path="res://music/One Man Symphony - A New Day's Hurry (Free)/One Man Symphony - A New Day's Hurry (Free) - 01 A New Day Begins (General Background Music).mp3" id="39_05nbr"]
@@ -66,6 +67,7 @@
 [ext_resource type="PackedScene" uid="uid://b5owoke6enj8i" path="res://scenes/buildings/building_blueprints/power_generators/wind_turbine_blueprint.tscn" id="51_xbak0"]
 [ext_resource type="PackedScene" uid="uid://30eqq3u63bsd" path="res://scenes/buildings/building_blueprints/power_generators/nuclear_plant_blueprint.tscn" id="52_3x28f"]
 [ext_resource type="PackedScene" uid="uid://b4qrqvoca6ocr" path="res://scenes/buildings/building_blueprints/production_buildings/tool_factory_blueprint.tscn" id="54_l6q63"]
+[ext_resource type="PackedScene" uid="uid://ddoqkjg5rmpxp" path="res://scenes/buildings/building_blueprints/rocket_launch_pad_blueprint.tscn" id="55_mmvbu"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fedci"]
 streams_count = 5
@@ -113,6 +115,7 @@ buildings = Dictionary[int, Resource]({
 20: ExtResource("25_o8ni1"),
 21: ExtResource("26_3hbvx"),
 22: ExtResource("27_q8j3a"),
+23: ExtResource("32_weeiq"),
 24: ExtResource("28_ms3bu"),
 25: ExtResource("31_3x28f"),
 26: ExtResource("29_q8j3a"),
@@ -141,6 +144,7 @@ building_blueprints = Dictionary[int, Resource]({
 20: ExtResource("50_0rmfi"),
 21: ExtResource("51_xbak0"),
 22: ExtResource("52_3x28f"),
+23: ExtResource("55_mmvbu"),
 25: ExtResource("54_l6q63")
 })
 

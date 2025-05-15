@@ -259,7 +259,6 @@ layout_mode = 2
 layout_mode = 2
 icon_path = "uid://b52ga2tf54bjo"
 building_data = ExtResource("29_e2bcp")
-required = Dictionary[String, int]({})
 
 [node name="EngineFactorySelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("30_oe8xc")]
 layout_mode = 2

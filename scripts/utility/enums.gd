@@ -293,7 +293,7 @@ static var building_data: Dictionary[BuildingType, Resource] = {
 	BuildingType.SOLAR_PLANT: load("res://resources/buildings/solar_plant.tres"), 
 	BuildingType.WIND_TURBINE: load("res://resources/buildings/solar_plant.tres"),
 	BuildingType.NUCLEAR_PLANT: load("res://resources/buildings/nuclear_plant.tres"),
-	#BuildingType.ROCKET_LAUNCH_PAD: load("rocket"), ## To be added when Noel makes a rocket building
+	BuildingType.ROCKET_LAUNCH_PAD: load("res://scenes/buildings/rocket_launch_pad.tscn"), ## To be added when Noel makes a rocket building
 	#BuildingType.URANIUM_MINE: load(), ## There is currently no building data for a uranium mine
 	#BuildingType.TOOL_FACTORY: load(), ## There is currently no tool factory
 	#BuildingType.OIL_POWER_PLANT: load(oil_po), ## There is currently no data for oil power plant

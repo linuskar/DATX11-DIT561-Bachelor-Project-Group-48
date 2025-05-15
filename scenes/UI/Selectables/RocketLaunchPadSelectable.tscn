@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwpiu3wwh2kp7"]
+[gd_scene load_steps=13 format=3 uid="uid://bwpiu3wwh2kp7"]
 
 [ext_resource type="Script" uid="uid://dua6rufylydyq" path="res://scripts/UI/selectables/selectable_building.gd" id="1_drnmk"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_3lk0q"]
+[ext_resource type="Resource" uid="uid://cg1c8uq5dbu51" path="res://resources/buildings/rocket_launch_pad.tres" id="2_tj7pd"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_tj7pd"]
 [ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_ukhs4"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_uf1ea"]
@@ -60,6 +61,7 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_drnmk")
 icon_path = "uid://t2kml7pea27i"
+building_data = ExtResource("2_tj7pd")
 on_research_reveal = Array[int]([18])
 contributables = null
 required = null
