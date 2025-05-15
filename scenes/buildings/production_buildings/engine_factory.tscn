@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlydrx24clc16"]
+[gd_scene load_steps=4 format=3 uid="uid://dlydrx24clc16"]
 
 [ext_resource type="Script" uid="uid://dyx0cl53j3t7s" path="res://scenes/buildings/production_buildings/engine_factory.gd" id="1_5cr7t"]
+[ext_resource type="Texture2D" uid="uid://bbbmvlgr8dwk0" path="res://assets/buildings_iso/engine_factory_building.png" id="2_t1mow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1mow"]
+size = Vector2(96, 96)
 
 [node name="EngineFactory" type="StaticBody2D"]
 script = ExtResource("1_5cr7t")
@@ -11,3 +13,4 @@ script = ExtResource("1_5cr7t")
 shape = SubResource("RectangleShape2D_t1mow")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_t1mow")
