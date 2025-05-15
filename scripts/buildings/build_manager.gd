@@ -204,6 +204,11 @@ func _on_placed_building(building: Building) -> void:
 	BuildManagerGlobal.update_networks(building)
 	placed_building.emit(building)
 	BuildManagerGlobal.update_roads.emit()
+	if building.building_data.building_type == Enums.BuildingType.ROAD:
+		var grid_pos: Vector2i = map_layer.water_layer.local_to_map(building.position)
+		var water_cells: Array[Vector2i] = map_layer.water_layer.get_used_cells()
+		if water_cells.has(grid_pos):
+			building.update_sprite()
 	
 ## Function two merge landfills that are near each other
 func merge_landfills(landfill_placed: Landfill, landfill_to_be_merged_with: Landfill) -> void:
@@ -314,6 +319,7 @@ func expand_landfill(landfill: Landfill) -> void:
 	BuildManagerGlobal.update_networks(landfill) 
 	placed_building.emit(landfill)
 	BuildManagerGlobal.update_roads.emit()
+	
 	## TODO: Future implementation for merging landfills when auto expanding
 	## NOTE: have to take care of the resources that are currently transporting
 	## need to somehow reroute the resoruces that are transported to the current instance of landfill
