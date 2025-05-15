@@ -45,8 +45,9 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_lamxo")
 alpha_curve = SubResource("CurveTexture_l4wc7")
 
-[node name="WaterPump" type="StaticBody2D"]
+[node name="WaterPump" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_j85no")
+smokes = [NodePath("Smoke_v1")]
 building_data = ExtResource("2_h1wbr")
 scene_place_particle = ExtResource("3_3jnfg")
 

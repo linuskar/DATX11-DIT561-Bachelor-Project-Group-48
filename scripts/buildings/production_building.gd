@@ -48,7 +48,7 @@ func init_smoke() -> void:
 
 ## Function for emitting smoke when possible.
 func emit_smoke() -> void:
-	if check_if_can_produce() == false or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
+	if check_if_can_produce() == false or PlayerCurrency.player_held_currency < self.building_data.building_upkeep or mode == Enums.ProductionBuildingMode.PAUSED:
 		for smoke in smokes:
 			smoke.emitting = false
 	else:

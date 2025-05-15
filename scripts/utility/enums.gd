@@ -298,7 +298,7 @@ static var building_data: Dictionary[BuildingType, Resource] = {
 	#BuildingType.TOOL_FACTORY: load(), ## There is currently no tool factory
 	#BuildingType.OIL_POWER_PLANT: load(oil_po), ## There is currently no data for oil power plant
 	#BuildingType.ENGINE_FACTORY: load(), ## There is no data 
-	#BuildingType.COPPER_MINE: load(copper), ## No data
+	BuildingType.COPPER_MINE: load("res://scenes/buildings/gathering_buildings/copper_mine.tscn"), 
 	##BuildingType.COPPER_SMELTERY, ## No data
 }
 

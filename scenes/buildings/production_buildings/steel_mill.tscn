@@ -56,8 +56,9 @@ scale_curve = SubResource("CurveTexture_qrqbt")
 scale_over_velocity_curve = SubResource("CurveTexture_h4pdi")
 alpha_curve = SubResource("CurveTexture_klpcp")
 
-[node name="SteelMill" type="StaticBody2D"]
+[node name="SteelMill" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_vousk")
+smokes = [NodePath("Smoke_v6"), NodePath("Smoke_v7"), NodePath("Smoke_v8")]
 building_data = ExtResource("2_b64yw")
 available_research = Array[ExtResource("3_2ssl4")]([ExtResource("4_h5dqn")])
 scene_place_particle = ExtResource("7_duxk1")

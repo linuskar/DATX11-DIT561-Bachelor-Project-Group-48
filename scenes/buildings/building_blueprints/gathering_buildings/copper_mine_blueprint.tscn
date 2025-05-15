@@ -15,4 +15,5 @@ building_data = ExtResource("2_ykg77")
 shape = SubResource("RectangleShape2D_qb2p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.66, 0.66)
 texture = ExtResource("3_ykg77")

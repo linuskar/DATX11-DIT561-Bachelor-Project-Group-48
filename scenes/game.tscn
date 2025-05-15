@@ -1,6 +1,6 @@
-[gd_scene load_steps=70 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=71 format=3 uid="uid://b4ie8fujdth75"]
 
-[ext_resource type="Script" uid="uid://btud0tf6wyhq6" path="res://scenes/game.gd" id="1_pr1ej"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
 [ext_resource type="PackedScene" uid="uid://c7ded0ull7r3b" path="res://scenes/map_layer.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ck8h7axla2cb" path="res://scenes/Smog.tscn" id="3_rysoc"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bmfjen7u3vjeh" path="res://scenes/utility/pollution_manager.tscn" id="8_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/gathering_buildings/wood_cutter.tscn" id="9_sww3w"]
 [ext_resource type="PackedScene" uid="uid://cbk8oqqcmsa30" path="res://scenes/buildings/power_generators/coal_power_plant.tscn" id="10_suyxu"]
-[ext_resource type="PackedScene" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="11_sgl2t"]
+[ext_resource type="PackedScene" uid="uid://0tdfrbqq2650" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="11_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://d0n2xkqggqdmg" path="res://scenes/buildings/building_blueprints/storage_buildings/biomass_landfill_blueprint.tscn" id="12_ca42v"]
 [ext_resource type="PackedScene" uid="uid://jok1xl2oywc3" path="res://scenes/buildings/storage_buildings/biomass_landfill.tscn" id="12_qouja"]
 [ext_resource type="PackedScene" uid="uid://c5bv3jae0ixbd" path="res://scenes/buildings/building_blueprints/gathering_buildings/iron_mine_blueprint.tscn" id="13_bhx41"]
@@ -68,6 +68,7 @@
 [ext_resource type="PackedScene" uid="uid://30eqq3u63bsd" path="res://scenes/buildings/building_blueprints/power_generators/nuclear_plant_blueprint.tscn" id="52_3x28f"]
 [ext_resource type="PackedScene" uid="uid://b4qrqvoca6ocr" path="res://scenes/buildings/building_blueprints/production_buildings/tool_factory_blueprint.tscn" id="54_l6q63"]
 [ext_resource type="PackedScene" uid="uid://ddoqkjg5rmpxp" path="res://scenes/buildings/building_blueprints/rocket_launch_pad_blueprint.tscn" id="55_mmvbu"]
+[ext_resource type="PackedScene" uid="uid://b7hjhx2kagc1k" path="res://scenes/buildings/building_blueprints/gathering_buildings/copper_mine_blueprint.tscn" id="57_uxocx"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fedci"]
 streams_count = 5
@@ -145,7 +146,8 @@ building_blueprints = Dictionary[int, Resource]({
 21: ExtResource("51_xbak0"),
 22: ExtResource("52_3x28f"),
 23: ExtResource("55_mmvbu"),
-25: ExtResource("54_l6q63")
+25: ExtResource("54_l6q63"),
+28: ExtResource("57_uxocx")
 })
 
 [node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]
