@@ -474,7 +474,7 @@ current_tab = 0
 tab_count = 3
 tab_0/title = "General"
 tab_1/title = "Storage"
-tab_2/title = "Selling"
+tab_2/title = "Mode"
 
 [node name="CloseButton" type="TextureButton" parent="."]
 visible = false
