@@ -66,7 +66,7 @@ func can_place_building(blueprint: BuildingBlueprint) -> bool:
 					return false
 	return true
 
-## Function to check if tile is valid to palce on
+## Function to check if tile is valid to place on
 func check_valid_tile(position_to_check: Vector2, valid_tile_types_to_place: Array[Enums.TileType]) -> bool:
 	var source_id: int = -1
 	for tile_type in Enums.TileType.values():

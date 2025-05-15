@@ -14,6 +14,8 @@ var sibling_right: Building = null
 var sibling_down: Building = null
 var sibling_up: Building = null
 
+var BRIDGE_ROAD_SPRITESHEET: CompressedTexture2D = preload("res://assets/road/bridge_road_spritesheet.png")
+
 func _ready():
 	super()
 	BuildManagerGlobal.update_roads.connect(update_connections)
@@ -42,6 +44,9 @@ func check_if_building(pos: Vector2):
 			register_building_connection(building)
 			return true
 	return false
+
+func update_sprite():
+	$Sprite2D.texture = BRIDGE_ROAD_SPRITESHEET
 
 #Adds the buldings that are connected to a road to a list.
 func register_building_connection(building: Building) -> void:
