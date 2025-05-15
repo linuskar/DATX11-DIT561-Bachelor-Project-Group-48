@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_3lk0q"]
 [ext_resource type="Resource" uid="uid://cg1c8uq5dbu51" path="res://resources/buildings/rocket_launch_pad.tres" id="2_tj7pd"]
 [ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="3_tj7pd"]
-[ext_resource type="Texture2D" uid="uid://d24u4ttoa7w4d" path="res://assets/grass_tile.png" id="4_ukhs4"]
+[ext_resource type="Texture2D" uid="uid://dvk0x5qssjpsn" path="res://assets/buildings_iso/rocket_launchpad_building.png" id="5_3lk0q"]
 [ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="5_uf1ea"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="6_udh7o"]
 
@@ -108,7 +108,9 @@ theme_override_constants/margin_bottom = 0
 
 [node name="BuildingIcon" type="TextureRect" parent="Containers/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("4_ukhs4")
+texture = ExtResource("5_3lk0q")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="BuildingNameCost" type="Label" parent="."]
 layout_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://djil6gjtsgbdu"]
+[gd_scene load_steps=20 format=3 uid="uid://djil6gjtsgbdu"]
 
 [ext_resource type="Script" uid="uid://261x562g8l0j" path="res://scripts/UI/user_interface.gd" id="1_vr1b1"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_v3jyi"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://rkxfq20ab5t1" path="res://scenes/UI/StartMenu.tscn" id="14_xa1es"]
 [ext_resource type="PackedScene" uid="uid://fysawqvslmw8" path="res://scenes/UI/KeyBinds.tscn" id="15_jqgkf"]
 [ext_resource type="PackedScene" uid="uid://dmvw3pwwig65k" path="res://scenes/UI/TutorialScreen.tscn" id="16_p88rf"]
+[ext_resource type="PackedScene" uid="uid://bnx4fjlr7o5rp" path="res://scenes/UI/GameWinUI.tscn" id="18_8ghwt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gojqa"]
 
@@ -80,6 +81,9 @@ visible = false
 anchors_preset = -1
 
 [node name="KeyBinds" parent="." instance=ExtResource("15_jqgkf")]
+visible = false
+
+[node name="GameWinUI" parent="." instance=ExtResource("18_8ghwt")]
 visible = false
 
 [connection signal="ready" from="." to="." method="_on_ready"]
