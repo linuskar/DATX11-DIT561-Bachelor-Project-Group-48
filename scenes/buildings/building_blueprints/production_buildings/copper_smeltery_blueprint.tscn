@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_nsjap"]
 [ext_resource type="Resource" uid="uid://cg58cw3xto8m1" path="res://resources/buildings/copper_smeltery.tres" id="2_08sk0"]
-[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="3_b47t2"]
+[ext_resource type="Texture2D" uid="uid://b52ga2tf54bjo" path="res://assets/buildings_iso/copper_smeltery_building.png" id="3_nsjap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
 size = Vector2(32, 32)
@@ -15,4 +15,4 @@ building_data = ExtResource("2_08sk0")
 shape = SubResource("RectangleShape2D_qb2p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_b47t2")
+texture = ExtResource("3_nsjap")

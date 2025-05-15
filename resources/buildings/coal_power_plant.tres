@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_3lsnu")
 input_use_rates = Dictionary[int, int]({
-1: 10
+14: 2,
+16: 2
 })
 output_generation = Dictionary[int, int]({
 3: 15,
@@ -22,7 +23,6 @@ input_recipes = Dictionary[int, Array]({
 0: [1]
 })
 max_storage = Dictionary[int, int]({
-1: 100,
 5: 200
 })
 input_types = Array[int]([1])

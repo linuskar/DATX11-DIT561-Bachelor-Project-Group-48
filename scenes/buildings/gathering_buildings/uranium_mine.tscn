@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ql0fl0fj208o"]
+[gd_scene load_steps=4 format=3 uid="uid://ql0fl0fj208o"]
 
 [ext_resource type="Script" uid="uid://bvudq80ea0s68" path="res://scenes/buildings/gathering_buildings/uranium_mine.gd" id="1_3ifgd"]
+[ext_resource type="Texture2D" uid="uid://vtb34heehm3o" path="res://assets/buildings_iso/uranium_mine_building.png" id="2_30jra"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30jra"]
 
@@ -8,6 +9,9 @@
 script = ExtResource("1_3ifgd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_30jra")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("2_30jra")

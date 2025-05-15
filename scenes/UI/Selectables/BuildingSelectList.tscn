@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=56 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
@@ -39,7 +39,6 @@
 [ext_resource type="PackedScene" uid="uid://b6koauq8bw6ry" path="res://scenes/UI/Selectables/CopperSmelterySelectable.tscn" id="28_dvubm"]
 [ext_resource type="PackedScene" uid="uid://bwpiu3wwh2kp7" path="res://scenes/UI/Selectables/RocketLaunchPadSelectable.tscn" id="29_e1kqc"]
 [ext_resource type="Resource" uid="uid://cg58cw3xto8m1" path="res://resources/buildings/copper_smeltery.tres" id="29_e2bcp"]
-[ext_resource type="Resource" uid="uid://cg1c8uq5dbu51" path="res://resources/buildings/rocket_launch_pad.tres" id="30_lfrtl"]
 [ext_resource type="PackedScene" uid="uid://dj3g4qdest036" path="res://scenes/UI/Selectables/EngineFactorySelectable.tscn" id="30_oe8xc"]
 [ext_resource type="Resource" uid="uid://b21xxn0j46w0u" path="res://resources/buildings/engine_factory.tres" id="31_lp0wq"]
 [ext_resource type="PackedScene" uid="uid://dordecbbb1xoy" path="res://scenes/UI/Selectables/OilPowerPlantSelectable.tscn" id="32_1qk4d"]
@@ -254,6 +253,7 @@ layout_mode = 2
 
 [node name="WindTurbineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("14_lfrtl")]
 layout_mode = 2
+icon_path = "uid://piem0k8laadn"
 
 [node name="CopperSmelterySelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("28_dvubm")]
 layout_mode = 2
@@ -309,7 +309,6 @@ layout_mode = 2
 [node name="RocketLaunchPadSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Utility" instance=ExtResource("29_e1kqc")]
 layout_mode = 2
 icon_path = "uid://dvk0x5qssjpsn"
-building_data = ExtResource("30_lfrtl")
 
 [node name="OpenListButton" type="Control" parent="."]
 layout_mode = 1

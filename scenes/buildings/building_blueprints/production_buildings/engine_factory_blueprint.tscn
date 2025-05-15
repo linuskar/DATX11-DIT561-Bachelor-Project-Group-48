@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_vdla8"]
 [ext_resource type="Resource" uid="uid://b21xxn0j46w0u" path="res://resources/buildings/engine_factory.tres" id="2_cy35s"]
-[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="3_07wa1"]
+[ext_resource type="Texture2D" uid="uid://bbbmvlgr8dwk0" path="res://assets/buildings_iso/engine_factory_building.png" id="3_vdla8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
 size = Vector2(32, 32)
@@ -15,4 +15,4 @@ building_data = ExtResource("2_cy35s")
 shape = SubResource("RectangleShape2D_qb2p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_07wa1")
+texture = ExtResource("3_vdla8")
