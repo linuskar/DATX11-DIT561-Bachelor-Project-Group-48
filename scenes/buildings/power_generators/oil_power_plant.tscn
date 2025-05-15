@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://35jat72r8x6k"]
+[gd_scene load_steps=4 format=3 uid="uid://35jat72r8x6k"]
 
 [ext_resource type="Script" uid="uid://4l3sfgwtfcoe" path="res://scenes/buildings/power_generators/oil_power_plant.gd" id="1_r7v6s"]
+[ext_resource type="Texture2D" uid="uid://d2g2iy6v35p1k" path="res://assets/buildings_iso/oil_power_plant_building.png" id="2_5clmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7v6s"]
 
@@ -11,3 +12,4 @@ script = ExtResource("1_r7v6s")
 shape = SubResource("RectangleShape2D_r7v6s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5clmr")

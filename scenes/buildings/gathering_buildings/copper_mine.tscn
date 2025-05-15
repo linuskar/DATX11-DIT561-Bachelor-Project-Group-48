@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cnl13itkvlmi4" path="res://scripts/buildings/gathering_buildings/copper_mine.gd" id="1_bn4rk"]
 [ext_resource type="Resource" uid="uid://cfigh2dum2vsv" path="res://resources/buildings/copper_mine.tres" id="2_fpahu"]
-[ext_resource type="Texture2D" uid="uid://bx5qrg1nmnpld" path="res://assets/buildings_iso/Coalmine_building.png" id="2_kx33f"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="3_ahykv"]
+[ext_resource type="Texture2D" uid="uid://ddwk86lav3j6q" path="res://assets/buildings_iso/copper_mine_building.png" id="3_fpahu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kx33f"]
 
@@ -60,10 +60,12 @@ script = ExtResource("1_bn4rk")
 building_data = ExtResource("2_fpahu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_kx33f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_kx33f")
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("3_fpahu")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

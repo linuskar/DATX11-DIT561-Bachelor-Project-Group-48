@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dwfw57d10a85j" path="res://scenes/buildings/gathering_buildings/wood_cutter.tscn" id="4_vw4yu"]
 [ext_resource type="PackedScene" uid="uid://drt57v7bjpsos" path="res://scenes/buildings/building_blueprints/gathering_buildings/wood_cutter_blueprint.tscn" id="4_y1ev4"]
 [ext_resource type="PackedScene" uid="uid://cbk8oqqcmsa30" path="res://scenes/buildings/power_generators/coal_power_plant.tscn" id="5_dr161"]
-[ext_resource type="PackedScene" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="6_6xou4"]
+[ext_resource type="PackedScene" uid="uid://0tdfrbqq2650" path="res://scenes/buildings/power_generators/biomass_power_plant.tscn" id="6_6xou4"]
 [ext_resource type="PackedScene" uid="uid://c2opqml4lhdk5" path="res://scenes/buildings/road.tscn" id="7_gtan0"]
 [ext_resource type="PackedScene" uid="uid://jok1xl2oywc3" path="res://scenes/buildings/storage_buildings/biomass_landfill.tscn" id="7_td6n1"]
 [ext_resource type="PackedScene" uid="uid://dxdbme3urfb2i" path="res://scenes/buildings/storage_buildings/warehouse.tscn" id="8_gtan0"]

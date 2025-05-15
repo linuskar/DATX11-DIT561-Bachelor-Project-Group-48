@@ -206,6 +206,7 @@ layout_mode = 2
 
 [node name="CopperMineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("13_d6711")]
 layout_mode = 2
+icon_path = "uid://ddwk86lav3j6q"
 building_data = ExtResource("14_1bxmb")
 
 [node name="UraniumMineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("15_sgmpg")]
@@ -267,7 +268,7 @@ building_data = ExtResource("31_lp0wq")
 
 [node name="OilPowerPlantSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("32_1qk4d")]
 layout_mode = 2
-icon_path = "uid://d1566usymavrh"
+icon_path = "uid://d2g2iy6v35p1k"
 building_data = ExtResource("33_m4dkx")
 
 [node name="ToolFactorySelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("34_6j3ok")]

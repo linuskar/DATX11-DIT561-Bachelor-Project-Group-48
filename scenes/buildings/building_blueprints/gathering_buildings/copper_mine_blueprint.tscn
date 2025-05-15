@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_r2h52"]
 [ext_resource type="Resource" uid="uid://cfigh2dum2vsv" path="res://resources/buildings/copper_mine.tres" id="2_ykg77"]
-[ext_resource type="Texture2D" uid="uid://t2kml7pea27i" path="res://assets/buildings_iso/factory.png" id="3_ulcdn"]
+[ext_resource type="Texture2D" uid="uid://ddwk86lav3j6q" path="res://assets/buildings_iso/copper_mine_building.png" id="3_ykg77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
 size = Vector2(32, 32)
@@ -15,4 +15,4 @@ building_data = ExtResource("2_ykg77")
 shape = SubResource("RectangleShape2D_qb2p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_ulcdn")
+texture = ExtResource("3_ykg77")
