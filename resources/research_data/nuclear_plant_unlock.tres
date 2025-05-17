@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_eephw")
-research_id = 16
+research_id = 17
 research_name = "Nuclear plant"
 description = "Unlock Nuclear Plant"
 money_cost = 0
