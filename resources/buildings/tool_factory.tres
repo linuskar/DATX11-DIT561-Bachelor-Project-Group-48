@@ -21,10 +21,11 @@ emissions_radius = Dictionary[int, int]({
 7: 16
 })
 input_recipes = Dictionary[int, Array]({
-0: [5, 11, 20, 18]
+0: [5, 11, 10]
 })
 max_storage = Dictionary[int, int]({
 5: 40,
+10: 50,
 11: 100
 })
 input_types = Array[int]([11, 5, 10])
