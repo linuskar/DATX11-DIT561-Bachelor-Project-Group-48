@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://buy8txkj2fesj"]
+[gd_scene load_steps=14 format=3 uid="uid://buy8txkj2fesj"]
 
 [ext_resource type="Script" uid="uid://bfit18spwdmh1" path="res://scenes/buildings/production_buildings/electronics_factory.gd" id="1_bbcqo"]
 [ext_resource type="Resource" uid="uid://by3u3gc26dus4" path="res://resources/buildings/electronics_factory.tres" id="2_glva7"]
 [ext_resource type="Texture2D" uid="uid://dxx0jtwe758im" path="res://assets/buildings_iso/electronics_factory_building.png" id="3_8pocv"]
+[ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_t0eix"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_t0eix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjb1c"]
+size = Vector2(96, 96)
 
 [sub_resource type="Curve" id="Curve_1j1a4"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -43,9 +45,11 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_742wd")
 alpha_curve = SubResource("CurveTexture_h0ntk")
 
-[node name="ElectronicsFactory" type="StaticBody2D"]
+[node name="ElectronicsFactory" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_bbcqo")
+smokes = [NodePath("Smoke_v1")]
 building_data = ExtResource("2_glva7")
+scene_place_particle = ExtResource("3_t0eix")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bjb1c")
@@ -60,3 +64,5 @@ autostart = true
 position = Vector2(20, -25)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_cnic0")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

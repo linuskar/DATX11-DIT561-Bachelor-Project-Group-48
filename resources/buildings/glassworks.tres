@@ -28,6 +28,6 @@ input_types = Array[int]([5, 15])
 output_types = Array[int]([19, 3])
 building_type = 18
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
-building_size = Vector2(2, 2)
+building_size = Vector2(3, 3)
 building_cost = 80
 building_upkeep = 20

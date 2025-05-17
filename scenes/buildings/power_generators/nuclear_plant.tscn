@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://buy1x4mpuil0m"]
+[gd_scene load_steps=14 format=3 uid="uid://buy1x4mpuil0m"]
 
 [ext_resource type="Script" uid="uid://blam8ysc5pw1h" path="res://scenes/buildings/power_generators/nuclear_plant.gd" id="1_c08f2"]
 [ext_resource type="Resource" uid="uid://c0tro8pwsicts" path="res://resources/buildings/nuclear_plant.tres" id="2_t7cuc"]
+[ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_c8wy6"]
 [ext_resource type="Texture2D" uid="uid://wy4s57w28vpo" path="res://assets/buildings_iso/nuclear_plant_building.png" id="3_wmuqx"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_wmuqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52ked"]
+size = Vector2(96, 96)
 
 [sub_resource type="Curve" id="Curve_c8wy6"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -43,9 +45,11 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_lh4at")
 alpha_curve = SubResource("CurveTexture_raytu")
 
-[node name="NuclearPlant" type="StaticBody2D"]
+[node name="NuclearPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_c08f2")
+smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2"), NodePath("Smoke_v3"), NodePath("Smoke_v4"), NodePath("Smoke_v5"), NodePath("Smoke_v6")]
 building_data = ExtResource("2_t7cuc")
+scene_place_particle = ExtResource("3_c8wy6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_52ked")
@@ -82,3 +86,5 @@ process_material = SubResource("ParticleProcessMaterial_7c5px")
 [node name="Smoke_v3" parent="." instance=ExtResource("4_wmuqx")]
 position = Vector2(32, -28)
 process_material = SubResource("ParticleProcessMaterial_7c5px")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

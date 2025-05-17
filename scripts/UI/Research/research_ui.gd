@@ -28,7 +28,6 @@ var available_research: Array[ResearchData] = [
 	load("res://resources/research_data/biomass_power_plant_unlock.tres"),
 	load("res://resources/research_data/electronics_factory_unlock.tres"),
 	load("res://resources/research_data/engine_factory_unlock.tres"),
-	load("res://resources/research_data/gear_factory_unlock.tres"),
 	load("res://resources/research_data/glassworks_unlock.tres"),
 	load("res://resources/research_data/nuclear_plant_unlock.tres"),
 	load("res://resources/research_data/oil_power_plant_unlock.tres"),

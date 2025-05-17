@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=74 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="Script" uid="uid://btud0tf6wyhq6" path="res://scenes/game.gd" id="1_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
@@ -71,6 +71,7 @@
 [ext_resource type="PackedScene" uid="uid://ddoqkjg5rmpxp" path="res://scenes/buildings/building_blueprints/rocket_launch_pad_blueprint.tscn" id="55_mmvbu"]
 [ext_resource type="PackedScene" uid="uid://b7hjhx2kagc1k" path="res://scenes/buildings/building_blueprints/gathering_buildings/copper_mine_blueprint.tscn" id="57_uxocx"]
 [ext_resource type="PackedScene" uid="uid://c01px6l3e3ce4" path="res://scenes/buildings/building_blueprints/production_buildings/copper_smeltery_blueprint.tscn" id="58_7nv0b"]
+[ext_resource type="PackedScene" uid="uid://c86icppjwet06" path="res://scenes/buildings/building_blueprints/power_generators/oil_power_plant_blueprint.tscn" id="60_sxt1d"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fedci"]
 streams_count = 5
@@ -150,6 +151,7 @@ building_blueprints = Dictionary[int, Resource]({
 22: ExtResource("52_3x28f"),
 23: ExtResource("55_mmvbu"),
 25: ExtResource("54_l6q63"),
+26: ExtResource("60_sxt1d"),
 28: ExtResource("57_uxocx"),
 29: ExtResource("58_7nv0b")
 })

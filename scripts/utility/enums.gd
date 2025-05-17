@@ -167,6 +167,7 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.COPPER_ORE: 7,
 	ResourceType.COPPER_BARS: 15,
 	ResourceType.TOOLS: 35,
+	ResourceType.ENGINE: 50,
 }
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
