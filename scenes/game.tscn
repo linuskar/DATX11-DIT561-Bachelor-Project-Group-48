@@ -51,7 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://7xdlbekfpnhw" path="res://scenes/buildings/production_buildings/tool_factory.tscn" id="31_3x28f"]
 [ext_resource type="PackedScene" uid="uid://3n02qq3l4ykf" path="res://scenes/buildings/rocket_launch_pad.tscn" id="32_weeiq"]
 [ext_resource type="PackedScene" uid="uid://puvqlpxdf7oj" path="res://scenes/buildings/production_buildings/copper_smeltery.tscn" id="33_o8oq8"]
-[ext_resource type="PackedScene" uid="uid://c0qom0xo35ei0" path="res://scenes/buildings/building_blueprints/production_buildings/engine_factory_blueprint.tscn" id="34_753oq"]
+[ext_resource type="PackedScene" uid="uid://dlydrx24clc16" path="res://scenes/buildings/production_buildings/engine_factory.tscn" id="34_7gkqi"]
 [ext_resource type="PackedScene" uid="uid://b48liywofkol4" path="res://scenes/utility/BuildingSelector.tscn" id="36_twgab"]
 [ext_resource type="PackedScene" uid="uid://bs254s4myb4sk" path="res://scenes/utility/research_manager.tscn" id="37_02fa5"]
 [ext_resource type="AudioStream" uid="uid://cos03bvp2sgta" path="res://music/One Man Symphony - A New Day's Hurry (Free)/One Man Symphony - A New Day's Hurry (Free) - 01 A New Day Begins (General Background Music).mp3" id="39_05nbr"]
@@ -74,7 +74,7 @@
 [ext_resource type="PackedScene" uid="uid://c01px6l3e3ce4" path="res://scenes/buildings/building_blueprints/production_buildings/copper_smeltery_blueprint.tscn" id="58_7nv0b"]
 [ext_resource type="PackedScene" uid="uid://c86icppjwet06" path="res://scenes/buildings/building_blueprints/power_generators/oil_power_plant_blueprint.tscn" id="60_sxt1d"]
 [ext_resource type="PackedScene" uid="uid://d23g4wwp0sagp" path="res://scenes/buildings/building_blueprints/gathering_buildings/uranium_mine_blueprint.tscn" id="61_2iuns"]
-[ext_resource type="PackedScene" uid="uid://dlydrx24clc16" path="res://scenes/buildings/production_buildings/engine_factory.tscn" id="63_3x338"]
+[ext_resource type="PackedScene" uid="uid://c0qom0xo35ei0" path="res://scenes/buildings/building_blueprints/production_buildings/engine_factory_blueprint.tscn" id="63_753oq"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fedci"]
 streams_count = 5
@@ -126,7 +126,7 @@ buildings = Dictionary[int, Resource]({
 24: ExtResource("28_ms3bu"),
 25: ExtResource("31_3x28f"),
 26: ExtResource("29_q8j3a"),
-27: ExtResource("34_753oq"),
+27: ExtResource("34_7gkqi"),
 28: ExtResource("30_ms3bu"),
 29: ExtResource("33_o8oq8")
 })
@@ -157,7 +157,7 @@ building_blueprints = Dictionary[int, Resource]({
 24: ExtResource("61_2iuns"),
 25: ExtResource("54_l6q63"),
 26: ExtResource("60_sxt1d"),
-27: ExtResource("63_3x338"),
+27: ExtResource("63_753oq"),
 28: ExtResource("57_uxocx"),
 29: ExtResource("58_7nv0b")
 })

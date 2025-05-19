@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://vtb34heehm3o" path="res://assets/buildings_iso/uranium_mine_building.png" id="3_rlv1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2p1"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [node name="Uranium_Mine_Blueprint" type="Area2D"]
 script = ExtResource("1_rlv1l")
@@ -15,4 +15,5 @@ building_data = ExtResource("2_rlv1l")
 shape = SubResource("RectangleShape2D_qb2p1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.667, 0.667)
 texture = ExtResource("3_rlv1l")

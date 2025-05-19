@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://ql0fl0fj208o"]
+[gd_scene load_steps=16 format=3 uid="uid://ql0fl0fj208o"]
 
 [ext_resource type="Script" uid="uid://bvudq80ea0s68" path="res://scenes/buildings/gathering_buildings/uranium_mine.gd" id="1_3ifgd"]
+[ext_resource type="Resource" uid="uid://cugtvkdc264fb" path="res://resources/buildings/uranium_mine.tres" id="2_4sd66"]
 [ext_resource type="Texture2D" uid="uid://vtb34heehm3o" path="res://assets/buildings_iso/uranium_mine_building.png" id="2_30jra"]
 [ext_resource type="PackedScene" uid="uid://bkqqe6bdw740k" path="res://scenes/buildings/smoke/smoke_v2.tscn" id="3_338uu"]
+[ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="3_uvubj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30jra"]
-size = Vector2(21.3333, 21.3333)
+size = Vector2(64, 64)
 
 [sub_resource type="Curve" id="Curve_f8yp3"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -55,9 +57,10 @@ alpha_curve = SubResource("CurveTexture_klpcp")
 [node name="UraniumMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_3ifgd")
 smokes = [NodePath("Smoke_v2")]
+building_data = ExtResource("2_4sd66")
+scene_place_particle = ExtResource("3_uvubj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_30jra")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -68,3 +71,8 @@ texture = ExtResource("2_30jra")
 position = Vector2(-8, -30)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_4sd66")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
