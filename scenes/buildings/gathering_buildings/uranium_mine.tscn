@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="3_uvubj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30jra"]
-size = Vector2(21.3333, 21.3333)
+size = Vector2(64, 64)
 
 [sub_resource type="Curve" id="Curve_f8yp3"]
 _data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -61,7 +61,6 @@ building_data = ExtResource("2_4sd66")
 scene_place_particle = ExtResource("3_uvubj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_30jra")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
