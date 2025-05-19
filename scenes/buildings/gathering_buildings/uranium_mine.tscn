@@ -74,5 +74,6 @@ emitting = false
 process_material = SubResource("ParticleProcessMaterial_4sd66")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
