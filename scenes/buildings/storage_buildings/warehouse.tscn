@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1nqmw0tgxr05" path="res://scripts/buildings/storage_buildings/warehouse.gd" id="1_5pk0i"]
 [ext_resource type="Resource" uid="uid://ix3necejb3ix" path="res://resources/buildings/warehouse.tres" id="2_4c0dy"]
-[ext_resource type="Texture2D" uid="uid://bk0cwfm4rdk2w" path="res://assets/buildings_iso/warehouse.png" id="3_4c0dy"]
+[ext_resource type="Texture2D" uid="uid://dk6pio7wcs8hg" path="res://assets/buildings_iso/warehouse_building.png" id="4_4c0dy"]
 [ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="5_0mb1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
@@ -17,4 +17,4 @@ scene_place_particle = ExtResource("5_0mb1i")
 shape = SubResource("RectangleShape2D_0igec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_4c0dy")
+texture = ExtResource("4_4c0dy")

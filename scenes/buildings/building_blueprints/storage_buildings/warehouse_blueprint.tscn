@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_akl83"]
 [ext_resource type="Resource" uid="uid://ix3necejb3ix" path="res://resources/buildings/warehouse.tres" id="2_akl83"]
-[ext_resource type="Texture2D" uid="uid://bk0cwfm4rdk2w" path="res://assets/buildings_iso/warehouse.png" id="3_akl83"]
+[ext_resource type="Texture2D" uid="uid://dk6pio7wcs8hg" path="res://assets/buildings_iso/warehouse_building.png" id="3_akl83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0igec"]
 size = Vector2(32, 32)

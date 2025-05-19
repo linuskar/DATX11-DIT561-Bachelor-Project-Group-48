@@ -221,6 +221,7 @@ layout_mode = 2
 
 [node name="BiomassPowerPlantSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("7_2uf64")]
 layout_mode = 2
+icon_path = "uid://ceivsuur00j8s"
 
 [node name="SawMillSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Producing" instance=ExtResource("13_lhb8k")]
 layout_mode = 2
@@ -278,6 +279,7 @@ size_flags_vertical = 0
 
 [node name="WarehouseSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Storing" instance=ExtResource("10_nt76t")]
 layout_mode = 2
+icon_path = "uid://dk6pio7wcs8hg"
 
 [node name="BiomassLandfillSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Storing" instance=ExtResource("11_yhkbe")]
 layout_mode = 2
