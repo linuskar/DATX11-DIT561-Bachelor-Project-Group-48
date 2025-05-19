@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_rm4s0")
-research_id = 0
-research_name = ""
-description = ""
+research_id = 22
+research_name = "Uranium Mine"
+description = "Unlocks the uranium mine. The uranium mine gathers uranium when placed on uranium nodes."
 money_cost = 2000
 resource_cost = Dictionary[int, int]({
 1: 20,
