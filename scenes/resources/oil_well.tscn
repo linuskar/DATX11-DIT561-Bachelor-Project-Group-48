@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bo36u6s8pout"]
 
-[ext_resource type="Script" uid="uid://cdloout2ulhhy" path="res://scenes/resources/oil_well.gd" id="1_eyr01"]
+[ext_resource type="Script" uid="uid://cdloout2ulhhy" path="res://scripts/resources/oil_well.gd" id="1_eyr01"]
 [ext_resource type="Texture2D" uid="uid://chwpl63g3y61e" path="res://assets/oil_source_node.png" id="2_eyr01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qiw3"]

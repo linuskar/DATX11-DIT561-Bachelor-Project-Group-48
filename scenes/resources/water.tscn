@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ulaygdthqy66"]
 
-[ext_resource type="Script" uid="uid://b1w1dsfvf2r8h" path="res://scenes/resources/water.gd" id="1_j2ikp"]
+[ext_resource type="Script" uid="uid://b1w1dsfvf2r8h" path="res://scripts/resources/water.gd" id="1_j2ikp"]
 [ext_resource type="Texture2D" uid="uid://bv7snrwn1r2n4" path="res://assets/Tilesets/Water_tiles.png" id="2_j2ikp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7abp"]
