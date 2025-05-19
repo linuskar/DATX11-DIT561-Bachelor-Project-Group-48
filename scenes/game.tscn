@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b4ie8fujdth75"]
+[gd_scene load_steps=77 format=3 uid="uid://b4ie8fujdth75"]
 
 [ext_resource type="Script" uid="uid://btud0tf6wyhq6" path="res://scenes/game.gd" id="1_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://co61j88eqtd18" path="res://scenes/utility/camera_movement.tscn" id="1_ux6r8"]
@@ -31,11 +31,27 @@
 [ext_resource type="PackedScene" uid="uid://b0ef776hgtpta" path="res://scenes/buildings/building_blueprints/power_generators/biomass_power_plant_blueprint.tscn" id="17_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://chfljd8f6ww5l" path="res://scenes/buildings/building_blueprints/road_blueprint.tscn" id="18_qouja"]
 [ext_resource type="PackedScene" uid="uid://4wqorptqpmal" path="res://scenes/buildings/research/research_lab.tscn" id="18_wljb1"]
+[ext_resource type="PackedScene" uid="uid://bhim0ddsu7b32" path="res://scenes/buildings/gathering_buildings/oil_rig.tscn" id="19_0sl42"]
+[ext_resource type="PackedScene" uid="uid://b7s4g1pq5nc7g" path="res://scenes/buildings/gathering_buildings/sand_collector.tscn" id="20_458eo"]
+[ext_resource type="PackedScene" uid="uid://1rktsuign2af" path="res://scenes/buildings/gathering_buildings/water_pump.tscn" id="21_h3rex"]
+[ext_resource type="PackedScene" uid="uid://cxnkefq0npq8a" path="res://scenes/buildings/production_buildings/oil_refinery.tscn" id="22_h3rex"]
+[ext_resource type="PackedScene" uid="uid://cw03ujy7wulm7" path="res://scenes/buildings/production_buildings/glassworks.tscn" id="23_fedci"]
+[ext_resource type="PackedScene" uid="uid://buy8txkj2fesj" path="res://scenes/buildings/production_buildings/electronics_factory.tscn" id="24_8qswn"]
+[ext_resource type="PackedScene" uid="uid://x5rpjk1ot6sp" path="res://scenes/buildings/power_generators/solar_plant.tscn" id="25_o8ni1"]
+[ext_resource type="PackedScene" uid="uid://d0spxcsdvc4p2" path="res://scenes/buildings/power_generators/wind_turbine.tscn" id="26_3hbvx"]
+[ext_resource type="PackedScene" uid="uid://buy1x4mpuil0m" path="res://scenes/buildings/power_generators/nuclear_plant.tscn" id="27_q8j3a"]
 [ext_resource type="PackedScene" uid="uid://drsrk2maerqd2" path="res://scenes/buildings/building_blueprints/production_buildings/saw_mill_blueprint.tscn" id="27_wljb1"]
+[ext_resource type="PackedScene" uid="uid://ql0fl0fj208o" path="res://scenes/buildings/gathering_buildings/uranium_mine.tscn" id="28_ms3bu"]
 [ext_resource type="PackedScene" uid="uid://cqg67jejofbse" path="res://scenes/buildings/building_blueprints/production_buildings/steel_mill_blueprint.tscn" id="28_v2yb1"]
 [ext_resource type="PackedScene" uid="uid://cn6sefxukvlqm" path="res://scenes/buildings/building_blueprints/production_buildings/gear_factory_blueprint.tscn" id="29_js0lu"]
+[ext_resource type="PackedScene" uid="uid://35jat72r8x6k" path="res://scenes/buildings/power_generators/oil_power_plant.tscn" id="29_q8j3a"]
 [ext_resource type="PackedScene" uid="uid://in383t1pyum1" path="res://scenes/buildings/building_blueprints/research_lab_blueprint.tscn" id="30_gxtfn"]
+[ext_resource type="PackedScene" uid="uid://dh1kidmxc4h2w" path="res://scenes/buildings/gathering_buildings/copper_mine.tscn" id="30_ms3bu"]
 [ext_resource type="PackedScene" uid="uid://dpucfp0jh0mvx" path="res://scenes/buildings/building_blueprints/storage_buildings/steel_scrap_landfill_blueprint.tscn" id="30_twgab"]
+[ext_resource type="PackedScene" uid="uid://7xdlbekfpnhw" path="res://scenes/buildings/production_buildings/tool_factory.tscn" id="31_3x28f"]
+[ext_resource type="PackedScene" uid="uid://3n02qq3l4ykf" path="res://scenes/buildings/rocket_launch_pad.tscn" id="32_weeiq"]
+[ext_resource type="PackedScene" uid="uid://puvqlpxdf7oj" path="res://scenes/buildings/production_buildings/copper_smeltery.tscn" id="33_o8oq8"]
+[ext_resource type="PackedScene" uid="uid://dlydrx24clc16" path="res://scenes/buildings/production_buildings/engine_factory.tscn" id="34_7gkqi"]
 [ext_resource type="PackedScene" uid="uid://b48liywofkol4" path="res://scenes/utility/BuildingSelector.tscn" id="36_twgab"]
 [ext_resource type="PackedScene" uid="uid://bs254s4myb4sk" path="res://scenes/utility/research_manager.tscn" id="37_02fa5"]
 [ext_resource type="AudioStream" uid="uid://cos03bvp2sgta" path="res://music/One Man Symphony - A New Day's Hurry (Free)/One Man Symphony - A New Day's Hurry (Free) - 01 A New Day Begins (General Background Music).mp3" id="39_05nbr"]
@@ -43,6 +59,22 @@
 [ext_resource type="AudioStream" uid="uid://cassuw27v5ddy" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 01 Main Menu Theme.mp3" id="41_oaba0"]
 [ext_resource type="AudioStream" uid="uid://cqu1ydlbtiavm" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 02 Exploration Theme 01.mp3" id="42_458eo"]
 [ext_resource type="AudioStream" uid="uid://cm6f8xjxemvxa" path="res://music/One Man Symphony - Remnants of a Distant World (Free)/One Man Symphony - Remnants of a Distant World (Free) - 03 Exploration Theme 02.mp3" id="43_h3rex"]
+[ext_resource type="PackedScene" uid="uid://bhhd2aon7ictq" path="res://scenes/buildings/building_blueprints/gathering_buildings/oil_rig_blueprint.tscn" id="44_n8ral"]
+[ext_resource type="PackedScene" uid="uid://dgk8kh1ntpdta" path="res://scenes/buildings/building_blueprints/gathering_buildings/sand_collector_blueprint.tscn" id="45_yd4ix"]
+[ext_resource type="PackedScene" uid="uid://ec78nt876671" path="res://scenes/buildings/building_blueprints/gathering_buildings/water_pump_blueprint.tscn" id="46_66xif"]
+[ext_resource type="PackedScene" uid="uid://bokbgwhcie14x" path="res://scenes/buildings/building_blueprints/production_buildings/oil_refinery_blueprint.tscn" id="47_bnuda"]
+[ext_resource type="PackedScene" uid="uid://bj8m2p4p5i0d6" path="res://scenes/buildings/building_blueprints/production_buildings/glassworks_blueprint.tscn" id="48_yd4ix"]
+[ext_resource type="PackedScene" uid="uid://qnbotpfvwjja" path="res://scenes/buildings/building_blueprints/production_buildings/electronics_factory_blueprint.tscn" id="49_bnuda"]
+[ext_resource type="PackedScene" uid="uid://j1uhdqmtm78e" path="res://scenes/buildings/building_blueprints/power_generators/solar_plant_blueprint.tscn" id="50_0rmfi"]
+[ext_resource type="PackedScene" uid="uid://b5owoke6enj8i" path="res://scenes/buildings/building_blueprints/power_generators/wind_turbine_blueprint.tscn" id="51_xbak0"]
+[ext_resource type="PackedScene" uid="uid://30eqq3u63bsd" path="res://scenes/buildings/building_blueprints/power_generators/nuclear_plant_blueprint.tscn" id="52_3x28f"]
+[ext_resource type="PackedScene" uid="uid://b4qrqvoca6ocr" path="res://scenes/buildings/building_blueprints/production_buildings/tool_factory_blueprint.tscn" id="54_l6q63"]
+[ext_resource type="PackedScene" uid="uid://ddoqkjg5rmpxp" path="res://scenes/buildings/building_blueprints/rocket_launch_pad_blueprint.tscn" id="55_mmvbu"]
+[ext_resource type="PackedScene" uid="uid://b7hjhx2kagc1k" path="res://scenes/buildings/building_blueprints/gathering_buildings/copper_mine_blueprint.tscn" id="57_uxocx"]
+[ext_resource type="PackedScene" uid="uid://c01px6l3e3ce4" path="res://scenes/buildings/building_blueprints/production_buildings/copper_smeltery_blueprint.tscn" id="58_7nv0b"]
+[ext_resource type="PackedScene" uid="uid://c86icppjwet06" path="res://scenes/buildings/building_blueprints/power_generators/oil_power_plant_blueprint.tscn" id="60_sxt1d"]
+[ext_resource type="PackedScene" uid="uid://d23g4wwp0sagp" path="res://scenes/buildings/building_blueprints/gathering_buildings/uranium_mine_blueprint.tscn" id="61_2iuns"]
+[ext_resource type="PackedScene" uid="uid://c0qom0xo35ei0" path="res://scenes/buildings/building_blueprints/production_buildings/engine_factory_blueprint.tscn" id="63_753oq"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fedci"]
 streams_count = 5
@@ -80,7 +112,23 @@ buildings = Dictionary[int, Resource]({
 10: ExtResource("16_sgl2t"),
 11: ExtResource("17_qouja"),
 12: ExtResource("18_wljb1"),
-13: ExtResource("17_gxtfn")
+13: ExtResource("17_gxtfn"),
+14: ExtResource("19_0sl42"),
+15: ExtResource("20_458eo"),
+16: ExtResource("21_h3rex"),
+17: ExtResource("22_h3rex"),
+18: ExtResource("23_fedci"),
+19: ExtResource("24_8qswn"),
+20: ExtResource("25_o8ni1"),
+21: ExtResource("26_3hbvx"),
+22: ExtResource("27_q8j3a"),
+23: ExtResource("32_weeiq"),
+24: ExtResource("28_ms3bu"),
+25: ExtResource("31_3x28f"),
+26: ExtResource("29_q8j3a"),
+27: ExtResource("34_7gkqi"),
+28: ExtResource("30_ms3bu"),
+29: ExtResource("33_o8oq8")
 })
 building_blueprints = Dictionary[int, Resource]({
 1: ExtResource("13_bhx41"),
@@ -95,7 +143,23 @@ building_blueprints = Dictionary[int, Resource]({
 10: ExtResource("28_v2yb1"),
 11: ExtResource("29_js0lu"),
 12: ExtResource("30_gxtfn"),
-13: ExtResource("30_twgab")
+13: ExtResource("30_twgab"),
+14: ExtResource("44_n8ral"),
+15: ExtResource("45_yd4ix"),
+16: ExtResource("46_66xif"),
+17: ExtResource("47_bnuda"),
+18: ExtResource("48_yd4ix"),
+19: ExtResource("49_bnuda"),
+20: ExtResource("50_0rmfi"),
+21: ExtResource("51_xbak0"),
+22: ExtResource("52_3x28f"),
+23: ExtResource("55_mmvbu"),
+24: ExtResource("61_2iuns"),
+25: ExtResource("54_l6q63"),
+26: ExtResource("60_sxt1d"),
+27: ExtResource("63_753oq"),
+28: ExtResource("57_uxocx"),
+29: ExtResource("58_7nv0b")
 })
 
 [node name="GameManager" parent="." instance=ExtResource("3_u5sy4")]
@@ -119,9 +183,12 @@ autostart = true
 
 [node name="Background_music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_fedci")
-volume_db = -35.0
+volume_db = -30.0
 autoplay = true
 
 [connection signal="placed_building" from="BuildManager" to="PlayerResources" method="_on_build_manager_placed_building"]
 [connection signal="timeout" from="PlayerResources/Timer" to="PlayerResources" method="_on_timer_timeout"]
 [connection signal="building_wanted" from="UserInterface" to="BuildManager" method="_on_user_interface_building_wanted"]
+[connection signal="finished" from="Background_music" to="." method="_on_background_music_finished"]
+
+[editable path="UserInterface"]

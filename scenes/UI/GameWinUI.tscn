@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnx4fjlr7o5rp"]
+
+[ext_resource type="Script" uid="uid://uo3mj65qq8af" path="res://scripts/UI/game_win_ui.gd" id="1_x1rc0"]
+[ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_i4prv"]
+[ext_resource type="FontFile" uid="uid://cpe8h5aha12sa" path="res://assets/Fonts/PeaberryBase.ttf" id="3_lxwxl"]
+[ext_resource type="StyleBox" uid="uid://kkid7l67y30m" path="res://resources/style_boxes/metal_red_outline_dark.tres" id="4_sisx1"]
+[ext_resource type="StyleBox" uid="uid://cfrsjaqvx0e6h" path="res://resources/style_boxes/ui_panel_dark_selected.tres" id="5_rapmb"]
+[ext_resource type="StyleBox" uid="uid://b8vv62w2erm5g" path="res://resources/style_boxes/ui_panel_dark.tres" id="5_x6v7r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvslv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l02gs"]
+font = ExtResource("3_lxwxl")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rn6eb"]
+font = ExtResource("3_lxwxl")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[node name="GameWinUI" type="Control"]
+custom_minimum_size = Vector2(408, 648)
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.55
+anchor_right = 0.5
+anchor_bottom = 0.55
+offset_left = -240.032
+offset_top = -259.4
+offset_right = 359.968
+offset_bottom = 388.6
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_x1rc0")
+
+[node name="List" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 648.0
+mouse_filter = 1
+
+[node name="ListPanel" type="Panel" parent="List"]
+custom_minimum_size = Vector2(102, 162)
+layout_mode = 1
+offset_right = 150.0
+offset_bottom = 162.0
+scale = Vector2(4, 4)
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_i4prv")
+
+[node name="PanelContainer" type="PanelContainer" parent="List"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.154
+anchor_right = 0.967
+anchor_bottom = 0.968
+offset_left = 0.200001
+offset_top = -80.792
+offset_right = -0.200012
+offset_bottom = 2.73602
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_i4prv")
+
+[node name="ExitButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_direction = 3
+layout_mode = 2
+offset_left = 36.0
+offset_top = 562.0
+offset_right = 282.0
+offset_bottom = 612.0
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_lxwxl")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lvslv")
+theme_override_styles/disabled = ExtResource("4_sisx1")
+theme_override_styles/hover_pressed_mirrored = ExtResource("5_rapmb")
+theme_override_styles/hover = ExtResource("5_x6v7r")
+theme_override_styles/normal = ExtResource("2_i4prv")
+text = "Exit to Desktop"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+offset_left = 152.54
+offset_top = 26.25
+offset_right = 692.54
+offset_bottom = 90.25
+mouse_filter = 1
+text = "You won!"
+label_settings = SubResource("LabelSettings_l02gs")
+
+[node name="Description" type="Label" parent="."]
+custom_minimum_size = Vector2(430, 20)
+layout_mode = 2
+offset_left = 76.29
+offset_top = 213.75
+offset_right = 616.29
+offset_bottom = 237.75
+mouse_filter = 1
+text = "The rocket sucessfully launched!"
+label_settings = SubResource("LabelSettings_rn6eb")
+autowrap_mode = 2

@@ -30,14 +30,17 @@ texture = ExtResource("3_oc4lm")
 autostart = true
 
 [node name="Smoke_v2" parent="." instance=ExtResource("5_oc4lm")]
+modulate = Color(0.478431, 0.478431, 0.478431, 1)
 position = Vector2(-8.64637, -23.88)
 emitting = false
 
 [node name="Smoke_v2_2" parent="." instance=ExtResource("5_oc4lm")]
+modulate = Color(0.478431, 0.478431, 0.478431, 1)
 position = Vector2(0.010253, -27.2544)
 emitting = false
 
 [node name="Smoke_v2_3" parent="." instance=ExtResource("5_oc4lm")]
+modulate = Color(0.478431, 0.478431, 0.478431, 1)
 position = Vector2(19.0324, -26.3278)
 emitting = false
 

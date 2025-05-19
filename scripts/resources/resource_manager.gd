@@ -36,8 +36,18 @@ func init_resources() -> void:
 		
 ## Function for initaliazing a building that is gathering a resource
 func init_building_gathering(building: Building) -> void:
-	if Enums.is_gathering_building(building.building_type):
-		if building is WoodCutter:
+	if building is GatheringBuilding:
+		if building.building_data.can_gather_resource_type == Enums.ResourceType.WATER:
+			var water_tiles: Dictionary[Vector2, GatherableResource] = {}
+			## For gathering on water tiles the building is on
+			var adjusted_pos: Vector2 = building.position 
+			var building_tile_size: Vector2 = building.building_data.building_size
+			adjusted_pos -= Vector2(grid_size * (building_tile_size.x - 1) / 2, 0)
+			adjusted_pos -= Vector2(0, grid_size * (building_tile_size.y -  1) / 2)
+			for tile in map_layer.water_layer.get_children():
+				water_tiles[tile.position] = tile
+			_init_gather_area(0, building_tile_size.x, 0, building_tile_size.y, adjusted_pos, building, water_tiles)
+		elif building is WoodCutter:
 			## For gathering in an area around the building
 			var gather_radius: int = building.building_data.gather_radius
 			_init_gather_area(-gather_radius, gather_radius+1, -gather_radius, gather_radius+1, building.position, building)
@@ -51,14 +61,19 @@ func init_building_gathering(building: Building) -> void:
 			_init_gather_area(0, building_tile_size.x, 0, building_tile_size.y, adjusted_pos, building)
 
 ## Function to get the tiles in the area around the building to gather
-func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos: Vector2, building: Building) -> void:
-	var gather_area_dict: Dictionary[Vector2, GatherableResource] = {}  
+func _init_gather_area(min_x: int, max_x: int, min_y: int, max_y: int, start_pos: Vector2, building: Building, resource_tiles: Dictionary[Vector2, GatherableResource] = {}) -> void:
+	var gather_area_dict: Dictionary[Vector2, GatherableResource] = {}
+	var temp_tiles: Dictionary[Vector2, GatherableResource] = {}
+	if resource_tiles.is_empty():
+		temp_tiles = self.resource_tiles
+	else:
+		temp_tiles = resource_tiles
 	## Iterate around the area centered to be gathered on
 	for x in range(min_x, max_x):
 		for y in range(min_y, max_y):
 			var tile_pos = start_pos + Vector2(x * grid_size, y * grid_size)
-			if is_instance_valid(resource_tiles.get(tile_pos)):
-				var resource_tile: GatherableResource = resource_tiles.get(tile_pos)
+			if is_instance_valid(temp_tiles.get(tile_pos)):
+				var resource_tile: GatherableResource = temp_tiles.get(tile_pos)
 				
 				if resource_tile != null and building.can_gather_resource_type == resource_tile.resource_type:
 					gather_area_dict.set(tile_pos, resource_tile)

@@ -1,0 +1,76 @@
+[gd_scene load_steps=14 format=3 uid="uid://cxnkefq0npq8a"]
+
+[ext_resource type="Script" path="res://scenes/buildings/production_buildings/oil_refinery.gd" id="1_sbtwa"]
+[ext_resource type="Resource" uid="uid://e535t1sb5v55" path="res://resources/buildings/oil_refinery.tres" id="2_kav1w"]
+[ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_jbuk0"]
+[ext_resource type="Texture2D" uid="uid://ccs5uayo56gkc" path="res://assets/buildings_iso/oil_refinery_building.png" id="3_kav1w"]
+[ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_jbuk0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqns7"]
+size = Vector2(96, 96)
+
+[sub_resource type="Curve" id="Curve_y8a2q"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kav1w"]
+curve = SubResource("Curve_y8a2q")
+
+[sub_resource type="Curve" id="Curve_r5ggr"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00719424, -0.00891519), 0.0, 0.0, 0, 0, Vector2(0.97482, 0.995542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jbuk0"]
+curve = SubResource("Curve_r5ggr")
+
+[sub_resource type="Curve" id="Curve_ty020"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1.49012e-08), 0.0, 1.69169, 0, 0, Vector2(0.4, 0.4), 0.81556, 0.81556, 0, 0, Vector2(0.7, 0.8), 1.65217, 1.65217, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_y8a2q"]
+curve = SubResource("Curve_ty020")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y2hkv"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 275.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 9.49949e-08
+orbit_velocity_curve = SubResource("CurveTexture_jbuk0")
+gravity = Vector3(0, -98, 0)
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_y8a2q")
+alpha_curve = SubResource("CurveTexture_kav1w")
+
+[node name="OilRefinery" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
+script = ExtResource("1_sbtwa")
+smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2")]
+building_data = ExtResource("2_kav1w")
+scene_place_particle = ExtResource("3_jbuk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fqns7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_kav1w")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Smoke_v1" parent="." instance=ExtResource("4_jbuk0")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(12, -40)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_y2hkv")
+
+[node name="Smoke_v2" parent="." instance=ExtResource("4_jbuk0")]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(35, -24)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_y2hkv")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

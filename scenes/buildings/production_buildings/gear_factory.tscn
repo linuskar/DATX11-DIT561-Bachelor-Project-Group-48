@@ -61,6 +61,7 @@ texture = ExtResource("1_vsc0x")
 autostart = true
 
 [node name="Smoke_v1" parent="." instance=ExtResource("5_e0qy3")]
+modulate = Color(0.478431, 0.478431, 0.478431, 1)
 position = Vector2(18, -17)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_y5nrc")

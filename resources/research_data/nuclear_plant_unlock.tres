@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://b2oc0c5ev8nj8"]
+
+[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="1_eephw"]
+
+[resource]
+script = ExtResource("1_eephw")
+research_id = 17
+research_name = "Nuclear plant"
+description = "Unlock Nuclear Plant"
+money_cost = 4000
+resource_cost = Dictionary[int, int]({
+11: 50,
+16: 50,
+21: 20
+})
+metadata/_custom_type_script = "uid://cxt2f6o7mobww"

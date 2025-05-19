@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7s4g1pq5nc7g"]
+
+[ext_resource type="Script" uid="uid://db8l0ytyg4l4d" path="res://scenes/buildings/gathering_buildings/sand_collector.gd" id="1_7fb31"]
+[ext_resource type="Resource" uid="uid://dxejc11awrfyg" path="res://resources/buildings/sand_collector.tres" id="2_y2h6b"]
+[ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="3_q7e08"]
+[ext_resource type="Texture2D" uid="uid://dohpboskgevxf" path="res://assets/buildings_iso/sand_collector_building.png" id="3_qsib2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5p7b"]
+size = Vector2(64, 64)
+
+[node name="SandCollector" type="StaticBody2D"]
+script = ExtResource("1_7fb31")
+building_data = ExtResource("2_y2h6b")
+scene_place_particle = ExtResource("3_q7e08")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v5p7b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_qsib2")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

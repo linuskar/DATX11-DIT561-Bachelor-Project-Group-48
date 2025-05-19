@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://3n02qq3l4ykf"]
+
+[ext_resource type="Script" uid="uid://brhi72vbr2mvt" path="res://scenes/buildings/rocket_launch_pad.gd" id="1_6dfnd"]
+[ext_resource type="Resource" uid="uid://cg1c8uq5dbu51" path="res://resources/buildings/rocket_launch_pad.tres" id="2_6fdx6"]
+[ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_p3wys"]
+[ext_resource type="Texture2D" uid="uid://dvk0x5qssjpsn" path="res://assets/buildings_iso/rocket_launchpad_building.png" id="4_c3vh4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fdx6"]
+
+[node name="RocketLaunchPad" type="StaticBody2D"]
+script = ExtResource("1_6dfnd")
+building_data = ExtResource("2_6fdx6")
+scene_place_particle = ExtResource("3_p3wys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6fdx6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_c3vh4")

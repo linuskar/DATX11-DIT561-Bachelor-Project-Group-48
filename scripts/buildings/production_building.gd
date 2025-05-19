@@ -48,7 +48,7 @@ func init_smoke() -> void:
 
 ## Function for emitting smoke when possible.
 func emit_smoke() -> void:
-	if check_if_can_produce() == false or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
+	if check_if_can_produce() == false or PlayerCurrency.player_held_currency < self.building_data.building_upkeep or mode == Enums.ProductionBuildingMode.PAUSED:
 		for smoke in smokes:
 			smoke.emitting = false
 	else:
@@ -85,8 +85,8 @@ func _on_timer_timeout() -> void:
 func _output_resources() -> void:
 	emit_smoke()
 	
-	if !check_if_can_produce() or PlayerCurrency.player_held_currency < self.building_data.building_upkeep:
-		production_cycle.paused = true
+	if !check_if_can_produce() or not check_afford_production():
+		pause_operations()
 	elif mode == Enums.ProductionBuildingMode.PAUSED:
 		pause_operations()
 	else:
@@ -98,6 +98,7 @@ func _output_resources() -> void:
 	
 func _handle_produced_goods() -> void:
 	var produced_resources: Dictionary[Enums.ResourceType, int] = _produce_goods()
+	pay_for_production()
 	for resource in produced_resources.keys():
 		match mode:
 			Enums.ProductionBuildingMode.STORING:
@@ -106,7 +107,6 @@ func _handle_produced_goods() -> void:
 				resources_changed.emit(resource, produced_resources.get(resource))
 			Enums.ProductionBuildingMode.SELLING:
 				PlayerCurrency.add_currency(Enums.get_value_of_resource(resource)*produced_resources.get(resource))
-	PlayerCurrency.remove_currency(self.building_data.building_upkeep)
 	
 ## Function to check if the production building can produce.
 func check_if_can_produce() -> bool:
@@ -260,3 +260,11 @@ func pause_operations() -> void:
 func pause_smokes() -> void:
 	for smoke in smokes:
 		smoke.emitting = false
+
+## Function that uses player currency to pay for the production of resources
+func pay_for_production() -> void:
+	PlayerCurrency.remove_currency(self.building_data.building_upkeep)
+
+## Function checking whether the player has more than a given amount of currency
+func check_afford_production() -> bool:
+	return PlayerCurrency.player_held_currency >= building_data.building_upkeep

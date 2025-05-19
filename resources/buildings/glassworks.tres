@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="ProductionBuildingData" load_steps=2 format=3 uid="uid://c38obejc16nka"]
+
+[ext_resource type="Script" uid="uid://bdhmlhlah8dvo" path="res://scripts/buildings/building_data/production_building_data.gd" id="1_lv1xg"]
+
+[resource]
+script = ExtResource("1_lv1xg")
+input_use_rates = Dictionary[int, int]({
+5: 1,
+15: 5,
+22: 5
+})
+output_generation = Dictionary[int, int]({
+3: 4,
+19: 8
+})
+emissions_radius = Dictionary[int, int]({
+3: 16
+})
+input_recipes = Dictionary[int, Array]({
+0: [15, 5, 22]
+})
+max_storage = Dictionary[int, int]({
+5: 50,
+15: 80,
+19: 50,
+22: 20
+})
+input_types = Array[int]([5, 15, 22])
+output_types = Array[int]([19, 3])
+building_type = 18
+valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
+building_size = Vector2(3, 3)
+building_cost = 80
+building_upkeep = 20

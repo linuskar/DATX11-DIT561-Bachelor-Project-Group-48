@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjthdvxj7p6kc" path="res://scripts/buildings/power_generators/biomass_power_plant.gd" id="1_pu6ix"]
 [ext_resource type="Resource" uid="uid://okbenuas7tpt" path="res://resources/buildings/biomass_power_plant.tres" id="2_n2s4e"]
-[ext_resource type="Texture2D" uid="uid://cyb5gnrnuag2x" path="res://assets/buildings_iso/biomass_power_plant.png" id="3_n2s4e"]
+[ext_resource type="Texture2D" uid="uid://ceivsuur00j8s" path="res://assets/buildings_iso/biomass_power_plant_building.png" id="4_0bwr0"]
 [ext_resource type="PackedScene" uid="uid://crmaq0u0wgneb" path="res://scenes/buildings/smoke/smoke_v3.tscn" id="4_m34gt"]
 [ext_resource type="PackedScene" uid="uid://1md2vp0etsy7" path="res://scenes/buildings/animation/place_particle_medium.tscn" id="4_q2yos"]
 [ext_resource type="PackedScene" uid="uid://d0ydf6r25ra05" path="res://scenes/buildings/smoke/smoke_v4.tscn" id="5_m34gt"]
@@ -20,17 +20,17 @@ scene_place_particle = ExtResource("4_q2yos")
 shape = SubResource("RectangleShape2D_0igec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_n2s4e")
+texture = ExtResource("4_0bwr0")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
 [node name="Smoke_v3" parent="." instance=ExtResource("4_m34gt")]
-position = Vector2(-15.5534, -40.5851)
+position = Vector2(-18, -32)
 emitting = false
 
 [node name="Smoke_v4" parent="." instance=ExtResource("5_m34gt")]
-position = Vector2(25.017, -13.5643)
+position = Vector2(5, -43)
 emitting = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,21 +4,18 @@ class_name Enums
 ## A class that contains all the enums available, making it easier to access
 ## the enums globally accross scripts.
 ##
-
-static var polluting_buildings: Array[BuildingType] = [
-		BuildingType.COAL_MINE, BuildingType.IRON_MINE, 
-		BuildingType.COAL_POWER_PLANT, BuildingType.BIOMASS_POWER_PLANT, 
-		BuildingType.STEEL_MILL, BuildingType.GEAR_FACTORY,
-		BuildingType.SAW_MILL
-		]
-		
+	
 static var byproducts: Array[ResourceType] = [ResourceType.CO2, ResourceType.BIOMASS, ResourceType.S02, ResourceType.N0X, ResourceType.CH4, ResourceType.STEEL_SCRAP]
 
 static var emissions: Array[ResourceType] = [ResourceType.CO2, ResourceType.S02, ResourceType.N0X, ResourceType.CH4]
 
 static var produced_good: Array[ResourceType] = [ResourceType.IRON_ORE, 
 	ResourceType.COAL, ResourceType.ELECTRICITY, ResourceType.WOOD, 
-	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS]
+	ResourceType.STEEL, ResourceType.PLANKS, ResourceType.GEARS,
+	ResourceType.OIL, ResourceType.SAND, ResourceType.WATER,
+	ResourceType.FUEL, ResourceType.PLASTICS, ResourceType.GLASS,
+	ResourceType.ELECTRONICS, ResourceType.URANIUM, ResourceType.TOOLS,
+	ResourceType.ENGINE, ResourceType.COPPER_ORE, ResourceType.COPPER_BARS,]
 
 static var landfills: Array[BuildingType] = [BuildingType.BIOMASS_LANDFILL, BuildingType.STEEL_SCRAP_LANDFILL]
 
@@ -32,6 +29,18 @@ static var resource_image_paths: Dictionary[ResourceType, String] = {
 	ResourceType.PLANKS: "res://assets/UI/Resource UI/planks_resource.png",
 	ResourceType.GEARS: "res://assets/UI/Resource UI/gears_resource.png",
 	ResourceType.STEEL_SCRAP: "res://assets/UI/Resource UI/steel_scrap.png",
+	ResourceType.OIL: "res://assets/UI/Resource UI/crude_oil_resource.png",
+	ResourceType.SAND: "res://assets/UI/Resource UI/sand_resource.png",
+	ResourceType.WATER: "res://assets/UI/Resource UI/water_resource.png",
+	ResourceType.FUEL: "res://assets/UI/Resource UI/fuel_resource.png",
+	ResourceType.PLASTICS: "res://assets/UI/Resource UI/plastics_resource.png",
+	ResourceType.GLASS: "res://assets/UI/Resource UI/glass_sheets_resource.png",
+	ResourceType.ELECTRONICS: "res://assets/UI/Resource UI/circuit_board_resource.png",
+	ResourceType.URANIUM: "res://assets/UI/Resource UI/uranium_resource.png",
+	ResourceType.TOOLS: "res://assets/UI/Resource UI/tools_resource.png",
+	ResourceType.ENGINE: "res://assets/UI/Resource UI/engine_resource.png",
+	ResourceType.COPPER_ORE: "res://assets/UI/Resource UI/copper_ore_resource.png",
+	ResourceType.COPPER_BARS: "res://assets/UI/Resource UI/copper_bars_resource.png",
 }
 
 static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
@@ -49,6 +58,18 @@ static var resource_names_type_to_string: Dictionary[ResourceType, String] = {
 		ResourceType.N0X: "NOx",
 		ResourceType.CH4: "CH4",
 		ResourceType.NONE: "NONE",
+		ResourceType.OIL: "OIL",
+		ResourceType.SAND: "SAND",
+		ResourceType.WATER: "WATER",
+		ResourceType.FUEL: "FUEL",
+		ResourceType.PLASTICS: "PLASTICS",
+		ResourceType.GLASS: "GLASS",
+		ResourceType.ELECTRONICS: "ELECTRONICS",
+		ResourceType.URANIUM: "URANIUM",
+		ResourceType.TOOLS: "TOOLS",
+		ResourceType.ENGINE: "ENGINE",
+		ResourceType.COPPER_ORE: "COPPER ORE",
+		ResourceType.COPPER_BARS: "COPPER BARS",
 	}	
 	
 static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
@@ -66,6 +87,18 @@ static var resource_names_string_to_type: Dictionary[String, ResourceType] = {
 		"NOx": ResourceType.N0X,
 		"CH4": ResourceType.CH4,
 		"NONE": ResourceType.NONE,
+		"OIL": ResourceType.OIL,
+		"SAND": ResourceType.SAND,
+		"WATER": ResourceType.WATER,
+		"FUEL": ResourceType.FUEL,
+		"PLASTICS": ResourceType.PLASTICS,
+		"GLASS": ResourceType.GLASS,
+		"ELECTRONICS": ResourceType.ELECTRONICS,
+		"URANIUM": ResourceType.URANIUM,
+		"TOOLS": ResourceType.TOOLS,
+		"ENGINE": ResourceType.ENGINE,
+		"COPPER ORE": ResourceType.COPPER_ORE,
+		"COPPER BARS": ResourceType.COPPER_BARS,
 	}
 
 static var building_names: Dictionary[BuildingType, String] = {
@@ -83,6 +116,22 @@ static var building_names: Dictionary[BuildingType, String] = {
 	BuildingType.GEAR_FACTORY: "GEAR FACTORY",
 	BuildingType.RESEARCH_LAB: "RESEARCH LAB",
 	BuildingType.STEEL_SCRAP_LANDFILL: "STEEL SCRAP LANDFILL",
+	BuildingType.OIL_RIG: "OIL RIG",
+	BuildingType.SAND_COLLECTOR: "SAND COLLECTOR",
+	BuildingType.WATER_PUMP: "WATER PUMP",
+	BuildingType.OIL_REFINERY: "OIL REFINERY",
+	BuildingType.GLASSWORKS: "GLASSWORKS",
+	BuildingType.ELECTRONICS_FACTORY: "ELECTRONICS FACTORY",
+	BuildingType.SOLAR_PLANT: "SOLAR PLANT",
+	BuildingType.WIND_TURBINE: "WIND TURBINE",
+	BuildingType.NUCLEAR_PLANT: "NUCLEAR PLANT",
+	BuildingType.ROCKET_LAUNCH_PAD: "ROCKET LAUNCH PAD",
+	BuildingType.URANIUM_MINE: "URANIUM MINE",
+	BuildingType.TOOL_FACTORY: "TOOL FACTORY",
+	BuildingType.OIL_POWER_PLANT: "OIL POWER PLANT",
+	BuildingType.ENGINE_FACTORY: "ENGINE FACTORY",
+	BuildingType.COPPER_MINE: "COPPER MINE",
+	BuildingType.COPPER_SMELTERY: "COPPER SMELTERY",
 	}
 	
 static var warehouses: Dictionary[BuildingType, String] = {
@@ -107,6 +156,18 @@ static var resource_costs: Dictionary[ResourceType, int] = {
 	ResourceType.STEEL: 10,
 	ResourceType.PLANKS: 16,
 	ResourceType.GEARS: 20,
+	ResourceType.SAND: 1,
+	ResourceType.WATER: 2,
+	ResourceType.OIL: 8,
+	ResourceType.PLASTICS: 30,
+	ResourceType.FUEL: 40,
+	ResourceType.ELECTRONICS: 80,
+	ResourceType.GLASS: 5,
+	ResourceType.URANIUM: 0,
+	ResourceType.COPPER_ORE: 7,
+	ResourceType.COPPER_BARS: 15,
+	ResourceType.TOOLS: 35,
+	ResourceType.ENGINE: 50,
 }
 
 static var emissions_contributing_to_wildfires: Dictionary[ResourceType, String] = {
@@ -147,20 +208,32 @@ static func mode_to_string(mode: ProductionBuildingMode) -> String:
 
 ## The different types of resources in the game
 enum ResourceType {
-	IRON_ORE, ## The resource type for iron ore
+	IRON_ORE, ## The resource type for iron ore #0 in list
 	COAL, ## The resource type for coal
 	WOOD, ## The resource type for wood
 	CO2, ## The resource type for carbon dioxide
 	S02, ## The resource type for sulfur dioxide
-	ELECTRICITY, ## The resource type for electricity
+	ELECTRICITY, ## The resource type for electricity #5 in list
 	BIOMASS, ## The resource type for biomass
 	N0X, ## The resource type for nitrogen oxides
 	CH4, ## The resource type for methane
 	NONE, ## The resource type for nothing
-	PLANKS, ## The resource type for planks
+	PLANKS, ## The resource type for planks #10 in list
 	STEEL, ## The resource type for steel
 	GEARS, ## The resource type for gears
 	STEEL_SCRAP, ## The resource type for STEEL SCRAP
+	OIL, ## The resource type for crude oil
+	SAND, ## The resource type for sand #15 in list
+	WATER, ## The resource type for water droplet
+	FUEL, ## The resource type for fuel
+	PLASTICS, ## The resource type for plastics
+	GLASS, ## The resource type for glass
+	ELECTRONICS, ## The resource type for electronics #20 in list
+	URANIUM, ## The resource type for uranium
+	TOOLS, ## The resource type for tools
+	ENGINE, ## The resource type for engine
+	COPPER_ORE, ## The resource type for copper ore
+	COPPER_BARS, ## The resource type for copper bars #25 in list
 }
 
 ## The different types of buildings in the game
@@ -179,7 +252,23 @@ enum BuildingType {
 	STEEL_MILL, ## The building type for a steel mill 
 	GEAR_FACTORY, ## The building type for a gear factory
 	RESEARCH_LAB, ## The building type for a research lab
-	STEEL_SCRAP_LANDFILL ## The building type for a STEEL SCRAP landfill,
+	STEEL_SCRAP_LANDFILL, ## The building type for a steel scrap landfill,
+	OIL_RIG, ## The building type for an oil rig
+	SAND_COLLECTOR, ## The building type for a sand collector
+	WATER_PUMP, ## The building type for a water pump
+	OIL_REFINERY, ## The building type for an oil refinery
+	GLASSWORKS, ## The building type for a glassworks
+	ELECTRONICS_FACTORY, ## The building type for an electronics factory
+	SOLAR_PLANT, ## The building type for a solar plant
+	WIND_TURBINE, ## The building type for a wind turbine
+	NUCLEAR_PLANT, ## The building type for a nuclear plant
+	ROCKET_LAUNCH_PAD, ## The building type for a rocket launch pad
+	URANIUM_MINE, ## The building type for a uranium mine
+	TOOL_FACTORY, ## The building type for a tool factory
+	OIL_POWER_PLANT, ## The building type for an oil power plant
+	ENGINE_FACTORY, ## The building type for an engine factory
+	COPPER_MINE, ## The building type for a copper mine
+	COPPER_SMELTERY, ## The building type for a copper smeltery
 }
 
 static var building_data: Dictionary[BuildingType, Resource] = {
@@ -196,11 +285,37 @@ static var building_data: Dictionary[BuildingType, Resource] = {
 	BuildingType.GEAR_FACTORY: load("res://resources/buildings/gear_factory.tres"),
 	BuildingType.RESEARCH_LAB: load("res://resources/buildings/research_lab.tres"),
 	BuildingType.STEEL_SCRAP_LANDFILL: load("res://resources/buildings/steel_scrap_landfill.tres"),
+	BuildingType.OIL_RIG: load("res://resources/buildings/oil_rig.tres"), 
+	BuildingType.SAND_COLLECTOR: load("res://resources/buildings/sand_collector.tres"),
+	BuildingType.WATER_PUMP: load("res://resources/buildings/water_pump.tres"),
+	BuildingType.OIL_REFINERY: load("res://resources/buildings/oil_refinery.tres"),
+	BuildingType.GLASSWORKS: load("res://resources/buildings/glassworks.tres"), 
+	BuildingType.ELECTRONICS_FACTORY: load("res://resources/buildings/electronics_factory.tres"), 
+	BuildingType.SOLAR_PLANT: load("res://resources/buildings/solar_plant.tres"), 
+	BuildingType.WIND_TURBINE: load("res://resources/buildings/solar_plant.tres"),
+	BuildingType.NUCLEAR_PLANT: load("res://resources/buildings/nuclear_plant.tres"),
+	BuildingType.ROCKET_LAUNCH_PAD: load("res://scenes/buildings/rocket_launch_pad.tscn"), ## To be added when Noel makes a rocket building
+	BuildingType.URANIUM_MINE: load("res://scenes/buildings/gathering_buildings/uranium_mine.tscn"), ## There is currently no building data for a uranium mine
+	BuildingType.TOOL_FACTORY: load("res://scenes/buildings/production_buildings/tool_factory.tscn"), ## There is currently no tool factory
+	BuildingType.OIL_POWER_PLANT: load("res://scenes/buildings/power_generators/oil_power_plant.tscn"), ## There is currently no data for oil power plant
+	BuildingType.ENGINE_FACTORY: load("res://scenes/buildings/production_buildings/engine_factory.tscn"), ## There is no data 
+	BuildingType.COPPER_MINE: load("res://scenes/buildings/gathering_buildings/copper_mine.tscn"), 
+	BuildingType.COPPER_SMELTERY: load("res://scenes/buildings/production_buildings/copper_smeltery.tscn"), 
 }
+
+static var gathering_buildings: Array[BuildingType] = [
+	BuildingType.IRON_MINE,
+	BuildingType.COAL_MINE,
+	BuildingType.WOOD_CUTTER,
+	BuildingType.SAND_COLLECTOR,
+	BuildingType.WATER_PUMP,
+	BuildingType.OIL_RIG,
+	BuildingType.URANIUM_MINE,
+	BuildingType.COPPER_MINE,
+]
 
 ## Function for checking if the BuildingType is a gathering building
 static func is_gathering_building(building_type: BuildingType) -> bool:
-	var gathering_buildings: Array[BuildingType] = [BuildingType.IRON_MINE, BuildingType.COAL_MINE, BuildingType.WOOD_CUTTER]
 	return building_type in gathering_buildings
 	
 ## Function for checking if the BuildingType is a power generator
@@ -260,6 +375,18 @@ enum ResearchID {
 	TE, ## Total emissions statistics
 	WE, ## Wildfire emissions statistics
 	SE, ## Smog emissions statistics
+	ORG_0, ## Oil rig unlock
+	ORY_0, ## Oil refinery unlock
+	GL_0, ## Glassworks unlock
+	EF_0, ## Electronics factory unlock
+	SP_0, ## Solar plant unlock
+	WT_0, ## Windturbine unlock
+	NP_0, ## Nuclear plant unlock
+	RLP_0, ## Rocket launchpad unlock
+	TF_0, ## Tool factory unlock
+	OPP_0, ## Oil power plant unlock
+	EngF_0, ## Engine factory unlock
+	UM_0, ## Uranium mine unlock
 }
 
 static var building_research: Dictionary[BuildingType, Array] = {
@@ -290,8 +417,13 @@ enum TreeSize {
 	LARGE,
 }
 
-static func is_a_polluting_building(building_type: BuildingType) -> bool:
-	return building_type in polluting_buildings
+static func is_a_polluting_building(building_data: BuildingData) -> bool:
+	if building_data is ProductionBuildingData:
+		for output in building_data.output_types:
+			if is_emission(output):
+				return true
+	return false
+	#return building_type in polluting_buildings
 	
 static func is_warehouse(building_type: Enums.BuildingType) -> bool:
 	return building_type in warehouses

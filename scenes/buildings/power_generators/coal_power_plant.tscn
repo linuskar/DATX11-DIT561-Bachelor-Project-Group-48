@@ -71,26 +71,31 @@ texture = ExtResource("3_f2q00")
 autostart = true
 
 [node name="Smoke_v3" parent="." instance=ExtResource("5_f2q00")]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-8, -40.6934)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_f2q00")
 
 [node name="Smoke_v4" parent="." instance=ExtResource("6_6supy")]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(5, -27)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_f2q00")
 
 [node name="Smoke_v5" parent="." instance=ExtResource("5_f2q00")]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(20, -21)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_f2q00")
 
 [node name="Smoke_v6" parent="." instance=ExtResource("5_f2q00")]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(35, -16)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_f2q00")
 
 [node name="Smoke_v7" parent="." instance=ExtResource("5_f2q00")]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(45.6848, -8.6848)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_f2q00")

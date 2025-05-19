@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3p5ek6h1pshu"]
+
+[ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/resources/gatherable_resource.gd" id="1_1oiec"]
+[ext_resource type="Texture2D" uid="uid://b7lnq5nirbs7n" path="res://assets/uranium_ore_spritesheet.png" id="2_1oiec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7abp"]
+size = Vector2(32, 32)
+
+[node name="UraniumOre" type="Area2D"]
+script = ExtResource("1_1oiec")
+quantity = 200
+resource_type = 21
+metadata/_custom_type_script = "uid://bmd2n814mv2li"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_q7abp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1oiec")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

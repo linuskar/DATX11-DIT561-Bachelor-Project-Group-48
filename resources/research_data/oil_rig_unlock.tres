@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://cocxno5k462u1"]
+
+[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="1_1cldv"]
+
+[resource]
+script = ExtResource("1_1cldv")
+research_id = 11
+research_name = "Oil Rig"
+description = "Unlock oil rig"
+money_cost = 2000
+resource_cost = Dictionary[int, int]({
+11: 100,
+12: 50
+})
+metadata/_custom_type_script = "uid://cxt2f6o7mobww"

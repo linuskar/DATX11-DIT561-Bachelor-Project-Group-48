@@ -7,7 +7,7 @@ script = ExtResource("1_knxyy")
 research_id = 6
 research_name = "Gear Factory"
 description = "Unlocks the Gear Factory. The Gear Factory, when powered, will turn your steel into gears, as long as you take care of the leftover steel scrap."
-money_cost = 3500
+money_cost = 2500
 resource_cost = Dictionary[int, int]({
 5: 150,
 10: 30,

@@ -1,0 +1,78 @@
+[gd_scene load_steps=16 format=3 uid="uid://buy1x4mpuil0m"]
+
+[ext_resource type="Script" uid="uid://blam8ysc5pw1h" path="res://scenes/buildings/power_generators/nuclear_plant.gd" id="1_c08f2"]
+[ext_resource type="Resource" uid="uid://c0tro8pwsicts" path="res://resources/buildings/nuclear_plant.tres" id="2_t7cuc"]
+[ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_c8wy6"]
+[ext_resource type="Texture2D" uid="uid://wy4s57w28vpo" path="res://assets/buildings_iso/nuclear_plant_building.png" id="3_wmuqx"]
+[ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="4_wmuqx"]
+[ext_resource type="PackedScene" uid="uid://crmaq0u0wgneb" path="res://scenes/buildings/smoke/smoke_v3.tscn" id="6_1l5pp"]
+[ext_resource type="PackedScene" uid="uid://d0ydf6r25ra05" path="res://scenes/buildings/smoke/smoke_v4.tscn" id="7_7osqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52ked"]
+size = Vector2(96, 96)
+
+[sub_resource type="Curve" id="Curve_c8wy6"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_raytu"]
+curve = SubResource("Curve_c8wy6")
+
+[sub_resource type="Curve" id="Curve_1l5pp"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00719424, -0.00891519), 0.0, 0.0, 0, 0, Vector2(0.97482, 0.995542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7osqp"]
+curve = SubResource("Curve_1l5pp")
+
+[sub_resource type="Curve" id="Curve_ua7ur"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1.49012e-08), 0.0, 1.69169, 0, 0, Vector2(0.4, 0.4), 0.81556, 0.81556, 0, 0, Vector2(0.7, 0.8), 1.65217, 1.65217, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_lh4at"]
+curve = SubResource("Curve_ua7ur")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7c5px"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 275.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 9.49949e-08
+orbit_velocity_curve = SubResource("CurveTexture_7osqp")
+gravity = Vector3(0, -98, 0)
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_lh4at")
+alpha_curve = SubResource("CurveTexture_raytu")
+
+[node name="NuclearPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
+script = ExtResource("1_c08f2")
+smokes = [NodePath("Smoke_v3"), NodePath("Smoke_v4"), NodePath("Smoke_v5")]
+building_data = ExtResource("2_t7cuc")
+scene_place_particle = ExtResource("3_c8wy6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_52ked")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_wmuqx")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Smoke_v3" parent="." instance=ExtResource("4_wmuqx")]
+position = Vector2(32, -28)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_7c5px")
+
+[node name="Smoke_v4" parent="." instance=ExtResource("6_1l5pp")]
+position = Vector2(6, -23)
+emitting = false
+
+[node name="Smoke_v5" parent="." instance=ExtResource("7_7osqp")]
+position = Vector2(-23, -34)
+emitting = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

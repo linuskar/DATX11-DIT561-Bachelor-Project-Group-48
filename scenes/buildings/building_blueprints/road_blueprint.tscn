@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0rvbghldeyhr" path="res://scripts/buildings/blueprints/building_blueprint.gd" id="1_d2c06"]
 [ext_resource type="Resource" uid="uid://dr8i1lynkasf7" path="res://resources/buildings/road.tres" id="2_d2c06"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ahlc7"]
-load_path = "res://.godot/imported/road_tilemap-Sheet.png-64c168fa835354dc6d0211c2fe157e65.ctex"
+[ext_resource type="Texture2D" uid="uid://xlj8h8qm5ryy" path="res://assets/road/road_tilemap-Sheet-export.png" id="3_acg36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67t7r"]
 size = Vector2(32, 32)
@@ -14,10 +12,9 @@ script = ExtResource("1_d2c06")
 building_data = ExtResource("2_d2c06")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("CompressedTexture2D_ahlc7")
+texture = ExtResource("3_acg36")
 hframes = 4
-vframes = 3
-frame = 3
+vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_67t7r")

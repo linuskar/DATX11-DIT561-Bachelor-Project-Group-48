@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://csdjsjq4n5751"]
 
 [ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/resources/gatherable_resource.gd" id="1_o8yg8"]
-[ext_resource type="Texture2D" uid="uid://cc4iew34euvsf" path="res://assets/iron_ore_spritesheet.png" id="2_rhhfs"]
+[ext_resource type="Texture2D" uid="uid://bbq8hl57bqr2y" path="res://assets/iron_ore_spritesheet.png" id="2_rhhfs"]
 [ext_resource type="Texture2D" uid="uid://dmdmdv4pugn0y" path="res://assets/pickaxe_32.png" id="3_rhhfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laj1l"]

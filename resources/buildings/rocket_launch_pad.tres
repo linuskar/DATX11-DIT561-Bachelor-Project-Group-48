@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="StorageBuildingData" load_steps=2 format=3 uid="uid://cg1c8uq5dbu51"]
+
+[ext_resource type="Script" uid="uid://biaknkwuc2qk8" path="res://scripts/buildings/building_data/storage_building_data.gd" id="1_wy5gk"]
+
+[resource]
+script = ExtResource("1_wy5gk")
+max_storage = Dictionary[int, int]({})
+input_types = Array[int]([])
+output_types = Array[int]([])
+building_type = 23
+valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
+building_size = Vector2(5, 5)
+building_cost = 5000
+building_upkeep = 0

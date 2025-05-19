@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddlrram6t66pk"]
+
+[ext_resource type="Script" uid="uid://bmd2n814mv2li" path="res://scripts/resources/gatherable_resource.gd" id="1_18xr8"]
+[ext_resource type="Texture2D" uid="uid://2oq58pbfulrb" path="res://assets/copper_ore_spritesheet.png" id="2_k6tcr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i74b6"]
+size = Vector2(32, 32)
+
+[node name="CopperOre" type="Area2D"]
+script = ExtResource("1_18xr8")
+quantity = 300
+resource_type = 24
+metadata/_custom_type_script = "uid://bmd2n814mv2li"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_i74b6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_k6tcr")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

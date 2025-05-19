@@ -158,7 +158,7 @@ func get_ouputs_text(building_data: ProductionBuildingData) -> String:
 ## Gets text representing what the emissions are for a building, if it has any
 func get_emissions_text(building_data: ProductionBuildingData) -> String:
 	var text: String = ""
-	if Enums.is_a_polluting_building(building_data.building_type):
+	if Enums.is_a_polluting_building(building_data):
 		text += "\nEmissions\n"
 		for output in building_data.output_generation.keys():
 			if Enums.is_emission(output):
