@@ -17,14 +17,15 @@ emissions_radius = Dictionary[int, int]({
 3: 16
 })
 input_recipes = Dictionary[int, Array]({
-0: [15, 5]
+0: [15, 5, 22]
 })
 max_storage = Dictionary[int, int]({
 5: 50,
 15: 80,
-19: 50
+19: 50,
+22: 20
 })
-input_types = Array[int]([5, 15])
+input_types = Array[int]([5, 15, 22])
 output_types = Array[int]([19, 3])
 building_type = 18
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])

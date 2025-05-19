@@ -4,20 +4,29 @@
 
 [resource]
 script = ExtResource("1_s75qy")
-input_use_rates = Dictionary[int, int]({})
-output_generation = Dictionary[int, int]({
-3: 5,
-5: 5
+input_use_rates = Dictionary[int, int]({
+14: 5,
+16: 2
 })
-emissions_radius = Dictionary[int, int]({})
-input_recipes = Dictionary[int, Array]({})
+output_generation = Dictionary[int, int]({
+3: 10,
+4: 8,
+5: 30
+})
+emissions_radius = Dictionary[int, int]({
+3: 16,
+4: 16
+})
+input_recipes = Dictionary[int, Array]({
+0: [16, 14]
+})
 max_storage = Dictionary[int, int]({
 5: 1000
 })
-input_types = Array[int]([])
-output_types = Array[int]([])
+input_types = Array[int]([16, 14])
+output_types = Array[int]([5, 3, 4])
 building_type = 26
-valid_tile_types_to_place_on = Array[int]([])
+valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(3, 3)
-building_cost = 0
-building_upkeep = 0
+building_cost = 250
+building_upkeep = 50
