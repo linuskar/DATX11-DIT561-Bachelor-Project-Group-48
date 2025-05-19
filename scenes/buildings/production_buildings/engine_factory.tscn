@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlydrx24clc16"]
+[gd_scene load_steps=13 format=3 uid="uid://dlydrx24clc16"]
 
 [ext_resource type="Script" uid="uid://dyx0cl53j3t7s" path="res://scenes/buildings/production_buildings/engine_factory.gd" id="1_5cr7t"]
 [ext_resource type="Texture2D" uid="uid://bbbmvlgr8dwk0" path="res://assets/buildings_iso/engine_factory_building.png" id="2_t1mow"]
+[ext_resource type="Resource" uid="uid://b21xxn0j46w0u" path="res://resources/buildings/engine_factory.tres" id="2_v6rq2"]
 [ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="3_h2jpr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1mow"]
@@ -46,6 +47,7 @@ alpha_curve = SubResource("CurveTexture_h0ntk")
 [node name="EngineFactory" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5cr7t")
 smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2")]
+building_data = ExtResource("2_v6rq2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t1mow")
