@@ -58,11 +58,13 @@ shape = SubResource("RectangleShape2D_t1mow")
 texture = ExtResource("2_t1mow")
 
 [node name="Smoke_v1" parent="." instance=ExtResource("3_h2jpr")]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-26, -33)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_cbrkj")
 
 [node name="Smoke_v2" parent="." instance=ExtResource("3_h2jpr")]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(-11, -39)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_cbrkj")

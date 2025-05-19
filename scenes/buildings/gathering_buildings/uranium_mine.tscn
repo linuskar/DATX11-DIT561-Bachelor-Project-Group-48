@@ -68,6 +68,7 @@ scale = Vector2(0.667, 0.667)
 texture = ExtResource("2_30jra")
 
 [node name="Smoke_v2" parent="." instance=ExtResource("3_338uu")]
+modulate = Color(0.47788, 0.47788, 0.47788, 1)
 position = Vector2(-8, -30)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_4sd66")
