@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0spxcsdvc4p2"]
 
-[ext_resource type="Script" uid="uid://crj0u20b716gl" path="res://scenes/buildings/power_generators/wind_turbine.gd" id="1_m55cc"]
+[ext_resource type="Script" path="res://scenes/buildings/power_generators/wind_turbine.gd" id="1_m55cc"]
 [ext_resource type="Resource" uid="uid://rqk78xvb4mmr" path="res://resources/buildings/wind_turbine.tres" id="2_gnsx8"]
 [ext_resource type="PackedScene" uid="uid://bouaar65sta4q" path="res://scenes/buildings/animation/place_particle_small.tscn" id="3_g3wbt"]
 [ext_resource type="Texture2D" uid="uid://piem0k8laadn" path="res://assets/buildings_iso/wind_turbine_building.png" id="3_gnsx8"]

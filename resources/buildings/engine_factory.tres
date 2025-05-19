@@ -35,4 +35,4 @@ building_type = 27
 valid_tile_types_to_place_on = Array[int]([1, 2, 3, 4])
 building_size = Vector2(3, 3)
 building_cost = 500
-building_upkeep = 100
+building_upkeep = 400
