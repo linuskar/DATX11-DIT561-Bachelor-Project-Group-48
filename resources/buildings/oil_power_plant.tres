@@ -21,7 +21,9 @@ input_recipes = Dictionary[int, Array]({
 0: [16, 14]
 })
 max_storage = Dictionary[int, int]({
-5: 1000
+5: 1000,
+14: 100,
+16: 60
 })
 input_types = Array[int]([16, 14])
 output_types = Array[int]([5, 3, 4])
