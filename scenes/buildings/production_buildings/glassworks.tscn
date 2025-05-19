@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cw03ujy7wulm7"]
 
-[ext_resource type="Script" uid="uid://xipcvymy4rah" path="res://scenes/buildings/production_buildings/glassworks.gd" id="1_5n5v5"]
+[ext_resource type="Script" path="res://scenes/buildings/production_buildings/glassworks.gd" id="1_5n5v5"]
 [ext_resource type="Resource" uid="uid://c38obejc16nka" path="res://resources/buildings/glassworks.tres" id="2_on0h8"]
 [ext_resource type="Texture2D" uid="uid://jy52drtirq27" path="res://assets/buildings_iso/glass_works_building.png" id="3_8s3bt"]
 [ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_r3eh6"]
@@ -47,7 +47,7 @@ alpha_curve = SubResource("CurveTexture_75w0r")
 
 [node name="Glassworks" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5n5v5")
-smokes = [NodePath("Smoke_v1")]
+smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2")]
 building_data = ExtResource("2_on0h8")
 scene_place_particle = ExtResource("3_r3eh6")
 
@@ -61,7 +61,12 @@ texture = ExtResource("3_8s3bt")
 autostart = true
 
 [node name="Smoke_v1" parent="." instance=ExtResource("4_r3eh6")]
-position = Vector2(20, -25)
+position = Vector2(9, -37)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_ygr56")
+
+[node name="Smoke_v2" parent="." instance=ExtResource("4_r3eh6")]
+position = Vector2(-1, -42)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_ygr56")
 

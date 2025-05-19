@@ -73,12 +73,12 @@ texture = ExtResource("2_v2s3n")
 autostart = true
 
 [node name="Smoke_v1" parent="." instance=ExtResource("5_6pgbm")]
-position = Vector2(15.8865, -25.0164)
+position = Vector2(9, -20)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_u3du3")
 
 [node name="Smoke_v2" parent="." instance=ExtResource("5_6pgbm")]
-position = Vector2(23.949, -12.6954)
+position = Vector2(18, -16)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_rwtbc")
 

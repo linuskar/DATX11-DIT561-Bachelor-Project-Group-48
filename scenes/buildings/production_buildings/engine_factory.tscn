@@ -1,16 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlydrx24clc16"]
+[gd_scene load_steps=12 format=3 uid="uid://dlydrx24clc16"]
 
 [ext_resource type="Script" uid="uid://dyx0cl53j3t7s" path="res://scenes/buildings/production_buildings/engine_factory.gd" id="1_5cr7t"]
 [ext_resource type="Texture2D" uid="uid://bbbmvlgr8dwk0" path="res://assets/buildings_iso/engine_factory_building.png" id="2_t1mow"]
+[ext_resource type="PackedScene" uid="uid://ccfw7wojsmb1t" path="res://scenes/buildings/smoke/smoke_v1.tscn" id="3_h2jpr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1mow"]
 size = Vector2(96, 96)
 
-[node name="EngineFactory" type="StaticBody2D"]
+[sub_resource type="Curve" id="Curve_v6rq2"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h0ntk"]
+curve = SubResource("Curve_v6rq2")
+
+[sub_resource type="Curve" id="Curve_uopa5"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.00719424, -0.00891519), 0.0, 0.0, 0, 0, Vector2(0.97482, 0.995542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5hp18"]
+curve = SubResource("Curve_uopa5")
+
+[sub_resource type="Curve" id="Curve_vlkdy"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1.49012e-08), 0.0, 1.69169, 0, 0, Vector2(0.4, 0.4), 0.81556, 0.81556, 0, 0, Vector2(0.7, 0.8), 1.65217, 1.65217, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_742wd"]
+curve = SubResource("Curve_vlkdy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cbrkj"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 275.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = 9.49949e-08
+orbit_velocity_curve = SubResource("CurveTexture_5hp18")
+gravity = Vector3(0, -98, 0)
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_742wd")
+alpha_curve = SubResource("CurveTexture_h0ntk")
+
+[node name="EngineFactory" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_5cr7t")
+smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t1mow")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_t1mow")
+
+[node name="Smoke_v1" parent="." instance=ExtResource("3_h2jpr")]
+position = Vector2(-26, -33)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_cbrkj")
+
+[node name="Smoke_v2" parent="." instance=ExtResource("3_h2jpr")]
+position = Vector2(-11, -39)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_cbrkj")
