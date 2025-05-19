@@ -295,12 +295,12 @@ static var building_data: Dictionary[BuildingType, Resource] = {
 	BuildingType.WIND_TURBINE: load("res://resources/buildings/solar_plant.tres"),
 	BuildingType.NUCLEAR_PLANT: load("res://resources/buildings/nuclear_plant.tres"),
 	BuildingType.ROCKET_LAUNCH_PAD: load("res://scenes/buildings/rocket_launch_pad.tscn"), ## To be added when Noel makes a rocket building
-	#BuildingType.URANIUM_MINE: load(), ## There is currently no building data for a uranium mine
-	#BuildingType.TOOL_FACTORY: load(), ## There is currently no tool factory
-	#BuildingType.OIL_POWER_PLANT: load(oil_po), ## There is currently no data for oil power plant
-	#BuildingType.ENGINE_FACTORY: load(), ## There is no data 
+	BuildingType.URANIUM_MINE: load("res://scenes/buildings/gathering_buildings/uranium_mine.tscn"), ## There is currently no building data for a uranium mine
+	BuildingType.TOOL_FACTORY: load("res://scenes/buildings/production_buildings/tool_factory.tscn"), ## There is currently no tool factory
+	BuildingType.OIL_POWER_PLANT: load("res://scenes/buildings/power_generators/oil_power_plant.tscn"), ## There is currently no data for oil power plant
+	BuildingType.ENGINE_FACTORY: load("res://scenes/buildings/production_buildings/engine_factory.tscn"), ## There is no data 
 	BuildingType.COPPER_MINE: load("res://scenes/buildings/gathering_buildings/copper_mine.tscn"), 
-	##BuildingType.COPPER_SMELTERY, ## No data
+	BuildingType.COPPER_SMELTERY: load("res://scenes/buildings/production_buildings/copper_smeltery.tscn"), 
 }
 
 static var gathering_buildings: Array[BuildingType] = [
@@ -310,6 +310,8 @@ static var gathering_buildings: Array[BuildingType] = [
 	BuildingType.SAND_COLLECTOR,
 	BuildingType.WATER_PUMP,
 	BuildingType.OIL_RIG,
+	BuildingType.URANIUM_MINE,
+	BuildingType.COPPER_MINE,
 ]
 
 ## Function for checking if the BuildingType is a gathering building

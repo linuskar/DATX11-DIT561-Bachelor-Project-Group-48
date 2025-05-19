@@ -126,7 +126,7 @@ buildings = Dictionary[int, Resource]({
 24: ExtResource("28_ms3bu"),
 25: ExtResource("31_3x28f"),
 26: ExtResource("29_q8j3a"),
-27: ExtResource("34_753oq"),
+27: ExtResource("63_3x338"),
 28: ExtResource("30_ms3bu"),
 29: ExtResource("33_o8oq8")
 })
@@ -157,7 +157,7 @@ building_blueprints = Dictionary[int, Resource]({
 24: ExtResource("61_2iuns"),
 25: ExtResource("54_l6q63"),
 26: ExtResource("60_sxt1d"),
-27: ExtResource("63_3x338"),
+27: ExtResource("34_753oq"),
 28: ExtResource("57_uxocx"),
 29: ExtResource("58_7nv0b")
 })
