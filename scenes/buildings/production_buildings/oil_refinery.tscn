@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cxnkefq0npq8a"]
 
-[ext_resource type="Script" uid="uid://cmwa1gql6b2rd" path="res://scenes/buildings/production_buildings/oil_refinery.gd" id="1_sbtwa"]
+[ext_resource type="Script" path="res://scenes/buildings/production_buildings/oil_refinery.gd" id="1_sbtwa"]
 [ext_resource type="Resource" uid="uid://e535t1sb5v55" path="res://resources/buildings/oil_refinery.tres" id="2_kav1w"]
 [ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_jbuk0"]
 [ext_resource type="Texture2D" uid="uid://ccs5uayo56gkc" path="res://assets/buildings_iso/oil_refinery_building.png" id="3_kav1w"]
@@ -63,12 +63,14 @@ autostart = true
 [node name="Smoke_v1" parent="." instance=ExtResource("4_jbuk0")]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(12, -40)
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_y2hkv")
 
 [node name="Smoke_v2" parent="." instance=ExtResource("4_jbuk0")]
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(35, -24)
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_y2hkv")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

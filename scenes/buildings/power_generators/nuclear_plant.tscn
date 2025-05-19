@@ -49,7 +49,7 @@ alpha_curve = SubResource("CurveTexture_raytu")
 
 [node name="NuclearPlant" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_c08f2")
-smokes = [NodePath(""), NodePath(""), NodePath("Smoke_v3"), NodePath(""), NodePath(""), NodePath("")]
+smokes = [NodePath("Smoke_v3"), NodePath("Smoke_v4"), NodePath("Smoke_v5")]
 building_data = ExtResource("2_t7cuc")
 scene_place_particle = ExtResource("3_c8wy6")
 
@@ -64,12 +64,15 @@ autostart = true
 
 [node name="Smoke_v3" parent="." instance=ExtResource("4_wmuqx")]
 position = Vector2(32, -28)
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_7c5px")
 
 [node name="Smoke_v4" parent="." instance=ExtResource("6_1l5pp")]
 position = Vector2(6, -23)
+emitting = false
 
 [node name="Smoke_v5" parent="." instance=ExtResource("7_7osqp")]
 position = Vector2(-23, -34)
+emitting = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

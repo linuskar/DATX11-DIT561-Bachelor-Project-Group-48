@@ -57,8 +57,9 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_e2gss")
 alpha_curve = SubResource("CurveTexture_qrqbt")
 
-[node name="CopperMine" type="StaticBody2D"]
+[node name="CopperMine" type="StaticBody2D" node_paths=PackedStringArray("smokes")]
 script = ExtResource("1_bn4rk")
+smokes = [NodePath("Smoke_v1"), NodePath("Smoke_v2")]
 building_data = ExtResource("2_fpahu")
 scene_place_particle = ExtResource("3_w1xxn")
 
@@ -73,12 +74,12 @@ texture = ExtResource("3_fpahu")
 autostart = true
 
 [node name="Smoke_v1" parent="." instance=ExtResource("3_ahykv")]
-position = Vector2(15.8865, -25.0164)
+position = Vector2(4, -24)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_2m567")
 
 [node name="Smoke_v2" parent="." instance=ExtResource("3_ahykv")]
-position = Vector2(23.949, -12.6954)
+position = Vector2(11, -25)
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_a340e")
 
