@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://boeiac6bfcce2"]
+[gd_scene load_steps=53 format=3 uid="uid://boeiac6bfcce2"]
 
 [ext_resource type="Script" uid="uid://8wkjq2fm7kgo" path="res://scripts/UI/selectables/BuildingSelectList.gd" id="1_dphbc"]
 [ext_resource type="StyleBox" uid="uid://bx1ymxftlbat0" path="res://resources/style_boxes/ui_panel_light.tres" id="2_2mva2"]
@@ -28,7 +28,6 @@
 [ext_resource type="PackedScene" uid="uid://bh5wmtct5fyq6" path="res://scenes/UI/Selectables/UraniumMineSelectable.tscn" id="15_sgmpg"]
 [ext_resource type="PackedScene" uid="uid://bnw7off718dvw" path="res://scenes/UI/Selectables/GearFactorySelectable.tscn" id="15_tqq1s"]
 [ext_resource type="PackedScene" uid="uid://dhdmdoa2x24cb" path="res://scenes/UI/Selectables/ResearchLabSelectable.tscn" id="16_tqq1s"]
-[ext_resource type="Resource" uid="uid://cugtvkdc264fb" path="res://resources/buildings/uranium_mine.tres" id="16_yn24e"]
 [ext_resource type="PackedScene" uid="uid://cbnpo6ya5w0fv" path="res://scenes/UI/Selectables/SteelScrapLandfillSelectable.tscn" id="18_2tosp"]
 [ext_resource type="Texture2D" uid="uid://c74k0o83665kb" path="res://assets/UI/kenney_ui-pack-pixel-adventure/Tilesheets/Large tiles/Thick outline/tilemap_packed.png" id="19_oxyvt"]
 [ext_resource type="PackedScene" uid="uid://cidj2cwdvefr5" path="res://scenes/UI/Selectables/OilRefinerySelectable.tscn" id="20_axpsv"]
@@ -209,7 +208,6 @@ icon_path = "uid://ddwk86lav3j6q"
 [node name="UraniumMineSelectable" parent="List/PanelContainer/ScrollContainer/BuildingsContainer/Gathering" instance=ExtResource("15_sgmpg")]
 layout_mode = 2
 icon_path = "uid://vtb34heehm3o"
-building_data = ExtResource("16_yn24e")
 
 [node name="Producing" type="VBoxContainer" parent="List/PanelContainer/ScrollContainer/BuildingsContainer"]
 visible = false

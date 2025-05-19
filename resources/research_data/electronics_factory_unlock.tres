@@ -7,6 +7,11 @@ script = ExtResource("1_jbbum")
 research_id = 14
 research_name = "Electronics Factory"
 description = "Unlocks Electronics Factory"
-money_cost = 0
-resource_cost = Dictionary[int, int]({})
+money_cost = 4000
+resource_cost = Dictionary[int, int]({
+5: 120,
+18: 20,
+19: 30,
+25: 40
+})
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

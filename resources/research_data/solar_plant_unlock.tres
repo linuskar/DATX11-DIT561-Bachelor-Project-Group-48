@@ -7,6 +7,11 @@ script = ExtResource("1_ts83c")
 research_id = 15
 research_name = "Solar Plant"
 description = "Unlock Solar Plant"
-money_cost = 0
-resource_cost = Dictionary[int, int]({})
+money_cost = 3000
+resource_cost = Dictionary[int, int]({
+5: 200,
+11: 150,
+19: 100,
+20: 30
+})
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

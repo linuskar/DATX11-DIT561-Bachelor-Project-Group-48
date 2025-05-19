@@ -384,6 +384,7 @@ enum ResearchID {
 	TF_0, ## Tool factory unlock
 	OPP_0, ## Oil power plant unlock
 	EngF_0, ## Engine factory unlock
+	UM_0, ## Uranium mine unlock
 }
 
 static var building_research: Dictionary[BuildingType, Array] = {

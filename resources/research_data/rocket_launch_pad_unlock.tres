@@ -7,6 +7,13 @@ script = ExtResource("1_n6p4p")
 research_id = 18
 research_name = "Rocket Launchpad"
 description = "Unlock Rocket Launchpad"
-money_cost = 0
-resource_cost = Dictionary[int, int]({})
+money_cost = 10000
+resource_cost = Dictionary[int, int]({
+5: 300,
+17: 90,
+18: 70,
+19: 50,
+20: 80,
+23: 40
+})
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

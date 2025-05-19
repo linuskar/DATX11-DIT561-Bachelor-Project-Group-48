@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResearchData" load_steps=2 format=3 uid="uid://cdfvqiyos7fq0"]
+
+[ext_resource type="Script" uid="uid://cxt2f6o7mobww" path="res://scripts/utility/Research/research_data.gd" id="1_rm4s0"]
+
+[resource]
+script = ExtResource("1_rm4s0")
+research_id = 0
+research_name = ""
+description = ""
+money_cost = 2000
+resource_cost = Dictionary[int, int]({
+1: 20,
+10: 40,
+11: 30
+})
+metadata/_custom_type_script = "uid://cxt2f6o7mobww"

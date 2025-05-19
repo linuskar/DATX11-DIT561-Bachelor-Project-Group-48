@@ -7,6 +7,10 @@ script = ExtResource("1_rlfea")
 research_id = 16
 research_name = "Windturbine"
 description = "Unlock Windturbine"
-money_cost = 0
-resource_cost = Dictionary[int, int]({})
+money_cost = 2500
+resource_cost = Dictionary[int, int]({
+11: 80,
+12: 60,
+20: 30
+})
 metadata/_custom_type_script = "uid://cxt2f6o7mobww"

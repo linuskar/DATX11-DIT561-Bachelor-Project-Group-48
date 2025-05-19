@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://buy8txkj2fesj"]
 
-[ext_resource type="Script" path="res://scenes/buildings/production_buildings/electronics_factory.gd" id="1_bbcqo"]
+[ext_resource type="Script" uid="uid://bfit18spwdmh1" path="res://scenes/buildings/production_buildings/electronics_factory.gd" id="1_bbcqo"]
 [ext_resource type="Resource" uid="uid://by3u3gc26dus4" path="res://resources/buildings/electronics_factory.tres" id="2_glva7"]
 [ext_resource type="Texture2D" uid="uid://dxx0jtwe758im" path="res://assets/buildings_iso/electronics_factory_building.png" id="3_8pocv"]
 [ext_resource type="PackedScene" uid="uid://cyf605fj0ptvf" path="res://scenes/buildings/animation/place_particle_large.tscn" id="3_t0eix"]
