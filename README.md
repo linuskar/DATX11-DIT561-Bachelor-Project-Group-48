@@ -5,7 +5,7 @@ This is a project for a bachelor's thesis at Chalmers for DATX11/DIT561. The tit
 Note that some of the assets and code in the game were generated with the assistance of AI tools. In terms of assets, AI tools were used to create certain visual elements of the game.
 
 ## The project
-This a Godot project, a game made with the Godot game engine. The Godot version for this project is 4.1. To run the project you will need to clone the repository and have installed Godot 4.1.
+This a Godot project, a game made with the Godot game engine. The Godot version for this project is 4.4. To run the project you will need to clone the repository and have installed Godot 4.4.
 
 ## Running the application
 To run our game application look at what is the latest release and then download the executable file under [releases](https://github.com/linuskar/DATX11-DIT561-Bachelor-Project-Group-48/releases) for the GitHub repository.  Note that the supported platform to run this application would be for Windows systems.
